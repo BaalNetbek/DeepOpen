@@ -32,7 +32,7 @@ Main.a -> Main.Class_f7:
     boolean a() -> sub_12b
     void a(int) -> sub_57
     void b(int) -> sub_8d
-Main.b -> Main.Class_50:
+Main.b -> Main.ShipPreview:
     short[] a -> var_82
     short[] b -> var_b2
     java.lang.String[] a -> var_126
@@ -200,7 +200,7 @@ Main.h -> Main.Class_45d:
     void c() -> sub_82
     void a(ch) -> sub_9e
     void a(i[]) -> sub_d4
-    void a(u[]) -> sub_11c
+    void a(u[]) -> add
     void a(cf) -> sub_16d
     void a(i) -> sub_198
     boolean a() -> sub_1d5
@@ -219,7 +219,7 @@ Main.h -> Main.Class_45d:
     void k() -> sub_307
     void l() -> sub_171
     void a(java.lang.Object,int) -> sub_e4
-    int b() -> sub_11c
+    int b() -> add
     int c() -> sub_149
 Main.i -> Main.Class_419:
     int a -> var_c
@@ -248,7 +248,7 @@ Main.i -> Main.Class_419:
     java.lang.String b -> var_8e3
     void a(int,int,int,int,java.lang.String[],java.lang.String) -> sub_35
     void a(int) -> sub_8b
-    int b() -> sub_11c
+    int b() -> add
     int c() -> sub_149
     void a(int,java.lang.Object[]) -> sub_16a
     java.lang.Object a() -> sub_1a3
@@ -624,7 +624,7 @@ Main.r -> Main.Class_122:
     void d() -> sub_158
     void a(float,float) -> sub_188
     boolean a() -> sub_1ae
-    void a(boolean,boolean) -> sub_1ef
+    void a(boolean,boolean) -> LoadNames
     void e() -> sub_23f
     void a(int,boolean) -> sub_29e
     void f() -> sub_2b5
@@ -644,7 +644,7 @@ a -> Class_b47:
     void a(aq) -> sub_1a9
     ah a() -> sub_2b
     void a() -> sub_8c
-    void b() -> sub_e7
+    void b() -> render
     void c() -> sub_100
     int a(int) -> sub_a4
 aa -> Class_e:
@@ -689,7 +689,7 @@ aa -> Class_e:
     int b -> var_803
     int c -> var_83e
     boolean a() -> sub_4d
-    void a(boolean) -> sub_74
+    void a(boolean) -> operatorEquals
     void b(boolean) -> sub_d5
     boolean b() -> sub_f9
     void a(int,int) -> sub_137
@@ -744,7 +744,7 @@ aa -> Class_e:
     void a(int,long,boolean) -> sub_bc8
     boolean a(int,int,long,boolean) -> sub_c22
     void a(long) -> sub_c78
-ab -> Class_18:
+ab -> RMS:
     javax.microedition.rms.RecordStore a -> var_4f
     ck a -> var_b1
     cb a -> var_f3
@@ -778,7 +778,7 @@ ac -> Class_4c:
     int g -> var_316
     ah a() -> sub_2b
     void a() -> sub_8c
-    void b() -> sub_e7
+    void b() -> render
     void a(ap,af) -> sub_11b
     void a(int[],int[]) -> sub_176
     void a(aq) -> sub_1a9
@@ -842,13 +842,13 @@ af -> Class_db:
     void a(long) -> sub_cc
     void b() -> sub_120
     void a(int,ag) -> sub_177
-ag -> Class_11e:
+ag -> AbstractMesh:
     int a -> var_e
     cl a -> var_41
     void a(int) -> sub_4f
     void a(ap,af) -> sub_11b
     void b(ap,af) -> sub_b2
-    void b() -> sub_e7
+    void b() -> render
     void c() -> sub_100
     ah a() -> sub_2b
     ag a(int,int,byte) -> sub_15d
@@ -959,7 +959,7 @@ ak -> Class_1ad:
     void a(long) -> sub_e6
     void a() -> sub_109
     boolean a(int,int,int) -> sub_162
-    cd b(cd) -> sub_1a1
+    cd b(cd) -> loadItems
     boolean a(cd) -> sub_1b8
 al -> Class_1ee:
     int a -> var_22
@@ -999,11 +999,11 @@ al -> Class_1ee:
     boolean b() -> sub_a8
     boolean a(int,int) -> sub_b7
     void a() -> sub_e1
-am -> Class_1fd:
-    cd a -> var_12
-    int a -> var_3c
+am -> AEBoundingSphere:
+    cd a -> center
+    int a -> radius
     void a(am) -> sub_52
-    void b(am) -> sub_74
+    void b(am) -> operatorEquals
     void a(int,int,int,int) -> sub_7f
     void a(cd,int) -> sub_9f
     java.lang.String toString() -> toString
@@ -1024,7 +1024,7 @@ an -> Class_23e:
     bq a(int) -> sub_133
     void b() -> sub_193
     void a(long,long,cq) -> sub_1f5
-ao -> Class_271:
+ao -> LoadingScreen:
     boolean a -> var_19
     javax.microedition.lcdui.game.GameCanvas a -> var_7c
     java.lang.Thread a -> var_d7
@@ -1083,14 +1083,14 @@ as -> Class_375:
     void b() -> sub_c4
     void a() -> sub_10a
     boolean a() -> sub_12b
-at -> Class_3bf:
+at -> GameStatus:
     boolean a -> var_57
     boolean b -> var_a9
     boolean c -> var_107
     boolean d -> var_143
     int a -> var_154
     int b -> var_1a1
-    int c -> var_1f4
+    int c -> language
     boolean e -> var_210
     boolean f -> var_264
     boolean g -> var_2b3
@@ -1128,11 +1128,11 @@ at -> Class_3bf:
     cn a -> var_a17
     javax.microedition.lcdui.Graphics a -> var_a65
     javax.microedition.midlet.MIDlet a -> var_aa1
-    int f -> var_af3
-    int g -> var_b05
+    int f -> screenWidth
+    int g -> screenHeight
     bs a -> var_b5c
     java.util.Random a -> var_b6d
-    java.lang.String a -> var_b84
+    java.lang.String a -> gameVersion
     boolean G -> var_bd5
     au a -> var_bfb
     as[] a -> var_c35
@@ -1143,7 +1143,7 @@ au -> Class_3cd:
     as a -> var_aa
     Main.GOF2MIDlet a -> var_db
     ao a -> var_12f
-    void a(as) -> sub_c
+    void a(as) -> operatorEquals
     as a() -> sub_28
     void a() -> sub_54
     void a(int) -> sub_71
@@ -1159,20 +1159,20 @@ av -> Class_3e2:
     void a() -> sub_99
     void b() -> sub_cd
     void c() -> sub_130
-aw -> Class_3f8:
+aw -> AEBinaryResourceManager:
     java.lang.Class a -> var_61
     be a(int) -> sub_5a
     be[] a(short[]) -> sub_65
-    int[] a(int) -> sub_9d
+    int[] a(int) -> loadShipParts
     int[] a(int,int) -> sub_f2
     be[] a(cw) -> sub_11f
-    cb[] a() -> sub_151
+    cb[] a() -> loadAgents
     cw[] a() -> sub_178
-    u[] a() -> sub_1a1
-    ch[] a() -> sub_1ad
-    java.lang.String[] a(int,boolean,boolean) -> sub_1ef
+    u[] a() -> loadItems
+    ch[] a() -> loadShips
+    java.lang.String[] a(int,boolean,boolean) -> LoadNames
     java.lang.Class a(java.lang.String) -> sub_229
-ax -> Class_44f:
+ax -> JSRMesh:
     int[] a -> var_56
     int[] b -> var_10e
     int d -> var_137
@@ -1195,7 +1195,7 @@ ax -> Class_44f:
     void d() -> sub_31
     void a(javax.microedition.m3g.Node) -> sub_46
     int a(javax.microedition.m3g.Node,int) -> sub_85
-    void b() -> sub_e7
+    void b() -> render
     void c() -> sub_100
     void a(long) -> sub_181
     int i() -> sub_942
@@ -1360,7 +1360,7 @@ bd -> Class_5dc:
     java.lang.String c -> var_af
     java.lang.String a(long) -> sub_26
     java.lang.String b(long) -> sub_75
-be -> Class_5ed:
+be -> Station:
     java.lang.String a -> var_c2
     int a -> var_146
     int b -> var_155
@@ -1371,7 +1371,7 @@ be -> Class_5ed:
     cb[] a -> var_276
     int a() -> sub_34
     java.lang.String a() -> sub_71
-    int b() -> sub_9d
+    int b() -> loadShipParts
     boolean a() -> sub_fc
     int c() -> sub_15f
     boolean b() -> sub_175
@@ -1458,7 +1458,7 @@ bh -> Class_680:
     boolean j() -> sub_15d
     void a(int,int,int) -> sub_83
     void a(int,o) -> sub_16f
-    void a(int) -> sub_1ad
+    void a(int) -> loadShips
     void c(int) -> sub_1e8
     void d(int) -> sub_227
     void g() -> sub_262
@@ -1484,7 +1484,7 @@ bk -> Class_6fc:
     void c(int,int,int) -> sub_1c0
     void c(cd) -> sub_16
     void a(long) -> sub_181
-    void b() -> sub_e7
+    void b() -> render
     ah a() -> sub_2b
     void a(aq) -> sub_1a9
     void a() -> sub_8c
@@ -1707,7 +1707,7 @@ br -> Class_876:
     db a -> var_1b1
     boolean a(int) -> sub_47
     boolean a() -> sub_7d
-bs -> Class_8b8:
+bs -> AESoundManager:
     java.lang.String[] a -> var_44
     java.lang.String[] b -> var_5e
     int a -> var_f0
@@ -1725,7 +1725,7 @@ bs -> Class_8b8:
     void b(int) -> sub_81
     int a() -> sub_96
     void a() -> sub_e5
-    boolean a() -> sub_10e
+    boolean a() -> crossProduct
     void c(int) -> sub_16c
     void a(int,int) -> sub_1b0
     void d(int) -> sub_210
@@ -1862,19 +1862,19 @@ bw -> Class_99d:
     void a() -> sub_42
     void a(ap,cd) -> sub_85
     void a(ap,o) -> sub_b8
-    void a(aa,ap,c,v,int) -> sub_e7
+    void a(aa,ap,c,v,int) -> render
     int a() -> sub_12d
     void a(v) -> sub_18f
     java.lang.String a(int,int,int,aa) -> sub_1ab
     o a() -> sub_1bd
-    void b() -> sub_1ef
+    void b() -> LoadNames
     o b() -> sub_1fa
 bx -> Class_9e5:
     javax.microedition.m3g.Transform a -> var_b
     float[] a -> var_96
     javax.microedition.m3g.Node a -> var_109
     javax.microedition.m3g.CompositingMode a -> var_124
-    void b() -> sub_e7
+    void b() -> render
     void a(ap,af) -> sub_11b
     ah a() -> sub_2b
     void a(aq) -> sub_1a9
@@ -1887,7 +1887,7 @@ by -> Class_a13:
     boolean a(int,int,int) -> sub_162
     cd c(cd) -> sub_52
     boolean a(cd) -> sub_1b8
-    cd b(cd) -> sub_1a1
+    cd b(cd) -> loadItems
 bz -> Class_a6e:
     cd a -> var_90
     cd b -> var_d9
@@ -2016,18 +2016,18 @@ cc -> Class_b3c:
     cd a(cd) -> sub_a9
     boolean a(int,int,int) -> sub_162
     boolean a(cd) -> sub_1b8
-    cd b(cd) -> sub_1a1
+    cd b(cd) -> loadItems
     void b() -> sub_22
-cd -> Class_b72:
-    int a -> var_5d
-    int b -> var_89
-    int c -> var_e6
-    void a(cd) -> sub_c
+cd -> AEVector3D:
+    int a -> x
+    int b -> y
+    int c -> z
+    void a(cd) -> operatorEquals
     void a(int,int,int) -> sub_5a
     int a(cd) -> sub_83
     int b(cd) -> sub_e3
-    cd a(cd,cd) -> sub_10e
-    cd b(cd,cd) -> sub_11c
+    cd a(cd,cd) -> crossProduct
+    cd b(cd,cd) -> add
     void b(cd) -> sub_15d
     cd c(cd,cd) -> sub_16e
     void c(cd) -> sub_17c
@@ -2053,7 +2053,7 @@ ce -> Class_c1c:
     int a(java.lang.String,int,int) -> sub_ab
     int a(char) -> sub_d9
     void b(int) -> sub_105
-    void a(java.lang.String,int,int) -> sub_11c
+    void a(java.lang.String,int,int) -> add
     void b(java.lang.String,int,int) -> sub_162
     int a() -> sub_16f
     int b() -> sub_1c3
@@ -2099,24 +2099,24 @@ cg -> Class_cc4:
     boolean a() -> sub_154
     void a(long) -> sub_179
     boolean b() -> sub_185
-ch -> Class_cf4:
+ch -> Ship:
     short[] a -> var_132
     short[] b -> var_16b
-    int a -> var_185
-    int b -> var_2bd
-    int c -> var_2fb
-    int d -> var_3eb
+    int a -> id
+    int b -> armour
+    int c -> basePrice
+    int d -> cargoHold
     int e -> var_521
-    int f -> var_56c
-    int[] a -> var_5a8
-    float a -> var_62b
-    int g -> var_64a
-    int h -> var_6a3
-    int i -> var_6c7
-    int j -> var_73d
-    int k -> var_74b
-    int l -> var_75c
-    int m -> var_7d5
+    int f -> price
+    int[] a -> itemTypeSlots
+    float a -> handling
+    int g -> shield
+    int h -> additionalArmour
+    int i -> shieldRegenTime
+    int j -> extendedCargo
+    int k -> boostPercent
+    int l -> boostRegenTime
+    int m -> boostDuration
     int n -> var_82d
     int o -> var_84c
     int p -> var_89c
@@ -2124,8 +2124,8 @@ ch -> Class_cf4:
     boolean b -> var_926
     boolean c -> var_943
     int q -> var_95a
-    u[] a -> var_9b5
-    u[] b -> var_a80
+    u[] a -> equipment
+    u[] b -> commodities
     void a(int) -> sub_3d
     int a() -> sub_d3
     int b() -> sub_105
@@ -2258,7 +2258,7 @@ ck -> Class_e57:
     java.lang.String c() -> sub_77b
     void a(java.lang.String) -> sub_7b6
     void d(int) -> sub_7f3
-cl -> Class_eae:
+cl -> Matrix:
     short a -> var_171
     int a -> var_189
     int b -> var_1e5
@@ -2360,9 +2360,9 @@ cm -> Class_ee3:
     void g() -> sub_296
     void a() -> sub_109
     boolean a(cd) -> sub_1b8
-    cd b(cd) -> sub_1a1
+    cd b(cd) -> loadItems
     boolean a(int,int,int) -> sub_162
-cn -> Class_f62:
+cn -> LangManager:
     short[] a -> var_bd
     short[] b -> var_17a
     short[] c -> var_1a4
@@ -2596,11 +2596,11 @@ ct -> Class_11ab:
 cu -> Class_121c:
     void c() -> sub_2aa
     boolean a() -> sub_356
-cv -> Class_125f:
+cv -> LensFlareFX:
     javax.microedition.lcdui.Image[] a -> var_74
     javax.microedition.lcdui.Image a -> var_1c3
     void a(cd) -> sub_3c
-cw -> Class_12c4:
+cw -> StellarSystem:
     java.lang.String a -> var_229
     int d -> var_26c
     int e -> var_36a
@@ -2663,7 +2663,7 @@ cy -> Class_13a3:
 cz -> Class_1440:
     ag[] a -> var_c9
     int a -> var_319
-    void a(ag) -> sub_c
+    void a(ag) -> operatorEquals
     void a() -> sub_24
     void a(long) -> sub_4a
     void b() -> sub_56
@@ -2676,14 +2676,14 @@ d -> Class_cda:
     void a() -> sub_109
     void a(long) -> sub_e6
     cd a(cd) -> sub_a9
-da -> Class_153e:
+da -> Crosshair:
     int[] a -> var_19e
     javax.microedition.lcdui.Image a -> var_22e
     cd a -> var_2a6
     cd b -> var_3ea
     void a(cl,ap) -> sub_5c
     void a() -> sub_16e
-    void b() -> sub_1aa
+    void b() -> draw
 db -> Class_156c:
     int k -> var_dd
     w a -> var_2de
@@ -2916,7 +2916,7 @@ k -> Class_fa9:
     boolean d -> var_4a9
     bw a -> var_511
     void a() -> sub_8c
-    void b() -> sub_e7
+    void b() -> render
     void d() -> sub_30
     void a(bw) -> sub_8a
     void a(long) -> sub_181
@@ -2935,7 +2935,7 @@ m -> Class_105f:
     ag a -> var_1c8
     cd a -> var_211
     void a() -> sub_8c
-    void b() -> sub_e7
+    void b() -> render
     void a(long) -> sub_181
     ah a() -> sub_2b
     void a(aq) -> sub_1a9
@@ -2956,7 +2956,7 @@ n -> Class_10a6:
     db a -> var_658
     boolean d -> var_695
     void a() -> sub_8c
-    void b() -> sub_e7
+    void b() -> render
     void a(long) -> sub_181
     ah a() -> sub_2b
     void a(aq) -> sub_1a9
@@ -3011,7 +3011,7 @@ o -> Class_1124:
     boolean d() -> sub_32a
     void a(boolean,int) -> sub_366
     void a(int,o) -> sub_16f
-    void a(int) -> sub_1ad
+    void a(int) -> loadShips
     void a(db) -> sub_3b3
     void a(cg) -> sub_3c7
     void a(bg) -> sub_3d9
@@ -3030,7 +3030,7 @@ o -> Class_1124:
     void a(long) -> sub_e6
     boolean a(int,int,int) -> sub_162
     boolean a(cd) -> sub_1b8
-    cd b(cd) -> sub_1a1
+    cd b(cd) -> loadItems
     void f() -> sub_2e5
     void a(int,int,int) -> sub_83
     void a() -> sub_109
@@ -3039,7 +3039,7 @@ p -> Class_1189:
     javax.microedition.lcdui.Graphics a -> var_1f2
     void a() -> sub_58
     void a(javax.microedition.lcdui.Graphics) -> sub_77
-    void a(java.lang.String,int,int,int) -> sub_9d
+    void a(java.lang.String,int,int,int) -> loadShipParts
     void a(int,int) -> sub_d0
     void b(java.lang.String,int,int,int) -> sub_102
     void a(java.lang.String,int,int,int,int) -> sub_161
@@ -3088,7 +3088,7 @@ t -> Class_1319:
     cd a(cd) -> sub_a9
     void a() -> sub_109
     boolean a(int,int,int) -> sub_162
-u -> Class_138c:
+u -> Item:
     boolean[] a -> var_ce
     int a -> var_1da
     int b -> var_220
@@ -3249,13 +3249,13 @@ y -> Class_14c5:
     void a() -> sub_8c
     void a(ap,af) -> sub_11b
     void b(ap,af) -> sub_b2
-    void b() -> sub_e7
+    void b() -> render
     void c() -> sub_100
     void a(aq) -> sub_1a9
     int[] a() -> sub_46
     int[] b() -> sub_53
     int[] c() -> sub_ba
-z -> Class_1522:
+z -> PlayerStatus:
     boolean[] a -> var_df
     int a -> var_1d6
     int b -> var_307
