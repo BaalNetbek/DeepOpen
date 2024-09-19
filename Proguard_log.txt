@@ -410,7 +410,7 @@ Main.n -> Main.Class_1ae:
     void keyPressed(int) -> keyPressed
     void keyRepeated(int) -> keyRepeated
     void keyReleased(int) -> keyReleased
-Main.o -> Main.Class_184:
+Main.o -> Main.Flight:
     int a -> var_47
     long a -> var_7e
     long b -> var_de
@@ -441,17 +441,17 @@ Main.o -> Main.Class_184:
     Main.r a -> var_822
     av a -> var_865
     az a -> var_87a
-    boolean g -> var_8d6
+    boolean g -> jumpgateReached
     boolean h -> var_947
     boolean i -> var_976
-    boolean j -> var_9b4
+    boolean j -> autopilotMenuOpen
     boolean k -> var_9d5
     boolean l -> var_a07
     boolean m -> var_a4e
     boolean n -> var_a7d
     boolean o -> var_b21
-    boolean p -> var_b67
-    int c -> var_bf6
+    boolean p -> actionMenuOpen
+    int c -> keysPressed
     boolean q -> var_c3b
     boolean r -> var_c80
     boolean s -> var_ce4
@@ -763,17 +763,17 @@ ab -> RMS:
 ac -> Class_4c:
     javax.microedition.m3g.Transform a -> var_20
     float[] a -> var_2b
-    javax.microedition.m3g.Appearance a -> var_8d
+    javax.microedition.m3g.Appearance a -> appearance
     int d -> var_b7
-    javax.microedition.m3g.Mesh a -> var_100
-    javax.microedition.m3g.VertexBuffer a -> var_125
-    javax.microedition.m3g.VertexArray a -> var_16c
-    javax.microedition.m3g.VertexArray b -> var_186
-    javax.microedition.m3g.TriangleStripArray a -> var_1d5
+    javax.microedition.m3g.Mesh a -> mesh
+    javax.microedition.m3g.VertexBuffer a -> vertexBuffer
+    javax.microedition.m3g.VertexArray a -> vertexArray
+    javax.microedition.m3g.VertexArray b -> uvArray
+    javax.microedition.m3g.TriangleStripArray a -> tStrips
     short[] a -> var_237
     byte[] a -> var_297
-    float[] b -> var_2d8
-    float[] c -> var_2ef
+    float[] b -> zeroBias3D
+    float[] c -> zeroBias2D
     int f -> var_308
     int g -> var_316
     ah a() -> sub_2b
@@ -2064,12 +2064,12 @@ cf -> ListEntry:
     ch a -> var_1a6
     u a -> var_343
     ck a -> var_3d5
-    boolean a -> var_435
-    java.lang.String a -> var_442
+    boolean a -> isSelectable
+    java.lang.String a -> label
     java.lang.String b -> var_470
-    int a -> var_51d
-    int b -> var_5bd
-    int c -> var_624
+    int a -> medalTier
+    int b -> medalId
+    int c -> displayedCountType
     javax.microedition.lcdui.Image a -> var_638
     boolean b -> var_68c
     int d -> var_6b0
@@ -2422,7 +2422,7 @@ cq -> Class_108b:
     cd a -> var_75f
     cd b -> var_795
     ca a -> var_7a2
-    da a -> var_7ee
+    da a -> crosshair
     cg a -> var_82c
     db a -> var_887
     bg a -> var_910
@@ -2604,13 +2604,13 @@ cw -> StellarSystem:
     java.lang.String a -> var_229
     int d -> var_26c
     int e -> var_36a
-    int f -> var_40d
+    int f -> race
     int g -> var_44a
     int h -> var_4ae
     int i -> var_563
     int j -> var_671
     int k -> var_6b4
-    int[] a -> var_6cd
+    int[] a -> planetIds
     int[] b -> var_706
     boolean a -> var_73a
     int a -> var_75b
@@ -2677,12 +2677,12 @@ d -> Class_cda:
     void a(long) -> sub_e6
     cd a(cd) -> sub_a9
 da -> Crosshair:
-    int[] a -> var_19e
-    javax.microedition.lcdui.Image a -> var_22e
-    cd a -> var_2a6
-    cd b -> var_3ea
+    int[] a -> worldPosition
+    javax.microedition.lcdui.Image a -> image
+    cd a -> worldPos
+    cd b -> screenPos
     void a(cl,ap) -> sub_5c
-    void a() -> subtract
+    void a() -> updatePosition
     void b() -> draw
 db -> Class_156c:
     int k -> var_dd
@@ -2890,8 +2890,8 @@ j -> Dialogue:
     int a -> type
     int b -> page
     ck a -> var_52a
-    az a -> var_581
-    boolean a -> var_5c4
+    az a -> popup
+    boolean a -> popupOpen
     db a -> var_649
     boolean a(int) -> sub_84
     boolean b(int) -> sub_de
@@ -3146,11 +3146,11 @@ u -> Item:
     java.lang.String toString() -> toString
     boolean c() -> sub_95c
     void a(boolean) -> sub_986
-v -> Class_13e5:
-    java.lang.String[][] a -> var_53
-    byte[][] a -> var_225
+v -> FlightUI:
+    java.lang.String[][] a -> actionmenuLabels
+    byte[][] a -> actionmenuButtonsState
     int a -> var_2be
-    int b -> var_30b
+    int b -> drawSecondaryIcon
     int c -> var_341
     int d -> var_38f
     int e -> var_3e2
@@ -3171,8 +3171,8 @@ v -> Class_13e5:
     javax.microedition.lcdui.Image a -> var_831
     javax.microedition.lcdui.Image i -> var_892
     int g -> var_8bd
-    java.lang.String a -> var_8dd
-    java.lang.String b -> var_915
+    java.lang.String a -> tempLogMsg
+    java.lang.String b -> logMsg
     boolean b -> var_979
     boolean c -> var_986
     boolean d -> var_9c7
@@ -3180,12 +3180,12 @@ v -> Class_13e5:
     int h -> var_a21
     boolean a -> var_a72
     boolean f -> var_ab1
-    boolean g -> var_ac6
+    boolean g -> actionmenuOpen
     int i -> var_b01
-    int j -> var_b68
-    int k -> var_bc6
+    int j -> actionmenuSelectDir
+    int k -> indicatorIconsOffset
     boolean h -> var_bdf
-    boolean i -> var_c24
+    boolean i -> actionmenuConverging
     boolean j -> var_c34
     boolean k -> var_c84
     int l -> var_ce3
