@@ -280,7 +280,7 @@ Main.j -> Main.Class_2cd:
     int f -> var_303
     javax.microedition.lcdui.game.Sprite a -> var_32d
     void a(int,int) -> sub_49
-    void a() -> sub_83
+    void a() -> squaredLength
 Main.k -> Main.Class_26f:
     long a -> var_1d
     long b -> var_36
@@ -629,7 +629,7 @@ Main.r -> Main.Class_122:
     void a(int,boolean) -> sub_29e
     void f() -> sub_2b5
     void b() -> sub_2ee
-a -> Class_b47:
+a -> AEMesh:
     float[] a -> var_43
     java.io.DataInputStream a -> var_d3
     javax.microedition.m3g.VertexBuffer a -> var_167
@@ -851,7 +851,7 @@ ag -> AbstractMesh:
     void b() -> render
     void c() -> sub_100
     ah a() -> sub_2b
-    ag a(int,int,byte) -> sub_15d
+    ag a(int,int,byte) -> add
     void a(aq) -> sub_1a9
     void a() -> sub_8c
     void a(long) -> sub_181
@@ -870,7 +870,7 @@ ah -> Class_13c:
     void a(boolean) -> sub_4f
     boolean a() -> sub_87
     ar a() -> sub_a4
-    ah b() -> sub_e3
+    ah b() -> squaredLengthPrecise
     void a(ap,af) -> sub_11b
     void b(ap,af) -> sub_b2
     void b(boolean) -> sub_109
@@ -952,7 +952,7 @@ ak -> Class_1ad:
     int p -> var_3ed
     void b() -> sub_22
     void a(boolean) -> sub_59
-    void a(int,int,int) -> sub_83
+    void a(int,int,int) -> squaredLength
     void a(w[]) -> sub_9c
     cd a(cd) -> sub_a9
     void c(int) -> sub_da
@@ -1161,7 +1161,7 @@ av -> Class_3e2:
     void c() -> sub_130
 aw -> AEBinaryResourceManager:
     java.lang.Class a -> var_61
-    be a(int) -> sub_5a
+    be a(int) -> operatorEquals
     be[] a(short[]) -> sub_65
     int[] a(int) -> loadShipParts
     int[] a(int,int) -> sub_f2
@@ -1257,7 +1257,7 @@ b -> Class_bbf:
     boolean b() -> sub_119
     void a(int,int,int,int) -> sub_136
     void c() -> sub_189
-    void a(java.lang.String,int,int,int,boolean) -> sub_1cc
+    void a(java.lang.String,int,int,int,boolean) -> scale
     void a(java.lang.String,int,int,int,boolean,boolean,boolean) -> sub_1df
     void a(java.lang.String,int,int,int,boolean,boolean) -> sub_241
     void d() -> sub_295
@@ -1455,8 +1455,8 @@ bh -> Class_680:
     boolean a() -> sub_5f
     boolean h() -> sub_bd
     boolean i() -> sub_102
-    boolean j() -> sub_15d
-    void a(int,int,int) -> sub_83
+    boolean j() -> add
+    void a(int,int,int) -> squaredLength
     void a(int,o) -> sub_16f
     void a(int) -> loadShips
     void c(int) -> sub_1e8
@@ -1470,7 +1470,7 @@ bh -> Class_680:
 bi -> Class_6ba:
     boolean n -> var_4d
     void g() -> sub_25
-    void a(int,int,int) -> sub_83
+    void a(int,int,int) -> squaredLength
     void a(long) -> sub_e6
 bj -> Class_6cc:
     float a -> var_ef
@@ -2023,15 +2023,15 @@ cd -> AEVector3D:
     int b -> y
     int c -> z
     void a(cd) -> operatorEquals
-    void a(int,int,int) -> sub_5a
-    int a(cd) -> sub_83
-    int b(cd) -> sub_e3
+    void a(int,int,int) -> operatorEquals
+    int a(cd) -> squaredLength
+    int b(cd) -> squaredLengthPrecise
     cd a(cd,cd) -> crossProduct
     cd b(cd,cd) -> add
-    void b(cd) -> sub_15d
-    cd c(cd,cd) -> sub_16e
-    void c(cd) -> sub_17c
-    void a(int) -> sub_1cc
+    void b(cd) -> add
+    cd c(cd,cd) -> subtract
+    void c(cd) -> subtract
+    void a(int) -> scale
     void a() -> sub_1d6
     int a() -> sub_206
     java.lang.String toString() -> toString
@@ -2226,7 +2226,7 @@ ck -> Class_e57:
     int h -> var_711
     int i -> var_71d
     boolean d -> var_73c
-    boolean a() -> sub_51
+    boolean a() -> sin
     void a(boolean) -> sub_91
     boolean b() -> sub_12c
     void b(boolean) -> sub_13b
@@ -2672,7 +2672,7 @@ d -> Class_cda:
     int p -> var_81
     void a(boolean) -> sub_55
     boolean a() -> sub_b7
-    void a(int,int,int) -> sub_83
+    void a(int,int,int) -> squaredLength
     void a() -> sub_109
     void a(long) -> sub_e6
     cd a(cd) -> sub_a9
@@ -2682,7 +2682,7 @@ da -> Crosshair:
     cd a -> var_2a6
     cd b -> var_3ea
     void a(cl,ap) -> sub_5c
-    void a() -> sub_16e
+    void a() -> subtract
     void b() -> draw
 db -> Class_156c:
     int k -> var_dd
@@ -2819,7 +2819,7 @@ f -> Class_dd9:
     void a(int,int,javax.microedition.lcdui.Image,javax.microedition.lcdui.Image,int,int,int) -> sub_128
     void a(int,javax.microedition.lcdui.Image,int,int,int) -> sub_158
     void b(int,int,javax.microedition.lcdui.Image,javax.microedition.lcdui.Image,int,int,int) -> sub_1b6
-g -> Class_e3b:
+g -> Skybox:
     int[] a -> var_64
     int[] b -> var_fb
     ag[] a -> var_153
@@ -2841,10 +2841,10 @@ g -> Class_e3b:
     void a() -> sub_b9
     void b() -> sub_116
     void c() -> sub_126
-h -> Class_ea2:
-    short[] a -> var_33
-    int a(int) -> sub_51
-    int b(int) -> sub_89
+h -> AEMath:
+    short[] a -> sineTable
+    int a(int) -> sin
+    int b(int) -> cos
     int c(int) -> sub_d2
     int a(int,int) -> sub_e2
     int d(int) -> sub_f9
@@ -3032,7 +3032,7 @@ o -> Class_1124:
     boolean a(cd) -> sub_1b8
     cd b(cd) -> loadItems
     void f() -> sub_2e5
-    void a(int,int,int) -> sub_83
+    void a(int,int,int) -> squaredLength
     void a() -> sub_109
 p -> Class_1189:
     ce[] a -> var_98
