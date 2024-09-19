@@ -43,7 +43,7 @@ Main.b -> Main.ShipPreview:
     javax.microedition.lcdui.Image d -> var_362
     bu a -> var_3d7
     bu b -> var_423
-    boolean a -> var_44e
+    boolean a -> drawShip
     ap a -> var_48f
     ap b -> var_4c3
     ar a -> var_4ee
@@ -789,29 +789,29 @@ ad -> Class_69:
     short[] a -> var_113
     short[][] b -> var_12c
     short[] b -> var_149
-    byte[] a -> var_175
-    byte[] c -> var_1d4
-    byte[] d -> var_1e4
-    byte[] e -> var_239
-    byte[] f -> var_24f
-    byte[] g -> var_2ac
-    byte[] h -> var_2f7
-    byte[] i -> var_350
-    byte[] j -> var_392
-    byte[] k -> var_3d8
-    byte[] l -> var_41b
-    byte[] m -> var_479
-    byte[] n -> var_4cc
-    byte[] o -> var_504
-    byte[] p -> var_536
-    byte[] q -> var_597
-    byte[] b -> var_5a2
-    byte[] r -> var_5ba
-    byte[] s -> var_63e
-    byte[] t -> var_651
-    byte[] u -> var_67d
-    byte[] v -> var_6cc
-    byte[][] a -> var_722
+    byte[] a -> faceKeith
+    byte[] c -> faceBrent
+    byte[] d -> faceGunant
+    byte[] e -> faceNorris
+    byte[] f -> faceMkkt
+    byte[] g -> faceOfficer
+    byte[] h -> faceCarla
+    byte[] i -> faceErkkt
+    byte[] j -> faceAgent0
+    byte[] k -> faceAgent1
+    byte[] l -> faceAgent2
+    byte[] m -> faceAgent3
+    byte[] n -> faceAgent4
+    byte[] o -> faceAgent5
+    byte[] p -> faceAgent6
+    byte[] q -> faceStory
+    byte[] b -> faceStory2
+    byte[] r -> faceAlert
+    byte[] s -> faceThomas
+    byte[] t -> faceVoid
+    byte[] u -> faceKhador
+    byte[] v -> faceSecurity
+    byte[][] a -> faces
     ch[] a -> var_747
     u[] a -> var_76c
     void a() -> sub_27
@@ -844,7 +844,7 @@ af -> Class_db:
     void a(int,ag) -> sub_177
 ag -> AbstractMesh:
     int a -> var_e
-    cl a -> var_41
+    cl a -> matrix
     void a(int) -> sub_4f
     void a(ap,af) -> sub_11b
     void b(ap,af) -> sub_b2
@@ -1183,7 +1183,7 @@ ax -> JSRMesh:
     boolean d -> var_1e9
     byte a -> var_236
     javax.microedition.m3g.Transform a -> var_24c
-    float[] a -> var_29b
+    float[] a -> m_matrix
     javax.microedition.m3g.Node[] a -> var_2f4
     javax.microedition.m3g.Node[] b -> var_338
     javax.microedition.m3g.PolygonMode a -> var_344
@@ -1216,15 +1216,15 @@ ay -> Class_490:
     int c -> var_180
     void a() -> sub_4b
     void a(int) -> sub_a6
-az -> Class_4e9:
-    int a -> var_5f
-    int b -> var_a4
-    int c -> var_e1
-    int d -> var_11e
-    java.lang.String[] a -> var_136
-    int e -> var_144
-    boolean a -> var_178
-    boolean b -> var_214
+az -> Popup:
+    int a -> posY
+    int b -> posX
+    int c -> width
+    int d -> height
+    java.lang.String[] a -> rows
+    int e -> choicePosY
+    boolean a -> currentChoice
+    boolean b -> isChoice
     void a(java.lang.String) -> sub_34
     void a(java.lang.String,boolean) -> sub_8f
     boolean a() -> sub_9a
@@ -1320,21 +1320,21 @@ ba -> Class_539:
     void b() -> sub_30a
     void a(long) -> sub_318
     void c() -> sub_341
-bb -> Class_594:
+bb -> Medals:
     int[][] a -> var_58
-    int[] a -> var_83
+    int[] a -> medals
     int[] b -> var_d2
     int a -> var_1a5
     int b -> var_228
     int c -> var_243
     boolean a -> var_25f
     int d -> var_27c
-    boolean b -> var_2df
-    boolean c -> var_2ee
-    int e -> var_30a
-    int f -> var_3b0
+    boolean b -> hasAll
+    boolean c -> hasAllGold
+    int e -> goldMedalsCount
+    int f -> medalsCount
     void a(cq) -> sub_13
-    void f() -> sub_75
+    void f() -> updateMedalCounters
     boolean a() -> sub_b0
     boolean b() -> sub_fe
     int[] a() -> sub_144
@@ -1359,7 +1359,7 @@ bd -> Class_5dc:
     java.lang.String b -> var_73
     java.lang.String c -> var_af
     java.lang.String a(long) -> sub_26
-    java.lang.String b(long) -> sub_75
+    java.lang.String b(long) -> updateMedalCounters
 be -> Station:
     java.lang.String a -> var_c2
     int a -> var_146
@@ -1746,16 +1746,16 @@ bu -> Class_900:
     int d -> var_d0
     int e -> var_115
     int f -> var_122
-    int a -> var_16e
-    java.lang.String[] a -> var_1bb
+    int a -> topPadding
+    java.lang.String[] a -> rows
     int g -> var_20d
-    boolean a -> var_278
-    int h -> var_2c0
+    boolean a -> verticalBar
+    int h -> vBarPercent
     java.lang.String a -> var_2f5
     byte[] a -> var_310
-    int i -> var_34f
+    int i -> topPadding2
     boolean b -> var_360
-    int b -> var_3a7
+    int b -> font
     javax.microedition.lcdui.Image[] a -> var_3dd
     int j -> var_438
     void a() -> sub_3e
@@ -1940,16 +1940,16 @@ c -> Class_c53:
     void c(cd) -> sub_3dd
     void d(cd) -> sub_400
 ca -> Class_aa7:
-cb -> Class_aed:
-    java.lang.String a -> var_d
+cb -> Agent:
+    java.lang.String a -> fullName
     java.lang.String b -> var_70
     java.lang.String c -> var_ad
     int b -> var_1be
     int c -> var_1f9
     int d -> var_2f3
     int e -> var_340
-    int f -> var_430
-    int g -> var_465
+    int f -> stationId
+    int g -> systemId
     int h -> var_471
     boolean c -> var_4b9
     int i -> var_4d1
@@ -1959,10 +1959,10 @@ cb -> Class_aed:
     int l -> var_5fe
     int m -> var_62c
     int n -> var_66f
-    java.lang.String e -> var_6a0
-    java.lang.String f -> var_76e
-    java.lang.String d -> var_7cf
-    boolean d -> var_836
+    java.lang.String e -> dialogue
+    java.lang.String f -> stationName
+    java.lang.String d -> systemName
+    boolean d -> accepted
     boolean e -> var_894
     byte[] a -> var_8f4
     ck a -> var_925
@@ -2058,7 +2058,7 @@ ce -> Class_c1c:
     int a() -> sub_16f
     int b() -> sub_1c3
     void c(int) -> sub_213
-cf -> Class_c81:
+cf -> ListEntry:
     cb a -> var_fe
     i a -> var_15e
     ch a -> var_1a6
@@ -2105,8 +2105,8 @@ ch -> Ship:
     int a -> id
     int b -> armour
     int c -> basePrice
-    int d -> cargoHold
-    int e -> var_521
+    int d -> baseCargo
+    int e -> cargo
     int f -> price
     int[] a -> itemTypeSlots
     float a -> handling
@@ -2123,7 +2123,7 @@ ch -> Ship:
     boolean a -> var_8eb
     boolean b -> var_926
     boolean c -> var_943
-    int q -> var_95a
+    int q -> race
     u[] a -> equipment
     u[] b -> commodities
     void a(int) -> sub_3d
@@ -2278,7 +2278,7 @@ cl -> Matrix:
     int p -> var_808
     int q -> var_85e
     int r -> var_8b2
-    boolean a -> var_90e
+    boolean a -> isDirty
     cd a -> var_93d
     void a() -> sub_f
     void a(cl) -> sub_40
@@ -2880,15 +2880,15 @@ i -> Class_ecf:
     void a() -> sub_43e
     boolean b() -> sub_475
     void b() -> sub_48a
-j -> Class_f36:
+j -> Dialogue:
     short[][] a -> var_1c
     short[][] b -> var_3f
-    byte[] a -> var_111
-    java.lang.String a -> var_30d
-    java.lang.String b -> var_38e
+    byte[] a -> face
+    java.lang.String a -> message
+    java.lang.String b -> name
     bu a -> var_3e0
-    int a -> var_41d
-    int b -> var_4a1
+    int a -> type
+    int b -> page
     ck a -> var_52a
     az a -> var_581
     boolean a -> var_5c4
@@ -3075,7 +3075,7 @@ s -> Class_1271:
     cd a -> var_592
     boolean a -> var_5dd
     void a() -> sub_60
-    void a(int) -> sub_75
+    void a(int) -> updateMedalCounters
     void a(cd) -> sub_a6
     void b(cd) -> sub_10a
     void b() -> sub_160
