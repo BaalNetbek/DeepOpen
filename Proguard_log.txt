@@ -47,12 +47,12 @@ Main.b -> Main.ShipPreview:
     ap a -> var_48f
     ap b -> var_4c3
     ar a -> var_4ee
-    float a -> var_53a
-    float b -> var_57c
-    float c -> var_58a
-    float d -> var_59c
-    float e -> var_5e4
-    float f -> var_636
+    float a -> yaw
+    float b -> pitch
+    float c -> speedPitchDown
+    float d -> speedPitchUp
+    float e -> speedYawCCW
+    float f -> speedYawCW
     java.lang.String a -> var_646
     java.lang.String b -> var_6d6
     void a(cf,javax.microedition.lcdui.Image,javax.microedition.lcdui.Image,javax.microedition.lcdui.Image,javax.microedition.lcdui.Image,boolean) -> sub_5c
@@ -60,7 +60,7 @@ Main.b -> Main.ShipPreview:
     void b(int) -> sub_ef
     boolean a() -> sub_12a
     void a() -> sub_17d
-    void a(int,int) -> sub_1ab
+    void a(int,int) -> updateRotation
     void a(boolean) -> sub_1b9
     void b() -> sub_219
 Main.c -> Main.Class_42:
@@ -794,7 +794,7 @@ ad -> Class_69:
     byte[] d -> faceGunant
     byte[] e -> faceNorris
     byte[] f -> faceMkkt
-    byte[] g -> faceOfficer
+    byte[] g -> faceTommy
     byte[] h -> faceCarla
     byte[] i -> faceErkkt
     byte[] j -> faceAgent0
@@ -802,12 +802,12 @@ ad -> Class_69:
     byte[] l -> faceAgent2
     byte[] m -> faceAgent3
     byte[] n -> faceAgent4
-    byte[] o -> faceAgent5
-    byte[] p -> faceAgent6
+    byte[] o -> faceSecurityGirl
+    byte[] p -> faceKidnapper
     byte[] q -> faceStory
     byte[] b -> faceStory2
     byte[] r -> faceAlert
-    byte[] s -> faceThomas
+    byte[] s -> faceOfficer
     byte[] t -> faceVoid
     byte[] u -> faceKhador
     byte[] v -> faceSecurity
@@ -1361,17 +1361,17 @@ bd -> Class_5dc:
     java.lang.String a(long) -> sub_26
     java.lang.String b(long) -> updateMedalCounters
 be -> Station:
-    java.lang.String a -> var_c2
-    int a -> var_146
-    int b -> var_155
-    int c -> var_193
-    int d -> var_205
-    u[] a -> var_248
-    ch[] a -> var_255
-    cb[] a -> var_276
+    java.lang.String a -> name
+    int a -> id
+    int b -> systemId
+    int c -> planetTextureId
+    int d -> tecLevel
+    u[] a -> hangarItems
+    ch[] a -> hangarShips
+    cb[] a -> barAgents
     int a() -> sub_34
     java.lang.String a() -> sub_71
-    int b() -> loadShipParts
+    int b() -> getId
     boolean a() -> sub_fc
     int c() -> sub_15f
     boolean b() -> sub_175
@@ -2035,7 +2035,7 @@ cd -> AEVector3D:
     void a() -> sub_1d6
     int a() -> sub_206
     java.lang.String toString() -> toString
-ce -> Class_c1c:
+ce -> CharMap:
     javax.microedition.lcdui.Image a -> var_9a
     short[] a -> var_226
     short[] b -> var_2e0
