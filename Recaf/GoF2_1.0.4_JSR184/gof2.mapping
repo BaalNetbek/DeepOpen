@@ -7,20 +7,88 @@ AbyssEngine/AEBinaryResourceManager.sub_11f(LAbyssEngine/StellarSystem;)[LAbyssE
 AbyssEngine/AEBinaryResourceManager.sub_178()[LAbyssEngine/StellarSystem; loadSystemsBinary
 AbyssEngine/AEBinaryResourceManager.sub_65([S)[LAbyssEngine/Station; loadStationsBinary
 AbyssEngine/AEBinaryResourceManager.sub_f2(II)[I loadStationParts
-AbyssEngine/AEVector3D.operatorEquals(III)V set
-AbyssEngine/AEVector3D.operatorEquals(LAbyssEngine/AEVector3D;)V set
-AbyssEngine/Class_bbf.menuBg Ljavax/microedition/lcdui/Image; lock
-AbyssEngine/Class_bbf.menuHeaderPat Ljavax/microedition/lcdui/Image; menuBg
-AbyssEngine/Class_bbf.menuHeaderPat2 Ljavax/microedition/lcdui/Image; menuHeaderPat
-AbyssEngine/Class_bbf.menuMainCorner Ljavax/microedition/lcdui/Image; menuHeaderPat2
-AbyssEngine/Class_bbf.menuMainCorner2 Ljavax/microedition/lcdui/Image; menuMainCorner
-AbyssEngine/Class_bbf.var_302 Ljavax/microedition/lcdui/Image; skip
-AbyssEngine/Class_bbf.var_357 Ljavax/microedition/lcdui/Image; menuBg
-AbyssEngine/Class_bbf.var_364 Ljavax/microedition/lcdui/Image; menuHeaderPat
-AbyssEngine/Class_bbf.var_475 Ljavax/microedition/lcdui/Image; menuMainCorner
-AbyssEngine/Class_bbf.var_496 Ljavax/microedition/lcdui/Image; menuMainCorner2
-AbyssEngine/Class_bbf.var_4b4 Ljavax/microedition/lcdui/Image; menuPanelCorInactive
-AbyssEngine/Class_bbf.var_505 Ljavax/microedition/lcdui/Image; menuPanelCorActive
-AbyssEngine/Station.sub_34()I getId
-AbyssEngine/Station.sub_71()Ljava/lang/String; getName
+AbyssEngine/AEBinaryResourceManager.var_61 Ljava/lang/Class; varClass
+AbyssEngine/AEMath.sub_13b(J)I sqrt
+AbyssEngine/AEMath.sub_14e(II)I max
+AbyssEngine/AEMath.sub_176(FF)F max
+AbyssEngine/AEMath.sub_197(II)I min
+AbyssEngine/AEMath.sub_1da(FF)F min
+AbyssEngine/AEMath.sub_22b(I)I abs
+AbyssEngine/AEMath.sub_f9(I)I invSqrt
+AbyssEngine/AESoundManager.crossProduct()Z isMusicPlaying
+AbyssEngine/AESoundManager.currentBgMusicIdx I currentMusicIdx
+AbyssEngine/AESoundManager.musicVol I musicVolume
+AbyssEngine/AESoundManager.sub_16c(I)V playMusic
+AbyssEngine/AESoundManager.sub_1b0(II)V playSfx
+AbyssEngine/AESoundManager.sub_210(I)V playSfx
+AbyssEngine/AESoundManager.sub_3a(I)V setMusicVolume
+AbyssEngine/AESoundManager.sub_81(I)V setSfxVolume
+AbyssEngine/AESoundManager.sub_96()I getMusicVolume
+AbyssEngine/AESoundManager.sub_e5()V stopMusic
+AbyssEngine/AESoundManager.var_1ad [J SFX_DURATIONS
+AbyssEngine/AESoundManager.var_1e3 [S SFX_VOLUMES
+AbyssEngine/AESoundManager.var_39f I musicVol
+AbyssEngine/AESoundManager.var_3db I sfxVolume
+AbyssEngine/AESoundManager.var_44 [Ljava/lang/String; MUSIC_FILES_PATHS
+AbyssEngine/AESoundManager.var_5e [Ljava/lang/String; SFX_FILES_PATHS
+AbyssEngine/AESoundManager.var_f0 I currentBgMusicIdx
+AbyssEngine/Agent.dialogue Ljava/lang/String; message
+AbyssEngine/Agent.sub_19d()Ljava/lang/String; getFullName
+AbyssEngine/Agent.sub_245()I getSystemId
+AbyssEngine/Agent.sub_294()I getStationId
+AbyssEngine/Agent.sub_712()Ljava/lang/String; getMessage
+AbyssEngine/Agent.sub_735(Ljava/lang/String;)V setMessage
+AbyssEngine/Agent.sub_87f()Z isAccepted
+AbyssEngine/Agent.sub_898(Z)V setAccepted
+AbyssEngine/Agent.sub_979()Ljava/lang/String; getStationName
+AbyssEngine/Agent.sub_9a9(Ljava/lang/String;)V setAgentsStationName
+AbyssEngine/Agent.sub_9ea(Ljava/lang/String;)V setAgentsSystemName
+AbyssEngine/Agent.var_1be I itemId
+AbyssEngine/Agent.var_4d1 I wasSpokenTo
+AbyssEngine/Agent.var_8f4 [B face
+AbyssEngine/Agent.var_925 LAbyssEngine/Class_e57; mission
+AbyssEngine/Agent.wasSpokenTo I isTouched
+AbyssEngine/Class_13a3.var_13d LAbyssEngine/AEVector3D; vec
+AbyssEngine/Class_9e5 JSRMesh2
+AbyssEngine/Class_e57 AbyssEngine/Mission
+AbyssEngine/Class_e57.destStationId I targetStationId
+AbyssEngine/Class_e57.destStationName Ljava/lang/String; targetStationName
+AbyssEngine/Class_e57.giver LAbyssEngine/Agent; client
+AbyssEngine/Class_e57.giverFace [B clientFace
+AbyssEngine/Class_e57.giverName Ljava/lang/String; clientName
+AbyssEngine/Class_e57.itemOfInterestId I commodityId
+AbyssEngine/Class_e57.passingCargo I commodityAmmout
+AbyssEngine/Class_e57.storyDialogueStaeted_ Z storyDialogueStarted_
+AbyssEngine/Class_e57.sub_247(II)V setProductionGoods
+AbyssEngine/Class_e57.sub_2a1()I getProductionGoodIndex
+AbyssEngine/Class_e57.sub_305()I getProductionGoodAmount
+AbyssEngine/Class_e57.sub_34c(I)V setStatusValue
+AbyssEngine/Class_e57.sub_3d1()I getStatusValue
+AbyssEngine/Class_e57.sub_424()I getType
+AbyssEngine/Class_e57.sub_4c3()[B getClientImage
+AbyssEngine/Class_e57.sub_4cf()I getClientRace
+AbyssEngine/Class_e57.sub_4e9()I getReward
+AbyssEngine/Class_e57.sub_68d()I getTargetStationIndex
+AbyssEngine/Class_e57.sub_6a0()Ljava/lang/String; getTargetStationName
+AbyssEngine/Class_e57.sub_6d5(I)V setTargetStation
+AbyssEngine/Class_e57.var_148 LAbyssEngine/Agent; giver
+AbyssEngine/Class_e57.var_204 I missionType_
+AbyssEngine/Class_e57.var_286 Ljava/lang/String; giverName
+AbyssEngine/Class_e57.var_306 [B giverFace
+AbyssEngine/Class_e57.var_458 I clientRace
+AbyssEngine/Class_e57.var_48c I reward
+AbyssEngine/Class_e57.var_4bc I bonus_
+AbyssEngine/Class_e57.var_524 I destStationId
+AbyssEngine/Class_e57.var_579 Ljava/lang/String; destStationName
+AbyssEngine/Class_e57.var_5a7 I difficulty
+AbyssEngine/Class_e57.var_60c Z mainStory_
+AbyssEngine/Class_e57.var_6a8 Z storyDialogueStaeted_
+AbyssEngine/Class_e57.var_6de I itemOfInterestId
+AbyssEngine/Class_e57.var_711 I passingCargo
+AbyssEngine/GameStatus.var_57 Z musicEnabled
+AbyssEngine/GameStatus.var_a9 Z sfxEnabled
 AbyssEngine/StellarSystem AbyssEngine/SolarSystem
+AbyssEngine/StellarSystem.var_26c I id
+AbyssEngine/StellarSystem.var_671 I jumpgateStationId
+AbyssEngine/StellarSystem.var_6b4 I starTextureId
+AbyssEngine/StellarSystem.var_706 [I neighbourSystems
