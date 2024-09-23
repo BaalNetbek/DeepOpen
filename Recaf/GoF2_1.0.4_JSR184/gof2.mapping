@@ -49,6 +49,21 @@ AbyssEngine/Agent.var_8f4 [B face
 AbyssEngine/Agent.var_925 LAbyssEngine/Class_e57; mission
 AbyssEngine/Agent.wasSpokenTo I isTouched
 AbyssEngine/Class_13a3.var_13d LAbyssEngine/AEVector3D; vec
+AbyssEngine/Class_738 AbyssEngine/Status
+AbyssEngine/Class_738.currentCampaignMission I currentCampaignMissionIndex
+AbyssEngine/Class_738.sub_44e()V nextCampaignMission
+AbyssEngine/Class_738.var_562 I currentCampaignMission
+AbyssEngine/Class_738.var_6d0 [LAbyssEngine/Class_e57; lastStoryMissions
+AbyssEngine/Class_738.var_720 LAbyssEngine/Station; currentStation
+AbyssEngine/Class_738.var_73e [LAbyssEngine/Station; lastVisitedStations
+AbyssEngine/Class_738.var_765 LAbyssEngine/StellarSystem; currentSolarSystem
+AbyssEngine/Class_815 AbyssEngine/AEResourceManager
+AbyssEngine/Class_815.sub_15f(I)LAbyssEngine/AbstractMesh; getGeometryResource
+AbyssEngine/Class_815.sub_c0(ILjava/lang/String;I)V setupSkybox_
+AbyssEngine/Class_815.var_1c1 [I meshId
+AbyssEngine/Class_815.var_1dc [LAbyssEngine/AbstractMesh; mesh
+AbyssEngine/Class_815.var_26b [Ljava/lang/String; path
+AbyssEngine/Class_815.var_32a [I tranparent_
 AbyssEngine/Class_9e5 AbyssEngine/JSRMesh2
 AbyssEngine/Class_e57 AbyssEngine/Mission
 AbyssEngine/Class_e57.destStationId I targetStationId
@@ -87,11 +102,24 @@ AbyssEngine/Class_e57.var_6de I itemOfInterestId
 AbyssEngine/Class_e57.var_711 I passingCargo
 AbyssEngine/GameStatus.var_57 Z musicEnabled
 AbyssEngine/GameStatus.var_a9 Z sfxEnabled
+AbyssEngine/Item.highestPriceSystem I highestPriceSystemId
+AbyssEngine/Item.lowestPriceSystem I lowestPriceSystemId
 AbyssEngine/Item.sub_1e4()I getIndex
 AbyssEngine/Item.sub_209()I getType
+AbyssEngine/Item.sub_94f(LAbyssEngine/Item;)Z equals
 AbyssEngine/Item.var_1da I id
 AbyssEngine/Item.var_220 I type
+AbyssEngine/Item.var_235 I subType
 AbyssEngine/Item.var_29a I tecLevel
+AbyssEngine/Item.var_335 I lowestPriceSystem
+AbyssEngine/Item.var_352 I highestPriceSystem
+AbyssEngine/Item.var_36c I price
+AbyssEngine/Item.var_3d0 I occurance
+AbyssEngine/Item.var_4da I minPrice
+AbyssEngine/Item.var_5c2 I maxPrice
+AbyssEngine/Item.var_602 [I blueprintGoodsIds
+AbyssEngine/Item.var_65b [I blueprintGoodsQuantities
+AbyssEngine/Item.var_692 [I allParameters
 AbyssEngine/Ship.armour I baseHP
 AbyssEngine/Ship.commodities [LAbyssEngine/Item; cargoHold
 AbyssEngine/Ship.equipment [LAbyssEngine/Item; equipped
@@ -121,6 +149,7 @@ AbyssEngine/Ship.sub_8b0([LAbyssEngine/Item;)V setEquipment
 AbyssEngine/Ship.sub_927(I)[LAbyssEngine/Item; getEquipment
 AbyssEngine/Ship.sub_941(LAbyssEngine/Item;I)V setEquipment
 AbyssEngine/Ship.sub_94c()V refreshValue
+AbyssEngine/Ship.sub_9fc(I)I countEquippedOfType
 AbyssEngine/Ship.sub_a34()LAbyssEngine/Ship; cloneBase
 AbyssEngine/Ship.sub_d3()I getRace
 AbyssEngine/Ship.var_82d I extendedHandling
