@@ -49,7 +49,7 @@ AbyssEngine/Agent.var_8f4 [B face
 AbyssEngine/Agent.var_925 LAbyssEngine/Class_e57; mission
 AbyssEngine/Agent.wasSpokenTo I isTouched
 AbyssEngine/Class_13a3.var_13d LAbyssEngine/AEVector3D; vec
-AbyssEngine/Class_9e5 JSRMesh2
+AbyssEngine/Class_9e5 AbyssEngine/JSRMesh2
 AbyssEngine/Class_e57 AbyssEngine/Mission
 AbyssEngine/Class_e57.destStationId I targetStationId
 AbyssEngine/Class_e57.destStationName Ljava/lang/String; targetStationName
@@ -87,6 +87,47 @@ AbyssEngine/Class_e57.var_6de I itemOfInterestId
 AbyssEngine/Class_e57.var_711 I passingCargo
 AbyssEngine/GameStatus.var_57 Z musicEnabled
 AbyssEngine/GameStatus.var_a9 Z sfxEnabled
+AbyssEngine/Item.sub_1e4()I getIndex
+AbyssEngine/Item.sub_209()I getType
+AbyssEngine/Item.var_1da I id
+AbyssEngine/Item.var_220 I type
+AbyssEngine/Item.var_29a I tecLevel
+AbyssEngine/Ship.armour I baseHP
+AbyssEngine/Ship.commodities [LAbyssEngine/Item; cargoHold
+AbyssEngine/Ship.equipment [LAbyssEngine/Item; equipped
+AbyssEngine/Ship.extendedHandling I extendedHandlingPercent
+AbyssEngine/Ship.hasCloak Z cloak
+AbyssEngine/Ship.hasJumpDrive Z jumpDrive
+AbyssEngine/Ship.hasKhadorDrive Z hasJumpDrive
+AbyssEngine/Ship.hasRepairBot Z repairBot
+AbyssEngine/Ship.sub_105()I getIndex
+AbyssEngine/Ship.sub_21a()F getHandling
+AbyssEngine/Ship.sub_22d()I getBaseHP
+AbyssEngine/Ship.sub_25d()I getCombinedHP
+AbyssEngine/Ship.sub_2a9()I getAdditionalArmour
+AbyssEngine/Ship.sub_2d0()I getBaseArmour
+AbyssEngine/Ship.sub_2f8()I getShield
+AbyssEngine/Ship.sub_350()I getShieldRegenTime
+AbyssEngine/Ship.sub_39e()I getBoostPercent
+AbyssEngine/Ship.sub_3d(I)V setRace
+AbyssEngine/Ship.sub_3fe()I getBoostDuration
+AbyssEngine/Ship.sub_43c()I getBoostRegenTime
+AbyssEngine/Ship.sub_48b()I getAddHandlingPercent
+AbyssEngine/Ship.sub_4b0()Z hasBooster
+AbyssEngine/Ship.sub_4e1()Z hasJumpDrive
+AbyssEngine/Ship.sub_516()Z hasCloak
+AbyssEngine/Ship.sub_53e()Z hasRepairBot
+AbyssEngine/Ship.sub_8b0([LAbyssEngine/Item;)V setEquipment
+AbyssEngine/Ship.sub_927(I)[LAbyssEngine/Item; getEquipment
+AbyssEngine/Ship.sub_941(LAbyssEngine/Item;I)V setEquipment
+AbyssEngine/Ship.sub_94c()V refreshValue
+AbyssEngine/Ship.sub_a34()LAbyssEngine/Ship; cloneBase
+AbyssEngine/Ship.sub_d3()I getRace
+AbyssEngine/Ship.var_82d I extendedHandling
+AbyssEngine/Ship.var_89c I firePower
+AbyssEngine/Ship.var_8eb Z hasRepairBot
+AbyssEngine/Ship.var_926 Z hasKhadorDrive
+AbyssEngine/Ship.var_943 Z hasCloak
 AbyssEngine/StellarSystem AbyssEngine/SolarSystem
 AbyssEngine/StellarSystem.var_26c I id
 AbyssEngine/StellarSystem.var_671 I jumpgateStationId
