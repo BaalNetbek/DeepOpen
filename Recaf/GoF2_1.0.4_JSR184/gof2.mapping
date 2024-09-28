@@ -1146,6 +1146,11 @@ at.s Z var_554
 at.t Z var_5ad
 at.u Z var_610
 at.v Z var_65d
+at.var_953 Ljavax/microedition/lcdui/Display; display
+at.var_960 Lao; loadingScreen
+at.var_a65 Ljavax/microedition/lcdui/Graphics; graphics
+at.var_aa1 Ljavax/microedition/midlet/MIDlet; midlet
+at.var_b6d Ljava/util/Random; random
 at.w Z var_697
 at.x Z var_6be
 at.y Z var_71f
@@ -1288,6 +1293,10 @@ b.e()V sub_490
 b.f I var_612
 b.f Ljavax/microedition/lcdui/Image; var_4b4
 b.g Ljavax/microedition/lcdui/Image; var_505
+b.var_110 I uiOuterDownLeftOutlineInnerLabalBgColor
+b.var_1db I uiInactiveInnerLabelColor
+b.var_84 I uiInnerOutlineColor
+b.var_b3 I uiOuterTopRightOutlineColor
 ba AbyssEngine/Class_539
 ba.a F var_383
 ba.a I var_334
@@ -1763,15 +1772,15 @@ bu.a [B var_310
 bu.a [Ljava/lang/String; rows
 bu.a [Ljavax/microedition/lcdui/Image; var_3dd
 bu.a()I sub_115
-bu.a()V sub_3e
-bu.a(I)V sub_b3
+bu.a()V zeroTopPadding
+bu.a(I)V setFont
 bu.a(Ljava/lang/String;)V sub_e0
-bu.a(Z)V sub_96
+bu.a(Z)V setHide
 bu.a([BLjava/lang/String;Z)V sub_173
 bu.b I font
 bu.b Z var_360
 bu.b()I sub_164
-bu.b()V sub_22a
+bu.b()V draw
 bu.b(I)V scrollUp
 bu.c I var_a3
 bu.c(I)V scrollDown
@@ -1782,6 +1791,14 @@ bu.g I var_20d
 bu.h I vBarPercent
 bu.i I topPadding2
 bu.j I var_438
+bu.posX I posX2
+bu.posX2 I posY
+bu.posY I posX
+bu.var_115 I width
+bu.var_122 I height
+bu.var_360 Z hide
+bu.var_a3 I posY
+bu.var_d0 I posX
 bv AbyssEngine/Class_93a
 bv.a Lcd; var_11
 bv.a [Z var_192
@@ -2037,9 +2054,9 @@ cd.a I x
 cd.a()I getLength
 cd.a()V normalize
 cd.a(I)V scale
-cd.a(III)V operatorEquals
+cd.a(III)V set
 cd.a(Lcd;)I squaredLength
-cd.a(Lcd;)V operatorEquals
+cd.a(Lcd;)V set
 cd.a(Lcd;Lcd;)Lcd; crossProduct
 cd.b I y
 cd.b(Lcd;)I squaredLengthPrecise
@@ -2055,13 +2072,13 @@ ce.a Ljavax/microedition/lcdui/Image; var_9a
 ce.a [B var_34c
 ce.a [S var_226
 ce.a()I sub_16f
-ce.a(C)I sub_d9
+ce.a(C)I charToSymbolIdx
 ce.a(I)V sub_30
 ce.a(II[I)B sub_5f
 ce.a(Ljava/lang/String;)I sub_a0
 ce.a(Ljava/lang/String;II)I sub_ab
-ce.a(Ljava/lang/String;II)V add
-ce.a(Ljavax/microedition/lcdui/Graphics;)V sub_25
+ce.a(Ljava/lang/String;II)V drawString
+ce.a(Ljavax/microedition/lcdui/Graphics;)V setGraphics
 ce.b B var_369
 ce.b [S var_2e0
 ce.b()I sub_1c3
@@ -2071,6 +2088,12 @@ ce.c B var_37a
 ce.c(I)V sub_213
 ce.d B var_4fd
 ce.e B var_513
+ce.symbolIdShorts [S symbolIdsShort
+ce.symbols [S symbolsIds
+ce.var_226 [S symbols
+ce.var_2e0 [S symbolIdShorts
+ce.var_34c [B symbolIdsByte
+ce.var_40e Ljavax/microedition/lcdui/Graphics; graphics
 cf AbyssEngine/ListEntry
 cf.a I medalTier
 cf.a Lbp; var_6dc
@@ -2289,54 +2312,54 @@ cl.a I var_189
 cl.a Lcd; var_93d
 cl.a S var_171
 cl.a Z isDirty
-cl.a()I sub_2ae
-cl.a()Lcd; sub_208
-cl.a()V sub_f
-cl.a(I)V sub_17e
-cl.a(III)V sub_aa
-cl.a(Lcd;)Lcd; sub_1d1
-cl.a(Lcd;)V sub_f5
+cl.a()I getPositionX
+cl.a()Lcd; getPosition
+cl.a()V identity
+cl.a(I)V translateForward
+cl.a(III)V translate
+cl.a(Lcd;)Lcd; getPosition
+cl.a(Lcd;)V translate
 cl.a(Lcd;Lcd;)Lcd; sub_9e9
 cl.a(Lcd;Lcd;Lcd;)V sub_8f5
 cl.a(Lcl;)Lcl; sub_8ac
-cl.a(Lcl;)V sub_40
+cl.a(Lcl;)V set
 cl.a(Lcl;Lcl;)Lcl; sub_6a
-cl.a(S)V sub_598
+cl.a(S)V set_Type
 cl.a([F)V sub_94b
 cl.a([Lcd;[Lcd;)[Lcd; sub_ace
 cl.b I var_1e5
-cl.b()I sub_2dd
-cl.b()Lcd; sub_44f
+cl.b()I getPositionY
+cl.b()Lcd; getDirection
 cl.b()V sub_851
 cl.b(I)V sub_5dc
-cl.b(III)V sub_152
-cl.b(Lcd;)Lcd; sub_3f9
-cl.b(Lcd;)V sub_16d
+cl.b(III)V translateTo
+cl.b(Lcd;)Lcd; getDirection
+cl.b(Lcd;)V translate
 cl.b(Lcd;Lcd;)Lcd; sub_a19
-cl.b(Lcl;)V sub_5f
+cl.b(Lcl;)V multiply
 cl.c I var_20c
-cl.c()I sub_328
-cl.c()Lcd; sub_4d5
+cl.c()I getPositionZ
+cl.c()Lcd; getUp
 cl.c(I)V sub_620
-cl.c(III)V sub_5a5
-cl.c(Lcd;)Lcd; sub_483
+cl.c(III)V addEulerAngles
+cl.c(Lcd;)Lcd; getUp
 cl.c(Lcd;)V sub_b33
 cl.c(Lcd;Lcd;)Lcd; sub_a67
 cl.d I var_2f6
-cl.d()I sub_3c6
-cl.d()Lcd; sub_548
+cl.d()I getDirectionX
+cl.d()Lcd; getRight
 cl.d(I)V sub_679
 cl.d(III)V setRotationEuler
-cl.d(Lcd;)Lcd; sub_4ed
+cl.d(Lcd;)Lcd; getRight
 cl.d(Lcd;Lcd;)Lcd; sub_ac3
 cl.e I var_326
-cl.e()I sub_3dc
+cl.e()I getDirectionY
 cl.e()Lcd; sub_89b
 cl.e(I)V sub_695
 cl.e(III)V sub_860
 cl.e(Lcd;)Lcd; sub_882
 cl.f I var_3a9
-cl.f()I sub_3e6
+cl.f()I getDirectionZ
 cl.f(Lcd;)Lcd; sub_990
 cl.g I var_413
 cl.g()I sub_752
@@ -2350,12 +2373,25 @@ cl.j I var_58c
 cl.k I var_632
 cl.l I var_6c6
 cl.m I var_70b
-cl.m10 I m02
+cl.m00 I rightX
+cl.m01 I upX
+cl.m02 I dirX
+cl.m10 I rightY
+cl.m11 I upY
+cl.m12 I dirY
+cl.m20 I rightZ
+cl.m21 I upZ
+cl.m22 I dirZ
 cl.n I var_7d3
 cl.o I var_7e8
 cl.p I var_808
+cl.postionX I positonX
 cl.q I var_85e
 cl.r I var_8b2
+cl.var_171 S _Type
+cl.var_189 I scaleX
+cl.var_1e5 I scaleY
+cl.var_20c I scaleZ
 cl.var_2f6 I m00
 cl.var_326 I m10
 cl.var_3a9 I m20
@@ -2365,6 +2401,12 @@ cl.var_53d I m21
 cl.var_58c I m10
 cl.var_632 I m12
 cl.var_6c6 I m22
+cl.var_70b I postionX
+cl.var_7d3 I positionY
+cl.var_7e8 I positionZ
+cl.var_808 I eulerX
+cl.var_85e I eulerY
+cl.var_8b2 I eulerZ
 cm AbyssEngine/Class_ee3
 cm.a Lcl; var_80b
 cm.a()V sub_109
@@ -2391,12 +2433,15 @@ cm.o I var_356
 cm.o Z var_42f
 cm.p I var_3fe
 cm.p Z var_7f2
+cm.passedTimeMs I passedTime
 cm.q I var_54b
 cm.r I var_694
 cm.s I var_707
 cm.t I var_782
 cm.u I var_880
 cm.v I var_8aa
+cm.var_2ba I frametime
+cm.var_782 I passedTimeMs
 cn AbyssEngine/LangManager
 cn.a I var_751
 cn.a Ljava/lang/String; var_7ca
@@ -3079,7 +3124,7 @@ p.a(II)V sub_d0
 p.a(Ljava/lang/String;)I sub_250
 p.a(Ljava/lang/String;I)I sub_25b
 p.a(Ljava/lang/String;I)[Ljava/lang/String; sub_3b2
-p.a(Ljava/lang/String;III)V loadShipParts
+p.a(Ljava/lang/String;III)V addCharMap
 p.a(Ljava/lang/String;IIII)V sub_161
 p.a(Ljava/lang/String;IIII)[Ljava/lang/String; sub_3a1
 p.a(Ljava/lang/String;IIZ)Ljava/lang/String; sub_3f2
@@ -3092,6 +3137,9 @@ p.b(I)V sub_335
 p.b(II)V sub_2b0
 p.b(Ljava/lang/String;III)V sub_102
 p.c(II)V sub_37b
+p.charMap [Lce; charMaps
+p.var_1f2 Ljavax/microedition/lcdui/Graphics; graphics
+p.var_98 [Lce; charMap
 q AbyssEngine/Class_11bd
 q.a [Ljavax/microedition/m3g/Texture2D; var_159
 q.a()V sub_52
