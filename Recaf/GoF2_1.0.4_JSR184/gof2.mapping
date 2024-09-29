@@ -1,17 +1,8 @@
-Main/GOF2MIDlet.PAUSE I var_497
-Main/GOF2MIDlet.PRE_PAUSE I var_55e
-Main/GOF2MIDlet.RESUME I var_447
-Main/GOF2MIDlet.RUNNING I var_3dc
 Main/GOF2MIDlet.a LMain/n; var_59d
-Main/GOF2MIDlet.a Ljava/lang/Thread; var_647
+Main/GOF2MIDlet.a Ljava/lang/Thread; thread
 Main/GOF2MIDlet.a Ljavax/microedition/lcdui/Display; var_5ca
 Main/GOF2MIDlet.a Z var_619
 Main/GOF2MIDlet.b Z var_626
-Main/GOF2MIDlet.getDisplay()Ljavax/microedition/lcdui/Display; sub_40
-Main/GOF2MIDlet.pause()V sub_94
-Main/GOF2MIDlet.quit()V sub_19f
-Main/GOF2MIDlet.resume()V sub_7c
-Main/GOF2MIDlet.state I var_3c1
 Main/GOF2MIDlet.var_3c1 I state
 Main/GOF2MIDlet.var_3dc I RUNNING
 Main/GOF2MIDlet.var_447 I RESUME
@@ -19,22 +10,21 @@ Main/GOF2MIDlet.var_497 I PAUSE
 Main/GOF2MIDlet.var_55e I PRE_PAUSE
 Main/GOF2MIDlet.var_59d LMain/n; canvas
 Main/GOF2MIDlet.var_5ca Ljavax/microedition/lcdui/Display; display
-Main/GOF2MIDlet.var_647 Ljava/lang/Thread; thread
 Main/a Main/Class_f7
 Main/a.a I var_258
 Main/a.a J var_71
 Main/a.a LMain/k; var_1b3
 Main/a.a LMain/l; var_1e7
 Main/a.a Z var_160
+Main/a.b J var_b8
+Main/a.b Z var_230
+Main/a.c J var_ec
+Main/a.d J var_11f
 Main/a.a()V sub_10a
 Main/a.a()Z sub_12b
 Main/a.a(I)V sub_57
-Main/a.b J var_b8
-Main/a.b Z var_230
 Main/a.b()V sub_c4
 Main/a.b(I)V sub_8d
-Main/a.c J var_ec
-Main/a.d J var_11f
 Main/b Main/ShipPreview
 Main/b.a F yaw
 Main/b.a Lap; var_48f
@@ -46,26 +36,26 @@ Main/b.a Ljavax/microedition/lcdui/Image; var_1a0
 Main/b.a Z drawShip
 Main/b.a [Ljava/lang/String; var_126
 Main/b.a [S var_82
-Main/b.a()V sub_17d
-Main/b.a()Z isShipDrawn
-Main/b.a(I)V sub_ae
-Main/b.a(II)V updateRotation
-Main/b.a(Lcf;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Z)V sub_5c
-Main/b.a(Z)V sub_1b9
 Main/b.b F pitch
 Main/b.b Lap; var_4c3
 Main/b.b Lbu; var_423
 Main/b.b Ljava/lang/String; var_6d6
 Main/b.b Ljavax/microedition/lcdui/Image; var_27f
 Main/b.b [S var_b2
-Main/b.b()V sub_219
-Main/b.b(I)V sub_ef
 Main/b.c F speedPitchDown
 Main/b.c Ljavax/microedition/lcdui/Image; var_2e1
 Main/b.d F speedPitchUp
 Main/b.d Ljavax/microedition/lcdui/Image; var_362
 Main/b.e F speedYawCCW
 Main/b.f F speedYawCW
+Main/b.a()V sub_17d
+Main/b.a()Z isShipDrawn
+Main/b.a(I)V sub_ae
+Main/b.a(II)V updateRotation
+Main/b.a(Lcf;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Z)V sub_5c
+Main/b.a(Z)V sub_1b9
+Main/b.b()V sub_219
+Main/b.b(I)V sub_ef
 Main/c Main/Class_42
 Main/c.a I var_138
 Main/c.a LMain/r; var_2d
@@ -75,12 +65,6 @@ Main/c.a Z var_10f
 Main/c.a [I var_348
 Main/c.a [Ljava/lang/String; var_440
 Main/c.a [Ljavax/microedition/lcdui/Image; var_51b
-Main/c.a()V sub_2e
-Main/c.a()Z sub_162
-Main/c.a(I)Z sub_5c
-Main/c.a(II)V sub_bc
-Main/c.a(ILjava/lang/String;Ljavax/microedition/lcdui/Image;)V sub_10b
-Main/c.a(Z)V sub_179
 Main/c.b I var_182
 Main/c.b Ljavax/microedition/lcdui/Image; var_594
 Main/c.b Z var_2d4
@@ -97,6 +81,12 @@ Main/c.h I var_2ff
 Main/c.i I var_39c
 Main/c.j I var_3e8
 Main/c.k I var_5bb
+Main/c.a()V sub_2e
+Main/c.a()Z sub_162
+Main/c.a(I)Z sub_5c
+Main/c.a(II)V sub_bc
+Main/c.a(ILjava/lang/String;Ljavax/microedition/lcdui/Image;)V sub_10b
+Main/c.a(Z)V sub_179
 Main/d Main/Class_c8
 Main/d.a I var_2a5
 Main/d.a LMain/b; var_1c0
@@ -112,19 +102,12 @@ Main/d.a [Lcb; var_436
 Main/d.a [Ljava/lang/String; var_573
 Main/d.a [Z var_7b1
 Main/d.a [[Ljavax/microedition/lcdui/Image; var_660
-Main/d.a()V sub_5d
-Main/d.a()Z sub_1b2
-Main/d.a(I)Z sub_c7
-Main/d.a(II)V sub_107
-Main/d.a(Z)V sub_1db
 Main/d.b I var_3d2
 Main/d.b Ljavax/microedition/lcdui/Image; var_22a
 Main/d.b Ll; var_731
 Main/d.b Z var_325
-Main/d.b()V sub_7e
 Main/d.c I var_46f
 Main/d.c Z var_351
-Main/d.c()V sub_169
 Main/d.d I var_4c5
 Main/d.d Z var_35f
 Main/d.e I var_4df
@@ -133,6 +116,13 @@ Main/d.f I var_53c
 Main/d.f Z var_637
 Main/d.g I var_5ce
 Main/d.h I var_607
+Main/d.a()V sub_5d
+Main/d.a()Z sub_1b2
+Main/d.a(I)Z sub_c7
+Main/d.a(II)V sub_107
+Main/d.a(Z)V sub_1db
+Main/d.b()V sub_7e
+Main/d.c()V sub_169
 Main/e Main/Class_73
 Main/e.a Ljavax/microedition/lcdui/game/Sprite; var_35
 Main/e.a()V sub_6c
@@ -143,11 +133,11 @@ Main/f.a I var_23e
 Main/f.a J var_1bc
 Main/f.a Ljavax/microedition/lcdui/Image; var_23
 Main/f.a Z var_14e
+Main/f.b I var_2b6
+Main/f.b Ljavax/microedition/lcdui/Image; var_fc
 Main/f.a()V sub_10a
 Main/f.a()Z sub_12b
 Main/f.a(I)V sub_57
-Main/f.b I var_2b6
-Main/f.b Ljavax/microedition/lcdui/Image; var_fc
 Main/f.b()V sub_c4
 Main/f.b(I)V sub_8d
 Main/g Main/Class_364
@@ -159,15 +149,10 @@ Main/g.a Ljavax/microedition/lcdui/game/Sprite; var_22c
 Main/g.a Z var_1e
 Main/g.a [Ljava/lang/String; var_1d1
 Main/g.a [Ljavax/microedition/lcdui/Image; var_51c
-Main/g.a()V sub_37
-Main/g.a(I)Z sub_8f
-Main/g.a(II)V sub_d8
-Main/g.a(ILjava/lang/String;)V sub_a2
 Main/g.b I var_3d4
 Main/g.b Ljavax/microedition/lcdui/Image; var_3b2
 Main/g.b Ljavax/microedition/lcdui/game/Sprite; var_288
 Main/g.b [Ljava/lang/String; var_1de
-Main/g.b()V sub_6d
 Main/g.c I var_403
 Main/g.c Ljavax/microedition/lcdui/game/Sprite; var_2e3
 Main/g.d I var_490
@@ -175,6 +160,11 @@ Main/g.d Ljavax/microedition/lcdui/game/Sprite; var_33f
 Main/g.e I var_4d9
 Main/g.f I var_4e3
 Main/g.g I var_4f3
+Main/g.a()V sub_37
+Main/g.a(I)Z sub_8f
+Main/g.a(II)V sub_d8
+Main/g.a(ILjava/lang/String;)V sub_a2
+Main/g.b()V sub_6d
 Main/h Main/Class_45d
 Main/h.a Laz; var_5fb
 Main/h.a Li; var_6d4
@@ -182,6 +172,24 @@ Main/h.a Ljava/lang/String; var_3bf
 Main/h.a Ljavax/microedition/lcdui/Image; var_1b7
 Main/h.a Z var_5eb
 Main/h.a [Lu; var_6bf
+Main/h.b Ljavax/microedition/lcdui/Image; var_21b
+Main/h.b [I var_634
+Main/h.c Ljavax/microedition/lcdui/Image; var_2b9
+Main/h.d Ljavax/microedition/lcdui/Image; var_32b
+Main/h.d Z var_5da
+Main/h.e Ljavax/microedition/lcdui/Image; var_451
+Main/h.e Z var_794
+Main/h.f Ljavax/microedition/lcdui/Image; var_559
+Main/h.f Z var_809
+Main/h.p I var_6b2
+Main/h.q I var_6e8
+Main/h.r I var_732
+Main/h.s I var_861
+Main/h.t I var_8a2
+Main/h.u I var_905
+Main/h.v I var_968
+Main/h.w I var_990
+Main/h.x I var_99d
 Main/h.a()I sub_326
 Main/h.a()V sub_6c
 Main/h.a()Z sub_1d5
@@ -192,22 +200,13 @@ Main/h.a(Ljava/lang/Object;I)V sub_e4
 Main/h.a(Z)V sub_27b
 Main/h.a([Li;)V sub_d4
 Main/h.a([Lu;)V add
-Main/h.b Ljavax/microedition/lcdui/Image; var_21b
-Main/h.b [I var_634
 Main/h.b()I add
 Main/h.b()V sub_9e
 Main/h.b()Z sub_228
-Main/h.c Ljavax/microedition/lcdui/Image; var_2b9
 Main/h.c()I sub_149
 Main/h.c()V sub_82
-Main/h.d Ljavax/microedition/lcdui/Image; var_32b
-Main/h.d Z var_5da
 Main/h.d()V sub_2eb
-Main/h.e Ljavax/microedition/lcdui/Image; var_451
-Main/h.e Z var_794
 Main/h.e()V sub_2f6
-Main/h.f Ljavax/microedition/lcdui/Image; var_559
-Main/h.f Z var_809
 Main/h.f()V sub_29e
 Main/h.g()V sub_2c7
 Main/h.h()V sub_b4
@@ -215,75 +214,66 @@ Main/h.i()V sub_6b
 Main/h.j()V sub_238
 Main/h.k()V sub_307
 Main/h.l()V sub_171
-Main/h.p I var_6b2
-Main/h.q I var_6e8
-Main/h.r I var_732
-Main/h.s I var_861
-Main/h.t I var_8a2
-Main/h.u I var_905
-Main/h.v I var_968
-Main/h.w I var_990
-Main/h.x I var_99d
 Main/i Main/Class_419
 Main/i.a I var_c
 Main/i.a Z var_846
 Main/i.a [I var_353
 Main/i.a [Ljava/lang/String; var_2b7
 Main/i.a [[Ljava/lang/Object; var_327
+Main/i.b I var_188
+Main/i.b Ljava/lang/String; var_8e3
+Main/i.b Z var_4d4
+Main/i.c I var_215
+Main/i.c Z var_888
+Main/i.d I var_299
+Main/i.e I var_37d
+Main/i.f I var_3f8
+Main/i.g I var_578
+Main/i.h I var_60f
+Main/i.i I var_641
+Main/i.j I var_664
+Main/i.k I var_67e
+Main/i.l I var_71b
+Main/i.m I var_72b
+Main/i.n I var_78b
+Main/i.o I var_7e0
+Main/i.p I var_445
+Main/i.q I var_8bb
 Main/i.a()Ljava/lang/Object; sub_1a3
 Main/i.a()V sub_6c
 Main/i.a(I)V sub_8b
 Main/i.a(IIII[Ljava/lang/String;Ljava/lang/String;)V sub_35
 Main/i.a(I[Ljava/lang/Object;)V sub_16a
 Main/i.a(Ljava/lang/Object;I)V sub_e4
-Main/i.b I var_188
-Main/i.b Ljava/lang/String; var_8e3
-Main/i.b Z var_4d4
 Main/i.b()I add
 Main/i.b(I)V sub_205
 Main/i.b(Z)V sub_346
-Main/i.c I var_215
-Main/i.c Z var_888
 Main/i.c()I sub_149
 Main/i.c(Z)V sub_391
-Main/i.d I var_299
 Main/i.d()I sub_1e5
 Main/i.d()V sub_2eb
-Main/i.e I var_37d
 Main/i.e()I sub_324
 Main/i.e()V sub_2f6
-Main/i.f I var_3f8
-Main/i.g I var_578
-Main/i.h I var_60f
 Main/i.h()V sub_b4
-Main/i.i I var_641
 Main/i.i()V sub_6b
-Main/i.j I var_664
 Main/i.j()V sub_238
-Main/i.k I var_67e
 Main/i.k()V sub_307
-Main/i.l I var_71b
 Main/i.l()V sub_171
-Main/i.m I var_72b
 Main/i.m()V sub_312
-Main/i.n I var_78b
 Main/i.n()V sub_19
-Main/i.o I var_7e0
 Main/i.o()V sub_3ac
-Main/i.p I var_445
-Main/i.q I var_8bb
 Main/j Main/Class_2cd
 Main/j.a I var_17
 Main/j.a Ljavax/microedition/lcdui/game/Sprite; var_32d
 Main/j.a [Ljava/lang/String; var_284
-Main/j.a()V squaredLength
-Main/j.a(II)V sub_49
 Main/j.b I var_76
 Main/j.b [Ljava/lang/String; var_2af
 Main/j.c I var_fa
 Main/j.d I var_260
 Main/j.e I var_2e4
 Main/j.f I var_303
+Main/j.a()V squaredLength
+Main/j.a(II)V sub_49
 Main/k Main/Class_26f
 Main/k.a F var_613
 Main/k.a I var_4cb
@@ -297,22 +287,21 @@ Main/k.a Lco; var_407
 Main/k.a Lcq; var_42e
 Main/k.a Ldb; var_4be
 Main/k.a Z var_103
-Main/k.a()V sub_10a
-Main/k.a()Z sub_12b
-Main/k.a(I)V sub_57
-Main/k.a(II)V sub_7c
 Main/k.b F var_629
 Main/k.b I var_682
 Main/k.b J var_36
 Main/k.b Lap; var_313
-Main/k.b()V sub_c4
-Main/k.b(I)V sub_8d
 Main/k.c F var_676
 Main/k.c I var_704
-Main/k.c J var_93
-Main/k.c()V sub_2c
+Main/k.c J frameTimeMs
 Main/k.d J var_ed
-Main/k.var_93 J frameTimeMs
+Main/k.a()V sub_10a
+Main/k.a()Z sub_12b
+Main/k.a(I)V sub_57
+Main/k.a(II)V sub_7c
+Main/k.b()V sub_c4
+Main/k.b(I)V sub_8d
+Main/k.c()V sub_2c
 Main/l Main/Class_33f
 Main/l.a I var_191
 Main/l.a LMain/q; var_6eb
@@ -324,6 +313,29 @@ Main/l.a Ljavax/microedition/lcdui/Image; var_34e
 Main/l.a Z var_56d
 Main/l.a [I var_30e
 Main/l.a [Lz; var_64f
+Main/l.b I var_251
+Main/l.b Lbu; var_718
+Main/l.b Ljava/lang/String; var_696
+Main/l.b Ljavax/microedition/lcdui/Image; var_b34
+Main/l.b Z var_600
+Main/l.c I var_2a3
+Main/l.c Lbu; var_768
+Main/l.c Ljava/lang/String; var_992
+Main/l.c Z var_941
+Main/l.d I var_373
+Main/l.d Lbu; var_7bc
+Main/l.d Ljava/lang/String; var_a15
+Main/l.d Z var_b06
+Main/l.e I var_3be
+Main/l.e Ljava/lang/String; var_a9e
+Main/l.f I var_404
+Main/l.g I var_459
+Main/l.h I var_879
+Main/l.i I var_8ca
+Main/l.j I var_8e4
+Main/l.k I var_911
+Main/l.l I var_ad1
+Main/l.m I var_b51
 Main/l.a()V sub_e6
 Main/l.a()Z sub_148
 Main/l.a(I)V sub_1e5
@@ -331,41 +343,18 @@ Main/l.a(I)Z sub_401
 Main/l.a(II)V sub_12b
 Main/l.a(Ljava/lang/String;)Ljava/lang/String; sub_23
 Main/l.a([Lz;)V sub_70
-Main/l.b I var_251
-Main/l.b Lbu; var_718
-Main/l.b Ljava/lang/String; var_696
-Main/l.b Ljavax/microedition/lcdui/Image; var_b34
-Main/l.b Z var_600
 Main/l.b()V sub_23d
 Main/l.b()Z sub_2d7
 Main/l.b(I)V sub_215
-Main/l.c I var_2a3
-Main/l.c Lbu; var_768
-Main/l.c Ljava/lang/String; var_992
-Main/l.c Z var_941
 Main/l.c()V sub_2c1
 Main/l.c()Z sub_2e7
 Main/l.c(I)V sub_33e
-Main/l.d I var_373
-Main/l.d Lbu; var_7bc
-Main/l.d Ljava/lang/String; var_a15
-Main/l.d Z var_b06
 Main/l.d()V sub_38c
-Main/l.e I var_3be
-Main/l.e Ljava/lang/String; var_a9e
 Main/l.e()V sub_3a2
-Main/l.f I var_404
 Main/l.f()V sub_33
-Main/l.g I var_459
 Main/l.g()V sub_1be
-Main/l.h I var_879
 Main/l.h()V sub_26b
-Main/l.i I var_8ca
 Main/l.i()V sub_299
-Main/l.j I var_8e4
-Main/l.k I var_911
-Main/l.l I var_ad1
-Main/l.m I var_b51
 Main/m Main/Class_2ee
 Main/m.a I var_1c9
 Main/m.a J var_28e
@@ -375,47 +364,41 @@ Main/m.a Laz; var_3a1
 Main/m.a Lcf; var_33e
 Main/m.a Z var_2c2
 Main/m.a [I var_43e
+Main/m.b I var_29d
+Main/m.b Laz; var_3ab
+Main/m.b Z var_3fc
+Main/m.c I var_411
+Main/m.d I var_492
+Main/m.e I var_49d
+Main/m.f I var_4f1
+Main/m.g I var_54a
 Main/m.a()I sub_65
 Main/m.a()Lcf; sub_107
 Main/m.a()V sub_e
 Main/m.a()Z sub_be
 Main/m.a(I)Z sub_16b
 Main/m.a(II)Z sub_1a0
-Main/m.b I var_29d
-Main/m.b Laz; var_3ab
-Main/m.b Z var_3fc
 Main/m.b()V sub_3f
-Main/m.c I var_411
-Main/m.d I var_492
-Main/m.e I var_49d
-Main/m.f I var_4f1
-Main/m.g I var_54a
 Main/n Main/GOF2Canvas
-Main/n.a I var_13b
+Main/n.a I keyStates
 Main/n.a J var_4ba
 Main/n.a LMain/GOF2MIDlet; midlet
-Main/n.a Lao; var_30c
+Main/n.a Lao; loadingScreen
 Main/n.a Lau; var_2f1
 Main/n.a Z var_355
-Main/n.a()V sub_8b
-Main/n.b I var_1ba
+Main/n.b I keysState
 Main/n.b J var_4e5
 Main/n.b Z var_3a4
-Main/n.b()V sub_ca
-Main/n.c I var_1cc
+Main/n.c I lastKeyStates
 Main/n.c Z var_464
-Main/n.c()V sub_10d
-Main/n.d I var_221
-Main/n.d()V sub_125
-Main/n.e I var_27d
-Main/n.e()V sub_13d
+Main/n.d I lastFrameSignleKeyRelease
+Main/n.e I lastFrameSignleKeyPress
 Main/n.f I var_2bf
-Main/n.var_13b I keyStates
-Main/n.var_1ba I keyStates2
-Main/n.var_1cc I lastKeyStates
-Main/n.var_221 I lastFrameSignleKeyRelease
-Main/n.var_27d I lastFrameSignleKeyPress
-Main/n.var_30c Lao; loadingScreen
+Main/n.a()V sub_8b
+Main/n.b()V sub_ca
+Main/n.c()V sub_10d
+Main/n.d()V sub_125
+Main/n.e()V sub_13d
 Main/o Main/Flight
 Main/o.a I var_47
 Main/o.a J currentTimeMs
@@ -437,35 +420,21 @@ Main/o.a Ldb; var_630
 Main/o.a Lj; var_7af
 Main/o.a Lv; var_611
 Main/o.a Z var_287
-Main/o.a()V sub_10a
-Main/o.a()Z sub_12b
-Main/o.a(I)V sub_57
 Main/o.b I var_5ea
 Main/o.b J lastFrameTimeMs
 Main/o.b Lj; var_7f9
 Main/o.b Z var_4ed
-Main/o.b()V sub_c4
-Main/o.b()Z sub_16c
-Main/o.b(I)V sub_8d
 Main/o.c I keysPressed
 Main/o.c J frameTime
 Main/o.c Z var_53f
-Main/o.c()V sub_1da
-Main/o.c()Z sub_1ce
 Main/o.d J var_187
 Main/o.d Z var_55d
-Main/o.d()V sub_2f
-Main/o.d()Z sub_20d
 Main/o.e J var_1c2
 Main/o.e Z var_58b
-Main/o.e()V sub_bf
 Main/o.f J var_209
 Main/o.f Z var_5a4
-Main/o.f()V sub_11d
 Main/o.g Z jumpgateReached
-Main/o.g()V sub_17e
 Main/o.h Z var_947
-Main/o.h()V sub_225
 Main/o.i Z var_976
 Main/o.j Z autopilotMenuOpen
 Main/o.k Z var_9d5
@@ -478,6 +447,20 @@ Main/o.q Z var_c3b
 Main/o.r Z var_c80
 Main/o.s Z var_ce4
 Main/o.t Z var_d4a
+Main/o.a()V sub_10a
+Main/o.a()Z sub_12b
+Main/o.a(I)V sub_57
+Main/o.b()V sub_c4
+Main/o.b()Z sub_16c
+Main/o.b(I)V sub_8d
+Main/o.c()V sub_1da
+Main/o.c()Z sub_1ce
+Main/o.d()V sub_2f
+Main/o.d()Z sub_20d
+Main/o.e()V sub_bf
+Main/o.f()V sub_11d
+Main/o.g()V sub_17e
+Main/o.h()V sub_225
 Main/p Main/Class_216
 Main/p.a I var_14a
 Main/p.a J var_60
@@ -496,28 +479,19 @@ Main/p.a Ljavax/microedition/lcdui/Image; var_224
 Main/p.a Z var_329
 Main/p.a [I var_179
 Main/p.a [[I var_abd
-Main/p.a()LMain/k; sub_4e
-Main/p.a()V sub_10a
-Main/p.a()Z sub_12b
-Main/p.a(I)V sub_57
 Main/p.b I var_8e7
 Main/p.b J var_9f
 Main/p.b Lj; var_814
 Main/p.b Z var_382
-Main/p.b()V sub_c4
-Main/p.b(I)V sub_8d
 Main/p.c I var_96e
 Main/p.c J var_d4
 Main/p.c Z var_3ba
-Main/p.c()V sub_a9
 Main/p.d I var_97c
 Main/p.d J var_101
 Main/p.d Z var_3f5
-Main/p.d()V sub_f0
 Main/p.e I var_b11
 Main/p.e J var_139
 Main/p.e Z var_402
-Main/p.e()V sub_161
 Main/p.f I var_b98
 Main/p.f Z var_420
 Main/p.g I var_bcc
@@ -535,6 +509,15 @@ Main/p.p Z var_c8c
 Main/p.q Z var_ca1
 Main/p.r Z var_ccc
 Main/p.s Z var_d16
+Main/p.a()LMain/k; sub_4e
+Main/p.a()V sub_10a
+Main/p.a()Z sub_12b
+Main/p.a(I)V sub_57
+Main/p.b()V sub_c4
+Main/p.b(I)V sub_8d
+Main/p.c()V sub_a9
+Main/p.d()V sub_f0
+Main/p.e()V sub_161
 Main/q Main/Class_1e2
 Main/q.a Z var_37
 Main/q.a()I sub_18a
@@ -564,14 +547,6 @@ Main/r.a [Lbe; var_993
 Main/r.a [Lcw; var_95c
 Main/r.a [Ljavax/microedition/lcdui/Image; var_114f
 Main/r.a [Z var_1168
-Main/r.a()V sub_98
-Main/r.a()Z sub_1ae
-Main/r.a(FF)V sub_188
-Main/r.a(I)Z sub_a9
-Main/r.a(II)V sub_101
-Main/r.a(IZ)V sub_29e
-Main/r.a(ZLck;ZI)V sub_4e
-Main/r.a(ZZ)V LoadNames
 Main/r.b F var_39b
 Main/r.b I var_201
 Main/r.b Lag; var_110d
@@ -583,7 +558,6 @@ Main/r.b Ll; var_e4c
 Main/r.b Z var_538
 Main/r.b [I var_c8d
 Main/r.b [Lag; var_c27
-Main/r.b()V sub_2ee
 Main/r.c F var_3af
 Main/r.c I var_254
 Main/r.c Ljavax/microedition/lcdui/Image; var_78f
@@ -592,23 +566,19 @@ Main/r.c Ll; var_e9b
 Main/r.c Z var_61e
 Main/r.c [I var_cb1
 Main/r.c [Lag; var_c63
-Main/r.c()V sub_dd
 Main/r.d F var_401
 Main/r.d I var_292
 Main/r.d Ljavax/microedition/lcdui/Image; var_7eb
 Main/r.d Z var_62d
 Main/r.d [I var_cd6
-Main/r.d()V sub_158
 Main/r.e F var_6cf
 Main/r.e I var_2ce
 Main/r.e Ljavax/microedition/lcdui/Image; var_81d
 Main/r.e Z var_673
-Main/r.e()V sub_23f
 Main/r.f F var_6f1
 Main/r.f I var_349
 Main/r.f Ljavax/microedition/lcdui/Image; var_848
 Main/r.f Z var_cfc
-Main/r.f()V sub_2b5
 Main/r.g F var_6fe
 Main/r.g I var_452
 Main/r.g Ljavax/microedition/lcdui/Image; var_871
@@ -635,6 +605,19 @@ Main/r.o Z var_1302
 Main/r.p I var_11e9
 Main/r.q I var_124c
 Main/r.r I var_129f
+Main/r.a()V sub_98
+Main/r.a()Z sub_1ae
+Main/r.a(FF)V sub_188
+Main/r.a(I)Z sub_a9
+Main/r.a(II)V sub_101
+Main/r.a(IZ)V sub_29e
+Main/r.a(ZLck;ZI)V sub_4e
+Main/r.a(ZZ)V LoadNames
+Main/r.b()V sub_2ee
+Main/r.c()V sub_dd
+Main/r.d()V sub_158
+Main/r.e()V sub_23f
+Main/r.f()V sub_2b5
 a AbyssEngine/AEMesh
 a.a Ljava/io/DataInputStream; var_d3
 a.a Ljavax/microedition/m3g/Appearance; var_1ea
@@ -644,14 +627,14 @@ a.a Ljavax/microedition/m3g/Transform; var_250
 a.a Ljavax/microedition/m3g/TriangleStripArray; var_231
 a.a Ljavax/microedition/m3g/VertexBuffer; var_167
 a.a [F var_43
+a.b Ljavax/microedition/m3g/PolygonMode; var_332
+a.d Z var_2a0
 a.a()Lah; sub_2b
 a.a()V sub_8c
 a.a(I)I sub_a4
 a.a(Laq;)V sub_1a9
-a.b Ljavax/microedition/m3g/PolygonMode; var_332
 a.b()V render
 a.c()V sub_100
-a.d Z var_2a0
 a.d()V sub_5b
 aa AbyssEngine/Class_e
 aa.a F var_bf
@@ -662,6 +645,38 @@ aa.a Lo; var_4d3
 aa.a Z var_3df
 aa.a [Laa; var_62
 aa.a [[Lba; var_30
+aa.b F var_1b2
+aa.b I var_803
+aa.b Z var_427
+aa.c F var_599
+aa.c I var_83e
+aa.c Z var_44c
+aa.d F var_5ec
+aa.d I var_e3
+aa.d Z var_54e
+aa.e I var_f2
+aa.e Z var_79f
+aa.f I var_13f
+aa.f Z var_380
+aa.g I var_14f
+aa.g Z var_3a5
+aa.h I var_1bf
+aa.h Z var_518
+aa.i I var_21e
+aa.i Z var_65c
+aa.j I var_22b
+aa.j Z var_716
+aa.k I var_261
+aa.k Z var_72f
+aa.l I var_295
+aa.l Z var_762
+aa.m I var_2d1
+aa.n I var_2f8
+aa.o I var_31f
+aa.p I var_608
+aa.q I var_63a
+aa.r I var_67c
+aa.s I var_6b6
 aa.a()F sub_892
 aa.a()I sub_49f
 aa.a()Lcd; sub_8db
@@ -684,9 +699,6 @@ aa.a(Lcd;)Lcd; sub_a3c
 aa.a(Lo;)V sub_1a0
 aa.a(Z)V operatorEquals
 aa.a([Laa;)V sub_218
-aa.b F var_1b2
-aa.b I var_803
-aa.b Z var_427
 aa.b()F sub_8c2
 aa.b()I sub_4f2
 aa.b()V sub_5ce
@@ -696,60 +708,31 @@ aa.b(I)V sub_336
 aa.b(IZ)V sub_96b
 aa.b(Z)V sub_d5
 aa.b([Laa;)V sub_266
-aa.c F var_599
-aa.c I var_83e
-aa.c Z var_44c
 aa.c()I sub_53c
 aa.c()V sub_5e9
 aa.c()Z sub_992
 aa.c(F)V sub_84b
 aa.c(I)V sub_386
 aa.c(Z)V sub_169
-aa.d F var_5ec
-aa.d I var_e3
-aa.d Z var_54e
 aa.d()I sub_561
 aa.d()V sub_9bb
 aa.d()Z sub_ace
 aa.d(I)V sub_3aa
 aa.d(Z)V sub_79a
-aa.e I var_f2
-aa.e Z var_79f
 aa.e()I sub_63e
 aa.e()V sub_b04
 aa.e()Z sub_ae3
 aa.e(I)V sub_406
 aa.e(Z)V sub_a98
-aa.f I var_13f
-aa.f Z var_380
 aa.f()I sub_66c
 aa.f()V sub_6a5
 aa.f(I)V sub_434
-aa.g I var_14f
-aa.g Z var_3a5
 aa.g()I sub_6d4
 aa.g(I)V sub_443
-aa.h I var_1bf
-aa.h Z var_518
 aa.h()I sub_6f7
 aa.h(I)V sub_b5e
-aa.i I var_21e
-aa.i Z var_65c
 aa.i()I sub_73a
-aa.j I var_22b
-aa.j Z var_716
 aa.j()I sub_76e
-aa.k I var_261
-aa.k Z var_72f
-aa.l I var_295
-aa.l Z var_762
-aa.m I var_2d1
-aa.n I var_2f8
-aa.o I var_31f
-aa.p I var_608
-aa.q I var_63a
-aa.r I var_67c
-aa.s I var_6b6
 ab AbyssEngine/Record
 ab.a Lcb; agent
 ab.a Lck; mission
@@ -776,18 +759,18 @@ ac.a Ljavax/microedition/m3g/VertexBuffer; vertexBuffer
 ac.a [B var_297
 ac.a [F var_2b
 ac.a [S var_237
+ac.b Ljavax/microedition/m3g/VertexArray; uvArray
+ac.b [F zeroBias3D
+ac.c [F zeroBias2D
+ac.d I var_b7
+ac.f I var_308
+ac.g I var_316
 ac.a()Lah; sub_2b
 ac.a()V sub_8c
 ac.a(Lap;Laf;)V sub_11b
 ac.a(Laq;)V sub_1a9
 ac.a([I[I)V sub_176
-ac.b Ljavax/microedition/m3g/VertexArray; uvArray
-ac.b [F zeroBias3D
 ac.b()V render
-ac.c [F zeroBias2D
-ac.d I var_b7
-ac.f I var_308
-ac.g I var_316
 ad AbyssEngine/Class_69
 ad.a Ljava/lang/String; var_27
 ad.a [B faceKeith
@@ -796,23 +779,11 @@ ad.a [Lu; items
 ad.a [S barFiguresMeshIDs
 ad.a [[B faces
 ad.a [[S barMeshIDs
-ad.a()Ljava/lang/String; sub_139
-ad.a()V sub_27
-ad.a()[Lch; getShips
-ad.a()[Lu; getItems
-ad.a(I)I sub_147
-ad.a(I)Ljava/lang/String; sub_b8
-ad.a(I)[I sub_c2
-ad.a(II)Lar; sub_161
-ad.a(IZ)Ljava/lang/String; sub_116
-ad.a(Lar;I)V sub_1b8
 ad.b Ljava/lang/String; var_b0
 ad.b [B faceStory2
 ad.b [S var_149
 ad.b [[S hangarMeshIDs
-ad.b()V sub_1db
 ad.c [B faceBrent
-ad.c()V sub_203
 ad.d [B faceGunant
 ad.e [B faceNorris
 ad.f [B faceMkkt
@@ -832,6 +803,18 @@ ad.s [B faceOfficer
 ad.t [B faceVoid
 ad.u [B faceKhador
 ad.v [B faceSecurity
+ad.a()Ljava/lang/String; sub_139
+ad.a()V sub_27
+ad.a()[Lch; getShips
+ad.a()[Lu; getItems
+ad.a(I)I sub_147
+ad.a(I)Ljava/lang/String; sub_b8
+ad.a(I)[I sub_c2
+ad.a(II)Lar; sub_161
+ad.a(IZ)Ljava/lang/String; sub_116
+ad.a(Lar;I)V sub_1b8
+ad.b()V sub_1db
+ad.c()V sub_203
 ae AbyssEngine/Class_86
 ae.a(Le;)Ljava/util/Vector; sub_5e
 ae.a([Lcw;II)[I sub_52
@@ -866,6 +849,12 @@ ah.a Lah; var_8f
 ah.a Lam; var_19f
 ah.a Lar; var_6a
 ah.a Z var_b6
+ah.b I var_45
+ah.b Lcl; var_13e
+ah.b Z var_c1
+ah.c I var_1fa
+ah.c Lcl; var_14c
+ah.c Z var_ee
 ah.a()I sub_a
 ah.a()Lar; sub_a4
 ah.a()Lcd; sub_237
@@ -882,9 +871,6 @@ ah.a(Lcl;)V sub_8c9
 ah.a(Ljava/lang/String;I)Ljava/lang/String; sub_159
 ah.a(S)V sub_5a7
 ah.a(Z)V sub_4f
-ah.b I var_45
-ah.b Lcl; var_13e
-ah.b Z var_c1
 ah.b()I sub_29c
 ah.b()Lah; sub_007
 ah.b()Lcd; sub_28c
@@ -896,9 +882,6 @@ ah.b(Lap;Laf;)V sub_b2
 ah.b(Lcd;)Lcd; sub_22a
 ah.b(Lcd;)V sub_1f3
 ah.b(Z)V sub_109
-ah.c I var_1fa
-ah.c Lcl; var_14c
-ah.c Z var_ee
 ah.c()I sub_2c5
 ah.c()Lcd; sub_40a
 ah.c(I)V sub_609
@@ -941,20 +924,9 @@ ak AbyssEngine/Class_1ad
 ak.a J var_6d
 ak.a [Lcd; var_34b
 ak.a [Lw; var_59
-ak.a()V sub_109
-ak.a(III)V squaredLength
-ak.a(III)Z sub_162
-ak.a(J)V sub_e6
-ak.a(Lcd;)Lcd; sub_a9
-ak.a(Lcd;)Z sub_1b8
-ak.a(Z)V sub_59
-ak.a([Lw;)V sub_9c
 ak.b Laa; var_273
 ak.b [Lcd; var_361
-ak.b()V sub_22
-ak.b(Lcd;)Lcd; loadItems
 ak.c Lcd; var_eb
-ak.c(I)V sub_da
 ak.d Lcd; var_114
 ak.e Lcd; var_177
 ak.f Lcd; var_1ee
@@ -966,6 +938,17 @@ ak.n Z var_87
 ak.o I var_3bc
 ak.o Z var_2d3
 ak.p I var_3ed
+ak.a()V sub_109
+ak.a(III)V squaredLength
+ak.a(III)Z sub_162
+ak.a(J)V sub_e6
+ak.a(Lcd;)Lcd; sub_a9
+ak.a(Lcd;)Z sub_1b8
+ak.a(Z)V sub_59
+ak.a([Lw;)V sub_9c
+ak.b()V sub_22
+ak.b(Lcd;)Lcd; loadItems
+ak.c(I)V sub_da
 al AbyssEngine/Class_1ee
 al.a F var_195
 al.a I var_22
@@ -973,14 +956,9 @@ al.a Ljavax/microedition/lcdui/Image; var_4c7
 al.a Lv; var_5f5
 al.a Z var_728
 al.a [I var_78c
-al.a()I sub_68
-al.a()V sub_e1
-al.a()Z sub_57
-al.a(II)Z sub_b7
 al.b F var_1c7
 al.b I var_80
 al.b Ljavax/microedition/lcdui/Image; var_4e8
-al.b()Z sub_a8
 al.c F var_1fc
 al.c I var_d1
 al.c Ljavax/microedition/lcdui/Image; var_4ff
@@ -1004,6 +982,11 @@ al.j I var_650
 al.k I var_686
 al.l I var_6cb
 al.m I var_6e2
+al.a()I sub_68
+al.a()V sub_e1
+al.a()Z sub_57
+al.a(II)Z sub_b7
+al.b()Z sub_a8
 am AbyssEngine/AEBoundingSphere
 am.a I radius
 am.a Lcd; center
@@ -1020,13 +1003,13 @@ an.a [B var_163
 an.a [Lbq; var_4b
 an.a [Ljava/lang/String; var_128
 an.a [Ljavax/microedition/lcdui/Image; var_2db
+an.b I var_30f
+an.b J var_2bb
 an.a()V sub_39
 an.a(I)Lbq; sub_133
 an.a(JJLcq;)V sub_1f5
 an.a(Lbq;)V sub_cf
 an.a([Lbq;)V sub_96
-an.b I var_30f
-an.b J var_2bb
 an.b()V sub_193
 ao AbyssEngine/LoadingScreen
 ao.a J var_257
@@ -1036,18 +1019,26 @@ ao.a Ljavax/microedition/lcdui/Image; var_129
 ao.a Ljavax/microedition/lcdui/game/GameCanvas; var_7c
 ao.a Z var_19
 ao.a [Ljava/lang/String; var_18d
+ao.b J var_267
+ao.b Ljava/lang/String; var_206
 ao.a()Ljavax/microedition/lcdui/Image; sub_4a
 ao.a()V sub_d5
 ao.a(Ljavax/microedition/lcdui/game/GameCanvas;)V sub_76
 ao.a(Z)V sub_140
-ao.b J var_267
-ao.b Ljava/lang/String; var_206
 ao.b()V sub_eb
 ap AbyssEngine/Class_2a7
 ap.a I var_1fe
-ap.a Lcd; var_16f
-ap.a [I var_15d
-ap.a [Lcd; var_10b
+ap.a Lcd; vec1
+ap.a [I lengths
+ap.a [Lcd; vec3_arr1
+ap.b Lcd; vec3_2
+ap.b [Lcd; vec3_arr2
+ap.c Lcd; vec3_3
+ap.d I var_219
+ap.f I var_a1
+ap.g I var_c5
+ap.h I var_23d
+ap.i I var_25c
 ap.a()V sub_19c
 ap.a(I)V sub_ba
 ap.a(III)V sub_5c
@@ -1055,34 +1046,18 @@ ap.a(IIIII)Lap; sub_1b1
 ap.a(Lam;)B sub_14a
 ap.a(Lap;Laf;)V sub_11b
 ap.a(Lcd;)Z sub_fa
-ap.b Lcd; var_17e
-ap.b [Lcd; var_140
 ap.b(Lap;Laf;)V sub_b2
 ap.b(Z)V sub_109
-ap.c Lcd; var_1d8
-ap.d I var_219
-ap.f I var_a1
-ap.g I var_c5
-ap.h I var_23d
-ap.i I var_25c
-ap.lens [I lengths
-ap.var_10b [Lcd; vec3_arr1
-ap.var_140 [Lcd; vec3_arr2
-ap.var_15d [I lens
-ap.var_16f Lcd; vec1
-ap.var_17e Lcd; vec3_2
-ap.var_1d8 Lcd; vec3_3
-ap.vec1 Lcd; vec3_1
 aq AbyssEngine/Class_2e2
 aq.a()V sub_52
 ar AbyssEngine/Class_31f
+ar.b Lah; var_3e
 ar.a()Lah; sub_97
 ar.a(B)V sub_9aa
 ar.a(II)V sub_980
 ar.a(Lah;)V sub_25
 ar.a(Lap;Laf;)V sub_11b
 ar.a(Ljava/lang/String;I)Ljava/lang/String; sub_159
-ar.b Lah; var_3e
 ar.b()Z sub_a37
 ar.b(Lah;)V sub_7f
 ar.b(Lap;Laf;)V sub_b2
@@ -1116,11 +1091,8 @@ at.a Ljavax/microedition/midlet/MIDlet; var_aa1
 at.a Lr; var_8f1
 at.a Z musicEnabled
 at.a [Las; var_c35
-at.a()V sub_8a
-at.a(I)V sub_50
 at.b I var_1a1
 at.b Z sfxEnabled
-at.b()V sub_d1
 at.c I language
 at.c Z var_107
 at.d I var_9c3
@@ -1155,6 +1127,9 @@ at.w Z var_697
 at.x Z var_6be
 at.y Z var_71f
 at.z Z var_745
+at.a()V sub_8a
+at.a(I)V sub_50
+at.b()V sub_d1
 au AbyssEngine/Class_3cd
 au.a LMain/GOF2MIDlet; var_db
 au.a Lao; var_12f
@@ -1167,14 +1142,14 @@ au.b(I)V sub_a1
 av AbyssEngine/Class_3e2
 av.a I var_42
 av.a [Ljava/lang/String; var_10a
-av.a()I sub_16
-av.a()V sub_99
 av.b I var_5b
-av.b()V sub_cd
 av.c I var_a2
-av.c()V sub_130
 av.d I var_d8
 av.e I var_1a3
+av.a()I sub_16
+av.a()V sub_99
+av.b()V sub_cd
+av.c()V sub_130
 aw AbyssEngine/FileRead
 aw.a Ljava/lang/Class; varClass
 aw.a()[Lcb; loadAgents
@@ -1198,6 +1173,16 @@ ax.a Ljavax/microedition/m3g/Transform; var_24c
 ax.a [F m_matrix
 ax.a [I var_56
 ax.a [Ljavax/microedition/m3g/Node; var_2f4
+ax.b Ljavax/microedition/m3g/PolygonMode; var_38a
+ax.b Ljavax/microedition/m3g/Transform; var_4aa
+ax.b [I var_10e
+ax.b [Ljavax/microedition/m3g/Node; var_338
+ax.d I var_137
+ax.d Z var_1e9
+ax.e Z var_41c
+ax.f I var_15f
+ax.g I var_174
+ax.h I var_18c
 ax.a()Lah; sub_2b
 ax.a()V sub_8c
 ax.a(B)V sub_9aa
@@ -1207,52 +1192,55 @@ ax.a(Laq;)V sub_1a9
 ax.a(Ljavax/microedition/m3g/Node;)V sub_46
 ax.a(Ljavax/microedition/m3g/Node;I)I sub_85
 ax.a(Ljavax/microedition/m3g/Node;[Ljavax/microedition/m3g/Texture2D;Z)V sub_b6
-ax.b Ljavax/microedition/m3g/PolygonMode; var_38a
-ax.b Ljavax/microedition/m3g/Transform; var_4aa
-ax.b [I var_10e
-ax.b [Ljavax/microedition/m3g/Node; var_338
 ax.b()V render
 ax.b()Z sub_a37
 ax.c()V sub_100
-ax.d I var_137
-ax.d Z var_1e9
 ax.d()V sub_31
-ax.e Z var_41c
-ax.f I var_15f
 ax.f()V sub_a04
 ax.f(I)V sub_918
-ax.g I var_174
-ax.h I var_18c
 ax.i()I sub_942
 ay AbyssEngine/Class_490
 ay.a I var_ff
 ay.a Lag; var_38
 ay.a [I var_ac
-ay.a()V sub_4b
-ay.a(I)V sub_a6
 ay.b I var_161
 ay.c I var_180
+ay.a()V sub_4b
+ay.a(I)V sub_a6
 az AbyssEngine/Popup
 az.a I posY
 az.a Z currentChoice
 az.a [Ljava/lang/String; rows
+az.b I posX
+az.b Z isChoice
+az.c I width
+az.d I height
+az.e I choicePosY
 az.a()V sub_c6
 az.a()Z sub_9a
 az.a(Ljava/lang/String;)V sub_34
 az.a(Ljava/lang/String;Z)V sub_8f
-az.b I posX
-az.b Z isChoice
 az.b()V sub_ff
-az.c I width
 az.c()V sub_19a
-az.d I height
-az.e I choicePosY
 b AbyssEngine/Class_bbf
-b.a I var_84
+b.a I uiInnerOutlineColor
 b.a J var_575
 b.a Ljavax/microedition/lcdui/Image; var_302
 b.a Z var_61d
 b.a [I var_528
+b.b I uiOuterTopRightOutlineColor
+b.b J var_5b6
+b.b Ljavax/microedition/lcdui/Image; var_357
+b.b Z var_6d1
+b.c I uiOuterDownLeftOutlineInnerLabalBgColor
+b.c Ljavax/microedition/lcdui/Image; var_364
+b.d I uiInactiveInnerLabelColor
+b.d Ljavax/microedition/lcdui/Image; var_475
+b.e I var_298
+b.e Ljavax/microedition/lcdui/Image; var_496
+b.f I var_612
+b.f Ljavax/microedition/lcdui/Image; var_4b4
+b.g Ljavax/microedition/lcdui/Image; var_505
 b.a()V sub_3a
 b.a()Z sub_108
 b.a(I)Ljava/lang/String; sub_30c
@@ -1270,33 +1258,16 @@ b.a(Ljava/lang/String;Ljava/lang/String;)V sub_3c6
 b.a(Ljava/lang/String;Ljava/lang/String;Z)V sub_535
 b.a(Ljava/lang/String;Z)V sub_2db
 b.a(Z)V sub_411
-b.b I var_b3
-b.b J var_5b6
-b.b Ljavax/microedition/lcdui/Image; var_357
-b.b Z var_6d1
 b.b()V sub_85
 b.b()Z sub_119
 b.b(IIII)V sub_58a
 b.b(Ljava/lang/String;IIII)V sub_4e1
 b.b(Ljava/lang/String;Ljava/lang/String;Z)V sub_5d9
 b.b(Z)V sub_4cc
-b.c I var_110
-b.c Ljavax/microedition/lcdui/Image; var_364
 b.c()V sub_189
 b.c()Z sub_44a
-b.d I var_1db
-b.d Ljavax/microedition/lcdui/Image; var_475
 b.d()V sub_295
-b.e I var_298
-b.e Ljavax/microedition/lcdui/Image; var_496
 b.e()V sub_490
-b.f I var_612
-b.f Ljavax/microedition/lcdui/Image; var_4b4
-b.g Ljavax/microedition/lcdui/Image; var_505
-b.var_110 I uiOuterDownLeftOutlineInnerLabalBgColor
-b.var_1db I uiInactiveInnerLabelColor
-b.var_84 I uiInnerOutlineColor
-b.var_b3 I uiOuterTopRightOutlineColor
 ba AbyssEngine/Class_539
 ba.a F var_383
 ba.a I var_334
@@ -1309,6 +1280,23 @@ ba.a [I var_21a
 ba.a [Laa; var_d5
 ba.a [Lcd; var_118
 ba.a [[[S var_46
+ba.b I var_3c5
+ba.b Lcd; var_176
+ba.b Z var_515
+ba.b [Lcd; var_12a
+ba.c I var_463
+ba.c Lcd; var_1b4
+ba.c Z var_547
+ba.d I var_4c2
+ba.d Lcd; var_441
+ba.d Z var_5de
+ba.e I var_55a
+ba.e Z var_627
+ba.f I var_577
+ba.g I var_2a2
+ba.h I var_2cd
+ba.i I var_5b0
+ba.j I var_633
 ba.a()I sub_141
 ba.a()V sub_183
 ba.a()[Laa; sub_2d2
@@ -1320,72 +1308,58 @@ ba.a(Lcl;JZ)Z sub_2ea
 ba.a(Ldb;)V sub_240
 ba.a(Z)V sub_c1
 ba.a([Laa;)V sub_2ac
-ba.b I var_3c5
-ba.b Lcd; var_176
-ba.b Z var_515
-ba.b [Lcd; var_12a
 ba.b()V sub_30a
 ba.b(I)V sub_f4
-ba.c I var_463
-ba.c Lcd; var_1b4
-ba.c Z var_547
 ba.c()V sub_341
-ba.d I var_4c2
-ba.d Lcd; var_441
-ba.d Z var_5de
-ba.e I var_55a
-ba.e Z var_627
-ba.f I var_577
-ba.g I var_2a2
-ba.h I var_2cd
-ba.i I var_5b0
-ba.j I var_633
 bb AbyssEngine/Medals
 bb.a I var_1a5
 bb.a Z var_25f
 bb.a [I medals
 bb.a [[I var_58
+bb.b I var_228
+bb.b Z hasAll
+bb.b [I var_d2
+bb.c I var_243
+bb.c Z hasAllGold
+bb.d I var_27c
+bb.e I goldMedalsCount
+bb.f I medalsCount
 bb.a()V sub_1b6
 bb.a()Z sub_b0
 bb.a()[I sub_144
 bb.a(I)V sub_1df
 bb.a(Lcq;)V sub_13
 bb.a([I)V sub_230
-bb.b I var_228
-bb.b Z hasAll
-bb.b [I var_d2
 bb.b()V sub_1d0
 bb.b()Z sub_fe
 bb.b()[I sub_1a5
-bb.c I var_243
-bb.c Z hasAllGold
 bb.c()V sub_27f
-bb.d I var_27c
 bb.d()V sub_2a3
-bb.e I goldMedalsCount
 bb.e()V sub_2ea
-bb.f I medalsCount
 bb.f()V updateMedalCounters
 bc AbyssEngine/Class_5bf
-bc.a(III)V sub_e2
-bc.a(III)Z sub_4f
-bc.b(III)Z sub_a0
 bc.g I var_131
 bc.h I var_15a
 bc.i I var_245
 bc.j I var_291
-bd AbyssEngine/Class_5dc
-bd.a Ljava/lang/String; var_13
-bd.a(J)Ljava/lang/String; sub_26
-bd.b Ljava/lang/String; var_73
-bd.b(J)Ljava/lang/String; updateMedalCounters
-bd.c Ljava/lang/String; var_af
+bc.a(III)V sub_e2
+bc.a(III)Z sub_4f
+bc.b(III)Z sub_a0
+bd AbyssEngine/Time
+bd.a Ljava/lang/String; seconds
+bd.b Ljava/lang/String; minutes
+bd.c Ljava/lang/String; hours
+bd.a(J)Ljava/lang/String; timeToHMS
+bd.b(J)Ljava/lang/String; timeToHM
 be AbyssEngine/Station
 be.a I id
 be.a Ljava/lang/String; name
 be.a [Lcb; barAgents
 be.a [Lch; hangarShips
 be.a [Lu; hangarItems
+be.b I systemId
+be.c I planetTextureId
+be.d I tecLevel
 be.a()I sub_34
 be.a()Ljava/lang/String; sub_71
 be.a()V sub_1a2
@@ -1398,21 +1372,18 @@ be.a(Lu;)V sub_334
 be.a([Lcb;)V sub_30f
 be.a([Lch;)V sub_2df
 be.a([Lu;)V sub_2c1
-be.b I systemId
 be.b()I getId
 be.b()Z sub_175
-be.c I planetTextureId
 be.c()I sub_15f
-be.d I tecLevel
 be.d()I sub_1ea
 bf AbyssEngine/Class_601
 bf.a [I var_40
+bf.b [I var_9e
 bf.a()[I sub_59
 bf.a(Lbe;)[Lcb; sub_ce
 bf.a(Lbe;)[Lch; sub_35
 bf.a(Lcb;)Lck; sub_d8
 bf.a([Lcw;I)I sub_ad
-bf.b [I var_9e
 bg AbyssEngine/Class_661
 bg.a I var_f7
 bg.a Z var_91
@@ -1437,34 +1408,17 @@ bh.a J var_44b
 bh.a Lcl; var_31e
 bh.a Ls; var_6d7
 bh.a [Lw; var_7b6
-bh.a()V sub_109
-bh.a()Z sub_5f
-bh.a(I)V loadShips
-bh.a(III)V squaredLength
-bh.a(III)Z sub_162
-bh.a(ILo;)V sub_16f
-bh.a(J)V sub_e6
-bh.a(Z)V sub_19
 bh.b F var_f1
 bh.b Laa; var_3fa
 bh.b Lbg; var_561
-bh.b()V sub_22
 bh.c F var_780
 bh.c Lbg; var_595
 bh.c Lcd; var_1d2
-bh.c(I)V sub_1e8
 bh.d F var_7a0
 bh.d Lbg; var_5b7
 bh.d Lcd; var_24e
-bh.d(I)V sub_227
 bh.e Lcd; var_2aa
 bh.f Lcd; var_311
-bh.f()V sub_2e5
-bh.f(Z)V sub_2b8
-bh.g()V sub_262
-bh.h()Z sub_bd
-bh.i()Z sub_102
-bh.j()Z add
 bh.l I var_26
 bh.m I var_4c
 bh.n I var_7a
@@ -1486,17 +1440,36 @@ bh.v I var_4de
 bh.w I var_5ed
 bh.x I var_699
 bh.y I var_87b
+bh.a()V sub_109
+bh.a()Z sub_5f
+bh.a(I)V loadShips
+bh.a(III)V squaredLength
+bh.a(III)Z sub_162
+bh.a(ILo;)V sub_16f
+bh.a(J)V sub_e6
+bh.a(Z)V sub_19
+bh.b()V sub_22
+bh.c(I)V sub_1e8
+bh.d(I)V sub_227
+bh.f()V sub_2e5
+bh.f(Z)V sub_2b8
+bh.g()V sub_262
+bh.h()Z sub_bd
+bh.i()Z sub_102
+bh.j()Z add
 bi AbyssEngine/Class_6ba
+bi.n Z var_4d
 bi.a(III)V squaredLength
 bi.a(J)V sub_e6
 bi.g()V sub_25
-bi.n Z var_4d
 bj AbyssEngine/Class_6cc
 bj.a F var_ef
 bj.b F var_116
 bj.c F var_1ab
 bk AbyssEngine/Class_6fc
 bk.a Lay; var_14
+bk.d Z var_39
+bk.e Z var_4a
 bk.a()Lah; sub_2b
 bk.a()V sub_8c
 bk.a(J)V sub_181
@@ -1504,8 +1477,6 @@ bk.a(Laq;)V sub_1a9
 bk.b()V render
 bk.c(III)V sub_1c0
 bk.c(Lcd;)V sub_16
-bk.d Z var_39
-bk.e Z var_4a
 bl AbyssEngine/Status
 bl.A I var_1a
 bl.B I var_24
@@ -1519,7 +1490,7 @@ bl.I I var_469
 bl.J I var_4bf
 bl.K I var_4dd
 bl.L I var_510
-bl.M I currentCampaignMission
+bl.M I currentCampaignMissionIndex
 bl.a I var_906
 bl.a J var_ba5
 bl.a Lbe; var_bda
@@ -1531,11 +1502,50 @@ bl.a [B var_8f8
 bl.a [I var_a0a
 bl.a [Lbe; lastVisitedStations
 bl.a [Lbp; var_837
-bl.a [Lcb; var_845
+bl.a [Lcb; SpecialAgents
 bl.a [Lck; lastStoryMissions
 bl.a [Li; var_756
 bl.a [Ljava/lang/String; var_89b
 bl.a [Z var_9e9
+bl.b I var_94d
+bl.b J var_cbd
+bl.b Lbe; currentStation
+bl.b [B var_a8c
+bl.b [I var_a40
+bl.b [Ljava/lang/String; var_796
+bl.b [Z var_d18
+bl.c I var_9a8
+bl.c J var_cc7
+bl.c [B var_ad7
+bl.c [I var_7db
+bl.c [Z var_d2b
+bl.d I var_b1d
+bl.d J var_f55
+bl.d [Z var_e7d
+bl.e I var_b5f
+bl.e J var_b5
+bl.e [Z var_ecc
+bl.f I var_b7f
+bl.g I var_be5
+bl.h I var_c44
+bl.i I var_c7d
+bl.j I var_cae
+bl.k I var_d88
+bl.l I var_ddd
+bl.m I var_e07
+bl.n I var_e59
+bl.o I var_ea8
+bl.p I var_f13
+bl.q I var_f83
+bl.r I var_f9e
+bl.s I var_fba
+bl.t I var_1004
+bl.u I var_102f
+bl.v I var_107c
+bl.w I var_10b9
+bl.x I var_1116
+bl.y I var_112f
+bl.z I var_1155
 bl.a()I sub_428
 bl.a()J sub_df3
 bl.a()Lbe; sub_847
@@ -1565,13 +1575,6 @@ bl.a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; s
 bl.a(ZJ)Lck; sub_4fd
 bl.a([Lbe;)V sub_176
 bl.a([Ljava/lang/String;)V sub_e5c
-bl.b I var_94d
-bl.b J var_cbd
-bl.b Lbe; currentStation
-bl.b [B var_a8c
-bl.b [I var_a40
-bl.b [Ljava/lang/String; var_796
-bl.b [Z var_d18
 bl.b()I sub_58d
 bl.b()Lck; sub_2bc
 bl.b()V nextCampaignMission
@@ -1581,76 +1584,43 @@ bl.b(I)V sub_3d5
 bl.b(J)V sub_dd1
 bl.b(Lbe;)V sub_888
 bl.b(Lck;)V sub_2da
-bl.c I var_9a8
-bl.c J var_cc7
-bl.c [B var_ad7
-bl.c [I var_7db
-bl.c [Z var_d2b
 bl.c()I sub_675
 bl.c()Lck; sub_339
 bl.c()V sub_530
 bl.c()Z sub_4b8
 bl.c(I)V sub_518
 bl.c(Lck;)V sub_37b
-bl.currentCampaignMission I currentCampaignMissionIndex
-bl.d I var_b1d
-bl.d J var_f55
-bl.d [Z var_e7d
 bl.d()I sub_6ac
 bl.d()V sub_74b
 bl.d(I)V sub_5e6
 bl.d(Lck;)V sub_70a
-bl.e I var_b5f
-bl.e J var_b5
-bl.e [Z var_ecc
 bl.e()I sub_79b
 bl.e()V sub_b72
 bl.e(I)V sub_644
-bl.f I var_b7f
 bl.f()I sub_918
 bl.f()V sub_c95
 bl.f(I)V sub_690
-bl.g I var_be5
 bl.g()I sub_a17
 bl.g()V sub_cd5
 bl.g(I)V sub_922
-bl.h I var_c44
 bl.h()I sub_ba1
 bl.h()V sub_e85
 bl.h(I)V sub_987
-bl.i I var_c7d
 bl.i()I sub_bf2
 bl.i()V sub_ed5
 bl.i(I)V sub_9a7
-bl.j I var_cae
 bl.j()I sub_c35
 bl.j(I)V sub_9bc
-bl.k I var_d88
 bl.k()I sub_cc1
 bl.k(I)V sub_9cb
-bl.l I var_ddd
 bl.l()I sub_ce8
 bl.l(I)V sub_9f5
-bl.m I var_e07
 bl.m()I sub_cf8
 bl.m(I)V sub_a58
-bl.n I var_e59
 bl.n(I)V sub_a97
-bl.o I var_ea8
 bl.o(I)V sub_ada
-bl.p I var_f13
 bl.p(I)V sub_b33
-bl.q I var_f83
 bl.q(I)V sub_ca6
-bl.r I var_f9e
-bl.s I var_fba
-bl.t I var_1004
-bl.u I var_102f
-bl.v I var_107c
-bl.w I var_10b9
-bl.x I var_1116
-bl.y I var_112f
-bl.z I var_1155
 bm AbyssEngine/Class_786
 bm.a(J)V sub_181
 bn AbyssEngine/Class_7bb
@@ -1663,43 +1633,40 @@ bn.a Lco; var_28b
 bn.a Ldb; var_8c
 bn.a Lv; var_456
 bn.a Z var_428
+bn.b I var_be
+bn.b Lcd; var_33a
+bn.b Z var_1a2
+bn.c I var_2e6
+bn.c Lcd; var_39e
+bn.c Z var_25e
+bn.d Z var_269
 bn.a()V sub_6a
 bn.a()Z sub_123
 bn.a(ILc;)Z sub_50
 bn.a(Lc;)V sub_206
 bn.a(Lc;Ldb;)V sub_1b8
-bn.b I var_be
-bn.b Lcd; var_33a
-bn.b Z var_1a2
 bn.b()V sub_aa
 bn.b()Z sub_182
-bn.c I var_2e6
-bn.c Lcd; var_39e
-bn.c Z var_25e
 bn.c()V sub_10c
-bn.d Z var_269
 bn.d()V sub_24c
 bo AbyssEngine/AEResourceManager
 bo.a [I var_c0
-bo.a [Lag; mesh
+bo.a [Lag; meshes
 bo.a [Laq; var_ea
 bo.a [Ljava/lang/String; var_142
 bo.a [Z var_173
+bo.b [I meshIds
+bo.b [Ljava/lang/String; paths
+bo.b [Z var_2c6
+bo.c [I var_223
+bo.d [I tranparent_
 bo.a()V sub_17b
 bo.a(I)Lag; getGeometryResource
 bo.a(I)Laq; sub_10b
 bo.a(ILjava/lang/String;)V sub_53
 bo.a(ILjava/lang/String;I)V setupSkybox_
 bo.a(ILjava/lang/String;II)V sub_ad
-bo.b [I meshId
-bo.b [Ljava/lang/String; path
-bo.b [Z var_2c6
 bo.b()V sub_18f
-bo.c [I var_223
-bo.d [I tranparent_
-bo.mesh [Lag; meshes
-bo.meshId [I meshIds
-bo.path [Ljava/lang/String; paths
 bp AbyssEngine/Class_84e
 bp.a I var_a5
 bp.a Ljava/lang/String; var_7f
@@ -1710,27 +1677,27 @@ bq.a I var_51
 bq.a Lan; var_a
 bq.a Z var_24b
 bq.a [I var_1a9
+bq.b I var_66
+bq.b Z var_2a8
+bq.c I var_a0
+bq.d I var_104
+bq.e I var_2ca
 bq.a()I sub_50
 bq.a()V sub_163
 bq.a()Z sub_8e
 bq.a(JLcq;)Z sub_18e
 bq.a(Lan;)V sub_76
-bq.b I var_66
-bq.b Z var_2a8
 bq.b()I sub_5e
 bq.b()Z sub_f2
-bq.c I var_a0
-bq.d I var_104
-bq.e I var_2ca
 br AbyssEngine/Class_876
 br.a I var_69
 br.a Ldb; var_1b1
-br.a()Z sub_7d
-br.a(I)Z sub_47
 br.b I var_bb
 br.c I var_169
+br.a()Z sub_7d
+br.a(I)Z sub_47
 bs AbyssEngine/AESoundManager
-bs.a I currentBgMusicIdx
+bs.a I currentMusicIdx
 bs.a J var_11c
 bs.a Ljavax/microedition/media/Player; var_21c
 bs.a Ljavax/microedition/media/control/VolumeControl; var_2ad
@@ -1739,23 +1706,21 @@ bs.a [J SFX_DURATIONS
 bs.a [Ljava/lang/String; MUSIC_FILES_PATHS
 bs.a [Ljavax/microedition/media/Player; var_262
 bs.a [S SFX_VOLUMES
+bs.b I musicVolume
+bs.b [Ljava/lang/String; SFX_FILES_PATHS
+bs.c I sfxVolume
+bs.d I var_4a5
 bs.a()I getMusicVolume
 bs.a()V stopMusic
 bs.a()Z isMusicPlaying
 bs.a(I)V setMusicVolume
 bs.a(II)V playSfx
-bs.b I musicVol
-bs.b [Ljava/lang/String; SFX_FILES_PATHS
 bs.b()V sub_260
 bs.b(I)V setSfxVolume
-bs.c I sfxVolume
 bs.c()V sub_287
 bs.c(I)V playMusic
-bs.currentBgMusicIdx I currentMusicIdx
-bs.d I var_4a5
 bs.d()V sub_2a5
 bs.d(I)V playSfx
-bs.musicVol I musicVolume
 bt AbyssEngine/Class_8e4
 bt.a I var_79
 bt.a J var_ae
@@ -1771,37 +1736,30 @@ bu.a Z verticalBar
 bu.a [B var_310
 bu.a [Ljava/lang/String; rows
 bu.a [Ljavax/microedition/lcdui/Image; var_3dd
+bu.b I font
+bu.b Z hide
+bu.c I posX
+bu.d I posY
+bu.e I width
+bu.f I height
+bu.g I var_20d
+bu.h I vBarPercent
+bu.i I topPadding2
+bu.j I var_438
 bu.a()I sub_115
 bu.a()V zeroTopPadding
 bu.a(I)V setFont
 bu.a(Ljava/lang/String;)V sub_e0
 bu.a(Z)V setHide
 bu.a([BLjava/lang/String;Z)V sub_173
-bu.b I font
-bu.b Z var_360
 bu.b()I sub_164
 bu.b()V draw
 bu.b(I)V scrollUp
-bu.c I var_a3
 bu.c(I)V scrollDown
-bu.d I var_d0
-bu.e I var_115
-bu.f I var_122
-bu.g I var_20d
-bu.h I vBarPercent
-bu.i I topPadding2
-bu.j I var_438
-bu.posX I posX2
-bu.posX2 I posY
-bu.posY I posX
-bu.var_115 I width
-bu.var_122 I height
-bu.var_360 Z hide
-bu.var_a3 I posY
-bu.var_d0 I posX
 bv AbyssEngine/Class_93a
 bv.a Lcd; var_11
 bv.a [Z var_192
+bv.b Lcd; var_141
 bv.a()[Z sub_c8
 bv.a(I)Lbe; sub_85
 bv.a(I)Lcw; sub_2d
@@ -1810,7 +1768,6 @@ bv.a(IIII)I sub_11d
 bv.a(Lbe;)[I sub_180
 bv.a(Lcw;Lcw;)F sub_161
 bv.a([Z)V sub_b7
-bv.b Lcd; var_141
 bv.b(IIII)I sub_14c
 bw AbyssEngine/Class_99d
 bw.a I var_8a8
@@ -1829,14 +1786,6 @@ bw.a [I var_31
 bw.a [Lag; var_aeb
 bw.a [Ljava/lang/String; var_d5d
 bw.a [Lo; var_a55
-bw.a()I sub_12d
-bw.a()Lo; sub_1bd
-bw.a()V sub_42
-bw.a(IIILaa;)Ljava/lang/String; sub_1ab
-bw.a(Laa;Lap;Lc;Lv;I)V render
-bw.a(Lap;Lcd;)V sub_85
-bw.a(Lap;Lo;)V sub_b8
-bw.a(Lv;)V sub_18f
 bw.b I var_8f0
 bw.b Lag; var_f8d
 bw.b Lcd; var_c0c
@@ -1845,8 +1794,6 @@ bw.b Ljavax/microedition/lcdui/game/Sprite; var_818
 bw.b Lo; var_fdf
 bw.b Z var_a3e
 bw.b [Lo; var_a71
-bw.b()Lo; sub_1fa
-bw.b()V LoadNames
 bw.c I var_974
 bw.c Lcd; var_c50
 bw.c Ljavax/microedition/lcdui/Image; var_240
@@ -1900,6 +1847,16 @@ bw.u Ljavax/microedition/lcdui/Image; var_69d
 bw.v Ljavax/microedition/lcdui/Image; var_6ff
 bw.w Ljavax/microedition/lcdui/Image; var_741
 bw.x Ljavax/microedition/lcdui/Image; var_781
+bw.a()I sub_12d
+bw.a()Lo; sub_1bd
+bw.a()V sub_42
+bw.a(IIILaa;)Ljava/lang/String; sub_1ab
+bw.a(Laa;Lap;Lc;Lv;I)V render
+bw.a(Lap;Lcd;)V sub_85
+bw.a(Lap;Lo;)V sub_b8
+bw.a(Lv;)V sub_18f
+bw.b()Lo; sub_1fa
+bw.b()V LoadNames
 bx AbyssEngine/JSRMesh2
 bx.a Ljavax/microedition/m3g/CompositingMode; var_124
 bx.a Ljavax/microedition/m3g/Node; var_109
@@ -1927,42 +1884,28 @@ bz.a Lo; var_242
 bz.a Z var_384
 bz.a [I var_2d7
 bz.a [[I var_2a4
-bz.a()V sub_18
-bz.a(JLbw;Ldb;Lv;)V sub_43
 bz.b Lcd; var_d9
 bz.b [I var_318
 bz.c Lcd; var_150
 bz.c [I var_322
 bz.d Lcd; var_1ce
+bz.a()V sub_18
+bz.a(JLbw;Ldb;Lv;)V sub_43
 c AbyssEngine/Class_c53
 c.a I var_7ab
 c.a Lah; var_6c
 c.a Lcd; var_197
 c.a Lco; var_5e3
 c.a Z var_46c
-c.a()Lah; sub_13c
-c.a()V sub_1df
-c.a()Z sub_356
-c.a(I)V sub_2e9
-c.a(Lah;)V sub_43
-c.a(Lcd;)V sub_188
-c.a(Z)V sub_383
 c.b I var_7d8
 c.b Lah; var_94
 c.b Lcd; var_265
 c.b Z var_61b
-c.b()V sub_249
-c.b(Lah;)V sub_54
-c.b(Lcd;)V sub_3a9
 c.c Lah; var_106
 c.c Lcd; var_2b8
 c.c Z var_668
-c.c()V sub_2aa
-c.c(Lcd;)V sub_3dd
 c.d Lcd; var_2dc
 c.d Z var_767
-c.d()V sub_34a
-c.d(Lcd;)V sub_400
 c.e Lcd; var_3fb
 c.e Z var_82f
 c.f Lcd; var_4e1
@@ -1970,6 +1913,20 @@ c.g Lcd; var_567
 c.h Lcd; var_6b7
 c.i Lcd; var_6ca
 c.j Lcd; var_705
+c.a()Lah; sub_13c
+c.a()V sub_1df
+c.a()Z sub_356
+c.a(I)V sub_2e9
+c.a(Lah;)V sub_43
+c.a(Lcd;)V sub_188
+c.a(Z)V sub_383
+c.b()V sub_249
+c.b(Lah;)V sub_54
+c.b(Lcd;)V sub_3a9
+c.c()V sub_2aa
+c.c(Lcd;)V sub_3dd
+c.d()V sub_34a
+c.d(Lcd;)V sub_400
 ca AbyssEngine/Class_aa7
 cb AbyssEngine/Agent
 cb.a I var_5d5
@@ -1977,6 +1934,28 @@ cb.a Lck; mission
 cb.a Ljava/lang/String; fullName
 cb.a Z var_99e
 cb.a [B face
+cb.b I itemId
+cb.b Ljava/lang/String; var_70
+cb.b Z var_9cd
+cb.c I var_1f9
+cb.c Ljava/lang/String; var_ad
+cb.c Z var_4b9
+cb.d I var_2f3
+cb.d Ljava/lang/String; systemName
+cb.d Z accepted
+cb.e I var_340
+cb.e Ljava/lang/String; message
+cb.e Z var_894
+cb.f I stationId
+cb.f Ljava/lang/String; stationName
+cb.g I systemId
+cb.h I var_471
+cb.i I isTouched
+cb.j I var_501
+cb.k I var_5a6
+cb.l I var_5fe
+cb.m I var_62c
+cb.n I var_66f
 cb.a()I sub_112
 cb.a()Lck; sub_4f9
 cb.a()Ljava/lang/String; getFullName
@@ -1990,67 +1969,47 @@ cb.a(Lck;)V sub_4e1
 cb.a(Ljava/lang/String;)V setMessage
 cb.a(Z)V setAccepted
 cb.a([B)V sub_460
-cb.b I itemId
-cb.b Ljava/lang/String; var_70
-cb.b Z var_9cd
 cb.b()I sub_1b1
 cb.b()Ljava/lang/String; getMessage
 cb.b()Z sub_3f0
 cb.b(I)V sub_48a
 cb.b(Ljava/lang/String;)V setAgentsStationName
 cb.b(Z)V sub_938
-cb.c I var_1f9
-cb.c Ljava/lang/String; var_ad
-cb.c Z var_4b9
 cb.c()I sub_1f0
 cb.c()Ljava/lang/String; getStationName
 cb.c()Z sub_41f
 cb.c(I)V sub_5c4
 cb.c(Ljava/lang/String;)V setAgentsSystemName
-cb.d I var_2f3
-cb.d Ljava/lang/String; systemName
-cb.d Z accepted
 cb.d()I getSystemId
 cb.d()Z sub_547
-cb.e I var_340
-cb.e Ljava/lang/String; message
-cb.e Z var_894
 cb.e()I getStationId
 cb.e()Z isAccepted
-cb.f I stationId
-cb.f Ljava/lang/String; stationName
 cb.f()I sub_35e
 cb.f()Z sub_8fc
-cb.g I systemId
 cb.g()I sub_569
-cb.h I var_471
 cb.h()I sub_582
-cb.i I isTouched
 cb.i()I sub_5d0
-cb.j I var_501
 cb.j()I sub_634
-cb.k I var_5a6
 cb.k()I sub_773
-cb.l I var_5fe
 cb.l()I sub_7ae
-cb.m I var_62c
 cb.m()I sub_7d5
-cb.n I var_66f
 cc AbyssEngine/Class_b3c
 cc.a [Lag; var_7b
+cc.b [I var_3d
+cc.c [I var_a6
+cc.o I var_135
+cc.p I var_183
 cc.a()V sub_109
 cc.a(III)Z sub_162
 cc.a(J)V sub_e6
 cc.a(Lcd;)Lcd; sub_a9
 cc.a(Lcd;)Z sub_1b8
-cc.b [I var_3d
 cc.b()V sub_22
 cc.b(Lcd;)Lcd; loadItems
-cc.c [I var_a6
-cc.o I var_135
-cc.p I var_183
 cd AbyssEngine/AEVector3D
 cd.a I x
+cd.b I y
+cd.c I z
 cd.a()I getLength
 cd.a()V normalize
 cd.a(I)V scale
@@ -2058,19 +2017,22 @@ cd.a(III)V set
 cd.a(Lcd;)I squaredLength
 cd.a(Lcd;)V set
 cd.a(Lcd;Lcd;)Lcd; crossProduct
-cd.b I y
 cd.b(Lcd;)I squaredLengthPrecise
 cd.b(Lcd;)V add
 cd.b(Lcd;Lcd;)Lcd; add
-cd.c I z
 cd.c(Lcd;)V subtract
 cd.c(Lcd;Lcd;)Lcd; subtract
 ce AbyssEngine/CharMap
 ce.a B var_359
-ce.a Ljavax/microedition/lcdui/Graphics; var_40e
+ce.a Ljavax/microedition/lcdui/Graphics; graphics
 ce.a Ljavax/microedition/lcdui/Image; var_9a
-ce.a [B var_34c
-ce.a [S var_226
+ce.a [B symbolIdsByte
+ce.a [S symbolsIds
+ce.b B var_369
+ce.b [S symbolIdsShort
+ce.c B var_37a
+ce.d B var_4fd
+ce.e B var_513
 ce.a()I sub_16f
 ce.a(C)I charToSymbolIdx
 ce.a(I)V sub_30
@@ -2079,21 +2041,10 @@ ce.a(Ljava/lang/String;)I sub_a0
 ce.a(Ljava/lang/String;II)I sub_ab
 ce.a(Ljava/lang/String;II)V drawString
 ce.a(Ljavax/microedition/lcdui/Graphics;)V setGraphics
-ce.b B var_369
-ce.b [S var_2e0
 ce.b()I sub_1c3
 ce.b(I)V sub_105
 ce.b(Ljava/lang/String;II)V sub_162
-ce.c B var_37a
 ce.c(I)V sub_213
-ce.d B var_4fd
-ce.e B var_513
-ce.symbolIdShorts [S symbolIdsShort
-ce.symbols [S symbolsIds
-ce.var_226 [S symbols
-ce.var_2e0 [S symbolIdShorts
-ce.var_34c [B symbolIdsByte
-ce.var_40e Ljavax/microedition/lcdui/Graphics; graphics
 cf AbyssEngine/ListEntry
 cf.a I medalTier
 cf.a Lbp; var_6dc
@@ -2105,16 +2056,16 @@ cf.a Ljava/lang/String; label
 cf.a Ljavax/microedition/lcdui/Image; var_638
 cf.a Lu; var_343
 cf.a Z isSelectable
-cf.a()I sub_408
-cf.a()Z sub_8f
 cf.b I medalId
 cf.b Ljava/lang/String; var_470
 cf.b Z var_68c
+cf.c I displayedCountType
+cf.d I var_6b0
+cf.a()I sub_408
+cf.a()Z sub_8f
 cf.b()I sub_45e
 cf.b()Z sub_cb
-cf.c I displayedCountType
 cf.c()Z sub_25c
-cf.d I var_6b0
 cf.d()Z sub_272
 cf.e()Z sub_2f7
 cf.f()Z sub_315
@@ -2127,21 +2078,41 @@ cg.a I var_26a
 cg.a Lag; var_366
 cg.a [I var_158
 cg.a [Lag; var_333
+cg.b [I var_1af
 cg.a()V sub_36
 cg.a()Z sub_154
 cg.a(III)V sub_141
 cg.a(J)V sub_179
-cg.b [I var_1af
 cg.b()V sub_b1
 cg.b()Z sub_185
 cg.c()V sub_fa
 ch AbyssEngine/Ship
 ch.a F handling
 ch.a I id
-ch.a Z hasRepairBot
+ch.a Z repairBot
 ch.a [I itemTypeSlots
 ch.a [Lu; equipped
 ch.a [S var_132
+ch.b I baseHP
+ch.b Z jumpDrive
+ch.b [Lu; cargoHold
+ch.b [S var_16b
+ch.c I basePrice
+ch.c Z cloak
+ch.d I baseCargo
+ch.e I cargo
+ch.f I price
+ch.g I shield
+ch.h I additionalArmour
+ch.i I shieldRegenTime
+ch.j I extendedCargo
+ch.k I boostPercent
+ch.l I boostRegenTime
+ch.m I boostDuration
+ch.n I extendedHandlingPercent
+ch.o I var_84c
+ch.p I firePower
+ch.q I race
 ch.a()F getHandling
 ch.a()I getRace
 ch.a()Lch; cloneBase
@@ -2157,10 +2128,6 @@ ch.a(II)Z sub_7fc
 ch.a(Lu;)V sub_755
 ch.a(Lu;I)V setEquipment
 ch.a([Lu;)V sub_64d
-ch.b I baseHP
-ch.b Z hasKhadorDrive
-ch.b [Lu; cargoHold
-ch.b [S var_16b
 ch.b()I getIndex
 ch.b()V sub_a8f
 ch.b()Z hasJumpDrive
@@ -2170,50 +2137,29 @@ ch.b(I)Z sub_7a6
 ch.b(Lu;)V sub_880
 ch.b(Lu;I)V sub_98c
 ch.b([Lu;)V sub_80a
-ch.c I basePrice
-ch.c Z hasCloak
 ch.c()I sub_150
 ch.c()V sub_acc
 ch.c()Z hasCloak
 ch.c(I)Z sub_839
 ch.c(Lu;)V sub_908
 ch.c([Lu;)V setEquipment
-ch.d I baseCargo
 ch.d()I getBaseHP
 ch.d()V refreshValue
 ch.d()Z hasRepairBot
 ch.d(Lu;)V sub_9be
-ch.e I cargo
 ch.e()I getCombinedHP
 ch.e()Z sub_6fa
-ch.extendedHandling I extendedHandlingPercent
-ch.f I price
 ch.f()I getAdditionalArmour
-ch.g I shield
 ch.g()I getBaseArmour
-ch.h I additionalArmour
 ch.h()I getShield
-ch.hasCloak Z cloak
-ch.hasJumpDrive Z jumpDrive
-ch.hasKhadorDrive Z hasJumpDrive
-ch.hasRepairBot Z repairBot
-ch.i I shieldRegenTime
 ch.i()I getShieldRegenTime
-ch.j I extendedCargo
 ch.j()I getBoostPercent
-ch.k I boostPercent
 ch.k()I getBoostDuration
-ch.l I boostRegenTime
 ch.l()I getBoostRegenTime
-ch.m I boostDuration
 ch.m()I getAddHandlingPercent
-ch.n I extendedHandling
 ch.n()I sub_54b
-ch.o I var_84c
 ch.o()I sub_584
-ch.p I firePower
 ch.p()I sub_58e
-ch.q I race
 ch.q()I sub_5bf
 ch.r()I sub_84d
 ch.s()I sub_982
@@ -2224,36 +2170,49 @@ ci.a I var_25b
 ci.a Ljava/lang/String; var_482
 ci.a Z var_12e
 ci.a [[C var_1f1
-ci.a()C sub_11b
-ci.a()Ljava/lang/String; sub_13f
-ci.a(I)I sub_ed
-ci.a(I)V sub_53
 ci.b I var_26d
 ci.b Z var_4f8
 ci.b [[C var_23c
-ci.b(I)I sub_24
 ci.c I var_39a
 ci.d I var_3c6
 ci.e I var_414
 ci.f I var_4d7
+ci.a()C sub_11b
+ci.a()Ljava/lang/String; sub_13f
+ci.a(I)I sub_ed
+ci.a(I)V sub_53
+ci.b(I)I sub_24
 cj AbyssEngine/Class_e19
+cj.l I var_c7
+cj.m I var_282
+cj.n I var_2f9
+cj.n Z var_35b
 cj.a()V sub_109
 cj.a(III)Z sub_162
 cj.a(J)V sub_e6
 cj.a(Lcd;)Lcd; sub_a9
 cj.d(Z)V sub_34
 cj.g()V sub_af
-cj.l I var_c7
-cj.m I var_282
-cj.n I var_2f9
-cj.n Z var_35b
 ck AbyssEngine/Mission
 ck.a I missionType_
-ck.a Lcb; giver
+ck.a Lcb; client
 ck.a Lck; var_dc
-ck.a Ljava/lang/String; giverName
+ck.a Ljava/lang/String; clientName
 ck.a Z mainStory_
-ck.a [B giverFace
+ck.a [B clientFace
+ck.b I clientRace
+ck.b Ljava/lang/String; var_2d5
+ck.b Z var_62a
+ck.c I reward
+ck.c Ljava/lang/String; targetStationName
+ck.c Z storyDialogueStarted_
+ck.d I bonus_
+ck.d Z var_73c
+ck.e I targetStationId
+ck.f I difficulty
+ck.g I commodityId
+ck.h I commodityAmmout
+ck.i I var_71d
 ck.a()I getProductionGoodIndex
 ck.a()Lcb; sub_70e
 ck.a()Ljava/lang/String; sub_486
@@ -2264,54 +2223,50 @@ ck.a(II)V setProductionGoods
 ck.a(Lcb;)V sub_76c
 ck.a(Ljava/lang/String;)V sub_7b6
 ck.a(Z)V sub_91
-ck.b I clientRace
-ck.b Ljava/lang/String; var_2d5
-ck.b Z var_62a
 ck.b()I getProductionGoodAmount
 ck.b()Ljava/lang/String; getTargetStationName
 ck.b()Z sub_12c
 ck.b(I)V sub_54a
 ck.b(Z)V sub_13b
-ck.c I reward
-ck.c Ljava/lang/String; destStationName
-ck.c Z storyDialogueStaeted_
 ck.c()I getStatusValue
 ck.c()Ljava/lang/String; sub_77b
 ck.c()Z sub_1c6
 ck.c(I)V setTargetStation
 ck.c(Z)V sub_208
-ck.d I bonus_
-ck.d Z var_73c
 ck.d()I getType
 ck.d()Z sub_22e
 ck.d(I)V sub_7f3
 ck.d(Z)V sub_633
-ck.destStationId I targetStationId
-ck.destStationName Ljava/lang/String; targetStationName
-ck.e I destStationId
 ck.e()I getClientRace
 ck.e()Z sub_453
-ck.f I difficulty
 ck.f()I getReward
 ck.f()Z sub_5a6
-ck.g I itemOfInterestId
 ck.g()I sub_50f
 ck.g()Z sub_5d6
-ck.giver Lcb; client
-ck.giverFace [B clientFace
-ck.giverName Ljava/lang/String; clientName
-ck.h I passingCargo
 ck.h()I getTargetStationIndex
-ck.i I var_71d
 ck.i()I sub_6e3
-ck.itemOfInterestId I commodityId
-ck.passingCargo I commodityAmmout
-ck.storyDialogueStaeted_ Z storyDialogueStarted_
 cl AbyssEngine/Matrix
-cl.a I var_189
+cl.a I scaleX
 cl.a Lcd; var_93d
-cl.a S var_171
+cl.a S _Type
 cl.a Z isDirty
+cl.b I scaleY
+cl.c I scaleZ
+cl.d I rightX
+cl.e I var_326
+cl.f I rightZ
+cl.g I upX
+cl.h I upY
+cl.i I upZ
+cl.j I var_58c
+cl.k I dirY
+cl.l I dirZ
+cl.m I postionX
+cl.n I positionY
+cl.o I positionZ
+cl.p I eulerX
+cl.q I eulerY
+cl.r I eulerZ
 cl.a()I getPositionX
 cl.a()Lcd; getPosition
 cl.a()V identity
@@ -2327,17 +2282,15 @@ cl.a(Lcl;Lcl;)Lcl; sub_6a
 cl.a(S)V set_Type
 cl.a([F)V sub_94b
 cl.a([Lcd;[Lcd;)[Lcd; sub_ace
-cl.b I var_1e5
 cl.b()I getPositionY
 cl.b()Lcd; getDirection
 cl.b()V sub_851
 cl.b(I)V sub_5dc
 cl.b(III)V translateTo
 cl.b(Lcd;)Lcd; getDirection
-cl.b(Lcd;)V translate
+cl.b(Lcd;)V translateTo
 cl.b(Lcd;Lcd;)Lcd; sub_a19
 cl.b(Lcl;)V multiply
-cl.c I var_20c
 cl.c()I getPositionZ
 cl.c()Lcd; getUp
 cl.c(I)V sub_620
@@ -2345,70 +2298,44 @@ cl.c(III)V addEulerAngles
 cl.c(Lcd;)Lcd; getUp
 cl.c(Lcd;)V sub_b33
 cl.c(Lcd;Lcd;)Lcd; sub_a67
-cl.d I var_2f6
 cl.d()I getDirectionX
 cl.d()Lcd; getRight
 cl.d(I)V sub_679
 cl.d(III)V setRotationEuler
 cl.d(Lcd;)Lcd; getRight
 cl.d(Lcd;Lcd;)Lcd; sub_ac3
-cl.e I var_326
 cl.e()I getDirectionY
 cl.e()Lcd; sub_89b
 cl.e(I)V sub_695
 cl.e(III)V sub_860
 cl.e(Lcd;)Lcd; sub_882
-cl.f I var_3a9
 cl.f()I getDirectionZ
 cl.f(Lcd;)Lcd; sub_990
-cl.g I var_413
 cl.g()I sub_752
 cl.g(Lcd;)Lcd; sub_b11
-cl.h I var_530
 cl.h()I sub_7a8
 cl.h(Lcd;)Lcd; sub_b26
-cl.i I var_53d
 cl.i()I sub_7f1
-cl.j I var_58c
-cl.k I var_632
-cl.l I var_6c6
-cl.m I var_70b
-cl.m00 I rightX
-cl.m01 I upX
-cl.m02 I dirX
-cl.m10 I rightY
-cl.m11 I upY
-cl.m12 I dirY
-cl.m20 I rightZ
-cl.m21 I upZ
-cl.m22 I dirZ
-cl.n I var_7d3
-cl.o I var_7e8
-cl.p I var_808
-cl.postionX I positonX
-cl.q I var_85e
-cl.r I var_8b2
-cl.var_171 S _Type
-cl.var_189 I scaleX
-cl.var_1e5 I scaleY
-cl.var_20c I scaleZ
-cl.var_2f6 I m00
-cl.var_326 I m10
-cl.var_3a9 I m20
-cl.var_413 I m01
-cl.var_530 I m11
-cl.var_53d I m21
-cl.var_58c I m10
-cl.var_632 I m12
-cl.var_6c6 I m22
-cl.var_70b I postionX
-cl.var_7d3 I positionY
-cl.var_7e8 I positionZ
-cl.var_808 I eulerX
-cl.var_85e I eulerY
-cl.var_8b2 I eulerZ
 cm AbyssEngine/Class_ee3
 cm.a Lcl; var_80b
+cm.c Lcd; var_1c5
+cm.d Lag; var_956
+cm.d Lcd; var_249
+cm.e Lcd; var_793
+cm.l I var_9d3
+cm.m I frametime
+cm.n I var_312
+cm.n Z var_973
+cm.o I var_356
+cm.o Z var_42f
+cm.p I var_3fe
+cm.p Z var_7f2
+cm.q I var_54b
+cm.r I var_694
+cm.s I var_707
+cm.t I passedTime
+cm.u I var_880
+cm.v I var_8aa
 cm.a()V sub_109
 cm.a(III)Z sub_162
 cm.a(J)V sub_e6
@@ -2418,30 +2345,9 @@ cm.a(Z)V sub_26f
 cm.b()I sub_80
 cm.b()V sub_22
 cm.b(Lcd;)Lcd; loadItems
-cm.c Lcd; var_1c5
 cm.c()I sub_e2
-cm.d Lag; var_956
-cm.d Lcd; var_249
 cm.d()I sub_1bb
-cm.e Lcd; var_793
 cm.g()V sub_296
-cm.l I var_9d3
-cm.m I var_2ba
-cm.n I var_312
-cm.n Z var_973
-cm.o I var_356
-cm.o Z var_42f
-cm.p I var_3fe
-cm.p Z var_7f2
-cm.passedTimeMs I passedTime
-cm.q I var_54b
-cm.r I var_694
-cm.s I var_707
-cm.t I var_782
-cm.u I var_880
-cm.v I var_8aa
-cm.var_2ba I frametime
-cm.var_782 I passedTimeMs
 cn AbyssEngine/LangManager
 cn.a I var_751
 cn.a Ljava/lang/String; var_7ca
@@ -2449,10 +2355,6 @@ cn.a [I var_544
 cn.a [Ljava/lang/String; var_57f
 cn.a [S var_bd
 cn.a [[Ljava/lang/String; var_6ef
-cn.a()V sub_bb
-cn.a(I)Ljava/lang/String; sub_ad
-cn.a(I)V sub_56
-cn.a([Ljava/lang/String;Ljava/lang/String;)V sub_6a
 cn.b I var_7e7
 cn.b [Ljava/lang/String; var_5a0
 cn.b [S var_17a
@@ -2468,22 +2370,26 @@ cn.f [S var_40b
 cn.g [S var_417
 cn.h [S var_4ab
 cn.i [S var_537
+cn.a()V sub_bb
+cn.a(I)Ljava/lang/String; sub_ad
+cn.a(I)V sub_56
+cn.a([Ljava/lang/String;Ljava/lang/String;)V sub_6a
 co AbyssEngine/Class_fd6
 co.a I var_1fb
 co.a Lah; var_8b
 co.a Lcd; var_28c
 co.a Z var_3c9
+co.b Lah; var_19a
+co.b Lcd; var_31b
+co.c Lah; var_26e
+co.c Lcd; var_342
+co.d Lcd; var_3a2
 co.a()Z sub_356
 co.a(Lah;)V sub_36
 co.a(Lcd;I)V sub_bf
 co.a(Z)V sub_120
-co.b Lah; var_19a
-co.b Lcd; var_31b
 co.b(Lah;)V sub_68
-co.c Lah; var_26e
-co.c Lcd; var_342
 co.c()V sub_2aa
-co.d Lcd; var_3a2
 cp AbyssEngine/Class_103b
 cp.a J var_1b5
 cp.a()V sub_109
@@ -2514,6 +2420,62 @@ cq.a Lu; var_10a4
 cq.a Lv; var_15a9
 cq.a Z var_bb6
 cq.a [[I var_33c
+cq.b F var_1016
+cq.b I var_99
+cq.b J var_b53
+cq.b Lag; var_749
+cq.b Lar; var_5f8
+cq.b Lcd; var_795
+cq.b Lo; var_11a4
+cq.b Z var_c49
+cq.b [[I var_16c0
+cq.c F var_106f
+cq.c I var_1f0
+cq.c J var_b91
+cq.c Lar; var_f22
+cq.c Lcd; var_d48
+cq.c Z var_ca2
+cq.d F var_1562
+cq.d I var_24d
+cq.d J var_bd4
+cq.d Lar; var_f7c
+cq.d Lcd; var_e91
+cq.d Z var_cdc
+cq.e I var_a1a
+cq.e Lar; var_fd2
+cq.e Lcd; var_1203
+cq.e Z var_cfd
+cq.f I var_a7c
+cq.f Z var_dbd
+cq.g I var_aa6
+cq.g Z var_e30
+cq.h I var_acc
+cq.h Z var_eb4
+cq.i I var_ba3
+cq.i Z var_ff5
+cq.j I var_c11
+cq.j Z var_107d
+cq.k I var_c5b
+cq.k Z var_11b7
+cq.l I var_d98
+cq.l Z var_1256
+cq.m I var_11d2
+cq.m Z var_1399
+cq.n I var_1283
+cq.n Z var_13c9
+cq.o I var_12ac
+cq.o Z var_13df
+cq.p I var_12fc
+cq.p Z var_141f
+cq.q I var_1358
+cq.q Z var_1686
+cq.r I var_140d
+cq.r Z var_16ef
+cq.s I var_1475
+cq.t I var_14bd
+cq.u I var_14f6
+cq.v I var_1510
+cq.w I var_16ce
 cq.a()F sub_3f6
 cq.a()I sub_378
 cq.a()Lbg; sub_647
@@ -2541,15 +2503,6 @@ cq.a(Z)Z sub_2b9
 cq.a(ZLap;)V sub_1227
 cq.a([Lba;I)V sub_721
 cq.a([Lo;)V sub_c22
-cq.b F var_1016
-cq.b I var_99
-cq.b J var_b53
-cq.b Lag; var_749
-cq.b Lar; var_5f8
-cq.b Lcd; var_795
-cq.b Lo; var_11a4
-cq.b Z var_c49
-cq.b [[I var_16c0
 cq.b()F sub_455
 cq.b()I sub_759
 cq.b()V sub_308
@@ -2558,91 +2511,44 @@ cq.b(I)V sub_c3e
 cq.b(II)V sub_6c9
 cq.b(Lcd;)V sub_1102
 cq.b(Z)V sub_534
-cq.c F var_106f
-cq.c I var_1f0
-cq.c J var_b91
-cq.c Lar; var_f22
-cq.c Lcd; var_d48
-cq.c Z var_ca2
 cq.c()F sub_48c
 cq.c()I sub_794
 cq.c()V sub_327
 cq.c()Z sub_253
 cq.c(I)V sub_c71
 cq.c(Z)V sub_8f2
-cq.d F var_1562
-cq.d I var_24d
-cq.d J var_bd4
-cq.d Lar; var_f7c
-cq.d Lcd; var_e91
-cq.d Z var_cdc
 cq.d()I sub_82f
 cq.d()V sub_66d
 cq.d()Z sub_3a1
 cq.d(I)V sub_c7e
 cq.d(Z)V sub_93d
-cq.e I var_a1a
-cq.e Lar; var_fd2
-cq.e Lcd; var_1203
-cq.e Z var_cfd
 cq.e()V sub_d47
 cq.e()Z sub_3c9
 cq.e(I)V sub_cc3
 cq.e(Z)V sub_95f
-cq.f I var_a7c
-cq.f Z var_dbd
 cq.f()V sub_de8
 cq.f()Z sub_4d2
 cq.f(I)V sub_d1c
 cq.f(Z)V sub_11da
-cq.g I var_aa6
-cq.g Z var_e30
 cq.g()V sub_10a5
 cq.g()Z sub_4ed
-cq.h I var_acc
-cq.h Z var_eb4
 cq.h()V sub_1181
 cq.h()Z sub_9f7
-cq.i I var_ba3
-cq.i Z var_ff5
 cq.i()V sub_1281
 cq.i()Z sub_a15
-cq.j I var_c11
-cq.j Z var_107d
 cq.j()Z sub_a27
-cq.k I var_c5b
-cq.k Z var_11b7
 cq.k()Z sub_a43
-cq.l I var_d98
-cq.l Z var_1256
 cq.l()Z sub_a80
-cq.m I var_11d2
-cq.m Z var_1399
 cq.m()Z sub_aa7
-cq.n I var_1283
-cq.n Z var_13c9
 cq.n()Z sub_b5d
-cq.o I var_12ac
-cq.o Z var_13df
 cq.o()Z sub_bc1
-cq.p I var_12fc
-cq.p Z var_141f
 cq.p()Z sub_be6
-cq.q I var_1358
-cq.q Z var_1686
 cq.q()Z sub_e45
-cq.r I var_140d
-cq.r Z var_16ef
 cq.r()Z sub_ea4
-cq.s I var_1475
 cq.s()Z sub_eb2
-cq.t I var_14bd
 cq.t()Z sub_f55
-cq.u I var_14f6
 cq.u()Z sub_f9b
-cq.v I var_1510
 cq.v()Z sub_1045
-cq.w I var_16ce
 cq.w()Z sub_6ae
 cr AbyssEngine/Class_10f3
 cr.a Ljavax/microedition/m3g/Background; var_321
@@ -2667,12 +2573,12 @@ cs.c(I)V sub_296
 cs.d(I)V sub_2cd
 cs.e(I)V sub_31e
 ct AbyssEngine/Class_11ab
-ct.a(III)V sub_e2
-ct.a(III)Z sub_4f
-ct.b(III)Z sub_a0
 ct.g I var_165
 ct.h I var_198
 ct.i I var_218
+ct.a(III)V sub_e2
+ct.a(III)Z sub_4f
+ct.b(III)Z sub_a0
 cu AbyssEngine/Class_121c
 cu.a()Z sub_356
 cu.c()V sub_2aa
@@ -2685,35 +2591,35 @@ cw.a I var_75b
 cw.a Ljava/lang/String; var_229
 cw.a Z var_73a
 cw.a [I planetIds
+cw.b I var_7ba
+cw.b [I neighbourSystems
+cw.c I var_7f8
+cw.d I id
+cw.e I var_36a
+cw.f I race
+cw.g I var_44a
+cw.h I var_4ae
+cw.i I var_563
+cw.j I jumpgateStationId
+cw.k I starTextureId
 cw.a()I sub_3c
 cw.a()Ljava/lang/String; sub_ae
 cw.a()Z sub_371
 cw.a()[I sub_459
 cw.a(I)I sub_344
 cw.a(I)Z sub_3b3
-cw.b I var_7ba
-cw.b [I neighbourSystems
 cw.b()I sub_ee
 cw.b()Z sub_42a
 cw.b()[I sub_463
 cw.b(I)Z sub_49d
-cw.c I var_7f8
 cw.c()I sub_110
 cw.c()Z sub_4fa
-cw.d I id
 cw.d()I sub_168
-cw.e I var_36a
 cw.e()I sub_1c8
-cw.f I race
 cw.f()I sub_234
-cw.g I var_44a
 cw.g()I sub_28e
-cw.h I var_4ae
 cw.h()I sub_2ab
-cw.i I var_563
 cw.i()I sub_309
-cw.j I jumpgateStationId
-cw.k I starTextureId
 cx AbyssEngine/Class_137d
 cx.a F var_486
 cx.a I var_758
@@ -2722,23 +2628,23 @@ cx.a Lcd; var_654
 cx.a [F var_88
 cx.a [I var_5e8
 cx.a [[I var_7ad
-cx.a()V sub_f7
-cx.a(FI)V sub_7a
-cx.a(J)V sub_62
 cx.b I var_41a
 cx.b Lcd; var_724
 cx.b [F var_208
 cx.b [I var_609
-cx.b()V sub_153
 cx.c [F var_336
 cx.d [F var_50c
 cx.e [F var_53e
 cx.f [F var_5b2
+cx.a()V sub_f7
+cx.a(FI)V sub_7a
+cx.a(J)V sub_62
+cx.b()V sub_153
 cy AbyssEngine/Class_13a3
 cy.a Lcd; vec
+cy.e I var_1ef
 cy.a(Ljava/lang/String;I)Ljava/lang/String; sub_159
 cy.b(Z)V sub_109
-cy.e I var_1ef
 cy.g(I)V sub_48
 cz AbyssEngine/Class_1440
 cz.a I var_319
@@ -2748,21 +2654,21 @@ cz.a(J)V sub_4a
 cz.a(Lag;)V operatorEquals
 cz.b()V sub_56
 d AbyssEngine/Class_cda
+d.o I var_6b
+d.p I var_81
 d.a()V sub_109
 d.a()Z sub_b7
 d.a(III)V squaredLength
 d.a(J)V sub_e6
 d.a(Lcd;)Lcd; sub_a9
 d.a(Z)V sub_55
-d.o I var_6b
-d.p I var_81
 da AbyssEngine/Crosshair
 da.a Lcd; worldPos
 da.a Ljavax/microedition/lcdui/Image; image
 da.a [I worldPosition
+da.b Lcd; screenPos
 da.a()V updatePosition
 da.a(Lcl;Lap;)V sub_5c
-da.b Lcd; screenPos
 da.b()V draw
 db AbyssEngine/Class_156c
 db.A I var_1149
@@ -2785,6 +2691,52 @@ db.a [I var_2ed
 db.a [Lag; var_525
 db.a [Lbq; var_8d0
 db.a [Lo; var_775
+db.b F var_d03
+db.b I var_a59
+db.b Lbg; var_863
+db.b Lbk; var_4fc
+db.b Lbr; var_b24
+db.b Lcd; var_1353
+db.b Z var_12a2
+db.b [Lag; var_6e9
+db.b [Lo; var_798
+db.c F var_d32
+db.c I var_ad6
+db.c Lbg; var_8c5
+db.c Z var_1311
+db.c [Lo; var_7b4
+db.d F var_ed3
+db.d I var_d3e
+db.d Lbg; var_11a5
+db.d Z var_ba8
+db.e F var_f10
+db.e I var_d52
+db.e Z var_c13
+db.f F var_f33
+db.f I var_ddb
+db.f Z var_fad
+db.g I var_e3b
+db.g Z var_1219
+db.h I var_e66
+db.h Z var_123d
+db.i I var_e7e
+db.j I var_12b5
+db.k I var_dd
+db.l I var_902
+db.m I var_977
+db.n I var_9e4
+db.o I var_9fe
+db.p I var_b69
+db.q I var_b87
+db.r I var_c04
+db.s I var_f60
+db.t I var_fa1
+db.u I var_ff8
+db.v I var_1005
+db.w I var_1045
+db.x I var_108e
+db.y I var_10e2
+db.z I var_1104
 db.a()I sub_7f9
 db.a()Lbg; sub_6a6
 db.a()Lcj; sub_617
@@ -2808,15 +2760,6 @@ db.a(Lcd;)Z sub_8dc
 db.a(Lcj;I)Lo; sub_3f7
 db.a(Z)V sub_753
 db.a(ZI)V sub_bec
-db.b F var_d03
-db.b I var_a59
-db.b Lbg; var_863
-db.b Lbk; var_4fc
-db.b Lbr; var_b24
-db.b Lcd; var_1353
-db.b Z var_12a2
-db.b [Lag; var_6e9
-db.b [Lo; var_798
 db.b()I sub_840
 db.b()V sub_7a1
 db.b()Z sub_ade
@@ -2825,62 +2768,25 @@ db.b(I)V sub_7cd
 db.b(I)Z sub_ba1
 db.b(J)V sub_9ff
 db.b(Lcd;)Z sub_911
-db.c F var_d32
-db.c I var_ad6
-db.c Lbg; var_8c5
-db.c Z var_1311
-db.c [Lo; var_7b4
 db.c()I sub_85e
 db.c()V sub_7c2
 db.c()[Lo; sub_5cf
 db.c(I)V sub_c61
 db.c(J)V sub_a3b
 db.c(Lcd;)Z sub_92f
-db.d F var_ed3
-db.d I var_d3e
-db.d Lbg; var_11a5
-db.d Z var_ba8
 db.d()I sub_8aa
 db.d()V sub_7df
-db.e F var_f10
-db.e I var_d52
-db.e Z var_c13
 db.e()V sub_9ca
-db.f F var_f33
-db.f I var_ddb
-db.f Z var_fad
 db.f()V sub_ac1
-db.g I var_e3b
-db.g Z var_1219
 db.g()V sub_b30
-db.h I var_e66
-db.h Z var_123d
 db.h()V sub_c8b
-db.i I var_e7e
 db.i()V sub_212
-db.j I var_12b5
 db.j()V sub_2ba
-db.k I var_dd
 db.k()V sub_306
-db.l I var_902
 db.l()V sub_313
-db.m I var_977
 db.m()V sub_358
-db.n I var_9e4
 db.n()V sub_375
-db.o I var_9fe
 db.o()V sub_3c3
-db.p I var_b69
-db.q I var_b87
-db.r I var_c04
-db.s I var_f60
-db.t I var_fa1
-db.u I var_ff8
-db.v I var_1005
-db.w I var_1045
-db.x I var_108e
-db.y I var_10e2
-db.z I var_1104
 e AbyssEngine/Class_d46
 e.a I var_17b
 e.a Le; var_13a
@@ -2888,17 +2794,17 @@ e.a Ljava/util/Vector; var_2a
 f AbyssEngine/Class_dd9
 f.a I var_c6
 f.a [[B faces
+f.b I var_268
+f.c I var_2b0
+f.d I var_2d6
+f.e I var_1cb
+f.f I var_1ed
 f.a(IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V sub_128
 f.a(ILjavax/microedition/lcdui/Image;III)V sub_158
 f.a(ZI)[B sub_3f
 f.a([B)[Ljavax/microedition/lcdui/Image; faceFromByteArray
 f.a([Ljavax/microedition/lcdui/Image;III)V sub_f4
-f.b I var_268
 f.b(IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V sub_1b6
-f.c I var_2b0
-f.d I var_2d6
-f.e I var_1cb
-f.f I var_1ed
 g AbyssEngine/Skybox
 g.a I var_5a9
 g.a Laj; var_1f8
@@ -2911,14 +2817,14 @@ g.a [Lag; var_153
 g.a [Ljavax/microedition/lcdui/Image; var_3e9
 g.a [Lo; var_433
 g.a [Z var_509
-g.a()V sub_b9
-g.a()[Lag; sub_3d
-g.a()[Lo; sub_6e
 g.b Ljavax/microedition/lcdui/game/Sprite; var_3a0
 g.b [I var_fb
 g.b [Lag; var_46d
 g.b [Ljavax/microedition/lcdui/Image; var_4b3
 g.b [Z var_54f
+g.a()V sub_b9
+g.a()[Lag; sub_3d
+g.a()[Lo; sub_6e
 g.b()V sub_116
 g.c()V sub_126
 h AbyssEngine/AEMath
@@ -2939,6 +2845,11 @@ i.a I var_11d
 i.a Ljava/lang/String; var_45e
 i.a Z var_399
 i.a [I var_2ab
+i.b I var_2c8
+i.c I var_3e1
+i.d I var_449
+i.e I var_51e
+i.f I var_16d
 i.a()F sub_32c
 i.a()I sub_17f
 i.a()Ljava/lang/String; sub_3cd
@@ -2947,19 +2858,14 @@ i.a()Z sub_145
 i.a()[I sub_1e6
 i.a(I)I sub_251
 i.a(Lu;II)V sub_23
-i.b I var_2c8
 i.b()I sub_38f
 i.b()V sub_48a
 i.b()Z sub_475
 i.b()[I sub_220
 i.b(I)I sub_2b5
-i.c I var_3e1
 i.c()I sub_3e0
 i.c(I)I sub_2e8
-i.d I var_449
 i.d()I sub_421
-i.e I var_51e
-i.f I var_16d
 j AbyssEngine/Dialogue
 j.a I type
 j.a Laz; popup
@@ -2970,15 +2876,15 @@ j.a Ljava/lang/String; message
 j.a Z popupOpen
 j.a [B face
 j.a [[S var_1c
+j.b I page
+j.b Ljava/lang/String; name
+j.b [[S var_3f
 j.a()I sub_1e8
 j.a()V sub_146
 j.a()Z sub_230
 j.a(I)Z sub_84
 j.a(II)Z sub_1c3
 j.a(Lck;I)V sub_f5
-j.b I page
-j.b Ljava/lang/String; name
-j.b [[S var_3f
 j.b()V sub_304
 j.b()Z sub_274
 j.b(I)Z sub_de
@@ -2988,27 +2894,27 @@ j.d()V sub_2a0
 k AbyssEngine/Class_fa9
 k.a Lbw; var_511
 k.a Ls; var_49
-k.a()V sub_8c
-k.a(J)V sub_181
-k.a(Lbw;)V sub_8a
 k.b Lcd; var_1d7
-k.b()V render
 k.c Lcd; var_28d
 k.d I var_376
 k.d Lcd; var_29f
 k.d Z var_4a9
-k.d()V sub_30
 k.f I var_3b5
 k.g I var_3f1
+k.a()V sub_8c
+k.a(J)V sub_181
+k.a(Lbw;)V sub_8a
+k.b()V render
+k.d()V sub_30
 l AbyssEngine/Class_1025
 l.a I var_85
+l.b I var_18e
+l.c I var_1b0
+l.d I var_1fd
 l.a()I sub_135
 l.a(I)V sub_b7
 l.a(II)V sub_fe
 l.a(Z)Z sub_14d
-l.b I var_18e
-l.c I var_1b0
-l.d I var_1fd
 m AbyssEngine/Class_105f
 m.a Lag; var_1c8
 m.a Lba; var_78
@@ -3026,20 +2932,20 @@ n.a Lcd; var_457
 n.a Ldb; var_658
 n.a [I var_2e2
 n.a [[I var_5e5
-n.a()Lah; sub_2b
-n.a()V sub_8c
-n.a(J)V sub_181
-n.a(Laq;)V sub_1a9
 n.b Lag; var_1e8
 n.b Lcd; var_4a0
 n.b [I var_375
-n.b()V render
 n.c Lcd; var_4ef
 n.c [I var_3da
 n.d I var_18a
 n.d Lcd; var_56b
 n.d Z var_695
 n.d [I var_617
+n.a()Lah; sub_2b
+n.a()V sub_8c
+n.a(J)V sub_181
+n.a(Laq;)V sub_1a9
+n.b()V render
 o AbyssEngine/Class_1124
 o.a I var_145
 o.a Laa; var_164
@@ -3054,6 +2960,31 @@ o.a Lo; var_d6c
 o.a S var_5c
 o.a Z var_907
 o.a [I var_a3b
+o.b I var_3ce
+o.b Lag; var_a6a
+o.b Lcd; var_77a
+o.b Z var_94b
+o.c I var_3f3
+o.c Lag; var_aa5
+o.c Z var_99f
+o.d I var_45a
+o.d Z var_9d8
+o.e I var_7aa
+o.e Z var_af6
+o.f I var_86d
+o.f Z var_be0
+o.g I var_88d
+o.g Z var_c3a
+o.h I var_c61
+o.h Z var_cc1
+o.i I var_cf1
+o.i Z var_d9e
+o.j I var_d43
+o.j Z var_e74
+o.k I var_dbe
+o.k Z var_eb1
+o.l Z var_ee3
+o.m Z var_efb
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
@@ -3072,51 +3003,28 @@ o.a(Lcg;)V sub_3c7
 o.a(Ldb;)V sub_3b3
 o.a(Lv;)V sub_2cb
 o.a(ZI)V sub_366
-o.b I var_3ce
-o.b Lag; var_a6a
-o.b Lcd; var_77a
-o.b Z var_94b
 o.b()V sub_22
 o.b()Z sub_63
 o.b(I)V sub_6b8
 o.b(Lcd;)Lcd; loadItems
 o.b(Z)V sub_73
-o.c I var_3f3
-o.c Lag; var_aa5
-o.c Z var_99f
 o.c()V sub_52b
 o.c()Z sub_279
 o.c(Z)V sub_ea
-o.d I var_45a
-o.d Z var_9d8
 o.d()V sub_5cc
 o.d()Z sub_32a
 o.d(Z)V sub_34
-o.e I var_7aa
-o.e Z var_af6
 o.e()V sub_5fc
 o.e()Z sub_4c0
 o.e(Z)V sub_2ab
-o.f I var_86d
-o.f Z var_be0
 o.f()V sub_2e5
 o.f()Z sub_505
-o.g I var_88d
-o.g Z var_c3a
 o.g()Z sub_6ef
-o.h I var_c61
-o.h Z var_cc1
-o.i I var_cf1
-o.i Z var_d9e
-o.j I var_d43
-o.j Z var_e74
-o.k I var_dbe
-o.k Z var_eb1
-o.l Z var_ee3
-o.m Z var_efb
 p AbyssEngine/Class_1189
 p.a Ljavax/microedition/lcdui/Graphics; var_1f2
 p.a [Lce; var_98
+p.var_1f2 Ljavax/microedition/lcdui/Graphics; graphics
+p.var_98 [Lce; charMaps
 p.a()I sub_2c2
 p.a()V sub_58
 p.a(I)V sub_283
@@ -3137,9 +3045,6 @@ p.b(I)V sub_335
 p.b(II)V sub_2b0
 p.b(Ljava/lang/String;III)V sub_102
 p.c(II)V sub_37b
-p.charMap [Lce; charMaps
-p.var_1f2 Ljavax/microedition/lcdui/Graphics; graphics
-p.var_98 [Lce; charMap
 q AbyssEngine/Class_11bd
 q.a [Ljavax/microedition/m3g/Texture2D; var_159
 q.a()V sub_52
@@ -3154,28 +3059,42 @@ s.a Lag; var_54d
 s.a Lcd; var_592
 s.a Z var_5dd
 s.a [I var_151
+s.b [I var_2dd
+s.c [I var_323
+s.d [I var_3f9
 s.a()V sub_60
 s.a(I)V updateMedalCounters
 s.a(Lcd;)V sub_a6
-s.b [I var_2dd
 s.b()V sub_160
 s.b(Lcd;)V sub_10a
-s.c [I var_323
-s.d [I var_3f9
 t AbyssEngine/Class_1319
-t.a()V sub_109
-t.a(III)Z sub_162
-t.a(J)V sub_e6
-t.a(Lcd;)Lcd; sub_a9
 t.c Lcd; var_2e9
 t.l I var_34a
 t.m I var_3a3
 t.n I var_52b
+t.a()V sub_109
+t.a(III)Z sub_162
+t.a(J)V sub_e6
+t.a(Lcd;)Lcd; sub_a9
 u AbyssEngine/Item
 u.a I id
 u.a Z var_730
 u.a [I blueprintGoodsIds
 u.a [Z var_ce
+u.b I type
+u.b [I blueprintGoodsQuantities
+u.c I subType
+u.c [I allParameters
+u.d I tecLevel
+u.e I lowestPriceSystemId
+u.f I highestPriceSystemId
+u.g I price
+u.h I occurance
+u.i I minPrice
+u.j I maxPrice
+u.k I var_700
+u.l I var_713
+u.m I var_71e
 u.a()I getIndex
 u.a()Lu; sub_8f4
 u.a()Z sub_18e
@@ -3190,44 +3109,28 @@ u.a(Z)I sub_6b2
 u.a(Z)V sub_986
 u.a([Lu;Z)[Lu; sub_797
 u.a([Lu;[Lu;)[Lu; sub_7de
-u.b I type
-u.b [I blueprintGoodsQuantities
 u.b()I getType
 u.b()Z sub_848
 u.b()[I sub_656
 u.b(I)V sub_460
 u.b(Z)I sub_714
 u.b([Lu;[Lu;)[Lu; sub_80e
-u.c I subType
-u.c [I allParameters
 u.c()I sub_22b
 u.c()Z sub_95c
 u.c(I)V sub_4e5
-u.d I tecLevel
 u.d()I sub_24a
 u.d(I)V sub_501
-u.e I lowestPriceSystem
 u.e()I sub_2a4
 u.e(I)V sub_54b
-u.f I highestPriceSystem
 u.f()I sub_2ed
 u.f(I)V sub_534
-u.g I price
 u.g()I sub_30c
 u.g(I)V sub_5de
-u.h I occurance
 u.h()I sub_369
-u.highestPriceSystem I highestPriceSystemId
-u.i I minPrice
 u.i()I sub_39b
-u.j I maxPrice
 u.j()I sub_3e7
-u.k I var_700
 u.k()I sub_497
-u.l I var_713
 u.l()I sub_4ac
-u.lowestPriceSystem I lowestPriceSystemId
-u.m I var_71e
 u.m()I sub_51c
 u.n()I sub_590
 v AbyssEngine/FlightUI
@@ -3240,46 +3143,28 @@ v.a [Lcf; var_e36
 v.a [Lu; var_d82
 v.a [[B actionmenuButtonsState
 v.a [[Ljava/lang/String; actionmenuLabels
-v.a()V sub_1e9
-v.a()Z sub_3fa
-v.a(I)V sub_51c
-v.a(IIIZ)V sub_47c
-v.a(IIZZZZ)V sub_3ae
-v.a(ILcq;)V sub_30d
-v.a(ILdb;Lbw;)Z sub_527
-v.a(JJLcq;Z)V sub_41b
-v.a(Lcf;)V sub_295
-v.a(Ljava/lang/String;)Z sub_32f
-v.a(Z)V sub_5df
 v.b I drawSecondaryIcon
 v.b Ljava/lang/String; logMsg
 v.b Ljavax/microedition/lcdui/Image; var_489
 v.b Ljavax/microedition/lcdui/game/Sprite; var_5f3
 v.b Z var_979
 v.b [Lu; var_dd2
-v.b()V sub_362
-v.b()Z sub_58b
-v.b(I)V sub_2d4
 v.c I var_341
 v.c Ljavax/microedition/lcdui/Image; var_4ca
 v.c Ljavax/microedition/lcdui/game/Sprite; var_60b
 v.c Z var_986
-v.c()V sub_4bc
 v.d I var_38f
 v.d Ljavax/microedition/lcdui/Image; var_568
 v.d Ljavax/microedition/lcdui/game/Sprite; var_6c4
 v.d Z var_9c7
-v.d()V sub_a6
 v.e I var_3e2
 v.e Ljavax/microedition/lcdui/Image; var_655
 v.e Ljavax/microedition/lcdui/game/Sprite; var_721
 v.e Z var_9f9
-v.e()V sub_192
 v.f I var_429
 v.f Ljavax/microedition/lcdui/Image; var_67b
 v.f Ljavax/microedition/lcdui/game/Sprite; var_72c
 v.f Z var_ab1
-v.f()V sub_264
 v.g I var_8bd
 v.g Ljavax/microedition/lcdui/Image; var_786
 v.g Z actionmenuOpen
@@ -3300,24 +3185,42 @@ v.m Z var_f29
 v.n I var_d45
 v.o I var_e7f
 v.p I var_ef4
+v.a()V sub_1e9
+v.a()Z sub_3fa
+v.a(I)V sub_51c
+v.a(IIIZ)V sub_47c
+v.a(IIZZZZ)V sub_3ae
+v.a(ILcq;)V sub_30d
+v.a(ILdb;Lbw;)Z sub_527
+v.a(JJLcq;Z)V sub_41b
+v.a(Lcf;)V sub_295
+v.a(Ljava/lang/String;)Z sub_32f
+v.a(Z)V sub_5df
+v.b()V sub_362
+v.b()Z sub_58b
+v.b(I)V sub_2d4
+v.c()V sub_4bc
+v.d()V sub_a6
+v.e()V sub_192
+v.f()V sub_264
 w AbyssEngine/Class_1496
 w.a I var_19d
 w.a Lcd; var_147
-w.a(III)V sub_e2
-w.a(III)Z sub_4f
-w.a(Lcd;)Lcd; sub_3d
 w.b I var_1cd
-w.b(III)Z sub_a0
 w.c I var_2b5
 w.d I var_381
 w.e I var_3f4
 w.f I var_453
-x AbyssEngine/Camera
+w.a(III)V sub_e2
+w.a(III)Z sub_4f
+w.a(Lcd;)Lcd; sub_3d
+w.b(III)Z sub_a0
+x AbyssEngine/JSRCamera
 x.a Ljavax/microedition/m3g/Camera; var_72
 x.a Ljavax/microedition/m3g/Transform; var_133
+x.var_72 Ljavax/microedition/m3g/Camera; camera
 x.a()V sub_19c
 x.a(III)V sub_5c
-x.var_72 Ljavax/microedition/m3g/Camera; camera
 y AbyssEngine/Class_14c5
 y.a B var_674
 y.a F var_652
@@ -3327,19 +3230,19 @@ y.a Ljavax/microedition/m3g/Mesh; var_57b
 y.a Ljavax/microedition/m3g/PolygonMode; var_4a8
 y.a Ljavax/microedition/m3g/Transform; var_63
 y.a [I var_588
+y.b [I var_5c8
+y.c [I var_623
+y.d I var_52c
 y.a()Lah; sub_2b
 y.a()V sub_8c
 y.a()[I sub_46
 y.a(Lap;Laf;)V sub_11b
 y.a(Laq;)V sub_1a9
-y.b [I var_5c8
 y.b()V render
 y.b()[I sub_53
 y.b(Lap;Laf;)V sub_b2
-y.c [I var_623
 y.c()V sub_100
 y.c()[I sub_ba
-y.d I var_52c
 z AbyssEngine/PlayerStatus
 z.A I var_de1
 z.A Z var_1459
