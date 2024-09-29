@@ -619,23 +619,23 @@ Main/r.d()V sub_158
 Main/r.e()V sub_23f
 Main/r.f()V sub_2b5
 a AbyssEngine/AEMesh
-a.a Ljava/io/DataInputStream; var_d3
-a.a Ljavax/microedition/m3g/Appearance; var_1ea
-a.a Ljavax/microedition/m3g/CompositingMode; var_35e
-a.a Ljavax/microedition/m3g/PolygonMode; var_2da
-a.a Ljavax/microedition/m3g/Transform; var_250
-a.a Ljavax/microedition/m3g/TriangleStripArray; var_231
-a.a Ljavax/microedition/m3g/VertexBuffer; var_167
-a.a [F var_43
-a.b Ljavax/microedition/m3g/PolygonMode; var_332
-a.d Z var_2a0
+a.a [F transformArray
+a.a Ljava/io/DataInputStream; aemFile
+a.a Ljavax/microedition/m3g/VertexBuffer; vertexBuffer
+a.a Ljavax/microedition/m3g/Appearance; appearance
+a.a Ljavax/microedition/m3g/TriangleStripArray; triangleStripArray
+a.a Ljavax/microedition/m3g/Transform; transform
+a.d Z isTransparent
+a.a Ljavax/microedition/m3g/PolygonMode; opaquePMode
+a.b Ljavax/microedition/m3g/PolygonMode; transparentPMode
+a.a Ljavax/microedition/m3g/CompositingMode; compositingMode
 a.a()Lah; sub_2b
-a.a()V sub_8c
-a.a(I)I sub_a4
-a.a(Laq;)V sub_1a9
 a.b()V render
-a.c()V sub_100
-a.d()V sub_5b
+a.d()V setupMaterial
+a.a(I)I swapBytes
+a.c()V renderTransparent
+a.a()V destroy
+a.a(Laq;)V setupTexture
 aa AbyssEngine/Class_e
 aa.a F var_bf
 aa.a I var_7ae
@@ -843,8 +843,8 @@ ag.a(Lap;Laf;)V sub_11b
 ag.a(Laq;)V sub_1a9
 ag.b()V render
 ag.b(Lap;Laf;)V sub_b2
-ag.c()V sub_100
-ah AbyssEngine/Class_13c
+ag.c()V renderTransparent
+ah AbyssEngine/GraphNode
 ah.a Lah; var_8f
 ah.a Lam; var_19f
 ah.a Lar; var_6a
@@ -1026,7 +1026,7 @@ ao.a()V sub_d5
 ao.a(Ljavax/microedition/lcdui/game/GameCanvas;)V sub_76
 ao.a(Z)V sub_140
 ao.b()V sub_eb
-ap AbyssEngine/Class_2a7
+ap AbyssEngine/Camera
 ap.a I var_1fe
 ap.a Lcd; vec1
 ap.a [I lengths
@@ -1048,9 +1048,9 @@ ap.a(Lap;Laf;)V sub_11b
 ap.a(Lcd;)Z sub_fa
 ap.b(Lap;Laf;)V sub_b2
 ap.b(Z)V sub_109
-aq AbyssEngine/Class_2e2
+aq AbyssEngine/AbstractTexture
 aq.a()V sub_52
-ar AbyssEngine/Class_31f
+ar AbyssEngine/Group
 ar.b Lah; var_3e
 ar.a()Lah; sub_97
 ar.a(B)V sub_9aa
@@ -1082,12 +1082,12 @@ at.a Laf; var_8ce
 at.a Lao; var_960
 at.a Lau; var_bfb
 at.a Lbs; var_b5c
-at.a Lcn; var_a17
+at.a Lcn; langManager
 at.a Ljava/lang/String; gameVersion
 at.a Ljava/util/Random; var_b6d
 at.a Ljavax/microedition/lcdui/Display; var_953
 at.a Ljavax/microedition/lcdui/Graphics; var_a65
-at.a Ljavax/microedition/midlet/MIDlet; var_aa1
+at.a Ljavax/microedition/midlet/MIDlet; midlet
 at.a Lr; var_8f1
 at.a Z musicEnabled
 at.a [Las; var_c35
@@ -1194,7 +1194,7 @@ ax.a(Ljavax/microedition/m3g/Node;I)I sub_85
 ax.a(Ljavax/microedition/m3g/Node;[Ljavax/microedition/m3g/Texture2D;Z)V sub_b6
 ax.b()V render
 ax.b()Z sub_a37
-ax.c()V sub_100
+ax.c()V renderTransparent
 ax.d()V sub_31
 ax.f()V sub_a04
 ax.f(I)V sub_918
@@ -2073,11 +2073,11 @@ cf.g()Z sub_370
 cf.h()Z sub_3a8
 cf.i()Z sub_3e2
 cf.j()Z sub_1d8
-cg AbyssEngine/Class_cc4
+cg AbyssEngine/Explosion
 cg.a I var_26a
 cg.a Lag; var_366
 cg.a [I var_158
-cg.a [Lag; var_333
+cg.a [Lag; explosions
 cg.b [I var_1af
 cg.a()V sub_36
 cg.a()Z sub_154
@@ -2371,7 +2371,7 @@ cn.g [S var_417
 cn.h [S var_4ab
 cn.i [S var_537
 cn.a()V sub_bb
-cn.a(I)Ljava/lang/String; sub_ad
+cn.a(I)Ljava/lang/String; getLangString
 cn.a(I)V sub_56
 cn.a([Ljava/lang/String;Ljava/lang/String;)V sub_6a
 co AbyssEngine/Class_fd6
@@ -3045,10 +3045,10 @@ p.b(I)V sub_335
 p.b(II)V sub_2b0
 p.b(Ljava/lang/String;III)V sub_102
 p.c(II)V sub_37b
-q AbyssEngine/Class_11bd
-q.a [Ljavax/microedition/m3g/Texture2D; var_159
-q.a()V sub_52
-q.a()[Ljavax/microedition/m3g/Texture2D; sub_a5
+q AbyssEngine/JSRTexture
+q.a [Ljavax/microedition/m3g/Texture2D; textures
+q.a()V destroy
+q.a()[Ljavax/microedition/m3g/Texture2D; getTexturesArray
 r AbyssEngine/Class_123d
 r.a()V sub_147
 r.a(Ljavax/microedition/lcdui/Graphics;)V sub_48
@@ -3241,7 +3241,7 @@ y.a(Laq;)V sub_1a9
 y.b()V render
 y.b()[I sub_53
 y.b(Lap;Laf;)V sub_b2
-y.c()V sub_100
+y.c()V renderTransparent
 y.c()[I sub_ba
 z AbyssEngine/PlayerStatus
 z.A I var_de1
@@ -3255,8 +3255,8 @@ z.G I var_ede
 z.H I var_1685
 z.I I var_16d5
 z.J I var_175b
-z.a I var_1d6
-z.a J var_31c
+z.a I credits
+z.a J playTime
 z.a Lbe; var_1521
 z.a Lch; var_14f4
 z.a Lck; var_9a3
@@ -3271,27 +3271,27 @@ z.a [Lcb; var_162f
 z.a [Li; var_157c
 z.a [Ljava/lang/String; var_1646
 z.a [Z var_df
-z.b I var_307
+z.b I rating
 z.b J var_cfa
 z.b Lck; var_a05
 z.b Z var_f50
 z.b [B var_186b
 z.b [I var_17e0
 z.b [Z var_a74
-z.c I var_367
+z.c I kills
 z.c J var_148e
 z.c Z var_f5f
 z.c [B var_187b
 z.c [I var_1829
 z.c [Z var_ad5
-z.d I var_3c3
+z.d I missionCount
 z.d J var_14c1
 z.d Z var_f6c
 z.d [Z var_c0d
-z.e I var_406
+z.e I level
 z.e Z var_fc2
 z.e [Z var_c81
-z.f I var_485
+z.f I lastWorth
 z.f Z var_100f
 z.f [Z var_17bb
 z.g I var_4b1
@@ -3304,7 +3304,7 @@ z.j I var_5ee
 z.j Z var_10ed
 z.k I var_663
 z.k Z var_119d
-z.l I var_6ec
+z.l I stationsVisited
 z.l Z var_11c5
 z.m I var_73b
 z.m Z var_11eb
