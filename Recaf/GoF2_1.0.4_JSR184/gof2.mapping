@@ -886,7 +886,7 @@ ah.b I var_45
 ah.b Lcl; var_13e
 ah.b Z var_c1
 ah.b()I sub_29c
-ah.b()Lah; squaredLengthPrecise
+ah.b()Lah; sub_007
 ah.b()Lcd; sub_28c
 ah.b()Lcl; sub_8a0
 ah.b()Z sub_a37
@@ -3317,6 +3317,7 @@ x.a Ljavax/microedition/m3g/Camera; var_72
 x.a Ljavax/microedition/m3g/Transform; var_133
 x.a()V sub_19c
 x.a(III)V sub_5c
+x.var_72 Ljavax/microedition/m3g/Camera; camera
 y AbyssEngine/Class_14c5
 y.a B var_674
 y.a F var_652
