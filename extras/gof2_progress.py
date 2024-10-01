@@ -39,4 +39,4 @@ def count_special_words(file_path):
 
 file_path = dirname(dirname(__file__)) + r'\Recaf\GoF2\GoF2_JSR_1.0.4.mapping'
 count_special_words(file_path)
-input("\nAny key to exit...")
+input("\nAny enter to exit...")
