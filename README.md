@@ -1,5 +1,5 @@
 
-![Deep Open](/Recaf/extras/DeepOpen.png)
+![Deep Open](/extras/DeepOpen.png)
 
 Attempt to recreate source code of Fishlabs games and their common core Abyss Engine for education and enternainment purpouses.
 
@@ -8,7 +8,7 @@ Goals:
 * Deobufuscating ther inner variables of methods - touched
 * Porting to other platforms. - propably will never happed
 
-![progress chart](/Recaf/extras/logger/progress_chart.png)
+![progress chart](/extras/logger/progress_chart.png)
 
 Want to contribute?
 <ul>
@@ -29,5 +29,5 @@ Instrucions:
 </ul>
 
 More: <br/>
-[Pre Recaf attempts](/Recaf/src/README.md)<br/>
-[Renaming inspiration](/Recaf/extras/gof2-1.0.1-ios-symbols/README.md)
+[Pre Recaf attempts](/src/README.md)<br/>
+[Renaming inspiration](/extras/gof2-1.0.1-ios-symbols/README.md)
