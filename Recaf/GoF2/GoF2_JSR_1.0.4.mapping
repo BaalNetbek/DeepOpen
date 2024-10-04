@@ -20,11 +20,11 @@ Main/a.b J var_b8
 Main/a.b Z var_230
 Main/a.c J var_ec
 Main/a.d J var_11f
-Main/a.a()V sub_10a
-Main/a.a()Z sub_12b
-Main/a.a(I)V sub_57
-Main/a.b()V sub_c4
-Main/a.b(I)V sub_8d
+Main/a.a()V freeResources
+Main/a.a()Z isLoaded
+Main/a.a(I)V renderScene
+Main/a.b()V loadResources
+Main/a.b(I)V handleKeystate
 Main/b Main/ShipPreview
 Main/b.a F yaw
 Main/b.a Lap; var_48f
@@ -135,10 +135,10 @@ Main/f.a J timeResourceLoaded
 Main/f.b I soundTurnChoice
 Main/f.a I introState
 Main/f.a Z loaded
-Main/f.b()V sub_c4
-Main/f.b(I)V displaySoundTurnChoice
-Main/f.a(I)V displayIntro
-Main/f.a()Z isIntroLoaded
+Main/f.b()V loadResources
+Main/f.b(I)V handleKeystate
+Main/f.a(I)V renderScene
+Main/f.a()Z isLoaded
 Main/f.a()V freeResources
 Main/g Main/Class_364
 Main/g.a I var_3ca
@@ -295,12 +295,12 @@ Main/k.c F var_676
 Main/k.c I var_704
 Main/k.c J frameTimeMs
 Main/k.d J var_ed
-Main/k.a()V sub_10a
-Main/k.a()Z sub_12b
-Main/k.a(I)V sub_57
+Main/k.a()V freeResources
+Main/k.a()Z isLoaded
+Main/k.a(I)V renderScene
 Main/k.a(II)V sub_7c
-Main/k.b()V sub_c4
-Main/k.b(I)V sub_8d
+Main/k.b()V loadResources
+Main/k.b(I)V handleKeystate
 Main/k.c()V sub_2c
 Main/l Main/Class_33f
 Main/l.a I var_191
@@ -450,12 +450,12 @@ Main/o.q Z var_c3b
 Main/o.r Z var_c80
 Main/o.s Z var_ce4
 Main/o.t Z var_d4a
-Main/o.a()V sub_10a
-Main/o.a()Z sub_12b
-Main/o.a(I)V sub_57
-Main/o.b()V sub_c4
+Main/o.a()V freeResources
+Main/o.a()Z isLoaded
+Main/o.a(I)V renderScene
+Main/o.b()V loadResources
 Main/o.b()Z sub_16c
-Main/o.b(I)V sub_8d
+Main/o.b(I)V handleKeystate
 Main/o.c()V sub_1da
 Main/o.c()Z sub_1ce
 Main/o.d()V sub_2f
@@ -513,11 +513,11 @@ Main/p.q Z var_ca1
 Main/p.r Z var_ccc
 Main/p.s Z var_d16
 Main/p.a()LMain/k; sub_4e
-Main/p.a()V sub_10a
-Main/p.a()Z sub_12b
-Main/p.a(I)V sub_57
-Main/p.b()V sub_c4
-Main/p.b(I)V sub_8d
+Main/p.a()V freeResources
+Main/p.a()Z isLoaded
+Main/p.a(I)V renderScene
+Main/p.b()V loadResources
+Main/p.b(I)V handleKeystate
 Main/p.c()V sub_a9
 Main/p.d()V sub_f0
 Main/p.e()V sub_161
@@ -1067,11 +1067,11 @@ ar.b(Lap;Laf;)V sub_b2
 ar.b(Z)V sub_109
 ar.f()V sub_a04
 as AbyssEngine/Class_375
-as.a()V sub_10a
-as.a()Z sub_12b
-as.a(I)V sub_57
-as.b()V sub_c4
-as.b(I)V sub_8d
+as.a()V freeResources
+as.a()Z isLoaded
+as.a(I)V renderScene
+as.b()V loadResources
+as.b(I)V handleKeystate
 at AbyssEngine/GameStatus
 at.A Z var_787
 at.B Z var_7dc
