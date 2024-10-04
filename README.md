@@ -30,4 +30,4 @@ Instrucions:
 
 More: <br/>
 [Pre Recaf attempts](/src/README.md)<br/>
-[Renaming inspiration](/extras/gof2-1.0.1-ios-symbols/README.md)
+[Renaming inspiration](/extras/gof2-1.0.1-ios-symbols/)
