@@ -128,18 +128,18 @@ Main/e.a Ljavax/microedition/lcdui/game/Sprite; var_35
 Main/e.a()V sub_6c
 Main/e.a(Ljava/lang/Object;I)V sub_e4
 Main/e.b()V sub_9e
-Main/f Main/Class_3c2
-Main/f.a I var_23e
-Main/f.a J var_1bc
-Main/f.a Z var_14e
-Main/f.b I var_2b6
+Main/f Main/Intro
 Main/f.a Ljavax/microedition/lcdui/Image; logoFL
 Main/f.b Ljavax/microedition/lcdui/Image; logoAbyss
-Main/f.a()V sub_10a
-Main/f.a()Z sub_12b
-Main/f.a(I)V sub_57
+Main/f.a J timeResourceLoaded
+Main/f.b I soundTurnChoice
+Main/f.a I introState
+Main/f.a Z loaded
 Main/f.b()V sub_c4
-Main/f.b(I)V sub_8d
+Main/f.b(I)V displaySoundTurnChoice
+Main/f.a(I)V displayIntro
+Main/f.a()Z isIntroLoaded
+Main/f.a()V freeResources
 Main/g Main/Class_364
 Main/g.a I var_3ca
 Main/g.a LMain/e; var_14b
@@ -399,6 +399,9 @@ Main/n.b()V sub_ca
 Main/n.c()V sub_10d
 Main/n.d()V sub_125
 Main/n.e()V sub_13d
+Main/n.keyPressed(I)V updateKeysPressed
+Main/n.keyReleased(I)V updateKeysReleased
+Main/n.keyRepeated(I)V updatetKeysPressed2
 Main/o Main/Flight
 Main/o.a I var_47
 Main/o.a J currentTimeMs
@@ -772,49 +775,49 @@ ac.a(Laq;)V sub_1a9
 ac.a([I[I)V sub_176
 ac.b()V render
 ad AbyssEngine/Class_69
-ad.a Ljava/lang/String; var_27
-ad.a [B faceKeith
 ad.a [Lch; ships
 ad.a [Lu; items
 ad.a [S barFiguresMeshIDs
-ad.a [[B faces
 ad.a [[S barMeshIDs
-ad.b Ljava/lang/String; var_b0
-ad.b [B faceStory2
-ad.b [S var_149
 ad.b [[S hangarMeshIDs
-ad.c [B faceBrent
-ad.d [B faceGunant
-ad.e [B faceNorris
-ad.f [B faceMkkt
-ad.g [B faceTommy
-ad.h [B faceCarla
-ad.i [B faceErkkt
-ad.j [B faceAgent0
-ad.k [B faceAgent1
-ad.l [B faceAgent2
-ad.m [B faceAgent3
-ad.n [B faceAgent4
-ad.o [B faceSecurityGirl
-ad.p [B faceKidnapper
-ad.q [B faceStory
-ad.r [B faceAlert
-ad.s [B faceOfficer
-ad.t [B faceVoid
-ad.u [B faceKhador
-ad.v [B faceSecurity
+ad.c [B CHAR_BRENT
+ad.d [B CHAR_GUNANT
+ad.e [B CHAR_NORRIS
+ad.f [B CHAR_MKKT_BKKT
+ad.g [B CHAR_TOMMY
+ad.h [B CHAR_CARLA
+ad.i [B CHAR_ERRKT
+ad.j [B CHAR_JEAN
+ad.k [B CHAR_PIRATE_CHIEF
+ad.l [B CHAR_PIRATE_1
+ad.m [B CHAR_PIRATE_2
+ad.n [B CHAR_SECURITY_GUY
+ad.o [B CHAR_SECURITY_GIRL
+ad.p [B CHAR_KIDNAPPER
+ad.q [B CHAR_COMPUTER
+ad.b [B CHAR_INFO_PIC
+ad.r [B CHAR_STORY
+ad.t [B CHAR_ALIEN
+ad.u [B CHAR_KHADOR
+ad.v [B CHAR_NIVELIAN_SECURITY
+ad.a [B CHAR_KEITH
+ad.s [B CHAR_TERRAN_OFFICER
+ad.a [[B CHAR_IMAGES
+ad.b Ljava/lang/String; parthTextures
+ad.a Ljava/lang/String; pathMeshes
+ad.b [S meshIDs
 ad.a()Ljava/lang/String; sub_139
 ad.a()V sub_27
 ad.a()[Lch; getShips
 ad.a()[Lu; getItems
 ad.a(I)I sub_147
-ad.a(I)Ljava/lang/String; sub_b8
 ad.a(I)[I sub_c2
 ad.a(II)Lar; sub_161
 ad.a(IZ)Ljava/lang/String; sub_116
 ad.a(Lar;I)V sub_1b8
 ad.b()V sub_1db
-ad.c()V sub_203
+ad.a(I)Ljava/lang/String; getItemName
+ad.c()V freeResources
 ae AbyssEngine/Class_86
 ae.a(Le;)Ljava/util/Vector; sub_5e
 ae.a([Lcw;II)[I sub_52
@@ -1077,26 +1080,18 @@ at.D Z var_884
 at.E Z var_8b6
 at.F Z var_9da
 at.G Z var_bd5
-at.a I var_154
 at.a Laf; var_8ce
 at.a Lao; var_960
 at.a Lau; var_bfb
-at.a Lbs; var_b5c
 at.a Lcn; langManager
 at.a Ljava/lang/String; gameVersion
 at.a Ljava/util/Random; var_b6d
 at.a Ljavax/microedition/lcdui/Display; var_953
-at.a Ljavax/microedition/lcdui/Graphics; var_a65
 at.a Ljavax/microedition/midlet/MIDlet; midlet
 at.a Lr; var_8f1
-at.a Z musicEnabled
 at.a [Las; var_c35
-at.b I var_1a1
-at.b Z sfxEnabled
 at.c I language
-at.c Z var_107
 at.d I var_9c3
-at.d Z var_143
 at.e I var_9fc
 at.e Z var_210
 at.f I screenWidth
@@ -1127,6 +1122,14 @@ at.w Z var_697
 at.x Z var_6be
 at.y Z var_71f
 at.z Z var_745
+at.a Ljavax/microedition/lcdui/Graphics; graphics
+at.a Lbs; soundManager
+at.b Z sfxOn
+at.a I musicVolume
+at.b I sfxVolume
+at.c Z vibrationOn
+at.d Z invertedControlsOn
+at.a Z musicOn
 at.a()V sub_8a
 at.a(I)V sub_50
 at.b()V sub_d1
