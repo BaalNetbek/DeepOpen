@@ -129,17 +129,17 @@ Main/e.a()V sub_6c
 Main/e.a(Ljava/lang/Object;I)V sub_e4
 Main/e.b()V sub_9e
 Main/f Main/Intro
-Main/f.a Ljavax/microedition/lcdui/Image; logoFL
-Main/f.b Ljavax/microedition/lcdui/Image; logoAbyss
-Main/f.a J timeResourceLoaded
-Main/f.b I soundTurnChoice
 Main/f.a I introState
+Main/f.a J timeResourceLoaded
+Main/f.a Ljavax/microedition/lcdui/Image; logoFL
 Main/f.a Z loaded
+Main/f.b I soundSwitchCurrent
+Main/f.b Ljavax/microedition/lcdui/Image; logoAbyss
+Main/f.a()V freeResources
+Main/f.a()Z isLoaded
+Main/f.a(I)V renderScene
 Main/f.b()V loadResources
 Main/f.b(I)V handleKeystate
-Main/f.a(I)V renderScene
-Main/f.a()Z isLoaded
-Main/f.a()V freeResources
 Main/g Main/Class_364
 Main/g.a I var_3ca
 Main/g.a LMain/e; var_14b
@@ -399,9 +399,6 @@ Main/n.b()V sub_ca
 Main/n.c()V sub_10d
 Main/n.d()V sub_125
 Main/n.e()V sub_13d
-Main/n.keyPressed(I)V updateKeysPressed
-Main/n.keyReleased(I)V updateKeysReleased
-Main/n.keyRepeated(I)V updatetKeysPressed2
 Main/o Main/Flight
 Main/o.a I var_47
 Main/o.a J currentTimeMs
@@ -775,10 +772,16 @@ ac.a(Laq;)V sub_1a9
 ac.a([I[I)V sub_176
 ac.b()V render
 ad AbyssEngine/Class_69
+ad.a Ljava/lang/String; pathMeshes
+ad.a [B CHAR_KEITH
 ad.a [Lch; ships
 ad.a [Lu; items
 ad.a [S barFiguresMeshIDs
+ad.a [[B CHAR_IMAGES
 ad.a [[S barMeshIDs
+ad.b Ljava/lang/String; pathTextures
+ad.b [B CHAR_COMPUTER
+ad.b [S var_149
 ad.b [[S hangarMeshIDs
 ad.c [B CHAR_BRENT
 ad.d [B CHAR_GUNANT
@@ -794,29 +797,23 @@ ad.m [B CHAR_PIRATE_2
 ad.n [B CHAR_SECURITY_GUY
 ad.o [B CHAR_SECURITY_GIRL
 ad.p [B CHAR_KIDNAPPER
-ad.q [B CHAR_COMPUTER
-ad.b [B CHAR_INFO_PIC
-ad.r [B CHAR_STORY
-ad.t [B CHAR_ALIEN
+ad.q [B CHAR_STORY
+ad.r [B CHAR_INFO_PIC
+ad.s [B CHAR_TERRAN_OFFICER
+ad.t [B CHAR_VOID
 ad.u [B CHAR_KHADOR
 ad.v [B CHAR_NIVELIAN_SECURITY
-ad.a [B CHAR_KEITH
-ad.s [B CHAR_TERRAN_OFFICER
-ad.a [[B CHAR_IMAGES
-ad.b Ljava/lang/String; parthTextures
-ad.a Ljava/lang/String; pathMeshes
-ad.b [S meshIDs
 ad.a()Ljava/lang/String; sub_139
 ad.a()V sub_27
 ad.a()[Lch; getShips
 ad.a()[Lu; getItems
 ad.a(I)I sub_147
+ad.a(I)Ljava/lang/String; getItemName
 ad.a(I)[I sub_c2
 ad.a(II)Lar; sub_161
 ad.a(IZ)Ljava/lang/String; sub_116
 ad.a(Lar;I)V sub_1b8
 ad.b()V sub_1db
-ad.a(I)Ljava/lang/String; getItemName
 ad.c()V freeResources
 ae AbyssEngine/Class_86
 ae.a(Le;)Ljava/util/Vector; sub_5e
@@ -914,10 +911,10 @@ ah.h()I sub_766
 ah.i()I sub_942
 ai AbyssEngine/AEImage
 ai.a Ljava/lang/Class; clazs
-ai.a(Ljava/lang/String;Z)Ljavax/microedition/lcdui/Image; loadImage
-ai.a(Ljava/lang/String;)Ljavax/microedition/lcdui/Image; loadCryptedImage
 ai.a(Ljava/lang/String;)Ljava/lang/Class; loadClass
+ai.a(Ljava/lang/String;)Ljavax/microedition/lcdui/Image; loadCryptedImage
 ai.a(Ljava/lang/String;)[B loadFileBytes
+ai.a(Ljava/lang/String;Z)Ljavax/microedition/lcdui/Image; loadImage
 ai.a(Ljavax/microedition/lcdui/Image;II)Ljavax/microedition/lcdui/Image; resizeImage
 aj AbyssEngine/Class_198
 aj.a [Lcu; var_16
@@ -1066,7 +1063,7 @@ ar.b(Lah;)V sub_7f
 ar.b(Lap;Laf;)V sub_b2
 ar.b(Z)V sub_109
 ar.f()V sub_a04
-as AbyssEngine/Class_375
+as AbyssEngine/AbstractScene
 as.a()V freeResources
 as.a()Z isLoaded
 as.a(I)V renderScene
@@ -1080,18 +1077,26 @@ at.D Z var_884
 at.E Z var_8b6
 at.F Z var_9da
 at.G Z var_bd5
+at.a I musicVolume
 at.a Laf; var_8ce
 at.a Lao; var_960
 at.a Lau; var_bfb
+at.a Lbs; soundManager
 at.a Lcn; langManager
 at.a Ljava/lang/String; gameVersion
-at.a Ljava/util/Random; var_b6d
-at.a Ljavax/microedition/lcdui/Display; var_953
+at.a Ljava/util/Random; random
+at.a Ljavax/microedition/lcdui/Display; display
+at.a Ljavax/microedition/lcdui/Graphics; graphics
 at.a Ljavax/microedition/midlet/MIDlet; midlet
 at.a Lr; var_8f1
+at.a Z musicOn
 at.a [Las; var_c35
+at.b I sfxVolume
+at.b Z sfxOn
 at.c I language
+at.c Z vibrationOn
 at.d I var_9c3
+at.d Z invertedControlsOn
 at.e I var_9fc
 at.e Z var_210
 at.f I screenWidth
@@ -1122,14 +1127,6 @@ at.w Z var_697
 at.x Z var_6be
 at.y Z var_71f
 at.z Z var_745
-at.a Ljavax/microedition/lcdui/Graphics; graphics
-at.a Lbs; soundManager
-at.b Z sfxOn
-at.a I musicVolume
-at.b I sfxVolume
-at.c Z vibrationOn
-at.d Z invertedControlsOn
-at.a Z musicOn
 at.a()V sub_8a
 at.a(I)V sub_50
 at.b()V sub_d1
@@ -3082,8 +3079,10 @@ t.a(Lcd;)Lcd; sub_a9
 u AbyssEngine/Item
 u.a I id
 u.a Z var_730
+u.a [I blueprintComponentsIds
 u.a [Z var_ce
 u.b I type
+u.b [I blueprintComponentsQuantities
 u.c I subType
 u.c [I allParameters
 u.d I tecLevel
@@ -3096,13 +3095,13 @@ u.j I maxPrice
 u.k I var_700
 u.l I var_713
 u.m I var_71e
-u.a [I blueprintComponentsIds
-u.b [I blueprintComponentsQuantities
 u.a()I getIndex
 u.a()Lu; sub_8f4
 u.a()Z sub_18e
+u.a()[I getBluePrintComponentsIds
 u.a(I)I sub_69d
 u.a(I)Lu; sub_889
+u.a(I)V setPrice
 u.a(II)Lu; sub_8b7
 u.a(II[Lu;)Z sub_737
 u.a(Lu;)Z equals
@@ -3112,30 +3111,28 @@ u.a([Lu;Z)[Lu; sub_797
 u.a([Lu;[Lu;)[Lu; sub_7de
 u.b()I getType
 u.b()Z sub_848
+u.b()[I getBlueprintComponentsQuantities
 u.b(I)V sub_460
 u.b(Z)I sub_714
 u.b([Lu;[Lu;)[Lu; sub_80e
+u.c()I getTecLevel
 u.c()Z sub_95c
 u.c(I)V sub_4e5
+u.d()I getSubType
 u.d(I)V sub_501
+u.e()I getPrice
 u.e(I)V sub_54b
 u.f()I sub_2ed
 u.f(I)V sub_534
-u.g(I)V sub_5de
-u.l()I sub_4ac
-u.m()I sub_51c
-u.n()I sub_590
 u.g()I getMaxPrice
-u.e()I getPrice
-u.d()I getSubType
-u.c()I getTecLevel
+u.g(I)V sub_5de
 u.h()I getMinPrice
 u.i()I getHighestPriceSystemId
 u.j()I getLowestPriceSystemId
-u.a(I)V setPrice
 u.k()I getOccurance
-u.a()[I getBluePrintComponentsIds
-u.b()[I getBlueprintComponentsQuantities
+u.l()I sub_4ac
+u.m()I sub_51c
+u.n()I sub_590
 v AbyssEngine/FlightUI
 v.a I var_2be
 v.a Ljava/lang/String; tempLogMsg

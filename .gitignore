@@ -1,2 +1,3 @@
 **/*.bak
 temp
+__pycache__

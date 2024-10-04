@@ -1,7 +1,7 @@
 import re
 from os.path import dirname
 
-def count_special_words(file_path):
+def check_obfuscation_progerss(file_path):
     names_count = lines_count = 0
     fields = classes = methods = 0
     obfuscated_fields = obfuscated_classes = obfuscated_methods = 0
@@ -32,11 +32,17 @@ def count_special_words(file_path):
     deobfuscated_fields = 100-(obfuscated_fields / fields) * 100 if fields > 0 else 0 
     deobfuscated_methods = 100-(obfuscated_methods / methods) * 100 if methods > 0 else 0 
     deobfuscated_classes = 100-(obfuscated_classes / classes) * 100 if classes > 0 else 0 
-    print(f'Deobfuscated names in total: \t{deobfuscated_total:.2f}%')
-    print(f'Deobfuscated field names: \t{deobfuscated_fields:.2f}%')
-    print(f'Deobfuscated method names: \t{deobfuscated_methods:.2f}%')
-    print(f'Deobfuscated classe names: \t{deobfuscated_classes:.2f}%') 
 
-file_path = dirname(dirname(__file__)) + r'\Recaf\GoF2\GoF2_JSR_1.0.4.mapping'
-count_special_words(file_path)
-input("\nAny enter to exit...")
+
+    return [deobfuscated_total, deobfuscated_classes, deobfuscated_methods, deobfuscated_fields]
+
+if __name__ == "__main__":
+    file_path = dirname(dirname(dirname(__file__))) + r'\Recaf\GoF2\GoF2_JSR_1.0.4.mapping'
+    tot, clas, meth, fld = check_obfuscation_progerss(file_path)
+
+    print(f'Deobfuscated names in total: \t{tot:.0f}%')
+    print(f'Deobfuscated classe names: \t{clas:.0f}%') 
+    print(f'Deobfuscated method names: \t{meth:.0f}%')
+    print(f'Deobfuscated field names: \t{fld:.0f}%')
+
+    input("\nAny enter to exit...")

@@ -1,17 +1,14 @@
-![open deep2](https://github.com/user-attachments/assets/9069af36-9420-4c6a-8735-0cd8c33d40a8)
+
+![Deep Open]("/Recaf/extras/DeepOpen.png")
 
 Attempt to recreate source code of Fishlabs games and their common core Abyss Engine for education and enternainment purpouses.
 
 Goals:
-* Deobufuscating GoF2 classes, fields and methods names - in progress (see below)
-    * **2024.10.01**<br/>
-Gof2 debuscation progress:<br/>
-Deobfuscated names in total:  15% <br/>
-Deobfuscated field names:     16% <br/>
-Deobfuscated method names:    13% <br/>
-Deobfuscated classe names:    35% <br/>
+* Deobufuscating GoF2 classes, fields and methods names using Recaf - now
 * Deobufuscating ther inner variables of methods - touched
 * Porting to other platforms. - propably will never happed
+
+![progress chart](/Recaf/extras/logger/progress_chart.png)
 
 Want to contribute?
 <ul>
@@ -31,5 +28,6 @@ Instrucions:
     - If testing went well: *Mapping* -> *Export* -> *Simple*
 </ul>
 
-For inspiration with renaming: <br/>
-/extras/gof2 1.0.1 ios symbols/
+More: <br/>
+[Pre Recaf attempts]("/Recaf/src/README.md")<br/>
+[Renaming inspiration]("/Recaf/extras/gof2-1.0.1-ios-symbols/README.md")
