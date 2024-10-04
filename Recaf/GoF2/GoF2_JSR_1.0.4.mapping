@@ -131,10 +131,10 @@ Main/e.b()V sub_9e
 Main/f Main/Class_3c2
 Main/f.a I var_23e
 Main/f.a J var_1bc
-Main/f.a Ljavax/microedition/lcdui/Image; var_23
 Main/f.a Z var_14e
 Main/f.b I var_2b6
-Main/f.b Ljavax/microedition/lcdui/Image; var_fc
+Main/f.a Ljavax/microedition/lcdui/Image; logoFL
+Main/f.b Ljavax/microedition/lcdui/Image; logoAbyss
 Main/f.a()V sub_10a
 Main/f.a()Z sub_12b
 Main/f.a(I)V sub_57
@@ -619,23 +619,23 @@ Main/r.d()V sub_158
 Main/r.e()V sub_23f
 Main/r.f()V sub_2b5
 a AbyssEngine/AEMesh
-a.a [F transformArray
 a.a Ljava/io/DataInputStream; aemFile
-a.a Ljavax/microedition/m3g/VertexBuffer; vertexBuffer
 a.a Ljavax/microedition/m3g/Appearance; appearance
-a.a Ljavax/microedition/m3g/TriangleStripArray; triangleStripArray
-a.a Ljavax/microedition/m3g/Transform; transform
-a.d Z isTransparent
-a.a Ljavax/microedition/m3g/PolygonMode; opaquePMode
-a.b Ljavax/microedition/m3g/PolygonMode; transparentPMode
 a.a Ljavax/microedition/m3g/CompositingMode; compositingMode
+a.a Ljavax/microedition/m3g/PolygonMode; opaquePMode
+a.a Ljavax/microedition/m3g/Transform; transform
+a.a Ljavax/microedition/m3g/TriangleStripArray; triangleStripArray
+a.a Ljavax/microedition/m3g/VertexBuffer; vertexBuffer
+a.a [F transformArray
+a.b Ljavax/microedition/m3g/PolygonMode; transparentPMode
+a.d Z isTransparent
 a.a()Lah; sub_2b
-a.b()V render
-a.d()V setupMaterial
-a.a(I)I swapBytes
-a.c()V renderTransparent
 a.a()V destroy
+a.a(I)I swapBytes
 a.a(Laq;)V setupTexture
+a.b()V render
+a.c()V renderTransparent
+a.d()V setupMaterial
 aa AbyssEngine/Class_e
 aa.a F var_bf
 aa.a I var_7ae
@@ -909,13 +909,13 @@ ah.g()Lcd; sub_821
 ah.g(Lcd;)Lcd; sub_7ff
 ah.h()I sub_766
 ah.i()I sub_942
-ai AbyssEngine/Class_14c
-ai.a Ljava/lang/Class; var_2c
-ai.a(Ljava/lang/String;)Ljava/lang/Class; sub_cd
-ai.a(Ljava/lang/String;)Ljavax/microedition/lcdui/Image; sub_7e
-ai.a(Ljava/lang/String;)[B sub_bf
-ai.a(Ljava/lang/String;Z)Ljavax/microedition/lcdui/Image; sub_42
-ai.a(Ljavax/microedition/lcdui/Image;II)Ljavax/microedition/lcdui/Image; sub_1b
+ai AbyssEngine/AEImage
+ai.a Ljava/lang/Class; clazs
+ai.a(Ljava/lang/String;Z)Ljavax/microedition/lcdui/Image; loadImage
+ai.a(Ljava/lang/String;)Ljavax/microedition/lcdui/Image; loadCryptedImage
+ai.a(Ljava/lang/String;)Ljava/lang/Class; loadClass
+ai.a(Ljava/lang/String;)[B loadFileBytes
+ai.a(Ljavax/microedition/lcdui/Image;II)Ljavax/microedition/lcdui/Image; resizeImage
 aj AbyssEngine/Class_198
 aj.a [Lcu; var_16
 aj.a(Lcu;)V sub_5c
@@ -2253,15 +2253,15 @@ cl.a Z isDirty
 cl.b I scaleY
 cl.c I scaleZ
 cl.d I rightX
-cl.e I var_326
+cl.e I rightY
 cl.f I rightZ
 cl.g I upX
 cl.h I upY
 cl.i I upZ
-cl.j I var_58c
+cl.j I dirX
 cl.k I dirY
 cl.l I dirZ
-cl.m I postionX
+cl.m I positionX
 cl.n I positionY
 cl.o I positionZ
 cl.p I eulerX
@@ -3079,10 +3079,8 @@ t.a(Lcd;)Lcd; sub_a9
 u AbyssEngine/Item
 u.a I id
 u.a Z var_730
-u.a [I blueprintGoodsIds
 u.a [Z var_ce
 u.b I type
-u.b [I blueprintGoodsQuantities
 u.c I subType
 u.c [I allParameters
 u.d I tecLevel
@@ -3095,13 +3093,13 @@ u.j I maxPrice
 u.k I var_700
 u.l I var_713
 u.m I var_71e
+u.a [I blueprintComponentsIds
+u.b [I blueprintComponentsQuantities
 u.a()I getIndex
 u.a()Lu; sub_8f4
 u.a()Z sub_18e
-u.a()[I sub_61c
 u.a(I)I sub_69d
 u.a(I)Lu; sub_889
-u.a(I)V sub_423
 u.a(II)Lu; sub_8b7
 u.a(II[Lu;)Z sub_737
 u.a(Lu;)Z equals
@@ -3111,28 +3109,30 @@ u.a([Lu;Z)[Lu; sub_797
 u.a([Lu;[Lu;)[Lu; sub_7de
 u.b()I getType
 u.b()Z sub_848
-u.b()[I sub_656
 u.b(I)V sub_460
 u.b(Z)I sub_714
 u.b([Lu;[Lu;)[Lu; sub_80e
-u.c()I sub_22b
 u.c()Z sub_95c
 u.c(I)V sub_4e5
-u.d()I sub_24a
 u.d(I)V sub_501
-u.e()I sub_2a4
 u.e(I)V sub_54b
 u.f()I sub_2ed
 u.f(I)V sub_534
-u.g()I sub_30c
 u.g(I)V sub_5de
-u.h()I sub_369
-u.i()I sub_39b
-u.j()I sub_3e7
-u.k()I sub_497
 u.l()I sub_4ac
 u.m()I sub_51c
 u.n()I sub_590
+u.g()I getMaxPrice
+u.e()I getPrice
+u.d()I getSubType
+u.c()I getTecLevel
+u.h()I getMinPrice
+u.i()I getHighestPriceSystemId
+u.j()I getLowestPriceSystemId
+u.a(I)V setPrice
+u.k()I getOccurance
+u.a()[I getBluePrintComponentsIds
+u.b()[I getBlueprintComponentsQuantities
 v AbyssEngine/FlightUI
 v.a I var_2be
 v.a Ljava/lang/String; tempLogMsg
