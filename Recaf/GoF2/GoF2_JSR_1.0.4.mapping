@@ -1128,8 +1128,8 @@ at.x Z var_6be
 at.y Z var_71f
 at.z Z var_745
 at.a()V sub_8a
-at.a(I)V sub_50
 at.b()V sub_d1
+at.a(I)V vibrate
 au AbyssEngine/Class_3cd
 au.a LMain/GOF2MIDlet; var_db
 au.a Lao; var_12f
@@ -1365,7 +1365,6 @@ be.a()Z sub_fc
 be.a()[Lcb; sub_393
 be.a()[Lch; sub_241
 be.a()[Lu; sub_283
-be.a(Lbe;)Z sub_3c2
 be.a(Lu;)V sub_334
 be.a([Lcb;)V sub_30f
 be.a([Lch;)V sub_2df
@@ -1376,6 +1375,7 @@ be.c()I sub_15f
 be.d()I sub_1ea
 be.a()Ljava/lang/String; getName
 be.a()I getSystemId
+be.a(Lbe;)Z equals
 bf AbyssEngine/Class_601
 bf.a [I var_40
 bf.b [I var_9e
@@ -1489,12 +1489,10 @@ bl.a Lcw; currentSolarSystem
 bl.a [B var_8f8
 bl.a [I var_a0a
 bl.a [Lbe; lastVisitedStations
-bl.a [Lbp; var_837
 bl.a [Lcb; SpecialAgents
 bl.a [Lck; lastStoryMissions
 bl.a [Ljava/lang/String; var_89b
 bl.a [Z var_9e9
-bl.b I var_94d
 bl.b J var_cbd
 bl.b Lbe; currentStation
 bl.b [B var_a8c
@@ -1506,12 +1504,9 @@ bl.c J var_cc7
 bl.c [B var_ad7
 bl.c [I var_7db
 bl.c [Z var_d2b
-bl.d I var_b1d
 bl.d J var_f55
 bl.d [Z var_e7d
-bl.e I var_b5f
 bl.e [Z var_ecc
-bl.f I var_b7f
 bl.g I var_be5
 bl.h I var_c44
 bl.i I var_c7d
@@ -1545,12 +1540,15 @@ bl.a Lch; playersShip
 bl.a [Li; blueprints
 bl.F I lastXP
 bl.B I rating
-bl.a Lcs; standing_
+bl.f I baseArmour
+bl.d I shield
+bl.e I additionalArmour
+bl.a Lcs; standing
+bl.b I wingmenTimeRemaining
+bl.a [Lbp; waitingGoods
 bl.a()I sub_428
 bl.a()Lck; sub_244
 bl.a()Lcs; sub_d31
-bl.a()V sub_3a7
-bl.a()Z sub_488
 bl.a()[I sub_8b0
 bl.a()[Lbp; sub_ac
 bl.a()[Ljava/lang/String; sub_8a1
@@ -1576,7 +1574,6 @@ bl.b(Lck;)V sub_2da
 bl.c()I sub_675
 bl.c()Lck; sub_339
 bl.c()Z sub_4b8
-bl.c(Lck;)V sub_37b
 bl.d()I sub_6ac
 bl.d(I)V sub_5e6
 bl.d(Lck;)V sub_70a
@@ -1584,7 +1581,6 @@ bl.e(I)V sub_644
 bl.f(I)V sub_690
 bl.g()V sub_cd5
 bl.h()V sub_e85
-bl.i()V sub_ed5
 bl.k()I sub_cc1
 bl.q(I)V sub_ca6
 bl.a()[Lbe; getLastVisitedStations
@@ -1621,6 +1617,10 @@ bl.d()V incStationsVisited
 bl.b()I getJumpgateUsed
 bl.c(I)V setJumpgateUsed
 bl.c()V jumpgateUsed
+bl.c(Lck;)V startStoryMission
+bl.a()V incMissionCount
+bl.i()V startNewGame
+bl.a()Z gameWon
 bm AbyssEngine/Class_786
 bm.a(J)V sub_181
 bn AbyssEngine/Class_7bb
@@ -1667,11 +1667,11 @@ bo.a(ILjava/lang/String;)V sub_53
 bo.a(ILjava/lang/String;I)V setupSkybox_
 bo.a(ILjava/lang/String;II)V sub_ad
 bo.b()V sub_18f
-bp AbyssEngine/Class_84e
-bp.a I var_a5
-bp.a Ljava/lang/String; var_7f
-bp.b I var_11a
-bp.c I var_127
+bp AbyssEngine/ProducedGood
+bp.a Ljava/lang/String; stationName
+bp.c I index
+bp.a I stationId
+bp.b I producedQuantity
 bq AbyssEngine/Class_85e
 bq.a I var_51
 bq.a Lan; var_a
@@ -2198,7 +2198,6 @@ ck.a I missionType_
 ck.a Lcb; client
 ck.a Lck; var_dc
 ck.a Ljava/lang/String; clientName
-ck.a Z mainStory_
 ck.a [B clientFace
 ck.b I clientRace
 ck.b Ljava/lang/String; var_2d5
@@ -2213,6 +2212,7 @@ ck.f I difficulty
 ck.g I commodityId
 ck.h I commodityAmmout
 ck.i I var_71d
+ck.a Z startedStoryMission
 ck.a()I getProductionGoodIndex
 ck.a()Lcb; sub_70e
 ck.a()Ljava/lang/String; sub_486
@@ -2236,7 +2236,6 @@ ck.c(Z)V sub_208
 ck.d()I getType
 ck.d()Z sub_22e
 ck.d(I)V sub_7f3
-ck.d(Z)V sub_633
 ck.e()I getClientRace
 ck.e()Z sub_453
 ck.f()I getReward
@@ -2245,6 +2244,7 @@ ck.g()I sub_50f
 ck.g()Z sub_5d6
 ck.h()I getTargetStationIndex
 ck.i()I sub_6e3
+ck.d(Z)V setStartedStoryMission
 cl AbyssEngine/Matrix
 cl.a I scaleX
 cl.a Lcd; var_93d
@@ -2556,22 +2556,22 @@ cr.a Ljavax/microedition/m3g/Graphics3D; var_1c6
 cr.a()V sub_147
 cr.a(Ljavax/microedition/lcdui/Graphics;)V sub_48
 cr.b()V sub_f6
-cs AbyssEngine/Class_115c
-cs.a [I var_f5
-cs.a()Z sub_122
-cs.a()[I sub_77
-cs.a(I)I sub_9b
+cs AbyssEngine/Standing
+cs.a [I stand
 cs.a(I)V sub_d7
-cs.a(I)Z sub_14e
-cs.a(II)V sub_1e9
-cs.a([I)V sub_57
-cs.b(I)I sub_1ba
 cs.b(I)V sub_24a
-cs.b(I)Z sub_18a
-cs.b(II)V sub_36f
-cs.c(I)V sub_296
-cs.d(I)V sub_2cd
-cs.e(I)V sub_31e
+cs.a()[I getStanding
+cs.a(I)Z isEnemy
+cs.b(I)Z isFriend
+cs.b(I)I oppositeFaction
+cs.a()Z atWar
+cs.a(II)V standingChange
+cs.b(II)V changeStanding
+cs.c(I)V incStanding
+cs.e(I)V incStanding2
+cs.d(I)V decStanding
+cs.a(I)I getStanding
+cs.a([I)V setStanding
 ct AbyssEngine/Class_11ab
 ct.g I var_165
 ct.h I var_198
@@ -2612,7 +2612,6 @@ cw.b()I sub_ee
 cw.b()Z sub_42a
 cw.b()[I sub_463
 cw.b(I)Z sub_49d
-cw.c()I sub_110
 cw.c()Z sub_4fa
 cw.d()I sub_168
 cw.e()I sub_1c8
@@ -2620,6 +2619,7 @@ cw.f()I sub_234
 cw.g()I sub_28e
 cw.h()I sub_2ab
 cw.i()I sub_309
+cw.c()I getRace
 cx AbyssEngine/Class_137d
 cx.a F var_486
 cx.a I var_758
@@ -2848,8 +2848,8 @@ i.a Z unlocked
 i.c I timesProduced
 i.d I productionStationId
 i.a Ljava/lang/String; productionStationName
-i.e I tonsPerProduction2
 i.b I investedCredits
+i.e I producedTons
 i.b()I getProductionStationId
 i.a()Ljava/lang/String; getProductionStationName
 i.c()I getTonsPerProduction
