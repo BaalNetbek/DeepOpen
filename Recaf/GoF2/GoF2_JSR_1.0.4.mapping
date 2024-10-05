@@ -1482,7 +1482,6 @@ bl.I I var_469
 bl.L I var_510
 bl.M I currentCampaignMissionIndex
 bl.a I var_906
-bl.a J var_ba5
 bl.a Lbe; var_bda
 bl.a Lck; var_66d
 bl.a Lcw; currentSolarSystem
@@ -1491,18 +1490,14 @@ bl.a [I var_a0a
 bl.a [Lbe; lastVisitedStations
 bl.a [Lcb; SpecialAgents
 bl.a [Lck; lastStoryMissions
-bl.a [Ljava/lang/String; var_89b
 bl.a [Z var_9e9
-bl.b J var_cbd
 bl.b Lbe; currentStation
 bl.b [B var_a8c
 bl.b [I var_a40
-bl.b [Ljava/lang/String; var_796
 bl.b [Z var_d18
 bl.c I var_9a8
 bl.c J var_cc7
 bl.c [B var_ad7
-bl.c [I var_7db
 bl.c [Z var_d2b
 bl.d J var_f55
 bl.d [Z var_e7d
@@ -1546,6 +1541,11 @@ bl.e I additionalArmour
 bl.a Lcs; standing
 bl.b I wingmenTimeRemaining
 bl.a [Lbp; waitingGoods
+bl.b [Ljava/lang/String; curSolarSysStationNames
+bl.c [I curSolarSysStationIDs
+bl.a [Ljava/lang/String; wingmenNames
+bl.a J lastLoadingTime
+bl.b J timeSpentLoading
 bl.a()I sub_428
 bl.a()Lck; sub_244
 bl.a()Lcs; sub_d31
@@ -2092,11 +2092,9 @@ ch.a I id
 ch.a Z repairBot
 ch.a [I itemTypeSlots
 ch.a [Lu; equipped
-ch.a [S var_132
 ch.b I baseHP
 ch.b Z jumpDrive
 ch.b [Lu; cargoHold
-ch.b [S var_16b
 ch.c I basePrice
 ch.c Z cloak
 ch.d I baseCargo
@@ -2113,6 +2111,8 @@ ch.n I extendedHandlingPercent
 ch.o I var_84c
 ch.p I firePower
 ch.q I race
+ch.b [S previewPivotShift
+ch.a [S previewZoomOut
 ch.a()F getHandling
 ch.a()I getRace
 ch.a()Lch; cloneBase
