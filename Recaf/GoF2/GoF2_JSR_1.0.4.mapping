@@ -781,7 +781,6 @@ ad.a [[B CHAR_IMAGES
 ad.a [[S barMeshIDs
 ad.b Ljava/lang/String; pathTextures
 ad.b [B CHAR_COMPUTER
-ad.b [S var_149
 ad.b [[S hangarMeshIDs
 ad.c [B CHAR_BRENT
 ad.d [B CHAR_GUNANT
@@ -803,11 +802,11 @@ ad.s [B CHAR_TERRAN_OFFICER
 ad.t [B CHAR_VOID
 ad.u [B CHAR_KHADOR
 ad.v [B CHAR_NIVELIAN_SECURITY
+ad.b [S meshIDs
 ad.a()Ljava/lang/String; sub_139
 ad.a()V sub_27
 ad.a()[Lch; getShips
 ad.a()[Lu; getItems
-ad.a(I)I sub_147
 ad.a(I)Ljava/lang/String; getItemName
 ad.a(I)[I sub_c2
 ad.a(II)Lar; sub_161
@@ -815,6 +814,7 @@ ad.a(IZ)Ljava/lang/String; sub_116
 ad.a(Lar;I)V sub_1b8
 ad.b()V sub_1db
 ad.c()V freeResources
+ad.a(I)I pickShipId
 ae AbyssEngine/Class_86
 ae.a(Le;)Ljava/util/Vector; sub_5e
 ae.a([Lcw;II)[I sub_52
@@ -1312,31 +1312,31 @@ ba.b()V sub_30a
 ba.b(I)V sub_f4
 ba.c()V sub_341
 bb AbyssEngine/Medals
-bb.a I var_1a5
-bb.a Z var_25f
 bb.a [I medals
-bb.a [[I var_58
-bb.b I var_228
 bb.b Z hasAll
-bb.b [I var_d2
-bb.c I var_243
 bb.c Z hasAllGold
-bb.d I var_27c
 bb.e I goldMedalsCount
-bb.f I medalsCount
-bb.a()V sub_1b6
-bb.a()Z sub_b0
-bb.a()[I sub_144
-bb.a(I)V sub_1df
-bb.a(Lcq;)V sub_13
-bb.a([I)V sub_230
-bb.b()V sub_1d0
-bb.b()Z sub_fe
-bb.b()[I sub_1a5
-bb.c()V sub_27f
-bb.d()V sub_2a3
-bb.e()V sub_2ea
-bb.f()V updateMedalCounters
+bb.b [I newMedals
+bb.a [[I medalTresholds
+bb.a I killStreak
+bb.b I pirateKillStreak
+bb.a Z isDocked
+bb.f I unlockedMedalsCount
+bb.c I weaponsEquipped
+bb.d I maxCredits
+bb.b()Z gotAllGoldMedals
+bb.a()Z gotAllMedals
+bb.f()V countMedals
+bb.a()[I getMedals
+bb.b()[I getNewMedals
+bb.a()V incKills
+bb.b()V incPirateKills
+bb.e()V resetNewMedals
+bb.c()V init
+bb.a(I)V updateMaxCredits
+bb.a([I)V setMedals
+bb.d()V applyNewMedals
+bb.a(Lcq;)V checkForNewMedal
 bc AbyssEngine/Class_5bf
 bc.g I var_131
 bc.h I var_15a
@@ -1566,7 +1566,6 @@ bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; sub_e69
 bl.a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; sub_e74
 bl.a(ZJ)Lck; sub_4fd
 bl.a([Ljava/lang/String;)V sub_e5c
-bl.b()I sub_58d
 bl.b()Lck; sub_2bc
 bl.b()V nextCampaignMission
 bl.b()Z sub_4a0
@@ -1576,9 +1575,7 @@ bl.b(Lbe;)V sub_888
 bl.b(Lck;)V sub_2da
 bl.c()I sub_675
 bl.c()Lck; sub_339
-bl.c()V sub_530
 bl.c()Z sub_4b8
-bl.c(I)V sub_518
 bl.c(Lck;)V sub_37b
 bl.d()I sub_6ac
 bl.d(I)V sub_5e6
@@ -1621,6 +1618,9 @@ bl.a()Lch; getShip
 bl.a()Lbe; getStation
 bl.e()I getStationsVisited
 bl.d()V incStationsVisited
+bl.b()I getJumpgateUsed
+bl.c(I)V setJumpgateUsed
+bl.c()V jumpgateUsed
 bm AbyssEngine/Class_786
 bm.a(J)V sub_181
 bn AbyssEngine/Class_7bb
