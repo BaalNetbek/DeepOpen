@@ -3,19 +3,22 @@
 
 Attempt to recreate source code of Fishlabs games and their common core Abyss Engine for education and enternainment purpouses.
 
-Goals:
+Currently the essence of this repo is the [name mapping for GoF2](Recaf/GoF2/GoF2_JSR_1.0.4.mapping) version 1.0.4 (the last update for J2ME published for free by the fishes)
+___
+![progress chart](/extras/logger/progress_chart.png)
+### Goals
 * Deobufuscating GoF2 classes, fields and methods names using Recaf - now
 * Deobufuscating ther inner variables of methods - touched
 * Porting to other platforms. - propably will never happed
+___
 
-![progress chart](/extras/logger/progress_chart.png)
+### Want to contribute?
 
-Want to contribute?
-<ul>
 Software requirements:<br/>
-**Recaf 4**<br/>
-emulator (optional):<br/> 
-KEmulator - testing and dynamic analysis (I use latest [nnmod](https://nnp.nnchan.ru/kem/) but any not ancient verions will do)
+Linux, Windows or [an other one] <br/>
+**Recaf 4**: Java 22+ 64-bit <br/>
+Testing and dynamic analysis (emulator):<br/> 
+**KEmulator** ([nnmod](https://nnp.nnchan.ru/kem/) - has multiplatform version)
 
 Instrucions:
 1. Install [Recaf 4](https://github.com/Col-E/Recaf-Launcher/blob/master/MANUAL.md)
@@ -26,7 +29,7 @@ Instrucions:
     - Test buy running the .jar with KEmulator
     - Dynamic analysis:  tab *View*->  *Watches/Methods/Memory View/Log/Options...*
     - If testing went well: *Mapping* -> *Export* -> *Simple*
-</ul>
+
 
 More: <br/>
 [Pre Recaf attempts](/src/README.md)<br/>
