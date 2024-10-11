@@ -636,8 +636,7 @@ a.a(Laq;)V setupTexture
 a.b()V render
 a.c()V renderTransparent
 a.d()V setupMaterial
-aa AbyssEngine/Class_e
-aa.a F var_bf
+aa AbyssEngine/Player
 aa.a I var_7ae
 aa.a Lcd; var_4a2
 aa.a Lcl; var_46b
@@ -645,38 +644,39 @@ aa.a Lo; var_4d3
 aa.a Z var_3df
 aa.a [Laa; var_62
 aa.a [[Lba; var_30
-aa.b F var_1b2
 aa.b I var_803
 aa.b Z var_427
-aa.c F var_599
 aa.c I var_83e
-aa.c Z var_44c
 aa.d F var_5ec
-aa.d I var_e3
 aa.d Z var_54e
-aa.e I var_f2
-aa.e Z var_79f
-aa.f I var_13f
 aa.f Z var_380
-aa.g I var_14f
 aa.g Z var_3a5
-aa.h I var_1bf
 aa.h Z var_518
-aa.i I var_21e
-aa.i Z var_65c
-aa.j I var_22b
-aa.j Z var_716
-aa.k I var_261
 aa.k Z var_72f
-aa.l I var_295
-aa.l Z var_762
-aa.m I var_2d1
-aa.n I var_2f8
-aa.o I var_31f
 aa.p I var_608
 aa.q I var_63a
 aa.r I var_67c
-aa.s I var_6b6
+aa.c Z hidden
+aa.b F currentShield
+aa.g I maxHP
+aa.f I currentHP
+aa.e I maxEMPdurability
+aa.d I currentEMPdurability
+aa.a F boundingSphereRadius
+aa.j I maxArmorPoints
+aa.i I currentArmorPoints
+aa.h I maxShield
+aa.c F reamingNukeStun
+aa.e Z invincible
+aa.s I elapsedEMPstun
+aa.j Z stunnedEMP
+aa.l Z permanentFriend
+aa.i Z permanentEnemy
+aa.k I percentHP
+aa.l I percentShield
+aa.m I percentArmor
+aa.n I percentEMP
+aa.o I threeSecTick
 aa.a()F sub_892
 aa.a()I sub_49f
 aa.a()Lcd; sub_8db
@@ -725,7 +725,6 @@ aa.e()Z sub_ae3
 aa.e(I)V sub_406
 aa.e(Z)V sub_a98
 aa.f()I sub_66c
-aa.f()V sub_6a5
 aa.f(I)V sub_434
 aa.g()I sub_6d4
 aa.g(I)V sub_443
@@ -733,6 +732,7 @@ aa.h()I sub_6f7
 aa.h(I)V sub_b5e
 aa.i()I sub_73a
 aa.j()I sub_76e
+aa.f()V updatePercentages
 ab AbyssEngine/Record
 ab.a Lcb; agent
 ab.a Lck; mission
@@ -920,8 +920,7 @@ aj AbyssEngine/Class_198
 aj.a [Lcu; var_16
 aj.a(Lcu;)V sub_5c
 aj.b(Z)V sub_109
-ak AbyssEngine/Class_1ad
-ak.a J var_6d
+ak AbyssEngine/BigShip
 ak.a [Lcd; var_34b
 ak.a [Lw; var_59
 ak.b Laa; var_273
@@ -933,11 +932,12 @@ ak.f Lcd; var_1ee
 ak.g Lcd; var_263
 ak.l I var_281
 ak.m I var_31d
-ak.n I var_393
 ak.n Z var_87
-ak.o I var_3bc
-ak.o Z var_2d3
-ak.p I var_3ed
+ak.n I posX
+ak.o I posY
+ak.p I posZ
+ak.a J frametime
+ak.o Z destroyed
 ak.a()V sub_109
 ak.a(III)V squaredLength
 ak.a(III)Z sub_162
@@ -1462,10 +1462,10 @@ bi.n Z var_4d
 bi.a(III)V squaredLength
 bi.a(J)V sub_e6
 bi.g()V sub_25
-bj AbyssEngine/Class_6cc
-bj.a F var_ef
-bj.b F var_116
-bj.c F var_1ab
+bj AbyssEngine/Vec3f
+bj.a F x
+bj.b F y
+bj.c F z
 bk AbyssEngine/Class_6fc
 bk.a Lay; var_14
 bk.d Z var_39
@@ -1773,7 +1773,6 @@ bw AbyssEngine/Class_99d
 bw.a I var_8a8
 bw.a Lag; var_fd4
 bw.a Lbg; var_b26
-bw.a Lbj; var_d09
 bw.a Lcd; var_bc4
 bw.a Lcl; var_b8e
 bw.a Ldb; var_b73
@@ -1847,6 +1846,7 @@ bw.u Ljavax/microedition/lcdui/Image; var_69d
 bw.v Ljavax/microedition/lcdui/Image; var_6ff
 bw.w Ljavax/microedition/lcdui/Image; var_741
 bw.x Ljavax/microedition/lcdui/Image; var_781
+bw.a Lbj; floatVector
 bw.a()I sub_12d
 bw.a()Lo; sub_1bd
 bw.a()V sub_42
@@ -1937,7 +1937,6 @@ cb.a [B face
 cb.b I itemId
 cb.b Ljava/lang/String; var_70
 cb.b Z var_9cd
-cb.c I var_1f9
 cb.c Ljava/lang/String; var_ad
 cb.c Z var_4b9
 cb.d Ljava/lang/String; systemName
@@ -1948,7 +1947,6 @@ cb.f I stationId
 cb.f Ljava/lang/String; stationName
 cb.g I systemId
 cb.i I isTouched
-cb.m I var_62c
 cb.e I messageId
 cb.j I dialogueStage
 cb.d I sellingPrice
@@ -1956,6 +1954,8 @@ cb.l I diplomacyPrice
 cb.n I blueprintItemId
 cb.k I type
 cb.h I race
+cb.c I itemQuantity
+cb.m I secretSystemId
 cb.a()I sub_112
 cb.a()Lck; sub_4f9
 cb.a()Ljava/lang/String; getFullName
@@ -2074,11 +2074,11 @@ cf.h()Z sub_3a8
 cf.i()Z sub_3e2
 cf.j()Z sub_1d8
 cg AbyssEngine/Explosion
-cg.a I var_26a
 cg.a Lag; var_366
 cg.a [I var_158
 cg.a [Lag; explosions
 cg.b [I var_1af
+cg.a I animationPlayTime
 cg.a()V sub_36
 cg.a()Z sub_154
 cg.a(III)V sub_141
@@ -2316,7 +2316,7 @@ cl.g(Lcd;)Lcd; sub_b11
 cl.h()I sub_7a8
 cl.h(Lcd;)Lcd; sub_b26
 cl.i()I sub_7f1
-cm AbyssEngine/Class_ee3
+cm AbyssEngine/Asteroid
 cm.a Lcl; var_80b
 cm.c Lcd; var_1c5
 cm.d Lag; var_956
@@ -2395,8 +2395,7 @@ cp.a J var_1b5
 cp.a()V sub_109
 cp.a(III)Z sub_162
 cp.a(J)V sub_e6
-cq AbyssEngine/Class_108b
-cq.a F var_d6b
+cq AbyssEngine/PlayerShip
 cq.a I var_9be
 cq.a J var_b37
 cq.a Laa; var_425
@@ -2416,7 +2415,6 @@ cq.a Lcl; var_d58
 cq.a Lda; crosshair
 cq.a Ldb; var_887
 cq.a Lo; var_ddc
-cq.a Lu; var_10a4
 cq.a Lv; var_15a9
 cq.a Z var_bb6
 cq.a [[I var_33c
@@ -2427,7 +2425,6 @@ cq.b Lag; var_749
 cq.b Lar; var_5f8
 cq.b Lcd; var_795
 cq.b Lo; var_11a4
-cq.b Z var_c49
 cq.b [[I var_16c0
 cq.c F var_106f
 cq.c I var_1f0
@@ -2441,19 +2438,13 @@ cq.d J var_bd4
 cq.d Lar; var_f7c
 cq.d Lcd; var_e91
 cq.d Z var_cdc
-cq.e I var_a1a
 cq.e Lar; var_fd2
 cq.e Lcd; var_1203
 cq.e Z var_cfd
-cq.f I var_a7c
 cq.f Z var_dbd
-cq.g I var_aa6
 cq.g Z var_e30
-cq.h I var_acc
 cq.h Z var_eb4
 cq.i I var_ba3
-cq.i Z var_ff5
-cq.j I var_c11
 cq.j Z var_107d
 cq.k I var_c5b
 cq.k Z var_11b7
@@ -2472,10 +2463,19 @@ cq.q Z var_1686
 cq.r I var_140d
 cq.r Z var_16ef
 cq.s I var_1475
-cq.t I var_14bd
-cq.u I var_14f6
 cq.v I var_1510
 cq.w I var_16ce
+cq.b Z boostActive
+cq.j I boostTime
+cq.a F handling
+cq.a Lu; cloak
+cq.f I relYawSpeed
+cq.e I relPitchSpeed
+cq.g I roll
+cq.h I selectedSecondaryIconId
+cq.t I cloakTime
+cq.u I cloakDuration
+cq.i Z lookBack
 cq.a()F sub_3f6
 cq.a()I sub_378
 cq.a()Lbg; sub_647
@@ -2967,7 +2967,6 @@ o.b Z var_94b
 o.c I var_3f3
 o.c Lag; var_aa5
 o.c Z var_99f
-o.d I var_45a
 o.d Z var_9d8
 o.e I var_7aa
 o.e Z var_af6
@@ -2985,6 +2984,7 @@ o.k I var_dbe
 o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
+o.d I race
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
