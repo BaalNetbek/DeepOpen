@@ -87,7 +87,7 @@ Main/c.a(I)Z sub_5c
 Main/c.a(II)V sub_bc
 Main/c.a(ILjava/lang/String;Ljavax/microedition/lcdui/Image;)V sub_10b
 Main/c.a(Z)V sub_179
-Main/d Main/Class_c8
+Main/d Main/Hangar_
 Main/d.a I var_2a5
 Main/d.a LMain/b; var_1c0
 Main/d.a LMain/k; var_691
@@ -771,7 +771,7 @@ ac.a(Lap;Laf;)V sub_11b
 ac.a(Laq;)V sub_1a9
 ac.a([I[I)V sub_176
 ac.b()V render
-ad AbyssEngine/Class_69
+ad AbyssEngine/IndexManager
 ad.a Ljava/lang/String; pathMeshes
 ad.a [B CHAR_KEITH
 ad.a [Lch; ships
@@ -781,6 +781,7 @@ ad.a [[B CHAR_IMAGES
 ad.a [[S barMeshIDs
 ad.b Ljava/lang/String; pathTextures
 ad.b [B CHAR_COMPUTER
+ad.b [S meshIDs
 ad.b [[S hangarMeshIDs
 ad.c [B CHAR_BRENT
 ad.d [B CHAR_GUNANT
@@ -802,11 +803,11 @@ ad.s [B CHAR_TERRAN_OFFICER
 ad.t [B CHAR_VOID
 ad.u [B CHAR_KHADOR
 ad.v [B CHAR_NIVELIAN_SECURITY
-ad.b [S meshIDs
 ad.a()Ljava/lang/String; sub_139
 ad.a()V sub_27
 ad.a()[Lch; getShips
 ad.a()[Lu; getItems
+ad.a(I)I pickShipId
 ad.a(I)Ljava/lang/String; getItemName
 ad.a(I)[I sub_c2
 ad.a(II)Lar; sub_161
@@ -814,7 +815,6 @@ ad.a(IZ)Ljava/lang/String; sub_116
 ad.a(Lar;I)V sub_1b8
 ad.b()V sub_1db
 ad.c()V freeResources
-ad.a(I)I pickShipId
 ae AbyssEngine/Class_86
 ae.a(Le;)Ljava/util/Vector; sub_5e
 ae.a([Lcw;II)[I sub_52
@@ -1128,8 +1128,8 @@ at.x Z var_6be
 at.y Z var_71f
 at.z Z var_745
 at.a()V sub_8a
-at.b()V sub_d1
 at.a(I)V vibrate
+at.b()V sub_d1
 au AbyssEngine/Class_3cd
 au.a LMain/GOF2MIDlet; var_db
 au.a Lao; var_12f
@@ -1312,31 +1312,31 @@ ba.b()V sub_30a
 ba.b(I)V sub_f4
 ba.c()V sub_341
 bb AbyssEngine/Medals
-bb.a [I medals
-bb.b Z hasAll
-bb.c Z hasAllGold
-bb.e I goldMedalsCount
-bb.b [I newMedals
-bb.a [[I medalTresholds
 bb.a I killStreak
-bb.b I pirateKillStreak
 bb.a Z isDocked
-bb.f I unlockedMedalsCount
+bb.a [I medals
+bb.a [[I medalTresholds
+bb.b I pirateKillStreak
+bb.b Z hasAll
+bb.b [I newMedals
 bb.c I weaponsEquipped
+bb.c Z hasAllGold
 bb.d I maxCredits
-bb.b()Z gotAllGoldMedals
-bb.a()Z gotAllMedals
-bb.f()V countMedals
-bb.a()[I getMedals
-bb.b()[I getNewMedals
+bb.e I goldMedalsCount
+bb.f I unlockedMedalsCount
 bb.a()V incKills
-bb.b()V incPirateKills
-bb.e()V resetNewMedals
-bb.c()V init
+bb.a()Z gotAllMedals
+bb.a()[I getMedals
 bb.a(I)V updateMaxCredits
-bb.a([I)V setMedals
-bb.d()V applyNewMedals
 bb.a(Lcq;)V checkForNewMedal
+bb.a([I)V setMedals
+bb.b()V incPirateKills
+bb.b()Z gotAllGoldMedals
+bb.b()[I getNewMedals
+bb.c()V init
+bb.d()V applyNewMedals
+bb.e()V resetNewMedals
+bb.f()V countMedals
 bc AbyssEngine/Class_5bf
 bc.g I var_131
 bc.h I var_15a
@@ -1360,11 +1360,14 @@ be.a [Lu; hangarItems
 be.b I systemId
 be.c I planetTextureId
 be.d I tecLevel
+be.a()I getSystemId
+be.a()Ljava/lang/String; getName
 be.a()V sub_1a2
 be.a()Z sub_fc
 be.a()[Lcb; sub_393
 be.a()[Lch; sub_241
 be.a()[Lu; sub_283
+be.a(Lbe;)Z equals
 be.a(Lu;)V sub_334
 be.a([Lcb;)V sub_30f
 be.a([Lch;)V sub_2df
@@ -1372,10 +1375,7 @@ be.a([Lu;)V sub_2c1
 be.b()I getId
 be.b()Z sub_175
 be.c()I sub_15f
-be.d()I sub_1ea
-be.a()Ljava/lang/String; getName
-be.a()I getSystemId
-be.a(Lbe;)Z equals
+be.d()I getTecLevel
 bf AbyssEngine/Class_601
 bf.a [I var_40
 bf.b [I var_9e
@@ -1478,30 +1478,54 @@ bk.b()V render
 bk.c(III)V sub_1c0
 bk.c(Lcd;)V sub_16
 bl AbyssEngine/Status
+bl.A I credits
+bl.B I rating
+bl.C I kills
+bl.D I missionsCount
+bl.E I level
+bl.F I lastXP
+bl.G I stationsVisited
+bl.H I bluePrintsProduced
 bl.I I var_469
+bl.J I jumpgatesUsed
+bl.K I cargoSalvaged
 bl.L I var_510
 bl.M I currentCampaignMissionIndex
 bl.a I var_906
+bl.a J lastLoadingTime
 bl.a Lbe; var_bda
+bl.a Lch; playersShip
 bl.a Lck; var_66d
+bl.a Lcs; standing
 bl.a Lcw; currentSolarSystem
 bl.a [B var_8f8
 bl.a [I var_a0a
 bl.a [Lbe; lastVisitedStations
+bl.a [Lbp; waitingGoods
 bl.a [Lcb; SpecialAgents
 bl.a [Lck; lastStoryMissions
+bl.a [Li; blueprints
+bl.a [Ljava/lang/String; wingmenNames
 bl.a [Z var_9e9
+bl.b I wingmenTimeRemaining
+bl.b J timeSpentLoading
 bl.b Lbe; currentStation
 bl.b [B var_a8c
 bl.b [I var_a40
+bl.b [Ljava/lang/String; curSolarSysStationNames
 bl.b [Z var_d18
 bl.c I var_9a8
 bl.c J var_cc7
 bl.c [B var_ad7
+bl.c [I curSolarSysStationIDs
 bl.c [Z var_d2b
+bl.d I shield
 bl.d J var_f55
 bl.d [Z var_e7d
+bl.e I additionalArmour
+bl.e J playTime
 bl.e [Z var_ecc
+bl.f I baseArmour
 bl.g I var_be5
 bl.h I var_c44
 bl.i I var_c7d
@@ -1522,39 +1546,25 @@ bl.w I var_10b9
 bl.x I var_1116
 bl.y I var_112f
 bl.z I var_1155
-bl.A I credits
-bl.e J playTime
-bl.C I kills
-bl.D I missionsCount
-bl.E I level
-bl.G I stationsVisited
-bl.H I bluePrintsProduced
-bl.J I jumpgatesUsed
-bl.K I cargoSalvaged
-bl.a Lch; playersShip
-bl.a [Li; blueprints
-bl.F I lastXP
-bl.B I rating
-bl.f I baseArmour
-bl.d I shield
-bl.e I additionalArmour
-bl.a Lcs; standing
-bl.b I wingmenTimeRemaining
-bl.a [Lbp; waitingGoods
-bl.b [Ljava/lang/String; curSolarSysStationNames
-bl.c [I curSolarSysStationIDs
-bl.a [Ljava/lang/String; wingmenNames
-bl.a J lastLoadingTime
-bl.b J timeSpentLoading
 bl.a()I sub_428
+bl.a()J getPlayingTime
+bl.a()Lbe; getStation
+bl.a()Lch; getShip
 bl.a()Lck; sub_244
 bl.a()Lcs; sub_d31
+bl.a()Lcw; getSystem
+bl.a()V incMissionCount
+bl.a()Z gameWon
 bl.a()[I sub_8b0
+bl.a()[Lbe; getLastVisitedStations
 bl.a()[Lbp; sub_ac
+bl.a()[Lcb; getSpecialAgents
+bl.a()[Li; getBluePrints
 bl.a()[Ljava/lang/String; sub_8a1
 bl.a()[Z sub_c0
 bl.a(I)V sub_236
 bl.a(IZ)V sub_e9
+bl.a(J)V setPlayingTime
 bl.a(Lbe;)Lbe; sub_197
 bl.a(Lbe;)V sub_1e5
 bl.a(Lch;)V sub_7e3
@@ -1563,64 +1573,54 @@ bl.a(Li;)V sub_5c
 bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; sub_e69
 bl.a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; sub_e74
 bl.a(ZJ)Lck; sub_4fd
+bl.a([Lbe;)V setLastVisitedStations
 bl.a([Ljava/lang/String;)V sub_e5c
+bl.b()I getJumpgateUsed
 bl.b()Lck; sub_2bc
 bl.b()V nextCampaignMission
 bl.b()Z sub_4a0
 bl.b()[Ljava/lang/String; sub_e44
 bl.b(I)V sub_3d5
+bl.b(J)V incPlayingTime
 bl.b(Lbe;)V sub_888
 bl.b(Lck;)V sub_2da
 bl.c()I sub_675
 bl.c()Lck; sub_339
+bl.c()V jumpgateUsed
 bl.c()Z sub_4b8
+bl.c(I)V setJumpgateUsed
+bl.c(Lck;)V startStoryMission
 bl.d()I sub_6ac
+bl.d()V incStationsVisited
 bl.d(I)V sub_5e6
 bl.d(Lck;)V sub_70a
-bl.e(I)V sub_644
-bl.f(I)V sub_690
-bl.g()V sub_cd5
-bl.h()V sub_e85
-bl.k()I sub_cc1
-bl.q(I)V sub_ca6
-bl.a()[Lbe; getLastVisitedStations
-bl.a([Lbe;)V setLastVisitedStations
-bl.a()[Lcb; getSpecialAgents
-bl.p(I)V setCredits
-bl.o(I)V changeCredits
-bl.n(I)V setStationsVisited
-bl.m(I)V incGoodsProduced
-bl.g()I getGoodsProduced
-bl.l(I)V setGoodsProduced
-bl.k(I)V setLastXP
-bl.e()V checkForLevelUp
-bl.h()I getRating
-bl.i()I getLastXP
-bl.j()I getKills
-bl.f()V setPirateKills
-bl.l()I getMissionCount
-bl.m()I getLevel
-bl.a()[Li; getBluePrints
-bl.b(J)V incPlayingTime
-bl.a()J getPlayingTime
-bl.j(I)V setLevel
-bl.i(I)V setMissionCount
-bl.h(I)V setKills
-bl.a(J)V setPlayingTime
-bl.g(I)V setRating
-bl.f()I getCredits
-bl.a()Lcw; getSystem
-bl.a()Lch; getShip
-bl.a()Lbe; getStation
 bl.e()I getStationsVisited
-bl.d()V incStationsVisited
-bl.b()I getJumpgateUsed
-bl.c(I)V setJumpgateUsed
-bl.c()V jumpgateUsed
-bl.c(Lck;)V startStoryMission
-bl.a()V incMissionCount
+bl.e()V checkForLevelUp
+bl.e(I)V sub_644
+bl.f()I getCredits
+bl.f()V setPirateKills
+bl.f(I)V sub_690
+bl.g()I getGoodsProduced
+bl.g()V sub_cd5
+bl.g(I)V setRating
+bl.h()I getRating
+bl.h()V sub_e85
+bl.h(I)V setKills
+bl.i()I getLastXP
 bl.i()V startNewGame
-bl.a()Z gameWon
+bl.i(I)V setMissionCount
+bl.j()I getKills
+bl.j(I)V setLevel
+bl.k()I sub_cc1
+bl.k(I)V setLastXP
+bl.l()I getMissionCount
+bl.l(I)V setGoodsProduced
+bl.m()I getLevel
+bl.m(I)V incGoodsProduced
+bl.n(I)V setStationsVisited
+bl.o(I)V changeCredits
+bl.p(I)V setCredits
+bl.q(I)V sub_ca6
 bm AbyssEngine/Class_786
 bm.a(J)V sub_181
 bn AbyssEngine/Class_7bb
@@ -1668,10 +1668,10 @@ bo.a(ILjava/lang/String;I)V setupSkybox_
 bo.a(ILjava/lang/String;II)V sub_ad
 bo.b()V sub_18f
 bp AbyssEngine/ProducedGood
-bp.a Ljava/lang/String; stationName
-bp.c I index
 bp.a I stationId
+bp.a Ljava/lang/String; stationName
 bp.b I producedQuantity
+bp.c I index
 bq AbyssEngine/Class_85e
 bq.a I var_51
 bq.a Lan; var_a
@@ -2092,9 +2092,11 @@ ch.a I id
 ch.a Z repairBot
 ch.a [I itemTypeSlots
 ch.a [Lu; equipped
+ch.a [S previewZoomOut
 ch.b I baseHP
 ch.b Z jumpDrive
 ch.b [Lu; cargoHold
+ch.b [S previewPivotShift
 ch.c I basePrice
 ch.c Z cloak
 ch.d I baseCargo
@@ -2111,18 +2113,14 @@ ch.n I extendedHandlingPercent
 ch.o I var_84c
 ch.p I firePower
 ch.q I race
-ch.b [S previewPivotShift
-ch.a [S previewZoomOut
 ch.a()F getHandling
 ch.a()I getRace
 ch.a()Lch; cloneBase
 ch.a()V sub_79a
 ch.a()Z hasBooster
-ch.a()[Lu; sub_5e5
 ch.a(I)I sub_9ca
 ch.a(I)Lu; sub_6a6
 ch.a(I)V setRace
-ch.a(I)Z sub_6ed
 ch.a(I)[Lu; getEquipment
 ch.a(II)Z sub_7fc
 ch.a(Lu;)V sub_755
@@ -2131,14 +2129,11 @@ ch.a([Lu;)V sub_64d
 ch.b()I getIndex
 ch.b()V sub_a8f
 ch.b()Z hasJumpDrive
-ch.b()[Lu; sub_621
 ch.b(I)I countEquippedOfType
 ch.b(I)Z sub_7a6
 ch.b(Lu;)V sub_880
 ch.b(Lu;I)V sub_98c
 ch.b([Lu;)V sub_80a
-ch.c()I sub_150
-ch.c()V sub_acc
 ch.c()Z hasCloak
 ch.c(I)Z sub_839
 ch.c(Lu;)V sub_908
@@ -2157,13 +2152,18 @@ ch.j()I getBoostPercent
 ch.k()I getBoostDuration
 ch.l()I getBoostRegenTime
 ch.m()I getAddHandlingPercent
-ch.n()I sub_54b
-ch.o()I sub_584
-ch.p()I sub_58e
-ch.q()I sub_5bf
 ch.r()I sub_84d
 ch.s()I sub_982
 ch.t()I sub_9e3
+ch.c()V adjustPrice
+ch.c()I getPrice
+ch.n()I getFirePower
+ch.o()I getBaseLoad
+ch.p()I getCargoPlus
+ch.a()[Lu; getEquipment
+ch.b()[Lu; getCargo
+ch.q()I getCurrentLoad
+ch.a(I)Z isSimilarEquiped
 ci AbyssEngine/Class_d90
 ci.a C var_461
 ci.a I var_25b
@@ -2198,6 +2198,7 @@ ck.a I missionType_
 ck.a Lcb; client
 ck.a Lck; var_dc
 ck.a Ljava/lang/String; clientName
+ck.a Z startedStoryMission
 ck.a [B clientFace
 ck.b I clientRace
 ck.b Ljava/lang/String; var_2d5
@@ -2212,7 +2213,6 @@ ck.f I difficulty
 ck.g I commodityId
 ck.h I commodityAmmout
 ck.i I var_71d
-ck.a Z startedStoryMission
 ck.a()I getProductionGoodIndex
 ck.a()Lcb; sub_70e
 ck.a()Ljava/lang/String; sub_486
@@ -2236,6 +2236,7 @@ ck.c(Z)V sub_208
 ck.d()I getType
 ck.d()Z sub_22e
 ck.d(I)V sub_7f3
+ck.d(Z)V setStartedStoryMission
 ck.e()I getClientRace
 ck.e()Z sub_453
 ck.f()I getReward
@@ -2244,7 +2245,6 @@ ck.g()I sub_50f
 ck.g()Z sub_5d6
 ck.h()I getTargetStationIndex
 ck.i()I sub_6e3
-ck.d(Z)V setStartedStoryMission
 cl AbyssEngine/Matrix
 cl.a I scaleX
 cl.a Lcd; var_93d
@@ -2558,20 +2558,20 @@ cr.a(Ljavax/microedition/lcdui/Graphics;)V sub_48
 cr.b()V sub_f6
 cs AbyssEngine/Standing
 cs.a [I stand
-cs.a(I)V sub_d7
-cs.b(I)V sub_24a
-cs.a()[I getStanding
-cs.a(I)Z isEnemy
-cs.b(I)Z isFriend
-cs.b(I)I oppositeFaction
 cs.a()Z atWar
+cs.a()[I getStanding
+cs.a(I)I getStanding
+cs.a(I)V sub_d7
+cs.a(I)Z isEnemy
 cs.a(II)V standingChange
+cs.a([I)V setStanding
+cs.b(I)I oppositeFaction
+cs.b(I)V sub_24a
+cs.b(I)Z isFriend
 cs.b(II)V changeStanding
 cs.c(I)V incStanding
-cs.e(I)V incStanding2
 cs.d(I)V decStanding
-cs.a(I)I getStanding
-cs.a([I)V setStanding
+cs.e(I)V incStanding2
 ct AbyssEngine/Class_11ab
 ct.g I var_165
 ct.h I var_198
@@ -2612,6 +2612,7 @@ cw.b()I sub_ee
 cw.b()Z sub_42a
 cw.b()[I sub_463
 cw.b(I)Z sub_49d
+cw.c()I getRace
 cw.c()Z sub_4fa
 cw.d()I sub_168
 cw.e()I sub_1c8
@@ -2619,7 +2620,6 @@ cw.f()I sub_234
 cw.g()I sub_28e
 cw.h()I sub_2ab
 cw.i()I sub_309
-cw.c()I getRace
 cx AbyssEngine/Class_137d
 cx.a F var_486
 cx.a I var_758
@@ -2842,30 +2842,30 @@ h.d(I)I invSqrt
 h.e(I)I abs
 i AbyssEngine/BluePrint
 i.a I productId
-i.f I tonsPerProduction
-i.a [I missingComponentsTons
+i.a Ljava/lang/String; productionStationName
 i.a Z unlocked
+i.a [I missingComponentsTons
+i.b I investedCredits
 i.c I timesProduced
 i.d I productionStationId
-i.a Ljava/lang/String; productionStationName
-i.b I investedCredits
 i.e I producedTons
-i.b()I getProductionStationId
-i.a()Ljava/lang/String; getProductionStationName
-i.c()I getTonsPerProduction
-i.d()I getTonsPerProduction2
-i.a()V unlock
-i.c(I)I getRemainingAmount
-i.a(I)I getTotalAmount
-i.b(I)I getCurrentAmount
-i.b()[I getQuantityList
-i.a()[I getIngredientList
-i.a()I getIndex
-i.a()Z isComplete
-i.a(Lu;II)V startProduction
+i.f I tonsPerProduction
 i.a()F getCompletionRate
-i.b()Z isStarted
+i.a()I getIndex
+i.a()Ljava/lang/String; getProductionStationName
+i.a()V unlock
+i.a()Z isComplete
+i.a()[I getIngredientList
+i.a(I)I getTotalAmount
+i.a(Lu;II)V startProduction
+i.b()I getProductionStationId
 i.b()V finishProduction
+i.b()Z isStarted
+i.b()[I getQuantityList
+i.b(I)I getCurrentAmount
+i.c()I getTonsPerProduction
+i.c(I)I getRemainingAmount
+i.d()I getTonsPerProduction2
 j AbyssEngine/Dialogue
 j.a I type
 j.a Laz; popup
