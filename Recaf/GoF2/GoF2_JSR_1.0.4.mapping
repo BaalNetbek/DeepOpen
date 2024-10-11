@@ -220,7 +220,6 @@ Main/i.a Z var_846
 Main/i.a [I var_353
 Main/i.a [Ljava/lang/String; var_2b7
 Main/i.a [[Ljava/lang/Object; var_327
-Main/i.b I var_188
 Main/i.b Ljava/lang/String; var_8e3
 Main/i.b Z var_4d4
 Main/i.c I var_215
@@ -239,6 +238,7 @@ Main/i.n I var_78b
 Main/i.o I var_7e0
 Main/i.p I var_445
 Main/i.q I var_8bb
+Main/i.b I posY
 Main/i.a()Ljava/lang/Object; sub_1a3
 Main/i.a()V sub_6c
 Main/i.a(I)V sub_8b
@@ -306,7 +306,6 @@ Main/l Main/OptionsWindow
 Main/l.a I var_191
 Main/l.a LMain/q; var_6eb
 Main/l.a Laz; var_4eb
-Main/l.a Lbu; var_70e
 Main/l.a Lci; var_817
 Main/l.a Ljava/lang/String; var_467
 Main/l.a Ljavax/microedition/lcdui/Image; var_34e
@@ -319,7 +318,6 @@ Main/l.b Ljava/lang/String; var_696
 Main/l.b Ljavax/microedition/lcdui/Image; var_b34
 Main/l.b Z var_600
 Main/l.c I var_2a3
-Main/l.c Lbu; var_768
 Main/l.c Ljava/lang/String; var_992
 Main/l.c Z var_941
 Main/l.d I var_373
@@ -328,14 +326,16 @@ Main/l.d Ljava/lang/String; var_a15
 Main/l.d Z var_b06
 Main/l.e I var_3be
 Main/l.e Ljava/lang/String; var_a9e
-Main/l.f I var_404
-Main/l.g I var_459
-Main/l.h I var_879
 Main/l.i I var_8ca
 Main/l.j I var_8e4
 Main/l.k I var_911
 Main/l.l I var_ad1
 Main/l.m I var_b51
+Main/l.f I selectedRow
+Main/l.g I subMenu
+Main/l.h I frameTime
+Main/l.c Lbu; controls
+Main/l.a Lbu; about
 Main/l.a()V sub_e6
 Main/l.a()Z sub_148
 Main/l.a(I)V sub_1e5
@@ -1070,11 +1070,6 @@ as.a(I)V renderScene
 as.b()V loadResources
 as.b(I)V handleKeystate
 at AbyssEngine/GameStatus
-at.A Z var_787
-at.B Z var_7dc
-at.C Z var_82a
-at.D Z var_884
-at.E Z var_8b6
 at.F Z var_9da
 at.G Z var_bd5
 at.a I musicVolume
@@ -1098,38 +1093,43 @@ at.c Z vibrationOn
 at.d I var_9c3
 at.d Z invertedControlsOn
 at.e I var_9fc
-at.e Z var_210
 at.f I screenWidth
 at.f Z var_264
 at.g I screenHeight
 at.g Z var_2b3
 at.h Z var_2cc
 at.i Z var_2e8
-at.j Z var_2f2
-at.k Z var_3a6
-at.l Z var_3e5
 at.m Z var_40c
-at.n Z var_416
-at.o Z var_462
-at.p Z var_4a3
-at.q Z var_4e4
-at.r Z var_529
 at.s Z var_554
-at.t Z var_5ad
-at.u Z var_610
-at.v Z var_65d
 at.var_953 Ljavax/microedition/lcdui/Display; display
 at.var_960 Lao; loadingScreen
 at.var_a65 Ljavax/microedition/lcdui/Graphics; graphics
 at.var_aa1 Ljavax/microedition/midlet/MIDlet; midlet
 at.var_b6d Ljava/util/Random; random
-at.w Z var_697
-at.x Z var_6be
-at.y Z var_71f
-at.z Z var_745
-at.a()V sub_8a
+at.t Z boosterHelpShown
+at.D Z jumpDriveHelpShown
+at.E Z cloakHelpShown
+at.C Z interplanetHelpShown
+at.r Z wingmenHelpShown
+at.y Z reputationHelpShown
+at.n Z miningHelpShown
+at.o Z asteroidHelpShown
+at.q Z cargoFullHelpShown
+at.u Z statusHelpShown
+at.p Z missionsHelpShown
+at.l Z systemMapHelpShown
+at.k Z galaxyMapHelpShown
+at.j Z barHelpShown
+at.e Z shopHelpShown
+at.w Z fanWingmenNoticeShown
+at.x Z voidxNoticeShown
+at.v Z medalsHelpShown
+at.z Z buyingHelpShown
+at.A Z itemMountingHelpShown
+at.B Z itemMounting2HelpShown
 at.a(I)V vibrate
 at.b()V sub_d1
+at.a()V resetHelp
 au AbyssEngine/Class_3cd
 au.a LMain/GOF2MIDlet; var_db
 au.a Lao; var_12f
