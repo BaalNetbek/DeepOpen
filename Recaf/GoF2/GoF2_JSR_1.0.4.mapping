@@ -697,7 +697,7 @@ aa.a(IZ)V sub_914
 aa.a(J)V sub_c78
 aa.a(Lcd;)Lcd; sub_a3c
 aa.a(Lo;)V sub_1a0
-aa.a(Z)V operatorEquals
+aa.a(Z)V sub_000
 aa.a([Laa;)V sub_218
 aa.b()F sub_8c2
 aa.b()I sub_4f2
@@ -993,7 +993,7 @@ am.a Lcd; center
 am.a(IIII)V sub_7f
 am.a(Lam;)V sub_52
 am.a(Lcd;I)V sub_9f
-am.b(Lam;)V operatorEquals
+am.b(Lam;)V set
 an AbyssEngine/Class_23e
 an.a I var_1b8
 an.a J var_18f
@@ -1137,7 +1137,7 @@ au.a Las; var_aa
 au.a()Las; sub_28
 au.a()V sub_54
 au.a(I)V sub_71
-au.a(Las;)V operatorEquals
+au.a(Las;)V sub_001
 au.b(I)V sub_a1
 av AbyssEngine/Class_3e2
 av.a I var_42
@@ -2646,13 +2646,13 @@ cy.e I var_1ef
 cy.a(Ljava/lang/String;I)Ljava/lang/String; sub_159
 cy.b(Z)V sub_109
 cy.g(I)V sub_48
-cz AbyssEngine/Class_1440
-cz.a I var_319
-cz.a [Lag; var_c9
-cz.a()V sub_24
+cz AbyssEngine/MeshArray
+cz.a I size
+cz.a [Lag; meshes
 cz.a(J)V sub_4a
-cz.a(Lag;)V operatorEquals
-cz.b()V sub_56
+cz.a(Lag;)V append
+cz.b()V render
+cz.a()V reset
 d AbyssEngine/Class_cda
 d.o I var_6b
 d.p I var_81
