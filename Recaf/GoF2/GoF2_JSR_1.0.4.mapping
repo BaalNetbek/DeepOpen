@@ -87,7 +87,7 @@ Main/c.a(I)Z sub_5c
 Main/c.a(II)V sub_bc
 Main/c.a(ILjava/lang/String;Ljavax/microedition/lcdui/Image;)V sub_10b
 Main/c.a(Z)V sub_179
-Main/d Main/Hangar_
+Main/d Main/Bar
 Main/d.a I var_2a5
 Main/d.a LMain/b; var_1c0
 Main/d.a LMain/k; var_691
@@ -123,8 +123,8 @@ Main/d.a(II)V sub_107
 Main/d.a(Z)V sub_1db
 Main/d.b()V sub_7e
 Main/d.c()V sub_169
-Main/e Main/Class_73
-Main/e.a Ljavax/microedition/lcdui/game/Sprite; var_35
+Main/e Main/StatusWindow
+Main/e.a Ljavax/microedition/lcdui/game/Sprite; sprite
 Main/e.a()V sub_6c
 Main/e.a(Ljava/lang/Object;I)V sub_e4
 Main/e.b()V sub_9e
@@ -140,32 +140,32 @@ Main/f.a()Z isLoaded
 Main/f.a(I)V renderScene
 Main/f.b()V loadResources
 Main/f.b(I)V handleKeystate
-Main/g Main/Class_364
-Main/g.a I var_3ca
+Main/g Main/StatusBlock
 Main/g.a LMain/e; var_14b
-Main/g.a Laz; var_68
 Main/g.a Ljavax/microedition/lcdui/Image; var_372
 Main/g.a Ljavax/microedition/lcdui/game/Sprite; var_22c
-Main/g.a Z var_1e
 Main/g.a [Ljava/lang/String; var_1d1
 Main/g.a [Ljavax/microedition/lcdui/Image; var_51c
-Main/g.b I var_3d4
 Main/g.b Ljavax/microedition/lcdui/Image; var_3b2
 Main/g.b Ljavax/microedition/lcdui/game/Sprite; var_288
 Main/g.b [Ljava/lang/String; var_1de
-Main/g.c I var_403
 Main/g.c Ljavax/microedition/lcdui/game/Sprite; var_2e3
-Main/g.d I var_490
 Main/g.d Ljavax/microedition/lcdui/game/Sprite; var_33f
-Main/g.e I var_4d9
-Main/g.f I var_4e3
-Main/g.g I var_4f3
+Main/g.a Z infoOpen
+Main/g.a Laz; infoMedal
+Main/g.g I scrollPos
+Main/g.a I posY
+Main/g.c I posX
+Main/g.b I scrollRows
+Main/g.d I width
+Main/g.e I height
+Main/g.f I scrollThumbSize
 Main/g.a()V sub_37
 Main/g.a(I)Z sub_8f
 Main/g.a(II)V sub_d8
 Main/g.a(ILjava/lang/String;)V sub_a2
 Main/g.b()V sub_6d
-Main/h Main/Class_45d
+Main/h Main/ThemedWindow
 Main/h.a Laz; var_5fb
 Main/h.a Li; var_6d4
 Main/h.a Ljava/lang/String; var_3bf
@@ -214,7 +214,7 @@ Main/h.i()V sub_6b
 Main/h.j()V sub_238
 Main/h.k()V sub_307
 Main/h.l()V sub_171
-Main/i Main/Class_419
+Main/i Main/TabbedWindow
 Main/i.a I var_c
 Main/i.a Z var_846
 Main/i.a [I var_353
@@ -302,7 +302,7 @@ Main/k.a(II)V sub_7c
 Main/k.b()V loadResources
 Main/k.b(I)V handleKeystate
 Main/k.c()V sub_2c
-Main/l Main/Class_33f
+Main/l Main/OptionsWindow
 Main/l.a I var_191
 Main/l.a LMain/q; var_6eb
 Main/l.a Laz; var_4eb
@@ -355,7 +355,7 @@ Main/l.f()V sub_33
 Main/l.g()V sub_1be
 Main/l.h()V sub_26b
 Main/l.i()V sub_299
-Main/m Main/Class_2ee
+Main/m Main/Hangar
 Main/m.a I var_1c9
 Main/m.a J var_28e
 Main/m.a LMain/b; var_35c
@@ -461,7 +461,7 @@ Main/o.e()V sub_bf
 Main/o.f()V sub_11d
 Main/o.g()V sub_17e
 Main/o.h()V sub_225
-Main/p Main/Class_216
+Main/p Main/InsideStation
 Main/p.a I var_14a
 Main/p.a J var_60
 Main/p.a LMain/c; var_78a
@@ -475,29 +475,29 @@ Main/p.a LMain/r; var_85d
 Main/p.a Laz; var_5ab
 Main/p.a Lck; var_899
 Main/p.a Lj; var_7a6
-Main/p.a Ljavax/microedition/lcdui/Image; var_224
-Main/p.a Z var_329
+Main/p.a Ljavax/microedition/lcdui/Image; factionLogo
+Main/p.a Z menuOpen
 Main/p.a [I var_179
 Main/p.a [[I var_abd
-Main/p.b I var_8e7
+Main/p.b I menuPosX
 Main/p.b J var_9f
-Main/p.b Lj; var_814
-Main/p.b Z var_382
-Main/p.c I var_96e
+Main/p.b Lj; help
+Main/p.b Z optionsOpen
+Main/p.c I menuPosY
 Main/p.c J var_d4
 Main/p.c Z var_3ba
-Main/p.d I var_97c
+Main/p.d I menuWidth
 Main/p.d J var_101
-Main/p.d Z var_3f5
+Main/p.d Z missionsOpen
 Main/p.e I var_b11
 Main/p.e J var_139
-Main/p.e Z var_402
+Main/p.e Z barOpen
 Main/p.f I var_b98
-Main/p.f Z var_420
+Main/p.f Z hangarOpen
 Main/p.g I var_bcc
-Main/p.g Z var_466
+Main/p.g Z mapOpen
 Main/p.h I var_be8
-Main/p.h Z var_49a
+Main/p.h Z statusOpen
 Main/p.i Z var_4f0
 Main/p.j Z var_517
 Main/p.k Z var_523
@@ -508,7 +508,7 @@ Main/p.o Z var_a94
 Main/p.p Z var_c8c
 Main/p.q Z var_ca1
 Main/p.r Z var_ccc
-Main/p.s Z var_d16
+Main/p.s Z loaded
 Main/p.a()LMain/k; sub_4e
 Main/p.a()V freeResources
 Main/p.a()Z isLoaded
@@ -2118,9 +2118,11 @@ ch.a()I getRace
 ch.a()Lch; cloneBase
 ch.a()V sub_79a
 ch.a()Z hasBooster
+ch.a()[Lu; getEquipment
 ch.a(I)I sub_9ca
 ch.a(I)Lu; sub_6a6
 ch.a(I)V setRace
+ch.a(I)Z isSimilarEquiped
 ch.a(I)[Lu; getEquipment
 ch.a(II)Z sub_7fc
 ch.a(Lu;)V sub_755
@@ -2129,11 +2131,14 @@ ch.a([Lu;)V sub_64d
 ch.b()I getIndex
 ch.b()V sub_a8f
 ch.b()Z hasJumpDrive
+ch.b()[Lu; getCargo
 ch.b(I)I countEquippedOfType
 ch.b(I)Z sub_7a6
 ch.b(Lu;)V sub_880
 ch.b(Lu;I)V sub_98c
 ch.b([Lu;)V sub_80a
+ch.c()I getPrice
+ch.c()V adjustPrice
 ch.c()Z hasCloak
 ch.c(I)Z sub_839
 ch.c(Lu;)V sub_908
@@ -2152,18 +2157,13 @@ ch.j()I getBoostPercent
 ch.k()I getBoostDuration
 ch.l()I getBoostRegenTime
 ch.m()I getAddHandlingPercent
-ch.r()I sub_84d
-ch.s()I sub_982
-ch.t()I sub_9e3
-ch.c()V adjustPrice
-ch.c()I getPrice
 ch.n()I getFirePower
 ch.o()I getBaseLoad
 ch.p()I getCargoPlus
-ch.a()[Lu; getEquipment
-ch.b()[Lu; getCargo
 ch.q()I getCurrentLoad
-ch.a(I)Z isSimilarEquiped
+ch.r()I sub_84d
+ch.s()I sub_982
+ch.t()I sub_9e3
 ci AbyssEngine/Class_d90
 ci.a C var_461
 ci.a I var_25b
@@ -2791,19 +2791,19 @@ e AbyssEngine/Class_d46
 e.a I var_17b
 e.a Le; var_13a
 e.a Ljava/util/Vector; var_2a
-f AbyssEngine/Class_dd9
+f AbyssEngine/Face
 f.a I var_c6
 f.a [[B faces
 f.b I var_268
-f.c I var_2b0
-f.d I var_2d6
+f.c I faceWidth
+f.d I faceHeight
 f.e I var_1cb
 f.f I var_1ed
 f.a(IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V sub_128
 f.a(ILjavax/microedition/lcdui/Image;III)V sub_158
-f.a(ZI)[B sub_3f
+f.a(ZI)[B getRandomFace
 f.a([B)[Ljavax/microedition/lcdui/Image; faceFromByteArray
-f.a([Ljavax/microedition/lcdui/Image;III)V sub_f4
+f.a([Ljavax/microedition/lcdui/Image;III)V drawFace
 f.b(IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V sub_1b6
 g AbyssEngine/Skybox
 g.a I var_5a9
