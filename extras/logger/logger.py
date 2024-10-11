@@ -41,6 +41,7 @@ def plot_and_save():
     plt.legend()
     plt.ylim(0, 100)
     plt.yticks([i / 2 for i in range(0, 202, 25)], [f'{i/2}%' for i in range(0, 202, 25)])
+    plt.xticks(rotation=45)
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.tight_layout()
     plt.savefig(chart_path)
