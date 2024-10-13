@@ -1,5 +1,3 @@
-How to extract debug symbols to text having GoF or similar binary:
-```bash
 BINARY_NAME="Galaxy on Fire 2 HD" #adjust
 DEMANGLER=demumble.exe #or c++filt.exe
 mkdir strdump
@@ -17,4 +15,3 @@ awk '!seen[$0]++' temp.txt > ripped_symbols.h
 rm temp.txt
 sort ripped_symbols.h > ripped_symbols_sorted.h
 cd ..
-```

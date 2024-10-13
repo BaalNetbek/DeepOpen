@@ -38,7 +38,7 @@ def plot_and_save():
     plt.xlabel("Time")
     plt.ylabel("Progress")
     plt.title("Deobfuscating names progress")
-    plt.legend()
+    plt.legend(loc='upper left')
     plt.ylim(0, 100)
     plt.yticks([i / 2 for i in range(0, 202, 25)], [f'{i/2}%' for i in range(0, 202, 25)])
     plt.xticks(rotation=45)
