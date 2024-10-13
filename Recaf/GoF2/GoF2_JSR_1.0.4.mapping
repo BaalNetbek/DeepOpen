@@ -472,6 +472,7 @@ Main/p.a LMain/k; var_2bc
 Main/p.a LMain/l; var_315
 Main/p.a LMain/m; var_643
 Main/p.a LMain/r; var_85d
+Main/p.a Laz; bribeOffer
 Main/p.a Lck; var_899
 Main/p.a Lj; var_7a6
 Main/p.a Ljavax/microedition/lcdui/Image; factionLogo
@@ -508,7 +509,6 @@ Main/p.p Z var_c8c
 Main/p.q Z var_ca1
 Main/p.r Z var_ccc
 Main/p.s Z loaded
-Main/p.a Laz; bribeOffer
 Main/p.a()LMain/k; sub_4e
 Main/p.a()V freeResources
 Main/p.a()Z isLoaded
@@ -637,6 +637,7 @@ a.b()V render
 a.c()V renderTransparent
 a.d()V setupMaterial
 aa AbyssEngine/Player
+aa.a F boundingSphereRadius
 aa.a I var_7ae
 aa.a Lcd; var_4a2
 aa.a Lcl; var_46b
@@ -644,39 +645,38 @@ aa.a Lo; var_4d3
 aa.a Z var_3df
 aa.a [Laa; var_62
 aa.a [[Lba; var_30
+aa.b F currentShield
 aa.b I var_803
 aa.b Z var_427
-aa.c I var_83e
-aa.d F var_5ec
-aa.d Z var_54e
-aa.f Z var_380
-aa.g Z var_3a5
-aa.h Z var_518
-aa.k Z var_72f
-aa.p I var_608
-aa.q I var_63a
-aa.r I var_67c
-aa.c Z hidden
-aa.b F currentShield
-aa.g I maxHP
-aa.f I currentHP
-aa.e I maxEMPdurability
-aa.d I currentEMPdurability
-aa.a F boundingSphereRadius
-aa.j I maxArmorPoints
-aa.i I currentArmorPoints
-aa.h I maxShield
 aa.c F reamingNukeStun
+aa.c I var_83e
+aa.c Z hidden
+aa.d F var_5ec
+aa.d I currentEMPdurability
+aa.d Z var_54e
+aa.e I maxEMPdurability
 aa.e Z invincible
-aa.s I elapsedEMPstun
-aa.j Z stunnedEMP
-aa.l Z permanentFriend
+aa.f I currentHP
+aa.f Z var_380
+aa.g I maxHP
+aa.g Z var_3a5
+aa.h I maxShield
+aa.h Z var_518
+aa.i I currentArmorPoints
 aa.i Z permanentEnemy
+aa.j I maxArmorPoints
+aa.j Z stunnedEMP
 aa.k I percentHP
+aa.k Z var_72f
 aa.l I percentShield
+aa.l Z permanentFriend
 aa.m I percentArmor
 aa.n I percentEMP
 aa.o I threeSecTick
+aa.p I var_608
+aa.q I var_63a
+aa.r I var_67c
+aa.s I elapsedEMPstun
 aa.a()F sub_892
 aa.a()I sub_49f
 aa.a()Lcd; sub_8db
@@ -725,6 +725,7 @@ aa.e()Z sub_ae3
 aa.e(I)V sub_406
 aa.e(Z)V sub_a98
 aa.f()I sub_66c
+aa.f()V updatePercentages
 aa.f(I)V sub_434
 aa.g()I sub_6d4
 aa.g(I)V sub_443
@@ -732,7 +733,6 @@ aa.h()I sub_6f7
 aa.h(I)V sub_b5e
 aa.i()I sub_73a
 aa.j()I sub_76e
-aa.f()V updatePercentages
 ab AbyssEngine/Record
 ab.a Lcb; agent
 ab.a Lck; mission
@@ -921,6 +921,7 @@ aj.a [Lcu; var_16
 aj.a(Lcu;)V sub_5c
 aj.b(Z)V sub_109
 ak AbyssEngine/BigShip
+ak.a J frametime
 ak.a [Lcd; var_34b
 ak.a [Lw; var_59
 ak.b Laa; var_273
@@ -932,12 +933,11 @@ ak.f Lcd; var_1ee
 ak.g Lcd; var_263
 ak.l I var_281
 ak.m I var_31d
-ak.n Z var_87
 ak.n I posX
+ak.n Z var_87
 ak.o I posY
-ak.p I posZ
-ak.a J frametime
 ak.o Z destroyed
+ak.p I posZ
 ak.a()V sub_109
 ak.a(III)V squaredLength
 ak.a(III)Z sub_162
@@ -949,39 +949,39 @@ ak.a([Lw;)V sub_9c
 ak.b()V sub_22
 ak.b(Lcd;)Lcd; loadItems
 ak.c(I)V sub_da
-al AbyssEngine/Class_1ee
-al.a F var_195
-al.a I var_22
-al.a Ljavax/microedition/lcdui/Image; var_4c7
+al AbyssEngine/MiningGame
 al.a Lv; var_5f5
-al.a Z var_728
-al.a [I var_78c
-al.b F var_1c7
-al.b I var_80
-al.b Ljavax/microedition/lcdui/Image; var_4e8
-al.c F var_1fc
-al.c I var_d1
-al.c Ljavax/microedition/lcdui/Image; var_4ff
-al.d F var_253
-al.d I var_134
-al.d Ljavax/microedition/lcdui/Image; var_56e
-al.e F var_354
-al.e I var_15c
-al.e Ljavax/microedition/lcdui/Image; var_585
-al.f F var_374
-al.f I var_184
-al.f Ljavax/microedition/lcdui/Image; var_5a3
-al.g F var_3a8
-al.g I var_42b
-al.h F var_3e6
-al.h I var_44f
-al.i F var_47b
-al.i I var_625
-al.j F var_487
-al.j I var_650
-al.k I var_686
-al.l I var_6cb
-al.m I var_6e2
+al.b I levels
+al.e F cursorPos
+al.h F minedTons
+al.g F miningProgress
+al.h I frameTime
+al.j F controlability
+al.a [I barRanges
+al.d I levelProgress
+al.f F failProgress
+al.i F minigSpeed
+al.j I boardPosX
+al.k I boardPosY
+al.a F cursorAcceleration
+al.a Z succeed
+al.e I nextMinedProgress
+al.f I nextMinedThreshold
+al.d F pressCumulativeAcceleration
+al.c I curLevel
+al.i I minedItemId
+al.g I minedIndicatorHighlightCounter
+al.b F driftSpeed
+al.c F driftSuppress
+al.a Ljavax/microedition/lcdui/Image; background
+al.b Ljavax/microedition/lcdui/Image; cursor
+al.c Ljavax/microedition/lcdui/Image; greenComplete
+al.d Ljavax/microedition/lcdui/Image; greenEmpty
+al.e Ljavax/microedition/lcdui/Image; redArea
+al.f Ljavax/microedition/lcdui/Image; items
+al.l I failedBarPosX
+al.m I barsPadding
+al.a I nextLevelTreshold
 al.a()I sub_68
 al.a()V sub_e1
 al.a()Z sub_57
@@ -1360,22 +1360,22 @@ be.a [Lu; hangarItems
 be.b I systemId
 be.c I planetTextureId
 be.d I tecLevel
+be.a()I getSystemIndex
 be.a()Ljava/lang/String; getName
 be.a()V sub_1a2
 be.a()Z sub_fc
 be.a()[Lcb; sub_393
+be.a()[Lch; getShopShips
+be.a()[Lu; getShopItems
 be.a(Lbe;)Z equals
 be.a(Lu;)V sub_334
+be.a([Lcb;)V setBarAgents
+be.a([Lch;)V setShopShips
+be.a([Lu;)V setShopItems
 be.b()I getId
 be.b()Z sub_175
 be.c()I sub_15f
 be.d()I getTecLevel
-be.a()I getSystemIndex
-be.a([Lu;)V setShopItems
-be.a()[Lu; getShopItems
-be.a()[Lch; getShopShips
-be.a([Lch;)V setShopShips
-be.a([Lcb;)V setBarAgents
 bf AbyssEngine/Class_601
 bf.a [I var_40
 bf.b [I var_9e
@@ -1506,6 +1506,7 @@ bl.a [Lcb; SpecialAgents
 bl.a [Lck; lastStoryMissions
 bl.a [Li; blueprints
 bl.a [Ljava/lang/String; wingmenNames
+bl.a [Z visibleSystems
 bl.b I wingmenTimeRemaining
 bl.b J timeSpentLoading
 bl.b Lbe; currentStation
@@ -1545,11 +1546,12 @@ bl.w I var_10b9
 bl.x I var_1116
 bl.y I var_112f
 bl.z I var_1155
-bl.a [Z visibleSystems
+bl.a()I getCurrentCampaignMission
 bl.a()J getPlayingTime
 bl.a()Lbe; getStation
 bl.a()Lch; getShip
 bl.a()Lck; sub_244
+bl.a()Lcs; getStanding
 bl.a()Lcw; getSystem
 bl.a()V incMissionCount
 bl.a()Z gameWon
@@ -1568,12 +1570,16 @@ bl.a(Lbe;)V sub_1e5
 bl.a(Lch;)V sub_7e3
 bl.a(Lck;)V sub_2a2
 bl.a(Li;)V sub_5c
+bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceToken
+bl.a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceTokens
 bl.a(ZJ)Lck; sub_4fd
 bl.a([Lbe;)V setLastVisitedStations
+bl.a([Ljava/lang/String;)V setWingmenNames
 bl.b()I getJumpgateUsed
 bl.b()Lck; sub_2bc
 bl.b()V nextCampaignMission
 bl.b()Z sub_4a0
+bl.b()[Ljava/lang/String; getWingmenNames
 bl.b(I)V sub_3d5
 bl.b(J)V incPlayingTime
 bl.b(Lbe;)V sub_888
@@ -1615,12 +1621,6 @@ bl.n(I)V setStationsVisited
 bl.o(I)V changeCredits
 bl.p(I)V setCredits
 bl.q(I)V sub_ca6
-bl.a()I getCurrentCampaignMission
-bl.a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceTokens
-bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceToken
-bl.b()[Ljava/lang/String; getWingmenNames
-bl.a([Ljava/lang/String;)V setWingmenNames
-bl.a()Lcs; getStanding
 bm AbyssEngine/Class_786
 bm.a(J)V sub_181
 bn AbyssEngine/Class_7bb
@@ -1758,21 +1758,22 @@ bu.b(I)V scrollUp
 bu.c(I)V scrollDown
 bv AbyssEngine/Galaxy
 bv.a Lcd; var_11
-bv.b Lcd; var_141
 bv.a [Z visitedStations
+bv.b Lcd; var_141
+bv.a()[Z getVisitedStations
 bv.a(I)Lbe; sub_85
 bv.a(I)Lcw; sub_2d
 bv.a(I)V sub_110
+bv.a(IIII)I invDistancePercent
 bv.a(Lbe;)[I sub_180
 bv.a(Lcw;Lcw;)F sub_161
-bv.b(IIII)I distancePercent
-bv.a(IIII)I invDistancePercent
 bv.a([Z)V setVisitedStations
-bv.a()[Z getVisitedStations
+bv.b(IIII)I distancePercent
 bw AbyssEngine/Class_99d
 bw.a I var_8a8
 bw.a Lag; var_fd4
 bw.a Lbg; var_b26
+bw.a Lbj; floatVector
 bw.a Lcd; var_bc4
 bw.a Lcl; var_b8e
 bw.a Ldb; var_b73
@@ -1795,14 +1796,13 @@ bw.b Z var_a3e
 bw.b [Lo; var_a71
 bw.c I var_974
 bw.c Lcd; var_c50
-bw.c Ljavax/microedition/lcdui/Image; var_240
 bw.c Ljavax/microedition/lcdui/game/Sprite; var_860
 bw.c Lo; var_1043
 bw.c Z var_10e1
 bw.c [Lo; var_ad3
 bw.d I var_99a
 bw.d Lcd; var_cad
-bw.d Ljavax/microedition/lcdui/Image; var_2b1
+bw.d Ljavax/microedition/lcdui/Image; hudRadarIconFriend
 bw.d Ljavax/microedition/lcdui/game/Sprite; var_896
 bw.d Lo; var_1083
 bw.d Z var_118f
@@ -1846,7 +1846,7 @@ bw.u Ljavax/microedition/lcdui/Image; var_69d
 bw.v Ljavax/microedition/lcdui/Image; var_6ff
 bw.w Ljavax/microedition/lcdui/Image; var_741
 bw.x Ljavax/microedition/lcdui/Image; var_781
-bw.a Lbj; floatVector
+bw.c Ljavax/microedition/lcdui/Image; hudLockOnFriend
 bw.a()I sub_12d
 bw.a()Lo; sub_1bd
 bw.a()V sub_42
@@ -1937,25 +1937,25 @@ cb.a [B face
 cb.b I itemId
 cb.b Ljava/lang/String; var_70
 cb.b Z var_9cd
+cb.c I itemQuantity
 cb.c Ljava/lang/String; var_ad
 cb.c Z var_4b9
+cb.d I sellingPrice
 cb.d Ljava/lang/String; systemName
 cb.d Z accepted
+cb.e I messageId
 cb.e Ljava/lang/String; message
 cb.e Z var_894
 cb.f I stationId
 cb.f Ljava/lang/String; stationName
 cb.g I systemId
-cb.i I isTouched
-cb.e I messageId
-cb.j I dialogueStage
-cb.d I sellingPrice
-cb.l I diplomacyPrice
-cb.n I blueprintItemId
-cb.k I type
 cb.h I race
-cb.c I itemQuantity
+cb.i I isTouched
+cb.j I dialogueStage
+cb.k I type
+cb.l I diplomacyPrice
 cb.m I secretSystemId
+cb.n I blueprintItemId
 cb.a()I sub_112
 cb.a()Lck; sub_4f9
 cb.a()Ljava/lang/String; getFullName
@@ -2074,11 +2074,11 @@ cf.h()Z sub_3a8
 cf.i()Z sub_3e2
 cf.j()Z sub_1d8
 cg AbyssEngine/Explosion
+cg.a I animationPlayTime
 cg.a Lag; var_366
 cg.a [I var_158
 cg.a [Lag; explosions
 cg.b [I var_1af
-cg.a I animationPlayTime
 cg.a()V sub_36
 cg.a()Z sub_154
 cg.a(III)V sub_141
@@ -2120,7 +2120,6 @@ ch.a()V sub_79a
 ch.a()Z hasBooster
 ch.a()[Lu; getEquipment
 ch.a(I)I sub_9ca
-ch.a(I)Lu; sub_6a6
 ch.a(I)V setRace
 ch.a(I)Z isSimilarEquiped
 ch.a(I)[Lu; getEquipment
@@ -2164,6 +2163,7 @@ ch.q()I getCurrentLoad
 ch.r()I sub_84d
 ch.s()I sub_982
 ch.t()I sub_9e3
+ch.a(I)Lu; getEquipedOfSubType
 ci AbyssEngine/Class_d90
 ci.a C var_461
 ci.a I var_25b
@@ -2396,6 +2396,7 @@ cp.a()V sub_109
 cp.a(III)Z sub_162
 cp.a(J)V sub_e6
 cq AbyssEngine/PlayerShip
+cq.a F handling
 cq.a I var_9be
 cq.a J var_b37
 cq.a Laa; var_425
@@ -2415,6 +2416,7 @@ cq.a Lcl; var_d58
 cq.a Lda; crosshair
 cq.a Ldb; var_887
 cq.a Lo; var_ddc
+cq.a Lu; cloak
 cq.a Lv; var_15a9
 cq.a Z var_bb6
 cq.a [[I var_33c
@@ -2425,6 +2427,7 @@ cq.b Lag; var_749
 cq.b Lar; var_5f8
 cq.b Lcd; var_795
 cq.b Lo; var_11a4
+cq.b Z boostActive
 cq.b [[I var_16c0
 cq.c F var_106f
 cq.c I var_1f0
@@ -2438,13 +2441,19 @@ cq.d J var_bd4
 cq.d Lar; var_f7c
 cq.d Lcd; var_e91
 cq.d Z var_cdc
+cq.e I relPitchSpeed
 cq.e Lar; var_fd2
 cq.e Lcd; var_1203
 cq.e Z var_cfd
+cq.f I relYawSpeed
 cq.f Z var_dbd
+cq.g I roll
 cq.g Z var_e30
+cq.h I selectedSecondaryIconId
 cq.h Z var_eb4
 cq.i I var_ba3
+cq.i Z lookBack
+cq.j I boostTime
 cq.j Z var_107d
 cq.k I var_c5b
 cq.k Z var_11b7
@@ -2463,19 +2472,10 @@ cq.q Z var_1686
 cq.r I var_140d
 cq.r Z var_16ef
 cq.s I var_1475
-cq.v I var_1510
-cq.w I var_16ce
-cq.b Z boostActive
-cq.j I boostTime
-cq.a F handling
-cq.a Lu; cloak
-cq.f I relYawSpeed
-cq.e I relPitchSpeed
-cq.g I roll
-cq.h I selectedSecondaryIconId
 cq.t I cloakTime
 cq.u I cloakDuration
-cq.i Z lookBack
+cq.v I var_1510
+cq.w I var_16ce
 cq.a()F sub_3f6
 cq.a()I sub_378
 cq.a()Lbg; sub_647
@@ -2587,39 +2587,39 @@ cv.a Ljavax/microedition/lcdui/Image; var_1c3
 cv.a [Ljavax/microedition/lcdui/Image; var_74
 cv.a(Lcd;)V sub_3c
 cw AbyssEngine/SolarSystem
+cw.a I spaceShadeR
+cw.a Ljava/lang/String; name
+cw.a Z visibleByDeafult
+cw.a [I stationIDs
+cw.b I spaceShadeG
 cw.b [I neighbourSystems
+cw.c I spaceShadeB
 cw.d I id
+cw.e I safety
 cw.f I race
-cw.j I jumpgateStationId
-cw.k I starTextureId
 cw.g I posX
 cw.h I posY
 cw.i I posZ
-cw.a [I stationIDs
-cw.a I spaceShadeR
-cw.b I spaceShadeG
-cw.c I spaceShadeB
-cw.a Ljava/lang/String; name
-cw.a Z visibleByDeafult
-cw.e I safety
+cw.j I jumpgateStationId
+cw.k I starTextureId
+cw.a()I getId
+cw.a()Ljava/lang/String; getName
+cw.a()Z currentOrbitHasJumpgate
+cw.a()[I getStations
+cw.a(I)I verifyStationInSystem
+cw.a(I)Z stationIsInSystem
+cw.b()I getSafety
+cw.b()Z isFullyDiscovered
+cw.b()[I getNeighbourSystems
+cw.b(I)Z inJumpageRange
 cw.c()I getRace
+cw.c()Z isVisibleByDeafult
 cw.d()I getPosX
 cw.e()I getPosY
 cw.f()I getPosZ
-cw.a()I getId
-cw.a()Ljava/lang/String; getName
-cw.b()I getSafety
-cw.c()Z isVisibleByDeafult
-cw.b(I)Z inJumpageRange
-cw.b()[I getNeighbourSystems
-cw.a()[I getStations
-cw.b()Z isFullyDiscovered
-cw.i()I getJumpgateStationVerifiedIndex
-cw.h()I getJumpgateStationIndex
 cw.g()I getStarTextureIndex
-cw.a(I)Z stationIsInSystem
-cw.a()Z currentOrbitHasJumpgate
-cw.a(I)I verifyStationInSystem
+cw.h()I getJumpgateStationIndex
+cw.i()I getJumpgateStationVerifiedIndex
 cx AbyssEngine/Class_137d
 cx.a F var_486
 cx.a I var_758
@@ -2870,15 +2870,15 @@ j AbyssEngine/Dialogue
 j.a I type
 j.a Laz; popup
 j.a Lbu; textBox
+j.a Lck; mission
 j.a Ldb; var_649
 j.a Ljava/lang/String; message
 j.a Z popupOpen
 j.a [B face
+j.a [[S storyDialogues
 j.b I page
 j.b Ljava/lang/String; name
-j.a [[S storyDialogues
 j.b [[S storyDialogues2
-j.a Lck; mission
 j.a()I sub_1e8
 j.a()V sub_146
 j.a()Z sub_230
@@ -2967,6 +2967,7 @@ o.b Z var_94b
 o.c I var_3f3
 o.c Lag; var_aa5
 o.c Z var_99f
+o.d I race
 o.d Z var_9d8
 o.e I var_7aa
 o.e Z var_af6
@@ -2984,7 +2985,6 @@ o.k I var_dbe
 o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
-o.d I race
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
@@ -3099,7 +3099,6 @@ u.a()I getIndex
 u.a()Lu; sub_8f4
 u.a()Z sub_18e
 u.a()[I getBluePrintComponentsIds
-u.a(I)I sub_69d
 u.a(I)Lu; sub_889
 u.a(I)V setPrice
 u.a(II)Lu; sub_8b7
@@ -3133,6 +3132,7 @@ u.k()I getOccurance
 u.l()I sub_4ac
 u.m()I sub_51c
 u.n()I sub_590
+u.a(I)I getParameter
 v AbyssEngine/FlightUI
 v.a I var_2be
 v.a Ljava/lang/String; tempLogMsg
@@ -3172,6 +3172,7 @@ v.h I var_a21
 v.h Ljavax/microedition/lcdui/Image; var_7e9
 v.h Z var_bdf
 v.i I var_b01
+v.i Ljavax/microedition/lcdui/Image; factionLogo
 v.i Z actionmenuConverging
 v.j I actionmenuSelectDir
 v.j Z var_c34
@@ -3184,7 +3185,6 @@ v.m Z var_f29
 v.n I var_d45
 v.o I var_e7f
 v.p I var_ef4
-v.i Ljavax/microedition/lcdui/Image; factionLogo
 v.a()V sub_1e9
 v.a()Z sub_3fa
 v.a(I)V sub_51c
