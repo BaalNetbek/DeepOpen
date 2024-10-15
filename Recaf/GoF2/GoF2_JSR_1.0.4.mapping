@@ -262,17 +262,17 @@ Main/i.l()V sub_171
 Main/i.m()V sub_312
 Main/i.n()V sub_19
 Main/i.o()V sub_3ac
-Main/j Main/Class_2cd
-Main/j.a I var_17
+Main/j Main/NewMedalPopup
+Main/j.a I posX
 Main/j.a Ljavax/microedition/lcdui/game/Sprite; var_32d
-Main/j.a [Ljava/lang/String; var_284
-Main/j.b I var_76
-Main/j.b [Ljava/lang/String; var_2af
-Main/j.c I var_fa
-Main/j.d I var_260
-Main/j.e I var_2e4
-Main/j.f I var_303
-Main/j.a()V squaredLength
+Main/j.a [Ljava/lang/String; name
+Main/j.b I posY
+Main/j.b [Ljava/lang/String; description
+Main/j.c I width
+Main/j.d I height
+Main/j.e I okPosY
+Main/j.f I tier
+Main/j.a()V sub_006
 Main/j.a(II)V sub_49
 Main/k Main/Class_26f
 Main/k.a F var_613
@@ -527,7 +527,7 @@ Main/q.h()V sub_b4
 Main/q.i()V sub_6b
 Main/q.l()V sub_171
 Main/q.n()V sub_19
-Main/r Main/Class_122
+Main/r Main/StarMap
 Main/r.a F var_35d
 Main/r.a I var_123
 Main/r.a Lag; var_10c8
@@ -544,7 +544,7 @@ Main/r.a Z var_1071
 Main/r.a [I var_e4
 Main/r.a [Lag; var_a6c
 Main/r.a [Lbe; var_993
-Main/r.a [Lcw; var_95c
+Main/r.a [Lcw; systems
 Main/r.a [Ljavax/microedition/lcdui/Image; var_114f
 Main/r.a [Z var_1168
 Main/r.b F var_39b
@@ -555,7 +555,7 @@ Main/r.b Lcd; var_b93
 Main/r.b Ljavax/microedition/lcdui/Image; var_776
 Main/r.b Ljavax/microedition/lcdui/game/Sprite; var_8f6
 Main/r.b Ll; var_e4c
-Main/r.b Z var_538
+Main/r.b Z curPushLeft
 Main/r.b [I var_c8d
 Main/r.b [Lag; var_c27
 Main/r.c F var_3af
@@ -563,36 +563,36 @@ Main/r.c I var_254
 Main/r.c Ljavax/microedition/lcdui/Image; var_78f
 Main/r.c Ljavax/microedition/lcdui/game/Sprite; var_924
 Main/r.c Ll; var_e9b
-Main/r.c Z var_61e
+Main/r.c Z curPushRight
 Main/r.c [I var_cb1
 Main/r.c [Lag; var_c63
 Main/r.d F var_401
 Main/r.d I var_292
 Main/r.d Ljavax/microedition/lcdui/Image; var_7eb
-Main/r.d Z var_62d
+Main/r.d Z curPushUp
 Main/r.d [I var_cd6
-Main/r.e F var_6cf
+Main/r.e F curSpeedX
 Main/r.e I var_2ce
 Main/r.e Ljavax/microedition/lcdui/Image; var_81d
-Main/r.e Z var_673
-Main/r.f F var_6f1
+Main/r.e Z curPushDown
+Main/r.f F curSpeedY
 Main/r.f I var_349
 Main/r.f Ljavax/microedition/lcdui/Image; var_848
 Main/r.f Z var_cfc
-Main/r.g F var_6fe
+Main/r.g F curDirX
 Main/r.g I var_452
 Main/r.g Ljavax/microedition/lcdui/Image; var_871
 Main/r.g Z var_d20
-Main/r.h F var_717
+Main/r.h F curDirY
 Main/r.h I var_4b6
 Main/r.h Ljavax/microedition/lcdui/Image; var_f1d
 Main/r.h Z var_d7c
 Main/r.i F var_101a
-Main/r.i I var_4f5
+Main/r.i I frameTime
 Main/r.i Z var_d97
-Main/r.j I var_a37
+Main/r.j I selectedSystem
 Main/r.j Z var_dd8
-Main/r.k I var_a4d
+Main/r.k I selectedPlanet
 Main/r.k Z var_ee8
 Main/r.l I var_f2b
 Main/r.l Z var_105c
@@ -613,7 +613,7 @@ Main/r.a(II)V sub_101
 Main/r.a(IZ)V sub_29e
 Main/r.a(ZLck;ZI)V sub_4e
 Main/r.a(ZZ)V LoadNames
-Main/r.b()V sub_2ee
+Main/r.b()V askForJumpIntoAlienWorld
 Main/r.c()V sub_dd
 Main/r.d()V sub_158
 Main/r.e()V sub_23f
@@ -939,7 +939,7 @@ ak.o I posY
 ak.o Z destroyed
 ak.p I posZ
 ak.a()V sub_109
-ak.a(III)V squaredLength
+ak.a(III)V setPosition
 ak.a(III)Z sub_162
 ak.a(J)V sub_e6
 ak.a(Lcd;)Lcd; sub_a9
@@ -1443,7 +1443,7 @@ bh.y I var_87b
 bh.a()V sub_109
 bh.a()Z sub_5f
 bh.a(I)V loadShips
-bh.a(III)V squaredLength
+bh.a(III)V setPosition
 bh.a(III)Z sub_162
 bh.a(ILo;)V sub_16f
 bh.a(J)V sub_e6
@@ -1459,7 +1459,7 @@ bh.i()Z sub_102
 bh.j()Z add
 bi AbyssEngine/PlayerJumpgate
 bi.n Z var_4d
-bi.a(III)V squaredLength
+bi.a(III)V setPosition
 bi.a(J)V sub_e6
 bi.g()V sub_25
 bj AbyssEngine/Vec3f
@@ -1927,7 +1927,7 @@ c.c()V sub_2aa
 c.c(Lcd;)V sub_3dd
 c.d()V sub_34a
 c.d(Lcd;)V sub_400
-ca AbyssEngine/Class_aa7
+ca AbyssEngine/DoubleVector_
 cb AbyssEngine/Agent
 cb.a I var_5d5
 cb.a Lck; mission
@@ -2658,7 +2658,7 @@ d.o I var_6b
 d.p I var_81
 d.a()V sub_109
 d.a()Z sub_b7
-d.a(III)V squaredLength
+d.a(III)V setPosition
 d.a(J)V sub_e6
 d.a(Lcd;)Lcd; sub_a9
 d.a(Z)V sub_55
@@ -2674,6 +2674,7 @@ db AbyssEngine/Level
 db.A I var_1149
 db.B I var_1172
 db.C I var_11c4
+db.a F starR
 db.a I var_a19
 db.a Lag; var_3e4
 db.a Lbe; var_12d7
@@ -2682,11 +2683,15 @@ db.a Lbk; var_43d
 db.a Lbr; var_b00
 db.a Lcd; var_387
 db.a Lcj; var_3ad
+db.a Lcq; playerEgo
+db.a Lg; skybox
 db.a Lw; var_2de
 db.a Z var_1297
 db.a [I var_2ed
 db.a [Lag; projectileMesh
 db.a [Lbq; var_8d0
+db.a [Lo; ships
+db.b F starG
 db.b I var_a59
 db.b Lbg; var_863
 db.b Lbk; var_4fc
@@ -2694,9 +2699,12 @@ db.b Lbr; var_b24
 db.b Lcd; var_1353
 db.b Z var_12a2
 db.b [Lag; var_6e9
+db.b [Lo; asteroids
+db.c F starB
 db.c I var_ad6
 db.c Lbg; var_8c5
 db.c Z var_1311
+db.c [Lo; stationaries
 db.d F var_ed3
 db.d I var_d3e
 db.d Lbg; var_11a5
@@ -2710,6 +2718,7 @@ db.f Z var_fad
 db.g I var_e3b
 db.g Z var_1219
 db.h I var_e66
+db.h Z firstWarning
 db.i I var_e7e
 db.j I var_12b5
 db.k I var_dd
@@ -2728,15 +2737,6 @@ db.w I var_1045
 db.x I var_108e
 db.y I var_10e2
 db.z I var_1104
-db.b [Lo; asteroids
-db.h Z firstWarning
-db.a [Lo; ships
-db.c [Lo; stationaries
-db.a Lg; skybox
-db.a Lcq; playerEgo
-db.a F starR
-db.b F starG
-db.c F starB
 db.a()I sub_7f9
 db.a()Lbg; sub_6a6
 db.a()Lcj; sub_617
@@ -2955,6 +2955,7 @@ o.a Lbg; var_50b
 o.a Lcd; var_727
 o.a Lcg; var_6df
 o.a Ldb; level
+o.a Ljava/lang/String; name
 o.a Lo; var_d6c
 o.a S var_5c
 o.a Z var_907
@@ -2984,12 +2985,11 @@ o.k I var_dbe
 o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
-o.a Ljava/lang/String; name
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
 o.a(I)V loadShips
-o.a(III)V squaredLength
+o.a(III)V setPosition
 o.a(III)Z sub_162
 o.a(ILo;)V sub_16f
 o.a(J)V sub_e6
