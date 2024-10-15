@@ -643,6 +643,8 @@ aa.a Lcd; var_4a2
 aa.a Lcl; var_46b
 aa.a Lo; var_4d3
 aa.a Z var_3df
+aa.a [Laa; coPlayers
+aa.a [[Lba; guns
 aa.b F currentShield
 aa.b I var_803
 aa.b Z var_427
@@ -675,8 +677,6 @@ aa.p I var_608
 aa.q I var_63a
 aa.r I var_67c
 aa.s I elapsedEMPstun
-aa.a [[Lba; guns
-aa.a [Laa; coPlayers
 aa.a()F sub_892
 aa.a()I sub_49f
 aa.a()Lcd; sub_8db
@@ -703,6 +703,7 @@ aa.b()F sub_8c2
 aa.b()I sub_4f2
 aa.b()V sub_5ce
 aa.b()Z sub_f9
+aa.b(F)V setNukeStun
 aa.b(I)V sub_336
 aa.b(IZ)V sub_96b
 aa.b(Z)V sub_d5
@@ -732,7 +733,6 @@ aa.h()I sub_6f7
 aa.h(I)V sub_b5e
 aa.i()I sub_73a
 aa.j()I sub_76e
-aa.b(F)V setNukeStun
 ab AbyssEngine/Record
 ab.a Lcb; agent
 ab.a Lck; mission
@@ -950,43 +950,43 @@ ak.b()V sub_22
 ak.b(Lcd;)Lcd; loadItems
 ak.c(I)V sub_da
 al AbyssEngine/MiningGame
+al.a F cursorAcceleration
+al.a I nextLevelTreshold
+al.a Ljavax/microedition/lcdui/Image; background
 al.a Lv; var_5f5
-al.b I levels
-al.e F cursorPos
-al.h F minedTons
-al.g F miningProgress
-al.h I frameTime
-al.j F controlability
+al.a Z succeed
 al.a [I barRanges
+al.b F driftSpeed
+al.b I levels
+al.b Ljavax/microedition/lcdui/Image; cursor
+al.c F driftSuppress
+al.c I curLevel
+al.c Ljavax/microedition/lcdui/Image; greenComplete
+al.d F pressCumulativeAcceleration
 al.d I levelProgress
+al.d Ljavax/microedition/lcdui/Image; greenEmpty
+al.e F cursorPos
+al.e I nextMinedProgress
+al.e Ljavax/microedition/lcdui/Image; redArea
 al.f F failProgress
+al.f I nextMinedThreshold
+al.f Ljavax/microedition/lcdui/Image; items
+al.g F miningProgress
+al.g I minedIndicatorHighlightCounter
+al.h F minedTons
+al.h I frameTime
 al.i F minigSpeed
+al.i I minedItemId
+al.j F controlability
 al.j I boardPosX
 al.k I boardPosY
-al.a F cursorAcceleration
-al.a Z succeed
-al.e I nextMinedProgress
-al.f I nextMinedThreshold
-al.d F pressCumulativeAcceleration
-al.c I curLevel
-al.i I minedItemId
-al.g I minedIndicatorHighlightCounter
-al.b F driftSpeed
-al.c F driftSuppress
-al.a Ljavax/microedition/lcdui/Image; background
-al.b Ljavax/microedition/lcdui/Image; cursor
-al.c Ljavax/microedition/lcdui/Image; greenComplete
-al.d Ljavax/microedition/lcdui/Image; greenEmpty
-al.e Ljavax/microedition/lcdui/Image; redArea
-al.f Ljavax/microedition/lcdui/Image; items
 al.l I failedBarPosX
 al.m I barsPadding
-al.a I nextLevelTreshold
+al.a()I getMiningProgressRounded
 al.a()V sub_e1
 al.a()Z sub_57
 al.a(II)Z sub_b7
 al.b()Z sub_a8
-al.a()I getMiningProgressRounded
 am AbyssEngine/AEBoundingSphere
 am.a I radius
 am.a Lcd; center
@@ -1269,34 +1269,34 @@ b.c()Z sub_44a
 b.d()V sub_295
 b.e()V sub_490
 ba AbyssEngine/Gun
+ba.a F projectileSpeed
 ba.a I var_334
 ba.a Laa; var_20f
 ba.a Lbk; var_5bc
 ba.a Lcd; var_3de
 ba.a Ldb; var_9b
 ba.a Z var_42d
-ba.b Lcd; var_176
-ba.c Lcd; var_1b4
-ba.c Z var_547
-ba.d Lcd; var_441
-ba.d Z var_5de
-ba.e Z var_627
-ba.g I var_2a2
-ba.i I var_5b0
-ba.j I var_633
-ba.a F projectileSpeed
+ba.a [I projectilesTimeLeft
 ba.a [Laa; targets
 ba.a [Lcd; projectilesPos
-ba.b [Lcd; projectilesDir
-ba.a [I projectilesTimeLeft
-ba.h I damage
-ba.c I timeSinceLastShot
-ba.d I reloadTimeMilis
-ba.f I subType
-ba.b I range
-ba.b Z inAir
 ba.a [[[S positions
+ba.b I range
+ba.b Lcd; var_176
+ba.b Z inAir
+ba.b [Lcd; projectilesDir
+ba.c I timeSinceLastShot
+ba.c Lcd; var_1b4
+ba.c Z var_547
+ba.d I reloadTimeMilis
+ba.d Lcd; var_441
+ba.d Z var_5de
 ba.e I index
+ba.e Z var_627
+ba.f I subType
+ba.g I var_2a2
+ba.h I damage
+ba.i I var_5b0
+ba.j I var_633
 ba.a()I sub_141
 ba.a()V sub_183
 ba.a()[Laa; sub_2d2
@@ -1457,7 +1457,7 @@ bh.g()V sub_262
 bh.h()Z sub_bd
 bh.i()Z sub_102
 bh.j()Z add
-bi AbyssEngine/Class_6ba
+bi AbyssEngine/PlayerJumpgate
 bi.n Z var_4d
 bi.a(III)V squaredLength
 bi.a(J)V sub_e6
@@ -1796,6 +1796,7 @@ bw.b Z var_a3e
 bw.b [Lo; var_a71
 bw.c I var_974
 bw.c Lcd; var_c50
+bw.c Ljavax/microedition/lcdui/Image; hudLockOnFriend
 bw.c Ljavax/microedition/lcdui/game/Sprite; var_860
 bw.c Lo; var_1043
 bw.c Z var_10e1
@@ -1846,7 +1847,6 @@ bw.u Ljavax/microedition/lcdui/Image; var_69d
 bw.v Ljavax/microedition/lcdui/Image; var_6ff
 bw.w Ljavax/microedition/lcdui/Image; var_741
 bw.x Ljavax/microedition/lcdui/Image; var_781
-bw.c Ljavax/microedition/lcdui/Image; hudLockOnFriend
 bw.a()I sub_12d
 bw.a()Lo; sub_1bd
 bw.a()V sub_42
@@ -2120,6 +2120,7 @@ ch.a()V sub_79a
 ch.a()Z hasBooster
 ch.a()[Lu; getEquipment
 ch.a(I)I sub_9ca
+ch.a(I)Lu; getEquipedOfSubType
 ch.a(I)V setRace
 ch.a(I)Z isSimilarEquiped
 ch.a(I)[Lu; getEquipment
@@ -2163,7 +2164,6 @@ ch.q()I getCurrentLoad
 ch.r()I sub_84d
 ch.s()I sub_982
 ch.t()I sub_9e3
-ch.a(I)Lu; getEquipedOfSubType
 ci AbyssEngine/Class_d90
 ci.a C var_461
 ci.a I var_25b
@@ -2397,9 +2397,11 @@ cp.a(III)Z sub_162
 cp.a(J)V sub_e6
 cq AbyssEngine/PlayerEgo
 cq.a F handling
+cq.a I speed
 cq.a J var_b37
 cq.a Laa; var_425
 cq.a Lag; var_62e
+cq.a Lal; miningGame
 cq.a Lan; var_1653
 cq.a Lap; var_ef5
 cq.a Lar; var_50e
@@ -2408,16 +2410,17 @@ cq.a Lbw; var_15f4
 cq.a Lbz; var_1142
 cq.a Lc; var_ed8
 cq.a Lca; var_7a2
-cq.a Lcd; var_75f
 cq.a Lcg; var_82c
 cq.a Lcl; var_d58
 cq.a Lda; crosshair
 cq.a Ldb; var_887
+cq.a Lo; autopilotTarget
 cq.a Lu; cloak
 cq.a Lv; var_15a9
 cq.a Z var_bb6
 cq.a [[I var_33c
 cq.b F var_1016
+cq.b I boostSpeed
 cq.b J var_b53
 cq.b Lag; var_749
 cq.b Lar; var_5f8
@@ -2442,7 +2445,9 @@ cq.e Lar; var_fd2
 cq.e Lcd; var_1203
 cq.e Z var_cfd
 cq.f I relYawSpeed
+cq.f Z autopilotActive
 cq.g I roll
+cq.g Z asteroidFieldTarget_
 cq.h I selectedSecondaryIconId
 cq.h Z var_eb4
 cq.i I var_ba3
@@ -2470,13 +2475,9 @@ cq.t I cloakTime
 cq.u I cloakDuration
 cq.v I var_1510
 cq.w I var_16ce
-cq.a Lal; miningGame
-cq.b I boostSpeed
-cq.a I speed
-cq.g Z asteroidFieldTarget_
-cq.f Z autopilotActive
-cq.a Lo; autopilotTarget
+cq.a Lcd; position
 cq.a()F sub_3f6
+cq.a()I getMiningProgress
 cq.a()Lbg; sub_647
 cq.a()Lcd; sub_8c1
 cq.a()Lo; sub_998
@@ -2518,6 +2519,7 @@ cq.c(I)V sub_c71
 cq.c(Z)V sub_8f2
 cq.d()I sub_82f
 cq.d()V sub_66d
+cq.d()Z isBoostActive
 cq.d(I)V sub_c7e
 cq.d(Z)V sub_93d
 cq.e()V sub_d47
@@ -2548,8 +2550,6 @@ cq.t()Z sub_f55
 cq.u()Z sub_f9b
 cq.v()Z sub_1045
 cq.w()Z sub_6ae
-cq.d()Z isBoostActive
-cq.a()I getMiningProgress
 cr AbyssEngine/Class_10f3
 cr.a Ljavax/microedition/m3g/Background; var_321
 cr.a Ljavax/microedition/m3g/Graphics3D; var_1c6
@@ -2688,7 +2688,6 @@ db.a Lg; var_72e
 db.a Lw; var_2de
 db.a Z var_1297
 db.a [I var_2ed
-db.a [Lag; var_525
 db.a [Lbq; var_8d0
 db.a [Lo; var_775
 db.b F var_d03
@@ -2737,6 +2736,7 @@ db.w I var_1045
 db.x I var_108e
 db.y I var_10e2
 db.z I var_1104
+db.a [Lag; projectileMesh
 db.a()I sub_7f9
 db.a()Lbg; sub_6a6
 db.a()Lcj; sub_617
@@ -2925,7 +2925,7 @@ m.a()V sub_8c
 m.a(J)V sub_181
 m.a(Laq;)V sub_1a9
 m.b()V render
-n AbyssEngine/Class_10a6
+n AbyssEngine/Laser
 n.a Lag; var_1d0
 n.a Lba; var_95
 n.a Lcd; var_457
@@ -2969,11 +2969,8 @@ o.c Lag; var_aa5
 o.c Z var_99f
 o.d I race
 o.d Z var_9d8
-o.e I var_7aa
 o.e Z var_af6
-o.f I var_86d
 o.f Z var_be0
-o.g I var_88d
 o.g Z var_c3a
 o.h I var_c61
 o.h Z var_cc1
@@ -2985,6 +2982,9 @@ o.k I var_dbe
 o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
+o.e I targetX
+o.f I targetY
+o.g I targetZ
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
@@ -3069,9 +3069,9 @@ s.b()V sub_160
 s.b(Lcd;)V sub_10a
 t AbyssEngine/Class_1319
 t.c Lcd; var_2e9
-t.l I var_34a
-t.m I var_3a3
-t.n I var_52b
+t.m I posY
+t.n I posZ
+t.l I posX
 t.a()V sub_109
 t.a(III)Z sub_162
 t.a(J)V sub_e6
@@ -3099,6 +3099,7 @@ u.a()I getIndex
 u.a()Lu; sub_8f4
 u.a()Z sub_18e
 u.a()[I getBluePrintComponentsIds
+u.a(I)I getParameter
 u.a(I)Lu; sub_889
 u.a(I)V setPrice
 u.a(II)Lu; sub_8b7
@@ -3132,7 +3133,6 @@ u.k()I getOccurance
 u.l()I sub_4ac
 u.m()I sub_51c
 u.n()I sub_590
-u.a(I)I getParameter
 v AbyssEngine/FlightUI
 v.a I var_2be
 v.a Ljava/lang/String; tempLogMsg
@@ -3243,7 +3243,7 @@ y.b()[I sub_53
 y.b(Lap;Laf;)V sub_b2
 y.c()V renderTransparent
 y.c()[I sub_ba
-z AbyssEngine/PlayerStatus
+z AbyssEngine/StatusEgo
 z.A I var_de1
 z.A Z var_1459
 z.B I var_e29
