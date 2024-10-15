@@ -637,32 +637,32 @@ a.b()V render
 a.c()V renderTransparent
 a.d()V setupMaterial
 aa AbyssEngine/Player
-aa.a F boundingSphereRadius
+aa.a F radius
 aa.a I var_7ae
 aa.a Lcd; var_4a2
 aa.a Lcl; var_46b
-aa.a Lo; var_4d3
+aa.a Lo; kiPlayer
 aa.a Z var_3df
 aa.a [Laa; coPlayers
 aa.a [[Lba; guns
-aa.b F currentShield
+aa.b F shield
 aa.b I var_803
 aa.b Z var_427
 aa.c F reamingNukeStun
 aa.c I var_83e
 aa.c Z hidden
 aa.d F var_5ec
-aa.d I currentEMPdurability
+aa.d I empPoints
 aa.d Z var_54e
-aa.e I maxEMPdurability
+aa.e I maxEmpPoints
 aa.e Z invincible
-aa.f I currentHP
+aa.f I hp
 aa.f Z var_380
-aa.g I maxHP
+aa.g I maxHp
 aa.g Z var_3a5
 aa.h I maxShield
 aa.h Z var_518
-aa.i I currentArmorPoints
+aa.i I armorPoints
 aa.i Z permanentEnemy
 aa.j I maxArmorPoints
 aa.j Z stunnedEMP
@@ -674,39 +674,39 @@ aa.m I percentArmor
 aa.n I percentEMP
 aa.o I threeSecTick
 aa.p I var_608
-aa.q I var_63a
+aa.q I dealtEmpDamage
 aa.r I var_67c
 aa.s I elapsedEMPstun
 aa.a()F sub_892
 aa.a()I sub_49f
 aa.a()Lcd; sub_8db
-aa.a()Lo; sub_201
+aa.a()Lo; getKIPlayer
 aa.a()V sub_20c
-aa.a()Z sub_4d
+aa.a()Z isAsteroid
 aa.a()[Laa; sub_292
 aa.a(F)V sub_56c
 aa.a(I)Laa; sub_2f3
-aa.a(I)V sub_175
+aa.a(I)V setRadius
 aa.a(I)Z sub_9e5
 aa.a(II)V sub_137
 aa.a(III)V sub_7d0
 aa.a(IIJZ)Z sub_c22
 aa.a(IJZ)V sub_bc8
 aa.a(IJZLcl;)V sub_b96
-aa.a(IZ)V sub_914
+aa.a(IZ)V damageEmp
 aa.a(J)V sub_c78
 aa.a(Lcd;)Lcd; sub_a3c
-aa.a(Lo;)V sub_1a0
-aa.a(Z)V sub_000
+aa.a(Lo;)V setKIPlayer
+aa.a(Z)V setAlwaysEnemy
 aa.a([Laa;)V sub_218
 aa.b()F sub_8c2
 aa.b()I sub_4f2
 aa.b()V sub_5ce
-aa.b()Z sub_f9
+aa.b()Z isAlwaysFriend
 aa.b(F)V setNukeStun
 aa.b(I)V sub_336
 aa.b(IZ)V sub_96b
-aa.b(Z)V sub_d5
+aa.b(Z)V setAlwaysFriend
 aa.b([Laa;)V sub_266
 aa.c()I sub_53c
 aa.c()V sub_5e9
@@ -720,12 +720,12 @@ aa.d()Z sub_ace
 aa.d(I)V sub_3aa
 aa.d(Z)V sub_79a
 aa.e()I sub_63e
-aa.e()V sub_b04
+aa.e()V removeGuns
 aa.e()Z sub_ae3
 aa.e(I)V sub_406
 aa.e(Z)V sub_a98
 aa.f()I sub_66c
-aa.f()V updatePercentages
+aa.f()V updateDamageRate
 aa.f(I)V sub_434
 aa.g()I sub_6d4
 aa.g(I)V sub_443
@@ -1307,7 +1307,7 @@ ba.a(Lbk;)V sub_1df
 ba.a(Lcl;JZ)Z sub_2ea
 ba.a(Ldb;)V sub_240
 ba.a(Z)V sub_c1
-ba.a([Laa;)V sub_2ac
+ba.a([Laa;)V setTargets
 ba.b()V sub_30a
 ba.b(I)V sub_f4
 ba.c()V sub_341
@@ -1402,7 +1402,7 @@ bg.b()I sub_2c6
 bg.b()Lbg; sub_3ad
 bg.b()Lcj; sub_1d7
 bg.b()V sub_ad
-bh AbyssEngine/Class_680
+bh AbyssEngine/PlayerFighter
 bh.a F var_a7
 bh.a J var_44b
 bh.a Lcl; var_31e
@@ -2410,6 +2410,7 @@ cq.a Lbw; var_15f4
 cq.a Lbz; var_1142
 cq.a Lc; var_ed8
 cq.a Lca; var_7a2
+cq.a Lcd; position
 cq.a Lcg; var_82c
 cq.a Lcl; var_d58
 cq.a Lda; crosshair
@@ -2475,7 +2476,6 @@ cq.t I cloakTime
 cq.u I cloakDuration
 cq.v I var_1510
 cq.w I var_16ce
-cq.a Lcd; position
 cq.a()F sub_3f6
 cq.a()I getMiningProgress
 cq.a()Lbg; sub_647
@@ -2653,7 +2653,7 @@ cz.a()V reset
 cz.a(J)V sub_4a
 cz.a(Lag;)V append
 cz.b()V render
-d AbyssEngine/Class_cda
+d AbyssEngine/PlayerWormHole
 d.o I var_6b
 d.p I var_81
 d.a()V sub_109
@@ -2670,11 +2670,10 @@ da.b Lcd; screenPos
 da.a()V updatePosition
 da.a(Lcl;Lap;)V sub_5c
 da.b()V draw
-db AbyssEngine/Class_156c
+db AbyssEngine/Level
 db.A I var_1149
 db.B I var_1172
 db.C I var_11c4
-db.a F var_c57
 db.a I var_a19
 db.a Lag; var_3e4
 db.a Lbe; var_12d7
@@ -2683,14 +2682,11 @@ db.a Lbk; var_43d
 db.a Lbr; var_b00
 db.a Lcd; var_387
 db.a Lcj; var_3ad
-db.a Lcq; var_74e
-db.a Lg; var_72e
 db.a Lw; var_2de
 db.a Z var_1297
 db.a [I var_2ed
+db.a [Lag; projectileMesh
 db.a [Lbq; var_8d0
-db.a [Lo; var_775
-db.b F var_d03
 db.b I var_a59
 db.b Lbg; var_863
 db.b Lbk; var_4fc
@@ -2698,12 +2694,9 @@ db.b Lbr; var_b24
 db.b Lcd; var_1353
 db.b Z var_12a2
 db.b [Lag; var_6e9
-db.b [Lo; var_798
-db.c F var_d32
 db.c I var_ad6
 db.c Lbg; var_8c5
 db.c Z var_1311
-db.c [Lo; var_7b4
 db.d F var_ed3
 db.d I var_d3e
 db.d Lbg; var_11a5
@@ -2717,7 +2710,6 @@ db.f Z var_fad
 db.g I var_e3b
 db.g Z var_1219
 db.h I var_e66
-db.h Z var_123d
 db.i I var_e7e
 db.j I var_12b5
 db.k I var_dd
@@ -2736,7 +2728,15 @@ db.w I var_1045
 db.x I var_108e
 db.y I var_10e2
 db.z I var_1104
-db.a [Lag; projectileMesh
+db.b [Lo; asteroids
+db.h Z firstWarning
+db.a [Lo; ships
+db.c [Lo; stationaries
+db.a Lg; skybox
+db.a Lcq; playerEgo
+db.a F starR
+db.b F starG
+db.c F starB
 db.a()I sub_7f9
 db.a()Lbg; sub_6a6
 db.a()Lcj; sub_617
@@ -2753,13 +2753,13 @@ db.a(I)Z sub_a83
 db.a(I)[Lbq; sub_4ab
 db.a(IIIIIIII)Lba; sub_25a
 db.a(IIILcj;)Lo; sub_43f
-db.a(IZ)V sub_c50
+db.a(IZ)V alarmAllFriends
 db.a(J)V sub_966
 db.a(Lbg;)V sub_6ce
 db.a(Lcd;)Z sub_8dc
 db.a(Lcj;I)Lo; sub_3f7
 db.a(Z)V sub_753
-db.a(ZI)V sub_bec
+db.a(ZI)V createRadioMessage
 db.b()I sub_840
 db.b()V sub_7a1
 db.b()Z sub_ade
@@ -2946,16 +2946,15 @@ n.a()V sub_8c
 n.a(J)V sub_181
 n.a(Laq;)V sub_1a9
 n.b()V render
-o AbyssEngine/AutopilotTaget_
+o AbyssEngine/KIPlayer
 o.a I var_145
-o.a Laa; var_164
+o.a Laa; player
 o.a Lag; var_25d
 o.a Lar; var_379
 o.a Lbg; var_50b
 o.a Lcd; var_727
 o.a Lcg; var_6df
-o.a Ldb; var_4c8
-o.a Ljava/lang/String; var_e22
+o.a Ldb; level
 o.a Lo; var_d6c
 o.a S var_5c
 o.a Z var_907
@@ -2963,14 +2962,17 @@ o.a [I var_a3b
 o.b I var_3ce
 o.b Lag; var_a6a
 o.b Lcd; var_77a
-o.b Z var_94b
+o.b Z isAsteroid
 o.c I var_3f3
 o.c Lag; var_aa5
 o.c Z var_99f
 o.d I race
 o.d Z var_9d8
+o.e I targetX
 o.e Z var_af6
+o.f I targetY
 o.f Z var_be0
+o.g I targetZ
 o.g Z var_c3a
 o.h I var_c61
 o.h Z var_cc1
@@ -2982,9 +2984,7 @@ o.k I var_dbe
 o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
-o.e I targetX
-o.f I targetY
-o.g I targetZ
+o.a Ljava/lang/String; name
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
@@ -3069,9 +3069,9 @@ s.b()V sub_160
 s.b(Lcd;)V sub_10a
 t AbyssEngine/Class_1319
 t.c Lcd; var_2e9
+t.l I posX
 t.m I posY
 t.n I posZ
-t.l I posX
 t.a()V sub_109
 t.a(III)Z sub_162
 t.a(J)V sub_e6
