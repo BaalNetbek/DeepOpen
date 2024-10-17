@@ -26,7 +26,7 @@ def parse_arguments(args_str):
     args = args_str.split(',')
     return ''.join(convert_type(arg.strip()) for arg in args)
 
-def proguard_to_simple_mapping(input_file, output_file):
+def proguard_to_simple_mapping(input_file: str, output_file: str) -> None:
     current_class = ''
     current_class_new = ''
     
@@ -61,7 +61,7 @@ def proguard_to_simple_mapping(input_file, output_file):
 
 # Example usage
 if __name__ == "__main__":
-    input_file = r"[Path to Fernflower decompiled source folder]" 
+    input_file = r"[Path to Proguard mapping file (.txt)]" 
     output_file = r"[Output mapping file path]" 
     proguard_to_simple_mapping(input_file, output_file)
     print("Job done.")

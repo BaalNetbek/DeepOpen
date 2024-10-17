@@ -32,27 +32,37 @@ def process_file(file_path, package):
         content = file.read()
 
     class_pattern = r'(\w+)\s*\n\s*(?:[\w\s]+)?class (\w+)'
-    field_pattern = r'// \$FF: renamed from: (\w+) ([\w\[\].]+)\s*\n\s*(?:[\w\s]+)?(\w+) (\w+);'
+    interface_pattern = r'(\w+)\s*\n\s*(?:[\w\s]+)?interface (\w+)'
+    field_pattern = r'// \$FF: renamed from: (\w+) ([\w\[\].]+)\s*\n\s*(?:[\w\s]+)([\w\[\].]+) (\w+);'
     method_pattern = r'// \$FF: renamed from: (\w+) \((.*?)\) ([\w\[\].]+)\s*\n\s*(?:[\w\s]+)?(\w+) (\w+)\('
 
     mappings = []
     old_class_name = '' #assumes 1 class per file
-
     package = package+'/' if len(package)>0  else ''
-    # Class
+    
+    zero_fill = lambda match: match.group(0) if match.group(1) != "class" else f"{match.group(1)}_{match.group(2).zfill(3)}"
+    
+    # classes
     for old_name, new_name in re.findall(class_pattern, content):
         old_name = old_name.replace('.','')
         old_class_name = old_name
-        #if(package!=''):
-        #    print(f"{package}{old_name} {package}/{new_name}")
-        mappings.append(f"{package}{old_name} {package}{new_name}")
+        mapping = f"{package}{old_name} {package}{new_name}"
+        new_content = re.sub(r'(\w+)_(\d+)', zero_fill, mapping)
+        mappings.append(new_content)
+    # interfaces    
+    for old_name, new_name in re.findall(interface_pattern, content):
+        old_name = old_name.replace('.','')
+        old_class_name = old_name
+        mapping = f"{package}{old_name} {package}{new_name}"
+        new_content = re.sub(r'(\w+)_(\d+)', zero_fill, mapping)
+        mappings.append(new_content)   
 
     old_class_name = old_class_name+'.' if len(old_class_name)>0  else ''
-    # field
+    # fields
     for old_name, old_type, _, new_name in re.findall(field_pattern, content):
         mappings.append(f"{package}{old_class_name}{old_name} {convert_type(old_type)} {new_name}")
 
-    # method
+    # methods
     for old_name, args, return_type, _, new_name in re.findall(method_pattern, content):
         args_simple = parse_arguments(args)
         new_name
@@ -75,10 +85,20 @@ def fernflower_to_simple_mapping(root_dir, output_file):
 
 # Example usage
 if __name__ == "__main__":
-    root_dir = r"[Path to Fernflower decompiled source folder]" 
-    output_file = r"[Output mapping file path]"  
+    exec_good = True
+    input_dir = r" Path to Fernflower decompiled source folder " 
+    output_file = r" Output mapping file path "  
+    
+    if not os.path.isdir(input_dir):
+        print(f"Input dir path is not a directory or does not exist: {input_dir}")
+    try:
+        result = fernflower_to_simple_mapping(input_dir, output_file)
+    except Exception as e:
+        exec_good = False
+        print(e)
 
-    fernflower_to_simple_mapping(root_dir, output_file)
-    print("Job done.")
+    if exec_good == True: 
+        print("Job done.")
+
 
 
