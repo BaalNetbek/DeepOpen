@@ -920,7 +920,7 @@ aj AbyssEngine/Class_198
 aj.a [Lcu; var_16
 aj.a(Lcu;)V sub_5c
 aj.b(Z)V sub_109
-ak AbyssEngine/BigShip
+ak AbyssEngine/PlayerBigShip
 ak.a J frametime
 ak.a [Lcd; var_34b
 ak.a [Lw; var_59
@@ -1874,7 +1874,7 @@ by.a()V sub_109
 by.a(III)Z sub_162
 by.a(J)V sub_e6
 by.a(Lcd;)Z sub_1b8
-by.b(Lcd;)Lcd; loadItems
+by.b(Lcd;)Lcd; sub_005
 by.c(Lcd;)Lcd; sub_52
 bz AbyssEngine/Class_a6e
 bz.a I var_2c1
@@ -2005,7 +2005,7 @@ cc.a(J)V sub_e6
 cc.a(Lcd;)Lcd; sub_a9
 cc.a(Lcd;)Z sub_1b8
 cc.b()V sub_22
-cc.b(Lcd;)Lcd; loadItems
+cc.b(Lcd;)Lcd; sub_005
 cd AbyssEngine/AEVector3D
 cd.a I x
 cd.b I y
