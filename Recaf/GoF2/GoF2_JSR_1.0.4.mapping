@@ -845,16 +845,16 @@ ag.b(Lap;Laf;)V sub_b2
 ag.c()V renderTransparent
 ag.a(I)V setFlag_
 ah AbyssEngine/GraphNode
-ah.a Lah; var_8f
 ah.a Lam; var_19f
-ah.a Lar; var_6a
-ah.a Z var_b6
 ah.b I var_45
 ah.b Z var_c1
 ah.c I var_1fa
 ah.c Lcl; var_14c
 ah.c Z var_ee
 ah.b Lcl; currentTransform
+ah.a Lah; parent
+ah.a Lar; meshGroup
+ah.a Z draw
 ah.a()I sub_a
 ah.a()Lar; sub_a4
 ah.a()Lcd; sub_237
@@ -868,7 +868,7 @@ ah.a(Lcd;)V sub_19c
 ah.a(Lcd;Lcd;Lcd;)V sub_90e
 ah.a(Lcl;)Lcl; sub_8f0
 ah.a(Lcl;)V sub_8c9
-ah.a(Ljava/lang/String;I)Ljava/lang/String; sub_159
+ah.a(Ljava/lang/String;I)Ljava/lang/String; getString
 ah.a(S)V sub_5a7
 ah.a(Z)V sub_4f
 ah.b()I sub_29c
@@ -1057,7 +1057,7 @@ ar.a(B)V sub_9aa
 ar.a(II)V sub_980
 ar.a(Lah;)V sub_25
 ar.a(Lap;Laf;)V sub_11b
-ar.a(Ljava/lang/String;I)Ljava/lang/String; sub_159
+ar.a(Ljava/lang/String;I)Ljava/lang/String; getString
 ar.b()Z sub_a37
 ar.b(Lah;)V sub_7f
 ar.b(Lap;Laf;)V sub_b2
@@ -2643,7 +2643,7 @@ cx.b()V sub_153
 cy AbyssEngine/Class_13a3
 cy.a Lcd; vec
 cy.e I var_1ef
-cy.a(Ljava/lang/String;I)Ljava/lang/String; sub_159
+cy.a(Ljava/lang/String;I)Ljava/lang/String; getString
 cy.b(Z)V sub_109
 cy.g(I)V sub_48
 cz AbyssEngine/MeshArray
@@ -2960,7 +2960,6 @@ o.a S state
 o.a Z var_907
 o.a [I var_a3b
 o.b I var_3ce
-o.b Lag; var_a6a
 o.b Lcd; var_77a
 o.b Z isAsteroid
 o.c I var_3f3
@@ -2985,6 +2984,7 @@ o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
 o.a Lcg; explosion
+o.b Lag; waste
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
@@ -3005,7 +3005,6 @@ o.a(Lv;)V sub_2cb
 o.a(ZI)V sub_366
 o.b()V sub_22
 o.b()Z sub_63
-o.b(I)V sub_6b8
 o.b(Lcd;)Lcd; sub_005
 o.b(Z)V sub_73
 o.c()V sub_52b
@@ -3020,6 +3019,7 @@ o.e(Z)V sub_2ab
 o.f()V sub_2e5
 o.f()Z sub_505
 o.g()Z sub_6ef
+o.b(I)V setWasteMesh
 p AbyssEngine/Class_1189
 p.a Ljavax/microedition/lcdui/Graphics; var_1f2
 p.a [Lce; var_98
