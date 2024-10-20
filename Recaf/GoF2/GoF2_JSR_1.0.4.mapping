@@ -612,12 +612,12 @@ Main/r.a(I)Z sub_a9
 Main/r.a(II)V sub_101
 Main/r.a(IZ)V sub_29e
 Main/r.a(ZLck;ZI)V sub_4e
+Main/r.a(ZZ)V sub_003
 Main/r.b()V askForJumpIntoAlienWorld
 Main/r.c()V sub_dd
 Main/r.d()V sub_158
 Main/r.e()V sub_23f
 Main/r.f()V sub_2b5
-Main/r.a(ZZ)V sub_003 
 a AbyssEngine/AEMesh
 a.a Ljava/io/DataInputStream; aemFile
 a.a Ljavax/microedition/m3g/Appearance; appearance
@@ -947,8 +947,8 @@ ak.a(Lcd;)Z sub_1b8
 ak.a(Z)V sub_59
 ak.a([Lw;)V sub_9c
 ak.b()V sub_22
-ak.c(I)V sub_da
 ak.b(Lcd;)Lcd; sub_005
+ak.c(I)V sub_da
 al AbyssEngine/MiningGame
 al.a F cursorAcceleration
 al.a I nextLevelTreshold
@@ -1411,6 +1411,7 @@ bh.a [Lw; var_7b6
 bh.b F var_f1
 bh.b Laa; var_3fa
 bh.b Lbg; var_561
+bh.c F speed
 bh.c Lbg; var_595
 bh.c Lcd; var_1d2
 bh.d F var_7a0
@@ -1439,7 +1440,6 @@ bh.v I var_4de
 bh.w I var_5ed
 bh.x I var_699
 bh.y I var_87b
-bh.c F speed
 bh.a()V sub_109
 bh.a()Z sub_5f
 bh.a(I)V loadShips
@@ -1531,21 +1531,21 @@ bl.h I var_c44
 bl.i I var_c7d
 bl.j I var_cae
 bl.k I var_d88
-bl.l I var_ddd
-bl.m I var_e07
 bl.n I var_e59
 bl.o I var_ea8
 bl.p I var_f13
-bl.q I var_f83
 bl.r I var_f9e
 bl.s I var_fba
 bl.t I var_1004
-bl.u I var_102f
 bl.v I var_107c
 bl.w I var_10b9
 bl.x I var_1116
 bl.y I var_112f
 bl.z I var_1155
+bl.l I minedOre
+bl.m I minedCores
+bl.u I asteroidsDestroyed
+bl.q I bombsUsed
 bl.a()I getCurrentCampaignMission
 bl.a()J getPlayingTime
 bl.a()Lbe; getStation
@@ -1660,13 +1660,13 @@ bo.b [Ljava/lang/String; paths
 bo.b [Z var_2c6
 bo.c [I var_223
 bo.d [I tranparent_
+bo.a()V destroy
 bo.a(I)Lag; getGeometryResource
 bo.a(I)Laq; sub_10b
 bo.a(ILjava/lang/String;)V sub_53
 bo.a(ILjava/lang/String;I)V setupSkybox_
 bo.a(ILjava/lang/String;II)V sub_ad
 bo.b()V sub_18f
-bo.a()V destroy
 bp AbyssEngine/ProducedGood
 bp.a I stationId
 bp.a Ljava/lang/String; stationName
@@ -1777,76 +1777,76 @@ bw.a Lbj; floatVector
 bw.a Lcd; var_bc4
 bw.a Lcl; var_b8e
 bw.a Ldb; var_b73
+bw.a Ljava/lang/String; closestStatPlayerDistanceVisible
+bw.a Ljavax/microedition/lcdui/Image; lockonEnemy
+bw.a Ljavax/microedition/lcdui/game/Sprite; logosSmall
+bw.a Lo; contextShip
 bw.a Z var_10b4
 bw.a [I var_31
 bw.a [Lag; var_aeb
+bw.a [Ljava/lang/String; stationaryPlayersNames
 bw.a [Lo; var_a55
 bw.b I var_8f0
 bw.b Lag; var_f8d
 bw.b Lcd; var_c0c
+bw.b Ljavax/microedition/lcdui/Image; radarIconEnemy
+bw.b Ljavax/microedition/lcdui/game/Sprite; scanProcessAnim
 bw.b Lo; var_fdf
 bw.b Z var_a3e
 bw.b [Lo; var_a71
 bw.c I var_974
 bw.c Lcd; var_c50
 bw.c Ljavax/microedition/lcdui/Image; hudLockOnFriend
+bw.c Ljavax/microedition/lcdui/game/Sprite; meteorClass
 bw.c Lo; var_1043
 bw.c Z var_10e1
 bw.c [Lo; var_ad3
 bw.d I var_99a
 bw.d Lcd; var_cad
 bw.d Ljavax/microedition/lcdui/Image; hudRadarIconFriend
+bw.d Ljavax/microedition/lcdui/game/Sprite; bars
 bw.d Lo; var_1083
+bw.d Z scanCargo
 bw.e I var_9c8
+bw.e Ljavax/microedition/lcdui/Image; lockonWaypoint
+bw.e Lo; targetedPlayer
+bw.e Z scanAtypeAsteroids
 bw.f I var_a1c
+bw.f Ljavax/microedition/lcdui/Image; lockonNeutral
 bw.f Lo; var_f34
+bw.f Z scanerPresent
 bw.g I var_d13
+bw.g Ljavax/microedition/lcdui/Image; radarIconNeutral2
 bw.g Lo; var_f73
+bw.g Z drillPresent
 bw.h I var_de6
+bw.h Ljavax/microedition/lcdui/Image; bracketEnemyFar
+bw.h Z tractorBeamPresent
 bw.i I var_e11
+bw.i Ljavax/microedition/lcdui/Image; bracketFriendFar
 bw.i Z var_128a
 bw.j I var_e35
+bw.j Ljavax/microedition/lcdui/Image; lockonWaypoint2
+bw.j Z pastIntro
 bw.k I var_e89
+bw.k Ljavax/microedition/lcdui/Image; radarIconNeutral
 bw.l I var_115c
+bw.l Ljavax/microedition/lcdui/Image; radarIconEnemyLock
 bw.m I var_1316
+bw.m Ljavax/microedition/lcdui/Image; radarIconFriendLock
+bw.n I scanTime
+bw.n Ljavax/microedition/lcdui/Image; radarIconNeutralLock
 bw.o I var_1381
-bw.w Ljavax/microedition/lcdui/Image; var_741
-bw.x Ljavax/microedition/lcdui/Image; var_781
-bw.a [Ljava/lang/String; stationaryPlayersNames
-bw.a Ljava/lang/String; closestStatPlayerDistanceVisible
-bw.a Lo; contextShip
-bw.e Lo; targetedPlayer
-bw.r Ljavax/microedition/lcdui/Image; spacejunk
+bw.o Ljavax/microedition/lcdui/Image; bracketBox
+bw.p Ljavax/microedition/lcdui/Image; crate
 bw.q Ljavax/microedition/lcdui/Image; asteroid
+bw.r Ljavax/microedition/lcdui/Image; spacejunk
 bw.s Ljavax/microedition/lcdui/Image; crateVoid
 bw.t Ljavax/microedition/lcdui/Image; vortex
 bw.u Ljavax/microedition/lcdui/Image; waypoint
 bw.v Ljavax/microedition/lcdui/Image; mapJumpgate
-bw.e Ljavax/microedition/lcdui/Image; lockonWaypoint
-bw.m Ljavax/microedition/lcdui/Image; radarIconFriendLock
-bw.l Ljavax/microedition/lcdui/Image; radarIconEnemyLock
-bw.j Ljavax/microedition/lcdui/Image; lockonWaypoint2
-bw.k Ljavax/microedition/lcdui/Image; radarIconNeutral
-bw.d Ljavax/microedition/lcdui/game/Sprite; bars
-bw.a Ljavax/microedition/lcdui/game/Sprite; logosSmall
-bw.h Ljavax/microedition/lcdui/Image; bracketEnemyFar
-bw.i Ljavax/microedition/lcdui/Image; bracketFriendFar
-bw.o Ljavax/microedition/lcdui/Image; bracketBox
-bw.p Ljavax/microedition/lcdui/Image; crate
-bw.b Ljavax/microedition/lcdui/game/Sprite; scanProcessAnim
-bw.c Ljavax/microedition/lcdui/game/Sprite; meteorClass
-bw.f Z scanerPresent
-bw.n I scanTime
-bw.h Z tractorBeamPresent
-bw.g Z drillPresent
-bw.j Z pastIntro
-bw.b Ljavax/microedition/lcdui/Image; radarIconEnemy
-bw.n Ljavax/microedition/lcdui/Image; radarIconNeutralLock
-bw.a Ljavax/microedition/lcdui/Image; lockonEnemy
-bw.f Ljavax/microedition/lcdui/Image; lockonNeutral
-bw.g Ljavax/microedition/lcdui/Image; radarIconNeutral2
-bw.d Z scanCargo
-bw.e Z scanAtypeAsteroids
+bw.w Ljavax/microedition/lcdui/Image; var_741
+bw.x Ljavax/microedition/lcdui/Image; var_781
 bw.a()I sub_12d
 bw.a()Lo; sub_1bd
 bw.a()V sub_42
@@ -2212,7 +2212,7 @@ ck.e I targetStationId
 ck.f I difficulty
 ck.g I commodityId
 ck.h I commodityAmmout
-ck.i I var_71d
+ck.i I tasksTreshold_
 ck.a()I getProductionGoodIndex
 ck.a()Lcb; sub_70e
 ck.a()Ljava/lang/String; sub_486
@@ -2228,7 +2228,6 @@ ck.b()Ljava/lang/String; getTargetStationName
 ck.b()Z sub_12c
 ck.b(I)V sub_54a
 ck.b(Z)V sub_13b
-ck.c()I getStatusValue
 ck.c()Ljava/lang/String; sub_77b
 ck.c()Z sub_1c6
 ck.c(I)V setTargetStation
@@ -2245,6 +2244,7 @@ ck.g()I sub_50f
 ck.g()Z sub_5d6
 ck.h()I getTargetStationIndex
 ck.i()I sub_6e3
+ck.c()I getStatusValue_
 cl AbyssEngine/Matrix
 cl.a I scaleX
 cl.a Lcd; var_93d
@@ -2344,10 +2344,10 @@ cm.a(Lcd;)Z sub_1b8
 cm.a(Z)V sub_26f
 cm.b()I sub_80
 cm.b()V sub_22
+cm.b(Lcd;)Lcd; sub_005
 cm.c()I sub_e2
 cm.d()I sub_1bb
 cm.g()V sub_296
-cm.b(Lcd;)Lcd; sub_005
 cn AbyssEngine/LangManager
 cn.a I var_751
 cn.a Ljava/lang/String; var_7ca
@@ -2917,9 +2917,9 @@ l.a(II)V sub_fe
 l.a(Z)Z sub_14d
 m AbyssEngine/Class_105fgun
 m.a Lag; var_1c8
+m.a Lba; gun
 m.a Lcd; var_211
 m.a [Lag; var_18b
-m.a Lba; gun
 m.a()Lah; sub_2b
 m.a()V sub_8c
 m.a(J)V sub_181
@@ -2957,6 +2957,7 @@ o.a Lcg; var_6df
 o.a Ldb; level
 o.a Ljava/lang/String; name
 o.a Lo; var_d6c
+o.a S state
 o.a Z var_907
 o.a [I var_a3b
 o.b I var_3ce
@@ -2984,7 +2985,6 @@ o.k I var_dbe
 o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
-o.a S state
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
@@ -3006,6 +3006,7 @@ o.a(ZI)V sub_366
 o.b()V sub_22
 o.b()Z sub_63
 o.b(I)V sub_6b8
+o.b(Lcd;)Lcd; sub_005
 o.b(Z)V sub_73
 o.c()V sub_52b
 o.c()Z sub_279
@@ -3019,7 +3020,6 @@ o.e(Z)V sub_2ab
 o.f()V sub_2e5
 o.f()Z sub_505
 o.g()Z sub_6ef
-o.b(Lcd;)Lcd; sub_005
 p AbyssEngine/Class_1189
 p.a Ljavax/microedition/lcdui/Graphics; var_1f2
 p.a [Lce; var_98
@@ -3063,10 +3063,10 @@ s.b [I var_2dd
 s.c [I var_323
 s.d [I var_3f9
 s.a()V sub_60
+s.a(I)V sub_000
 s.a(Lcd;)V sub_a6
 s.b()V sub_160
 s.b(Lcd;)V sub_10a
-s.a(I)V sub_000
 t AbyssEngine/Class_1319
 t.c Lcd; var_2e9
 t.l I posX
