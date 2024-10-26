@@ -1503,6 +1503,7 @@ bl.a [I var_a0a
 bl.a [Lbe; lastVisitedStations
 bl.a [Lbp; waitingGoods
 bl.a [Lcb; SpecialAgents
+bl.a [Lck; currentMissions
 bl.a [Li; blueprints
 bl.a [Ljava/lang/String; wingmenNames
 bl.a [Z visibleSystems
@@ -1545,7 +1546,6 @@ bl.w I var_10b9
 bl.x I var_1116
 bl.y I var_112f
 bl.z I var_1155
-bl.a [Lck; currentMissions
 bl.a()I getCurrentCampaignMission
 bl.a()J getPlayingTime
 bl.a()Lbe; getStation
@@ -1798,13 +1798,13 @@ bw.c I var_974
 bw.c Lcd; var_c50
 bw.c Ljavax/microedition/lcdui/Image; hudLockOnFriend
 bw.c Ljavax/microedition/lcdui/game/Sprite; meteorClass
+bw.c Lo; contextStation
 bw.c Z var_10e1
 bw.c [Lo; var_ad3
 bw.d I var_99a
 bw.d Lcd; var_cad
 bw.d Ljavax/microedition/lcdui/Image; hudRadarIconFriend
 bw.d Ljavax/microedition/lcdui/game/Sprite; bars
-bw.d Lo; var_1083
 bw.d Z scanCargo
 bw.e I var_9c8
 bw.e Ljavax/microedition/lcdui/Image; lockonWaypoint
@@ -1812,6 +1812,7 @@ bw.e Lo; targetedPlayer
 bw.e Z scanAtypeAsteroids
 bw.f I var_a1c
 bw.f Ljavax/microedition/lcdui/Image; lockonNeutral
+bw.f Lo; contextAsteroid
 bw.f Z scanerPresent
 bw.g I var_d13
 bw.g Ljavax/microedition/lcdui/Image; radarIconNeutral2
@@ -1843,11 +1844,10 @@ bw.s Ljavax/microedition/lcdui/Image; crateVoid
 bw.t Ljavax/microedition/lcdui/Image; vortex
 bw.u Ljavax/microedition/lcdui/Image; waypoint
 bw.v Ljavax/microedition/lcdui/Image; mapJumpgate
+bw.var_1043 Lo; contextStation
 bw.w Ljavax/microedition/lcdui/Image; var_741
 bw.x Ljavax/microedition/lcdui/Image; var_781
-bw.f Lo; contextAsteroid
-bw.c Lo; contextStation
-bw.var_1043 Lo; contextStation
+bw.d Lo; targetedStation
 bw.a()I sub_12d
 bw.a()Lo; sub_1bd
 bw.a()V sub_42
@@ -2195,57 +2195,57 @@ cj.a(Lcd;)Lcd; sub_a9
 cj.d(Z)V sub_34
 cj.g()V sub_af
 ck AbyssEngine/Mission
+ck.a I missionType
 ck.a Lcb; client
 ck.a Lck; var_dc
 ck.a Ljava/lang/String; clientName
 ck.a Z startedStoryMission
 ck.a [B clientFace
 ck.b I clientRace
+ck.b Ljava/lang/String; targetName
+ck.b Z failed
 ck.c I reward
 ck.c Ljava/lang/String; targetStationName
+ck.c Z won
 ck.d I bonus_
+ck.d Z visible_
 ck.e I targetStationId
 ck.f I difficulty
 ck.g I commodityId
 ck.h I commodityAmmout
 ck.i I tasksTreshold_
-ck.d Z visible_
-ck.b Z failed
-ck.c Z won
-ck.a I missionType
-ck.b Ljava/lang/String; targetName
 ck.a()I getProductionGoodIndex
+ck.a()Lcb; getAgent
 ck.a()Ljava/lang/String; sub_486
+ck.a()Z isEmpty
 ck.a()[B getClientImage
 ck.a(I)V setStatusValue
 ck.a(II)V setProductionGoods
+ck.a(Lcb;)V setAgent
+ck.a(Ljava/lang/String;)V setTargetName
 ck.a(Z)V sub_91
 ck.b()I getProductionGoodAmount
 ck.b()Ljava/lang/String; getTargetStationName
 ck.b()Z sub_12c
 ck.b(I)V sub_54a
+ck.b(Z)V setFailed
 ck.c()I getStatusValue_
+ck.c()Ljava/lang/String; getTargetName
+ck.c()Z hasFailed
 ck.c(I)V setTargetStation
+ck.c(Z)V setWon
 ck.d()I getType
+ck.d()Z hasWon
+ck.d(I)V setType
 ck.d(Z)V setStartedStoryMission
 ck.e()I getClientRace
 ck.e()Z sub_453
 ck.f()I getReward
-ck.g()I sub_50f
-ck.a()Z isEmpty
-ck.c()Z hasFailed
-ck.b(Z)V setFailed
-ck.c(Z)V setWon
-ck.d()Z hasWon
 ck.f()Z isInstantActionMission
+ck.g()I sub_50f
 ck.g()Z isCampaignMission
 ck.h()I setCampaignMission
 ck.i()I getDifficulty
-ck.a()Lcb; getAgent
-ck.a(Lcb;)V setAgent
-ck.d(I)V setType
-ck.c()Ljava/lang/String; getTargetName
-ck.a(Ljava/lang/String;)V setTargetName
 cl AbyssEngine/Matrix
 cl.a I scaleX
 cl.a Lcd; temp
@@ -2963,6 +2963,7 @@ o.a Z var_907
 o.a [I var_a3b
 o.b I var_3ce
 o.b Lag; waste
+o.b Lcd; positon
 o.b Z isAsteroid
 o.c I var_3f3
 o.c Lag; var_aa5
@@ -2985,7 +2986,6 @@ o.k I var_dbe
 o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
-o.b Lcd; positon
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
