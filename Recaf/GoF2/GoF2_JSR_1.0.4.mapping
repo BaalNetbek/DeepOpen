@@ -1493,7 +1493,6 @@ bl.L I var_510
 bl.M I currentCampaignMissionIndex
 bl.a I var_906
 bl.a J lastLoadingTime
-bl.a Lbe; var_bda
 bl.a Lch; playersShip
 bl.a Lck; var_66d
 bl.a Lcs; standing
@@ -1546,6 +1545,7 @@ bl.y I var_112f
 bl.z I var_1155
 bl.c [I currSysPlanetTextures
 bl.b [Ljava/lang/String; currSysPlanetNames
+bl.a Lbe; voidStation
 bl.a()I getCurrentCampaignMission
 bl.a()J getPlayingTime
 bl.a()Lbe; getStation
@@ -1564,7 +1564,6 @@ bl.a(IZ)V sub_e9
 bl.a(J)V setPlayingTime
 bl.a(Lbe;)Lbe; sub_197
 bl.a(Lbe;)V sub_1e5
-bl.a(Lch;)V sub_7e3
 bl.a(Lck;)V sub_2a2
 bl.a(Li;)V sub_5c
 bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceToken
@@ -1584,7 +1583,6 @@ bl.b(Lck;)V sub_2da
 bl.c()I sub_675
 bl.c()Lck; sub_339
 bl.c()V jumpgateUsed
-bl.c()Z sub_4b8
 bl.c(I)V setJumpgateUsed
 bl.c(Lck;)V startStoryMission
 bl.d()I sub_6ac
@@ -1601,7 +1599,6 @@ bl.g()I getGoodsProduced
 bl.g()V incPirateKills
 bl.g(I)V setRating
 bl.h()I getRating
-bl.h()V sub_e85
 bl.h(I)V setKills
 bl.i()I getLastXP
 bl.i()V startNewGame
@@ -1621,6 +1618,9 @@ bl.q(I)V sub_ca6
 bl.a()[I getPlanetTextures
 bl.a()[Ljava/lang/String; getPlanetNames
 bl.a()[Z getVisibleSystems
+bl.c()Z inAlienOrbit
+bl.a(Lch;)V setShip
+bl.h()V calcCargoPrices
 bm AbyssEngine/Class_786
 bm.a(J)V sub_181
 bn AbyssEngine/Class_7bb
@@ -1761,14 +1761,14 @@ bv.a Lcd; var_11
 bv.a [Z visitedStations
 bv.b Lcd; var_141
 bv.a()[Z getVisitedStations
-bv.a(I)Lbe; sub_85
 bv.a(I)Lcw; sub_2d
-bv.a(I)V sub_110
 bv.a(IIII)I invDistancePercent
 bv.a(Lbe;)[I sub_180
-bv.a(Lcw;Lcw;)F sub_161
 bv.a([Z)V setVisitedStations
 bv.b(IIII)I distancePercent
+bv.a(I)Lbe; getStation
+bv.a(I)V visitStation
+bv.a(Lcw;Lcw;)F distance
 bw AbyssEngine/FlightContext
 bw.a I var_8a8
 bw.a Lag; var_fd4
