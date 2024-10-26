@@ -1,11 +1,16 @@
-
-![Deep Open](/extras/DeepOpen.png)
+<p align="center">
+  <img src="/extras/DeepOpen.png" />
+</p>
 
 Attempt to recreate code of Fishlabs games and their common core Abyss Engine for education and enternainment purpouses, by revese engineering.
 
 Currently the essence of this repo is the [name mapping for GoF2](Recaf/GoF2/GoF2_JSR_1.0.4.mapping) version 1.0.4 (the last update for J2ME published for free by the fishes)
 ___
-![progress chart](/extras/logger/progress_chart.png)
+<p align="center">
+  <img src="/extras/logger/progress_chart.png" />
+</p>
+
+___
 ### Goals
 1. Getting fully readable code java code
     * Deobufuscating GoF2 classes, fields and methods names using Recaf - now
