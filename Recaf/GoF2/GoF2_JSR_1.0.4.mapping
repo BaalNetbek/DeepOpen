@@ -415,6 +415,7 @@ Main/o.a Lbw; var_6d2
 Main/o.a Lc; var_450
 Main/o.a Lcd; var_d9c
 Main/o.a Lco; var_48b
+Main/o.a Lcq; playerEgo
 Main/o.a Ldb; var_630
 Main/o.a Lj; var_7af
 Main/o.a Lv; var_611
@@ -446,7 +447,6 @@ Main/o.q Z var_c3b
 Main/o.r Z var_c80
 Main/o.s Z var_ce4
 Main/o.t Z var_d4a
-Main/o.a Lcq; playerEgo
 Main/o.a()V freeResources
 Main/o.a()Z isLoaded
 Main/o.a(I)V renderScene
@@ -1274,6 +1274,7 @@ ba.a I var_334
 ba.a Laa; var_20f
 ba.a Lbk; var_5bc
 ba.a Lcd; var_3de
+ba.a Ldb; level
 ba.a Z var_42d
 ba.a [I projectilesTimeLeft
 ba.a [Laa; targets
@@ -1296,7 +1297,6 @@ ba.g I var_2a2
 ba.h I damage
 ba.i I var_5b0
 ba.j I var_633
-ba.a Ldb; level
 ba.a()I sub_141
 ba.a()V sub_183
 ba.a()[Laa; sub_2d2
@@ -1374,8 +1374,8 @@ be.a([Lch;)V setShopShips
 be.a([Lu;)V setShopItems
 be.b()I getId
 be.b()Z sub_175
-be.d()I getTecLevel
 be.c()I getPlanetTextureId
+be.d()I getTecLevel
 bf AbyssEngine/Class_601
 bf.a [I var_40
 bf.b [I var_9e
@@ -1493,6 +1493,7 @@ bl.L I var_510
 bl.M I currentCampaignMissionIndex
 bl.a I var_906
 bl.a J lastLoadingTime
+bl.a Lbe; voidStation
 bl.a Lch; playersShip
 bl.a Lck; var_66d
 bl.a Lcs; standing
@@ -1502,7 +1503,6 @@ bl.a [I var_a0a
 bl.a [Lbe; lastVisitedStations
 bl.a [Lbp; waitingGoods
 bl.a [Lcb; SpecialAgents
-bl.a [Lck; lastStoryMissions
 bl.a [Li; blueprints
 bl.a [Ljava/lang/String; wingmenNames
 bl.a [Z visibleSystems
@@ -1511,10 +1511,12 @@ bl.b J timeSpentLoading
 bl.b Lbe; currentStation
 bl.b [B var_a8c
 bl.b [I var_a40
+bl.b [Ljava/lang/String; currSysPlanetNames
 bl.b [Z var_d18
 bl.c I var_9a8
 bl.c J var_cc7
 bl.c [B var_ad7
+bl.c [I currSysPlanetTextures
 bl.c [Z var_d2b
 bl.d I shield
 bl.d J var_f55
@@ -1543,9 +1545,7 @@ bl.w I var_10b9
 bl.x I var_1116
 bl.y I var_112f
 bl.z I var_1155
-bl.c [I currSysPlanetTextures
-bl.b [Ljava/lang/String; currSysPlanetNames
-bl.a Lbe; voidStation
+bl.a [Lck; currentMissions
 bl.a()I getCurrentCampaignMission
 bl.a()J getPlayingTime
 bl.a()Lbe; getStation
@@ -1555,15 +1555,19 @@ bl.a()Lcs; getStanding
 bl.a()Lcw; getSystem
 bl.a()V incMissionCount
 bl.a()Z gameWon
+bl.a()[I getPlanetTextures
 bl.a()[Lbe; getLastVisitedStations
 bl.a()[Lbp; sub_ac
 bl.a()[Lcb; getSpecialAgents
 bl.a()[Li; getBluePrints
+bl.a()[Ljava/lang/String; getPlanetNames
+bl.a()[Z getVisibleSystems
 bl.a(I)V sub_236
 bl.a(IZ)V sub_e9
 bl.a(J)V setPlayingTime
 bl.a(Lbe;)Lbe; sub_197
 bl.a(Lbe;)V sub_1e5
+bl.a(Lch;)V setShip
 bl.a(Lck;)V sub_2a2
 bl.a(Li;)V sub_5c
 bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceToken
@@ -1583,6 +1587,7 @@ bl.b(Lck;)V sub_2da
 bl.c()I sub_675
 bl.c()Lck; sub_339
 bl.c()V jumpgateUsed
+bl.c()Z inAlienOrbit
 bl.c(I)V setJumpgateUsed
 bl.c(Lck;)V startStoryMission
 bl.d()I sub_6ac
@@ -1599,6 +1604,7 @@ bl.g()I getGoodsProduced
 bl.g()V incPirateKills
 bl.g(I)V setRating
 bl.h()I getRating
+bl.h()V calcCargoPrices
 bl.h(I)V setKills
 bl.i()I getLastXP
 bl.i()V startNewGame
@@ -1615,12 +1621,6 @@ bl.n(I)V setStationsVisited
 bl.o(I)V changeCredits
 bl.p(I)V setCredits
 bl.q(I)V sub_ca6
-bl.a()[I getPlanetTextures
-bl.a()[Ljava/lang/String; getPlanetNames
-bl.a()[Z getVisibleSystems
-bl.c()Z inAlienOrbit
-bl.a(Lch;)V setShip
-bl.h()V calcCargoPrices
 bm AbyssEngine/Class_786
 bm.a(J)V sub_181
 bn AbyssEngine/Class_7bb
@@ -1761,14 +1761,14 @@ bv.a Lcd; var_11
 bv.a [Z visitedStations
 bv.b Lcd; var_141
 bv.a()[Z getVisitedStations
+bv.a(I)Lbe; getStation
 bv.a(I)Lcw; sub_2d
+bv.a(I)V visitStation
 bv.a(IIII)I invDistancePercent
 bv.a(Lbe;)[I sub_180
+bv.a(Lcw;Lcw;)F distance
 bv.a([Z)V setVisitedStations
 bv.b(IIII)I distancePercent
-bv.a(I)Lbe; getStation
-bv.a(I)V visitStation
-bv.a(Lcw;Lcw;)F distance
 bw AbyssEngine/FlightContext
 bw.a I var_8a8
 bw.a Lag; var_fd4
@@ -1798,7 +1798,6 @@ bw.c I var_974
 bw.c Lcd; var_c50
 bw.c Ljavax/microedition/lcdui/Image; hudLockOnFriend
 bw.c Ljavax/microedition/lcdui/game/Sprite; meteorClass
-bw.c Lo; var_1043
 bw.c Z var_10e1
 bw.c [Lo; var_ad3
 bw.d I var_99a
@@ -1813,7 +1812,6 @@ bw.e Lo; targetedPlayer
 bw.e Z scanAtypeAsteroids
 bw.f I var_a1c
 bw.f Ljavax/microedition/lcdui/Image; lockonNeutral
-bw.f Lo; var_f34
 bw.f Z scanerPresent
 bw.g I var_d13
 bw.g Ljavax/microedition/lcdui/Image; radarIconNeutral2
@@ -1847,6 +1845,9 @@ bw.u Ljavax/microedition/lcdui/Image; waypoint
 bw.v Ljavax/microedition/lcdui/Image; mapJumpgate
 bw.w Ljavax/microedition/lcdui/Image; var_741
 bw.x Ljavax/microedition/lcdui/Image; var_781
+bw.f Lo; contextAsteroid
+bw.c Lo; contextStation
+bw.var_1043 Lo; contextStation
 bw.a()I sub_12d
 bw.a()Lo; sub_1bd
 bw.a()V sub_42
@@ -2194,57 +2195,57 @@ cj.a(Lcd;)Lcd; sub_a9
 cj.d(Z)V sub_34
 cj.g()V sub_af
 ck AbyssEngine/Mission
-ck.a I missionType_
 ck.a Lcb; client
 ck.a Lck; var_dc
 ck.a Ljava/lang/String; clientName
 ck.a Z startedStoryMission
 ck.a [B clientFace
 ck.b I clientRace
-ck.b Ljava/lang/String; var_2d5
-ck.b Z var_62a
 ck.c I reward
 ck.c Ljava/lang/String; targetStationName
-ck.c Z storyDialogueStarted_
 ck.d I bonus_
-ck.d Z var_73c
 ck.e I targetStationId
 ck.f I difficulty
 ck.g I commodityId
 ck.h I commodityAmmout
 ck.i I tasksTreshold_
+ck.d Z visible_
+ck.b Z failed
+ck.c Z won
+ck.a I missionType
+ck.b Ljava/lang/String; targetName
 ck.a()I getProductionGoodIndex
-ck.a()Lcb; sub_70e
 ck.a()Ljava/lang/String; sub_486
-ck.a()Z sin
 ck.a()[B getClientImage
 ck.a(I)V setStatusValue
 ck.a(II)V setProductionGoods
-ck.a(Lcb;)V sub_76c
-ck.a(Ljava/lang/String;)V sub_7b6
 ck.a(Z)V sub_91
 ck.b()I getProductionGoodAmount
 ck.b()Ljava/lang/String; getTargetStationName
 ck.b()Z sub_12c
 ck.b(I)V sub_54a
-ck.b(Z)V sub_13b
 ck.c()I getStatusValue_
-ck.c()Ljava/lang/String; sub_77b
-ck.c()Z sub_1c6
 ck.c(I)V setTargetStation
-ck.c(Z)V sub_208
 ck.d()I getType
-ck.d()Z sub_22e
-ck.d(I)V sub_7f3
 ck.d(Z)V setStartedStoryMission
 ck.e()I getClientRace
 ck.e()Z sub_453
 ck.f()I getReward
-ck.f()Z sub_5a6
 ck.g()I sub_50f
-ck.g()Z sub_5d6
-ck.h()I getTargetStationIndex
-ck.i()I sub_6e3
+ck.a()Z isEmpty
+ck.c()Z hasFailed
+ck.b(Z)V setFailed
+ck.c(Z)V setWon
+ck.d()Z hasWon
+ck.f()Z isInstantActionMission
+ck.g()Z isCampaignMission
+ck.h()I setCampaignMission
+ck.i()I getDifficulty
+ck.a()Lcb; getAgent
+ck.a(Lcb;)V setAgent
+ck.d(I)V setType
+ck.c()Ljava/lang/String; getTargetName
+ck.a(Ljava/lang/String;)V setTargetName
 cl AbyssEngine/Matrix
 cl.a I scaleX
 cl.a Lcd; temp
@@ -2399,6 +2400,7 @@ cq AbyssEngine/PlayerEgo
 cq.a F handling
 cq.a I speed
 cq.a J var_b37
+cq.a Laa; player
 cq.a Lag; var_62e
 cq.a Lal; miningGame
 cq.a Lan; var_1653
@@ -2475,7 +2477,6 @@ cq.t I cloakTime
 cq.u I cloakDuration
 cq.v I var_1510
 cq.w I var_16ce
-cq.a Laa; player
 cq.a()F sub_3f6
 cq.a()I getMiningProgress
 cq.a()Lbg; sub_647
@@ -2705,12 +2706,21 @@ db.c I var_ad6
 db.c Lbg; var_8c5
 db.c Z var_1311
 db.c [Lo; stationaries
+db.d F explosionR
+db.d I spaceR
 db.d Lbg; var_11a5
 db.d Z var_ba8
+db.e F explosionG
+db.e I spaceG
 db.e Z var_c13
+db.f F explosionB
+db.f I spaceB
 db.f Z var_fad
+db.g I bgR
 db.g Z var_1219
+db.h I bgG
 db.h Z firstWarning
+db.i I bgB
 db.j I var_12b5
 db.k I var_dd
 db.l I var_902
@@ -2728,15 +2738,6 @@ db.w I var_1045
 db.x I var_108e
 db.y I var_10e2
 db.z I var_1104
-db.d I spaceR
-db.e I spaceG
-db.f I spaceB
-db.g I bgR
-db.h I bgG
-db.i I bgB
-db.d F explosionR
-db.e F explosionG
-db.f F explosionB
 db.a()I sub_7f9
 db.a()Lbg; sub_6a6
 db.a()Lcj; sub_617
@@ -2962,7 +2963,6 @@ o.a Z var_907
 o.a [I var_a3b
 o.b I var_3ce
 o.b Lag; waste
-o.b Lcd; var_77a
 o.b Z isAsteroid
 o.c I var_3f3
 o.c Lag; var_aa5
@@ -2985,6 +2985,7 @@ o.k I var_dbe
 o.k Z var_eb1
 o.l Z var_ee3
 o.m Z var_efb
+o.b Lcd; positon
 o.a()I sub_4a3
 o.a()Lbg; sub_3ea
 o.a()V sub_109
