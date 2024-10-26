@@ -14,7 +14,7 @@ ___
 ### Goals
 1. Getting fully readable code java code
     * Deobufuscating GoF2 classes, fields and methods names using Recaf - now
-    * Deobufuscating ther inner variables of methods - touched (.aem loading class implemented in [GoF2:Reforged](https://drive.google.com/drive/folders/198TUt7ERvaK7kdShcHvn_otm48rbBnKV)$^1$)
+    * Deobufuscating insides of methods - touched (.aem loading class implemented in [GoF2:Reforged](https://drive.google.com/drive/folders/198TUt7ERvaK7kdShcHvn_otm48rbBnKV)$^1$)
     * Making documentation of the code.
 2. Porting to other platforms, modding java...
 ___
