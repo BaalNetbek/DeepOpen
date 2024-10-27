@@ -1805,6 +1805,7 @@ bw.d I var_99a
 bw.d Lcd; var_cad
 bw.d Ljavax/microedition/lcdui/Image; hudRadarIconFriend
 bw.d Ljavax/microedition/lcdui/game/Sprite; bars
+bw.d Lo; targetedStation
 bw.d Z scanCargo
 bw.e I var_9c8
 bw.e Ljavax/microedition/lcdui/Image; lockonWaypoint
@@ -1847,7 +1848,6 @@ bw.v Ljavax/microedition/lcdui/Image; mapJumpgate
 bw.var_1043 Lo; contextStation
 bw.w Ljavax/microedition/lcdui/Image; var_741
 bw.x Ljavax/microedition/lcdui/Image; var_781
-bw.d Lo; targetedStation
 bw.a()I sub_12d
 bw.a()Lo; sub_1bd
 bw.a()V sub_42
@@ -2391,7 +2391,7 @@ co.a(Lcd;I)V sub_bf
 co.a(Z)V sub_120
 co.b(Lah;)V sub_68
 co.c()V sub_2aa
-cp AbyssEngine/Class_103b
+cp AbyssEngine/PlayerJunk
 cp.a J var_1b5
 cp.a()V sub_109
 cp.a(III)Z sub_162
@@ -2450,7 +2450,6 @@ cq.f I relYawSpeed
 cq.f Z autopilotActive
 cq.g I roll
 cq.g Z asteroidFieldTarget_
-cq.h I selectedSecondaryIconId
 cq.h Z var_eb4
 cq.i I var_ba3
 cq.i Z lookBack
@@ -2477,6 +2476,7 @@ cq.t I cloakTime
 cq.u I cloakDuration
 cq.v I var_1510
 cq.w I var_16ce
+cq.h I currentSecondaryId
 cq.a()F sub_3f6
 cq.a()I getMiningProgress
 cq.a()Lbg; sub_647
@@ -2678,7 +2678,6 @@ db.C I var_11c4
 db.a F starR
 db.a I var_a19
 db.a Lag; var_3e4
-db.a Lbe; var_12d7
 db.a Lbg; var_7df
 db.a Lbk; var_43d
 db.a Lbr; var_b00
@@ -2738,6 +2737,7 @@ db.w I var_1045
 db.x I var_108e
 db.y I var_10e2
 db.z I var_1104
+db.a Lbe; autopilotDestination
 db.a()I sub_7f9
 db.a()Lbg; sub_6a6
 db.a()Lcj; sub_617

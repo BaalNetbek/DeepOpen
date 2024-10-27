@@ -24,22 +24,25 @@ ___
 Software requirements:\
 Linux, Windows or [an other one]\
 **[Recaf 4](https://github.com/Col-E/Recaf-Launcher/blob/master/MANUAL.md)**: Java 22+ 64-bit\
-Testing and dynamic analysis (emulator):\ 
+Testing and dynamic analysis (emulator):\
 **KEmulator** ([nnmod](https://nnp.nnchan.ru/kem/) - has multiplatform version)
 
-Deobfuscation procedure:
+Deobfuscation procedure (what I do):
+
 1. In Recaf:
-    - *File* -> *Open workspace* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.jar](/Recaf/GoF2/GoF2_JSR_1.0.4.jar)
-    - *Mapping* -> *Apply* -> *Simple* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.mapping](/Recaf/GoF2/GoF2_JSR_1.0.4.mapping)
-    - (optional) do the *renaming: *contex menu* or *Alt+R* 
-    - *File* -> *Export application* -> save as a .jar file
+      - *File* -> *Open workspace* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.jar](/Recaf/GoF2/GoF2_JSR_1.0.4.jar)
+      - *Mapping* -> *Apply* -> *Simple* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.mapping](/Recaf/GoF2/GoF2_JSR_1.0.4.mapping)
+      - ***Alternatibely to the above if you don't have Github account skip above $^3$***: 
+      - (optional) do the *renaming: *contex menu* or *Alt+R* 
+      - *File* -> *Export application* -> save as a .jar file
 2. In KEmulator:
-    - Test $^2$ buy running the .jar
+    - Test $^2$ by running the .jar
     - Dynamic analysis:  tab *View*-> Watches/Methods/Memory View/Log/Options...*
 3. In Recaf:
     - If testing went well: *Mapping* -> *Export* -> *Simple*
 
-$^2$ If you screwed up, but have unsaved renaming, go to step 3. and Save the mapping as without overwritting the old one. Try step 1. it or try fixing the new mapping in text editor.\
+$^3$ Just load the [GoF2_deobfuscation.jar](/Recaf/GoF2/GoF2_deobfuscation.jar) deobfuscate, save the mapping, send it to me and I will be able to apply it on top of main mapping. \
+$^2$ If you screwed up or Recaf brakes (happens), but have unsaved renaming, go to step 3. and Save the mapping as without overwritting the old one. Try step 1. it or try fixing the new mapping in text editor.\
 $^1$ Biggest GoF2 Mod as of now (2024-10-20). Source code I haven't seen, haven't accessed and will not be published.
 
 More: \

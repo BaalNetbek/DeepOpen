@@ -18,3 +18,5 @@ rm temp.txt
 sort ripped_symbols.h > ripped_symbols_sorted.h
 cd ..
 ```
+U need [demuble](https://github.com/nico/demumble) or [c++filt](https://www.man7.org/linux/man-pages/man1/c++filt.1.html).
+Preferably in path.
