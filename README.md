@@ -32,7 +32,7 @@ Deobfuscation procedure (what I do):
 1. In Recaf:
       - *File* -> *Open workspace* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.jar](/Recaf/GoF2/GoF2_JSR_1.0.4.jar)
       - *Mapping* -> *Apply* -> *Simple* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.mapping](/Recaf/GoF2/GoF2_JSR_1.0.4.mapping)
-      - ***Alternatibely to the above if you don't have Github account skip above*** $^3$: 
+      - ***Alternatively to the above if you don't have Github account skip above***$^3$: 
       - (optional) do the *renaming: *contex menu* or *Alt+R* 
       - *File* -> *Export application* -> save as a .jar file
 2. In KEmulator:
