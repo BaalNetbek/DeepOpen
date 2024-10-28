@@ -1,3 +1,5 @@
+There was compilable, partly deobfuscated code. Now it's not there. But it will come back when it's ready.
+
 (deprecated) - and here is why:
 
 So I finnaly found easy enough for me to use [deobfuscators](https://github.com/j2me-preservation/j2me-preservation/tree/master/Decomp) which gave momentum to this whole thing as the Proguard, name obfuscated only [code](https://github.com/BaalNetbek/gof2.jar-decomp) I had before was pretty awful to work with.  

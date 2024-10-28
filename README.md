@@ -29,20 +29,22 @@ Testing and dynamic analysis (emulator):\
 
 Deobfuscation procedure (what I do):
 
-1. In Recaf:
-      - *File* -> *Open workspace* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.jar](/Recaf/GoF2/GoF2_JSR_1.0.4.jar)
-      - *Mapping* -> *Apply* -> *Simple* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.mapping](/Recaf/GoF2/GoF2_JSR_1.0.4.mapping)
-      - ***Alternatively to the above if you don't have Github account skip above***$^3$: 
+1. In Recaf to get get deobfuscated .jar (that's what I do):
+      - *File* -> *Open workspace* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.jar](/Recaf/GoF2/GoF2_JSR_1.0.4.jar) (or drag and drop the file on Recaf = *load*)
+      - *Mapping* -> *Apply* -> *Simple* -> load /Recaf/GoF2/[GoF2_JSR_1.0.4.mapping](/Recaf/GoF2/GoF2_JSR_1.0.4.mapping) 
       - (optional) do the *renaming: *contex menu* or *Alt+R* 
+      - *File* -> *Export application* -> save as a .jar file (I name it *GoF2_deobfuscation.jar*)
+2. If you want to share your progress outside Github:
+      - *load* the deobfuscated .jar from step 1.
+      - do the *renaming: *contex menu* or *Alt+R* 
       - *File* -> *Export application* -> save as a .jar file
-2. In KEmulator:
+3. In KEmulator:
     - Test $^2$ by running the .jar
     - Dynamic analysis:  tab *View*-> Watches/Methods/Memory View/Log/Options...*
-3. In Recaf:
+4. In Recaf:
     - If testing went well: *Mapping* -> *Export* -> *Simple*
 
-$^3$ Just load the [GoF2_deobfuscation.jar](/Recaf/GoF2/GoF2_deobfuscation.jar) deobfuscate, save the mapping, send it to me and I will be able to apply it on top of main mapping. \
-$^2$ If you screwed up or Recaf brakes (happens), but have unsaved renaming, go to step 3. and Save the mapping as without overwritting the old one. Try step 1. it or try fixing the new mapping in text editor.\
+$^2$ If you screwed up or Recaf brakes (happens), but have unsaved renaming, save the mapping without overwritting the old one. Try reloading .jar and mapping or try fixing the new mapping in text editor.\
 $^1$ Biggest GoF2 Mod as of now (2024-10-20). Source code I haven't seen, haven't accessed and will not be published.
 
 More: \
