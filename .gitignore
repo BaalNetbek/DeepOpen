@@ -1,3 +1,4 @@
 **/*.bak
 temp
 __pycache__
+Recaf/*/*_deobfuscation.jar
