@@ -199,8 +199,8 @@ Main/h.a(Li;)V sub_198
 Main/h.a(Ljava/lang/Object;I)V sub_e4
 Main/h.a(Z)V sub_27b
 Main/h.a([Li;)V sub_d4
-Main/h.a([Lu;)V add
-Main/h.b()I add
+Main/h.a([Lu;)V buildCategorizedItemList_
+Main/h.b()I sub_get72b
 Main/h.b()V sub_9e
 Main/h.b()Z sub_228
 Main/h.c()I sub_149
@@ -215,26 +215,26 @@ Main/h.j()V sub_238
 Main/h.k()V sub_307
 Main/h.l()V sub_171
 Main/i Main/TabbedWindow
-Main/i.a I var_c
+Main/i.a I posX
 Main/i.a Z var_846
 Main/i.a [I var_353
-Main/i.a [Ljava/lang/String; var_2b7
-Main/i.a [[Ljava/lang/Object; var_327
+Main/i.a [Ljava/lang/String; tabNames
+Main/i.a [[Ljava/lang/Object; perTabEntries
 Main/i.b I posY
-Main/i.b Ljava/lang/String; var_8e3
-Main/i.b Z var_4d4
-Main/i.c I var_215
+Main/i.b Ljava/lang/String; titleBarText
+Main/i.b Z showTabs
+Main/i.c I width
 Main/i.c Z var_888
-Main/i.d I var_299
+Main/i.d I height
 Main/i.e I var_37d
 Main/i.f I var_3f8
-Main/i.g I var_578
-Main/i.h I var_60f
-Main/i.i I var_641
+Main/i.g I selectedTab
+Main/i.h I selectedEntry
+Main/i.i I scrollPos
 Main/i.j I var_664
-Main/i.k I var_67e
+Main/i.k I innerLeftMargin
 Main/i.l I var_71b
-Main/i.m I var_72b
+Main/i.m I rowHeight
 Main/i.n I var_78b
 Main/i.o I var_7e0
 Main/i.p I var_445
@@ -245,7 +245,7 @@ Main/i.a(I)V sub_8b
 Main/i.a(IIII[Ljava/lang/String;Ljava/lang/String;)V sub_35
 Main/i.a(I[Ljava/lang/Object;)V sub_16a
 Main/i.a(Ljava/lang/Object;I)V sub_e4
-Main/i.b()I add
+Main/i.b()I sub_get72b
 Main/i.b(I)V sub_205
 Main/i.b(Z)V sub_346
 Main/i.c()I sub_149
@@ -305,12 +305,16 @@ Main/k.c()V sub_2c
 Main/l Main/OptionsWindow
 Main/l.a I var_191
 Main/l.a LMain/q; var_6eb
+Main/l.a Laz; choiceConfirm
 Main/l.a Lbu; about
 Main/l.a Lci; var_817
 Main/l.a Ljava/lang/String; var_467
 Main/l.a Ljavax/microedition/lcdui/Image; var_34e
+Main/l.a Z confirmPopupOpen
 Main/l.a [I var_30e
+Main/l.a [Lz; saves
 Main/l.b I var_251
+Main/l.b Lbu; instructions
 Main/l.b Ljava/lang/String; var_696
 Main/l.b Ljavax/microedition/lcdui/Image; var_b34
 Main/l.b Z var_600
@@ -327,15 +331,11 @@ Main/l.e Ljava/lang/String; var_a9e
 Main/l.f I selectedRow
 Main/l.g I subMenu
 Main/l.h I frameTime
+Main/l.i I musicLevel
+Main/l.j I soundLevel
 Main/l.k I var_911
 Main/l.l I var_ad1
 Main/l.m I var_b51
-Main/l.a Z confirmPopupOpen
-Main/l.b Lbu; instructions
-Main/l.a [Lz; saves
-Main/l.a Laz; choiceConfirm
-Main/l.j I soundLevel
-Main/l.i I musicLevel
 Main/l.a()V sub_e6
 Main/l.a()Z sub_148
 Main/l.a(I)V sub_1e5
@@ -353,8 +353,8 @@ Main/l.d()V sub_38c
 Main/l.e()V sub_3a2
 Main/l.f()V sub_33
 Main/l.g()V loadGameRecord
-Main/l.i()V updateMusicLevel
 Main/l.h()V updateSoundLevel
+Main/l.i()V updateMusicLevel
 Main/m Main/Hangar
 Main/m.a I var_1c9
 Main/m.a J var_28e
@@ -432,6 +432,7 @@ Main/o.d Z var_55d
 Main/o.e J var_1c2
 Main/o.e Z var_58b
 Main/o.f J var_209
+Main/o.f Z egoDead
 Main/o.g Z jumpgateReached
 Main/o.h Z var_947
 Main/o.i Z var_976
@@ -446,7 +447,6 @@ Main/o.q Z var_c3b
 Main/o.r Z var_c80
 Main/o.s Z var_ce4
 Main/o.t Z var_d4a
-Main/o.f Z egoDead
 Main/o.a()V freeResources
 Main/o.a()Z isLoaded
 Main/o.a(I)V renderScene
@@ -766,9 +766,9 @@ ac.d I var_b7
 ac.f I var_308
 ac.g I var_316
 ac.a()Lah; sub_2b
-ac.a()V sub_8c
+ac.a()V destroy
 ac.a(Lap;Laf;)V sub_11b
-ac.a(Laq;)V sub_1a9
+ac.a(Laq;)V setTexture
 ac.a([I[I)V sub_176
 ac.b()V render
 ad AbyssEngine/IndexManager
@@ -835,15 +835,15 @@ ag AbyssEngine/AbstractMesh
 ag.a I flag_
 ag.a Lcl; matrix
 ag.a()Lah; sub_2b
+ag.a()V destroy
 ag.a(I)V setFlag_
+ag.a(IIB)Lag; sub_976unk
 ag.a(J)V sub_181
 ag.a(Lap;Laf;)V sub_11b
+ag.a(Laq;)V setTexture
 ag.b()V render
 ag.b(Lap;Laf;)V sub_b2
 ag.c()V renderTransparent
-ag.a()V destroy
-ag.a(Laq;)V setTexture
-ag.a(IIB)Lag; sub_976unk
 ah AbyssEngine/GraphNode
 ah.a Lah; parent
 ah.a Lam; var_19f
@@ -1088,6 +1088,7 @@ at.a Ljava/util/Random; random
 at.a Ljavax/microedition/lcdui/Display; display
 at.a Ljavax/microedition/lcdui/Graphics; graphics
 at.a Ljavax/microedition/midlet/MIDlet; midlet
+at.a Lr; graphics3D
 at.a Z musicOn
 at.a [Las; var_c35
 at.b I sfxVolume
@@ -1126,7 +1127,6 @@ at.w Z fanWingmenNoticeShown
 at.x Z voidxNoticeShown
 at.y Z reputationHelpShown
 at.z Z buyingHelpShown
-at.a Lr; graphics3D
 at.a()V resetHelp
 at.a(I)V vibrate
 at.b()V sub_d1
@@ -1184,11 +1184,11 @@ ax.f I var_15f
 ax.g I var_174
 ax.h I var_18c
 ax.a()Lah; sub_2b
-ax.a()V sub_8c
+ax.a()V destroy
 ax.a(B)V sub_9aa
 ax.a(II)V sub_980
 ax.a(J)V sub_181
-ax.a(Laq;)V sub_1a9
+ax.a(Laq;)V setTexture
 ax.a(Ljavax/microedition/m3g/Node;)V sub_46
 ax.a(Ljavax/microedition/m3g/Node;I)I sub_85
 ax.a(Ljavax/microedition/m3g/Node;[Ljavax/microedition/m3g/Texture2D;Z)V sub_b6
@@ -1222,7 +1222,7 @@ az.a(Ljava/lang/String;)V sub_34
 az.a(Ljava/lang/String;Z)V sub_8f
 az.b()V sub_ff
 az.c()V sub_19a
-b AbyssEngine/Interface
+b AbyssEngine/Layout
 b.a I uiInnerOutlineColor
 b.a J var_575
 b.a Ljavax/microedition/lcdui/Image; skip
@@ -1243,7 +1243,6 @@ b.f Ljavax/microedition/lcdui/Image; menuPanelCorInactive
 b.g Ljavax/microedition/lcdui/Image; menuPanelCorActive
 b.a()V sub_3a
 b.a()Z sub_108
-b.a(I)Ljava/lang/String; moneyToString
 b.a(I)V addTicks
 b.a(IIII)V sub_136
 b.a(IIIILjavax/microedition/lcdui/Image;)V tileFillRect
@@ -1268,6 +1267,7 @@ b.c()V sub_189
 b.c()Z sub_44a
 b.d()V screenFillMenuBackground
 b.e()V sub_490
+b.a(I)Ljava/lang/String; formatCredits
 ba AbyssEngine/Gun
 ba.a F projectileSpeed
 ba.a I var_334
@@ -1471,9 +1471,9 @@ bk.a Lay; var_14
 bk.d Z var_39
 bk.e Z var_4a
 bk.a()Lah; sub_2b
-bk.a()V sub_8c
+bk.a()V destroy
 bk.a(J)V sub_181
-bk.a(Laq;)V sub_1a9
+bk.a(Laq;)V setTexture
 bk.b()V render
 bk.c(III)V moveTo
 bk.c(Lcd;)V sub_16
@@ -1691,9 +1691,9 @@ bq.b()I sub_5e
 bq.b()Z sub_f2
 br AbyssEngine/Class_876
 br.a I var_69
+br.a Ldb; level
 br.b I var_bb
 br.c I var_169
-br.a Ldb; level
 br.a()Z sub_7d
 br.a(I)Z sub_47
 bs AbyssEngine/SoundManager
@@ -1864,9 +1864,9 @@ bx.a Ljavax/microedition/m3g/Node; var_109
 bx.a Ljavax/microedition/m3g/Transform; var_b
 bx.a [F var_96
 bx.a()Lah; sub_2b
-bx.a()V sub_8c
+bx.a()V destroy
 bx.a(Lap;Laf;)V sub_11b
-bx.a(Laq;)V sub_1a9
+bx.a(Laq;)V setTexture
 bx.a(Ljavax/microedition/m3g/Group;[Ljavax/microedition/m3g/Texture2D;)V sub_64
 bx.b()V render
 by AbyssEngine/PlayerStaticFar
@@ -2057,11 +2057,11 @@ cf.a Ljava/lang/String; label
 cf.a Ljavax/microedition/lcdui/Image; var_638
 cf.a Lu; var_343
 cf.a Z isSelectable
+cf.b I itemId
 cf.b Ljava/lang/String; var_470
 cf.b Z var_68c
 cf.c I displayedCountType
 cf.d I var_6b0
-cf.b I itemId
 cf.a()I sub_408
 cf.a()Z sub_8f
 cf.b()I sub_45e
@@ -2216,7 +2216,6 @@ ck.h I commodityAmmout
 ck.i I tasksTreshold_
 ck.a()I getCommodityIndex
 ck.a()Lcb; getAgent
-ck.a()Ljava/lang/String; sub_486
 ck.a()Z isEmpty
 ck.a()[B getClientImage
 ck.a(I)V setTasksTreshold_
@@ -2246,6 +2245,7 @@ ck.g()I sub_50f
 ck.g()Z isCampaignMission
 ck.h()I setCampaignMission
 ck.i()I getDifficulty
+ck.a()Ljava/lang/String; getClientName
 cl AbyssEngine/Matrix
 cl.a I scaleX
 cl.a Lcd; temp
@@ -2281,6 +2281,7 @@ cl.a(Lcl;)Lcl; sub_8ac
 cl.a(Lcl;)V set
 cl.a(Lcl;Lcl;)Lcl; sub_6a
 cl.a(S)V set_Type
+cl.a([F)V scaledToFloatArray
 cl.a([Lcd;[Lcd;)[Lcd; sub_ace
 cl.b()I getPositionY
 cl.b()Lcd; getDirection
@@ -2316,7 +2317,6 @@ cl.g(Lcd;)Lcd; sub_b11
 cl.h()I sub_7a8
 cl.h(Lcd;)Lcd; sub_b26
 cl.i()I sub_7f1
-cl.a([F)V scaledToFloatArray
 cm AbyssEngine/PlayerAsteroid
 cm.a Lcl; var_80b
 cm.c Lcd; var_1c5
@@ -2505,6 +2505,7 @@ cq.a(ZLap;)V sub_1227
 cq.a([Lba;I)V sub_721
 cq.a([Lo;)V sub_c22
 cq.b()F sub_455
+cq.b()I getHP
 cq.b()V sub_308
 cq.b()Z sub_1b8
 cq.b(I)V sub_c3e
@@ -2550,13 +2551,12 @@ cq.t()Z sub_f55
 cq.u()Z sub_f9b
 cq.v()Z sub_1045
 cq.w()Z sub_6ae
-cq.b()I getHP
 cr AbyssEngine/AEGraphics3D
-cr.a Ljavax/microedition/m3g/Graphics3D; graphics3D
 cr.a Ljavax/microedition/m3g/Background; background
-cr.a()V sub_147
-cr.a(Ljavax/microedition/lcdui/Graphics;)V sub_48
-cr.b()V sub_f6
+cr.a Ljavax/microedition/m3g/Graphics3D; graphics3D
+cr.a()V releaseTarget
+cr.a(Ljavax/microedition/lcdui/Graphics;)V bindTarget
+cr.b()V clear
 cs AbyssEngine/Standing
 cs.a [I stand
 cs.a()Z atWar
@@ -2891,7 +2891,7 @@ j.b()Z sub_274
 j.b(I)Z sub_de
 j.c()V sub_364
 j.c(I)Z sub_178
-j.d()V sub_2a0
+j.d()V loadContent_
 k AbyssEngine/Class_fa9gun
 k.a Lbw; var_511
 k.a Ls; var_49
@@ -2902,7 +2902,7 @@ k.d Lcd; var_29f
 k.d Z var_4a9
 k.f I var_3b5
 k.g I var_3f1
-k.a()V sub_8c
+k.a()V destroy
 k.a(J)V sub_181
 k.a(Lbw;)V sub_8a
 k.b()V render
@@ -2922,9 +2922,9 @@ m.a Lba; gun
 m.a Lcd; var_211
 m.a [Lag; var_18b
 m.a()Lah; sub_2b
-m.a()V sub_8c
+m.a()V destroy
 m.a(J)V sub_181
-m.a(Laq;)V sub_1a9
+m.a(Laq;)V setTexture
 m.b()V render
 n AbyssEngine/Laser
 n.a Lag; var_1d0
@@ -2943,9 +2943,9 @@ n.d Lcd; var_56b
 n.d Z var_695
 n.d [I var_617
 n.a()Lah; sub_2b
-n.a()V sub_8c
+n.a()V destroy
 n.a(J)V sub_181
-n.a(Laq;)V sub_1a9
+n.a(Laq;)V setTexture
 n.b()V render
 o AbyssEngine/KIPlayer
 o.a I var_145
@@ -3097,10 +3097,13 @@ u.k I amount
 u.l I stationAmount
 u.m I blueprintAmount
 u.a()I getIndex
+u.a()Lu; singleCopy
 u.a()Z sub_18e
 u.a()[I getBluePrintComponentsIds
 u.a(I)I getParameter
+u.a(I)Lu; anyAmountCopies
 u.a(I)V setPrice
+u.a(II)Lu; getCopyInAmmount
 u.a(II[Lu;)Z sub_737
 u.a(Lu;)Z equals
 u.a(Z)I sub_6b2
@@ -3131,20 +3134,22 @@ u.k()I getOccurance
 u.l()I getAmount
 u.m()I getStationAmount
 u.n()I sub_590
-u.a(II)Lu; getCopyInAmmount
-u.a(I)Lu; anyAmountCopies
-u.a()Lu; singleCopy
 v AbyssEngine/FlightUI
 v.a I var_2be
 v.a Ljava/lang/String; tempLogMsg
 v.a Ljavax/microedition/lcdui/Image; var_831
 v.a Ljavax/microedition/lcdui/game/Sprite; var_590
+v.a Z drawUI
+v.a [Lcf; logMessages
+v.a [Lu; secondaries
 v.a [[B actionmenuButtonsState
 v.a [[Ljava/lang/String; actionmenuLabels
 v.b I drawSecondaryIcon
 v.b Ljava/lang/String; logMsg
 v.b Ljavax/microedition/lcdui/Image; var_489
 v.b Ljavax/microedition/lcdui/game/Sprite; var_5f3
+v.b Z drawBoostIcon
+v.b [Lu; specialEquipment
 v.c I var_341
 v.c Ljavax/microedition/lcdui/Image; var_4ca
 v.c Ljavax/microedition/lcdui/game/Sprite; var_60b
@@ -3160,6 +3165,7 @@ v.e Z var_9f9
 v.f I var_429
 v.f Ljavax/microedition/lcdui/Image; var_67b
 v.f Ljavax/microedition/lcdui/game/Sprite; var_72c
+v.f Z cargoFull
 v.g I var_8bd
 v.g Ljavax/microedition/lcdui/Image; var_786
 v.g Z actionmenuOpen
@@ -3174,18 +3180,12 @@ v.j Z var_c34
 v.k I indicatorIconsOffset
 v.k Z var_c84
 v.l I var_ce3
+v.l Z displayLog_
 v.m I var_cee
 v.m Z var_f29
 v.n I var_d45
-v.p I var_ef4
-v.f Z cargoFull
-v.a [Lcf; logMessages
-v.l Z displayLog_
 v.o I firstLogEntryLifeTime
-v.a Z drawUI
-v.a [Lu; secondaries
-v.b [Lu; specialEquipment
-v.b Z drawBoostIcon
+v.p I var_ef4
 v.a()V sub_1e9
 v.a()Z sub_3fa
 v.a(I)V sub_51c
@@ -3194,16 +3194,16 @@ v.a(IIZZZZ)V sub_3ae
 v.a(ILcq;)V sub_30d
 v.a(ILdb;Lbw;)Z sub_527
 v.a(JJLcq;Z)V sub_41b
+v.a(Lcf;)V appendLogEntry
+v.a(Ljava/lang/String;)Z isSimilarEntryInLog
 v.a(Z)V sub_5df
 v.b()V sub_362
 v.b()Z sub_58b
+v.b(I)V updateLogDisplay
 v.c()V sub_4bc
 v.d()V sub_a6
 v.e()V sub_192
 v.f()V sub_264
-v.b(I)V updateLogDisplay
-v.a(Ljava/lang/String;)Z isSimilarEntryInLog
-v.a(Lcf;)V appendLogEntry
 w AbyssEngine/Class_1496collision
 w.a I var_19d
 w.a Lcd; var_147
@@ -3224,6 +3224,7 @@ x.a()V sub_19c
 x.a(III)V sub_5c
 y AbyssEngine/Class_14c5Mesh
 y.a B var_674
+y.a F someArrNew_
 y.a Lcd; var_3b4
 y.a Ljavax/microedition/m3g/Appearance; var_3c2
 y.a Ljavax/microedition/m3g/Mesh; var_57b
@@ -3231,14 +3232,13 @@ y.a Ljavax/microedition/m3g/PolygonMode; var_4a8
 y.a Ljavax/microedition/m3g/Transform; var_63
 y.a [I var_588
 y.b [I var_5c8
-y.d I var_52c
-y.a F someArrNew_
 y.c [I someArrOld_
+y.d I var_52c
 y.a()Lah; sub_2b
-y.a()V sub_8c
+y.a()V destroy
 y.a()[I sub_46
 y.a(Lap;Laf;)V sub_11b
-y.a(Laq;)V sub_1a9
+y.a(Laq;)V setTexture
 y.b()V render
 y.b()[I sub_53
 y.b(Lap;Laf;)V sub_b2
