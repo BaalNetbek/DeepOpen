@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.1
+Created-By: 11.0-b16 (Sun Microsystems Inc.)
+MIDlet-1: Galaxy on Fire 2,/data/interface/icon.png,Main.GOF2MIDlet
+MIDlet-Vendor: www.fishlabs.net
+MIDlet-Name: Galaxy on Fire 2
+MIDlet-Version: 1.0.4
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
+

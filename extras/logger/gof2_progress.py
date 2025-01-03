@@ -1,11 +1,12 @@
 import re
-from os.path import dirname
+from os.path import dirname, abspath
 
 def check_obfuscation_progerss(file_path):
     names_count = lines_count = 0
     fields = classes = methods = 0
     obfuscated_fields = obfuscated_classes = obfuscated_methods = 0
     with open(file_path, 'r') as file:
+        print(f"Reading mapping file: {abspath(file_path)}")
         for line in file:
             words = line.split()
             if len(words) > 0:

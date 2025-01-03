@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Automaticly sorts mapping and updates progress record before commiting. 
+# Put in .git/hooks/ of this repository
+
+# Get the repository root directory
+REPO_ROOT=$(git rev-parse --show-toplevel)
+
+# Run the sorter script
+if ! python "$REPO_ROOT/extras/sorter/sorter.py"; then
+  echo "Error: sorter.py failed. Commit cancelled."
+  exit 1
+fi
+
+# Run the logger script
+if ! python "$REPO_ROOT/extras/logger/logger.py"; then
+  echo "Error: logger.py failed. Commit cancelled."
+  exit 1
+fi
+
+# Add the generated files to the commit
+if ! git add "$REPO_ROOT/extras/logger/progress.log"; then
+  echo "Error: Failed to add progress.log to commit."
+  exit 1
+fi
+if ! git add "$REPO_ROOT/extras/logger/progress_chart.png"; then
+  echo "Error: Failed to add progress_chart.png to commit."
+  exit 1
+fi
+if ! git add "$REPO_ROOT/Recaf/GoF2/GoF2_JSR_1.0.4.mapping"; then
+  echo "Error: Failed to add GoF2_JSR_1.0.4.mapping to commit."
+  exit 1
+fi
+
+git status

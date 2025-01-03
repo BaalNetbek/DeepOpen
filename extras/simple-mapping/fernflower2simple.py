@@ -34,7 +34,7 @@ def process_file(file_path, package):
     class_pattern = r'(\w+)\s*\n\s*(?:[\w\s]+)?class (\w+)'
     interface_pattern = r'(\w+)\s*\n\s*(?:[\w\s]+)?interface (\w+)'
     field_pattern = r'// \$FF: renamed from: (\w+) ([\w\[\].]+)\s*\n\s*(?:[\w\s]+)([\w\[\].]+) (\w+);'
-    method_pattern = r'// \$FF: renamed from: (\w+) \((.*?)\) ([\w\[\].]+)\s*\n\s*(?:[\w\s]+)?(\w+) (\w+)\('
+    method_pattern = r'// \$FF: renamed from: (\w+) \((.*?)\) ([\w\[\].]+)\s*\n\s*(?:[\w\s]+)?([\w\[\].]+) (\w+)\('
 
     mappings = []
     old_class_name = '' #assumes 1 class per file

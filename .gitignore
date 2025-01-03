@@ -1,4 +1,5 @@
 **/*.bak
+*.bak
 temp
 __pycache__
-Recaf/*/*_deobfuscation.jar
+/Recaf/GoF2/GoF2_JSR_1.0.4_presort.mapping
