@@ -351,7 +351,7 @@ cq.u I cloakDuration
 cq.v I cloakLoadingTime
 cq.d F var_1562
 cq.a Lv; var_15a9
-cq.a Lbw; var_15f4
+cq.a Lbw; radar
 cq.a Lan; var_1653
 cq.q Z var_1686
 cq.b [[I var_16c0
@@ -847,7 +847,7 @@ db.c [Lo; stationaries
 db.a Lbg; var_7df
 db.b Lbg; var_863
 db.c Lbg; var_8c5
-db.a [Lbq; var_8d0
+db.a [Lbq; radioMessages
 db.l I var_902
 db.m I var_977
 db.n I var_9e4
@@ -908,13 +908,13 @@ db.o()V sub_3c3
 db.a(Lcj;I)Lo; sub_3f7
 db.a(IIILcj;)Lo; createShip
 db.a(I)Lbg; sub_4a1
-db.a(I)[Lbq; sub_4ab
+db.a(I)[Lbq; createRadioMessages
 db.a()Lcq; getPlayerEgo
-db.a()[Lo; getShips
+db.a()[Lo; getEnemies
 db.b()[Lo; sub_5b7
-db.c()[Lo; sub_5cf
+db.c()[Lo; getAsteroids
 db.a()Lcj; sub_617
-db.a()Lbg; sub_6a6
+db.a()Lbg; getPlayerRoute
 db.a(Lbg;)V sub_6ce
 db.a(I)V setupExplosionFlashColors
 db.a(Z)V sub_753
@@ -923,9 +923,9 @@ db.c()V sub_7c2
 db.b(I)V sub_7cd
 db.d()V sub_7df
 db.a()I sub_7f9
-db.b()I sub_840
-db.c()I sub_85e
-db.a()[Lbq; sub_872
+db.b()I getEnemiesLeft
+db.c()I getFriendsLeft
+db.a()[Lbq; getMessages
 db.d()I sub_8aa
 db.a()Lg; sub_8ce
 db.a(Lcd;)Z sub_8dc
@@ -937,7 +937,7 @@ db.b(J)V sub_9ff
 db.c(J)V sub_a3b
 db.a(I)Z sub_a83
 db.f()V sub_ac1
-db.b()Z sub_ade
+db.b()Z friendCargoWasStolen
 db.g()V sub_b30
 db.a()[Lag; sub_b85
 db.b(I)Z sub_ba1
@@ -1085,7 +1085,7 @@ aa.l I percentShield
 aa.m I percentArmor
 aa.n I percentEMP
 aa.o I threeSecTick
-aa.f Z var_380
+aa.f Z active
 aa.g Z var_3a5
 aa.a Z var_3df
 aa.b Z var_427
@@ -1121,7 +1121,7 @@ aa.a()Lo; getKIPlayer
 aa.a()V sub_20c
 aa.a([Laa;)V sub_218
 aa.b([Laa;)V sub_266
-aa.a()[Laa; getCoPlayers
+aa.a()[Laa; getEnemies
 aa.a(I)Laa; sub_2f3
 aa.b(I)V setHitPoints
 aa.c(I)V sub_386
@@ -1156,9 +1156,9 @@ aa.c()Z sub_992
 aa.d()V sub_9bb
 aa.a(I)Z sub_9e5
 aa.a(Lcd;)Lcd; sub_a3c
-aa.e(Z)V sub_a98
-aa.d()Z sub_ace
-aa.e()Z sub_ae3
+aa.e(Z)V setActive
+aa.d()Z isActive
+aa.e()Z isDead
 aa.e()V removeGuns
 aa.h(I)V sub_b5e
 aa.a(IJZLcl;)V sub_b96
@@ -1203,8 +1203,8 @@ ad.a()[Lu; getItems
 ad.a(I)Ljava/lang/String; getItemName
 ad.a(I)[I sub_c2
 ad.a(IZ)Ljava/lang/String; sub_116
-ad.a()Ljava/lang/String; sub_139
-ad.a(I)I pickShipId
+ad.a()Ljava/lang/String; getRandomStationName
+ad.a(I)I getRandomEnemyFighter
 ad.a(II)Lar; buildShip_
 ad.a(Lar;I)V sub_1b8
 ad.b()V buildResourceList
@@ -1236,7 +1236,7 @@ o AbyssEngine/KIPlayer
 o.a S state
 o.a I var_145
 o.a Laa; player
-o.a Lag; var_25d
+o.a Lag; mainMesh_
 o.a Lar; var_379
 o.b I var_3ce
 o.c I var_3f3
@@ -1284,14 +1284,14 @@ o.d()Z sub_32a
 o.a(ZI)V sub_366
 o.a(ILo;)V sub_16f
 o.a(I)V sub_1515sth
-o.a(Ldb;)V sub_3b3
-o.a(Lcg;)V sub_3c7
+o.a(Ldb;)V setLevel
+o.a(Lcg;)V setExplosion
 o.a(Lbg;)V sub_3d9
 o.a()Lbg; sub_3ea
 o.a(Lba;I)V sub_43a
 o.a()I sub_4a3
 o.a(Lcd;)Lcd; sub_a9
-o.e()Z isOutOfScope
+o.e()Z isDead
 o.f()Z isCrate
 o.c()V sub_52b
 o.d()V sub_5cc
@@ -1343,13 +1343,13 @@ cm.a()V sub_109doSth
 cm.a(Lcd;)Z sub_1b8
 cm.b(Lcd;)Lcd; sub_005
 cm.a(III)Z sub_162
-cj AbyssEngine/Class_e19
+cj AbyssEngine/Waypoint
 cj.l I var_c7
 cj.m I var_282
 cj.n I var_2f9
-cj.n Z var_35b
+cj.n Z reached_
 cj.a(Lcd;)Lcd; sub_a9
-cj.d(Z)V sub_34
+cj.d(Z)V setActive
 cj.g()V sub_af
 cj.a(J)V update
 cj.a()V sub_109doSth
@@ -1543,23 +1543,23 @@ am.a(Lam;)V sub_52
 am.b(Lam;)V set
 am.a(IIII)V sub_7f
 am.a(Lcd;I)V sub_9f
-an AbyssEngine/Class_23e
+an AbyssEngine/Radio
 an.a [Lbq; var_4b
 an.a Lbq; var_86
 an.a [Ljava/lang/String; var_128
 an.a [B var_163
 an.a J var_18f
 an.a I var_1b8
-an.a Ljava/lang/String; var_213
+an.a Ljava/lang/String; title
 an.b J var_2bb
-an.a [Ljavax/microedition/lcdui/Image; var_2db
+an.a [Ljavax/microedition/lcdui/Image; face
 an.b I var_30f
 an.a()V sub_39
 an.a([Lbq;)V sub_96
 an.a(Lbq;)V sub_cf
 an.a(I)Lbq; sub_133
 an.b()V sub_193
-an.a(JJLcq;)V sub_1f5
+an.a(JJLcq;)V draw
 ao AbyssEngine/LoadingScreen
 ao.a Z stillLoading
 ao.a Ljavax/microedition/lcdui/game/GameCanvas; var_7c
@@ -1620,7 +1620,7 @@ ah.e()Lcd; getUp
 ah.f(Lcd;)Lcd; sub_548
 ah.f()Lcd; getRight
 ah.a(S)V sub_5a7
-ah.d(III)V sub_5c5
+ah.d(III)V rotateEuler
 ah.c(I)V roll
 ah.d(I)V pitch
 ah.e(I)V yaw
@@ -1916,19 +1916,19 @@ bf.a()[I getLootList
 bf.a([Lcw;I)I pickNextDestination
 bf.a(Lbe;)[Lcb; createAgents
 bf.a(Lcb;)Lck; createFreelanceMission
-bg AbyssEngine/Class_661
-bg.a [Lcj; var_32
-bg.a Z var_91
-bg.a I var_f7
+bg AbyssEngine/Route
+bg.a [Lcj; waypoints
+bg.a Z loop_
+bg.a I current_
 bg.a()V sub_62
 bg.a(Lcd;)V sub_9f
 bg.b()V sub_ad
 bg.a(Z)V sub_e1
 bg.a(I)Lcj; sub_11e
 bg.a()Lcj; sub_176
-bg.b()Lcj; sub_1d7
-bg.a()I sub_229
-bg.a(I)V sub_285
+bg.b()Lcj; getLastWaypoint
+bg.a()I getCurrent
+bg.a(I)V reachWaypoint_
 bg.b()I sub_2c6
 bg.a(III)V sub_31e
 bg.a()Z sub_349
@@ -2137,10 +2137,10 @@ bp.a Ljava/lang/String; stationName
 bp.a I stationId
 bp.b I producedQuantity
 bp.c I index
-bq AbyssEngine/Class_85e
+bq AbyssEngine/RadioMessage
 bq.a Lan; var_a
-bq.a I var_51
-bq.b I var_66
+bq.a I textId
+bq.b I imageId
 bq.c I var_a0
 bq.d I var_104
 bq.a [I var_1a9
@@ -2148,19 +2148,19 @@ bq.a Z var_24b
 bq.b Z var_2a8
 bq.e I var_2ca
 bq.a()I sub_50
-bq.b()I sub_5e
+bq.b()I getImageId
 bq.a(Lan;)V sub_76
 bq.a()Z sub_8e
 bq.b()Z sub_f2
 bq.a()V sub_163
-bq.a(JLcq;)Z sub_18e
-br AbyssEngine/Class_876
-br.a I var_69
+bq.a(JLcq;)Z triggered
+br AbyssEngine/Objective
+br.a I type_
 br.b I firstEnemyOfAllShips_
 br.c I enemyCount_
 br.a Ldb; level
-br.a(I)Z sub_47
-br.a()Z sub_7d
+br.a(I)Z achieved
+br.a()Z isSurvivalObjective
 bs AbyssEngine/SoundManager
 bs.a [Ljava/lang/String; MUSIC_FILES_PATHS
 bs.b [Ljava/lang/String; SFX_FILES_PATHS
@@ -2256,7 +2256,7 @@ bv.a(IIII)I invDistancePercent
 bv.b(IIII)I distancePercent
 bv.a(Lcw;Lcw;)F distance
 bv.a(Lbe;)[I sub_180
-bw AbyssEngine/MGameContext
+bw AbyssEngine/Radar
 bw.a [I var_31
 bw.a Ljavax/microedition/lcdui/Image; lockonEnemy
 bw.b Ljavax/microedition/lcdui/Image; radarIconEnemy
@@ -2340,7 +2340,7 @@ bw.a(Lap;Lo;)V sub_b8
 bw.a(Laa;Lap;Lc;Lv;I)V render
 bw.a()I sub_12d
 bw.a(Lv;)V sub_18f
-bw.a(IIILaa;)Ljava/lang/String; sub_1ab
+bw.a(IIILaa;)Ljava/lang/String; calcDistance
 bw.a()Lo; sub_1bd
 bw.b()V sub_002
 bw.b()Lo; sub_1fa
