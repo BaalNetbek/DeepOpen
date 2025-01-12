@@ -38,7 +38,7 @@ class Logger:
         plt.figure(figsize=(8, 4), dpi=120)
         lables = ('Total','Classes','Methods','Fields')
         for i, val_set in enumerate(values):
-            plt.plot(timestamps, val_set, label=lables[i], marker = 'o', drawstyle='steps-post')
+            plt.plot(timestamps, val_set, label=lables[i], marker = '', drawstyle='steps-post')
 
         plt.xlabel("Time")
         plt.ylabel("Progress")
@@ -61,5 +61,5 @@ if __name__ == "__main__":
     values = check_obfuscation_progerss(file_path)
     logger = Logger(log_path, chart_path)
     logger.log_values(values)
-    if logger.log_updated:
+    if logger.log_updated or not exists(chart_path):
         logger.plot_and_save()

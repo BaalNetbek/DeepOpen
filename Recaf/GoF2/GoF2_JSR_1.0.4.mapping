@@ -2,7 +2,7 @@ bm AbyssEngine/Class_786
 bm.a(J)V sub_181
 cu AbyssEngine/Class_121c
 cu.c()V sub_2aa
-cu.a()Z sub_356
+cu.a()Z isInLookAtMode
 ag AbyssEngine/AbstractMesh
 ag.a I flag_
 ag.a Lcl; matrix
@@ -34,7 +34,7 @@ g.b [Z var_54f
 g.a I var_5a9
 g.a Z inAlienSpace
 g.a()[Lag; sub_3d
-g.a()[Lo; getLocalPlanets
+g.a()[Lo; getPlanetTargets
 g.a()V sub_b9
 g.b()V sub_116
 g.c()V sub_126
@@ -225,7 +225,7 @@ j.b()Z sub_274
 j.d()V loadContent_
 j.b()V sub_304
 j.c()V sub_364
-cn AbyssEngine/LangManager
+cn AbyssEngine/GameText
 cn.a [S itemAtributes
 cn.b [S helpTitles
 cn.c [S helpFull
@@ -247,9 +247,9 @@ cn.a Ljava/lang/String; langPath
 cn.b I var_7e7
 cn.c I var_86b
 cn.d I var_8b3
-cn.a(I)V setup
-cn.a([Ljava/lang/String;Ljava/lang/String;)V loadLangFile
-cn.a(I)Ljava/lang/String; getLangString
+cn.a(I)V setLanguage
+cn.a([Ljava/lang/String;Ljava/lang/String;)V readLangFile
+cn.a(I)Ljava/lang/String; getText
 cn.a()V init
 co AbyssEngine/Class_fd6
 co.a Lah; var_8b
@@ -265,7 +265,7 @@ co.a(Lah;)V sub_36
 co.b(Lah;)V sub_68
 co.a(Lcd;I)V sub_bf
 co.c()V sub_2aa
-co.a()Z sub_356
+co.a()Z isInLookAtMode
 co.a(Z)V sub_120
 l AbyssEngine/Class_1025
 l.a I var_85
@@ -324,7 +324,7 @@ cq.a Lap; var_ef5
 cq.c Lar; var_f22
 cq.d Lar; var_f7c
 cq.e Lar; var_fd2
-cq.i Z lookBack
+cq.i Z turretMode
 cq.b F var_1016
 cq.c F var_106f
 cq.j Z cloakOn
@@ -358,7 +358,7 @@ cq.b [[I var_16c0
 cq.w I var_16ce
 cq.r Z var_16ef
 cq.a(II)V sub_54
-cq.a(Z)V turnEngines_
+cq.a(Z)V setExhaustVisible
 cq.a()V sub_127
 cq.a()Z toggleCloaking_
 cq.b()Z isCloakPresent
@@ -375,7 +375,7 @@ cq.b()F getBoostCharge
 cq.c()F getCloakCharge
 cq.f()Z sub_4d2
 cq.g()Z sub_4ed
-cq.b(Z)V sub_534
+cq.b(Z)V setCollide
 cq.a(Ldb;)V sub_591
 cq.a(Lbg;)V sub_5f1
 cq.a()Lbg; sub_647
@@ -389,9 +389,9 @@ cq.d()I sub_82f
 cq.a(I)V sub_863
 cq.a()Lcd; sub_8c1
 cq.c(Z)V sub_8f2
-cq.d(Z)V sub_93d
+cq.d(Z)V setComputerControlled
 cq.e(Z)V sub_95f
-cq.a(Lo;)V sub_97e
+cq.a(Lo;)V setAutoPilot
 cq.a()Lo; sub_998
 cq.h()Z sub_9f7
 cq.i()Z sub_a15
@@ -545,8 +545,8 @@ cw.e()I getPosY
 cw.f()I getPosZ
 cw.g()I getStarTextureIndex
 cw.h()I getJumpgateStationIndex
-cw.i()I getJumpgateStationVerifiedIndex
-cw.a(I)I verifyStationInSystem
+cw.i()I getJumpGateEnumIndex
+cw.a(I)I getStationEnumIndex
 cw.a()Z currentOrbitHasJumpgate
 cw.a(I)Z stationIsInSystem
 cw.b()Z isFullyDiscovered
@@ -598,8 +598,8 @@ u.a()I getIndex
 u.b()I getType
 u.c()I getTecLevel
 u.d()I getSubType
-u.e()I getPrice
-u.f()I sub_2ed
+u.e()I getSinglePrice
+u.f()I getTotalPrice
 u.g()I getMaxPrice
 u.h()I getMinPrice
 u.i()I getHighestPriceSystemId
@@ -620,14 +620,14 @@ u.b()[I getBlueprintComponentsQuantities
 u.a(I)I getAttribute
 u.a(Z)I sub_6b2
 u.b(Z)I sub_714
-u.a(II[Lu;)Z sub_737
-u.a([Lu;Z)[Lu; sub_797
-u.a([Lu;[Lu;)[Lu; sub_7de
-u.b([Lu;[Lu;)[Lu; merge
-u.b()Z sub_848
-u.a(I)Lu; anyAmountCopies
+u.a(II[Lu;)Z isInList
+u.a([Lu;Z)[Lu; extractItems
+u.a([Lu;[Lu;)[Lu; combineItems
+u.b([Lu;[Lu;)[Lu; mixItems
+u.b()Z isWeapon
+u.a(I)Lu; makeItem
 u.a(II)Lu; getCopyInAmmount
-u.a()Lu; singleCopy
+u.a()Lu; makeItem
 u.a(Lu;)Z equals
 u.c()Z sub_95c
 u.a(Z)V sub_986
@@ -891,8 +891,8 @@ db.g Z var_1219
 db.h Z firstWarning
 db.a Z var_1297
 db.b Z var_12a2
-db.j I var_12b5
-db.a Lbe; autopilotDestination
+db.j I lastMissionFreighterHitpoints
+db.a Lbe; programmedStation
 db.c Z var_1311
 db.b Lcd; var_1353
 db.a()V sub_16a
@@ -901,7 +901,7 @@ db.i()V sub_212
 db.a(IIIIIIII)Lba; sub_25a
 db.j()V sub_2ba
 db.k()V setupMissionEnviroment_
-db.l()V sub_313
+db.l()V createCampaignMission
 db.m()V sub_358
 db.n()V sub_375
 db.o()V sub_3c3
@@ -909,9 +909,9 @@ db.a(Lcj;I)Lo; sub_3f7
 db.a(IIILcj;)Lo; createShip
 db.a(I)Lbg; sub_4a1
 db.a(I)[Lbq; createRadioMessages
-db.a()Lcq; getPlayerEgo
+db.a()Lcq; getPlayer
 db.a()[Lo; getEnemies
-db.b()[Lo; sub_5b7
+db.b()[Lo; getLandmarks
 db.c()[Lo; getAsteroids
 db.a()Lcj; sub_617
 db.a()Lbg; getPlayerRoute
@@ -927,13 +927,13 @@ db.b()I getEnemiesLeft
 db.c()I getFriendsLeft
 db.a()[Lbq; getMessages
 db.d()I sub_8aa
-db.a()Lg; sub_8ce
+db.a()Lg; getStarSystem
 db.a(Lcd;)Z sub_8dc
 db.b(Lcd;)Z sub_911
 db.c(Lcd;)Z sub_92f
-db.a(J)V sub_966
+db.a(J)V render
 db.e()V sub_9ca
-db.b(J)V sub_9ff
+db.b(J)V render2
 db.c(J)V sub_a3b
 db.a(I)Z sub_a83
 db.f()V sub_ac1
@@ -1159,7 +1159,7 @@ aa.a(Lcd;)Lcd; sub_a3c
 aa.e(Z)V setActive
 aa.d()Z isActive
 aa.e()Z isDead
-aa.e()V removeGuns
+aa.e()V removeAllGuns
 aa.h(I)V sub_b5e
 aa.a(IJZLcl;)V sub_b96
 aa.a(IJZ)V sub_bc8
@@ -1203,17 +1203,17 @@ ad.a()[Lu; getItems
 ad.a(I)Ljava/lang/String; getItemName
 ad.a(I)[I sub_c2
 ad.a(IZ)Ljava/lang/String; sub_116
-ad.a()Ljava/lang/String; getRandomStationName
+ad.a()Ljava/lang/String; getRandomPlanetName
 ad.a(I)I getRandomEnemyFighter
 ad.a(II)Lar; buildShip_
 ad.a(Lar;I)V sub_1b8
 ad.b()V buildResourceList
-ad.c()V freeResources
+ad.c()V OnRelease
 ae AbyssEngine/SystemPathFinder
 ae.a([Lcw;II)[I getSystemPath
 ae.a(Le;)Ljava/util/Vector; constructPath
 af AbyssEngine/Class_db
-af.a Lap; var_52
+af.a Lap; camera
 af.a Lah; var_7d
 af.a [Lcz; var_ca
 af.a [Z var_d6
@@ -1237,7 +1237,7 @@ o.a S state
 o.a I var_145
 o.a Laa; player
 o.a Lag; mainMesh_
-o.a Lar; var_379
+o.a Lar; geometry
 o.b I var_3ce
 o.c I var_3f3
 o.d I race
@@ -1277,8 +1277,8 @@ o.a(Lar;I)V sub_ca
 o.c(Z)V sub_ea
 o.c()Z sub_279
 o.b()V destroy
-o.d(Z)V sub_34
-o.e(Z)V sub_2ab
+o.d(Z)V setActive
+o.e(Z)V setInitActive
 o.a(Lv;)V sub_2cb
 o.d()Z sub_32a
 o.a(ZI)V sub_366
@@ -1286,15 +1286,15 @@ o.a(ILo;)V sub_16f
 o.a(I)V sub_1515sth
 o.a(Ldb;)V setLevel
 o.a(Lcg;)V setExplosion
-o.a(Lbg;)V sub_3d9
+o.a(Lbg;)V setRoute
 o.a()Lbg; sub_3ea
 o.a(Lba;I)V sub_43a
 o.a()I sub_4a3
-o.a(Lcd;)Lcd; sub_a9
+o.a(Lcd;)Lcd; getPosition__
 o.e()Z isDead
 o.f()Z isCrate
 o.c()V sub_52b
-o.d()V sub_5cc
+o.d()V setToSleep
 o.e()V sub_5fc
 o.a(Lag;)V sub_654
 o.b(I)V setWasteMesh
@@ -1348,7 +1348,7 @@ cj.l I var_c7
 cj.m I var_282
 cj.n I var_2f9
 cj.n Z reached_
-cj.a(Lcd;)Lcd; sub_a9
+cj.a(Lcd;)Lcd; getPosition__
 cj.d(Z)V setActive
 cj.g()V sub_af
 cj.a(J)V update
@@ -1360,7 +1360,7 @@ t.l I posX
 t.m I posY
 t.n I posZ
 t.a(J)V update
-t.a(Lcd;)Lcd; sub_a9
+t.a(Lcd;)Lcd; getPosition__
 t.a()V sub_109doSth
 t.a(III)Z sub_162
 by AbyssEngine/PlayerStaticFar
@@ -1395,7 +1395,7 @@ d.a()Z sub_b7
 d.a(III)V setPosition
 d.a()V sub_109doSth
 d.a(J)V update
-d.a(Lcd;)Lcd; sub_a9
+d.a(Lcd;)Lcd; getPosition__
 cc AbyssEngine/PlayerStation
 cc.b [I var_3d
 cc.a [Lag; stationParts
@@ -1404,7 +1404,7 @@ cc.o I var_135
 cc.p I var_183
 cc.a(J)V update
 cc.a()V sub_109doSth
-cc.a(Lcd;)Lcd; sub_a9
+cc.a(Lcd;)Lcd; getPosition__
 cc.a(III)Z sub_162
 cc.a(Lcd;)Z sub_1b8
 cc.b(Lcd;)Lcd; sub_005
@@ -1462,9 +1462,9 @@ bh.a(III)V setPosition
 bh.a(ILo;)V sub_16f
 bh.a(I)V loadShips
 bh.c(I)V sub_1e8
-bh.d(I)V sub_227
+bh.d(I)V setBoostProb
 bh.g()V sub_262
-bh.f(Z)V sub_2b8
+bh.f(Z)V setExhaustVisible
 bh.a(J)V update
 bh.a()V sub_109doSth
 bh.a(III)Z sub_162
@@ -1488,10 +1488,10 @@ ak.n I posX
 ak.o I posY
 ak.p I posZ
 ak.b()V sub_22
-ak.a(Z)V sub_59
+ak.a(Z)V setMoving
 ak.a(III)V setPosition
 ak.a([Lw;)V setBounds
-ak.a(Lcd;)Lcd; sub_a9
+ak.a(Lcd;)Lcd; getPosition__
 ak.c(I)V sub_da
 ak.a(J)V update
 ak.a()V sub_109doSth
@@ -1578,7 +1578,7 @@ ao.a(Z)V startLoading_
 aq AbyssEngine/AbstractTexture
 aq.a()V destroy
 ah AbyssEngine/GraphNode
-ah.b I var_45
+ah.b I var_454545
 ah.a Lar; meshGroup
 ah.a Lah; parent
 ah.a Z draw
@@ -1598,10 +1598,10 @@ ah.b(Lap;Laf;)V sub_b2
 ah.b(Z)V sub_109
 ah.e()V sub_117
 ah.a(Ljava/lang/String;I)Ljava/lang/String; getString
-ah.b(III)V sub_18f
-ah.a(Lcd;)V sub_19c
+ah.b(III)V translate
+ah.a(Lcd;)V translate
 ah.c(III)V moveTo
-ah.b(Lcd;)V sub_1f3
+ah.b(Lcd;)V moveTo
 ah.b(I)V sub_202
 ah.a(Lcd;)Lcd; sub_216
 ah.b(Lcd;)Lcd; sub_22a
@@ -1628,7 +1628,7 @@ ah.e(III)V setRotation
 ah.f()I sub_72c
 ah.g()I sub_753
 ah.h()I sub_766
-ah.f(III)V sub_7af
+ah.f(III)V setScale
 ah.g(Lcd;)Lcd; sub_7ff
 ah.g()Lcd; sub_821
 ah.a()Lcl; sub_85f
@@ -1649,8 +1649,8 @@ q.a()V destroy
 as AbyssEngine/AbstractScene
 as.a(I)V renderScene
 as.b(I)V handleKeystate
-as.b()V loadResources
-as.a()V freeResources
+as.b()V OnInitialize
+as.a()V OnRelease
 as.a()Z isLoaded
 at AbyssEngine/GameStatus
 at.a Z musicOn
@@ -1694,7 +1694,7 @@ at.a Lao; loadingScreen
 at.d I var_9c3
 at.F Z var_9da
 at.e I var_9fc
-at.a Lcn; langManager
+at.a Lcn; gameText
 at.a Ljavax/microedition/lcdui/Graphics; graphics
 at.a Ljavax/microedition/midlet/MIDlet; midlet
 at.f I screenWidth
@@ -1728,7 +1728,7 @@ av.a()I getSelection
 av.a()V down
 av.b()V up
 av.c()V draw
-ar AbyssEngine/Group
+ar AbyssEngine/AEGeometry
 ar.b Lah; var_3e
 ar.a(Lah;)V sub_25
 ar.b(Lah;)V sub_7f
@@ -1923,9 +1923,9 @@ bg.a I current_
 bg.a()V sub_62
 bg.a(Lcd;)V sub_9f
 bg.b()V sub_ad
-bg.a(Z)V sub_e1
+bg.a(Z)V setLoop
 bg.a(I)Lcj; sub_11e
-bg.a()Lcj; sub_176
+bg.a()Lcj; getWaypoint
 bg.b()Lcj; getLastWaypoint
 bg.a()I getCurrent
 bg.a(I)V reachWaypoint_
@@ -1972,8 +1972,8 @@ bl.c [I currSysPlanetTextures
 bl.a [Lbp; waitingGoods
 bl.a [Lcb; SpecialAgents
 bl.a [Ljava/lang/String; wingmenNames
-bl.a [B var_8f8wingmenVar2
-bl.a I wingmenRace_
+bl.a [B wingmanFace
+bl.a I wingmanRace
 bl.b I wingmenTimeRemaining
 bl.c I var_9a8
 bl.a [Z visibleSystems
@@ -1998,7 +1998,7 @@ bl.k I var_d88
 bl.l I minedOre
 bl.m I minedCores
 bl.n I var_e59
-bl.d [Z drinksVar1
+bl.d [Z drinkTypesPossesed
 bl.o I var_ea8
 bl.e [Z drinksVar2
 bl.p I var_f13
@@ -2016,7 +2016,7 @@ bl.z I acceptedNotAskingLocation
 bl.a(Li;)V sub_5c
 bl.a()[Lbp; getWaitingGoods
 bl.a()[Z getVisibleSystems
-bl.a(IZ)V sub_e9
+bl.a(IZ)V setSystemVisibility
 bl.a()[Lbe; getLastVisitedStations
 bl.a([Lbe;)V setLastVisitedStations
 bl.a(Lbe;)Lbe; inLastVisitedStations
@@ -2088,9 +2088,9 @@ bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceToken
 bl.a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceTokens
 bl.h()V calcCargoPrices
 bl.i()V startNewGame
-bn AbyssEngine/Class_7flight
-bn.a Ldb; var_8c
-bn.b I var_be
+bn AbyssEngine/LevelScript
+bn.a Ldb; level
+bn.b I step
 bn.b Z var_1a2
 bn.c Z var_25e
 bn.d Z var_269
@@ -2105,15 +2105,15 @@ bn.a Lbw; var_473
 bn.a Lag; var_47e
 bn.a I var_4c9
 bn.a J var_500
-bn.a(ILc;)Z sub_50
+bn.a(ILc;)Z process
 bn.a()V sub_6a
-bn.b()V sub_aa
+bn.b()V skipSequence
 bn.c()V sub_10c
 bn.a()Z sub_123
 bn.b()Z sub_182
-bn.a(Lc;Ldb;)V sub_1b8
-bn.a(Lc;)V sub_206
-bn.d()V sub_24c
+bn.a(Lc;Ldb;)V resetCamera
+bn.a(Lc;)V lookBehind
+bn.d()V setAutoPilotToProgrammedStation
 bo AbyssEngine/AEResourceManager
 bo.a [I var_c0
 bo.a [Laq; var_ea
@@ -2222,8 +2222,8 @@ bu.b(I)V scrollUp
 bu.c(I)V scrollDown
 bu.b()V draw
 ap AbyssEngine/Camera
-ap.f I var_a1
-ap.g I var_c5
+ap.f I nearPlane
+ap.g I farPlane
 ap.a [Lcd; vec3_arr1
 ap.b [Lcd; vec3_arr2
 ap.a [I lengths
@@ -2241,7 +2241,7 @@ ap.a(Lcd;)Z sub_fa
 ap.a(Lam;)B sub_14a
 ap.a(Lap;Laf;)V sub_11b
 ap.b(Lap;Laf;)V sub_b2
-ap.a()V sub_19c
+ap.a()V setActive
 ap.a(IIIII)Lap; sub_1b1
 bv AbyssEngine/Galaxy
 bv.a Lcd; var_11
@@ -2362,8 +2362,8 @@ bz.a(JLbw;Ldb;Lv;)V sub_43
 ca AbyssEngine/DummyClass_
 cb AbyssEngine/Agent
 cb.a Ljava/lang/String; fullName
-cb.b Ljava/lang/String; var_70
-cb.c Ljava/lang/String; var_ad
+cb.b Ljava/lang/String; wingman1Name
+cb.c Ljava/lang/String; wingman2Name
 cb.b I itemId
 cb.c I itemQuantity
 cb.d I sellingPrice
@@ -2375,7 +2375,7 @@ cb.c Z var_4b9
 cb.i I isTouched
 cb.j I dialogueStage
 cb.k I type
-cb.a I var_5d5
+cb.a I wingmanFriendsCount
 cb.l I diplomacyPrice
 cb.m I secretSystemId
 cb.n I blueprintItemId
@@ -2400,23 +2400,23 @@ cb.a(I)V sub_3c2
 cb.b()Z sub_3f0
 cb.c()Z sub_41f
 cb.a([B)V sub_460
-cb.a()[B sub_471
+cb.a()[B getFace
 cb.b(I)V sub_48a
-cb.a(Lck;)V sub_4e1
-cb.a()Lck; sub_4f9
+cb.a(Lck;)V setMission
+cb.a()Lck; getMission
 cb.d()Z sub_547
-cb.g()I sub_569
-cb.h()I sub_582
-cb.c(I)V sub_5c4
-cb.i()I sub_5d0
-cb.j()I sub_634
-cb.a(I)Ljava/lang/String; sub_689
-cb.a()[Ljava/lang/String; sub_6c1
+cb.g()I getSellSystemIndex
+cb.h()I getSellBlueprintIndex
+cb.c(I)V setCosts
+cb.i()I getCosts
+cb.j()I getWingmanFriendsCount_
+cb.a(I)Ljava/lang/String; getWingmanName
+cb.a()[Ljava/lang/String; getWingmenNames
 cb.b()Ljava/lang/String; getMessage
 cb.a(Ljava/lang/String;)V setMessage
-cb.k()I sub_773
-cb.l()I sub_7ae
-cb.m()I sub_7d5
+cb.k()I getSellItemIndex
+cb.l()I getSellItemQuantity
+cb.m()I getSellItemPrice
 cb.a(III)V sub_82f
 cb.e()Z isAccepted
 cb.a(Z)V setAccepted
@@ -2427,9 +2427,9 @@ cb.b(Ljava/lang/String;)V setAgentsStationName
 cb.c(Ljava/lang/String;)V setAgentsSystemName
 x AbyssEngine/JSRCamera
 x.a Ljavax/microedition/m3g/Camera; camera
-x.a Ljavax/microedition/m3g/Transform; var_133
+x.a Ljavax/microedition/m3g/Transform; transform
 x.a(III)V sub_5c
-x.a()V sub_19c
+x.a()V setActive
 cd AbyssEngine/AEVector3D
 cd.a I x
 cd.b I y
@@ -2515,7 +2515,7 @@ ce.b(Ljava/lang/String;II)V sub_162
 ce.a()I getHeightMaxRange
 ce.b()I getTileHeight
 ce.c(I)V setHeightMaxRange
-c AbyssEngine/Class_c53cameraRelated
+c AbyssEngine/TargetFollowCamera
 c.a Lah; var_6c
 c.b Lah; var_94
 c.c Lah; var_106
@@ -2537,7 +2537,7 @@ c.d Z var_767
 c.a I var_7ab
 c.b I var_7d8
 c.e Z var_82f
-c.a(Lah;)V sub_43
+c.a(Lah;)V setTarget
 c.b(Lah;)V sub_54
 c.a()Lah; sub_13c
 c.a(Lcd;)V sub_188
@@ -2546,12 +2546,12 @@ c.b()V sub_249
 c.c()V sub_2aa
 c.a(I)V sub_2e9
 c.d()V sub_34a
-c.a()Z sub_356
-c.a(Z)V sub_383
+c.a()Z isInLookAtMode
+c.a(Z)V setLookAtCam
 c.b(Lcd;)V sub_3a9
-c.c(Lcd;)V sub_3dd
-c.d(Lcd;)V sub_400
-cf AbyssEngine/ListEntry
+c.c(Lcd;)V setTargetOffset
+c.d(Lcd;)V setCamOffset
+cf AbyssEngine/ListItem
 cf.a Lcb; var_fe
 cf.a Li; bluePrint
 cf.a Lch; ship
@@ -2566,7 +2566,7 @@ cf.c I displayedCountType
 cf.a Ljavax/microedition/lcdui/Image; var_638
 cf.b Z var_68c
 cf.d I var_6b0
-cf.a Lbp; var_6dc
+cf.a Lbp; producedGood
 cf.a()Z isShip
 cf.b()Z isItem
 cf.j()Z hasItem
@@ -2713,12 +2713,12 @@ Main/f.a Z loaded
 Main/f.a J timeResourceLoaded
 Main/f.a I introState
 Main/f.b I soundSwitchCurrent
-Main/f.b()V loadResources
-Main/f.a()V freeResources
+Main/f.b()V OnInitialize
+Main/f.a()V OnRelease
 Main/f.a()Z isLoaded
 Main/f.b(I)V handleKeystate
 Main/f.a(I)V renderScene
-Main/k Main/Class_26fscene
+Main/k Main/CutScene
 Main/k.a J var_1d
 Main/k.b J var_36
 Main/k.c J frameTimeMs
@@ -2736,17 +2736,17 @@ Main/k.a I var_4cb
 Main/k.a Lar; var_526
 Main/k.a F var_613
 Main/k.b F var_629
-Main/k.c F var_676
+Main/k.c F rotation
 Main/k.b I var_682
 Main/k.c I var_704
-Main/k.a()V freeResources
-Main/k.c()V sub_2c
-Main/k.b()V loadResources
+Main/k.a()V OnRelease
+Main/k.c()V resetCamera
+Main/k.b()V OnInitialize
 Main/k.a()Z isLoaded
 Main/k.a(II)V sub_7c
 Main/k.a(I)V renderScene
 Main/k.b(I)V handleKeystate
-Main/p Main/InsideStation
+Main/p Main/ModStation
 Main/p.a J var_60
 Main/p.b J var_9f
 Main/p.c J var_d4
@@ -2770,8 +2770,8 @@ Main/p.j Z var_517
 Main/p.k Z var_523
 Main/p.l Z var_57e
 Main/p.a Laz; bribeOffer
-Main/p.a LMain/d; var_5bf
-Main/p.a LMain/m; var_643
+Main/p.a LMain/d; spaceLounge
+Main/p.a LMain/m; hangarWindow
 Main/p.a LMain/g; var_6ed
 Main/p.a LMain/c; var_78a
 Main/p.a Lj; var_7a6
@@ -2795,9 +2795,9 @@ Main/p.q Z var_ca1
 Main/p.r Z var_ccc
 Main/p.s Z loaded
 Main/p.a()LMain/k; sub_4e
-Main/p.a()V freeResources
+Main/p.a()V OnRelease
 Main/p.c()V sub_a9
-Main/p.b()V loadResources
+Main/p.b()V OnInitialize
 Main/p.d()V sub_f0
 Main/p.a()Z isLoaded
 Main/p.a(I)V renderScene
@@ -2851,8 +2851,8 @@ Main/o.s Z var_ce4
 Main/o.a Lag; var_d04
 Main/o.t Z var_d4a
 Main/o.a Lcd; var_d9c
-Main/o.a()V freeResources
-Main/o.b()V loadResources
+Main/o.a()V OnRelease
+Main/o.b()V OnInitialize
 Main/o.a()Z isLoaded
 Main/o.a(I)V renderScene
 Main/o.d()V sub_2f
@@ -2865,7 +2865,7 @@ Main/o.c()V sub_1da
 Main/o.d()Z sub_20d
 Main/o.h()V sub_225
 Main/o.b(I)V handleKeystate
-Main/a Main/Class_f7scene
+Main/a Main/ModMainMenu
 Main/a.a J var_71
 Main/a.b J var_b8
 Main/a.c J var_ec
@@ -2875,8 +2875,8 @@ Main/a.a LMain/k; var_1b3
 Main/a.a LMain/l; var_1e7
 Main/a.b Z var_230
 Main/a.a I var_258
-Main/a.a()V freeResources
-Main/a.b()V loadResources
+Main/a.a()V OnRelease
+Main/a.b()V OnInitialize
 Main/a.a()Z isLoaded
 Main/a.a(I)V renderScene
 Main/a.b(I)V handleKeystate
@@ -2974,7 +2974,7 @@ Main/i.c()I sub_149
 Main/i.a(I[Ljava/lang/Object;)V sub_16a
 Main/i.a()Ljava/lang/Object; sub_1a3
 Main/i.d()I sub_1e5
-Main/i.b(I)V sub_205
+Main/i.b(I)V setCurrentTab
 Main/i.j()V sub_238
 Main/i.h()V sub_b4
 Main/i.i()V sub_6b
@@ -2999,7 +2999,7 @@ Main/q.h()V sub_b4
 Main/q.l()V sub_171
 Main/q.a(Ljava/lang/Object;I)V sub_e4
 Main/q.a()I sub_18a
-Main/h Main/ThemedWindow
+Main/h Main/HangarList
 Main/h.a Ljavax/microedition/lcdui/Image; var_1b7
 Main/h.b Ljavax/microedition/lcdui/Image; var_21b
 Main/h.c Ljavax/microedition/lcdui/Image; var_2b9
@@ -3026,7 +3026,7 @@ Main/h.w I var_990
 Main/h.x I var_99d
 Main/h.c()V sub_82
 Main/h.a(Lch;)V sub_9e
-Main/h.a([Li;)V sub_d4
+Main/h.a([Li;)V setBluePrints
 Main/h.a([Lu;)V buildCategorizedItemList_
 Main/h.a(Lcf;)V sub_16d
 Main/h.a(Li;)V sub_198
@@ -3053,14 +3053,14 @@ Main/e.a Ljavax/microedition/lcdui/game/Sprite; sprite
 Main/e.a()V sub_6c
 Main/e.b()V sub_9e
 Main/e.a(Ljava/lang/Object;I)V sub_e4
-Main/d Main/Bar
+Main/d Main/SpaceLounge
 Main/d.a LMain/r; var_50
 Main/d.a Laz; var_1a7
 Main/d.a LMain/b; var_1c0
 Main/d.a Lap; var_1ca
 Main/d.a Ljavax/microedition/lcdui/Image; var_1e0
 Main/d.b Ljavax/microedition/lcdui/Image; var_22a
-Main/d.a I var_2a5
+Main/d.a I chatType_
 Main/d.a Z var_2c7
 Main/d.b Z var_325
 Main/d.c Z var_351
@@ -3073,22 +3073,22 @@ Main/d.e I var_4df
 Main/d.f I var_53c
 Main/d.a [Ljava/lang/String; var_573
 Main/d.g I var_5ce
-Main/d.h I var_607
+Main/d.h I chatAnswear
 Main/d.e Z var_628
-Main/d.f Z var_637
+Main/d.f Z hangarUpdate
 Main/d.a [[Ljavax/microedition/lcdui/Image; var_660
-Main/d.a LMain/k; var_691
+Main/d.a LMain/k; scene
 Main/d.a Ll; var_6d3
 Main/d.b Ll; var_731
 Main/d.a Lcd; var_773
 Main/d.a [Z var_7b1
-Main/d.a()V sub_5d
+Main/d.a()V init
 Main/d.b()V sub_7e
-Main/d.a(I)Z sub_c7
+Main/d.a(I)Z handleKeystate
 Main/d.a(II)V sub_107
-Main/d.c()V sub_169
-Main/d.a()Z sub_1b2
-Main/d.a(Z)V sub_1db
+Main/d.c()V startChat
+Main/d.a()Z hangarNeedsUpdate
+Main/d.a(Z)V setHangarUpdate
 Main/r Main/StarMap
 Main/r.a [I var_e4
 Main/r.a I var_123
@@ -3212,12 +3212,12 @@ Main/j.f I tier
 Main/j.a Ljavax/microedition/lcdui/game/Sprite; var_32d
 Main/j.a(II)V sub_49
 Main/j.a()V sub_006
-Main/m Main/Hangar
+Main/m Main/HangarWindow
 Main/m.a I var_1c9
 Main/m.a J var_28e
 Main/m.b I var_29d
 Main/m.a Z var_2c2
-Main/m.a LMain/h; var_2fa
+Main/m.a LMain/h; list
 Main/m.a Lcf; var_33e
 Main/m.a LMain/b; var_35c
 Main/m.a Laz; var_3a1
@@ -3230,7 +3230,7 @@ Main/m.e I var_49d
 Main/m.f I var_4f1
 Main/m.g I var_54a
 Main/m.a()V sub_e
-Main/m.b()V sub_3f
+Main/m.b()V initialize
 Main/m.a()I sub_65
 Main/m.a()Z sub_be
 Main/m.a()Lcf; sub_107
