@@ -1,7 +1,8 @@
 import re
 from os.path import dirname, abspath
 
-def check_obfuscation_progerss(file_path):
+def check_obfuscation_progerss(file_path, field_match = "var_", meth_match = "sub_", class_match = "Class_"):
+
     names_count = lines_count = 0
     fields = classes = methods = 0
     obfuscated_fields = obfuscated_classes = obfuscated_methods = 0
@@ -14,15 +15,15 @@ def check_obfuscation_progerss(file_path):
                 mapped_name = words[-1].split('/')[-1]
                 if len(words) == 3:
                     fields += 1
-                    if mapped_name.startswith("var_"):
+                    if mapped_name.startswith(field_match):
                         obfuscated_fields += 1
                 elif len(words) == 2 and re.match(r'(?=.*\(*\)).', words[0]):
                     methods += 1
-                    if mapped_name.startswith("sub_"):
+                    if mapped_name.startswith(meth_match):
                         obfuscated_methods += 1
                 elif len(words) == 2:
                     classes += 1
-                    if mapped_name.startswith("Class_"):
+                    if mapped_name.startswith(class_match):
                         obfuscated_classes += 1
                 else:
                     print(f"Detection failed in line {lines_count}: {words}")

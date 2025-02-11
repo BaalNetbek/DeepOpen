@@ -3,22 +3,25 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 class Logger:
-    def __init__(self, log_path, chart_path):
+    def __init__(self, log_path, chart_path, subject: str = ''):
         self.log_updated = False
         self.log_path = log_path
         self.chart_path = chart_path
+        self.subject = subject
 
     def log_values(self, values):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
         new_log_entry = f"{timestamp},{','.join(map(str, values))}\n"
         
+        # Checks if log is up to date
         if exists(self.log_path) and getsize(self.log_path) > 0:
             with open(log_path, "r") as file:
                 last_line = file.readlines()[-1]
             if float(new_log_entry.split(',')[1]) == float(last_line.split(',')[1]):
-                return
+                return    
+        # Updates log        
         with open(log_path, "a") as file:
-            print(f"Appending  new entry log: {abspath(self.log_path)}")
+            print(f"Appending new entry log: {abspath(self.log_path)}")
             self.log_updated = True
             file.write(new_log_entry)
 
@@ -42,7 +45,7 @@ class Logger:
 
         plt.xlabel("Time")
         plt.ylabel("Progress")
-        plt.title("Deobfuscating names progress")
+        plt.title("Deobfuscating " + self.subject + " progress")
         plt.legend(loc='upper left')
         plt.ylim(0, 100)
         plt.yticks([i / 2 for i in range(0, 202, 25)], [f'{i/2}%' for i in range(0, 202, 25)])
@@ -58,8 +61,9 @@ if __name__ == "__main__":
     log_path = dirname(__file__) + r"/progress.log"
     chart_path = dirname(__file__) + r"/progress_chart.png"
     file_path =  dirname(dirname(dirname(__file__))) + '/Recaf/GoF2/GoF2_JSR_1.0.4.mapping'
+    subject = "Galaxy on Fire 2 v1.0.4 (M3G)"
     values = check_obfuscation_progerss(file_path)
-    logger = Logger(log_path, chart_path)
+    logger = Logger(log_path, chart_path, subject)
     logger.log_values(values)
     if logger.log_updated or not exists(chart_path):
         logger.plot_and_save()

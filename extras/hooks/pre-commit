@@ -3,16 +3,23 @@
 # Automaticly sorts mapping and updates progress record before commiting. 
 # Put in .git/hooks/ of this repository
 
-# Get the repository root directory
 REPO_ROOT=$(git rev-parse --show-toplevel)
 
-# Run the sorter script
+# Sort the mapping
 if ! python "$REPO_ROOT/extras/sorter/sorter.py"; then
   echo "Error: sorter.py failed. Commit cancelled."
   exit 1
 fi
 
-# Run the logger script
+# Verify the inheritance
+python "$REPO_ROOT/extras/verifier/InheritanceVerifier.py"
+exit_code=$?
+if [ $exit_code -ne 1 ]; then
+  echo "Error: Inheritance Errors detected. Commit cancelled."
+  exit 1
+fi
+
+# Update progress log
 if ! python "$REPO_ROOT/extras/logger/logger.py"; then
   echo "Error: logger.py failed. Commit cancelled."
   exit 1
