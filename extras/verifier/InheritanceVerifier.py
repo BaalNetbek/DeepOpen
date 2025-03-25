@@ -5,10 +5,12 @@ class InheritanceVerifier:
         self.reg_pattern = re.compile(r"^([\w+/]*\w+)\.(\w+)(\(.*\)\[?\w+;?)\s+(\w+;*)\s*$") 
         self.families = []
         self.valid = True
+        self.file_path = ""
     
 
     def parse_mapping_file(self, file_path):
         families = {}
+        self.file_path = file_path
         with open(file_path, 'r') as f:
             for line_num, line in enumerate(f, 1):
                 line = line.strip()
@@ -66,7 +68,9 @@ class InheritanceVerifier:
             for method in self.families[i]:
                 line = lines[method['line']-1]
                 match = self.reg_pattern.match(line)
-                print_map_line(method['line'], match.group(4), line, 1)  
+                print_map_line(method['line'], match.group(4), line, 1)
+        if bad_families == []:
+            print("Inheritance verification passed for: ", self.file_path)      
 
     def run(self, standard_mapping, new_mapping):
         self.parse_mapping_file(standard_mapping)
