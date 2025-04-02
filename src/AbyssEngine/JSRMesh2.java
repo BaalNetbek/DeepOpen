@@ -37,7 +37,7 @@ public final class JSRMesh2 extends AbstractMesh {
          this.var_109 = null;
       }
 
-      this.var_1ef = 0;
+      this.radius = 0;
       if (var_124 == null) {
          (var_124 = new CompositingMode()).setBlending(64);
          var_124.setDepthTestEnable(true);
@@ -47,9 +47,9 @@ public final class JSRMesh2 extends AbstractMesh {
    }
 
    private JSRMesh2(JSRMesh2 var1) {
-      this.var_1ef = 0;
+      this.radius = 0;
       this.var_109 = var1.var_109;
-      this.flag_ = var1.flag_;
+      this.renderLayer = var1.renderLayer;
       this.draw = var1.draw;
    }
 
@@ -64,7 +64,7 @@ public final class JSRMesh2 extends AbstractMesh {
    public final void sub_11b(Camera var1, Class_db var2) {
       if (this.draw) {
          this.matrix = var1.var_14c.sub_8ac(this.matrix);
-         var2.sub_177(this.flag_, this);
+         var2.sub_177(this.renderLayer, this);
       }
 
    }

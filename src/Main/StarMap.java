@@ -145,7 +145,7 @@ public final class StarMap {
          this.var_a6c[var8] = AEResourceManager.getGeometryResource(6781);
          this.var_a6c[var8].sub_980(var6, var6);
          this.var_a6c[var8].sub_9aa((byte)1);
-         this.var_a6c[var8].setFlag_(2);
+         this.var_a6c[var8].setRenderLayer(2);
          this.var_a6c[var8].sub_48(5000);
          this.var_a6c[var8].sub_5c5(0, 2048, 0);
          this.var_a6c[var8].sub_7af(1024, 1024, 1024);
@@ -710,7 +710,7 @@ public final class StarMap {
             this.var_c27[var2].sub_7af(256, 256, 256);
          }
 
-         this.var_c27[var2].setFlag_(2);
+         this.var_c27[var2].setRenderLayer(2);
          this.var_ce0.sub_25(this.var_c27[var2]);
       }
 
@@ -720,7 +720,7 @@ public final class StarMap {
 
       for(var2 = 0; var2 < this.var_c63.length; ++var2) {
          this.var_c63[var2] = AEResourceManager.getGeometryResource(6779);
-         this.var_c63[var2].setFlag_(2);
+         this.var_c63[var2].setRenderLayer(2);
          this.var_c63[var2].sub_5c5(-1024, 0, 0);
          this.var_ce0.sub_25(this.var_c63[var2]);
          var3 = this.var_cb1[var2];

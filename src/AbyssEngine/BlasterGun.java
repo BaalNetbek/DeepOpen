@@ -18,7 +18,7 @@ public class BlasterGun extends AbstractMesh implements Class_786 {
             var_211.set(var2.sub_821());
             this.var_18b[var3] = (AbstractMesh)var2.sub_2b();
             this.var_18b[var3].sub_7af(var_211.x, var_211.y, var_211.z);
-            this.var_18b[var3].setFlag_(2);
+            this.var_18b[var3].setRenderLayer(2);
          }
 
       }

@@ -7,7 +7,7 @@ public final class Class_6fcMesh extends AbstractMesh {
 
    private Class_6fcMesh(AbstractTexture var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, byte var10) {
       this.var_14 = new Class_490(var6, var1, 256, var2, var3, var4, var5, var9, var7, var8, (byte)2);
-      this.var_14.var_38.setFlag_(2);
+      this.var_14.var_38.setRenderLayer(2);
       this.var_39 = true;
       this.var_4a = var6 > 1;
    }

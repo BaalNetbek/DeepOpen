@@ -26,13 +26,13 @@ public final class LaserGun extends AbstractMesh implements Class_786 {
       this.var_56b = new AEVector3D();
       var2 -= 9;
       this.var_1e8 = AEResourceManager.getGeometryResource(6781);
-      this.var_1e8.setFlag_(2);
+      this.var_1e8.setRenderLayer(2);
       this.var_1e8.sub_980(var_617[var2], var_617[var2]);
       this.var_1e8.sub_9aa((byte)1);
       this.var_1e8.sub_7af(600, 600, 600);
       this.var_1d0 = AbstractMesh.sub_976unk(0, 10, (byte)2);
       this.var_1d0.setTexture(AEResourceManager.sub_10b(1));
-      this.var_1d0.setFlag_(2);
+      this.var_1d0.setRenderLayer(2);
       this.var_375 = new int[120];
       this.var_2e2 = new int[120];
       this.var_3da = new int[80];

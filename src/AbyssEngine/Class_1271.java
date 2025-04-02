@@ -14,7 +14,7 @@ public final class Class_1271 {
       int var2 = var1 == 0 ? 16 : 13;
       this.var_54d = AbstractMesh.sub_976unk(0, var2, (byte)2);
       this.var_54d.setTexture(AEResourceManager.sub_10b(1));
-      this.var_54d.setFlag_(2);
+      this.var_54d.setRenderLayer(2);
       this.var_323 = new int[var2 * 12];
       this.var_2dd = new int[var2 * 12];
       int var3 = var1 << 2;

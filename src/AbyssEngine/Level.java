@@ -402,9 +402,9 @@ public final class Level {
          (var21 = new PlayerAsteroid(var12, AEResourceManager.getGeometryResource(var12), var1, var3, var17, var18, var20)).sub_3b3(this);
          var21.sub_20d(this.var_387);
          if (this.var_dd == 23) {
-            var21.var_25d.setFlag_(1);
+            var21.var_25d.setRenderLayer(1);
          } else {
-            var21.var_25d.setFlag_(2);
+            var21.var_25d.setRenderLayer(2);
          }
 
          Explosion var16 = new Explosion(1);
@@ -449,7 +449,7 @@ public final class Level {
       case 4:
       case 5:
          var9 = new Gun(var2, var5, 1, var4, var7, var6, (float)var8, new AEVector3D(), new AEVector3D());
-         (var14 = AEResourceManager.getGeometryResource(IndexManager.projectilesMeshIDs[var1])).setFlag_(2);
+         (var14 = AEResourceManager.getGeometryResource(IndexManager.projectilesMeshIDs[var1])).setRenderLayer(2);
          var10 = new RocketGun(var9, var14, var3 == 5);
          var11 = this.var_4fc;
          break;
@@ -468,7 +468,7 @@ public final class Level {
             var12.sub_7af(var13, var13, var13);
          }
 
-         var12.setFlag_(2);
+         var12.setRenderLayer(2);
          var10 = new RocketGun(var9, var12, false);
          var11 = this.var_4fc;
          break;
@@ -593,7 +593,7 @@ public final class Level {
 
                AbstractMesh var14 = null;
                if (this.var_1045 > 0) {
-                  (var14 = AEResourceManager.getGeometryResource(6783)).setFlag_(2);
+                  (var14 = AEResourceManager.getGeometryResource(6783)).setRenderLayer(2);
                }
 
                for(var6 = this.var_1005; var6 < this.var_1005 + this.var_1045; ++var6) {
@@ -1155,7 +1155,7 @@ public final class Level {
 
             var5[var13] = true;
             this.ships[var6] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var7), this.var_2ed[var13 * 3], this.var_2ed[var13 * 3 + 1], this.var_2ed[var13 * 3 + 2]);
-            this.ships[var6].var_25d.setFlag_(2);
+            this.ships[var6].var_25d.setRenderLayer(2);
             this.ships[var6].var_25d.sub_a04();
          }
 
@@ -1174,7 +1174,7 @@ public final class Level {
 
             short var14 = IndexManager.barMeshIDs[var11][GameStatus.random.nextInt(IndexManager.barMeshIDs[var11].length)];
             this.ships[var12] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var14), 0, 0, 0);
-            this.ships[var12].var_25d.setFlag_(2);
+            this.ships[var12].var_25d.setRenderLayer(2);
             this.ships[var12].var_25d.setRotation(0, var12 * var6, 0);
             ++var12;
          }
@@ -1201,14 +1201,14 @@ public final class Level {
             }
 
             this.ships[var3] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var4), 0, 0, var2 << 12);
-            this.ships[var3].var_25d.setFlag_(1);
+            this.ships[var3].var_25d.setRenderLayer(1);
             this.ships[var3].var_25d.setRotation(0, 2048, 0);
             ++var2;
          }
 
          short var10 = IndexManager.hangarMeshIDs[var1][IndexManager.hangarMeshIDs[var1].length - 3];
          this.ships[this.ships.length - 1] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var10), 0, 0, 8192);
-         this.ships[this.ships.length - 1].var_25d.setFlag_(2);
+         this.ships[this.ships.length - 1].var_25d.setRenderLayer(2);
          this.ships[this.ships.length - 1].var_25d.setRotation(0, 2048, 0);
          break;
       default:
@@ -1251,7 +1251,7 @@ public final class Level {
                var6.sub_1df(this.var_43d);
                int var5 = this.ships[var2].race == 9 ? 7 : (this.ships[var2].race == 0 ? 1 : (this.ships[var2].race == 1 ? 3 : 4));
                this.var_6e9[var3] = new BlasterGun(var6, AEResourceManager.getGeometryResource(IndexManager.projectilesMeshIDs[var5]));
-               this.var_6e9[var3].setFlag_(2);
+               this.var_6e9[var3].setRenderLayer(2);
                ++var3;
                this.ships[var2].sub_43a(var6, 0);
             }
@@ -1263,7 +1263,7 @@ public final class Level {
                var6.index = 18;
                var6.subType = 1;
                this.var_6e9[var3] = new BlasterGun(var6, AEResourceManager.getGeometryResource(IndexManager.projectilesMeshIDs[18]));
-               this.var_6e9[var3].setFlag_(2);
+               this.var_6e9[var3].setRenderLayer(2);
                ++var3;
                this.ships[var2].sub_43a(var6, 1);
             }
@@ -1354,7 +1354,7 @@ public final class Level {
       var3 = var3 + GameStatus.random.nextInt(20000) - 10000;
       var6 = var6 + GameStatus.random.nextInt(20000) - 10000;
       AbstractMesh var4;
-      (var4 = AEResourceManager.getGeometryResource(9996)).setFlag_(2);
+      (var4 = AEResourceManager.getGeometryResource(9996)).setRenderLayer(2);
       Player var5 = null;
       var5 = null;
       var5 = new Player(1000.0F, 1, 0, 0, 0);

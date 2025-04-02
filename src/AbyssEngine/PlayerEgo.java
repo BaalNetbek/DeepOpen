@@ -358,8 +358,8 @@ public final class PlayerEgo {
 
             this.var_62e = AEResourceManager.getGeometryResource(var9);
             this.var_749 = AEResourceManager.getGeometryResource(var4);
-            this.var_62e.setFlag_(2);
-            this.var_749.setFlag_(2);
+            this.var_62e.setRenderLayer(2);
+            this.var_749.setRenderLayer(2);
             this.var_749.sub_5a7((short)2);
             this.var_fd2 = new Group();
 

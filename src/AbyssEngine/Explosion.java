@@ -17,7 +17,7 @@ public final class Explosion {
             this.explosions[var1].sub_918(100);
             this.explosions[var1].sub_980(1, 20);
             this.explosions[var1].sub_7af(8192, 8192, 8192);
-            this.explosions[var1].setFlag_(2);
+            this.explosions[var1].setRenderLayer(2);
             this.explosions[var1].sub_a04();
             if (var1 == 0) {
                this.var_158[var1] = 0;
@@ -31,7 +31,7 @@ public final class Explosion {
       this.var_366.sub_918(100);
       this.var_366.sub_980(1, 20);
       this.var_366.sub_7af(8192, 8192, 8192);
-      this.var_366.setFlag_(2);
+      this.var_366.setRenderLayer(2);
       this.var_366.sub_a04();
    }
 

@@ -850,7 +850,7 @@ public final class MGame extends AbstractScene {
       this.var_48b.sub_120(true);
       if (this.var_c80) {
          this.var_d04 = AEResourceManager.getGeometryResource(6783);
-         this.var_d04.setFlag_(2);
+         this.var_d04.setRenderLayer(2);
          this.var_d9c = this.playerEgo.var_50e.sub_216(this.var_d9c);
          this.var_d9c.add(this.playerEgo.var_50e.getDirection());
          this.var_d04.sub_1f3(this.var_d9c);

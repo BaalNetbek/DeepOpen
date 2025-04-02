@@ -128,7 +128,7 @@ public final class IndexManager {
             var5.sub_7af(var3[var4 + 7], var3[var4 + 8], var3[var4 + 9]);
          }
 
-         var5.setFlag_(2);
+         var5.setRenderLayer(2);
          var5.setDraw(true);
          var2.sub_25(var5);
       }

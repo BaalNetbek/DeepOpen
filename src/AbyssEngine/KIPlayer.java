@@ -288,7 +288,7 @@ public abstract class KIPlayer {
          this.waste.sub_7af(512, 512, 512);
       }
 
-      this.waste.setFlag_(2);
+      this.waste.setRenderLayer(2);
       this.waste.sub_1f3(this.var_25d != null ? this.var_25d.sub_237() : this.var_379.sub_237());
       this.player.var_46b = this.waste.sub_85f();
       this.player.setKIPlayer(this);

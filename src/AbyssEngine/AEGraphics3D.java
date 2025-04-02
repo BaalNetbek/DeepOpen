@@ -14,10 +14,11 @@ public final class AEGraphics3D extends AbstractGraphics3D {
       graphics3D = Graphics3D.getInstance();
       Light var1;
       (var1 = new Light()).setIntensity(1.0F);
-      var1.setMode(129);
+      var1.setMode(Light.DIRECTIONAL);
       Light var2;
       (var2 = new Light()).setIntensity(2.0F);
-      var2.setMode(128);
+      var2.setMode(Light.AMBIENT);
+
       Transform var3 = new Transform();
       Transform var4 = new Transform();
       graphics3D.addLight(var1, var3);

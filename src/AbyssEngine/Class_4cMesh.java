@@ -28,7 +28,7 @@ public final class Class_4cMesh extends AbstractMesh {
    private int var_316 = -1;
 
    public Class_4cMesh(int var1, int var2, byte var3) {
-      this.var_1fa = var1;
+      this.resourceId = var1;
       if (this.appearance == null) {
          this.appearance = new Appearance();
          if (var3 != 0) {
@@ -97,9 +97,9 @@ public final class Class_4cMesh extends AbstractMesh {
       this.var_237 = var1.var_237;
       this.var_297 = var1.var_297;
       this.var_308 = var1.var_308;
-      this.var_1ef = var1.var_1ef;
+      this.radius = var1.radius;
       this.draw = var1.draw;
-      this.flag_ = var1.flag_;
+      this.renderLayer = var1.renderLayer;
    }
 
    public final GraphNode sub_2b() {
@@ -126,7 +126,7 @@ public final class Class_4cMesh extends AbstractMesh {
       if (this.draw) {
          this.matrix = var1.var_14c.sub_8ac(this.matrix);
          this.matrix.multiply(this.var_14c);
-         var2.sub_177(this.flag_, this);
+         var2.sub_177(this.renderLayer, this);
       }
 
    }
@@ -147,16 +147,16 @@ public final class Class_4cMesh extends AbstractMesh {
       this.uvArray.set(0, 4 * this.var_b7, this.var_297);
       this.mesh.getVertexBuffer().setTexCoords(0, this.uvArray, 1.0F / (float)this.var_308, zeroBias2D);
       this.mesh.getVertexBuffer().setDefaultColor(this.var_316);
-      this.var_1ef = 0;
+      this.radius = 0;
 
       for(var3 = 0; var3 < var1.length; var3 += 3) {
          int var4 = var1[var3] * var1[var3] + var1[var3 + 1] * var1[var3 + 1] + var1[var3 + 2] * var1[var3 + 2];
-         if (this.var_1ef < var4) {
-            this.var_1ef = var4;
+         if (this.radius < var4) {
+            this.radius = var4;
          }
       }
 
-      this.var_1ef = AEMath.sqrt((long)this.var_1ef);
+      this.radius = AEMath.sqrt((long)this.radius);
    }
 
    public final void setTexture(AbstractTexture var1) {

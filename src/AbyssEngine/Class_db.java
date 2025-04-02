@@ -26,7 +26,26 @@ public final class Class_db {
    public final Camera getCamera() {
       return this.var_52;
    }
+   
+   public final void appendNode(GraphNode var1) {
+       try {
+          if (var1 != null && this.var_ca != null && this.var_52 != null) {
+             var1.sub_109(false);
+             if (this.var_7d != null) {
+                this.var_7d.sub_109(false);
+             } else {
+                this.var_52.sub_109(false);
+             }
 
+             var1.sub_b2(this.var_52, this);
+          }
+
+       } catch (Exception var2) {
+          var2.printStackTrace();
+       }
+    }
+   
+   
    public final void sub_87(GraphNode var1) {
       try {
          if (var1 != null && this.var_ca != null && this.var_52 != null) {

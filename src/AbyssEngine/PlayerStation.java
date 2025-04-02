@@ -22,7 +22,7 @@ public final class PlayerStation extends PlayerStaticFar {
          AbstractMesh[] var10000 = this.stationParts;
          Status.inAlienOrbit();
          var10000[0] = AEResourceManager.getGeometryResource(3337);
-         this.stationParts[0].setFlag_(2);
+         this.stationParts[0].setRenderLayer(2);
       } else {
          this.stationParts = new AbstractMesh[var2.length / 7];
 
@@ -32,7 +32,7 @@ public final class PlayerStation extends PlayerStaticFar {
             this.stationParts[var7].sub_5a7((short)0);
             this.stationParts[var7].moveTo(var2[var3 + 1], var2[var3 + 2], var2[var3 + 3]);
             this.stationParts[var7].setRotation(var2[var3 + 4], var2[var3 + 5], var2[var3 + 6]);
-            this.stationParts[var7].setFlag_(2);
+            this.stationParts[var7].setRenderLayer(2);
             if (this.stationParts[var7].sub_a() == 3334 || this.stationParts[var7].sub_a() == 3335) {
                this.stationParts[var7].setDraw(false);
             }

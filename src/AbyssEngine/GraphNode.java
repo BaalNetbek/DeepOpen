@@ -10,7 +10,7 @@ public abstract class GraphNode {
    protected Matrix currentTransform;
    protected Matrix var_14c;
    protected AEBoundingSphere var_19f;
-   protected int var_1fa;
+   protected int resourceId;
 
    GraphNode() {
       this.draw = true;
@@ -19,7 +19,7 @@ public abstract class GraphNode {
       this.var_19f = new AEBoundingSphere();
       this.var_c1 = true;
       this.var_ee = true;
-      this.var_1fa = 0;
+      this.resourceId = 0;
    }
 
    GraphNode(GraphNode var1) {
@@ -29,11 +29,11 @@ public abstract class GraphNode {
       this.var_19f = new AEBoundingSphere(var1.var_19f);
       this.var_c1 = true;
       this.var_ee = true;
-      this.var_1fa = var1.var_1fa;
+      this.resourceId = var1.resourceId;
    }
 
    public final int sub_a() {
-      return this.var_1fa;
+      return this.resourceId;
    }
 
    public final void setDraw(boolean var1) {
@@ -67,7 +67,7 @@ public abstract class GraphNode {
    }
 
    public String toString() {
-      return this.getString("" + this.var_1fa, 0);
+      return this.getString("" + this.resourceId, 0);
    }
 
    protected abstract String getString(String var1, int var2);

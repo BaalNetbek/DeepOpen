@@ -77,7 +77,7 @@ public final class AEMesh extends AbstractMesh {
             (var14 = new VertexArray(var17.length / 2, 2, 2)).set(0, var17.length / 2, var17);
          }
 
-         Object var18 = null;
+         
          if ((var12 & 4) != 0) {
             short[] var19 = new short[var15.length];
 
@@ -111,7 +111,7 @@ public final class AEMesh extends AbstractMesh {
          var10.printStackTrace();
       }
 
-      this.var_1ef = var2;
+      this.radius = var2;
    }
 
    private AEMesh(AEMesh var1) {
@@ -122,10 +122,10 @@ public final class AEMesh extends AbstractMesh {
       this.transform = var1.transform;
       this.appearance = var1.appearance;
       this.isTransparent = var1.isTransparent;
-      this.flag_ = var1.flag_;
+      this.renderLayer = var1.renderLayer;
       this.draw = var1.draw;
-      this.var_1ef = var1.var_1ef;
-      this.var_1fa = var1.var_1fa;
+      this.radius = var1.radius;
+      this.resourceId = var1.resourceId;
    }
 
    private static void setupMaterial() {

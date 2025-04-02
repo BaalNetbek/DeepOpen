@@ -16,7 +16,7 @@ public final class Class_a6e {
 
    public Class_a6e(Group var1, int var2) {
       this.var_424.setTexture(AEResourceManager.sub_10b(1));
-      this.var_424.setFlag_(2);
+      this.var_424.setRenderLayer(2);
       this.var_318 = new int[120];
       this.var_2d7 = new int[120];
       this.var_322 = new int[80];

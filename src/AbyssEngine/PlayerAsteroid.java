@@ -91,7 +91,7 @@ public final class PlayerAsteroid extends KIPlayer {
             var_249 = this.var_25d.sub_216(var_249);
             if (this.var_956 == null) {
                this.var_956 = AEResourceManager.getGeometryResource(6782);
-               this.var_956.setFlag_(2);
+               this.var_956.setRenderLayer(2);
                this.var_956.sub_918(100);
                this.player.setKIPlayer(this);
             }

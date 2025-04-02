@@ -2,6 +2,7 @@ package AbyssEngine;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
+import javax.microedition.m3g.Light;
 import javax.microedition.m3g.Transform;
 
 public final class Skybox {
@@ -21,8 +22,16 @@ public final class Skybox {
    private boolean[] var_54f;
    public static int var_5a9;
    private boolean inAlienSpace;
+   private Light light;
+   private int switcher;
+   Matrix transf;
 
    public Skybox() {
+       this.switcher = 0;
+       this.light = new Light();
+       this.light.setIntensity(2.0F);
+
+       this.light.setMode(Light.OMNI);
       new Transform();
       new Matrix();
       new Matrix();
@@ -47,7 +56,7 @@ public final class Skybox {
 
          for(var13 = 0; var13 < this.var_153.length; ++var13) {
             this.var_153[var13] = AEResourceManager.getGeometryResource(6781);
-            this.var_153[var13].setFlag_(1);
+            this.var_153[var13].setRenderLayer(1);
             if (var13 == 0) {
                this.var_153[var13].sub_9aa((byte)1);
                this.var_153[var13].sub_7af(64, 64, 64);
@@ -106,7 +115,7 @@ public final class Skybox {
 
             for(int var14 = 0; var14 < this.nebulaPivots.length; ++var14) {
                this.nebulaPivots[var14] = AEResourceManager.getGeometryResource(6781);
-               this.nebulaPivots[var14].setFlag_(1);
+               this.nebulaPivots[var14].setRenderLayer(1);
                this.nebulaPivots[var14].setDraw(false);
                boolean var15 = false;
                int var9 = 0;
@@ -218,6 +227,8 @@ public final class Skybox {
             }
          }
       }
+      if (this.var_153[0] != null)
+	  GameStatus.var_8ce.appendNode(this.var_153[0]);
 
       for(var1 = 0; var1 < (this.inAlienSpace ? 1 : this.var_153.length); ++var1) {
          if (this.inAlienSpace) {
@@ -228,7 +239,39 @@ public final class Skybox {
          } else {
             GameStatus.var_8ce.getCamera().sub_fa(this.var_153[var1].sub_22a(this.var_25a));
          }
-
+         if (var1 == 0) {
+             Matrix materix = new Matrix();
+             float max = Math.max(Level.starB, Level.starG);
+             max = Math.max(max, Level.starR);
+             this.light.setColor(
+      	       (int)(Level.starR/max*255) << 16
+      	       | (int)(Level.starG/max*255) << 8
+      	       | (int)(Level.starB/max*255)
+      	       );
+             switch(this.switcher) {
+             case 1:
+        	 transf = materix.sub_8ac (this.var_153[var1].sub_85f() );
+        	 break;
+             case 2:
+        	 transf = this.var_153[var1].sub_85f();
+        	 break;
+             case 3:
+        	 transf = materix.sub_8ac (this.var_153[var1].sub_8a0() );
+        	 break;
+            default:
+        	 transf = this.var_153[var1].sub_8a0();
+        	     break;
+        	     
+             }
+             float arr[] = new float[16];
+             transf.scaledToFloatArray(arr);
+             Transform tranforma = new Transform();
+             tranforma.set(arr);
+             
+             
+      	   //AEGraphics3D.graphics3D.resetLights();
+      	   //AEGraphics3D.graphics3D.addLight(light, tranforma);
+         }
          if (this.var_25a.z < 0) {
             if (var1 == 0) {
                this.sun.setTransform(0);

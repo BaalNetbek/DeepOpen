@@ -11,7 +11,7 @@ public class PlayerStaticFar extends PlayerStatic {
       if (var2 != null) {
          short var6 = 7500;
          this.player.radius = (float)var6;
-         this.var_25d.setFlag_(2);
+         this.var_25d.setRenderLayer(2);
       }
    }
 

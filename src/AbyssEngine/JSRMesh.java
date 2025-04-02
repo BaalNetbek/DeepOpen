@@ -3,6 +3,7 @@ package AbyssEngine;
 import javax.microedition.m3g.Appearance;
 import javax.microedition.m3g.CompositingMode;
 import javax.microedition.m3g.KeyframeSequence;
+import javax.microedition.m3g.Light;
 import javax.microedition.m3g.Loader;
 import javax.microedition.m3g.Material;
 import javax.microedition.m3g.Mesh;
@@ -10,147 +11,214 @@ import javax.microedition.m3g.Object3D;
 import javax.microedition.m3g.PolygonMode;
 import javax.microedition.m3g.Texture2D;
 import javax.microedition.m3g.Transform;
+import javax.microedition.m3g.VertexArray;
+import javax.microedition.m3g.VertexBuffer;
 import javax.microedition.m3g.World;
+
+
 
 public final class JSRMesh extends AbstractMesh {
    private static int[] var_56 = new int[]{1, 2, 2, 2, 1, 2, 1, 0, 0, 2};
    private static int[] var_10e = new int[]{0, 0, 0, 0, 1, 0, 0, 1, 0, 1};
-   private int var_137;
-   private int var_15f;
-   private int var_174;
-   private int var_18c;
-   private long var_1cf;
-   private boolean var_1e9;
-   private byte var_236;
+   private int animLenght;
+   private int animStartFrame;
+   private int animEndFrame;
+   private int animCurrentFrame;
+   private long sysTime;
+   private boolean hasAnimation;
+   private byte animationMode;
    private static Transform var_24c = new Transform();
    private static float[] m_matrix = new float[16];
-   private javax.microedition.m3g.Node[] var_2f4;
-   private javax.microedition.m3g.Node[] var_338;
-   private static PolygonMode var_344;
-   private static PolygonMode var_38a;
+   private javax.microedition.m3g.Node[] opaqueNodes;
+   private javax.microedition.m3g.Node[] transparentNodes;
+   private static PolygonMode opaquePmode;
+   private static PolygonMode transparentPmode;
    private static CompositingMode var_3cc;
-   private boolean var_41c = false;
-   private Texture2D var_45d = null;
+   private boolean needsUvFix = false;
+   private Texture2D texture = null;
    private static Transform var_4aa = new Transform();
 
-   public JSRMesh(int var1, String var2, int var3) {
-      this.var_1fa = var1;
-      sub_31();
-      var2 = var2;
-      JSRMesh var11 = this;
+   public JSRMesh(int resourceId, String path, int radius) {
+      this.resourceId = resourceId;
+      initializeMaterials();
 
+	 if (this.resourceId == 6781) {
+
+             this.light = new Light();
+             this.light.setIntensity(2.0F);
+             this.light.setColor(0xffffff);
+             this.light.setMode(Light.OMNI);
+             
+	 } 
       try {
-         Object3D[] var4 = null;
-         if (!var2.endsWith(".m3g")) {
-            var4 = Loader.load(AEImage.loadFileBytes(var2 + ".m3g"), 0);
+	
+         Object3D[] tree = null;
+         if (!path.endsWith(".m3g")) {
+            tree = Loader.load(AEImage.loadFileBytes(path + ".m3g"), 0);
          } else {
-            var4 = Loader.load(AEImage.loadFileBytes(var2), 0);
+            tree = Loader.load(AEImage.loadFileBytes(path), 0);
          }
 
-         for(int var12 = 0; var12 < var4.length; ++var12) {
-            int var5;
-            javax.microedition.m3g.Node var16;
-            if (!(var4[var12] instanceof World)) {
-               if (var4[var12] instanceof javax.microedition.m3g.Group) {
-                  boolean var13 = false;
-                  if ((var5 = var11.sub_85((javax.microedition.m3g.Group)var4[var12], 0)) == 0) {
-                     for(int var14 = 0; var14 < ((javax.microedition.m3g.Group)var4[var12]).getChildCount(); ++var14) {
-                        if ((var16 = ((javax.microedition.m3g.Group)var4[var12]).getChild(var14)) instanceof Mesh) {
-                           Transform var17 = new Transform();
-                           var16.getTransform(var17);
-                           ((javax.microedition.m3g.Group)var4[var12]).removeChild(var16);
-                           var16.setTransform(var17);
-                           var11.sub_46(var16);
+         for(int i = 0; i < tree.length; ++i) {
+            int j;
+            javax.microedition.m3g.Node meshNode;
+            if (!(tree[i] instanceof World)) {
+               if (tree[i] instanceof javax.microedition.m3g.Group) {
+
+                  if ((j = this.getAnimationLenght((javax.microedition.m3g.Group)tree[i], 0)) == 0) {
+                     for(int var14 = 0; var14 < ((javax.microedition.m3g.Group)tree[i]).getChildCount(); ++var14) {
+                        if ((meshNode = ((javax.microedition.m3g.Group)tree[i]).getChild(var14)) instanceof Mesh) {
+                           Transform transform = new Transform();
+                           meshNode.getTransform(transform);
+                           ((javax.microedition.m3g.Group)tree[i]).removeChild(meshNode);
+                           meshNode.setTransform(transform);
+                           fixNormals((Mesh)meshNode);
+                           this.appendNode(meshNode);
                         }
                      }
                   } else {
-                     var11.sub_46((javax.microedition.m3g.Group)var4[var12]);
-                     var11.var_137 = var11.var_137 < var5 ? var5 : var11.var_137;
+                     this.appendNode((javax.microedition.m3g.Group)tree[i]);
+                     this.animLenght = this.animLenght < j ? j : this.animLenght;
                   }
                }
             } else {
-               for(var5 = 0; var5 < ((World)var4[var12]).getChildCount(); ++var5) {
-                  javax.microedition.m3g.Node var6 = ((World)var4[var12]).getChild(var5);
-                  boolean var7 = false;
-                  int var15 = var11.sub_85(var6, 0);
-                  if (var6 instanceof javax.microedition.m3g.Group) {
-                     if (var15 == 0) {
-                        for(int var8 = 0; var8 < ((javax.microedition.m3g.Group)var6).getChildCount(); ++var8) {
-                           if ((var16 = ((javax.microedition.m3g.Group)var6).getChild(var8)) instanceof Mesh) {
-                              Transform var9 = new Transform();
-                              var16.getTransform(var9);
-                              ((javax.microedition.m3g.Group)var6).removeChild(var16);
-                              var16.setTransform(var9);
-                              var11.sub_46(var16);
+               for(j = 0; j < ((World)tree[i]).getChildCount(); ++j) {
+                  javax.microedition.m3g.Node groupNode = ((World)tree[i]).getChild(j);
+
+                  int animLenght = this.getAnimationLenght(groupNode, 0);
+                  if (groupNode instanceof javax.microedition.m3g.Group) {
+                     if (animLenght == 0) {
+                        for(int k = 0; k < ((javax.microedition.m3g.Group)groupNode).getChildCount(); ++k) {
+                           if ((meshNode = ((javax.microedition.m3g.Group)groupNode).getChild(k)) instanceof Mesh) {
+                              Transform transform = new Transform();
+                              meshNode.getTransform(transform);
+                              ((javax.microedition.m3g.Group)groupNode).removeChild(meshNode);
+                              meshNode.setTransform(transform);
+                              fixNormals((Mesh)meshNode);
+                              this.appendNode(meshNode);
                            }
                         }
                      } else {
-                        var11.sub_46(var6);
-                        var11.var_137 = var11.var_137 < var15 ? var15 : var11.var_137;
+                        this.appendNode(groupNode);
+                        this.animLenght = this.animLenght < animLenght ? animLenght : this.animLenght;
                      }
-                  } else if (var6 instanceof Mesh) {
-                     var11.sub_46(var6);
-                     var11.var_137 = var11.var_137 < var15 ? var15 : var11.var_137;
+                  } else if (groupNode instanceof Mesh) {
+                     fixNormals((Mesh)groupNode);
+                     this.appendNode(groupNode);
+                     this.animLenght = this.animLenght < animLenght ? animLenght : this.animLenght;
                   }
                }
             }
          }
 
-         if (var11.var_137 != 0) {
-            var11.var_15f = 0;
-            var11.var_174 = var11.var_137;
-            var11.var_18c = 0;
-            var11.var_1cf = -1L;
-            var11.var_1e9 = true;
-            var11.var_236 = 2;
+
+         if (this.animLenght != 0) {
+            this.animStartFrame = 0;
+            this.animEndFrame = this.animLenght;
+            this.animCurrentFrame = 0;
+            this.sysTime = -1L;
+            this.hasAnimation = true;
+            this.animationMode = 2;
          }
       } catch (Exception var10) {
-         this.var_2f4 = null;
-         this.var_338 = null;
+         this.opaqueNodes = null;
+         this.transparentNodes = null;
       }
 
-      this.var_1ef = var3;
+      this.radius = radius;
    }
+
+	
+	private void fixNormals(Mesh mesh) {
+	    VertexBuffer vertexBuffer = mesh.getVertexBuffer();
+	    if (vertexBuffer == null) return;
+	    
+	    VertexArray normalArray = vertexBuffer.getNormals();
+	    if (normalArray == null) return; 
+	    
+	    
+	    int vertexCount = normalArray.getVertexCount();
+	    int componentCount = normalArray.getComponentCount();
+	    if (componentCount != 3) return;
+	    int encoding = normalArray.getComponentType(); 
+    
+	    if (encoding == 1) { // byte
+	        byte[] normals = new byte[vertexCount * componentCount];
+	        normalArray.get(0, vertexCount, normals);
+	        
+	        for (int i = 0; i < vertexCount; i++) {
+	            int idx = i * 3;
+
+	            byte y = normals[idx + 1];
+	            byte z = normals[idx + 2];
+	            normals[idx + 1] = z;
+	            normals[idx + 2] = (byte) (y != -128 ? -y : 127);
+	        }
+	        
+	        VertexArray rotatedNormals = new VertexArray(vertexCount, componentCount, encoding);
+	        rotatedNormals.set(0, vertexCount, normals);
+	        vertexBuffer.setNormals(rotatedNormals);
+	    }  
+	    if (encoding == 2) { // short
+	    	System.out.println("Found short encoded normals in mesh: " + resourceId);
+	        short[] normals = new short[vertexCount * componentCount];
+	        normalArray.get(0, vertexCount, normals);
+	        
+	        for (int i = 0; i < vertexCount; i++) {
+	            int idx = i * 3;
+	            short y = normals[idx + 1];
+	            short z = normals[idx + 2];
+	            normals[idx + 1] = z;
+	            normals[idx + 2] = (short)(y != -32768 ? -y : 32767);
+	        }
+	        
+
+	        VertexArray rotatedNormals = new VertexArray(vertexCount, componentCount, encoding);
+	        rotatedNormals.set(0, vertexCount, normals);
+	        vertexBuffer.setNormals(rotatedNormals);
+	    } 
+	}
 
    private JSRMesh(JSRMesh var1) {
-      sub_31();
-      this.var_1ef = var1.var_1ef;
-      this.var_2f4 = var1.var_2f4;
-      this.var_338 = var1.var_338;
-      this.flag_ = var1.flag_;
+      initializeMaterials();
+      this.radius = var1.radius;
+      this.opaqueNodes = var1.opaqueNodes;
+      this.transparentNodes = var1.transparentNodes;
+      this.renderLayer = var1.renderLayer;
       this.draw = var1.draw;
-      this.var_137 = var1.var_137;
-      this.var_15f = var1.var_15f;
-      this.var_174 = var1.var_174;
-      this.var_18c = var1.var_18c;
-      this.var_1cf = var1.var_1cf;
-      this.var_1e9 = var1.var_1e9;
-      this.var_236 = var1.var_236;
-      this.var_1fa = var1.var_1fa;
-      this.var_41c = var1.var_41c;
-      this.var_45d = var1.var_45d;
+      this.animLenght = var1.animLenght;
+      this.animStartFrame = var1.animStartFrame;
+      this.animEndFrame = var1.animEndFrame;
+      this.animCurrentFrame = var1.animCurrentFrame;
+      this.sysTime = var1.sysTime;
+      this.hasAnimation = var1.hasAnimation;
+      this.animationMode = var1.animationMode;
+      this.resourceId = var1.resourceId;
+      this.needsUvFix = var1.needsUvFix;
+      this.texture = var1.texture;
+      this.light = var1.light;
    }
 
-   private static void sub_31() {
-      if (var_344 == null) {
-         (var_344 = new PolygonMode()).setCulling(160);
-         var_344.setShading(165);
+   private static void initializeMaterials() {
+      if (opaquePmode == null) {
+         (opaquePmode = new PolygonMode()).setCulling(160);
+         opaquePmode.setShading(165);
       }
 
-      if (var_38a == null) {
-         (var_38a = new PolygonMode()).setCulling(162);
-         var_38a.setShading(164);
+      if (transparentPmode == null) {
+         (transparentPmode = new PolygonMode()).setCulling(162);
+         transparentPmode.setShading(164);
       }
 
       if (var_3cc == null) {
-         (var_3cc = new CompositingMode()).setBlending(64);
+         (var_3cc = new CompositingMode()).setBlending(CompositingMode.ALPHA_ADD);
          var_3cc.setDepthTestEnable(true);
          var_3cc.setDepthWriteEnable(false);
       }
 
    }
 
-   private void sub_46(javax.microedition.m3g.Node var1) {
+   private void appendNode(javax.microedition.m3g.Node var1) {
       boolean var10000;
       label85: {
          javax.microedition.m3g.Node var2 = var1;
@@ -185,27 +253,27 @@ public final class JSRMesh extends AbstractMesh {
 
       javax.microedition.m3g.Node[] var7;
       if (var10000) {
-         if (this.var_338 == null) {
-            this.var_338 = new javax.microedition.m3g.Node[1];
-            this.var_338[0] = var1;
+         if (this.transparentNodes == null) {
+            this.transparentNodes = new javax.microedition.m3g.Node[1];
+            this.transparentNodes[0] = var1;
          } else {
-            var7 = new javax.microedition.m3g.Node[this.var_338.length + 1];
-            System.arraycopy(this.var_338, 0, var7, 0, this.var_338.length);
-            var7[this.var_338.length] = var1;
-            this.var_338 = var7;
+            var7 = new javax.microedition.m3g.Node[this.transparentNodes.length + 1];
+            System.arraycopy(this.transparentNodes, 0, var7, 0, this.transparentNodes.length);
+            var7[this.transparentNodes.length] = var1;
+            this.transparentNodes = var7;
          }
-      } else if (this.var_2f4 == null) {
-         this.var_2f4 = new javax.microedition.m3g.Node[1];
-         this.var_2f4[0] = var1;
+      } else if (this.opaqueNodes == null) {
+         this.opaqueNodes = new javax.microedition.m3g.Node[1];
+         this.opaqueNodes[0] = var1;
       } else {
-         var7 = new javax.microedition.m3g.Node[this.var_2f4.length + 1];
-         System.arraycopy(this.var_2f4, 0, var7, 0, this.var_2f4.length);
-         var7[this.var_2f4.length] = var1;
-         this.var_2f4 = var7;
+         var7 = new javax.microedition.m3g.Node[this.opaqueNodes.length + 1];
+         System.arraycopy(this.opaqueNodes, 0, var7, 0, this.opaqueNodes.length);
+         var7[this.opaqueNodes.length] = var1;
+         this.opaqueNodes = var7;
       }
    }
 
-   private int sub_85(javax.microedition.m3g.Node var1, int var2) {
+   private int getAnimationLenght(javax.microedition.m3g.Node var1, int var2) {
       int var3;
       for(var3 = 0; var3 < var1.getAnimationTrackCount(); ++var3) {
          KeyframeSequence var4;
@@ -226,7 +294,7 @@ public final class JSRMesh extends AbstractMesh {
             }
 
             if (var7 instanceof javax.microedition.m3g.Group) {
-               var2 = this.sub_85((javax.microedition.m3g.Group)var7, var2);
+               var2 = this.getAnimationLenght((javax.microedition.m3g.Group)var7, var2);
             }
          }
       }
@@ -235,132 +303,146 @@ public final class JSRMesh extends AbstractMesh {
    }
 
    public final void render() {
-      if (this.var_2f4 != null) {
-         if (this.var_41c) {
-            if (this.var_1fa == 6769) {
-               this.var_45d.setTranslation(0.0F, (float)this.var_15f * 0.0118F, 0.0F);
-            } else if (this.var_1fa == 6778) {
-               this.var_45d.setTranslation((float)(this.var_15f % 5) * 0.01171875F, (float)(this.var_15f / 5) * 0.01171875F, 0.0F);
+       if (this.light != null) {
+	   AEGraphics3D.graphics3D.resetLights();
+	         this.matrix.scaledToFloatArray(m_matrix);
+	         var_24c.set(m_matrix);
+	   AEGraphics3D.graphics3D.addLight(light, var_24c);
+
+		  
+	      }
+      if (this.opaqueNodes != null) {
+         if (this.needsUvFix) {
+            if (this.resourceId == 6769) {
+               this.texture.setTranslation(0.0F, (float)this.animStartFrame * 0.0118F, 0.0F);
+            } else if (this.resourceId == 6778) {
+               this.texture.setTranslation((float)(this.animStartFrame % 5) * 0.01171875F, (float)(this.animStartFrame / 5) * 0.01171875F, 0.0F);
             } else {
-               this.var_45d.setTranslation(0.0F, (float)this.var_15f * 0.0625F, 0.0F);
+               this.texture.setTranslation(0.0F, (float)this.animStartFrame * 0.0625F, 0.0F);
             }
          }
 
          this.matrix.scaledToFloatArray(m_matrix);
          var_24c.set(m_matrix);
          int var1;
-         if (this.var_137 > 0) {
-            for(var1 = 0; var1 < this.var_2f4.length; ++var1) {
-               if (this.var_236 == 3) {
-                  this.var_2f4[var1].animate(this.var_174 - this.var_18c);
+         if (this.animLenght > 0) {
+            for(var1 = 0; var1 < this.opaqueNodes.length; ++var1) {
+               if (this.animationMode == 3) {
+                  this.opaqueNodes[var1].animate(this.animEndFrame - this.animCurrentFrame);
                } else {
                   try {
-                     this.var_2f4[var1].animate(this.var_18c);
+                     this.opaqueNodes[var1].animate(this.animCurrentFrame);
                   } catch (Exception var2) {
-                     System.out.println("JSRMesh.render() Exception id: " + this.var_1fa);
+                     System.out.println("JSRMesh.render() Exception id: " + this.resourceId);
                   }
                }
 
-               AEGraphics3D.graphics3D.render(this.var_2f4[var1], var_24c);
+               AEGraphics3D.graphics3D.render(this.opaqueNodes[var1], var_24c);
             }
 
             return;
          }
 
-         for(var1 = 0; var1 < this.var_2f4.length; ++var1) {
-            AEGraphics3D.graphics3D.render(this.var_2f4[var1], var_24c);
+         for(var1 = 0; var1 < this.opaqueNodes.length; ++var1) {
+            AEGraphics3D.graphics3D.render(this.opaqueNodes[var1], var_24c);
          }
       }
 
    }
 
    public final void renderTransparent() {
-      if (this.var_338 != null) {
-         if (this.var_41c) {
+       if (this.light != null) {
+	   AEGraphics3D.graphics3D.resetLights();
+	   AEGraphics3D.graphics3D.addLight(light, var_24c);
+
+		  
+	      }
+      if (this.transparentNodes != null) {
+         if (this.needsUvFix) {
             var_4aa.setIdentity();
-            this.var_45d.setTransform(var_4aa);
-            this.var_45d.setScale(1.0F, 1.0F, 1.0F);
-            if (this.var_1fa == 6769) {
-               this.var_45d.setTranslation(0.0F, (float)this.var_15f * 0.0118F, 0.0F);
-            } else if (this.var_1fa == 6781) {
-               switch(this.var_15f) {
+            this.texture.setTransform(var_4aa);
+            this.texture.setScale(1.0F, 1.0F, 1.0F);
+            if (this.resourceId == 6769) {
+               this.texture.setTranslation(0.0F, (float)this.animStartFrame * 0.0118F, 0.0F);
+            } else if (this.resourceId == 6781) {
+               switch(this.animStartFrame) {
                case 10:
-                  this.var_45d.setTranslation(0.4375F, 0.9375F, 0.0F);
-                  this.var_45d.setOrientation(180.0F, 1.0F, 0.0F, 0.0F);
+                  this.texture.setTranslation(0.4375F, 0.9375F, 0.0F);
+                  this.texture.setOrientation(180.0F, 1.0F, 0.0F, 0.0F);
                   break;
                case 11:
-                  this.var_45d.setTranslation(0.375F, 0.9375F, 0.0F);
-                  this.var_45d.setOrientation(180.0F, 1.0F, 0.0F, 0.0F);
+                  this.texture.setTranslation(0.375F, 0.9375F, 0.0F);
+                  this.texture.setOrientation(180.0F, 1.0F, 0.0F, 0.0F);
                   break;
                case 12:
-                  this.var_45d.setTranslation(0.5F, 1.0F, 0.0F);
-                  this.var_45d.setOrientation(180.0F, 1.0F, 0.0F, 0.0F);
+                  this.texture.setTranslation(0.5F, 1.0F, 0.0F);
+                  this.texture.setOrientation(180.0F, 1.0F, 0.0F, 0.0F);
                   break;
                default:
-                  this.var_45d.setTranslation(0.0F, (float)var_56[this.var_15f] * 0.0625F, 0.0F);
-                  this.var_45d.setOrientation((float)var_10e[this.var_15f] * 180.0F, 1.0F, 0.0F, 0.0F);
-                  if (var_10e[this.var_15f] > 0) {
-                     this.var_45d.translate(1.0625F, 0.0625F, 0.0F);
-                     this.var_45d.setScale(-1.0F, 1.0F, 1.0F);
+                  this.texture.setTranslation(0.0F, (float)var_56[this.animStartFrame] * 0.0625F, 0.0F);
+                  this.texture.setOrientation((float)var_10e[this.animStartFrame] * 180.0F, 1.0F, 0.0F, 0.0F);
+                  if (var_10e[this.animStartFrame] > 0) {
+                     this.texture.translate(1.0625F, 0.0625F, 0.0F);
+                     this.texture.setScale(-1.0F, 1.0F, 1.0F);
                   }
                }
             } else {
-               this.var_45d.setTranslation(0.0F, (float)this.var_15f * 0.0625F, 0.0F);
+               this.texture.setTranslation(0.0F, (float)this.animStartFrame * 0.0625F, 0.0F);
             }
          }
 
          this.matrix.scaledToFloatArray(m_matrix);
          var_24c.set(m_matrix);
          int var1;
-         if (this.var_137 > 0) {
-            for(var1 = 0; var1 < this.var_338.length; ++var1) {
-               if (this.var_236 == 3) {
-                  this.var_338[var1].animate(this.var_174 - this.var_18c);
+         if (this.animLenght > 0) {
+            for(var1 = 0; var1 < this.transparentNodes.length; ++var1) {
+               if (this.animationMode == 3) {
+                  this.transparentNodes[var1].animate(this.animEndFrame - this.animCurrentFrame);
                } else {
                   try {
-                     this.var_338[var1].animate(this.var_18c);
+                     this.transparentNodes[var1].animate(this.animCurrentFrame);
                   } catch (Exception var3) {
-                     System.out.println(var3.getMessage() + "\n\n" + "id: " + this.var_1fa);
+                     System.out.println(var3.getMessage() + "\n\n" + "id: " + this.resourceId);
                   }
                }
 
-               AEGraphics3D.graphics3D.render(this.var_338[var1], var_24c);
+               AEGraphics3D.graphics3D.render(this.transparentNodes[var1], var_24c);
             }
 
             return;
          }
 
-         for(var1 = 0; var1 < this.var_338.length; ++var1) {
-            AEGraphics3D.graphics3D.render(this.var_338[var1], var_24c);
+         for(var1 = 0; var1 < this.transparentNodes.length; ++var1) {
+            AEGraphics3D.graphics3D.render(this.transparentNodes[var1], var_24c);
          }
       }
 
    }
 
    public final void sub_181(long var1) {
-      if (this.var_1e9) {
-         if (this.var_1cf == -1L) {
-            this.var_1cf = var1;
+      if (this.hasAnimation) {
+         if (this.sysTime == -1L) {
+            this.sysTime = var1;
          }
 
-         this.var_18c = this.var_15f + (int)((var1 - this.var_1cf) / (long)this.var_45);
-         if (this.var_18c > this.var_174) {
-            if (this.var_236 == 2) {
-               this.var_18c = this.var_15f;
-               this.var_1cf = var1 - (long)((this.var_18c - this.var_15f) * this.var_45);
+         this.animCurrentFrame = this.animStartFrame + (int)((var1 - this.sysTime) / (long)this.var_45);
+         if (this.animCurrentFrame > this.animEndFrame) {
+            if (this.animationMode == 2) {
+               this.animCurrentFrame = this.animStartFrame;
+               this.sysTime = var1 - (long)((this.animCurrentFrame - this.animStartFrame) * this.var_45);
                return;
             }
 
-            this.var_1e9 = false;
-            this.var_18c = this.var_174;
-            this.var_1cf = -1L;
+            this.hasAnimation = false;
+            this.animCurrentFrame = this.animEndFrame;
+            this.sysTime = -1L;
          }
       }
 
    }
 
    public final int sub_942() {
-      return this.var_18c;
+      return this.animCurrentFrame;
    }
 
    public final void sub_918(int var1) {
@@ -368,26 +450,26 @@ public final class JSRMesh extends AbstractMesh {
    }
 
    public final void sub_980(int var1, int var2) {
-      this.var_15f = (var1 < 0 || var1 > this.var_137) && !this.var_41c ? 0 : var1;
-      this.var_174 = (var2 < 0 || var2 > this.var_137) && !this.var_41c ? this.var_137 : var2;
-      this.var_18c = this.var_18c >= var1 && !this.var_41c ? (this.var_18c > var2 ? var2 : this.var_18c) : var1;
-      this.var_1cf = -1L;
+      this.animStartFrame = (var1 < 0 || var1 > this.animLenght) && !this.needsUvFix ? 0 : var1;
+      this.animEndFrame = (var2 < 0 || var2 > this.animLenght) && !this.needsUvFix ? this.animLenght : var2;
+      this.animCurrentFrame = this.animCurrentFrame >= var1 && !this.needsUvFix ? (this.animCurrentFrame > var2 ? var2 : this.animCurrentFrame) : var1;
+      this.sysTime = -1L;
    }
 
    public final void sub_9aa(byte var1) {
-      if (!this.var_41c) {
-         this.var_236 = var1;
-         this.var_1cf = -1L;
-         this.var_1e9 = this.var_137 > 0;
+      if (!this.needsUvFix) {
+         this.animationMode = var1;
+         this.sysTime = -1L;
+         this.hasAnimation = this.animLenght > 0;
       }
    }
 
    public final void sub_a04() {
-      this.var_1e9 = false;
+      this.hasAnimation = false;
    }
 
    public final boolean sub_a37() {
-      return this.var_1e9;
+      return this.hasAnimation;
    }
 
    public final GraphNode sub_2b() {
@@ -396,33 +478,33 @@ public final class JSRMesh extends AbstractMesh {
 
    public final void setTexture(AbstractTexture var1) {
       int var2;
-      if (this.var_2f4 != null) {
-         for(var2 = 0; var2 < this.var_2f4.length; ++var2) {
-            this.sub_b6(this.var_2f4[var2], ((JSRTexture)var1).getTexturesArray(), false);
+      if (this.opaqueNodes != null) {
+         for(var2 = 0; var2 < this.opaqueNodes.length; ++var2) {
+            this.setupMaterial(this.opaqueNodes[var2], ((JSRTexture)var1).getTexturesArray(), false);
          }
       }
 
-      if (this.var_338 != null) {
-         for(var2 = 0; var2 < this.var_338.length; ++var2) {
-            this.sub_b6(this.var_338[var2], ((JSRTexture)var1).getTexturesArray(), true);
+      if (this.transparentNodes != null) {
+         for(var2 = 0; var2 < this.transparentNodes.length; ++var2) {
+            this.setupMaterial(this.transparentNodes[var2], ((JSRTexture)var1).getTexturesArray(), true);
          }
       }
 
    }
 
-   private void sub_b6(javax.microedition.m3g.Node var1, Texture2D[] var2, boolean var3) {
+   private void setupMaterial(javax.microedition.m3g.Node var1, Texture2D[] var2, boolean transparent) {
       int var4;
       if (var1 instanceof Mesh) {
          var4 = ((Mesh)var1).getUserID();
 
          for(int var9 = 0; var9 < ((Mesh)var1).getSubmeshCount(); ++var9) {
             Appearance var6 = ((Mesh)var1).getAppearance(var9);
-            if (var3) {
+            if (transparent) {
                var6.setCompositingMode(var_3cc);
-               var6.setPolygonMode(var_38a);
+               var6.setPolygonMode(transparentPmode);
             } else {
                var6.setCompositingMode((CompositingMode)null);
-               var6.setPolygonMode(var_344);
+               var6.setPolygonMode(opaquePmode);
             }
 
             boolean var7 = false;
@@ -433,22 +515,28 @@ public final class JSRMesh extends AbstractMesh {
             var6.setMaterial((Material)null);
             Material var8;
             (var8 = new Material()).setShininess(50.0F);
-            if (var3) {
-               var8.setColor(4096, -1);
+            if (transparent) {
+               var8.setColor(Material.EMISSIVE, -1);
+            }
+            else {
+            	var8.setColor(Material.AMBIENT, 0x161616);
+            	var8.setColor(Material.DIFFUSE, 0xff888888);
+            	var8.setColor(Material.EMISSIVE, 0);
+            	var8.setColor(Material.SPECULAR, 0xffffffff);
             }
 
             var6.setMaterial(var8);
             if (var6.getTexture(0) != null && var2 != null) {
                if (var4 < var2.length) {
                   if (var7) {
-                     this.var_45d = (Texture2D)((Texture2D)var2[var4].duplicate());
-                     var6.setTexture(0, this.var_45d);
+                     this.texture = (Texture2D)((Texture2D)var2[var4].duplicate());
+                     var6.setTexture(0, this.texture);
                   } else {
                      var6.setTexture(0, var2[var4]);
                   }
                } else if (var7) {
-                  this.var_45d = (Texture2D)((Texture2D)var2[0].duplicate());
-                  var6.setTexture(0, this.var_45d);
+                  this.texture = (Texture2D)((Texture2D)var2[0].duplicate());
+                  var6.setTexture(0, this.texture);
                } else {
                   var6.setTexture(0, var2[0]);
                }
@@ -456,7 +544,7 @@ public final class JSRMesh extends AbstractMesh {
 
             ((Mesh)var1).setAppearance(var9, var6);
             if (var7) {
-               this.var_41c = true;
+               this.needsUvFix = true;
             }
          }
 
@@ -464,7 +552,7 @@ public final class JSRMesh extends AbstractMesh {
          if (var1 instanceof javax.microedition.m3g.Group) {
             for(var4 = 0; var4 < ((javax.microedition.m3g.Group)var1).getChildCount(); ++var4) {
                javax.microedition.m3g.Node var5 = ((javax.microedition.m3g.Group)var1).getChild(var4);
-               this.sub_b6(var5, var2, var3);
+               this.setupMaterial(var5, var2, transparent);
             }
          }
 

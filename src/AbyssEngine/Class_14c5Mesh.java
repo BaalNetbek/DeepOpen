@@ -76,7 +76,7 @@ public final class Class_14c5Mesh extends AbstractMesh {
       int[] var15 = new int[]{3, 3};
       TriangleStripArray var12 = new TriangleStripArray(var11, var15);
       this.var_57b = new Mesh(var16, var12, this.var_3c2);
-      this.var_1ef = var6 >> 1;
+      this.radius = var6 >> 1;
       this.someArrNew_ = (float)(var6 >> 1);
       this.someArrOld_ = null;
    }
@@ -88,10 +88,10 @@ public final class Class_14c5Mesh extends AbstractMesh {
       System.arraycopy(var1.var_5c8, 0, this.var_5c8, 0, this.var_5c8.length);
       System.arraycopy(var1.var_588, 0, this.var_588, 0, this.var_588.length);
       this.var_57b = var1.var_57b;
-      this.var_1ef = var1.var_1ef;
+      this.radius = var1.radius;
       this.someArrNew_ = var1.someArrNew_;
       this.draw = var1.draw;
-      this.flag_ = var1.flag_;
+      this.renderLayer = var1.renderLayer;
       if (var1.someArrOld_ != null) {
          this.someArrOld_ = new int[this.var_52c];
          System.arraycopy(var1.someArrOld_, 0, this.someArrOld_, 0, this.someArrOld_.length);
@@ -110,7 +110,7 @@ public final class Class_14c5Mesh extends AbstractMesh {
       if (this.draw) {
          this.matrix = var1.var_14c.sub_8ac(this.matrix);
          this.matrix.multiply(this.var_14c);
-         var2.sub_177(this.flag_, this);
+         var2.sub_177(this.renderLayer, this);
       }
 
    }
