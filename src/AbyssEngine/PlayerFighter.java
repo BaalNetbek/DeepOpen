@@ -685,13 +685,13 @@ public final class PlayerFighter extends KIPlayer {
 
    public final void sub_109doSth() {
       if (this.waste != null) {
-         GameStatus.var_8ce.sub_87(this.waste);
+         GameStatus.renderer.sub_87(this.waste);
       }
 
       if (this.player.sub_ace() || this.state == 5) {
          if (this.state != 4 && this.state != 3) {
             if (this.var_efb) {
-               GameStatus.var_8ce.sub_87(this.var_379);
+               GameStatus.renderer.sub_87(this.var_379);
                if (this.var_6d7 != null) {
                   this.var_6d7.sub_160();
                }
@@ -703,7 +703,7 @@ public final class PlayerFighter extends KIPlayer {
          }
 
          if (this.state == 6) {
-            GameStatus.var_8ce.sub_87(this.var_aa5);
+            GameStatus.renderer.sub_87(this.var_aa5);
          }
 
       }

@@ -27,7 +27,7 @@ public class PlayerStatic extends KIPlayer {
    }
 
    public void sub_109doSth() {
-      GameStatus.var_8ce.sub_87(this.var_25d);
+      GameStatus.renderer.sub_87(this.var_25d);
    }
 
    public boolean sub_162(int var1, int var2, int var3) {

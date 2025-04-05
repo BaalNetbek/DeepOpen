@@ -499,7 +499,7 @@ public final class MGameContext {
 
                                  int var21 = -16777216 | (int)(var41 * 255.0F) << 16 | (int)((1.0F - var41) * 255.0F) << 8;
                                  GameStatus.graphics.setColor(var21);
-                                 GameStatus.var_8ce.getCamera().sub_fa(this.var_c50);
+                                 GameStatus.renderer.getCamera().sub_fa(this.var_c50);
                                  this.var_cad.x = this.var_8a8;
                                  this.var_cad.y = this.var_8f0;
                                  this.var_cad.z = 0;

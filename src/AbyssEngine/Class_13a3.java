@@ -15,13 +15,13 @@ public abstract class Class_13a3 extends GraphNode {
    public void sub_109(boolean var1) {
       if (this.var_c1 || var1) {
          if (this.meshGroup != null) {
-            this.var_14c = this.meshGroup.var_14c.sub_6a(this.currentTransform, this.var_14c);
+            this.tempTransform = this.meshGroup.tempTransform.sub_6a(this.currentTransform, this.tempTransform);
          } else {
-            this.var_14c.set(this.currentTransform);
+            this.tempTransform.set(this.currentTransform);
          }
 
-         int var2 = AEMath.max(AEMath.max(AEMath.abs((vec = this.var_14c.sub_882(vec)).x), AEMath.abs(vec.y)), AEMath.abs(vec.z)) * this.radius >> 12;
-         vec = this.var_14c.getPosition(vec);
+         int var2 = AEMath.max(AEMath.max(AEMath.abs((vec = this.tempTransform.sub_882(vec)).x), AEMath.abs(vec.y)), AEMath.abs(vec.z)) * this.radius >> 12;
+         vec = this.tempTransform.getPosition(vec);
          this.var_19f.sub_7f(vec.x, vec.y, vec.z, var2);
          this.var_c1 = false;
          this.var_ee = false;

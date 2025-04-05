@@ -328,9 +328,9 @@ public abstract class KIPlayer {
 
    public void sub_109doSth() {
       if (this.var_25d != null) {
-         GameStatus.var_8ce.sub_87(this.var_25d);
+         GameStatus.renderer.sub_87(this.var_25d);
       } else {
-         GameStatus.var_8ce.sub_87(this.var_379);
+         GameStatus.renderer.sub_87(this.var_379);
       }
    }
 }

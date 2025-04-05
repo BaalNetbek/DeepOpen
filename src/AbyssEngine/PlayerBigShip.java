@@ -144,7 +144,7 @@ public final class PlayerBigShip extends KIPlayer {
          this.sub_da((int)var1);
       }
 
-      this.var_727 = GameStatus.var_8ce.getCamera().sub_22a(this.var_727);
+      this.var_727 = GameStatus.renderer.getCamera().sub_22a(this.var_727);
       this.positon.set(this.posX, this.posY, this.posZ);
       this.positon.subtract(this.var_727, this.var_263);
       int var6;
@@ -302,7 +302,7 @@ public final class PlayerBigShip extends KIPlayer {
 
    public final void sub_109doSth() {
       if (this.waste != null) {
-         GameStatus.var_8ce.sub_87(this.waste);
+         GameStatus.renderer.sub_87(this.waste);
       }
 
       if (this.state == 3 || this.state == 4) {
@@ -311,13 +311,13 @@ public final class PlayerBigShip extends KIPlayer {
          }
 
          if (this.destroyed) {
-            GameStatus.var_8ce.sub_87(this.var_379);
+            GameStatus.renderer.sub_87(this.var_379);
             return;
          }
       }
 
       if (this.player.sub_ace()) {
-         GameStatus.var_8ce.sub_87(this.var_379);
+         GameStatus.renderer.sub_87(this.var_379);
       }
    }
 

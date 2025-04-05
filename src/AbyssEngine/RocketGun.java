@@ -33,14 +33,14 @@ public final class RocketGun extends BlasterGun {
       if (this.gun.inAir) {
          this.var_49.sub_160();
          this.var_1c8.sub_109(true);
-         GameStatus.var_8ce.sub_87(this.var_1c8);
+         GameStatus.renderer.sub_87(this.var_1c8);
       }
 
    }
 
    public final void sub_30() {
       if (this.gun.inAir) {
-         GameStatus.var_8ce.getCamera().sub_fa(this.var_1c8.sub_22a(var_1d7));
+         GameStatus.renderer.getCamera().sub_fa(this.var_1c8.sub_22a(var_1d7));
       }
 
    }

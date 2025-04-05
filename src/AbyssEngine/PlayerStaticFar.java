@@ -21,7 +21,7 @@ public class PlayerStaticFar extends PlayerStatic {
 
    public void update(long var1) {
       if (this.var_25d != null) {
-         this.var_727 = GameStatus.var_8ce.getCamera().sub_22a(this.var_727);
+         this.var_727 = GameStatus.renderer.getCamera().sub_22a(this.var_727);
          this.positon.set(this.posX, this.posY, this.posZ);
          this.positon.subtract(this.var_727, var_2e9);
          int var3;

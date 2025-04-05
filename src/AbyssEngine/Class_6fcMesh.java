@@ -37,7 +37,7 @@ public final class Class_6fcMesh extends AbstractMesh {
 
    public final void render() {
       if (!this.var_39) {
-         GameStatus.var_8ce.sub_87(this.var_14.var_38);
+         GameStatus.renderer.sub_87(this.var_14.var_38);
       }
    }
 

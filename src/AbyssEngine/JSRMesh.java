@@ -44,10 +44,15 @@ public final class JSRMesh extends AbstractMesh {
 
 	 if (this.resourceId == 6781) {
 
-             this.light = new Light();
-             this.light.setIntensity(2.0F);
-             this.light.setColor(0xffffff);
-             this.light.setMode(Light.OMNI);
+             this.sunLight = new Light();
+             this.sunLight.setIntensity(1.5F);
+             this.sunLight.setColor(0xffffff);
+             this.sunLight.setMode(Light.OMNI);
+             
+             this.sunShine = new Light();
+             this.sunShine.setIntensity(2.0F);
+             this.sunShine.setColor(0xffffff);
+             this.sunShine.setMode(Light.OMNI);
              
 	 } 
       try {
@@ -196,7 +201,8 @@ public final class JSRMesh extends AbstractMesh {
       this.resourceId = var1.resourceId;
       this.needsUvFix = var1.needsUvFix;
       this.texture = var1.texture;
-      this.light = var1.light;
+      this.sunLight = var1.sunLight;
+      this.sunShine = var1.sunShine;
    }
 
    private static void initializeMaterials() {
@@ -303,14 +309,14 @@ public final class JSRMesh extends AbstractMesh {
    }
 
    public final void render() {
-       if (this.light != null) {
+      /* if (this.light != null) {
 	   AEGraphics3D.graphics3D.resetLights();
 	         this.matrix.scaledToFloatArray(m_matrix);
 	         var_24c.set(m_matrix);
 	   AEGraphics3D.graphics3D.addLight(light, var_24c);
 
 		  
-	      }
+	      }*/
       if (this.opaqueNodes != null) {
          if (this.needsUvFix) {
             if (this.resourceId == 6769) {
@@ -351,12 +357,12 @@ public final class JSRMesh extends AbstractMesh {
    }
 
    public final void renderTransparent() {
-       if (this.light != null) {
+      /* if (this.light != null) {
 	   AEGraphics3D.graphics3D.resetLights();
 	   AEGraphics3D.graphics3D.addLight(light, var_24c);
 
 		  
-	      }
+	      }*/
       if (this.transparentNodes != null) {
          if (this.needsUvFix) {
             var_4aa.setIdentity();
@@ -519,7 +525,7 @@ public final class JSRMesh extends AbstractMesh {
                var8.setColor(Material.EMISSIVE, -1);
             }
             else {
-            	var8.setColor(Material.AMBIENT, 0x161616);
+            	var8.setColor(Material.AMBIENT, 0xffffff);
             	var8.setColor(Material.DIFFUSE, 0xff888888);
             	var8.setColor(Material.EMISSIVE, 0);
             	var8.setColor(Material.SPECULAR, 0xffffffff);

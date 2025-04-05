@@ -1,5 +1,6 @@
 package Main;
 
+import AbyssEngine.AEGraphics3D;
 import AbyssEngine.AEImage;
 import AbyssEngine.AEMath;
 import AbyssEngine.AEResourceManager;
@@ -25,6 +26,7 @@ import AbyssEngine.SymbolMapManager_;
 import AbyssEngine.SystemPathFinder;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
+import javax.microedition.m3g.Light;
 
 public final class StarMap {
    private final int[] var_e4 = new int[]{320, 192, 256, 256, 192, 256, 192, 192, 320, 256, 192, 192, 320, 256, 320, 256, 256, 256, 320, 192};
@@ -180,7 +182,7 @@ public final class StarMap {
       this.var_39b = (float)(this.var_254 + (this.var_2ce >> 1));
       this.var_3af = 0.0F;
       this.var_401 = 0.0F;
-      this.var_b3a = GameStatus.var_8ce.getCamera();
+      this.var_b3a = GameStatus.renderer.getCamera();
       if (this.var_b0a == null) {
          this.var_b0a = Camera.sub_1b1(this.var_292, this.var_2ce + 20, 1000, 10, 31768);
          this.var_b0a.sub_18f(0, 0, -2500);
@@ -189,7 +191,7 @@ public final class StarMap {
          this.var_b0a.sub_109(true);
       }
 
-      GameStatus.var_8ce.sub_19(this.var_b0a);
+      GameStatus.renderer.sub_19(this.var_b0a);
       this.var_105c = Status.getCurrentCampaignMission() >= 16;
       this.var_349 = this.var_105c ? 0 : 3;
       this.selectedSystem = Status.getSystem().getId();
@@ -283,7 +285,7 @@ public final class StarMap {
                if (this.var_1302 && this.var_9e6.sub_9a()) {
                   Level.autopilotDestination = Status.voidStation;
                   this.var_1071 = true;
-                  GameStatus.var_8ce.sub_19(this.var_b3a);
+                  GameStatus.renderer.sub_19(this.var_b3a);
                }
 
                this.var_1302 = false;
@@ -307,7 +309,7 @@ public final class StarMap {
                      if (this.jumpMapModeVar1_) {
                         Level.autopilotDestination = this.var_993[this.selectedPlanet];
                         this.var_1071 = true;
-                        GameStatus.var_8ce.sub_19(this.var_b3a);
+                        GameStatus.renderer.sub_19(this.var_b3a);
                         return true;
                      }
 
@@ -359,13 +361,13 @@ public final class StarMap {
 
       if (var1 == 8192) {
          if (this.var_349 == 0) {
-            GameStatus.var_8ce.sub_19(this.var_b3a);
+            GameStatus.renderer.sub_19(this.var_b3a);
             return false;
          }
 
          if (this.var_349 == 3) {
             if (!this.var_105c) {
-               GameStatus.var_8ce.sub_19(this.var_b3a);
+               GameStatus.renderer.sub_19(this.var_b3a);
                return false;
             }
 
@@ -583,6 +585,8 @@ public final class StarMap {
             this.var_349 = 0;
          }
       } else if (this.var_349 == 3) {
+	  if (var_c27 != null && var_c27[0] != null)
+	      GameStatus.renderer.setLight(var_c27[0].sub_8a0(),  AEGraphics3D.omni);
          this.var_df9.sub_b7(var2 << 1);
          this.var_e4c.sub_b7(var2 << 1);
          this.var_e9b.sub_b7(var2 << 1);
@@ -614,14 +618,14 @@ public final class StarMap {
       try {
          GameStatus.graphics3D.bindTarget(GameStatus.graphics);
          if (var10.var_ce0 != null) {
-            GameStatus.var_8ce.sub_87(var10.var_ce0);
+            GameStatus.renderer.sub_87(var10.var_ce0);
          } else {
             var10.var_f2b += var10.frameTime;
             var2 = 0;
 
             while(true) {
                if (var2 >= var10.var_a6c.length) {
-                  GameStatus.var_8ce.sub_87(var10.var_aad);
+                  GameStatus.renderer.sub_87(var10.var_aad);
                   break;
                }
 
@@ -637,7 +641,7 @@ public final class StarMap {
             }
          }
 
-         GameStatus.var_8ce.sub_cc(System.currentTimeMillis());
+         GameStatus.renderer.sub_cc(System.currentTimeMillis());
          GameStatus.graphics3D.clear();
          GameStatus.graphics3D.releaseTarget();
       } catch (Exception var7) {
@@ -1132,7 +1136,7 @@ public final class StarMap {
                   }
                }
 
-               GameStatus.var_8ce.getCamera().sub_fa(this.var_a6c[var1].sub_22a(this.var_b6f));
+               GameStatus.renderer.getCamera().sub_fa(this.var_a6c[var1].sub_22a(this.var_b6f));
                if (this.var_b6f.z < 0) {
                   GameStatus.graphics.drawImage(this.var_f1d, this.var_b6f.x, this.var_b6f.y, 3);
                }

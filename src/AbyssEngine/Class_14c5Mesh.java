@@ -106,17 +106,17 @@ public final class Class_14c5Mesh extends AbstractMesh {
    public final void destroy() {
    }
 
-   public final void sub_11b(Camera var1, Class_db var2) {
+   public final void appendToRender(Camera var1, Class_db var2) {
       if (this.draw) {
-         this.matrix = var1.var_14c.sub_8ac(this.matrix);
-         this.matrix.multiply(this.var_14c);
+         this.matrix = var1.tempTransform.getInverse(this.matrix);
+         this.matrix.multiply(this.tempTransform);
          var2.sub_177(this.renderLayer, this);
       }
 
    }
 
-   public final void sub_b2(Camera var1, Class_db var2) {
-      this.sub_11b(var1, var2);
+   public final void forceAppendToRender(Camera var1, Class_db var2) {
+      this.appendToRender(var1, var2);
    }
 
    public final void render() {

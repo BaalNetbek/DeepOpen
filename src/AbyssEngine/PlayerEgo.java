@@ -214,9 +214,9 @@ public final class PlayerEgo {
 
             this.var_f7c.sub_1f3(this.laggingPos);
             this.var_f7c.sub_8c9(this.var_50e.sub_85f());
-            GameStatus.var_8ce.sub_19(this.var_ef5);
+            GameStatus.renderer.sub_19(this.var_ef5);
          } else {
-            GameStatus.var_8ce.sub_19((Camera)this.var_ed8.sub_13c());
+            GameStatus.renderer.sub_19((Camera)this.var_ed8.sub_13c());
             Class_7flight.sub_1b8(this.var_ed8, this.var_887);
          }
 
@@ -669,9 +669,9 @@ public final class PlayerEgo {
 
          this.player.sub_c78((long)var1);
          if (this.lookBack) {
-            this.crosshair.sub_5c(this.var_749.sub_8a0(), GameStatus.var_8ce.getCamera());
+            this.crosshair.sub_5c(this.var_749.sub_8a0(), GameStatus.renderer.getCamera());
          } else {
-            this.crosshair.sub_5c(this.var_50e.sub_85f(), GameStatus.var_8ce.getCamera());
+            this.crosshair.sub_5c(this.var_50e.sub_85f(), GameStatus.renderer.getCamera());
          }
 
          this.player.var_46b = this.var_5f8.sub_8a0();
@@ -1068,7 +1068,7 @@ public final class PlayerEgo {
          this.var_11a4 = null;
          this.var_1203 = null;
          var2.sub_383(true);
-         GameStatus.var_8ce.sub_19((Camera)var2.sub_13c());
+         GameStatus.renderer.sub_19((Camera)var2.sub_13c());
          Class_7flight.sub_1b8(var2, this.var_887);
          this.player.sub_b5e(0);
          this.miningGame = null;
@@ -1120,9 +1120,9 @@ public final class PlayerEgo {
          }
 
          if (this.var_1358 >= 0) {
-            GameStatus.var_8ce.sub_87(this.var_50e);
+            GameStatus.renderer.sub_87(this.var_50e);
             if (this.var_eb4) {
-               GameStatus.var_8ce.sub_87(this.var_fd2);
+               GameStatus.renderer.sub_87(this.var_fd2);
             }
          } else {
             this.var_50e.sub_109(true);

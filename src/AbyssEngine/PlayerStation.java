@@ -88,7 +88,7 @@ public final class PlayerStation extends PlayerStaticFar {
    public final void update(long var1) {
       if (this.stationParts != null) {
          for(int var3 = 0; var3 < this.stationParts.length; ++var3) {
-            this.var_727 = GameStatus.var_8ce.getCamera().sub_22a(this.var_727);
+            this.var_727 = GameStatus.renderer.getCamera().sub_22a(this.var_727);
             this.positon.set(this.var_a6[var3 * 3], this.var_a6[var3 * 3 + 1], this.var_a6[var3 * 3 + 2]);
             this.positon.subtract(this.var_727, var_2e9);
             int var2;
@@ -111,7 +111,7 @@ public final class PlayerStation extends PlayerStaticFar {
    public final void sub_109doSth() {
       if (this.stationParts != null) {
          for(int var1 = 0; var1 < this.stationParts.length; ++var1) {
-            GameStatus.var_8ce.sub_87(this.stationParts[var1]);
+            GameStatus.renderer.sub_87(this.stationParts[var1]);
          }
 
       }

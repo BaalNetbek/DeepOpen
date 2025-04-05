@@ -110,9 +110,9 @@ public final class GOF2Canvas extends GameCanvas {
          (new RecordHandler()).readOptions();
          GameStatus.musicOn = false;
          GameStatus.graphics3D = new AEGraphics3D();
-         (GameStatus.var_8ce = new Class_db(GameStatus.graphics3D)).sub_120();
-         GameStatus.var_8ce.sub_120();
-         GameStatus.var_8ce.sub_120();
+         (GameStatus.renderer = new Class_db(GameStatus.graphics3D)).sub_120();
+         GameStatus.renderer.sub_120();
+         GameStatus.renderer.sub_120();
          GameStatus.soundManager = new SoundManager();
          IndexManager.buildResourceList();
          IndexManager.sub_27();

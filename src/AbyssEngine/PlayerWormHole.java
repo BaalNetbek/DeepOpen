@@ -50,7 +50,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
 
    public final void sub_109doSth() {
       if (this.var_ee3) {
-         GameStatus.var_8ce.sub_87(this.var_379);
+         GameStatus.renderer.sub_87(this.var_379);
       }
 
    }
@@ -96,7 +96,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
             }
          }
 
-         this.var_727 = GameStatus.var_8ce.getCamera().sub_22a(this.var_727);
+         this.var_727 = GameStatus.renderer.getCamera().sub_22a(this.var_727);
          this.positon.set(this.posX, this.posY, this.posZ);
          this.positon.subtract(this.var_727, var_2e9);
          if ((var5 = var_2e9.getLength()) > 28000) {

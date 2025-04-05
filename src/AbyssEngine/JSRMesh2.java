@@ -61,9 +61,9 @@ public final class JSRMesh2 extends AbstractMesh {
       AEGraphics3D.graphics3D.render(this.var_109, var_b);
    }
 
-   public final void sub_11b(Camera var1, Class_db var2) {
+   public final void appendToRender(Camera var1, Class_db var2) {
       if (this.draw) {
-         this.matrix = var1.var_14c.sub_8ac(this.matrix);
+         this.matrix = var1.tempTransform.getInverse(this.matrix);
          var2.sub_177(this.renderLayer, this);
       }
 

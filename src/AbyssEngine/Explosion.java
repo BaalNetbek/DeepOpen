@@ -94,7 +94,7 @@ public final class Explosion {
          }
 
       } else {
-         GameStatus.var_8ce.sub_87(this.var_366);
+         GameStatus.renderer.sub_87(this.var_366);
       }
    }
 

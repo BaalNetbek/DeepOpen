@@ -47,7 +47,7 @@ public final class PlayerJunk extends KIPlayer {
 
    public final void sub_109doSth() {
       if (this.waste != null) {
-         GameStatus.var_8ce.sub_87(this.waste);
+         GameStatus.renderer.sub_87(this.waste);
       }
 
       if (this.state != 4 && this.state != 3) {

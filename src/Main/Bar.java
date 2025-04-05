@@ -86,8 +86,8 @@ public final class Bar {
          this.var_691.loadResources();
       }
 
-      this.var_6d3 = new Class_1025(GameStatus.var_8ce.getCamera().sub_29c(), this.var_691.level.getShips()[0].var_25d.sub_29c());
-      this.var_731 = new Class_1025(GameStatus.var_8ce.getCamera().sub_31f(), this.var_691.level.getShips()[0].var_25d.sub_31f() - 1000);
+      this.var_6d3 = new Class_1025(GameStatus.renderer.getCamera().sub_29c(), this.var_691.level.getShips()[0].var_25d.sub_29c());
+      this.var_731 = new Class_1025(GameStatus.renderer.getCamera().sub_31f(), this.var_691.level.getShips()[0].var_25d.sub_31f() - 1000);
    }
 
    public final void sub_5d() {
@@ -119,7 +119,7 @@ public final class Bar {
          this.var_7b1[var2] = false;
       }
 
-      this.var_1ca = GameStatus.var_8ce.getCamera();
+      this.var_1ca = GameStatus.renderer.getCamera();
    }
 
    public final void sub_7e() {
@@ -176,12 +176,12 @@ public final class Bar {
 
             if (var7) {
                AbstractMesh var11 = this.var_691.level.getShips()[this.var_3d2].var_25d;
-               this.var_6d3.sub_fe(GameStatus.var_8ce.getCamera().sub_29c(), var11.sub_29c());
-               this.var_731.sub_fe(GameStatus.var_8ce.getCamera().sub_31f(), var11.sub_31f() - 1000);
+               this.var_6d3.sub_fe(GameStatus.renderer.getCamera().sub_29c(), var11.sub_29c());
+               this.var_731.sub_fe(GameStatus.renderer.getCamera().sub_31f(), var11.sub_31f() - 1000);
             }
 
             if (var1 == 8192) {
-               GameStatus.var_8ce.sub_19(this.var_1ca);
+               GameStatus.renderer.sub_19(this.var_1ca);
                return false;
             }
 
@@ -554,7 +554,7 @@ public final class Bar {
          this.var_731.sub_b7(var2);
          var2 = this.var_6d3.sub_135();
          int var3 = this.var_731.sub_135();
-         GameStatus.var_8ce.getCamera().moveTo(var2, 500, var3);
+         GameStatus.renderer.getCamera().moveTo(var2, 500, var3);
          if (this.var_691 != null) {
             this.var_691.renderScene(var1);
          }
@@ -594,7 +594,7 @@ public final class Bar {
             var10000.x -= 100;
             var10000 = this.var_773;
             var10000.y += 500;
-            GameStatus.var_8ce.getCamera().sub_fa(this.var_773);
+            GameStatus.renderer.getCamera().sub_fa(this.var_773);
             SymbolMapManager_.sub_102(!this.var_436[this.var_3d2].sub_547() && !this.var_436[this.var_3d2].sub_3f0() ? GameStatus.langManager.getLangString(229 + this.var_436[this.var_3d2].getRace()) : this.var_436[this.var_3d2].fullName, this.var_773.x, this.var_773.y, 2);
             if (this.var_436[this.var_3d2].sub_547()) {
                SymbolMapManager_.sub_102(this.var_436[this.var_3d2].sub_4f9() != null ? GameStatus.langManager.getLangString(179 + this.var_436[this.var_3d2].sub_4f9().getType()) : (this.var_436[this.var_3d2].sub_1b1() == 6 ? GameStatus.langManager.getLangString(146) : (this.var_436[this.var_3d2].sub_1b1() == 2 ? GameStatus.langManager.getLangString(145) : (this.var_436[this.var_3d2].sub_1b1() == 7 ? GameStatus.langManager.getLangString(514) : ""))), this.var_773.x, this.var_773.y + SymbolMapManager_.sub_2c2(), 1);

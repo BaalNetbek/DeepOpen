@@ -27,11 +27,11 @@ public final class Skybox {
    Matrix transf;
 
    public Skybox() {
-       this.switcher = 0;
-       this.light = new Light();
-       this.light.setIntensity(2.0F);
+      // this.switcher = 0;
+      // this.light = new Light();
+      // this.light.setIntensity(2.0F);
 
-       this.light.setMode(Light.OMNI);
+      // this.light.setMode(Light.OMNI);
       new Transform();
       new Matrix();
       new Matrix();
@@ -188,9 +188,9 @@ public final class Skybox {
       this.var_25a.y = -this.var_25a.y;
       this.var_25a.z = -this.var_25a.z;
       this.var_25a.normalize();
-      this.var_25a = GameStatus.var_8ce.getCamera().sub_8a0().sub_b26(this.var_25a);
+      this.var_25a = GameStatus.renderer.getCamera().sub_8a0().sub_b26(this.var_25a);
       this.var_25a.x = -this.var_25a.x;
-      this.var_25a = GameStatus.var_8ce.getCamera().sub_22a(this.var_25a);
+      this.var_25a = GameStatus.renderer.getCamera().sub_22a(this.var_25a);
       this.var_1f8.sub_1f3(this.var_25a);
       this.var_1f8.sub_109(true);
       if (this.inAlienSpace) {
@@ -201,10 +201,10 @@ public final class Skybox {
          this.var_25a = this.var_153[0].sub_22a(this.var_25a);
       }
 
-      this.var_25a.subtract(GameStatus.var_8ce.getCamera().sub_28c());
+      this.var_25a.subtract(GameStatus.renderer.getCamera().sub_28c());
       this.var_25a.normalize();
       AEVector3D var1;
-      (var1 = new AEVector3D(GameStatus.var_8ce.getCamera().sub_462())).normalize();
+      (var1 = new AEVector3D(GameStatus.renderer.getCamera().sub_462())).normalize();
       this.var_25a.subtract(var1);
       float var2 = (float)this.var_25a.getLength() / 8192.0F;
       Level.bgR = 0;
@@ -216,29 +216,29 @@ public final class Skybox {
    }
 
    public final void sub_116() {
-      this.var_1f8.sub_1f3(GameStatus.var_8ce.getCamera().sub_22a(this.var_25a));
+      this.var_1f8.sub_1f3(GameStatus.renderer.getCamera().sub_22a(this.var_25a));
       this.var_1f8.sub_109(true);
       int var1;
       if (this.nebulaPivots != null) {
          for(var1 = 0; var1 < this.nebulaPivots.length; ++var1) {
-            GameStatus.var_8ce.getCamera().sub_fa(this.nebulaPivots[var1].sub_22a(this.var_25a));
+            GameStatus.renderer.getCamera().sub_fa(this.nebulaPivots[var1].sub_22a(this.var_25a));
             if (this.var_25a.z < 0) {
                GameStatus.graphics.drawImage(this.nebulaImgs[var1], this.var_25a.x, this.var_25a.y, 3);
             }
          }
       }
-      if (this.var_153[0] != null)
-	  GameStatus.var_8ce.appendNode(this.var_153[0]);
-
+      if (this.var_153 != null && this.var_153[0] != null && var_153[0].resourceId == 6781)
+	  GameStatus.renderer.appendNode(this.var_153[0]);
+      
       for(var1 = 0; var1 < (this.inAlienSpace ? 1 : this.var_153.length); ++var1) {
          if (this.inAlienSpace) {
             this.var_25a.x = 0;
             this.var_25a.y = 0;
             this.var_25a.z = 0;
-            GameStatus.var_8ce.getCamera().sub_fa(this.var_25a);
+            GameStatus.renderer.getCamera().sub_fa(this.var_25a);
          } else {
-            GameStatus.var_8ce.getCamera().sub_fa(this.var_153[var1].sub_22a(this.var_25a));
-         }
+            GameStatus.renderer.getCamera().sub_fa(this.var_153[var1].sub_22a(this.var_25a));
+         }/*
          if (var1 == 0) {
              Matrix materix = new Matrix();
              float max = Math.max(Level.starB, Level.starG);
@@ -271,7 +271,7 @@ public final class Skybox {
              
       	   //AEGraphics3D.graphics3D.resetLights();
       	   //AEGraphics3D.graphics3D.addLight(light, tranforma);
-         }
+         }*/
          if (this.var_25a.z < 0) {
             if (var1 == 0) {
                this.sun.setTransform(0);
@@ -302,7 +302,7 @@ public final class Skybox {
          this.var_25a.x = 0;
          this.var_25a.y = 0;
          this.var_25a.z = 0;
-         GameStatus.var_8ce.getCamera().sub_fa(this.var_25a);
+         GameStatus.renderer.getCamera().sub_fa(this.var_25a);
          this.sun.setTransform(0);
          this.sun.setRefPixelPosition(this.var_25a.x, this.var_25a.y);
          this.sun.paint(GameStatus.graphics);
@@ -316,7 +316,7 @@ public final class Skybox {
          this.sun.setRefPixelPosition(this.var_25a.x, this.var_25a.y - 1);
          this.sun.paint(GameStatus.graphics);
       } else {
-         GameStatus.var_8ce.getCamera().sub_fa(this.var_153[0].sub_22a(this.var_25a));
+         GameStatus.renderer.getCamera().sub_fa(this.var_153[0].sub_22a(this.var_25a));
       }
 
       this.lensFlare.render2D(this.var_25a);

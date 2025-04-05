@@ -140,7 +140,7 @@ public final class PlayerAsteroid extends KIPlayer {
                this.player.setNukeStun(var3);
             }
 
-            this.var_727 = GameStatus.var_8ce.getCamera().sub_22a(this.var_727);
+            this.var_727 = GameStatus.renderer.getCamera().sub_22a(this.var_727);
             this.positon.set(this.var_312, this.var_356, this.var_3fe);
             this.positon.subtract(this.var_727, var_1c5);
             int var4 = var_1c5.getLength();
@@ -212,17 +212,17 @@ public final class PlayerAsteroid extends KIPlayer {
    public final void sub_109doSth() {
       if (this.var_8aa > 0) {
          if (this.waste != null) {
-            GameStatus.var_8ce.sub_87(this.waste);
+            GameStatus.renderer.sub_87(this.waste);
          }
 
          if (this.state == 3) {
-            GameStatus.var_8ce.sub_87(this.var_956);
+            GameStatus.renderer.sub_87(this.var_956);
             if (this.passedTime > 3000) {
                this.state = 4;
                return;
             }
          } else if (this.state == 0) {
-            GameStatus.var_8ce.sub_87(this.var_25d);
+            GameStatus.renderer.sub_87(this.var_25d);
          }
       }
 

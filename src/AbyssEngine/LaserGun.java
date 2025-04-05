@@ -130,8 +130,8 @@ public final class LaserGun extends AbstractMesh implements Class_786 {
 
          this.var_1d0.moveTo(var_457.x, var_457.y, var_457.z);
          ((Class_4cMesh)this.var_1d0).sub_176(this.var_2e2, this.var_3da);
-         GameStatus.var_8ce.sub_87(this.var_1e8);
-         GameStatus.var_8ce.sub_87(this.var_1d0);
+         GameStatus.renderer.sub_87(this.var_1e8);
+         GameStatus.renderer.sub_87(this.var_1d0);
          if (this.var_95.projectilesTimeLeft[0] <= 0) {
             this.var_95.inAir = false;
          }

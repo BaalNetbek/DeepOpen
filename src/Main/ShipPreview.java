@@ -1,5 +1,6 @@
 package Main;
 
+import AbyssEngine.AEGraphics3D;
 import AbyssEngine.Camera;
 import AbyssEngine.Face_;
 import AbyssEngine.FileRead;
@@ -10,12 +11,14 @@ import AbyssEngine.Item;
 import AbyssEngine.LangManager;
 import AbyssEngine.Layout;
 import AbyssEngine.ListEntry;
+import AbyssEngine.Matrix;
 import AbyssEngine.Ship;
 import AbyssEngine.SolarSystem;
 import AbyssEngine.Status;
 import AbyssEngine.SymbolMapManager_;
 import AbyssEngine.TextBox;
 import javax.microedition.lcdui.Image;
+import javax.microedition.m3g.Light;
 
 public final class ShipPreview {
    private final short[] var_82 = new short[]{327, 327, 327, 327, 327, 327, 327, 327, 328, 329, 329, 330, 331, 331, 331, 331, 331, 331, 331, 331, 331, 331, 332, 332, 333, 334, 335, 336, 337, 337, 337, 338, 338, 339, 340, 340, 341, 342, 341, 343, 343, 344, 344, 344, 345, 346, 347, 348, 348, 348, 349, 349, 349, 349, 350, 351, 351, 351, 352, 353, 0, 0, 0, 354, 354, 354, 354, 355, 356, 356, 356, 357, 357, 357, 358, 359, 360, 360, 360, 360, 361, 362, 362, 362, 362, 363, 364, 364, 364, 364, 365, 366, 366, 366, 367, 367, 368, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 371, 371, 371, 371, 371, 371, 371, 371, 371, 371, 371, 372, 372, 372, 372, 372, 372, 372, 372, 372, 372, 372};
@@ -278,7 +281,31 @@ public final class ShipPreview {
    public final void sub_1b9(boolean var1) {
       this.drawShip = var1;
       if (var1) {
-         this.var_4c3 = GameStatus.var_8ce.getCamera();
+         this.var_4c3 = GameStatus.renderer.getCamera();
+         /*Matrix lightPos [] = new Matrix[2];
+         lightPos[0] = new Matrix(); 
+         lightPos[1] = new Matrix();
+         lightPos[0].translateTo(-4096, -4096, -4096);
+         lightPos[1].translateTo(4096, 4096, 4096);
+         Light lights [] = new Light[2];
+         lights[0] = new Light(); 
+         lights[1] = new Light();
+         lights[0].setColor(0xff7777);
+         lights[1].setColor(0x7777ff);
+         lights[0].setMode(Light.OMNI);
+         lights[1].setMode(Light.OMNI);
+         lights[0].setIntensity(2.0f);
+         lights[1].setIntensity(2.0f);
+         AEGraphics3D.setLights(var_4c3, lightPos, lights);
+         */
+         Matrix lightPos = new Matrix(); 
+         lightPos.translateTo(4096, 4096, 4096);
+         Light light = new Light();
+         light.setMode(Light.OMNI);
+         light.setIntensity(2.0f);
+         AEGraphics3D.setLight(var_4c3, lightPos, light);
+         
+         
          this.var_48f = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 1000, 10, 31768);
          this.var_48f.sub_18f(0, 400, -Ship.previewZoomOut[this.var_17c.getIndex()]);
          this.var_48f.sub_5c5(256, 2048, 0);
@@ -289,7 +316,7 @@ public final class ShipPreview {
          this.var_4ee.sub_25(var2);
       } else {
          if (this.var_4c3 != null) {
-            GameStatus.var_8ce.sub_19(this.var_4c3);
+            GameStatus.renderer.sub_19(this.var_4c3);
          }
 
       }
@@ -300,10 +327,10 @@ public final class ShipPreview {
       Layout.screenFillMenuBackground();
 
       try {
-         GameStatus.var_8ce.sub_19(this.var_48f);
+         GameStatus.renderer.sub_19(this.var_48f);
          GameStatus.graphics3D.bindTarget(GameStatus.graphics);
-         GameStatus.var_8ce.sub_87(this.var_4ee);
-         GameStatus.var_8ce.sub_cc(System.currentTimeMillis());
+         GameStatus.renderer.sub_87(this.var_4ee);
+         GameStatus.renderer.sub_cc(System.currentTimeMillis());
          GameStatus.graphics3D.clear();
          GameStatus.graphics3D.releaseTarget();
       } catch (Exception var2) {

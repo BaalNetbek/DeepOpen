@@ -8,14 +8,14 @@ public abstract class GraphNode {
    protected boolean var_c1;
    protected boolean var_ee;
    protected Matrix currentTransform;
-   protected Matrix var_14c;
+   protected Matrix tempTransform;
    protected AEBoundingSphere var_19f;
    protected int resourceId;
 
    GraphNode() {
       this.draw = true;
       this.currentTransform = new Matrix();
-      this.var_14c = new Matrix();
+      this.tempTransform = new Matrix();
       this.var_19f = new AEBoundingSphere();
       this.var_c1 = true;
       this.var_ee = true;
@@ -25,7 +25,7 @@ public abstract class GraphNode {
    GraphNode(GraphNode var1) {
       this.draw = var1.draw;
       this.currentTransform = new Matrix(var1.currentTransform);
-      this.var_14c = new Matrix(var1.var_14c);
+      this.tempTransform = new Matrix(var1.tempTransform);
       this.var_19f = new AEBoundingSphere(var1.var_19f);
       this.var_c1 = true;
       this.var_ee = true;
@@ -52,9 +52,9 @@ public abstract class GraphNode {
       return this.parent;
    }
 
-   abstract void sub_11b(Camera var1, Class_db var2);
+   abstract void appendToRender(Camera var1, Class_db var2);
 
-   abstract void sub_b2(Camera var1, Class_db var2);
+   abstract void forceAppendToRender(Camera var1, Class_db var2);
 
    public abstract void sub_109(boolean var1);
 
@@ -107,7 +107,7 @@ public abstract class GraphNode {
    }
 
    public final AEVector3D sub_22a(AEVector3D var1) {
-      return this.var_14c.getPosition(var1);
+      return this.tempTransform.getPosition(var1);
    }
 
    public final AEVector3D sub_237() {
@@ -115,7 +115,7 @@ public abstract class GraphNode {
    }
 
    public final AEVector3D sub_28c() {
-      return this.var_14c.getPosition();
+      return this.tempTransform.getPosition();
    }
 
    public final int sub_29c() {
@@ -131,7 +131,7 @@ public abstract class GraphNode {
    }
 
    public final int sub_32d() {
-      return this.var_14c.getPositionZ();
+      return this.tempTransform.getPositionZ();
    }
 
    public final AEVector3D sub_36a(AEVector3D var1) {
@@ -139,7 +139,7 @@ public abstract class GraphNode {
    }
 
    public final AEVector3D sub_3b2(AEVector3D var1) {
-      return this.var_14c.getDirection(var1);
+      return this.tempTransform.getDirection(var1);
    }
 
    public final AEVector3D getDirection() {
@@ -147,7 +147,7 @@ public abstract class GraphNode {
    }
 
    public final AEVector3D sub_462() {
-      return this.var_14c.getDirection();
+      return this.tempTransform.getDirection();
    }
 
    public final AEVector3D getUp(AEVector3D var1) {
@@ -168,7 +168,7 @@ public abstract class GraphNode {
 
    public final void sub_5a7(short var1) {
       this.currentTransform.set_Type(var1);
-      this.var_14c.set_Type(var1);
+      this.tempTransform.set_Type(var1);
    }
 
    public final void sub_5c5(int var1, int var2, int var3) {
@@ -232,7 +232,7 @@ public abstract class GraphNode {
    }
 
    public final Matrix sub_8a0() {
-      return this.var_14c;
+      return this.tempTransform;
    }
 
    public final void sub_8c9(Matrix var1) {
@@ -242,7 +242,7 @@ public abstract class GraphNode {
    }
 
    public final Matrix sub_8f0(Matrix var1) {
-      return this.currentTransform.sub_8ac(var1);
+      return this.currentTransform.getInverse(var1);
    }
 
    public final void sub_90e(AEVector3D var1, AEVector3D var2, AEVector3D var3) {

@@ -70,12 +70,12 @@ public final class Class_26fscene extends AbstractScene {
             this.var_222.sub_5a7((short)2);
          }
 
-         GameStatus.var_8ce.sub_19(this.var_222);
+         GameStatus.renderer.sub_19(this.var_222);
          this.var_222.moveTo(920, 500, -1240);
          this.var_222.setRotation(-160, 2048, 0);
          return;
       case 23:
-         GameStatus.var_8ce.sub_19(this.var_313);
+         GameStatus.renderer.sub_19(this.var_313);
          KIPlayer[] var1;
          if ((var1 = this.level.getShips())[0].sub_4a3() >= 0) {
             ((PlayerFighter)var1[0]).sub_2b8(false);
@@ -84,7 +84,7 @@ public final class Class_26fscene extends AbstractScene {
          break;
       default:
          if (this.var_371 != null) {
-            GameStatus.var_8ce.sub_19(this.var_371.sub_15c());
+            GameStatus.renderer.sub_19(this.var_371.sub_15c());
          }
       }
 
@@ -108,11 +108,11 @@ public final class Class_26fscene extends AbstractScene {
          switch(this.var_4cb) {
          case 0:
             this.var_371 = new Class_8e4superOrbitHelper(1);
-            GameStatus.var_8ce.sub_19(this.var_371.sub_15c());
+            GameStatus.renderer.sub_19(this.var_371.sub_15c());
             break;
          case 2:
             this.var_371 = new Class_8e4superOrbitHelper(0);
-            GameStatus.var_8ce.sub_19(this.var_371.sub_15c());
+            GameStatus.renderer.sub_19(this.var_371.sub_15c());
             break;
          case 4:
             this.sub_2c();
@@ -121,7 +121,7 @@ public final class Class_26fscene extends AbstractScene {
             this.var_313 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 900, 10, 31768);
             this.var_313.moveTo(0, 1700, 1500);
             this.var_313.setRotation(-256, 0, 0);
-            GameStatus.var_8ce.sub_19(this.var_313);
+            GameStatus.renderer.sub_19(this.var_313);
             this.var_526 = new Group();
             this.var_526.sub_25(this.var_313);
             this.var_526.sub_18f(0, 0, 10240);
@@ -173,7 +173,7 @@ public final class Class_26fscene extends AbstractScene {
             var2.level.sub_a3b(var2.frameTimeMs);
             var2.level.sub_966(var2.frameTimeMs);
             GameStatus.graphics3D.bindTarget(GameStatus.graphics);
-            GameStatus.var_8ce.sub_cc(System.currentTimeMillis());
+            GameStatus.renderer.sub_cc(System.currentTimeMillis());
             GameStatus.graphics3D.clear();
             GameStatus.graphics3D.releaseTarget();
          } catch (Exception var4) {

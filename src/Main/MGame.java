@@ -147,7 +147,7 @@ public final class MGame extends AbstractScene {
          this.var_3c0 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 750, 500, 32000);
          this.var_446 = new Class_198();
          this.var_446.sub_25(this.var_3c0);
-         GameStatus.var_8ce.sub_19(this.var_3c0);
+         GameStatus.renderer.sub_19(this.var_3c0);
          this.var_450 = new Class_c53cameraRelated(this.playerEgo.var_50e, this.var_3c0);
          this.var_48b = new Class_fd6(this.playerEgo.var_50e, this.var_3c0);
          this.var_48b.sub_120(false);
@@ -269,7 +269,7 @@ public final class MGame extends AbstractScene {
                      this.var_630.sub_9ff(this.frameTime);
                      this.playerEgo.sub_11da(!this.var_58b);
                      GameStatus.graphics3D.bindTarget(GameStatus.graphics);
-                     GameStatus.var_8ce.sub_95();
+                     GameStatus.renderer.sub_95();
                      GameStatus.graphics3D.releaseTarget();
                      if (this.autopilotMenuOpen) {
                         this.var_865.draw();
@@ -532,13 +532,13 @@ public final class MGame extends AbstractScene {
          this.playerEgo.sub_bb7((int)this.frameTime, this.var_6d2, this.var_611, this.var_736, this.keysPressed);
          this.playerEgo.sub_11da(!this.var_58b);
          if (this.var_d04 != null) {
-            GameStatus.var_8ce.sub_87(this.var_d04);
+            GameStatus.renderer.sub_87(this.var_d04);
          }
 
          this.var_689.sub_6a();
          GameStatus.graphics3D.bindTarget(GameStatus.graphics);
          this.var_446.sub_109(true);
-         GameStatus.var_8ce.sub_cc(System.currentTimeMillis());
+         GameStatus.renderer.sub_cc(System.currentTimeMillis());
          GameStatus.graphics3D.releaseTarget();
       } catch (Exception var2) {
          GameStatus.graphics3D.releaseTarget();
@@ -565,9 +565,9 @@ public final class MGame extends AbstractScene {
             return;
          }
       } else {
-         this.playerEgo.sub_1227(!this.var_58b, GameStatus.var_8ce.getCamera());
+         this.playerEgo.sub_1227(!this.var_58b, GameStatus.renderer.getCamera());
          if (!this.playerEgo.sub_be6()) {
-            this.var_6d2.render(this.playerEgo.player, GameStatus.var_8ce.getCamera(), this.var_450, this.var_611, (int)this.frameTime);
+            this.var_6d2.render(this.playerEgo.player, GameStatus.renderer.getCamera(), this.var_450, this.var_611, (int)this.frameTime);
          }
 
          this.var_611.sub_41b(this.var_53f ? 0L : this.frameTime, (long)this.var_689.var_4c9 - this.var_689.var_500, this.playerEgo, this.isIntro);
@@ -873,7 +873,7 @@ public final class MGame extends AbstractScene {
       var10000.y += 300;
       var10000 = this.var_d9c;
       var10000.z += 4000;
-      GameStatus.var_8ce.getCamera().sub_1f3(this.var_d9c);
+      GameStatus.renderer.getCamera().sub_1f3(this.var_d9c);
    }
 
    public final void handleKeystate(int var1) {

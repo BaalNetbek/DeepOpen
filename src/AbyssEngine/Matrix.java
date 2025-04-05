@@ -616,7 +616,7 @@ public final class Matrix {
       return this.sub_882(new AEVector3D());
    }
 
-   public final Matrix sub_8ac(Matrix var1) {
+   public final Matrix getInverse(Matrix var1) {
       var1.scaleX = 16777216 / this.scaleX;
       var1.scaleY = 16777216 / this.scaleY;
       var1.scaleZ = 16777216 / this.scaleZ;

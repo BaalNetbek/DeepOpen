@@ -6,7 +6,8 @@ import javax.microedition.m3g.Transform;
 public abstract class AbstractMesh extends Class_13a3 {
    protected int renderLayer;
    protected Matrix matrix = new Matrix();
-   protected Light light = null;
+   protected Light sunLight = null;
+   protected Light sunShine = null;
    
 
    public AbstractMesh(AbstractMesh var1) {
@@ -22,37 +23,50 @@ public abstract class AbstractMesh extends Class_13a3 {
       this.renderLayer = var1;
    }
 
-   public void sub_11b(Camera var1, Class_db var2) {
+   public void appendToRender(Camera var1, Class_db var2) {
       if (this.draw && var1.sub_14a(this.var_19f) != 0) {
-         this.matrix = var1.var_14c.sub_8ac(this.matrix);
-         this.matrix.multiply(this.var_14c);
-         
+         this.matrix = var1.tempTransform.getInverse(this.matrix);
+         this.matrix.multiply(this.tempTransform);
+         /*
          if (this.light != null) {
              AEGraphics3D.graphics3D.resetLights();
              float arr[] = new float[16];
              this.matrix.scaledToFloatArray(arr);
              Transform tranforma = new Transform();
              tranforma.set(arr);
-             AEGraphics3D.graphics3D.addLight(light, tranforma); 		  
+             AEGraphics3D.graphics3D.addLight(light, tranforma); 
+             
+             Light ambient = new Light();
+             ambient.setIntensity(2.0F);
+             ambient.setMode(Light.AMBIENT);
+             
+             this.matrix.identity();
+             this.matrix.scaledToFloatArray(arr);
+             tranforma.set(arr);
+             AEGraphics3D.graphics3D.addLight(light, tranforma); 
   	 }
-         
+         */
          var2.sub_177(this.renderLayer, this);
       }
 
    }
 
-   public void sub_b2(Camera var1, Class_db var2) {
+   public void forceAppendToRender(Camera camera, Class_db var2) {
       if (this.draw) {
-         this.matrix = var1.var_14c.sub_8ac(this.matrix);
-         this.matrix.multiply(this.var_14c);
+         camera.tempTransform.getInverse(this.matrix);
+         this.matrix.multiply(this.tempTransform);
          
-         if (this.light != null) {
+         if (this.sunLight != null) {
              AEGraphics3D.graphics3D.resetLights();
              float arr[] = new float[16];
              this.matrix.scaledToFloatArray(arr);
              Transform tranforma = new Transform();
              tranforma.set(arr);
-             AEGraphics3D.graphics3D.addLight(light, tranforma); 		  
+             this.sunShine.setColor(Level.maxLight());
+             AEGraphics3D.graphics3D.addLight(this.sunShine, tranforma); 
+             AEGraphics3D.graphics3D.addLight(this.sunLight, tranforma); 
+             
+             AEGraphics3D.addAmbientLight();
   	 }
          
          var2.sub_177(this.renderLayer, this);

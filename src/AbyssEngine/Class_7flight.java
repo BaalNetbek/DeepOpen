@@ -41,8 +41,8 @@ public final class Class_7flight {
          var5.var_10b4 = false;
          var3.getPlayerEgo().sub_95f(true);
          var3.getPlayerEgo().sub_93d(true);
-         GameStatus.var_8ce.getCamera().moveTo(0, 0, 0);
-         GameStatus.var_8ce.getCamera().setRotation(0, 1800, 0);
+         GameStatus.renderer.getCamera().moveTo(0, 0, 0);
+         GameStatus.renderer.getCamera().setRotation(0, 1800, 0);
          this.var_269 = true;
          var1.sub_383(false);
          var2.sub_120(false);
@@ -55,7 +55,7 @@ public final class Class_7flight {
          var3.getPlayerEgo().sub_93d(true);
          var3.getPlayerEgo().sub_ae0(0, 0, 0);
          var3.getPlayerEgo().turnEngines_(false);
-         GameStatus.var_8ce.getCamera().moveTo(1500, 600, -3000);
+         GameStatus.renderer.getCamera().moveTo(1500, 600, -3000);
          this.var_269 = true;
          var2.sub_120(true);
          var2.sub_36(var3.getPlayerEgo().var_50e);
@@ -85,7 +85,7 @@ public final class Class_7flight {
          (var6 = new Matrix()).sub_695(var3.getPlayerEgo().var_50e.sub_753());
          this.var_33a = var6.sub_a67(this.var_2f0, this.var_33a);
          this.var_33a.add(var3.getPlayerEgo().var_50e.sub_216(this.var_2f0));
-         GameStatus.var_8ce.getCamera().sub_1f3(this.var_33a);
+         GameStatus.renderer.getCamera().sub_1f3(this.var_33a);
          var1.sub_188(this.var_33a);
          var2.sub_bf(var3.getPlayerEgo().var_50e.getUp(), 2);
          if (Status.inAlienOrbit() || Level.var_12a2) {
@@ -108,7 +108,7 @@ public final class Class_7flight {
    public final boolean sub_50(int var1, Class_c53cameraRelated var2) {
       Class_85e[] var3 = this.var_8c.sub_872();
       PlayerEgo var4 = this.var_8c.getPlayerEgo();
-      Camera var5 = GameStatus.var_8ce.getCamera();
+      Camera var5 = GameStatus.renderer.getCamera();
       KIPlayer[] var6 = this.var_8c.getShips();
       int var7;
       if (this.var_25e) {
@@ -258,7 +258,7 @@ public final class Class_7flight {
             this.var_25e = false;
             this.var_269 = true;
             this.var_28b.sub_120(false);
-            var2.sub_3a9(GameStatus.var_8ce.getCamera().sub_237());
+            var2.sub_3a9(GameStatus.renderer.getCamera().sub_237());
             var2.sub_383(true);
             sub_1b8(var2, this.var_8c);
             this.var_1a2 = false;
@@ -429,7 +429,7 @@ public final class Class_7flight {
 
    public final void sub_6a() {
       if (this.var_47e != null) {
-         GameStatus.var_8ce.sub_87(this.var_47e);
+         GameStatus.renderer.sub_87(this.var_47e);
       }
 
    }

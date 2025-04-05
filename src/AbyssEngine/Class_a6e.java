@@ -36,7 +36,7 @@ public final class Class_a6e {
 
    public final void sub_18() {
       if (this.var_384) {
-         GameStatus.var_8ce.sub_87(this.var_424);
+         GameStatus.renderer.sub_87(this.var_424);
       }
 
    }

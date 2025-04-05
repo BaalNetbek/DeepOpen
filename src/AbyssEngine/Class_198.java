@@ -21,9 +21,9 @@ public final class Class_198 extends Group {
          if (this.var_ee || var1) {
             if (this.var_c1 || var1) {
                if (this.meshGroup != null) {
-                  this.var_14c = this.meshGroup.var_14c.sub_6a(this.currentTransform, this.var_14c);
+                  this.tempTransform = this.meshGroup.tempTransform.sub_6a(this.currentTransform, this.tempTransform);
                } else {
-                  this.var_14c.set(this.currentTransform);
+                  this.tempTransform.set(this.currentTransform);
                }
             }
 
@@ -31,7 +31,7 @@ public final class Class_198 extends Group {
 
             while(true) {
                if (var2 == null) {
-                  this.var_19f.sub_7f(this.var_14c.getPositionX(), this.var_14c.getPositionY(), this.var_14c.getPositionZ(), 0);
+                  this.var_19f.sub_7f(this.tempTransform.getPositionX(), this.tempTransform.getPositionY(), this.tempTransform.getPositionZ(), 0);
 
                   for(var2 = this.var_3e; var2 != null; var2 = var2.parent) {
                      this.var_19f.sub_52(var2.var_19f);
@@ -57,9 +57,9 @@ public final class Class_198 extends Group {
       if (this.var_ee || var1) {
          if (this.var_c1 || var1) {
             if (this.meshGroup != null) {
-               this.var_14c = this.meshGroup.var_14c.sub_6a(this.currentTransform, this.var_14c);
+               this.tempTransform = this.meshGroup.tempTransform.sub_6a(this.currentTransform, this.tempTransform);
             } else {
-               this.var_14c.set(this.currentTransform);
+               this.tempTransform.set(this.currentTransform);
             }
          }
 
@@ -67,7 +67,7 @@ public final class Class_198 extends Group {
             var2.sub_109(this.var_c1 || var1);
          }
 
-         this.var_19f.sub_7f(this.var_14c.getPositionX(), this.var_14c.getPositionY(), this.var_14c.getPositionZ(), 0);
+         this.var_19f.sub_7f(this.tempTransform.getPositionX(), this.tempTransform.getPositionY(), this.tempTransform.getPositionZ(), 0);
 
          for(var2 = this.var_3e; var2 != null; var2 = var2.parent) {
             this.var_19f.sub_52(var2.var_19f);

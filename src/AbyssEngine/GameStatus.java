@@ -40,7 +40,7 @@ public final class GameStatus {
    public static boolean interplanetHelpShown;
    public static boolean jumpDriveHelpShown;
    public static boolean cloakHelpShown;
-   public static Class_db var_8ce;
+   public static Class_db renderer;
    public static AbstractGraphics3D graphics3D;
    public static Display display;
    public static LoadingScreen loadingScreen;

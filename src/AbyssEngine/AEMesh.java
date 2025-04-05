@@ -167,7 +167,7 @@ public final class AEMesh extends AbstractMesh {
       this.meshGroup = null;
       this.parent = null;
       this.currentTransform = null;
-      this.var_14c = null;
+      this.tempTransform = null;
       this.var_19f = null;
       if (this.appearance != null) {
          this.appearance.setCompositingMode((CompositingMode)null);

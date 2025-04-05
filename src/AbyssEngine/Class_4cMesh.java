@@ -122,10 +122,10 @@ public final class Class_4cMesh extends AbstractMesh {
       AEGraphics3D.graphics3D.render(this.mesh, var_20);
    }
 
-   public final void sub_11b(Camera var1, Class_db var2) {
+   public final void appendToRender(Camera var1, Class_db var2) {
       if (this.draw) {
-         this.matrix = var1.var_14c.sub_8ac(this.matrix);
-         this.matrix.multiply(this.var_14c);
+         this.matrix = var1.tempTransform.getInverse(this.matrix);
+         this.matrix.multiply(this.tempTransform);
          var2.sub_177(this.renderLayer, this);
       }
 

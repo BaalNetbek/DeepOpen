@@ -1,5 +1,7 @@
 package AbyssEngine;
 
+import javax.microedition.m3g.Light;
+
 public final class Level {
    private int var_dd;
    private AbstractBounding var_2de;
@@ -43,12 +45,12 @@ public final class Level {
    public static int bgR;
    public static int bgG;
    public static int bgB;
-   private float explosionR;
-   private float explosionG;
-   private float explosionB;
+   public static float explosionR;
+   public static float explosionG;
+   public static float explosionB;
    private int var_f60;
    private int var_fa1;
-   private boolean exploding_;
+   public static  boolean exploding_;
    private int var_ff8;
    private int var_1005;
    private int var_1045;
@@ -71,10 +73,56 @@ public final class Level {
    public Level() {
       this(3);
    }
-
+   
+   public static int starLight() {
+       float max = Math.max(Level.starB, Level.starG);
+       max = Math.max(max, Level.starR);
+       return  (int)(Level.starR/max*255) << 16
+	       | (int)(Level.starG/max*255) << 8
+	       | (int)(Level.starB/max*255)
+	       ;
+   }
+   
+   public static int skyNormalizedLight() {
+       int R = (int) Math.min(255, Level.spaceG*1.5+50);
+       int G = (int) Math.min(255, Level.spaceR*1.5+50);
+       int B = (int) Math.min(255, Level.spaceB*1.5+50);
+       return  (int)(R) << 16
+	       | (int)(G) << 8
+	       | (int)(B)
+	       ;
+   }
+   
+   public static int skyLight() {
+       if (Level.exploding_)
+	       return  (int)(Level.explosionR) << 16
+		       | (int)(Level.explosionG) << 8
+		       | (int)(Level.explosionB)
+		       ;   
+       return  (int)(Level.bgG) << 16
+	       | (int)(Level.bgG) << 8
+	       | (int)(Level.bgB)
+	       ;
+   }
+   
+   public static int maxLight() {
+       int maxR = (int) Math.max(Level.starR, Level.spaceR);
+       int maxG = (int) Math.max(Level.starG, Level.spaceG);
+       int maxB = (int) Math.max(Level.starB, Level.spaceB);
+       float max = Math.max(maxB, maxG);
+       max = Math.max(maxR, max);
+       return  (int)(maxR/max*255) << 16
+	       | (int)(maxG/max*255) << 8
+	       | (int)(maxB/max*255)
+	       ;
+   }
+   
+   
+   
+   
    public Level(int var1) {
       this.var_2ed = new int[]{630, 0, 175, 1570, 0, 340, 1024, 0, 600, 1260, 0, 650, 880, 0, 950};
-      this.exploding_ = false;
+      Level.exploding_ = false;
       this.var_1353 = new AEVector3D();
       this.var_dd = var1;
       this.var_b87 = 0;
@@ -1578,28 +1626,28 @@ public final class Level {
 
    public final void setupExplosionFlashColors(int var1) {
       if (this.var_ff8 < 3 || this.var_f60 <= this.var_fa1 >> 1) {
-         this.exploding_ = true;
+	  Level.exploding_ = true;
          this.var_ff8 = var1;
          this.var_fa1 = var1 >= 3 ? 10000 : (var1 == 1 ? 7000 : 2000);
          this.var_f60 = this.var_fa1;
          if (var1 == 3) {
-            this.explosionR = 255.0F;
-            this.explosionG = 255.0F;
-            this.explosionB = 255.0F;
+            Level.explosionR = 255.0F;
+            Level.explosionG = 255.0F;
+            Level.explosionB = 255.0F;
             this.playerEgo.sub_1281();
          } else if (var1 == 2) {
-            this.explosionR = (float)bgR * 1.5F;
-            this.explosionG = (float)bgG * 1.5F;
-            this.explosionB = (float)bgB * 1.5F;
+             Level.explosionR = (float)bgR * 1.5F;
+             Level.explosionG = (float)bgG * 1.5F;
+             Level.explosionB = (float)bgB * 1.5F;
          } else if (var1 == 4) {
-            this.explosionR = 0.0F;
-            this.explosionG = 0.0F;
-            this.explosionB = 255.0F;
+             Level.explosionR = 0.0F;
+             Level.explosionG = 0.0F;
+             Level.explosionB = 255.0F;
          } else {
             float var2 = var1 == 1 ? 8.0F : 5.0F;
-            this.explosionR = (float)AEMath.max(10, AEMath.min(255, (int)((float)bgR * var2)));
-            this.explosionG = (float)AEMath.max(10, AEMath.min(255, (int)((float)bgG * var2)));
-            this.explosionB = (float)AEMath.max(10, AEMath.min(255, (int)((float)bgB * var2)));
+            Level.explosionR = (float)AEMath.max(10, AEMath.min(255, (int)((float)bgR * var2)));
+            Level.explosionG = (float)AEMath.max(10, AEMath.min(255, (int)((float)bgG * var2)));
+            Level.explosionB = (float)AEMath.max(10, AEMath.min(255, (int)((float)bgB * var2)));
          }
       }
    }
@@ -1686,15 +1734,23 @@ public final class Level {
    }
 
    public final void sub_966(long var1) {
-      if (this.exploding_) {
-         GameStatus.graphics.setColor((int)this.explosionR, (int)this.explosionG, (int)this.explosionB);
+       if(Status.inAlienOrbit()) {
+		  Matrix m = new Matrix();
+		  m.translateTo(0,0,-4096);
+		      Light omni;
+		      (omni = new Light()).setIntensity(2.0F);
+		      omni.setMode(Light.OMNI);
+		  GameStatus.renderer.setLight(m, omni);
+	      }
+      if (Level.exploding_) {
+         GameStatus.graphics.setColor((int)Level.explosionR, (int)Level.explosionG, (int)Level.explosionB);
       } else {
          GameStatus.graphics.setColor(bgR, bgG, bgB);
       }
 
       GameStatus.graphics.fillRect(0, 0, GameStatus.screenWidth, GameStatus.screenHeight);
       this.skybox.sub_116();
-      GameStatus.var_8ce.sub_87(this.var_3e4);
+      GameStatus.renderer.sub_87(this.var_3e4);
       int var3;
       if (this.projectileMesh != null) {
          for(var3 = 0; var3 < this.projectileMesh.length; ++var3) {
@@ -1747,10 +1803,18 @@ public final class Level {
    }
 
    public final void sub_9ff(long var1) {
+      if(Status.inAlienOrbit()) {
+	  Matrix m = new Matrix();
+	  m.translateTo(0,0,-4096);
+	      Light omni;
+	      (omni = new Light()).setIntensity(2.0F);
+	      omni.setMode(Light.OMNI);
+	  GameStatus.renderer.setLight(m, omni);
+      }
       GameStatus.graphics.setColor(bgR, bgG, bgB);
       GameStatus.graphics.fillRect(0, 0, GameStatus.screenWidth, GameStatus.screenHeight);
       this.skybox.sub_116();
-      GameStatus.var_8ce.sub_87(this.var_3e4);
+      GameStatus.renderer.sub_87(this.var_3e4);
       int var3;
       if (this.projectileMesh != null) {
          for(var3 = 0; var3 < this.projectileMesh.length; ++var3) {
@@ -1792,16 +1856,16 @@ public final class Level {
          this.setupExplosionFlashColors(2);
       }
 
-      if (this.exploding_) {
+      if (Level.exploding_) {
          this.var_f60 = (int)((long)this.var_f60 - var1);
          if (this.var_f60 < 0) {
-            this.exploding_ = false;
+             Level.exploding_ = false;
          }
 
          float var3 = (float)this.var_f60 / (float)this.var_fa1;
-         this.explosionR = AEMath.max((float)bgR, this.explosionR * var3);
-         this.explosionG = AEMath.max((float)bgG, this.explosionG * var3);
-         this.explosionB = AEMath.max((float)bgB, this.explosionB * var3);
+         Level.explosionR = AEMath.max((float)bgR, Level.explosionR * var3);
+         Level.explosionG = AEMath.max((float)bgG, Level.explosionG * var3);
+         Level.explosionB = AEMath.max((float)bgB, Level.explosionB * var3);
       }
 
       int var4;

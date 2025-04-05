@@ -34,14 +34,14 @@ public abstract class Camera extends Class_13a3 {
    public final void sub_109(boolean var1) {
       if (this.var_c1 || var1) {
          if (this.meshGroup != null) {
-            this.var_14c = this.meshGroup.var_14c.sub_6a(this.currentTransform, this.var_14c);
+            this.tempTransform = this.meshGroup.tempTransform.sub_6a(this.currentTransform, this.tempTransform);
          } else {
-            this.var_14c.set(this.currentTransform);
+            this.tempTransform.set(this.currentTransform);
          }
 
-         this.vec3_arr2 = this.var_14c.sub_ace(this.vec3_arr1, this.vec3_arr2);
-         vec1 = this.var_14c.getPosition(vec1);
-         vec3_2 = this.var_14c.getDirection(vec3_2);
+         this.vec3_arr2 = this.tempTransform.sub_ace(this.vec3_arr1, this.vec3_arr2);
+         vec1 = this.tempTransform.getPosition(vec1);
+         vec3_2 = this.tempTransform.getDirection(vec3_2);
          vec3_3.set(vec3_2);
          vec3_2.scale(-this.var_a1);
          vec3_3.scale(-this.var_c5);
@@ -77,7 +77,7 @@ public abstract class Camera extends Class_13a3 {
    }
 
    public final boolean sub_fa(AEVector3D var1) {
-      if ((var1 = this.var_14c.sub_b11(var1)).z > this.var_a1) {
+      if ((var1 = this.tempTransform.sub_b11(var1)).z > this.var_a1) {
          return false;
       } else {
          int var2 = this.var_25c * var1.z >> 12;
@@ -107,10 +107,10 @@ public abstract class Camera extends Class_13a3 {
       return 2;
    }
 
-   public final void sub_11b(Camera var1, Class_db var2) {
+   public final void appendToRender(Camera var1, Class_db var2) {
    }
 
-   public final void sub_b2(Camera var1, Class_db var2) {
+   public final void forceAppendToRender(Camera var1, Class_db var2) {
    }
 
    public abstract void sub_19c();

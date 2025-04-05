@@ -115,6 +115,6 @@ public final class Class_1271 {
    }
 
    public final void sub_160() {
-      GameStatus.var_8ce.sub_87(this.var_54d);
+      GameStatus.renderer.sub_87(this.var_54d);
    }
 }

@@ -56,19 +56,19 @@ public class Group extends GraphNode {
       return this.var_3e;
    }
 
-   public final void sub_11b(Camera var1, Class_db var2) {
+   public final void appendToRender(Camera var1, Class_db var2) {
       if (this.draw) {
          GraphNode var3;
          switch(var1.sub_14a(this.var_19f)) {
          case 1:
             for(var3 = this.var_3e; var3 != null; var3 = var3.parent) {
-               var3.sub_11b(var1, var2);
+               var3.appendToRender(var1, var2);
             }
 
             return;
          case 2:
             for(var3 = this.var_3e; var3 != null; var3 = var3.parent) {
-               var3.sub_b2(var1, var2);
+               var3.forceAppendToRender(var1, var2);
             }
 
             return;
@@ -77,10 +77,10 @@ public class Group extends GraphNode {
 
    }
 
-   public final void sub_b2(Camera var1, Class_db var2) {
+   public final void forceAppendToRender(Camera var1, Class_db var2) {
       if (this.draw) {
          for(GraphNode var3 = this.var_3e; var3 != null; var3 = var3.parent) {
-            var3.sub_b2(var1, var2);
+            var3.forceAppendToRender(var1, var2);
          }
       }
 
@@ -90,9 +90,9 @@ public class Group extends GraphNode {
       if (this.var_ee || var1) {
          if (this.var_c1 || var1) {
             if (this.meshGroup != null) {
-               this.var_14c = this.meshGroup.var_14c.sub_6a(this.currentTransform, this.var_14c);
+               this.tempTransform = this.meshGroup.tempTransform.sub_6a(this.currentTransform, this.tempTransform);
             } else {
-               this.var_14c.set(this.currentTransform);
+               this.tempTransform.set(this.currentTransform);
             }
          }
 
@@ -101,7 +101,7 @@ public class Group extends GraphNode {
             var2.sub_109(this.var_c1 || var1);
          }
 
-         this.var_19f.sub_7f(this.var_14c.getPositionX(), this.var_14c.getPositionY(), this.var_14c.getPositionZ(), 0);
+         this.var_19f.sub_7f(this.tempTransform.getPositionX(), this.tempTransform.getPositionY(), this.tempTransform.getPositionZ(), 0);
 
          for(var2 = this.var_3e; var2 != null; var2 = var2.parent) {
             this.var_19f.sub_52(var2.var_19f);

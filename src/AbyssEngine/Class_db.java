@@ -1,5 +1,7 @@
 package AbyssEngine;
 
+import javax.microedition.m3g.Light;
+
 public final class Class_db {
    private Camera var_52 = null;
    private GraphNode var_7d;
@@ -27,6 +29,11 @@ public final class Class_db {
       return this.var_52;
    }
    
+   
+   public final void setLight(Matrix lighLocalMatrix,  Light light) {
+       AEGraphics3D.setLight(this.var_52, lighLocalMatrix, light);
+   }
+   
    public final void appendNode(GraphNode var1) {
        try {
           if (var1 != null && this.var_ca != null && this.var_52 != null) {
@@ -37,7 +44,7 @@ public final class Class_db {
                 this.var_52.sub_109(false);
              }
 
-             var1.sub_b2(this.var_52, this);
+             var1.forceAppendToRender(this.var_52, this);
           }
 
        } catch (Exception var2) {
@@ -56,7 +63,7 @@ public final class Class_db {
                this.var_52.sub_109(false);
             }
 
-            var1.sub_11b(this.var_52, this);
+            var1.appendToRender(this.var_52, this);
          }
 
       } catch (Exception var2) {

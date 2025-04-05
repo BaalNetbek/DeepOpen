@@ -40,7 +40,7 @@ public class BlasterGun extends AbstractMesh implements Class_786 {
                var_211.set(this.gun.projectilesDir[var2]);
                var_211.normalize();
                this.var_18b[var2].sub_85f().setOrientation(var_211);
-               GameStatus.var_8ce.sub_87(this.var_18b[var2]);
+               GameStatus.renderer.sub_87(this.var_18b[var2]);
             } else {
                ++var1;
             }
