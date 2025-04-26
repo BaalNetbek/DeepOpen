@@ -39,7 +39,7 @@ public final class JSRMesh2 extends AbstractMesh {
 
       this.radius = 0;
       if (var_124 == null) {
-         (var_124 = new CompositingMode()).setBlending(64);
+         (var_124 = new CompositingMode()).setBlending(65);
          var_124.setDepthTestEnable(true);
          var_124.setDepthWriteEnable(false);
       }

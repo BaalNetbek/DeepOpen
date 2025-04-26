@@ -53,7 +53,7 @@ public final class Skybox {
          int var3 = 0;
          var4 = 0;
          boolean var5 = false;
-         int starElevation = GameStatus.random.nextInt(256) - 128;
+         int starElevation = (GameStatus.random.nextInt(256) - 128)%4096;
          for(var13 = 0; var13 < this.var_153.length; ++var13) {
             this.var_153[var13] = AEResourceManager.getGeometryResource(6781);
             this.var_153[var13].setRenderLayer(1);
@@ -104,9 +104,9 @@ public final class Skybox {
             }
             
             this.var_153[var13].sub_202(-20000);
-            //if (var13 == 0) {
-        	//this.var_153[var13].setRotation(0, 0, 0);
-            //}
+            if (var13 == 0) {
+        	this.var_153[var13].setRotation(4096-starElevation, 4096-((var3 * 170)%4096), 0);
+            }
             this.var_153[var13].sub_109(true);
             this.var_153[var13].sub_181(1L);
             this.var_1f8.sub_25(this.var_153[var13]);

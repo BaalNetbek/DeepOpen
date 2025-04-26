@@ -69,16 +69,16 @@ public abstract class AbstractMesh extends Class_13a3 {
              //Transform tranforma = new Transform();
              //tranforma.set(arr);
              if (this.sunLight.getMode() == Light.DIRECTIONAL && false) {
-        	 Matrix temp = new Matrix(matrix);
+
 	       AEVector3D temp2 = new AEVector3D();
-	       temp.getDirection(temp2);
+	       this.tempTransform.getDirection(temp2);
 	       temp2.scale(-1);
-	       temp.setOrientation(temp2);
-        	 temp.multiply(this.tempTransform);
+	       this.tempTransform.setOrientation(temp2);
+        	 
              }
              this.sunShine.setColor(Level.starLight());
              //AEGraphics3D.graphics3D.addLight(this.sunShine, tranforma); 
-             AEGraphics3D.setLights(camera, matrix, new Light[]{this.sunShine, this.sunLight}); 
+             AEGraphics3D.setLights(camera, this.tempTransform, new Light[]{this.sunShine, this.sunLight}); 
              //GameStatus.renderer.setLight(matrix, this.sunShine); 
              //AEGraphics3D.graphics3D.addLight(this.sunLight, tranforma); 
              

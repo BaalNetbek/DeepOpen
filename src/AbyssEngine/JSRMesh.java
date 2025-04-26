@@ -47,12 +47,12 @@ public final class JSRMesh extends AbstractMesh {
              this.sunLight = new Light();
              this.sunLight.setIntensity(0.9F);
              this.sunLight.setColor(0xffffff);
-             this.sunLight.setMode(Light.OMNI);
+             this.sunLight.setMode(Light.DIRECTIONAL);
              
              this.sunShine = new Light();
              this.sunShine.setIntensity(2.0F);
              this.sunShine.setColor(0xffffff);
-             this.sunShine.setMode(Light.OMNI);
+             this.sunShine.setMode(Light.DIRECTIONAL);
              
 	 } 
       try {
