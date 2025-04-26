@@ -22,8 +22,8 @@ public final class Skybox {
    private boolean[] var_54f;
    public static int var_5a9;
    private boolean inAlienSpace;
-   private Light light;
-   private int switcher;
+ //  private Light light;
+ //  private int switcher;
    Matrix transf;
 
    public Skybox() {
@@ -53,13 +53,14 @@ public final class Skybox {
          int var3 = 0;
          var4 = 0;
          boolean var5 = false;
-
+         int starElevation = GameStatus.random.nextInt(256) - 128;
          for(var13 = 0; var13 < this.var_153.length; ++var13) {
             this.var_153[var13] = AEResourceManager.getGeometryResource(6781);
             this.var_153[var13].setRenderLayer(1);
             if (var13 == 0) {
                this.var_153[var13].sub_9aa((byte)1);
                this.var_153[var13].sub_7af(64, 64, 64);
+               //this.var_153[var13].pitch(2048);
                var4 = var3 = GameStatus.random.nextInt(24);
             } else {
                boolean var6;
@@ -98,10 +99,14 @@ public final class Skybox {
             } else if (var13 > 0 && var8[var13 - 1] == Status.getStation().getId()) {
                this.var_153[var13].setRotation(0, var3 * 170, 0);
             } else {
-               this.var_153[var13].setRotation(-128 + GameStatus.random.nextInt(256), var3 * 170, 0);
+        	
+               this.var_153[var13].setRotation(starElevation, var3 * 170, 0);
             }
-
+            
             this.var_153[var13].sub_202(-20000);
+            //if (var13 == 0) {
+        	//this.var_153[var13].setRotation(0, 0, 0);
+            //}
             this.var_153[var13].sub_109(true);
             this.var_153[var13].sub_181(1L);
             this.var_1f8.sub_25(this.var_153[var13]);
@@ -238,40 +243,7 @@ public final class Skybox {
             GameStatus.renderer.getCamera().sub_fa(this.var_25a);
          } else {
             GameStatus.renderer.getCamera().sub_fa(this.var_153[var1].sub_22a(this.var_25a));
-         }/*
-         if (var1 == 0) {
-             Matrix materix = new Matrix();
-             float max = Math.max(Level.starB, Level.starG);
-             max = Math.max(max, Level.starR);
-             this.light.setColor(
-      	       (int)(Level.starR/max*255) << 16
-      	       | (int)(Level.starG/max*255) << 8
-      	       | (int)(Level.starB/max*255)
-      	       );
-             switch(this.switcher) {
-             case 1:
-        	 transf = materix.sub_8ac (this.var_153[var1].sub_85f() );
-        	 break;
-             case 2:
-        	 transf = this.var_153[var1].sub_85f();
-        	 break;
-             case 3:
-        	 transf = materix.sub_8ac (this.var_153[var1].sub_8a0() );
-        	 break;
-            default:
-        	 transf = this.var_153[var1].sub_8a0();
-        	     break;
-        	     
-             }
-             float arr[] = new float[16];
-             transf.scaledToFloatArray(arr);
-             Transform tranforma = new Transform();
-             tranforma.set(arr);
-             
-             
-      	   //AEGraphics3D.graphics3D.resetLights();
-      	   //AEGraphics3D.graphics3D.addLight(light, tranforma);
-         }*/
+         }
          if (this.var_25a.z < 0) {
             if (var1 == 0) {
                this.sun.setTransform(0);

@@ -45,7 +45,7 @@ public final class JSRMesh extends AbstractMesh {
 	 if (this.resourceId == 6781) {
 
              this.sunLight = new Light();
-             this.sunLight.setIntensity(1.5F);
+             this.sunLight.setIntensity(0.9F);
              this.sunLight.setColor(0xffffff);
              this.sunLight.setMode(Light.OMNI);
              

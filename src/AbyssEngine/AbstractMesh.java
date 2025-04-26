@@ -53,20 +53,36 @@ public abstract class AbstractMesh extends Class_13a3 {
 
    public void forceAppendToRender(Camera camera, Class_db var2) {
       if (this.draw) {
-         camera.tempTransform.getInverse(this.matrix);
+	 
+	 this.matrix = camera.tempTransform.getInverse(this.matrix);
+	 //Matrix lightMatrix = new Matrix(matrix);
          this.matrix.multiply(this.tempTransform);
          
+
+         //this.tempTransform.rotateAroundRight(2048);
+         //lightMatrix.multiply(this.tempTransform);
+         
          if (this.sunLight != null) {
-             AEGraphics3D.graphics3D.resetLights();
-             float arr[] = new float[16];
-             this.matrix.scaledToFloatArray(arr);
-             Transform tranforma = new Transform();
-             tranforma.set(arr);
-             this.sunShine.setColor(Level.maxLight());
-             AEGraphics3D.graphics3D.addLight(this.sunShine, tranforma); 
-             AEGraphics3D.graphics3D.addLight(this.sunLight, tranforma); 
+             //AEGraphics3D.graphics3D.resetLights();
+             //float arr[] = new float[16];
+             //this.matrix.scaledToFloatArray(arr);
+             //Transform tranforma = new Transform();
+             //tranforma.set(arr);
+             if (this.sunLight.getMode() == Light.DIRECTIONAL && false) {
+        	 Matrix temp = new Matrix(matrix);
+	       AEVector3D temp2 = new AEVector3D();
+	       temp.getDirection(temp2);
+	       temp2.scale(-1);
+	       temp.setOrientation(temp2);
+        	 temp.multiply(this.tempTransform);
+             }
+             this.sunShine.setColor(Level.starLight());
+             //AEGraphics3D.graphics3D.addLight(this.sunShine, tranforma); 
+             AEGraphics3D.setLights(camera, matrix, new Light[]{this.sunShine, this.sunLight}); 
+             //GameStatus.renderer.setLight(matrix, this.sunShine); 
+             //AEGraphics3D.graphics3D.addLight(this.sunLight, tranforma); 
              
-             AEGraphics3D.addAmbientLight();
+             //AEGraphics3D.addAmbientLight();
   	 }
          
          var2.sub_177(this.renderLayer, this);

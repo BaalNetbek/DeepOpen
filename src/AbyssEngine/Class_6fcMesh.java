@@ -13,7 +13,7 @@ public final class Class_6fcMesh extends AbstractMesh {
    }
 
    public Class_6fcMesh(AbstractTexture var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
-      this(var1, 33, 225, 63, 255, 10, 700, 100, 500, (byte)2);
+      this(var1, 33, 225, 63, 255, 5, 1700, 2100, 2500, (byte)2);
    }
 
    public final void moveTo(int var1, int var2, int var3) {

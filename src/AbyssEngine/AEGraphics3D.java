@@ -20,6 +20,7 @@ public final class AEGraphics3D extends AbstractGraphics3D {
       var1.setMode(Light.OMNI);
       Light var2;
       (var2 = new Light()).setIntensity(1.50F);
+      var2.setColor(0x1f1f1f);
       var2.setMode(Light.AMBIENT);
       AEGraphics3D.omni = var1;
       AEGraphics3D.ambient = var2;
@@ -65,6 +66,32 @@ public final class AEGraphics3D extends AbstractGraphics3D {
 			for (int i = 0; i<lights.length; i++){
 				 matrix.set(cameraInv);
 				 matrix.multiply(lightSrcMatrices[i]);
+				 matrix.scaledToFloatArray(arr);
+				 lighLocalTransform.set(arr);
+				 AEGraphics3D.graphics3D.addLight(lights[i], lighLocalTransform); 
+			 }
+			 AEGraphics3D.addAmbientLight();
+			 }
+		catch (Exception e){
+			System.out.println(e);
+		}
+	}
+	
+   }
+   
+   
+   public static void setLights(Camera camera, Matrix lightSrcMatrix,  Light lights []){
+	 if (lights != null) {
+	 	try{	
+			AEGraphics3D.graphics3D.resetLights();
+			Matrix matrix = new Matrix();
+			Matrix cameraInv = new Matrix();
+			Transform lighLocalTransform = new Transform();
+			float arr[] = new float[16];
+			camera.tempTransform.getInverse(cameraInv);
+			for (int i = 0; i<lights.length; i++){
+				 matrix.set(cameraInv);
+				 matrix.multiply(lightSrcMatrix);
 				 matrix.scaledToFloatArray(arr);
 				 lighLocalTransform.set(arr);
 				 AEGraphics3D.graphics3D.addLight(lights[i], lighLocalTransform); 

@@ -66,6 +66,9 @@ public final class GOF2Canvas extends GameCanvas {
    }
 
    final synchronized void sub_ca() {
+       if(GameStatus.screenWidth != this.getWidth() ||
+       GameStatus.screenHeight != this.getHeight())
+	   this.resized_ = true;
       if (this.resized_) {
          this.resized_ = false;
          GameStatus.screenWidth = this.getWidth();

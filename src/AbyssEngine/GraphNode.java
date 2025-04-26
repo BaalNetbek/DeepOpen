@@ -270,4 +270,12 @@ public abstract class GraphNode {
    public boolean sub_a37() {
       return false;
    }
+   
+   public final void flipDirection() {
+       AEVector3D temp = new AEVector3D();
+       this.tempTransform.getDirection(temp);
+       temp.scale(-1);
+       this.tempTransform.setOrientation(temp);
+       return;
+    }
 }
