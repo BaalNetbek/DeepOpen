@@ -1,0 +1,15 @@
+Operator-URL-ru: https://github.com/BaalNetbek/DeepOpen-public
+Manifest-Version: 1.0
+Operator-Prompt-ru: Do you want to open Deep Open`s Github page?
+MIDlet-1: Galaxy on Fire 2,/data/interface/icon.png,Main.GOF2MIDlet
+MIDlet-Jar-URL: GoF2_deobfuscation.jar
+Ant-Version: Apache Ant 1.7.1
+MicroEdition-Configuration: CLDC-1.1
+MIDlet-Version: 1.0.4 (Deep Open)
+Created-By: Recaf 4.0
+Operator-Menu-ru: Deep Open
+Operator-Mode: 2
+MIDlet-Name: Galaxy on Fire 2
+MIDlet-Vendor: www.fishlabs.net
+MicroEdition-Profile: MIDP-2.0
+
