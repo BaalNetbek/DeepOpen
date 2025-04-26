@@ -66,7 +66,7 @@ public final class Class_26fscene extends AbstractScene {
       switch(this.var_4cb) {
       case 4:
          if (this.var_222 == null) {
-            this.var_222 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 1024, 200, 28000);
+            this.var_222 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 1024, 200, 100000);
             this.var_222.sub_5a7((short)2);
          }
 
@@ -118,7 +118,7 @@ public final class Class_26fscene extends AbstractScene {
             this.sub_2c();
             break;
          case 23:
-            this.var_313 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 900, 10, 31768);
+            this.var_313 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 900, 100, 100000);
             this.var_313.moveTo(0, 1700, 1500);
             this.var_313.setRotation(-256, 0, 0);
             GameStatus.renderer.sub_19(this.var_313);

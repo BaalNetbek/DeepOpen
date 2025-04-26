@@ -37,12 +37,12 @@ public final class JSRMesh extends AbstractMesh {
    private boolean needsUvFix = false;
    private Texture2D texture = null;
    private static Transform var_4aa = new Transform();
-
+     
    public JSRMesh(int resourceId, String path, int radius) {
       this.resourceId = resourceId;
       initializeMaterials();
-
-	 if (this.resourceId == 6781) {
+  	/*
+	 if (this.resourceId == 6781 || this.resourceId == 13999) {
 
              this.sunLight = new Light();
              this.sunLight.setIntensity(0.9F);
@@ -54,7 +54,7 @@ public final class JSRMesh extends AbstractMesh {
              this.sunShine.setColor(0xffffff);
              this.sunShine.setMode(Light.DIRECTIONAL);
              
-	 } 
+	 } */
       try {
 	
          Object3D[] tree = null;

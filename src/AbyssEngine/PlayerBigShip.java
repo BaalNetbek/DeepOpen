@@ -149,13 +149,13 @@ public final class PlayerBigShip extends KIPlayer {
       this.positon.subtract(this.var_727, this.var_263);
       int var6;
       int var9;
-      if ((var6 = this.var_263.getLength()) > 28000) {
+      if ((var6 = this.var_263.getLength()) > 188000) {
          this.var_379.sub_8c9(this.var_379.sub_85f());
          this.var_263.normalize();
-         this.var_263.scale(28000);
+         this.var_263.scale(188000);
          this.var_263.add(this.var_727);
          this.var_379.sub_1f3(this.var_263);
-         var9 = (int)(28000.0F / (float)var6 * 4096.0F);
+         var9 = (int)(188000.0F / (float)var6 * 4096.0F);
          this.var_379.sub_7af(var9, var9, var9);
       } else {
          this.var_379.sub_7af(4096, 4096, 4096);

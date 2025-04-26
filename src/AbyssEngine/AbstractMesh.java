@@ -68,14 +68,7 @@ public abstract class AbstractMesh extends Class_13a3 {
              //this.matrix.scaledToFloatArray(arr);
              //Transform tranforma = new Transform();
              //tranforma.set(arr);
-             if (this.sunLight.getMode() == Light.DIRECTIONAL && false) {
 
-	       AEVector3D temp2 = new AEVector3D();
-	       this.tempTransform.getDirection(temp2);
-	       temp2.scale(-1);
-	       this.tempTransform.setOrientation(temp2);
-        	 
-             }
              this.sunShine.setColor(Level.starLight());
              //AEGraphics3D.graphics3D.addLight(this.sunShine, tranforma); 
              AEGraphics3D.setLights(camera, this.tempTransform, new Light[]{this.sunShine, this.sunLight}); 
@@ -106,5 +99,21 @@ public abstract class AbstractMesh extends Class_13a3 {
    public abstract void destroy();
 
    public void sub_181(long var1) {
+   }
+   
+   public final void setSun (boolean isSun) {
+       if (isSun) {
+	   this.sunLight = new Light();
+           this.sunLight.setIntensity(0.9F);
+           this.sunLight.setColor(0xffffff);
+           this.sunLight.setMode(Light.DIRECTIONAL);
+           
+           this.sunShine = new Light();
+           this.sunShine.setIntensity(2.0F);
+           this.sunShine.setColor(0xffffff);
+           this.sunShine.setMode(Light.DIRECTIONAL);
+           return;
+       }
+       this.sunShine = this.sunLight = null;
    }
 }

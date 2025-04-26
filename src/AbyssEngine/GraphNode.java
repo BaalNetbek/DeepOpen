@@ -270,4 +270,8 @@ public abstract class GraphNode {
    public boolean sub_a37() {
       return false;
    }
+   
+   public Matrix getTempTransformNegative() {
+       return this.tempTransform.getNegative();
+   }
 }

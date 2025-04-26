@@ -34,6 +34,10 @@ public final class Class_db {
        AEGraphics3D.setLight(this.var_52, lighLocalMatrix, light);
    }
    
+   public final void setLights(Matrix lighLocalMatrix,  Light light[]) {
+       AEGraphics3D.setLights(this.var_52, lighLocalMatrix, light);
+   }
+   
    public final void appendNode(GraphNode var1) {
        try {
           if (var1 != null && this.var_ca != null && this.var_52 != null) {

@@ -60,9 +60,11 @@ public final class AEGraphics3D extends AbstractGraphics3D {
 			AEGraphics3D.graphics3D.resetLights();
 			Matrix matrix = new Matrix();
 			Matrix cameraInv = new Matrix();
+			camera.tempTransform.getInverse(cameraInv);
+			
 			Transform lighLocalTransform = new Transform();
 			float arr[] = new float[16];
-			camera.tempTransform.getInverse(cameraInv);
+
 			for (int i = 0; i<lights.length; i++){
 				 matrix.set(cameraInv);
 				 matrix.multiply(lightSrcMatrices[i]);
@@ -84,20 +86,19 @@ public final class AEGraphics3D extends AbstractGraphics3D {
 	 if (lights != null) {
 	 	try{	
 			AEGraphics3D.graphics3D.resetLights();
-			Matrix matrix = new Matrix();
-			Matrix cameraInv = new Matrix();
 			Transform lighLocalTransform = new Transform();
 			float arr[] = new float[16];
+			Matrix cameraInv = new Matrix();
 			camera.tempTransform.getInverse(cameraInv);
+			 cameraInv.multiply(lightSrcMatrix);
+			 cameraInv.scaledToFloatArray(arr);
+			 lighLocalTransform.set(arr);
+			 
 			for (int i = 0; i<lights.length; i++){
-				 matrix.set(cameraInv);
-				 matrix.multiply(lightSrcMatrix);
-				 matrix.scaledToFloatArray(arr);
-				 lighLocalTransform.set(arr);
 				 AEGraphics3D.graphics3D.addLight(lights[i], lighLocalTransform); 
 			 }
 			 AEGraphics3D.addAmbientLight();
-			 }
+		}
 		catch (Exception e){
 			System.out.println(e);
 		}

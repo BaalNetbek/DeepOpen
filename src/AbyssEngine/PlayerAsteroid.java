@@ -144,14 +144,15 @@ public final class PlayerAsteroid extends KIPlayer {
             this.positon.set(this.var_312, this.var_356, this.var_3fe);
             this.positon.subtract(this.var_727, var_1c5);
             int var4 = var_1c5.getLength();
+            
             if (!this.var_42f) {
-               if (var4 > 30000) {
+               if (var4 > 10000 ) {
                   var_1c5.normalize();
-                  var_1c5.scale(30000);
+                  var_1c5.scale(10000);
                   var_1c5.add(this.var_727);
                   this.var_25d.sub_1f3(var_1c5);
                   float var2;
-                  var4 = (int)((var2 = 30000.0F / (float)var4) * (float)this.var_54b);
+                  var4 = (int)((var2 = 10000.0F / (float)var4) * (float)this.var_54b);
                   var7 = (int)(var2 * (float)this.var_694);
                   var6 = (int)(var2 * (float)this.var_707);
                   this.var_25d.sub_7af(var4, var7, var6);
@@ -161,7 +162,7 @@ public final class PlayerAsteroid extends KIPlayer {
                   this.var_25d.moveTo(this.var_312, this.var_356, this.var_3fe);
                   this.var_973 = false;
                }
-            } else if (var4 > 35000 && this.passedTime > 10000) {
+            } /*else if (var4 > 35000 && this.passedTime > 10000) {
                var6 = GameStatus.random.nextInt(20000) - 10000;
                var4 = GameStatus.random.nextInt(20000) - 10000;
                var7 = GameStatus.random.nextInt(2000) + 30000;
@@ -180,8 +181,8 @@ public final class PlayerAsteroid extends KIPlayer {
                this.var_3fe = this.positon.z;
                this.sub_34(true);
                this.sub_296();
-            }
-
+            }*/
+		
             if (this.var_956 != null) {
                this.var_956.sub_8c9(this.var_25d.sub_85f());
             }

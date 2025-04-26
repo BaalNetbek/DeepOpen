@@ -690,7 +690,7 @@ public final class PlayerFighter extends KIPlayer {
 
       if (this.player.sub_ace() || this.state == 5) {
          if (this.state != 4 && this.state != 3) {
-            if (this.var_efb) {
+            if (this.var_efb || true) {
                GameStatus.renderer.sub_87(this.var_379);
                if (this.var_6d7 != null) {
                   this.var_6d7.sub_160();

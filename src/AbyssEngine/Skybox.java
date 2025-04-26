@@ -55,17 +55,19 @@ public final class Skybox {
          boolean var5 = false;
          int starElevation = (GameStatus.random.nextInt(256) - 128)%4096;
          for(var13 = 0; var13 < this.var_153.length; ++var13) {
-            this.var_153[var13] = AEResourceManager.getGeometryResource(6781);
+             
+            this.var_153[var13] = AEResourceManager.getGeometryResource(6778);
             this.var_153[var13].setRenderLayer(1);
             if (var13 == 0) {
                this.var_153[var13].sub_9aa((byte)1);
-               this.var_153[var13].sub_7af(64, 64, 64);
+               //this.var_153[var13].sub_7af(64,64,64);
                //this.var_153[var13].pitch(2048);
+               this.var_153[var13].setSun(true);
                var4 = var3 = GameStatus.random.nextInt(24);
             } else {
                boolean var6;
                if (var8[var13 - 1] == Status.getStation().getId()) {
-                  this.var_153[var13].setDraw(false);
+                  this.var_153[var13].setDraw(true);
                   var6 = false;
                   int var7;
                   if ((var7 = Status.getStation().getPlanetTextureId()) != 17 && var7 != 18) {
@@ -100,12 +102,12 @@ public final class Skybox {
                this.var_153[var13].setRotation(0, var3 * 170, 0);
             } else {
         	
-               this.var_153[var13].setRotation(starElevation, var3 * 170, 0);
+               this.var_153[var13].setRotation(starElevation, (var3 * 170)%4096, 0);
             }
             
             this.var_153[var13].sub_202(-20000);
             if (var13 == 0) {
-        	this.var_153[var13].setRotation(4096-starElevation, 4096-((var3 * 170)%4096), 0);
+        	//this.var_153[var13].setRotation(4096-starElevation, 4096-((var3 * 170)%4096), 0);
             }
             this.var_153[var13].sub_109(true);
             this.var_153[var13].sub_181(1L);
@@ -232,8 +234,20 @@ public final class Skybox {
             }
          }
       }
-      if (this.var_153 != null && this.var_153[0] != null && var_153[0].resourceId == 6781)
-	  GameStatus.renderer.appendNode(this.var_153[0]);
+      if (this.var_153 != null && this.var_153[0] != null); //&& (var_153[0].resourceId == 6781 var_153[0].resourceId == 6781)
+	   Light sunLight = new Light();
+           sunLight.setIntensity(0.9F);
+           sunLight.setColor(0xffffff);
+           sunLight.setMode(Light.DIRECTIONAL);
+           
+           Light sunShine = new Light();
+           sunShine.setIntensity(2.0F);
+           sunShine.setMode(Light.DIRECTIONAL);
+      //GameStatus.renderer.appendNode(this.var_153[0]);
+          sunShine.setColor(Level.starLight());
+          //AEGraphics3D.graphics3D.addLight(this.sunShine, tranforma); 
+          GameStatus.renderer.setLights( this.var_153[0].tempTransform.getNegative(), new Light[]{sunShine, sunLight}); 
+	  //GameStatus.renderer.sub_87(var_153[var1]);
       
       for(var1 = 0; var1 < (this.inAlienSpace ? 1 : this.var_153.length); ++var1) {
          if (this.inAlienSpace) {
@@ -244,6 +258,7 @@ public final class Skybox {
          } else {
             GameStatus.renderer.getCamera().sub_fa(this.var_153[var1].sub_22a(this.var_25a));
          }
+         
          if (this.var_25a.z < 0) {
             if (var1 == 0) {
                this.sun.setTransform(0);

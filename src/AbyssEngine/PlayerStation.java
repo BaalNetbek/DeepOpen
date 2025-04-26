@@ -92,12 +92,12 @@ public final class PlayerStation extends PlayerStaticFar {
             this.positon.set(this.var_a6[var3 * 3], this.var_a6[var3 * 3 + 1], this.var_a6[var3 * 3 + 2]);
             this.positon.subtract(this.var_727, var_2e9);
             int var2;
-            if ((var2 = var_2e9.getLength()) > 20000) {
+            if ((var2 = var_2e9.getLength()) > 188000) {
                var_2e9.normalize();
-               var_2e9.scale(20000);
+               var_2e9.scale(188000);
                var_2e9.add(this.var_727);
                this.stationParts[var3].sub_1f3(var_2e9);
-               var2 = (int)(20000.0F / (float)var2 * 4096.0F);
+               var2 = (int)(188000.0F / (float)var2 * 4096.0F);
                this.stationParts[var3].sub_7af(var2, var2, var2);
             } else {
                this.stationParts[var3].sub_7af(4096, 4096, 4096);

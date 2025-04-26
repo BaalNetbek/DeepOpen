@@ -785,4 +785,27 @@ public final class Matrix {
       this.upY = temp.y;
       this.upZ = temp.z;
    }
+   
+   public final Matrix getNegative() {
+       Matrix negative = new Matrix();
+       
+       negative.rightX = -this.rightX;
+       negative.upX = -this.upX;
+       negative.dirX = -this.dirX;
+       negative.rightY = -this.rightY;
+       negative.upY = -this.upY;
+       negative.dirY = -this.dirY;
+       negative.rightZ = -this.rightZ;
+       negative.upZ = -this.upZ;
+       negative.dirZ = -this.dirZ;
+       
+       negative.scaleX = this.scaleX;
+       negative.scaleY = this.scaleY;
+       negative.scaleZ = this.scaleZ;
+       negative.positionX = this.positionX;
+       negative.positionY = this.positionY; 
+       negative.positionZ = this.positionZ;
+       negative.isDirty = false;
+       return negative;
+    }
 }

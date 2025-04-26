@@ -144,7 +144,7 @@ public final class MGame extends AbstractScene {
          this.var_611 = new Hud();
          this.var_736 = new Class_23e();
          this.var_736.sub_96(this.var_630.sub_872());
-         this.var_3c0 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 750, 500, 32000);
+         this.var_3c0 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 750, 600, 200000);
          this.var_446 = new Class_198();
          this.var_446.sub_25(this.var_3c0);
          GameStatus.renderer.sub_19(this.var_3c0);

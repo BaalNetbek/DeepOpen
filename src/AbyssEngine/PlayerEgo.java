@@ -200,7 +200,7 @@ public final class PlayerEgo {
          this.lookBack = var1;
          if (var1) {
             if (this.var_ef5 == null) {
-               this.var_ef5 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 700, 100, 31768);
+               this.var_ef5 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 700, 300, 200000);
                this.var_ef5.sub_18f(0, 500, -1400);
                this.var_ef5.sub_5c5(0, 2048, 0);
                this.var_f22 = new Group();
