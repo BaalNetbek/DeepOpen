@@ -1,33 +1,38 @@
-import pandas as pd
-
 def custom_order_sort(order_file, mapping_file, output_file):
-    # Load the order and mapping files
-    order = pd.read_csv(order_file, header=None, dtype=str)
-    mapping = pd.read_csv(mapping_file, header=None, dtype=str)
-
-    # Extract keys from order (concatenate columns into a single string for comparison)
-    order_keys = order.fillna('').agg(' '.join, axis=1).tolist()
-
-    # Extract keys from mapping, excluding the last word
-    mapping_keys = mapping.fillna('').agg(' '.join, axis=1).str.rsplit(' ', n=1).str[0].tolist()
-
-    # Create a dictionary
-    mapping_rows = {key: row for key, row in zip(mapping_keys, mapping.values.tolist())}
-
-    # Sort mapping rows based on order, keeping unmatched rows in original sequence
-    sorted_rows = []
-    unmatched_rows = []
+    # Load the files
+    with open(order_file, 'r') as f:
+        order_lines = [line.strip() for line in f.readlines()]
+    
+    with open(mapping_file, 'r') as f:
+        mapping_lines = [line.strip() for line in f.readlines()]
+    
+    # Create mapping entries dictionary
+    mapping_dict = {}
+    for line in mapping_lines:
+        parts = line.rsplit(' ', 1)
+        if len(parts) == 2:
+            key, value = parts
+            mapping_dict[key] = line
+    
+    sorted_lines = []
     matched_keys = set()
-    for key in order_keys:
-        if key in mapping_rows:
-            sorted_rows.append(mapping_rows[key])
+    
+    # lines in the order file order
+    for key in order_lines:
+        if key in mapping_dict:
+            sorted_lines.append(mapping_dict[key])
             matched_keys.add(key)
-
-    unmatched_rows = [row for key, row in zip(mapping_keys, mapping.values.tolist()) if key not in matched_keys]
-
-    final_rows = sorted_rows + unmatched_rows
-    sorted_mapping = pd.DataFrame(final_rows)
-    sorted_mapping.to_csv(output_file, index=False, header=False)
+    
+    # remaining unmatched lines
+    for line in mapping_lines:
+        parts = line.rsplit(' ', 1)
+        if len(parts) == 2:
+            key = parts[0]
+            if key not in matched_keys:
+                sorted_lines.append(line)
+    
+    with open(output_file, 'w') as f:
+        f.write('\n'.join(sorted_lines))
 
 if __name__ == "__main__":
     from os.path import dirname

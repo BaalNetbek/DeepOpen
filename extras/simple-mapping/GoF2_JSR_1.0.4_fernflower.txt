@@ -3314,8 +3314,9 @@ Main/g.b()V method_742
 Main/g.a(I)Z method_743
 Main/g.a(ILjava/lang/String;)V method_744
 Main/g.a(II)V method_745
-Main/a LMain/n; field_1804
-Main/a Ljavax/microedition/lcdui/Display; field_1805
-Main/a Z field_1806
-Main/b Z field_1807
-Main/a Ljava/lang/Thread; field_1808
+Main/GOF2MIDlet Main/GOF2MIDlet
+Main/GOF2MIDlet.a LMain/n; field_1804
+Main/GOF2MIDlet.a Ljavax/microedition/lcdui/Display; field_1805
+Main/GOF2MIDlet.a Z field_1806
+Main/GOF2MIDlet.b Z field_1807
+Main/GOF2MIDlet.a Ljava/lang/Thread; field_1808

@@ -3314,8 +3314,9 @@ Main/g.b()V
 Main/g.a(I)Z
 Main/g.a(ILjava/lang/String;)V
 Main/g.a(II)V
-Main/a LMain/n;
-Main/a Ljavax/microedition/lcdui/Display;
-Main/a Z
-Main/b Z
-Main/a Ljava/lang/Thread;
+Main/GOF2MIDlet
+Main/GOF2MIDlet.a LMain/n;
+Main/GOF2MIDlet.a Ljavax/microedition/lcdui/Display;
+Main/GOF2MIDlet.a Z
+Main/GOF2MIDlet.b Z
+Main/GOF2MIDlet.a Ljava/lang/Thread;

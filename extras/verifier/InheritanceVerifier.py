@@ -53,16 +53,18 @@ class InheritanceVerifier:
         for fam_num, family in enumerate(self.families):
             new_name = ''
             for method in family:
-                new_line = lines[method['line']-1]
-                match = self.reg_pattern.match(new_line)
-                if new_name == '':
-                    new_name = match.group(4)
-                elif new_name != match.group(4):
-                    self.valid = False
-                    if fam_num not in bad_families:
-                        bad_families.append(fam_num)
-                    break
-                
+                try:
+                    new_line = lines[method['line']-1]
+                    match = self.reg_pattern.match(new_line)
+                    if new_name == '':
+                        new_name = match.group(4)
+                    elif new_name != match.group(4):
+                        self.valid = False
+                        if fam_num not in bad_families:
+                            bad_families.append(fam_num)
+                        break
+                except Exception as e:
+                    print(f"Exception {e}\nin line {new_line})")
         for i in bad_families:
             print(f"Inheritance Error of: {self.families[i][0]['full_line']}")
             for method in self.families[i]:

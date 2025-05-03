@@ -30,7 +30,8 @@ def parse_arguments(args_str):
 def process_file(file_path, package):
     with open(file_path, 'r') as file:
         content = file.read()
-
+    
+    no_ren_class_pattern = r'[^\w]\s(?:\w+ )*class (\w+)[\w\s]*{'
     class_pattern = r'(\w+)\s*\n\s*(?:[\w\s]+)?class (\w+)'
     interface_pattern = r'(\w+)\s*\n\s*(?:[\w\s]+)?interface (\w+)'
     field_pattern = r'// \$FF: renamed from: (\w+) ([\w\[\].]+)\s*\n\s*(?:[\w\s]+)([\w\[\].]+) (\w+);'
@@ -42,16 +43,22 @@ def process_file(file_path, package):
     
     zero_fill = lambda match: match.group(0) if match.group(1) != "class" else f"{match.group(1)}_{match.group(2).zfill(3)}"
     
+    # not renamed classes
+    for old_name in re.findall(no_ren_class_pattern, content):
+        old_class_name = old_name
+        mapping = f"{package}{old_name} {package}{old_name}"
+        new_content = re.sub(r'(\w+)_(\d+)', zero_fill, mapping)
+        mappings.append(new_content)
     # classes
     for old_name, new_name in re.findall(class_pattern, content):
-        old_name = old_name.replace('.','')
+        # old_name = old_name.replace('.','')
         old_class_name = old_name
         mapping = f"{package}{old_name} {package}{new_name}"
         new_content = re.sub(r'(\w+)_(\d+)', zero_fill, mapping)
         mappings.append(new_content)
     # interfaces    
     for old_name, new_name in re.findall(interface_pattern, content):
-        old_name = old_name.replace('.','')
+        # old_name = old_name.replace('.','')
         old_class_name = old_name
         mapping = f"{package}{old_name} {package}{new_name}"
         new_content = re.sub(r'(\w+)_(\d+)', zero_fill, mapping)
@@ -86,8 +93,8 @@ def fernflower_to_simple_mapping(root_dir, output_file):
 # Example usage
 if __name__ == "__main__":
     exec_good = True
-    input_dir = r" Path to Fernflower decompiled source folder " 
-    output_file = r" Output mapping file path "  
+    input_dir = r"C:\Users\Ismail\Desktop\GALAXY_ON_FIRE\GOF2 JAVA\Tools\FernFlower Decompiler\JAVA\jars\new\Galaxy on Fire 2 1.0.4" 
+    output_file = r"C:\Users\Ismail\Desktop\GALAXY_ON_FIRE\GOF2 JAVA\Tools\FernFlower Decompiler\JAVA\jars\new\hopefuly_fernflower2.txt"  
     
     if not os.path.isdir(input_dir):
         print(f"Input dir path is not a directory or does not exist: {input_dir}")
