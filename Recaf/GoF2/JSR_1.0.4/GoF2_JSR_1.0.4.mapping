@@ -288,7 +288,7 @@ cq.a Lag; turretStand
 cq.b Lag; turretGun
 cq.a Lcd; vecUp
 cq.b Lcd; vecRight
-cq.a Lca; 7a2unused_
+cq.a Lca; unused_7a2
 cq.a Lda; crosshair
 cq.a Lcg; explosion
 cq.a Ldb; level
@@ -340,7 +340,7 @@ cq.o I dockMiningPitch
 cq.p I cloakingTimeCoef
 cq.q I cloakingScaleX
 cq.a Lal; miningGame
-cq.m Z 1399unused_
+cq.m Z unused_1399
 cq.n Z jumpGating
 cq.o Z jumpingToNeighbourPlanet
 cq.r I disanceFromCamera_
@@ -432,7 +432,7 @@ cq.a(ZLap;)V draw
 cq.i()V hit
 cq.a()Lv; getHud
 y AE/ParticlesMesh
-y.a Ljavax/microedition/m3g/Transform; tempTransform
+y.a Ljavax/microedition/m3g/Transform; calcTransform
 y.a Lcd; tempPos
 y.a Ljavax/microedition/m3g/Appearance; appearance
 y.a Ljavax/microedition/m3g/PolygonMode; polygonMode
@@ -839,7 +839,7 @@ db.a Lbk; gunSparks
 db.b Lbk; missilesSparks
 db.a [Lag; egoGuns
 db.b [Lag; enemyGuns
-db.a Lg; skybox
+db.a Lg; starSystem
 db.a Lcq; ego
 db.a [Lo; ships
 db.b [Lo; asteroids
@@ -1047,7 +1047,7 @@ ax.a(Laq;)V setTexture
 ax.a(Ljavax/microedition/m3g/Node;[Ljavax/microedition/m3g/Texture2D;Z)V setupMaterial
 ax.a()V OnRelease
 ac AE/ParticleSystemMesh
-ac.a Ljavax/microedition/m3g/Transform; tempTransform
+ac.a Ljavax/microedition/m3g/Transform; calcTransform
 ac.a [F transformValues
 ac.a Ljavax/microedition/m3g/Appearance; appearance
 ac.d I quadCount
@@ -1212,7 +1212,7 @@ ad.c()V OnRelease
 ae GoF2/SystemPathFinder
 ae.a([Lcw;II)[I getSystemPath
 ae.a(Le;)Ljava/util/Vector; constructPath
-af AE/PaintCanvas
+af AE/Renderer
 af.a Lap; camera
 af.a Lah; cameraTopGroup
 af.a [Lcz; layers
@@ -1328,7 +1328,7 @@ cm.p Z rotationEnabled
 cm.a Lcl; playerTransform_
 cm.u I sizeCoef_
 cm.v I tier
-cm.d Lag; explosion
+cm.d Lag; explosionMesh
 cm.n Z clampedByDistance
 cm.l I oreItemId
 cm.b()V OnRelease
@@ -2099,7 +2099,7 @@ bn.c I passedTime
 bn.a Lcd; tempVec
 bn.b Lcd; approachStationCamPos
 bn.c Lcd; tempVec2
-bn.a Z 428unused_
+bn.a Z unused_428
 bn.a Lv; hud
 bn.a Lbw; radar
 bn.a Lag; probe
@@ -2581,7 +2581,7 @@ cf.a()I getPrice
 cf.b()I getIndex
 cg GoF2/Explosion
 cg.a [I delays
-cg.b [I 1afunused_
+cg.b [I unused_1af
 cg.a I animationPlayTime
 cg.a [Lag; explosions
 cg.a Lag; coreExplosion
@@ -2787,7 +2787,7 @@ Main/p.n Z autoSaved
 Main/p.o Z leaveStationWarnOpen
 Main/p.a [[I newMedals
 Main/p.e I newMedalCollected
-Main/p.f I b98unused_
+Main/p.f I unused_b98
 Main/p.g I boozeOwnedAtArrival
 Main/p.h I bribe
 Main/p.p Z paidBribe
@@ -2986,12 +2986,12 @@ Main/i.k()V drawTabs
 Main/i.m()V drawScroll
 Main/i.n()V drawBG
 Main/i.a(Ljava/lang/Object;I)V drawItem
-Main/i.e()I getSelectedItem
+Main/i.e()I getSelectedEntry
 Main/i.b(Z)V setBackGroundDraw
 Main/i.c(Z)V setSelectionHighlight
 Main/i.o()V decFontIndex_
 Main/q Main/ListWindow_
-Main/q.a Z 37unused_
+Main/q.a Z unused_37
 Main/q.a()V draw
 Main/q.n()V drawBG
 Main/q.i()V scrollDown
@@ -3220,7 +3220,7 @@ Main/m.a Z loaded
 Main/m.a LMain/h; list
 Main/m.a Lcf; selectedItem
 Main/m.a LMain/b; itemInfo
-Main/m.a Laz; 3a1_unused__
+Main/m.a Laz; unused__3a1_
 Main/m.b Laz; freeSlotInfoPopup
 Main/m.b Z freeSlotInfoPopupOpen
 Main/m.c I tabsWidth_unused_
@@ -3267,8 +3267,8 @@ Main/l.c Ljava/lang/String; operatorURL
 Main/l.d Ljava/lang/String; operatorsPrompt
 Main/l.e Ljava/lang/String; operatorMenuEntry
 Main/l.l I wapMode
-Main/l.d Z b06unused_
-Main/l.b Ljavax/microedition/lcdui/Image; b34unused_
+Main/l.d Z unused_b06
+Main/l.b Ljavax/microedition/lcdui/Image; unused_b34
 Main/l.m I optionsListPosY
 Main/l.a(Ljava/lang/String;)Ljava/lang/String; unescape
 Main/l.f()V initWapItem

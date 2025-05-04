@@ -1,0 +1,7 @@
+MIDlet-1: Galaxy on Fire 2,/data/interface/icon.png,GoF2.Main.GOF2MIDlet
+MIDlet-Vendor: www.fishlabs.net
+MIDlet-Name: Galaxy on Fire 2
+MIDlet-Version: 1.0.4
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
+
