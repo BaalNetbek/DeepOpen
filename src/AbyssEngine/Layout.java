@@ -50,7 +50,7 @@ public final class Layout {
          var_528 = new int[1024];
 
          for(int var1 = 0; var1 < var_528.length; ++var1) {
-            var_528[var1] = -2013265920;
+            var_528[var1] = 0x88000000;
          }
       }
 
@@ -92,6 +92,8 @@ public final class Layout {
    }
 
    public static void sub_189() {
+       //GameStatus.graphics.setColor(0x88000000);
+       GameStatus.graphics.fillRect(0, 0, GameStatus.screenWidth, GameStatus.screenHeight);
       for(int var0 = 0; var0 < GameStatus.screenWidth / 32 + 1; ++var0) {
          for(int var1 = 0; var1 < GameStatus.screenHeight / 32 + 1; ++var1) {
             GameStatus.graphics.drawRGB(var_528, 0, 32, var0 << 5, var1 << 5, 32, 32, true);
@@ -101,7 +103,7 @@ public final class Layout {
    }
 
    public static void scale(String var0, int var1, int var2, int var3, boolean var4) {
-      sub_241(var0, var1, var2, var3, var4, false);
+      sub_241(var0, var1, var2, var3, var4, true);
    }
 
    public static void sub_1df(String var0, int var1, int var2, int var3, boolean var4, boolean var5, boolean var6) {
@@ -175,7 +177,7 @@ public final class Layout {
    }
 
    public static void drawFilledTitleBarWindow(String var0, int var1, int var2, int var3, int var4) {
-      drawTitleBarWindow(var0, var1, var2, var3, var4, true);
+      drawTitleBarWindow(var0, var1, var2, var3, var4, false);
    }
 
    public static void drawTitleBarWindow(String var0, int var1, int var2, int var3, int var4, boolean var5) {

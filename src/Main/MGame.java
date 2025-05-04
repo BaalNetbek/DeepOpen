@@ -80,6 +80,7 @@ public final class MGame extends AbstractScene {
    private AbstractMesh var_d04;
    private boolean var_d4a;
    private AEVector3D var_d9c = new AEVector3D();
+private boolean loadingDrawn;
 
    public final void freeResources() {
       if (this.playerEgo != null) {
@@ -550,8 +551,15 @@ public final class MGame extends AbstractScene {
       this.var_630.sub_9ca();
       if (this.var_58b) {
          if (Status.getCurrentCampaignMission() > 1) {
-            GameStatus.loadingScreen.sub_d5();
+             if (!loadingDrawn) {
+        	 GameStatus.loadingScreen.sub_d5();
+        	 loadingDrawn = true;
+             }
+            GameStatus.loadingScreen.drawTips();
             this.var_611.sub_4bc();
+         }
+         else {
+             this.loadingDrawn = false;
          }
 
          if (this.var_689.sub_123()) {

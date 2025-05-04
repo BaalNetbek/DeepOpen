@@ -55,10 +55,12 @@ public final class LoadingScreen implements Runnable {
 
    public final void sub_d5() {
       Layout.sub_136(10, GameStatus.screenHeight - 10 * this.tipsRows.length - 32, GameStatus.screenWidth - 20, 10 * this.tipsRows.length + 20);
-      Layout.drawTitleBarWindow(GameStatus.langManager.getLangString(277), 10, GameStatus.screenHeight - 10 * this.tipsRows.length - 34, GameStatus.screenWidth - 20, 10 * this.tipsRows.length + 24, false);
-      SymbolMapManager_.sub_185(this.tipsRows, 17, GameStatus.screenHeight - 10 * this.tipsRows.length - 18, 1);
+      this.drawTips();
    }
-
+   public final void drawTips(){
+       Layout.drawTitleBarWindow(GameStatus.langManager.getLangString(277), 10, GameStatus.screenHeight - 10 * this.tipsRows.length - 34, GameStatus.screenWidth - 20, 10 * this.tipsRows.length + 24, false);
+       SymbolMapManager_.sub_185(this.tipsRows, 17, GameStatus.screenHeight - 10 * this.tipsRows.length - 18, 1);
+   }
    public final void close() {
       this.stillLoading = false;
    }

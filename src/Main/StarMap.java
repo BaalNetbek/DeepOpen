@@ -67,7 +67,7 @@ public final class StarMap {
    private int selectedSystem;
    private int selectedPlanet;
    private AbstractMesh[] var_a6c;
-   private Class_198 var_aad;
+   private Group var_aad;
    private Camera var_b0a;
    private Camera var_b3a;
    private AEVector3D var_b6f;
@@ -585,8 +585,7 @@ public final class StarMap {
             this.var_349 = 0;
          }
       } else if (this.var_349 == 3) {
-	  if (var_c27 != null && var_c27[0] != null)
-	      GameStatus.renderer.setLight(var_c27[0].sub_8a0(),  AEGraphics3D.omni);
+
          this.var_df9.sub_b7(var2 << 1);
          this.var_e4c.sub_b7(var2 << 1);
          this.var_e9b.sub_b7(var2 << 1);
@@ -835,6 +834,8 @@ public final class StarMap {
    }
 
    private void sub_23f() {
+	  if (var_c27 != null && var_c27[0] != null)
+	      GameStatus.renderer.setLight(var_c27[0].sub_8a0(),  AEGraphics3D.omni);
       int var1;
       int var3;
       switch(this.var_349) {
@@ -919,10 +920,13 @@ public final class StarMap {
                }
             }
          }
+         this.var_871 = null; 
          break;
       case 3:
+	  if (var_871 == null) {
          this.var_871 = AEImage.loadImage("/data/interface/logo_" + this.systems[this.selectedSystem].getRace() + ".png", true);
-         GameStatus.graphics.drawImage(this.var_871, 5, 18, 20);
+	  }
+	  GameStatus.graphics.drawImage(this.var_871, 5, 18, 20);
 
          for(var3 = 0; var3 < this.var_993.length; ++var3) {
             if (var3 != this.selectedPlanet) {

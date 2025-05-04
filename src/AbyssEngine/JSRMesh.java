@@ -522,7 +522,7 @@ public final class JSRMesh extends AbstractMesh {
             Material var8;
             (var8 = new Material()).setShininess(50.0F);
             if (transparent) {
-               var8.setColor(Material.EMISSIVE, -1);
+               var8.setColor(Material.EMISSIVE, 0xffffffff);
             }
             else {
             	var8.setColor(Material.AMBIENT, 0xffffff);
