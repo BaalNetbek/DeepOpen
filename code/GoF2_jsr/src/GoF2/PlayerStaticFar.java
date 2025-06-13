@@ -26,7 +26,7 @@ public class PlayerStaticFar extends PlayerStatic {
 
    public void update(long var1) {
       if (this.mainMesh_ != null) {
-         this.tempVector_ = GlobalStatus.renderer.getCamera().getTempTransformPos(this.tempVector_);
+         this.tempVector_ = GlobalStatus.renderer.getCamera().getLocalPos(this.tempVector_);
          this.position.set(this.posX, this.posY, this.posZ);
          this.position.subtract(this.tempVector_, virtDistToCam_);
          int var3;

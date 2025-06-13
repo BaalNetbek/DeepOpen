@@ -27,15 +27,15 @@ public final class ParticleSystemMesh extends AbstractMesh {
    private static float[] zeroBias3D = new float[]{0.0F, 0.0F, 0.0F};
    private static float[] zeroBias2D = new float[]{0.0F, 0.0F};
    private int textureWidth;
-   private int color = -1;
+   private int color = 0xffffffff;
 
-   public ParticleSystemMesh(int var1, int var2, byte var3) {
-      this.resourceId = var1;
+   public ParticleSystemMesh(int resourceId, int quadCount, byte blending) {
+      this.resourceId = resourceId;
       if (this.appearance == null) {
          this.appearance = new Appearance();
-         if (var3 != 0) {
+         if (blending != 0) {
             CompositingMode var5 = new CompositingMode();
-            switch(var3) {
+            switch(blending) {
             case 1:
             case 3:
                var5.setBlending(64);
@@ -56,17 +56,17 @@ public final class ParticleSystemMesh extends AbstractMesh {
          this.appearance.setPolygonMode(var6);
       }
 
-      this.quadCount = var2;
-      this.vertices = new short[var2 * 12];
-      this.uvs = new byte[var2 * 8];
+      this.quadCount = quadCount;
+      this.vertices = new short[quadCount * 12];
+      this.uvs = new byte[quadCount * 8];
       this.vertexBuffer = new VertexBuffer();
-      this.vertexArray = new VertexArray(var2 * 4, 3, 2);
-      this.uvArray = new VertexArray(var2 * 4, 2, 1);
-      this.vertexArray.set(0, var2 * 4, this.vertices);
-      this.uvArray.set(0, var2 * 4, this.uvs);
+      this.vertexArray = new VertexArray(quadCount * 4, 3, 2);
+      this.uvArray = new VertexArray(quadCount * 4, 2, 1);
+      this.vertexArray.set(0, quadCount * 4, this.vertices);
+      this.uvArray.set(0, quadCount * 4, this.uvs);
       this.vertexBuffer.setPositions(this.vertexArray, 1.0F, zeroBias3D);
       this.vertexBuffer.setTexCoords(0, this.uvArray, 0.00390625F, zeroBias2D);
-      int[] var7 = new int[var2 * 6];
+      int[] var7 = new int[quadCount * 6];
       int var8 = 0;
 
       for(int var4 = 0; var4 < var7.length; var8 += 4) {
@@ -79,10 +79,10 @@ public final class ParticleSystemMesh extends AbstractMesh {
          var4 += 6;
       }
 
-      int[] var9 = new int[var2 * 2];
+      int[] var9 = new int[quadCount * 2];
 
-      for(var2 = 0; var2 < var9.length; ++var2) {
-         var9[var2] = 3;
+      for(quadCount = 0; quadCount < var9.length; ++quadCount) {
+         var9[quadCount] = 3;
       }
 
       this.tStrips = new TriangleStripArray(var7, var9);
@@ -126,24 +126,24 @@ public final class ParticleSystemMesh extends AbstractMesh {
 
    public final void appendToRender(Camera var1, Renderer var2) {
       if (this.draw) {
-         this.matrix = var1.tempTransform.getInverse(this.matrix);
-         this.matrix.multiply(this.tempTransform);
+         this.matrix = var1.localTransformation.getInverse(this.matrix);
+         this.matrix.multiply(this.localTransformation);
          var2.drawNode(this.renderLayer, this);
       }
 
    }
 
-   public final void setMeshData_(int[] var1, int[] var2) {
-      int var3;
-      for(var3 = 0; var3 < var1.length; ++var3) {
-         this.vertices[var3] = (short)var1[var3];
+   public final void setMeshData_(int[] vc, int[] var2) {
+      int i;
+      for(i = 0; i < vc.length; ++i) {
+         this.vertices[i] = (short)vc[i];
       }
 
       this.vertexArray.set(0, 4 * this.quadCount, this.vertices);
       this.mesh.getVertexBuffer().setPositions(this.vertexArray, 1.0F, zeroBias3D);
 
-      for(var3 = 0; var3 < var2.length; ++var3) {
-         this.uvs[var3] = (byte)var2[var3];
+      for(i = 0; i < var2.length; ++i) {
+         this.uvs[i] = (byte)var2[i];
       }
 
       this.uvArray.set(0, 4 * this.quadCount, this.uvs);
@@ -151,8 +151,10 @@ public final class ParticleSystemMesh extends AbstractMesh {
       this.mesh.getVertexBuffer().setDefaultColor(this.color);
       this.radius = 0;
 
-      for(var3 = 0; var3 < var1.length; var3 += 3) {
-         int var4 = var1[var3] * var1[var3] + var1[var3 + 1] * var1[var3 + 1] + var1[var3 + 2] * var1[var3 + 2];
+      for(i = 0; i < vc.length; i += 3) {
+         int var4 = vc[i]     * vc[i] 
+                  + vc[i + 1] * vc[i + 1] 
+                  + vc[i + 2] * vc[i + 2];
          if (this.radius < var4) {
             this.radius = var4;
          }
@@ -161,11 +163,11 @@ public final class ParticleSystemMesh extends AbstractMesh {
       this.radius = AEMath.sqrt((long)this.radius);
    }
 
-   public final void setTexture(ITexture var1) {
-      Texture2D var2;
-      (var2 = new Texture2D(((JSRTexture)var1).getTexturesArray()[0].getImage())).setBlending(227);
-      var2.setFiltering(208, 210);
-      var2.setWrapping(240, 240);
+   public final void setTexture(ITexture texture) {
+      Texture2D var2 = new Texture2D(((JSRTexture)texture).getTexturesArray()[0].getImage());
+      var2.setBlending(Texture2D.FUNC_MODULATE);
+      var2.setFiltering(Texture2D.FILTER_BASE_LEVEL, Texture2D.FILTER_NEAREST);
+      var2.setWrapping(Texture2D.WRAP_CLAMP, Texture2D.WRAP_CLAMP);
       this.appearance.setTexture(0, var2);
       this.textureWidth = var2.getImage().getWidth();
    }

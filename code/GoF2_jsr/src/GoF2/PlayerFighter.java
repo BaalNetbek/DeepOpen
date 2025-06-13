@@ -69,7 +69,7 @@ public final class PlayerFighter extends KIPlayer {
          this.cargo = var8.getLootList();
       }
 
-      this.sightRange = Status.inAlienOrbit() ? 100000 : '썐';
+      this.sightRange = Status.inAlienOrbit() ? 100000 : 50000;
       this.collisionEnabled = true;
       this.hitpoints = this.player.getHitpoints();
       this.damageAccumulator = 0;
@@ -225,7 +225,7 @@ public final class PlayerFighter extends KIPlayer {
             this.trailTick = 0;
          }
 
-         this.player.transform = this.geometry.getTransform();
+         this.player.transform = this.geometry.getToParentTransform();
          if (this.wingman && this.state != 4 && this.activeRoute_ != null) {
             this.tempVector_ = this.level.getPlayer().shipGrandGroup_.getPosition(this.tempVector_);
             if (this.wingmanCommand == 2) {
@@ -567,7 +567,7 @@ public final class PlayerFighter extends KIPlayer {
                this.position.scale((int)((float)var1 * this.handling));
                this.distanceToTarget = this.tempVector_.add(this.position, this.distanceToTarget);
                this.distanceToTarget.normalize();
-               this.geometry.getTransform().setOrientation(this.distanceToTarget);
+               this.geometry.getToParentTransform().setOrientation(this.distanceToTarget);
             }
 
             if (!this.wingman || this.wingmanCommand != 0) {
@@ -682,7 +682,7 @@ public final class PlayerFighter extends KIPlayer {
                   var8.scale((int)((float)var1 * 5.0F));
                   this.pos = this.tempVector_.add(var8, this.pos);
                   this.pos.normalize();
-                  this.geometry.getTransform().setOrientation(this.pos);
+                  this.geometry.getToParentTransform().setOrientation(this.pos);
                   this.geometry.moveForward((int)((float)var1 * this.speed));
                }
             }

@@ -389,7 +389,7 @@ public final class LevelScript {
                this.tempVec.add(var9);
                var5.translate(this.tempVec);
                this.probe = AEResourceManager.getGeometryResource(18);
-               this.probe.setTransform(var4.shipGrandGroup_.getTransform());
+               this.probe.setTransform(var4.shipGrandGroup_.getToParentTransform());
                this.probe.setScale(768, 768, 768);
             } else if (var3[2].isOver() && this.step == 1) {
                this.step = 2;

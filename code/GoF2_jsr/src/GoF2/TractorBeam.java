@@ -77,8 +77,8 @@ public final class TractorBeam {
             return;
          }
 
-         this.wastePos_shipDir_ = this.target.waste.getTempTransformPos(this.wastePos_shipDir_);
-         this.beamSrcPos_ = var4.getPlayer().shipGrandGroup_.getTempTransformPos(this.beamSrcPos_);
+         this.wastePos_shipDir_ = this.target.waste.getLocalPos(this.wastePos_shipDir_);
+         this.beamSrcPos_ = var4.getPlayer().shipGrandGroup_.getLocalPos(this.beamSrcPos_);
          this.shipToTarget = this.wastePos_shipDir_.subtract(this.beamSrcPos_, this.shipToTarget);
          this.toTargetDir.set(this.shipToTarget);
          this.wastePos_shipDir_ = var4.getPlayer().shipGrandGroup_.getDirection(this.wastePos_shipDir_);

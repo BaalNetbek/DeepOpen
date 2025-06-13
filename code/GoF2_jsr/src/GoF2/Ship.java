@@ -60,7 +60,7 @@ public final class Ship {
    }
 
    public final int getPrice() {
-      return this.id == 10 && Achievements.gotAllMedals() ? '썐' : this.price;
+      return this.id == 10 && Achievements.gotAllMedals() ? 50000 : this.price;
    }
 
    public final float getHandling() {

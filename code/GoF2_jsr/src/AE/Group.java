@@ -1,45 +1,44 @@
 package AE;
 
 public class Group extends GraphNode {
-   protected GraphNode endNode = null;
+   protected GraphNode head = null;
 
-   public final void uniqueAppend_(GraphNode var1) {
-      if (var1 != null && var1 != this) {
-         GraphNode var3 = var1;
-         GraphNode var2 = this.endNode;
+   public final void uniqueAppend_(GraphNode newNode) {
+      if (newNode != null && newNode != this) {
+         GraphNode var2 = this.head;
 
          boolean var10000;
          while(true) {
             if (var2 == null) {
-               var10000 = false;
+               var10000 = true;
                break;
             }
 
-            if (var2 == var3) {
-               var10000 = true;
+            if (var2 == newNode) {
+               var10000 = false;
                break;
             }
 
             var2 = var2.parent;
          }
 
-         if (!var10000) {
-            var1.group = this;
-            var1.parent = this.endNode;
-            this.endNode = var1;
+         if (var10000) {
+            newNode.group = this;
+            newNode.parent = this.head;
+            this.head = newNode;
          }
       }
 
    }
 
    public final void removeNode(GraphNode var1) {
-      if (var1 != null && this.endNode != null) {
-         if (var1 == this.endNode) {
-            this.endNode = this.endNode.parent;
+      if (var1 != null && this.head != null) {
+         if (var1 == this.head) {
+            this.head = this.head.parent;
             var1.group = null;
             var1.parent = null;
          } else {
-            for(GraphNode var2 = this.endNode; var2 != null; var2 = var2.parent) {
+            for(GraphNode var2 = this.head; var2 != null; var2 = var2.parent) {
                if (var2.parent == var1) {
                   var2.parent = var2.parent.parent;
                   var1.group = null;
@@ -53,7 +52,7 @@ public class Group extends GraphNode {
    }
 
    public final GraphNode getEndNode() {
-      return this.endNode;
+      return this.head;
    }
 
    public final void appendToRender(Camera var1, Renderer var2) {
@@ -61,13 +60,13 @@ public class Group extends GraphNode {
          GraphNode var3;
          switch(var1.isInViewFrustum(this.boundingSphere)) {
          case 1:
-            for(var3 = this.endNode; var3 != null; var3 = var3.parent) {
+            for(var3 = this.head; var3 != null; var3 = var3.parent) {
                var3.appendToRender(var1, var2);
             }
 
             return;
          case 2:
-            for(var3 = this.endNode; var3 != null; var3 = var3.parent) {
+            for(var3 = this.head; var3 != null; var3 = var3.parent) {
                var3.forceAppendToRender(var1, var2);
             }
 
@@ -79,7 +78,7 @@ public class Group extends GraphNode {
 
    public final void forceAppendToRender(Camera var1, Renderer var2) {
       if (this.draw) {
-         for(GraphNode var3 = this.endNode; var3 != null; var3 = var3.parent) {
+         for(GraphNode var3 = this.head; var3 != null; var3 = var3.parent) {
             var3.forceAppendToRender(var1, var2);
          }
       }
@@ -90,20 +89,20 @@ public class Group extends GraphNode {
       if (this.boundsDirty_ || var1) {
          if (this.transformDirty_ || var1) {
             if (this.group != null) {
-               this.tempTransform = this.group.tempTransform.multiplyTwo(this.globalTransform, this.tempTransform);
+               this.localTransformation = this.group.localTransformation.multiplyTwo(this.compositeTransformation, this.localTransformation);
             } else {
-               this.tempTransform.set(this.globalTransform);
+               this.localTransformation.set(this.compositeTransformation);
             }
          }
 
          GraphNode var2;
-         for(var2 = this.endNode; var2 != null; var2 = var2.parent) {
+         for(var2 = this.head; var2 != null; var2 = var2.parent) {
             var2.updateTransform(this.transformDirty_ || var1);
          }
 
-         this.boundingSphere.setXYZR(this.tempTransform.getPositionX(), this.tempTransform.getPositionY(), this.tempTransform.getPositionZ(), 0);
+         this.boundingSphere.setXYZR(this.localTransformation.getPositionX(), this.localTransformation.getPositionY(), this.localTransformation.getPositionZ(), 0);
 
-         for(var2 = this.endNode; var2 != null; var2 = var2.parent) {
+         for(var2 = this.head; var2 != null; var2 = var2.parent) {
             this.boundingSphere.merge(var2.boundingSphere);
          }
 
@@ -121,7 +120,7 @@ public class Group extends GraphNode {
       var1 = var1 + " |\t" + this.boundingSphere.center.x + "\t\t" + this.boundingSphere.center.y + "\t\t" + this.boundingSphere.center.z + "\t\t" + this.boundingSphere.radius + "\n";
       ++var2;
 
-      for(GraphNode var4 = this.endNode; var4 != null; var4 = var4.parent) {
+      for(GraphNode var4 = this.head; var4 != null; var4 = var4.parent) {
          var1 = var4.getString(var1, var2);
       }
 
@@ -129,21 +128,21 @@ public class Group extends GraphNode {
    }
 
    public final void setAnimationRangeInTime(int var1, int var2) {
-      for(GraphNode var3 = this.endNode; var3 != null; var3 = var3.parent) {
+      for(GraphNode var3 = this.head; var3 != null; var3 = var3.parent) {
          var3.setAnimationRangeInTime(var1, var2);
       }
 
    }
 
    public final void setAnimationMode(byte var1) {
-      for(GraphNode var2 = this.endNode; var2 != null; var2 = var2.parent) {
+      for(GraphNode var2 = this.head; var2 != null; var2 = var2.parent) {
          var2.setAnimationMode(var1);
       }
 
    }
 
    public final void disableAnimation() {
-      for(GraphNode var1 = this.endNode; var1 != null; var1 = var1.parent) {
+      for(GraphNode var1 = this.head; var1 != null; var1 = var1.parent) {
          var1.disableAnimation();
       }
 
@@ -152,7 +151,7 @@ public class Group extends GraphNode {
    public final boolean hasAnimation() {
       boolean var1 = false;
 
-      for(GraphNode var2 = this.endNode; var2 != null; var2 = var2.parent) {
+      for(GraphNode var2 = this.head; var2 != null; var2 = var2.parent) {
          var1 |= var2.hasAnimation();
       }
 

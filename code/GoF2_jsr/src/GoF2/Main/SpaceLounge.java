@@ -589,7 +589,7 @@ public final class SpaceLounge {
 
          if (this.chatType_ == 0) {
             Layout.drawFooter(GlobalStatus.gameText.getText(494), GlobalStatus.gameText.getText(65));
-            this.cameraPos = this.scene.level.getEnemies()[this.selectedAgent].mainMesh_.getTempTransformPos(this.cameraPos);
+            this.cameraPos = this.scene.level.getEnemies()[this.selectedAgent].mainMesh_.getLocalPos(this.cameraPos);
             AEVector3D var10000 = this.cameraPos;
             var10000.x -= 100;
             var10000 = this.cameraPos;

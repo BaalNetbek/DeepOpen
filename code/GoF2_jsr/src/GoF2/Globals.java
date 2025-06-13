@@ -73,46 +73,47 @@ public final class Globals {
       }
    }
 
-   public static String getRandomName(int var0, boolean var1) {
+   public static String getRandomName(int var0, boolean isMale) {
       new FileRead();
-      String[] var2 = FileRead.loadNamesBinary(var0, var1, true);
-      String[] var3 = FileRead.loadNamesBinary(var0, var1, false);
-      String var5 = var2 == null ? "" : var2[GlobalStatus.random.nextInt(var2.length)];
-      String var4 = var3 == null ? "" : var3[GlobalStatus.random.nextInt(var3.length)];
-      return var5 + " " + var4;
+      String[] firstNames = FileRead.loadNamesBinary(var0, isMale, true);
+      String[] lastNames = FileRead.loadNamesBinary(var0, isMale, false);
+      String firstName = firstNames == null ? "" : firstNames[GlobalStatus.random.nextInt(firstNames.length)];
+      String lastName = lastNames == null ? "" : lastNames[GlobalStatus.random.nextInt(lastNames.length)];
+      //if (lastName == ""/null) return firstName;
+      return firstName + " " + lastName; 
    }
 
    public static String getRandomPlanetName() {
       return (new FileRead()).loadStation(GlobalStatus.random.nextInt(100)).getName();
    }
 
-   public static int getRandomEnemyFighter(int var0) {
-      boolean var1 = false;
-      int var2;
-      if (var0 == 9) {
-         var2 = 8;
-      } else if (var0 == 1) {
-         var2 = 9;
-      } else {
-         do {
-            do {
-               do {
-                  do {
-                     do {
-                        do {
-                           while((var2 = GlobalStatus.random.nextInt(37)) == 0) {
-                           }
-                        } while(var2 == 9);
-                     } while(var2 == 8);
-                  } while(var2 == 10);
-               } while(var2 == 13);
-            } while(var2 == 14);
-         } while(var2 == 15);
-      }
-
-      return var2;
+   public static int getRandomEnemyFighter(int race) {
+	   int ship = 0;
+	   if (race == 9) {
+		   ship = 8;
+	   } 
+	   else if (race == 1) {
+		   ship = 9;
+	   } 
+	   else {
+		   do {
+			   ship = GlobalStatus.random.nextInt(37);
+		   } while (ship == 0 ||
+			        ship == 9 ||
+			        ship == 8 ||
+			        ship == 10 ||
+			        ship == 13 ||
+			        ship == 14 ||
+			        ship == 15);
+	   }
+	   return ship;
    }
-
+   /**
+    * 
+    * @param var0 ship index
+    * @param var1 race
+    * @return ship's mesh group
+    */
    public static Group getShipGroup(int var0, int var1) {
       Group var2 = new Group();
       new FileRead();

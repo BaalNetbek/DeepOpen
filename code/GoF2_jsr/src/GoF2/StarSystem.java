@@ -181,16 +181,16 @@ public final class StarSystem {
          this.tempVec.y = 0;
          this.tempVec.z = -4096;
       } else {
-         this.tempVec = this.starAndPlanets[0].getTempTransformDirection(this.tempVec);
+         this.tempVec = this.starAndPlanets[0].getLocalDirection(this.tempVec);
       }
 
       this.tempVec.x = -this.tempVec.x;
       this.tempVec.y = -this.tempVec.y;
       this.tempVec.z = -this.tempVec.z;
       this.tempVec.normalize();
-      this.tempVec = GlobalStatus.renderer.getCamera().getTempTransform().transformVectorNoScale(this.tempVec);
+      this.tempVec = GlobalStatus.renderer.getCamera().getLocalTransform().transformVectorNoScale(this.tempVec);
       this.tempVec.x = -this.tempVec.x;
-      this.tempVec = GlobalStatus.renderer.getCamera().getTempTransformPos(this.tempVec);
+      this.tempVec = GlobalStatus.renderer.getCamera().getLocalPos(this.tempVec);
       this.cameraControler.moveTo(this.tempVec);
       this.cameraControler.updateTransform(true);
       if (this.inAlienSpace) {
@@ -198,13 +198,13 @@ public final class StarSystem {
          this.tempVec.y = 0;
          this.tempVec.z = 20000;
       } else {
-         this.tempVec = this.starAndPlanets[0].getTempTransformPos(this.tempVec);
+         this.tempVec = this.starAndPlanets[0].getLocalPos(this.tempVec);
       }
 
-      this.tempVec.subtract(GlobalStatus.renderer.getCamera().getTempTransformPos());
+      this.tempVec.subtract(GlobalStatus.renderer.getCamera().getLocalPos());
       this.tempVec.normalize();
       AEVector3D var1;
-      (var1 = new AEVector3D(GlobalStatus.renderer.getCamera().getTempTransformDirection())).normalize();
+      (var1 = new AEVector3D(GlobalStatus.renderer.getCamera().getLocalDirection())).normalize();
       this.tempVec.subtract(var1);
       float var2 = (float)this.tempVec.getLength() / 8192.0F;
       Level.bgR = 0;
@@ -216,12 +216,12 @@ public final class StarSystem {
    }
 
    public final void render_() {
-      this.cameraControler.moveTo(GlobalStatus.renderer.getCamera().getTempTransformPos(this.tempVec));
+      this.cameraControler.moveTo(GlobalStatus.renderer.getCamera().getLocalPos(this.tempVec));
       this.cameraControler.updateTransform(true);
       int var1;
       if (this.nebulaPivots != null) {
          for(var1 = 0; var1 < this.nebulaPivots.length; ++var1) {
-            GlobalStatus.renderer.getCamera().getScreenPosition(this.nebulaPivots[var1].getTempTransformPos(this.tempVec));
+            GlobalStatus.renderer.getCamera().getScreenPosition(this.nebulaPivots[var1].getLocalPos(this.tempVec));
             if (this.tempVec.z < 0) {
                GlobalStatus.graphics.drawImage(this.nebulaImgs[var1], this.tempVec.x, this.tempVec.y, 3);
             }
@@ -235,7 +235,7 @@ public final class StarSystem {
             this.tempVec.z = 0;
             GlobalStatus.renderer.getCamera().getScreenPosition(this.tempVec);
          } else {
-            GlobalStatus.renderer.getCamera().getScreenPosition(this.starAndPlanets[var1].getTempTransformPos(this.tempVec));
+            GlobalStatus.renderer.getCamera().getScreenPosition(this.starAndPlanets[var1].getLocalPos(this.tempVec));
          }
 
          if (this.tempVec.z < 0) {
@@ -282,7 +282,7 @@ public final class StarSystem {
          this.sun.setRefPixelPosition(this.tempVec.x, this.tempVec.y - 1);
          this.sun.paint(GlobalStatus.graphics);
       } else {
-         GlobalStatus.renderer.getCamera().getScreenPosition(this.starAndPlanets[0].getTempTransformPos(this.tempVec));
+         GlobalStatus.renderer.getCamera().getScreenPosition(this.starAndPlanets[0].getLocalPos(this.tempVec));
       }
 
       this.lensFlare.render2D(this.tempVec);

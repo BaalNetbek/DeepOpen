@@ -37,14 +37,14 @@ public abstract class Camera extends AEGeometry {
    public final void updateTransform(boolean var1) {
       if (this.transformDirty_ || var1) {
          if (this.group != null) {
-            this.tempTransform = this.group.tempTransform.multiplyTwo(this.globalTransform, this.tempTransform);
+            this.localTransformation = this.group.localTransformation.multiplyTwo(this.compositeTransformation, this.localTransformation);
          } else {
-            this.tempTransform.set(this.globalTransform);
+            this.localTransformation.set(this.compositeTransformation);
          }
 
-         this.vfPlaneNormalsLocal = this.tempTransform.transformVectorsNoScale(this.vfPlaneNormals, this.vfPlaneNormalsLocal);
-         cameraPos = this.tempTransform.getPosition(cameraPos);
-         nearPlaneCenter = this.tempTransform.getDirection(nearPlaneCenter);
+         this.vfPlaneNormalsLocal = this.localTransformation.transformVectorsNoScale(this.vfPlaneNormals, this.vfPlaneNormalsLocal);
+         cameraPos = this.localTransformation.getPosition(cameraPos);
+         nearPlaneCenter = this.localTransformation.getDirection(nearPlaneCenter);
          farPlaneCenter.set(nearPlaneCenter);
          nearPlaneCenter.scale(-this.nearPlane);
          farPlaneCenter.scale(-this.farPlane);
@@ -80,7 +80,7 @@ public abstract class Camera extends AEGeometry {
    }
 
    public final boolean getScreenPosition(AEVector3D var1) {
-      if ((var1 = this.tempTransform.inverseTransformVector(var1)).z > this.nearPlane) {
+      if ((var1 = this.localTransformation.inverseTransformVector(var1)).z > this.nearPlane) {
          return false;
       } else {
          int var2 = this.horizontalProjectionFactor * var1.z >> 12;

@@ -44,7 +44,7 @@ public final class RocketGun extends ObjectGun {
 
    public final void renderRocket_() {
       if (this.gun.inAir) {
-         GlobalStatus.renderer.getCamera().getScreenPosition(this.rocketMesh_.getTempTransformPos(tempPos));
+         GlobalStatus.renderer.getCamera().getScreenPosition(this.rocketMesh_.getLocalPos(tempPos));
       }
 
    }
@@ -64,7 +64,7 @@ public final class RocketGun extends ObjectGun {
       this.rocketMesh_.moveTo(tempPos);
       temp.set(this.gun.projectilesDir[0]);
       temp.normalize();
-      this.rocketMesh_.getTransform().setOrientation(temp);
+      this.rocketMesh_.getToParentTransform().setOrientation(temp);
       if (this.gun.inAir) {
          if (this.guided && this.gun.projectilesTimeLeft[0] < this.gun.range - 1500) {
             int var2 = (int)var1;

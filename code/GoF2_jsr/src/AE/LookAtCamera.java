@@ -72,8 +72,8 @@ public final class LookAtCamera implements CameraController_ {
             this.targetRoot.updateTransform(false);
          }
 
-         cameraRight = this.target.getTempTransformPos(cameraRight);
-         cameraRight = this.camera.getGroup().getTempTransform().inverseTransformVector(cameraRight);
+         cameraRight = this.target.getLocalPos(cameraRight);
+         cameraRight = this.camera.getGroup().getLocalTransform().inverseTransformVector(cameraRight);
          (cameraDir = this.camera.getPosition(cameraDir)).subtract(cameraRight);
          cameraDir.normalize();
          if (this.upOverride != null) {

@@ -7,7 +7,7 @@ public final class Achievements {
    private static int killStreak;
    private static int pirateKillStreak;
    private static int weaponsEquipped;
-   private static boolean isDocked;
+   private static boolean isDocked; // error,  isArmed
    private static int maxCredits;
    private static boolean hasAll;
    private static boolean hasAllGold;
@@ -56,7 +56,10 @@ public final class Achievements {
                case 3:
                case 9:
                case 12:
-                  boolean[] var5 = var2 == 2 ? Status.minedOreTypes : (var2 == 3 ? Status.minedCoreTypes : (var2 == 9 ? Status.drinkTypesPossesed : Status.systemsVisited));
+                  boolean[] var5 = var2 == 2 ? Status.minedOreTypes 
+                                 : var2 == 3 ? Status.minedCoreTypes 
+                                 : var2 == 9 ? Status.drinkTypesPossesed 
+                                 :             Status.systemsVisited;
                   var1 = 0;
                   var6 = 0;
 

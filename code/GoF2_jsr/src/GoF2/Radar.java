@@ -384,7 +384,7 @@ public final class Radar {
          int var19;
          if (this.planets != null) {
             for(var12 = 1; var12 < this.planets.length; ++var12) {
-               this.elipsoidIntersect(var2, this.planets[var12].getTempTransformPos(this.tempPos));
+               this.elipsoidIntersect(var2, this.planets[var12].getLocalPos(this.tempPos));
                if (this.inViewFrustum) {
                   int[] var30;
                   var8 = (var30 = Status.getSystem().getStations())[var12 - 1] == Status.getStation().getId();

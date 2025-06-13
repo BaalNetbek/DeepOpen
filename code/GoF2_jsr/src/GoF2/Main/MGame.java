@@ -1127,7 +1127,7 @@ public final class MGame extends IApplicationModule {
             if (!this.mapOpen_ && this.touchesStream) {
                this.playerEgo.dockToStream(this.targetFollowCamera, false);
                this.playerEgo.setAutoPilot((KIPlayer)null);
-               this.playerEgo.shipGrandGroup_.getTransform().setOrientation(this.level.getLandmarks()[1].mainMesh_.getDirection());
+               this.playerEgo.shipGrandGroup_.getToParentTransform().setOrientation(this.level.getLandmarks()[1].mainMesh_.getDirection());
                this.playerEgo.setPosition_(this.level.getLandmarks()[1].mainMesh_.getPostition());
                this.playerEgo.shipGrandGroup_.moveForward(4096);
             } else if (this.starMap.destSelected) {

@@ -10,15 +10,21 @@ public abstract class GraphNode {
    protected boolean draw;
    protected boolean transformDirty_;
    protected boolean boundsDirty_;
-   protected Matrix globalTransform;
-   protected Matrix tempTransform;
+   /**
+    * To parent transformation matrix.
+    * 
+    * The composite transformation is defined to be such that it transforms a point in the local coordinate system of this node to the coordinate system of the given node.
+    * ^ from JSR-184 documentation (javax.microedition.m3g.Node.getTransformTo)	
+    */
+   protected Matrix compositeTransformation;
+   protected Matrix localTransformation;
    protected AEBoundingSphere boundingSphere;
    protected int resourceId;
 
    GraphNode() {
       this.draw = true;
-      this.globalTransform = new Matrix();
-      this.tempTransform = new Matrix();
+      this.compositeTransformation = new Matrix();
+      this.localTransformation = new Matrix();
       this.boundingSphere = new AEBoundingSphere();
       this.transformDirty_ = true;
       this.boundsDirty_ = true;
@@ -27,8 +33,8 @@ public abstract class GraphNode {
 
    GraphNode(GraphNode var1) {
       this.draw = var1.draw;
-      this.globalTransform = new Matrix(var1.globalTransform);
-      this.tempTransform = new Matrix(var1.tempTransform);
+      this.compositeTransformation = new Matrix(var1.compositeTransformation);
+      this.localTransformation = new Matrix(var1.localTransformation);
       this.boundingSphere = new AEBoundingSphere(var1.boundingSphere);
       this.transformDirty_ = true;
       this.boundsDirty_ = true;
@@ -76,180 +82,180 @@ public abstract class GraphNode {
    protected abstract String getString(String var1, int var2);
 
    public final void translate(int var1, int var2, int var3) {
-      this.globalTransform.translate(var1, var2, var3);
+      this.compositeTransformation.translate(var1, var2, var3);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final void translate(AEVector3D var1) {
-      this.globalTransform.translate(var1);
+      this.compositeTransformation.translate(var1);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public void moveTo(int var1, int var2, int var3) {
-      this.globalTransform.translateTo(var1, var2, var3);
+      this.compositeTransformation.translateTo(var1, var2, var3);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final void moveTo(AEVector3D var1) {
-      this.globalTransform.translateTo(var1);
+      this.compositeTransformation.translateTo(var1);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final void moveForward(int var1) {
-      this.globalTransform.translateForward(var1);
+      this.compositeTransformation.translateForward(var1);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final AEVector3D getPosition(AEVector3D var1) {
-      return this.globalTransform.getPosition(var1);
+      return this.compositeTransformation.getPosition(var1);
    }
 
-   public final AEVector3D getTempTransformPos(AEVector3D var1) {
-      return this.tempTransform.getPosition(var1);
+   public final AEVector3D getLocalPos(AEVector3D var1) {
+      return this.localTransformation.getPosition(var1);
    }
 
    public final AEVector3D getPostition() {
-      return this.globalTransform.getPosition();
+      return this.compositeTransformation.getPosition();
    }
 
-   public final AEVector3D getTempTransformPos() {
-      return this.tempTransform.getPosition();
+   public final AEVector3D getLocalPos() {
+      return this.localTransformation.getPosition();
    }
 
    public final int getPosX() {
-      return this.globalTransform.getPositionX();
+      return this.compositeTransformation.getPositionX();
    }
 
    public final int getPosY() {
-      return this.globalTransform.getPositionY();
+      return this.compositeTransformation.getPositionY();
    }
 
    public final int getPosZ() {
-      return this.globalTransform.getPositionZ();
+      return this.compositeTransformation.getPositionZ();
    }
 
-   public final int getTempTransformPosZ() {
-      return this.tempTransform.getPositionZ();
+   public final int getLocalPosZ() {
+      return this.localTransformation.getPositionZ();
    }
 
    public final AEVector3D getDirection(AEVector3D var1) {
-      return this.globalTransform.getDirection(var1);
+      return this.compositeTransformation.getDirection(var1);
    }
 
-   public final AEVector3D getTempTransformDirection(AEVector3D var1) {
-      return this.tempTransform.getDirection(var1);
+   public final AEVector3D getLocalDirection(AEVector3D var1) {
+      return this.localTransformation.getDirection(var1);
    }
 
    public final AEVector3D getDirection() {
-      return this.globalTransform.getDirection();
+      return this.compositeTransformation.getDirection();
    }
 
-   public final AEVector3D getTempTransformDirection() {
-      return this.tempTransform.getDirection();
+   public final AEVector3D getLocalDirection() {
+      return this.localTransformation.getDirection();
    }
 
    public final AEVector3D getUp(AEVector3D var1) {
-      return this.globalTransform.getUp(var1);
+      return this.compositeTransformation.getUp(var1);
    }
 
    public final AEVector3D getUp() {
-      return this.globalTransform.getUp();
+      return this.compositeTransformation.getUp();
    }
 
    public final AEVector3D getRightVector(AEVector3D var1) {
-      return this.globalTransform.getRight(var1);
+      return this.compositeTransformation.getRight(var1);
    }
 
    public final AEVector3D getRight() {
-      return this.globalTransform.getRight();
+      return this.compositeTransformation.getRight();
    }
 
    public final void setRotationOrder(short var1) {
-      this.globalTransform.setRotationOrder(var1);
-      this.tempTransform.setRotationOrder(var1);
+      this.compositeTransformation.setRotationOrder(var1);
+      this.localTransformation.setRotationOrder(var1);
    }
 
    public final void rotateEuler(int var1, int var2, int var3) {
-      this.globalTransform.addEulerAngles(var1, var2, var3);
+      this.compositeTransformation.addEulerAngles(var1, var2, var3);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final void roll(int var1) {
-      this.globalTransform.rotateAroundDir(var1);
+      this.compositeTransformation.rotateAroundDir(var1);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final void pitch(int var1) {
-      this.globalTransform.rotateAroundRight(var1);
+      this.compositeTransformation.rotateAroundRight(var1);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final void yaw(int var1) {
-      this.globalTransform.rotateAroundUp(var1);
+      this.compositeTransformation.rotateAroundUp(var1);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final void setRotation(int var1, int var2, int var3) {
-      this.globalTransform.setRotation(var1, var2, var3);
+      this.compositeTransformation.setRotation(var1, var2, var3);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final int getEulerX() {
-      return this.globalTransform.getEulerX();
+      return this.compositeTransformation.getEulerX();
    }
 
    public final int getEulerY() {
-      return this.globalTransform.getEulerY();
+      return this.compositeTransformation.getEulerY();
    }
 
    public final int getEulerZ() {
-      return this.globalTransform.getEulerZ();
+      return this.compositeTransformation.getEulerZ();
    }
 
    public final void setScale(int var1, int var2, int var3) {
-      this.globalTransform.setScale(var1, var2, var3);
+      this.compositeTransformation.setScale(var1, var2, var3);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final AEVector3D copyScaleTo(AEVector3D var1) {
-      return this.globalTransform.copyScaleTo(var1);
+      return this.compositeTransformation.copyScaleTo(var1);
    }
 
    public final AEVector3D getScale() {
-      return this.globalTransform.getScale();
+      return this.compositeTransformation.getScale();
    }
 
-   public final Matrix getTransform() {
-      return this.globalTransform;
+   public final Matrix getToParentTransform() {
+      return this.compositeTransformation;
    }
 
-   public final Matrix getTempTransform() {
-      return this.tempTransform;
+   public final Matrix getLocalTransform() {
+      return this.localTransformation;
    }
 
    public final void setTransform(Matrix var1) {
-      this.globalTransform.set(var1);
+      this.compositeTransformation.set(var1);
       this.transformDirty_ = true;
       this.markDirty();
    }
 
    public final Matrix getInverseTransform(Matrix var1) {
-      return this.globalTransform.getInverse(var1);
+      return this.compositeTransformation.getInverse(var1);
    }
 
    public final void setTransform(AEVector3D var1, AEVector3D var2, AEVector3D var3) {
-      this.globalTransform.setRows(var1, var2, var3);
+      this.compositeTransformation.setRows(var1, var2, var3);
       this.transformDirty_ = true;
       this.markDirty();
    }

@@ -55,7 +55,7 @@ public abstract class KIPlayer {
       if (this.mainMesh_ != null) {
          this.mainMesh_.moveTo(var5, var6, var7);
          this.mainMesh_.setRotation(0, 0, 0);
-         this.player.transform = var4.getTransform();
+         this.player.transform = var4.getToParentTransform();
       }
 
       this.player.setKIPlayer(this);
@@ -101,7 +101,7 @@ public abstract class KIPlayer {
       this.geometry = var1;
       this.geometry.moveTo(this.targetX, this.targetY, this.targetZ);
       this.geometry.setRotation(0, 0, 0);
-      this.player.transform = var1.getTransform();
+      this.player.transform = var1.getToParentTransform();
    }
 
    public final void setJumper(boolean var1) {
@@ -247,9 +247,9 @@ public abstract class KIPlayer {
 
    public AEVector3D getPosition(AEVector3D var1) {
       if (this.mainMesh_ != null) {
-         return this.mainMesh_.getTempTransformPos(var1);
+         return this.mainMesh_.getLocalPos(var1);
       } else {
-         return this.geometry != null ? this.geometry.getTempTransformPos(var1) : null;
+         return this.geometry != null ? this.geometry.getLocalPos(var1) : null;
       }
    }
 
@@ -297,7 +297,7 @@ public abstract class KIPlayer {
 
       this.waste.setRenderLayer(2);
       this.waste.moveTo(this.mainMesh_ != null ? this.mainMesh_.getPostition() : this.geometry.getPostition());
-      this.player.transform = this.waste.getTransform();
+      this.player.transform = this.waste.getToParentTransform();
       this.player.setKIPlayer(this);
    }
 

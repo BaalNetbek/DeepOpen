@@ -80,7 +80,7 @@ public final class LaserGun extends AbstractMesh implements AbstractGun {
             this.directionLocked = true;
          }
 
-         Matrix var1 = this.level.getPlayer().shipGrandGroup_.getTransform();
+         Matrix var1 = this.level.getPlayer().shipGrandGroup_.getToParentTransform();
          this.muzzlePos2.set(var1.getPosition(muzzlePos));
          if (this.gun.muzzleOffset != null) {
             muzzlePos.set(this.gun.muzzleOffset);

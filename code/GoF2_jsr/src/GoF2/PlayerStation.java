@@ -97,7 +97,7 @@ public final class PlayerStation extends PlayerStaticFar {
    public final void update(long var1) {
       if (this.stationParts != null) {
          for(int var3 = 0; var3 < this.stationParts.length; ++var3) {
-            this.tempVector_ = GlobalStatus.renderer.getCamera().getTempTransformPos(this.tempVector_);
+            this.tempVector_ = GlobalStatus.renderer.getCamera().getLocalPos(this.tempVector_);
             this.position.set(this.partPositions[var3 * 3], this.partPositions[var3 * 3 + 1], this.partPositions[var3 * 3 + 2]);
             this.position.subtract(this.tempVector_, virtDistToCam_);
             int var2;

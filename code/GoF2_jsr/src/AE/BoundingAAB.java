@@ -4,7 +4,19 @@ public final class BoundingAAB extends BoundingVolume {
    private int halfSizeX;
    private int halfSizeY;
    private int halfSizeZ;
-
+   
+   /**
+    * 
+    * @param var1 position x coordinate
+    * @param var2 position y coordinate
+    * @param var3 position z coordinate
+    * @param var4 center offset x
+    * @param var5 center offset y
+    * @param var6 center offset z
+    * @param var7 x dimension lenght
+    * @param var8 y dimension lenght
+    * @param var9 z dimension lenght
+    */
    public BoundingAAB(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
       super(var1, var2, var3, var4, var5, var6);
       this.halfSizeX = var7 >> 1;

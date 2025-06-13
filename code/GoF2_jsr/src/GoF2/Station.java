@@ -10,15 +10,15 @@ public final class Station {
    private Ship[] hangarShips;
    private Agent[] barAgents;
 
-   public Station(String var1, int var2, int var3, int var4, int var5) {
-      this.name = var1;
-      this.id = var2;
-      this.systemId = var3;
-      this.tecLevel = var4;
-      this.planetTextureId = var5;
-      this.hangarItems = null;
-      this.hangarShips = null;
-      this.barAgents = null;
+   public Station(final String name, final int id, final int systemId, final int tecLevel, final int planetTextureId) {
+       this.name = name;
+       this.id = id;
+       this.systemId = systemId;
+       this.tecLevel = tecLevel;
+       this.planetTextureId = planetTextureId;
+       this.hangarItems = null;
+       this.hangarShips = null;
+       this.barAgents = null;
    }
 
    public Station() {

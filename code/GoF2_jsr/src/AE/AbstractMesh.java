@@ -21,8 +21,8 @@ public abstract class AbstractMesh extends AEGeometry {
 
    public void appendToRender(Camera var1, Renderer var2) {
       if (this.draw && var1.isInViewFrustum(this.boundingSphere) != 0) {
-         this.matrix = var1.tempTransform.getInverse(this.matrix);
-         this.matrix.multiply(this.tempTransform);
+         this.matrix = var1.localTransformation.getInverse(this.matrix);
+         this.matrix.multiply(this.localTransformation);
          var2.drawNode(this.renderLayer, this);
       }
 
@@ -30,8 +30,8 @@ public abstract class AbstractMesh extends AEGeometry {
 
    public void forceAppendToRender(Camera var1, Renderer var2) {
       if (this.draw) {
-         this.matrix = var1.tempTransform.getInverse(this.matrix);
-         this.matrix.multiply(this.tempTransform);
+         this.matrix = var1.localTransformation.getInverse(this.matrix);
+         this.matrix.multiply(this.localTransformation);
          var2.drawNode(this.renderLayer, this);
       }
 

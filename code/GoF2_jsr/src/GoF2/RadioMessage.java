@@ -10,7 +10,13 @@ public final class RadioMessage {
    private boolean triggered;
    private boolean finished;
    private int lastWaypoint_;
-
+   /**
+    * 
+    * @param var1 text index
+    * @param var2 face index
+    * @param var3 trigger condition
+    * @param var4 trigger type
+    */
    public RadioMessage(int var1, int var2, int var3, int var4) {
       this.textId = var1;
       this.imageId = var2;

@@ -45,7 +45,15 @@ public final class Player {
    public int posX;
    public int posY;
    public int posZ;
-
+   
+   /**
+    * 
+    * @param var1 bounding sphere radius
+    * @param var2 hitpoints
+    * @param var3 primary weapons count
+    * @param var4 secondary weapons count
+    * @param var5 turrets count
+    */
    public Player(float var1, int var2, int var3, int var4, int var5) {
       this.radius = var1;
       this.hp = var2;

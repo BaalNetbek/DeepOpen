@@ -28,7 +28,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
       this.player.radius = (float)var7;
 
       for(var1 = 0; var1 < 10; ++var1) {
-         (var2 = AEResourceManager.getGeometryResource(6806)).setTransform(this.mainMesh_.getTransform());
+         (var2 = AEResourceManager.getGeometryResource(6806)).setTransform(this.mainMesh_.getToParentTransform());
          var2.roll((var1 + 1) * GlobalStatus.random.nextInt(400));
          var2.setAnimationMode((byte)2);
          var2.setAnimationSpeed(20 + GlobalStatus.random.nextInt(50));
@@ -39,7 +39,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
    }
 
    public final void reset(boolean var1) {
-      this.lifeTime = var1 ? '願' : 0;
+      this.lifeTime = var1 ? 39000 : 0;
       this.scale = 4096;
    }
 
@@ -102,7 +102,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
             }
          }
 
-         this.tempVector_ = GlobalStatus.renderer.getCamera().getTempTransformPos(this.tempVector_);
+         this.tempVector_ = GlobalStatus.renderer.getCamera().getLocalPos(this.tempVector_);
          this.position.set(this.posX, this.posY, this.posZ);
          this.position.subtract(this.tempVector_, virtDistToCam_);
          if ((var5 = virtDistToCam_.getLength()) > 28000) {

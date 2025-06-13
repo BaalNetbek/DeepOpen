@@ -24,7 +24,7 @@ public class PlayerStatic extends KIPlayer {
       if (this.mainMesh_ == null) {
          var1.set(this.posX, this.posY, this.posZ);
       } else {
-         var1.set(this.mainMesh_.getTempTransformPos(this.tempVector_));
+         var1.set(this.mainMesh_.getLocalPos(this.tempVector_));
       }
 
       return var1;

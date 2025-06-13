@@ -8,85 +8,87 @@ import java.io.InputStream;
 public final class FileRead {
    private static Class varClass;
 
-   public final Station loadStation(int var1) {
-      return loadStationsBinary(new short[]{(short)var1})[0];
+   public final Station loadStation(int id) {
+      return loadStationsBinary(new short[]{(short)id})[0];
    }
 
-   private static Station[] loadStationsBinary(short[] var0) {
-      Station[] var1 = null;
+   private static Station[] loadStationsBinary(short[] ids) {
+      Station[] stations = null;
 
       try {
          InputStream var2 = (varClass == null ? (varClass = getClassForName("java.lang.Class")) : varClass).getResourceAsStream("/data/txt/stations.bin");
-         DataInputStream var12 = new DataInputStream(var2);
-         var1 = new Station[var0.length];
-         int var8 = 0;
+         DataInputStream dis = new DataInputStream(var2);
+         stations = new Station[ids.length];
+         int loaded = 0;
 
-         for(int var9 = 0; var9 < 100; ++var9) {
-            String var3 = var12.readUTF();
-            int var4 = var12.readInt();
-            int var5 = var12.readInt();
-            int var6 = var12.readInt();
-            int var7 = var12.readInt();
+         for(int i = 0; i < 100; ++i) {
+            String name = dis.readUTF();
+            int staionId = dis.readInt();
+            int systemId = dis.readInt();
+            int tecLevel = dis.readInt();
+            int planetType = dis.readInt();
 
-            for(int var10 = 0; var10 < var0.length; ++var10) {
-               if (var0[var10] == var9) {
-                  var1[var8++] = new Station(var3, var4, var5, var6, var7);
+            for(int j = 0; j < ids.length; ++j) {
+               if (ids[j] == i) {
+                  stations[loaded] = new Station(name, staionId, systemId, tecLevel, planetType);
+                  loaded++;
                }
             }
          }
 
-         var12.close();
-      } catch (IOException var11) {
-         var11.printStackTrace();
+         dis.close();
+      } catch (IOException e) {
+         e.printStackTrace();
       }
 
-      return var1;
+      return stations;
    }
 
-   public static int[] loadShipParts(int var0) {
-      int[] var1 = null;
+   public static int[] loadShipParts(int shipId) {
+      int[] parts = null;
 
       try {
          InputStream var2 = (varClass == null ? (varClass = getClassForName("java.lang.Class")) : varClass).getResourceAsStream("/data/txt/shipparts_jsr.bin");
-         DataInputStream var7 = new DataInputStream(var2);
+         DataInputStream dis = new DataInputStream(var2);
 
-         for(int var3 = 0; var3 < 37; ++var3) {
-            if (var7.available() == 0) {
+         for(int i = 0; i < 37; ++i) {
+            if (dis.available() == 0) {
                return null;
             }
 
-            byte var4 = var7.readByte();
-            var1 = new int[var7.readByte() * 10];
+            byte id = dis.readByte();
+            byte partsCount = dis.readByte();
+            parts = new int[partsCount * 10];
 
-            for(int var5 = 0; var5 < var1.length; var5 += 10) {
-               var1[var5] = var7.readShort();
-               var1[var5 + 1] = var7.readInt();
-               var1[var5 + 2] = var7.readInt();
-               var1[var5 + 3] = var7.readInt();
-               var1[var5 + 4] = var7.readShort();
-               var1[var5 + 5] = var7.readShort();
-               var1[var5 + 6] = var7.readShort();
-               var1[var5 + 7] = var7.readShort();
-               var1[var5 + 8] = var7.readShort();
-               var1[var5 + 9] = var7.readShort();
+            for(int j = 0; j < parts.length; j += 10) {
+               parts[j] = dis.readShort();    // part id 
+               parts[j + 1] = dis.readInt();  // pos x
+               parts[j + 2] = dis.readInt();  // pos y
+               parts[j + 3] = dis.readInt();  // pos z
+               parts[j + 4] = dis.readShort();// rot x
+               parts[j + 5] = dis.readShort();// rot y
+               parts[j + 6] = dis.readShort();// rot z
+               parts[j + 7] = dis.readShort();// scale x
+               parts[j + 8] = dis.readShort();// scale y
+               parts[j + 9] = dis.readShort();// scale z
             }
 
-            if (var4 == var0 + 1) {
-               return var1;
+            if (id == shipId + 1) {
+               return parts;
             }
          }
 
-         var7.close();
+         dis.close();
       } catch (IOException var6) {
          var6.printStackTrace();
       }
 
-      return var1;
+      return parts;
    }
 
-   public static int[] loadStationParts(int var0, int var1) {
-      int[] var2 = null;
-      var0 = var1 == 1 ? 100 : var0;
+   public static int[] loadStationParts(int id, int race) {
+      int[] parts = null;
+      id = race == 1 ? 100 : id;
 
       try {
          InputStream var8 = (varClass == null ? (varClass = getClassForName("java.lang.Class")) : varClass).getResourceAsStream("/data/txt/stationparts.bin");
@@ -99,26 +101,27 @@ public final class FileRead {
 
             byte var4 = var9.readByte();
             short var5 = var9.readShort();
-            (var2 = new int[(var9.readByte() + 1) * 7])[0] = var5;
-            var2[1] = 0;
-            var2[2] = 0;
-            var2[3] = 0;
-            var2[4] = 0;
-            var2[5] = 2048;
-            var2[6] = 0;
+            parts = new int[(var9.readByte() + 1) * 7];
+            parts[0] = var5;
+            parts[1] = 0;
+            parts[2] = 0;
+            parts[3] = 0;
+            parts[4] = 0;
+            parts[5] = 2048;
+            parts[6] = 0;
 
-            for(int var10 = 7; var10 < var2.length; var10 += 7) {
-               var2[var10] = var9.readShort();
-               var2[var10 + 1] = var9.readInt();
-               var2[var10 + 2] = var9.readInt();
-               var2[var10 + 3] = var9.readInt();
-               var2[var10 + 4] = var9.readShort();
-               var2[var10 + 5] = var9.readShort();
-               var2[var10 + 6] = var9.readShort();
+            for(int var10 = 7; var10 < parts.length; var10 += 7) {
+               parts[var10] = var9.readShort();
+               parts[var10 + 1] = var9.readInt();
+               parts[var10 + 2] = var9.readInt();
+               parts[var10 + 3] = var9.readInt();
+               parts[var10 + 4] = var9.readShort();
+               parts[var10 + 5] = var9.readShort();
+               parts[var10 + 6] = var9.readShort();
             }
 
-            if (var4 == var0 + 1) {
-               return var2;
+            if (var4 == id + 1) {
+               return parts;
             }
          }
 
@@ -127,7 +130,7 @@ public final class FileRead {
          var7.printStackTrace();
       }
 
-      return var2;
+      return parts;
    }
 
    public static Station[] loadStationsBinary(SolarSystem var0) {
@@ -343,79 +346,81 @@ public final class FileRead {
       return var0;
    }
 
-   public static String[] loadNamesBinary(int var0, boolean var1, boolean var2) {
-      String[] var3 = null;
-      String var4 = null;
-      switch(var0) {
+   public static String[] loadNamesBinary(int race, boolean male, boolean firstName) {
+      String[] names = null;
+      String path = null;
+      switch(race) {
       case 0:
-         var4 = var2 ? (var1 ? "names_terran_0_m.bin" : "names_terran_0_w.bin") : "names_terran_1.bin";
+         path = firstName ? (male ? "names_terran_0_m.bin" : "names_terran_0_w.bin") : "names_terran_1.bin";
          break;
       case 1:
-         var4 = var2 ? "names_vossk_0.bin" : "names_vossk_1.bin";
+         path = firstName ? "names_vossk_0.bin" : "names_vossk_1.bin";
          break;
       case 2:
-         var4 = var2 ? "names_nivelian_0.bin" : "names_nivelian_1.bin";
+         path = firstName ? "names_nivelian_0.bin" : "names_nivelian_1.bin";
          break;
       case 3:
-         if (var2) {
-            var4 = GlobalStatus.random.nextInt(2) == 0 ? "names_terran_0_m.bin" : "names_nivelian_0.bin";
+         if (firstName) {
+            path = GlobalStatus.random.nextInt(2) == 0 ? "names_terran_0_m.bin" : "names_nivelian_0.bin";
          } else {
-            var4 = GlobalStatus.random.nextInt(2) == 0 ? "names_terran_1.bin" : "names_nivelian_1.bin";
+            path = GlobalStatus.random.nextInt(2) == 0 ? "names_terran_1.bin" : "names_nivelian_1.bin";
          }
          break;
       case 4:
-         var4 = var2 ? "names_multipod_0.bin" : "names_multipod_1.bin";
+         path = firstName ? "names_multipod_0.bin" : "names_multipod_1.bin";
          break;
       case 5:
-         if (!var2) {
+         if (!firstName) {
             return null;
          }
 
-         var4 = "names_cyborg_0.bin";
+         path = "names_cyborg_0.bin";
          break;
       case 6:
-         var4 = var2 ? "names_bobolan_0.bin" : "names_bobolan_1.bin";
+         path = firstName ? "names_bobolan_0.bin" : "names_bobolan_1.bin";
          break;
       case 7:
-         if (!var2) {
+         if (!firstName) {
             return null;
          }
 
-         var4 = "names_grey_0.bin";
+         path = "names_grey_0.bin";
          break;
       case 8:
-         if (var2) {
-            var4 = GlobalStatus.random.nextInt(2) == 0 ? "names_terran_0_m.bin" : "names_nivelian_0.bin";
+         if (firstName) {
+            path = GlobalStatus.random.nextInt(2) == 0 ? "names_terran_0_m.bin" : "names_nivelian_0.bin";
          } else {
-            var4 = GlobalStatus.random.nextInt(2) == 0 ? "names_terran_1.bin" : "names_nivelian_1.bin";
+            path = GlobalStatus.random.nextInt(2) == 0 ? "names_terran_1.bin" : "names_nivelian_1.bin";
          }
          break;
       default:
          return null;
       }
 
+      
       try {
-         var4 = "/data/txt/" + var4;
-         InputStream var6 = (varClass == null ? (varClass = getClassForName("java.lang.Class")) : varClass).getResourceAsStream(var4);
-         DataInputStream var7;
-         int var8;
-         var3 = new String[var8 = (var7 = new DataInputStream(var6)).readInt()];
+         path = "/data/txt/" + path;
+         if (varClass == null) varClass = getClassForName("java.lang.Class");
+         InputStream is = varClass.getResourceAsStream(path);
+         DataInputStream dis = new DataInputStream(is);
+         int namesCount = dis.readInt();
+         names = new String[namesCount];
 
-         for(int var9 = 0; var9 < var8; ++var9) {
-            var3[var9] = var7.readUTF();
+         for(int i = 0; i < namesCount; ++i) {
+            names[i] = dis.readUTF();
          }
 
-         var7.close();
-      } catch (IOException var5) {
-         var5.printStackTrace();
+         dis.close();
+      } catch (IOException e) {
+         e.printStackTrace();
       }
 
-      return var3;
+      return names;
    }
 
-   private static Class getClassForName(String var0) {
+   private static Class getClassForName(String classPath) {
       try {
-         return Class.forName(var0);
+         return Class.forName(classPath);
       } catch (ClassNotFoundException var1) {
          throw new NoClassDefFoundError(var1.getMessage());
       }

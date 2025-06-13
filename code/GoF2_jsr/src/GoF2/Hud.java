@@ -69,41 +69,27 @@ public final class Hud {
    private void init() {
       try {
          this.logMessages = new ListItem[20];
-         String var1 = "/data/interface/items.png";
          this.items = AEFile.loadImage("/data/interface/items.png", true);
-         var1 = "/data/interface/hud_hull_alarm_numbers.png";
          this.hullAlarmNumbers = new Sprite(AEFile.loadImage("/data/interface/hud_hull_alarm_numbers.png", true), 13, 12);
-         var1 = "/data/interface/hud_hull_alarm.png";
          this.hullAlarm = AEFile.loadImage("/data/interface/hud_hull_alarm.png", true);
-         var1 = "/data/interface/hud_symbol_shield_png24.png";
          this.symbolShield = AEFile.loadImage("/data/interface/hud_symbol_shield_png24.png", true);
-         var1 = "/data/interface/hud_symbol_hull_png24.png";
          this.symbolHull = AEFile.loadImage("/data/interface/hud_symbol_hull_png24.png", true);
-         var1 = "/data/interface/hud_hull_bar_empty_png24.png";
          this.hullBarEmpty = AEFile.loadImage("/data/interface/hud_hull_bar_empty_png24.png", true);
-         var1 = "/data/interface/hud_hull_bar_full_png24.png";
          this.hullBarFull = AEFile.loadImage("/data/interface/hud_hull_bar_full_png24.png", true);
-         var1 = "/data/interface/hud_hull_bar_hit_png24.png";
-         AEFile.loadImage("/data/interface/hud_hull_bar_hit_png24.png", true);
-         var1 = "/data/interface/hud_panel_upper_left_png24.png";
+         //AEFile.loadImage("/data/interface/hud_hull_bar_hit_png24.png", true); //unused
          Image var7 = AEFile.loadImage("/data/interface/hud_panel_upper_left_png24.png", true);
          this.panelUpperLeft = new Sprite(var7);
-         var1 = "/data/interface/hud_panel_lower_left_png24.png";
          var7 = AEFile.loadImage("/data/interface/hud_panel_lower_left_png24.png", true);
          this.panelLowerLeft = new Sprite(var7);
-         var1 = "/data/interface/hud_icons.png";
          var7 = AEFile.loadImage("/data/interface/hud_icons.png", true);
          this.hudIconsHeight = var7.getHeight();
          this.hudIcons = new Sprite(var7, this.hudIconsHeight, this.hudIconsHeight);
-         var1 = "/data/interface/quickmenu_crosshair_anim.png";
          var7 = AEFile.loadImage("/data/interface/quickmenu_crosshair_anim.png", true);
          this.quickmenuCrosshairAnim = new Sprite(var7, var7.getHeight(), var7.getHeight());
          this.quickmenuCrosshairAnim.defineReferencePixel(this.quickmenuCrosshairAnim.getWidth() >> 1, this.quickmenuCrosshairAnim.getHeight() >> 1);
-         var1 = "/data/interface/quickmenu.png";
          var7 = AEFile.loadImage("/data/interface/quickmenu.png", true);
          this.quickMenu = new Sprite(var7, var7.getHeight(), var7.getHeight());
          this.quickMenu.defineReferencePixel(this.quickMenu.getWidth() >> 1, this.quickMenu.getHeight() >> 1);
-         var1 = "/data/interface/hud_hit_png24.png";
          this.hit = AEFile.loadImage("/data/interface/hud_hit_png24.png", true);
          this.hullAlertMSDx = GlobalStatus.screenWidth / 2 - 21;
          this.hullAlertLSDx = this.hullAlertMSDx + 14;
@@ -269,92 +255,92 @@ public final class Hud {
 
    public final void hudEvent(int var1, PlayerEgo var2) {
       switch(var1) {
-      case 1:
+      case 1: //Auto fire on
          if (!this.hasWeapon) {
             return;
          }
 
          this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(15);
          break;
-      case 2:
+      case 2: //Auto fire off 
          if (!this.hasWeapon) {
             return;
          }
 
          this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(16);
          break;
-      case 3:
+      case 3: //Boost
          if (!this.drawBoostIcon || !var2.readyToBoost()) {
             return;
          }
 
          this.tempLogMsg = GlobalStatus.gameText.getText(154);
          break;
-      case 4:
+      case 4: //Booster ready
          if (!this.drawBoostIcon) {
             return;
          }
 
          this.tempLogMsg = GlobalStatus.gameText.getText(155);
          break;
-      case 5:
+      case 5: //Autopilot on
          this.tempLogMsg = GlobalStatus.gameText.getText(292) + " " + GlobalStatus.gameText.getText(15);
          break;
-      case 6:
+      case 6: //Autopilot off
          this.tempLogMsg = GlobalStatus.gameText.getText(292) + " " + GlobalStatus.gameText.getText(16);
          break;
-      case 7:
+      case 7: //Autopilot is activated!
          this.tempLogMsg = GlobalStatus.gameText.getText(276);
          break;
-      case 8:
+      case 8: //Mining failed
          this.tempLogMsg = GlobalStatus.gameText.getText(263);
          break;
-      case 9:
+      case 9: //No tractor beam installed
          this.tempLogMsg = GlobalStatus.gameText.getText(264);
          break;
-      case 10:
+      case 10: //Target: [name] Station
          this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + Status.getStation().getName() + " " + GlobalStatus.gameText.getText(40);
          break;
-      case 11:
+      case 11: //Target: Asteroid
          this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(274);
          break;
-      case 12:
+      case 12: //Target: Jump gate
          this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(271);
          break;
-      case 13:
+      case 13: //Target: Waypoint
          this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(272);
          break;
-      case 14:
+      case 14: //Target: Asteroid field
          this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(273);
          break;
-      case 15:
+      case 15: //Target: Wormhole (unused)
          this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(269);
          break;
-      case 16:
+      case 16: //Fire at will
          this.tempLogMsg = GlobalStatus.gameText.getText(147);
          break;
-      case 17:
+      case 17: //Attack my target
          this.tempLogMsg = GlobalStatus.gameText.getText(148);
          break;
-      case 18:
+      case 18: //Secure next wapoint
          this.tempLogMsg = GlobalStatus.gameText.getText(149);
          break;
-      case 19:
+      case 19: //unknown?, unused
          this.tempLogMsg = this.actionmenuLabels[4][3];
          break;
-      case 20:
+      case 20: //No drill installed.
          this.tempLogMsg = GlobalStatus.gameText.getText(265);
          break;
-      case 21:
+      case 21: //Not possible while on a mission.
          this.tempLogMsg = GlobalStatus.gameText.getText(254);
          break;
-      case 22:
+      case 22: //Nothing to salvage.
          this.tempLogMsg = GlobalStatus.gameText.getText(266);
          break;
-      case 23:
+      case 23: //Waypoint reached
          this.tempLogMsg = GlobalStatus.gameText.getText(267);
          break;
-      case 24:
+      case 24: //Last waypoint reached
          this.tempLogMsg = GlobalStatus.gameText.getText(268);
       }
 

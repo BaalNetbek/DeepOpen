@@ -108,7 +108,7 @@ public final class TargetFollowCamera implements CameraController_ {
 
    public final void lockPosition() {
       this.lockedPosition = true;
-      this.cameraPos = this.target.getTempTransform().transformVector2(this.cameraPositionOffset, this.cameraPos);
+      this.cameraPos = this.target.getLocalTransform().transformVector2(this.cameraPositionOffset, this.cameraPos);
       this.camera.moveTo(this.cameraPos);
    }
 
@@ -131,14 +131,14 @@ public final class TargetFollowCamera implements CameraController_ {
                this.lastCameraDir.set(this.cameraDir);
                this.cameraUp = this.target.getUp();
                this.cameraUp.normalize();
-               this.cameraDir = this.target.getTempTransform().transformVector2(this.cameraPositionOffset, this.cameraDir);
+               this.cameraDir = this.target.getLocalTransform().transformVector2(this.cameraPositionOffset, this.cameraDir);
                AEVector3D var10000 = this.cameraPos;
                var10000.x -= this.cameraPos.x - this.cameraDir.x >> 3;
                var10000 = this.cameraPos;
                var10000.y -= this.cameraPos.y - this.cameraDir.y >> 3;
                var10000 = this.cameraPos;
                var10000.z -= this.cameraPos.z - this.cameraDir.z >> 3;
-               this.cameraDir = this.target.getTempTransform().transformVector2(this.cameraRotation_, this.cameraDir);
+               this.cameraDir = this.target.getLocalTransform().transformVector2(this.cameraRotation_, this.cameraDir);
                var10000 = this.cameraDir;
                var10000.x -= this.cameraPos.x;
                var10000 = this.cameraDir;

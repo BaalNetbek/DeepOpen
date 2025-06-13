@@ -76,9 +76,9 @@ public final class PlayerFixedObject extends KIPlayer {
       this.targetY = var2;
       this.targetZ = var3;
       this.geometry.moveTo(var1, var2, var3);
-      this.player.transform = this.geometry.getTransform();
-      this.pos = this.geometry.getTempTransformPos(this.pos);
-      this.lasSetPos = this.geometry.getTempTransformPos(this.lasSetPos);
+      this.player.transform = this.geometry.getToParentTransform();
+      this.pos = this.geometry.getLocalPos(this.pos);
+      this.lasSetPos = this.geometry.getLocalPos(this.lasSetPos);
       if (this.bounds != null) {
          for(var1 = 0; var1 < this.bounds.length; ++var1) {
             this.bounds[var1].setPosition(this.player.transform.getPositionX(), this.player.transform.getPositionY(), this.player.transform.getPositionZ());
@@ -99,8 +99,8 @@ public final class PlayerFixedObject extends KIPlayer {
    public final void moveForward(int var1) {
       this.posZ += var1;
       this.geometry.moveForward(var1);
-      this.player.transform = this.geometry.getTransform();
-      this.pos = this.geometry.getTempTransformPos(this.pos);
+      this.player.transform = this.geometry.getToParentTransform();
+      this.pos = this.geometry.getLocalPos(this.pos);
       if (this.bounds != null) {
          for(var1 = 0; var1 < this.bounds.length; ++var1) {
             this.bounds[var1].setPosition(this.player.transform.getPositionX(), this.player.transform.getPositionY(), this.player.transform.getPositionZ());
@@ -150,13 +150,13 @@ public final class PlayerFixedObject extends KIPlayer {
          this.moveForward((int)var1);
       }
 
-      this.tempVector_ = GlobalStatus.renderer.getCamera().getTempTransformPos(this.tempVector_);
+      this.tempVector_ = GlobalStatus.renderer.getCamera().getLocalPos(this.tempVector_);
       this.position.set(this.posX, this.posY, this.posZ);
       this.position.subtract(this.tempVector_, this.distToCamera);
       int var6;
       int var9;
       if ((var6 = this.distToCamera.getLength()) > 28000) {
-         this.geometry.setTransform(this.geometry.getTransform());
+         this.geometry.setTransform(this.geometry.getToParentTransform());
          this.distToCamera.normalize();
          this.distToCamera.scale(28000);
          this.distToCamera.add(this.tempVector_);
@@ -178,7 +178,7 @@ public final class PlayerFixedObject extends KIPlayer {
 
          this.state = 3;
          if (this.explosion != null) {
-            this.position = this.geometry.getTempTransformPos(this.position);
+            this.position = this.geometry.getLocalPos(this.position);
             this.explosion.start(this.position.x, this.position.y, this.position.z);
          }
 
@@ -209,7 +209,7 @@ public final class PlayerFixedObject extends KIPlayer {
          var6 = 0;
 
          for(GraphNode var5 = this.geometry.getEndNode(); var5 != null; var5 = var5.getParent()) {
-            this.tempVector_ = var5.getTransform().getPosition(this.tempVector_);
+            this.tempVector_ = var5.getToParentTransform().getPosition(this.tempVector_);
             this.tempVector_.normalize();
             this.tempVector_.scale(100 + GlobalStatus.random.nextInt(100));
             this.postExposionPartPos[var6] = new AEVector3D(this.tempVector_);

@@ -150,7 +150,7 @@ public final class CutScene extends IApplicationModule {
 
    public final void replacePlayerShip(int var1, int var2) {
       if (this.level.getEnemies() != null && this.level.getEnemies()[0] != null && this.level.getEnemies()[0].geometry != null) {
-         Matrix var3 = this.level.getEnemies()[0].geometry.getTransform();
+         Matrix var3 = this.level.getEnemies()[0].geometry.getToParentTransform();
          this.level.getEnemies()[0].setGroup(Globals.getShipGroup(var1, var2), var1);
          this.level.getEnemies()[0].geometry.setTransform(var3);
       }

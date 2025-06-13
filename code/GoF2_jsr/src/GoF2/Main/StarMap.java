@@ -407,7 +407,7 @@ public final class StarMap {
    private void updateCameraTrack() {
       int var1 = this.scopingOut ? 0 : this.selectedPlanet + 2;
       int var2 = this.scopingOut ? -6000 : -4000;
-      this.tmpStarScreenPos2 = this.localStarAndPlanetsMeshes[var1].getTempTransformPos(this.tmpStarScreenPos2);
+      this.tmpStarScreenPos2 = this.localStarAndPlanetsMeshes[var1].getLocalPos(this.tmpStarScreenPos2);
       this.smoothCamTransitionX.SetRange(this.starNetCamera_.getPosX(), this.tmpStarScreenPos2.x);
       this.smoothCamTransitionY.SetRange(this.starNetCamera_.getPosY(), this.tmpStarScreenPos2.y);
       this.smoothCamTransitionZ.SetRange(this.starNetCamera_.getPosZ(), this.tmpStarScreenPos2.z + var2);
@@ -482,7 +482,7 @@ public final class StarMap {
 
          for(var1 = 0; var1 < this.systems.length; ++var1) {
             if (Status.getVisibleSystems()[var1]) {
-               this.starNetCamera_.getScreenPosition(this.stars[var1].getTempTransformPos(this.tmpStarScreenPos2));
+               this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
                if (this.tmpStarScreenPos2.z < 0 && this.curScreenPosX > (float)(this.tmpStarScreenPos2.x - 20) && this.curScreenPosX < (float)(this.tmpStarScreenPos2.x + 20) && this.curScreenPosY > (float)(this.tmpStarScreenPos2.y - 20) && this.curScreenPosY < (float)(this.tmpStarScreenPos2.y + 20)) {
                   float var9 = ((float)this.tmpStarScreenPos2.x - this.curScreenPosX) / 4.0F;
                   float var4 = ((float)this.tmpStarScreenPos2.y - this.curScreenPosY) / 4.0F;
@@ -518,9 +518,9 @@ public final class StarMap {
             }
          }
       } else if (this.state == 1) {
-         this.tmpStarScreenPos2 = this.starNetCamera_.getTempTransformPos(this.tmpStarScreenPos2);
-         if (this.tmpStarScreenPos2.z < this.stars[this.selectedSystem].getTempTransformPosZ() - 150) {
-            this.tmpStarScreenPos2.subtract(this.stars[this.selectedSystem].getTempTransformPos());
+         this.tmpStarScreenPos2 = this.starNetCamera_.getLocalPos(this.tmpStarScreenPos2);
+         if (this.tmpStarScreenPos2.z < this.stars[this.selectedSystem].getLocalPosZ() - 150) {
+            this.tmpStarScreenPos2.subtract(this.stars[this.selectedSystem].getLocalPos());
             this.tmpStarScreenPos2.scale(-1024);
             this.starNetCamera_.translate(this.tmpStarScreenPos2);
          } else {
@@ -549,7 +549,7 @@ public final class StarMap {
                this.starNetCamera_.moveTo((int)this.scrollX * 20, (int)this.scrollY * 20, this.starNetCamera_.getPosZ());
                if (this.wormhole != null && this.galaxyMapGroup != null) {
                   this.galaxyMapGroup.uniqueAppend_(this.wormhole);
-                  this.wormhole.getTransform().identity();
+                  this.wormhole.getToParentTransform().identity();
                   this.wormhole.setScale(512, 512, 512);
                   this.wormhole.moveTo(this.stars[Status.wormholeSystem].getPostition());
                }
@@ -751,7 +751,7 @@ public final class StarMap {
       }
 
       if (this.systems[this.selectedSystem].getId() == Status.getSystem().getId()) {
-         this.arrow.setTransform(this.localStarAndPlanetsMeshes[this.systems[this.selectedSystem].getStationEnumIndex(Status.getStation().getId()) + 2].getTransform());
+         this.arrow.setTransform(this.localStarAndPlanetsMeshes[this.systems[this.selectedSystem].getStationEnumIndex(Status.getStation().getId()) + 2].getToParentTransform());
          this.arrow.setRotation(512, 0, -1024);
          this.localSystem.uniqueAppend_(this.arrow);
       }
@@ -836,7 +836,7 @@ public final class StarMap {
       switch(this.state) {
       case 0:
          GlobalStatus.graphics.setColor(Layout.uiOuterTopRightOutlineColor);
-         this.starNetCamera_.getScreenPosition(this.stars[Status.getSystem().getId()].getTempTransformPos(this.tmpStarScreenPos1));
+         this.starNetCamera_.getScreenPosition(this.stars[Status.getSystem().getId()].getLocalPos(this.tmpStarScreenPos1));
          var1 = this.selectedSystem;
          this.selectedSystem = -1;
          int[] var2 = Status.getSystem().getNeighbourSystems();
@@ -846,7 +846,7 @@ public final class StarMap {
          float var12;
          for(var3 = 0; var3 < this.systems.length; ++var3) {
             if (Status.getVisibleSystems()[var3]) {
-               this.starNetCamera_.getScreenPosition(this.stars[var3].getTempTransformPos(this.tmpStarScreenPos2));
+               this.starNetCamera_.getScreenPosition(this.stars[var3].getLocalPos(this.tmpStarScreenPos2));
                if (this.tmpStarScreenPos2.z < 0) {
                   if (this.curScreenPosX > (float)(this.tmpStarScreenPos2.x - 10) && this.curScreenPosX < (float)(this.tmpStarScreenPos2.x + 10) && this.curScreenPosY > (float)(this.tmpStarScreenPos2.y - 10) && this.curScreenPosY < (float)(this.tmpStarScreenPos2.y + 10)) {
                      this.selectedSystem = var3;
@@ -886,8 +886,8 @@ public final class StarMap {
 
          if (this.pathToDestination_ != null) {
             for(var3 = 0; var3 < this.pathToDestination_.length - 1; ++var3) {
-               this.starNetCamera_.getScreenPosition(this.stars[this.pathToDestination_[var3]].getTempTransformPos(this.tmpStarScreenPos1));
-               this.starNetCamera_.getScreenPosition(this.stars[this.pathToDestination_[var3 + 1]].getTempTransformPos(this.tmpStarScreenPos2));
+               this.starNetCamera_.getScreenPosition(this.stars[this.pathToDestination_[var3]].getLocalPos(this.tmpStarScreenPos1));
+               this.starNetCamera_.getScreenPosition(this.stars[this.pathToDestination_[var3 + 1]].getLocalPos(this.tmpStarScreenPos2));
                float var11 = (float)(this.tmpStarScreenPos2.x - this.tmpStarScreenPos1.x) / 10.0F;
                var12 = (float)(this.tmpStarScreenPos2.y - this.tmpStarScreenPos1.y) / 10.0F;
                var6 = var11 * 2.0F;
@@ -1030,9 +1030,9 @@ public final class StarMap {
       }
 
       if (var2) {
-         this.starNetCamera_.getScreenPosition(this.localStarAndPlanetsMeshes[var1 + 2].getTempTransformPos(this.tmpStarScreenPos2));
+         this.starNetCamera_.getScreenPosition(this.localStarAndPlanetsMeshes[var1 + 2].getLocalPos(this.tmpStarScreenPos2));
       } else {
-         this.starNetCamera_.getScreenPosition(this.stars[var1].getTempTransformPos(this.tmpStarScreenPos2));
+         this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
       }
 
       boolean var11 = false;
@@ -1095,7 +1095,7 @@ public final class StarMap {
          SolarSystem var4 = this.systems[this.selectedSystem];
          GlobalStatus.graphics.setColor(var4.starR, var4.starG, var4.starB);
          GlobalStatus.graphics.fillRect(this.windowFrameWidth, this.windowFrameHeight, this.mapInnerWidth, this.mapInnerHeight);
-         this.tmpStarScreenPos2 = this.localStarAndPlanetsMeshes[0].getTempTransformPos(this.tmpStarScreenPos2);
+         this.tmpStarScreenPos2 = this.localStarAndPlanetsMeshes[0].getLocalPos(this.tmpStarScreenPos2);
          this.starNetCamera_.getScreenPosition(this.tmpStarScreenPos2);
          int var5 = this.tmpStarScreenPos2.x;
          var3 = this.tmpStarScreenPos2.y;
@@ -1121,18 +1121,18 @@ public final class StarMap {
             if (this.stars[var1].isVisible() && (!this.discoverSystemCutscene || this.discoveredSystemId != var1 || this.newSystemAnimTime >= 4000)) {
                int[] var2;
                if ((var2 = this.systems[var1].getNeighbourSystems()) != null) {
-                  this.starNetCamera_.getScreenPosition(this.stars[var1].getTempTransformPos(this.tmpStarScreenPos2));
+                  this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
                   GlobalStatus.graphics.setColor(Layout.uiOuterTopRightOutlineColor);
 
                   for(var3 = 0; var3 < var2.length; ++var3) {
                      if (this.stars[var2[var3]].isVisible() && (!this.discoverSystemCutscene || this.discoveredSystemId != var3 || this.newSystemAnimTime >= 4000)) {
-                        this.starNetCamera_.getScreenPosition(this.stars[var2[var3]].getTempTransformPos(this.tmpStarScreenPos1));
+                        this.starNetCamera_.getScreenPosition(this.stars[var2[var3]].getLocalPos(this.tmpStarScreenPos1));
                         GlobalStatus.graphics.drawLine(this.tmpStarScreenPos2.x, this.tmpStarScreenPos2.y, this.tmpStarScreenPos1.x, this.tmpStarScreenPos1.y);
                      }
                   }
                }
 
-               GlobalStatus.renderer.getCamera().getScreenPosition(this.stars[var1].getTempTransformPos(this.tmpStarScreenPos2));
+               GlobalStatus.renderer.getCamera().getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
                if (this.tmpStarScreenPos2.z < 0) {
                   GlobalStatus.graphics.drawImage(this.sunGlow, this.tmpStarScreenPos2.x, this.tmpStarScreenPos2.y, 3);
                }

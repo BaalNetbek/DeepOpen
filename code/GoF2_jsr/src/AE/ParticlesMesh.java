@@ -12,91 +12,121 @@ import javax.microedition.m3g.TriangleStripArray;
 import javax.microedition.m3g.VertexArray;
 import javax.microedition.m3g.VertexBuffer;
 
+/**
+ * Represents collection of 3D sprites.
+ * @author Fishlabs
+ *
+ */
 public final class ParticlesMesh extends AbstractMesh {
    private static Transform calcTransform = new Transform();
    private static AEVector3D tempPos = new AEVector3D();
    private Appearance appearance;
    private static PolygonMode polygonMode;
-   private int fragCount;
-   private Mesh fragment;
-   private int[] fragPos;
-   private int[] fragColors;
-   private int[] fragScales;
+   private int count;
+   private Mesh particle;
+   private int[] positions;
+   private int[] vertexColors;
+   private int[] scales;
    private float defualtScale;
-   private byte materialType;
-
+   private byte blending;
+   /**
+    * 
+    * @param var1 uv cooridinates scaling factor 
+    * @param var2 top-right x texture cooridnate (u)	
+    * @param var3 top-right y texture cooridnate (v)
+    * @param var4 bott-left x texture cooridnate (u)
+    * @param var5 bott-left y texture cooridnate (v)
+    * @param var6 default particle size
+    * @param var7 particles count
+    * @param var8 blending mode:
+    * 	0 	- replace;
+    * 	1,3 - alpha;
+    * 	2 	- add;
+    */
    public ParticlesMesh(int var1, int var2, int var3, int var4, int var5, int var6, int var7, byte var8) {
-      this.materialType = var8;
+      this.blending = var8;
       this.appearance = new Appearance();
-      CompositingMode var9 = new CompositingMode();
+      CompositingMode composMode = new CompositingMode();
       switch(var8) {
       case 0:
-         var9.setBlending(68);
-         var9.setDepthWriteEnable(true);
-         var9.setDepthTestEnable(true);
+         composMode.setBlending(CompositingMode.REPLACE);
+         composMode.setDepthWriteEnable(true);
+         composMode.setDepthTestEnable(true);
          break;
       case 1:
       case 3:
-         var9.setBlending(64);
-         var9.setDepthWriteEnable(false);
-         var9.setDepthTestEnable(true);
+         composMode.setBlending(CompositingMode.ALPHA);
+         composMode.setDepthWriteEnable(false);
+         composMode.setDepthTestEnable(true);
          break;
       case 2:
-         var9.setBlending(65);
-         var9.setDepthWriteEnable(false);
-         var9.setDepthTestEnable(true);
+         composMode.setBlending(CompositingMode.ALPHA_ADD);
+         composMode.setDepthWriteEnable(false);
+         composMode.setDepthTestEnable(true);
       }
 
-      this.appearance.setCompositingMode(var9);
+      this.appearance.setCompositingMode(composMode);
       if (polygonMode == null) {
-         (polygonMode = new PolygonMode()).setCulling(160);
-         polygonMode.setShading(164);
+    	 polygonMode = new PolygonMode();
+         polygonMode.setCulling(PolygonMode.CULL_BACK);
+         polygonMode.setShading(PolygonMode.SHADE_FLAT);
          polygonMode.setPerspectiveCorrectionEnable(false);
       }
 
       this.appearance.setPolygonMode(polygonMode);
-      this.fragCount = var7;
-      this.fragPos = new int[var7 * 3];
-      this.fragColors = new int[var7];
+      this.count = var7;
+      this.positions = new int[var7 * 3];
+      this.vertexColors = new int[var7];
 
-      for(var7 = 0; var7 < this.fragColors.length; ++var7) {
-         this.fragColors[var7] = -1;
+      for(int i = 0; i < this.vertexColors.length; ++i) {
+         this.vertexColors[i] = 0xffffffff;
       }
-
-      VertexBuffer var16 = new VertexBuffer();
-      VertexArray var17 = new VertexArray(4, 3, 1);
-      VertexArray var18 = new VertexArray(4, 2, 1);
-      byte[] var10 = new byte[]{-1, 1, 0, 1, 1, 0, 1, -1, 0, -1, -1, 0};
-      var17.set(0, 4, var10);
-      byte[] var13 = new byte[]{(byte)var2, (byte)var3, (byte)var4, (byte)var3, (byte)var4, (byte)var5, (byte)var2, (byte)var5};
-      var18.set(0, 4, var13);
-      float[] var14 = new float[]{0.0F, 0.0F, 0.0F};
-      var16.setPositions(var17, 1.0F, var14);
-      var14 = new float[]{0.0F, 0.0F};
-      var16.setTexCoords(0, var18, 1.0F / (float)var1, var14);
-      int[] var11 = new int[]{0, 2, 1, 3, 2, 0};
-      int[] var15 = new int[]{3, 3};
-      TriangleStripArray var12 = new TriangleStripArray(var11, var15);
-      this.fragment = new Mesh(var16, var12, this.appearance);
+      // Building a square
+      VertexBuffer vBuffer = new VertexBuffer();
+      VertexArray vcArr = new VertexArray(4, 3, 1);
+      VertexArray uvArr = new VertexArray(4, 2, 1);
+      vcArr.set(0, 4, new byte[]{
+    		  -1, 1, 0, // top-left
+    		  1, 1, 0,  // top-right
+    		  1, -1, 0, // bot-right
+    		  -1, -1, 0 // bot-left
+    		  });
+      uvArr.set(0, 4, new byte[]{
+    		  (byte)var2, (byte)var3, 
+    		  (byte)var4, (byte)var3, 
+    		  (byte)var4, (byte)var5,
+    		  (byte)var2, (byte)var5
+    		  });
+      vBuffer.setPositions(vcArr, 1.0F, new float[]{0.0F, 0.0F, 0.0F});
+      vBuffer.setTexCoords(0, uvArr, 1.0F / (float)var1, new float[]{0.0F, 0.0F});
+      
+      int[] tris = new int[]{
+    		  0, 2, 1,
+    		  3, 2, 0
+    		  };
+      int[] strips = new int[]{3, 3};
+      TriangleStripArray tStrips = new TriangleStripArray(tris, strips);
+      
+      this.particle = new Mesh(vBuffer, tStrips, this.appearance);
       this.radius = var6 >> 1;
       this.defualtScale = (float)(var6 >> 1);
-      this.fragScales = null;
+      this.scales = null;
    }
 
    private ParticlesMesh(ParticlesMesh var1) {
-      this.fragCount = var1.fragCount;
-      this.fragPos = new int[3 * this.fragCount];
-      this.fragColors = new int[this.fragCount];
-      System.arraycopy(var1.fragColors, 0, this.fragColors, 0, this.fragColors.length);
-      System.arraycopy(var1.fragPos, 0, this.fragPos, 0, this.fragPos.length);
-      this.fragment = var1.fragment;
+      this.count = var1.count;
+      this.positions = new int[3 * this.count];
+      this.vertexColors = new int[this.count];
+      System.arraycopy(var1.vertexColors, 0, this.vertexColors, 0, this.vertexColors.length);
+      System.arraycopy(var1.positions, 0, this.positions, 0, this.positions.length);
+      this.particle = var1.particle;
       this.radius = var1.radius;
       this.defualtScale = var1.defualtScale;
       this.draw = var1.draw;
       this.renderLayer = var1.renderLayer;
-      if (var1.fragScales != null) {
-         this.fragScales = new int[this.fragCount];
-         System.arraycopy(var1.fragScales, 0, this.fragScales, 0, this.fragScales.length);
+      if (var1.scales != null) {
+         this.scales = new int[this.count];
+         System.arraycopy(var1.scales, 0, this.scales, 0, this.scales.length);
       }
 
    }
@@ -110,8 +140,8 @@ public final class ParticlesMesh extends AbstractMesh {
 
    public final void appendToRender(Camera var1, Renderer var2) {
       if (this.draw) {
-         this.matrix = var1.tempTransform.getInverse(this.matrix);
-         this.matrix.multiply(this.tempTransform);
+         this.matrix = var1.localTransformation.getInverse(this.matrix);
+         this.matrix.multiply(this.localTransformation);
          var2.drawNode(this.renderLayer, this);
       }
 
@@ -122,22 +152,22 @@ public final class ParticlesMesh extends AbstractMesh {
    }
 
    public final void render() {
-      if (this.materialType == 0) {
+      if (this.blending == 0) {
          int var1 = 0;
 
-         for(int var2 = 0; var2 < this.fragCount; var1 += 3) {
-            tempPos.set(this.fragPos[var1], this.fragPos[var1 + 1], this.fragPos[var1 + 2]);
+         for(int var2 = 0; var2 < this.count; var1 += 3) {
+            tempPos.set(this.positions[var1], this.positions[var1 + 1], this.positions[var1 + 2]);
             tempPos = this.matrix.transformVector(tempPos);
             calcTransform.setIdentity();
             calcTransform.postTranslate((float)tempPos.x, (float)tempPos.y, (float)tempPos.z);
-            if (this.fragScales != null) {
-               calcTransform.postScale((float)(this.fragScales[var2] >> 1), (float)(this.fragScales[var2] >> 1), (float)(this.fragScales[var2] >> 1));
+            if (this.scales != null) {
+               calcTransform.postScale((float)(this.scales[var2] >> 1), (float)(this.scales[var2] >> 1), (float)(this.scales[var2] >> 1));
             } else {
                calcTransform.postScale(this.defualtScale, this.defualtScale, this.defualtScale);
             }
 
-            this.fragment.getVertexBuffer().setDefaultColor(this.fragColors[var2]);
-            AEGraphics3D.graphics3D.render(this.fragment, calcTransform);
+            this.particle.getVertexBuffer().setDefaultColor(this.vertexColors[var2]);
+            AEGraphics3D.graphics3D.render(this.particle, calcTransform);
             ++var2;
          }
       }
@@ -145,23 +175,23 @@ public final class ParticlesMesh extends AbstractMesh {
    }
 
    public final void renderTransparent() {
-      if (this.materialType != 0) {
+      if (this.blending != 0) {
          int var1 = 0;
 
-         for(int var2 = 0; var2 < this.fragCount; var1 += 3) {
-            tempPos.set(this.fragPos[var1], this.fragPos[var1 + 1], this.fragPos[var1 + 2]);
+         for(int i = 0; i < this.count; var1 += 3) {
+            tempPos.set(this.positions[var1], this.positions[var1 + 1], this.positions[var1 + 2]);
             tempPos = this.matrix.transformVector(tempPos);
             calcTransform.setIdentity();
             calcTransform.postTranslate((float)tempPos.x, (float)tempPos.y, (float)tempPos.z);
-            if (this.fragScales != null) {
-               calcTransform.postScale((float)(this.fragScales[var2] >> 1), (float)(this.fragScales[var2] >> 1), (float)(this.fragScales[var2] >> 1));
+            if (this.scales != null) {
+               calcTransform.postScale((float)(this.scales[i] >> 1), (float)(this.scales[i] >> 1), (float)(this.scales[i] >> 1));
             } else {
                calcTransform.postScale(this.defualtScale, this.defualtScale, this.defualtScale);
             }
 
-            this.fragment.getVertexBuffer().setDefaultColor(this.fragColors[var2]);
-            AEGraphics3D.graphics3D.render(this.fragment, calcTransform);
-            ++var2;
+            this.particle.getVertexBuffer().setDefaultColor(this.vertexColors[i]);
+            AEGraphics3D.graphics3D.render(this.particle, calcTransform);
+            ++i;
          }
       }
 
@@ -170,25 +200,28 @@ public final class ParticlesMesh extends AbstractMesh {
    public final void setTexture(ITexture var1) {
       Texture2D var2 = new Texture2D(((JSRTexture)var1).getTexturesArray()[0].getImage());
       this.appearance.setTexture(0, var2);
+      // using just
+      // this.appearance.setTexture(0, ((JSRTexture)var1).getTexturesArray()[0]);
+      // reduces memory usage a bit
    }
 
    public final int[] getPositions() {
-      return this.fragPos;
+      return this.positions;
    }
 
    public final int[] getColors() {
-      return this.fragColors;
+      return this.vertexColors;
    }
 
    public final int[] getScales() {
-      if (this.fragScales == null) {
-         this.fragScales = new int[this.fragCount];
+      if (this.scales == null) {
+         this.scales = new int[this.count];
 
-         for(int var1 = 0; var1 < this.fragScales.length; ++var1) {
-            this.fragScales[var1] = (int)this.defualtScale;
+         for(int i = 0; i < this.scales.length; ++i) {
+            this.scales[i] = (int)this.defualtScale;
          }
       }
 
-      return this.fragScales;
+      return this.scales;
    }
 }

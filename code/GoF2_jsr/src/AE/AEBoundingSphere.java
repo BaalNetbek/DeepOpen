@@ -11,7 +11,7 @@ public final class AEBoundingSphere {
       this.center = new AEVector3D(0, 0, 0);
       this.radius = 0;
    }
-
+   
    public AEBoundingSphere() {
       this(0, 0, 0, 0);
    }
@@ -25,7 +25,7 @@ public final class AEBoundingSphere {
       if (this.radius == 0) {
          this.set(var1);
       } else if (var1.radius == 0) {
-         this.set(this);
+         this.set(this); // can just return
       } else {
          int var4 = var1.center.x - this.center.x;
          int var5 = var1.center.y - this.center.y;
@@ -42,7 +42,12 @@ public final class AEBoundingSphere {
          } else {
             var8 = AEMath.sqrt((long)var9 << 12);
             var7 = (int)(((long)((var7 << 12) + var8) << 12) / (long)(var8 * 2));
-            this.setXYZR(this.center.x + (int)((long)var7 * ((long)var4 << 12) >> 24), this.center.y + (int)((long)var7 * ((long)var5 << 12) >> 24), this.center.z + (int)((long)var7 * ((long)var6 << 12) >> 24), (var8 >> 12) + var1.radius + this.radius >> 1);
+            this.setXYZR(
+            		this.center.x + (int)((long)var7 * ((long)var4 << 12) >> 24),
+            		this.center.y + (int)((long)var7 * ((long)var5 << 12) >> 24),
+            		this.center.z + (int)((long)var7 * ((long)var6 << 12) >> 24),
+            		(var8 >> 12) + var1.radius + this.radius >> 1
+            		);
          }
       }
 
@@ -66,6 +71,9 @@ public final class AEBoundingSphere {
    }
 
    public final String toString() {
-      return "AEBoundingSphere | x: " + this.center.x + " y: " + this.center.y + " z: " + this.center.z + " r: " + this.radius;
+      return "AEBoundingSphere | x: " + this.center.x 
+    		  + " y: " + this.center.y 
+    		  + " z: " + this.center.z 
+    		  + " r: " + this.radius;
    }
 }

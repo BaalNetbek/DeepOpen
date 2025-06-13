@@ -21,19 +21,19 @@ public final class CameraControllerGroup extends Group {
          if (this.boundsDirty_ || var1) {
             if (this.transformDirty_ || var1) {
                if (this.group != null) {
-                  this.tempTransform = this.group.tempTransform.multiplyTwo(this.globalTransform, this.tempTransform);
+                  this.localTransformation = this.group.localTransformation.multiplyTwo(this.compositeTransformation, this.localTransformation);
                } else {
-                  this.tempTransform.set(this.globalTransform);
+                  this.localTransformation.set(this.compositeTransformation);
                }
             }
 
-            var2 = this.endNode;
+            var2 = this.head;
 
             while(true) {
                if (var2 == null) {
-                  this.boundingSphere.setXYZR(this.tempTransform.getPositionX(), this.tempTransform.getPositionY(), this.tempTransform.getPositionZ(), 0);
+                  this.boundingSphere.setXYZR(this.localTransformation.getPositionX(), this.localTransformation.getPositionY(), this.localTransformation.getPositionZ(), 0);
 
-                  for(var2 = this.endNode; var2 != null; var2 = var2.parent) {
+                  for(var2 = this.head; var2 != null; var2 = var2.parent) {
                      this.boundingSphere.merge(var2.boundingSphere);
                   }
 
@@ -57,19 +57,19 @@ public final class CameraControllerGroup extends Group {
       if (this.boundsDirty_ || var1) {
          if (this.transformDirty_ || var1) {
             if (this.group != null) {
-               this.tempTransform = this.group.tempTransform.multiplyTwo(this.globalTransform, this.tempTransform);
+               this.localTransformation = this.group.localTransformation.multiplyTwo(this.compositeTransformation, this.localTransformation);
             } else {
-               this.tempTransform.set(this.globalTransform);
+               this.localTransformation.set(this.compositeTransformation);
             }
          }
 
-         for(var2 = this.endNode; var2 != null; var2 = var2.parent) {
+         for(var2 = this.head; var2 != null; var2 = var2.parent) {
             var2.updateTransform(this.transformDirty_ || var1);
          }
 
-         this.boundingSphere.setXYZR(this.tempTransform.getPositionX(), this.tempTransform.getPositionY(), this.tempTransform.getPositionZ(), 0);
+         this.boundingSphere.setXYZR(this.localTransformation.getPositionX(), this.localTransformation.getPositionY(), this.localTransformation.getPositionZ(), 0);
 
-         for(var2 = this.endNode; var2 != null; var2 = var2.parent) {
+         for(var2 = this.head; var2 != null; var2 = var2.parent) {
             this.boundingSphere.merge(var2.boundingSphere);
          }
 

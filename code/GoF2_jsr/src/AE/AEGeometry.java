@@ -18,13 +18,13 @@ public abstract class AEGeometry extends GraphNode {
    public void updateTransform(boolean var1) {
       if (this.transformDirty_ || var1) {
          if (this.group != null) {
-            this.tempTransform = this.group.tempTransform.multiplyTwo(this.globalTransform, this.tempTransform);
+            this.localTransformation = this.group.localTransformation.multiplyTwo(this.compositeTransformation, this.localTransformation);
          } else {
-            this.tempTransform.set(this.globalTransform);
+            this.localTransformation.set(this.compositeTransformation);
          }
 
-         int var2 = AEMath.max(AEMath.max(AEMath.abs((tempCenter = this.tempTransform.copyScaleTo(tempCenter)).x), AEMath.abs(tempCenter.y)), AEMath.abs(tempCenter.z)) * this.radius >> 12;
-         tempCenter = this.tempTransform.getPosition(tempCenter);
+         int var2 = AEMath.max(AEMath.max(AEMath.abs((tempCenter = this.localTransformation.copyScaleTo(tempCenter)).x), AEMath.abs(tempCenter.y)), AEMath.abs(tempCenter.z)) * this.radius >> 12;
+         tempCenter = this.localTransformation.getPosition(tempCenter);
          this.boundingSphere.setXYZR(tempCenter.x, tempCenter.y, tempCenter.z, var2);
          this.transformDirty_ = false;
          this.boundsDirty_ = false;

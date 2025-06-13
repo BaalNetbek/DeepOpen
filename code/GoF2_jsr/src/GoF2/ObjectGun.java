@@ -46,7 +46,7 @@ public class ObjectGun extends AbstractMesh implements AbstractGun {
                this.projectiles[var2].moveTo(this.gun.projectilesPos[var2]);
                temp.set(this.gun.projectilesDir[var2]);
                temp.normalize();
-               this.projectiles[var2].getTransform().setOrientation(temp);
+               this.projectiles[var2].getToParentTransform().setOrientation(temp);
                GlobalStatus.renderer.drawNodeInVF(this.projectiles[var2]);
             } else {
                ++var1;

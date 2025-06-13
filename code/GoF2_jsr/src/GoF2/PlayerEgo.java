@@ -3,7 +3,6 @@ package GoF2;
 import AE.AEResourceManager;
 import AE.AbstractMesh;
 import AE.Camera;
-import AE.DummyClass_;
 import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.Group;
@@ -142,7 +141,12 @@ public final class PlayerEgo {
       var1 = 0;
 
       for(GraphNode var4 = this.shipGroup.getEndNode(); var4 != null; var4 = var4.getParent()) {
-         if (var4.getID() == 13067 || var4.getID() == 13068 || var4.getID() == 13070 || var4.getID() == 13064 || var4.getID() == 13065 || var4.getID() == 13071) {
+         if (var4.getID() == 13067 ||
+    		 var4.getID() == 13068 ||
+    		 var4.getID() == 13070 ||
+    		 var4.getID() == 13064 ||
+    		 var4.getID() == 13065 ||
+    		 var4.getID() == 13071) {
             ++var1;
          }
       }
@@ -154,7 +158,12 @@ public final class PlayerEgo {
       var2 = 0;
 
       for(GraphNode var3 = this.shipGroup.getEndNode(); var3 != null; var3 = var3.getParent()) {
-         if (var3.getID() == 13067 || var3.getID() == 13068 || var3.getID() == 13070 || var3.getID() == 13064 || var3.getID() == 13065 || var3.getID() == 13071) {
+         if (var3.getID() == 13067 ||
+    		 var3.getID() == 13068 ||
+    		 var3.getID() == 13070 ||
+    		 var3.getID() == 13064 ||
+    		 var3.getID() == 13065 ||
+    		 var3.getID() == 13071) {
             this.vecUp = var3.copyScaleTo(this.vecUp);
             this.enginesBoostScale_[var2][0] = this.vecUp.x;
             this.enginesBoostScale_[var2][1] = this.vecUp.y;
@@ -172,7 +181,12 @@ public final class PlayerEgo {
 
    public final void setExhaustVisible(boolean var1) {
       for(GraphNode var2 = this.shipGroup.getEndNode(); var2 != null; var2 = var2.getParent()) {
-         if (var2.getID() == 13067 || var2.getID() == 13068 || var2.getID() == 13070 || var2.getID() == 13064 || var2.getID() == 13065 || var2.getID() == 13071) {
+         if (var2.getID() == 13067 ||
+    		 var2.getID() == 13068 ||
+    		 var2.getID() == 13070 ||
+    		 var2.getID() == 13064 ||
+    		 var2.getID() == 13065 ||
+    		 var2.getID() == 13071) {
             var2.setDraw(var1);
          }
       }
@@ -226,7 +240,7 @@ public final class PlayerEgo {
             }
 
             this.turretGrandGroup_.moveTo(this.laggingPos);
-            this.turretGrandGroup_.setTransform(this.shipGrandGroup_.getTransform());
+            this.turretGrandGroup_.setTransform(this.shipGrandGroup_.getToParentTransform());
             GlobalStatus.renderer.setActiveCamera(this.camera);
          } else {
             GlobalStatus.renderer.setActiveCamera((Camera)this.followingCamera_.getCamera());
@@ -322,7 +336,7 @@ public final class PlayerEgo {
 
    public final void shoot(int var1, int var2) {
       if (this.turretMode) {
-         this.calcMatrix_.set(this.turretGun.getTempTransform());
+         this.calcMatrix_.set(this.turretGun.getLocalTransform());
          this.player.playShootSound__(2, (long)var1, false, this.calcMatrix_);
       } else {
          if (var2 == 1) {
@@ -412,7 +426,7 @@ public final class PlayerEgo {
    }
 
    public final AEVector3D getPosition() {
-      return this.shipGrandGroup_.getTempTransformPos(this.vecUp);
+      return this.shipGrandGroup_.getLocalPos(this.vecUp);
    }
 
    public final void setActive(boolean var1) {
@@ -492,7 +506,7 @@ public final class PlayerEgo {
       }
 
       if (!this.freeze) {
-         this.laggingPos = this.shipGrandGroup_.getTempTransformPos(this.laggingPos);
+         this.laggingPos = this.shipGrandGroup_.getLocalPos(this.laggingPos);
          this.frameTime = (long)var1;
          if (this.boostTime < 0 && this.boostTime + var1 * 3 > 0) {
             var3.hudEvent(4, this);
@@ -508,7 +522,12 @@ public final class PlayerEgo {
             GraphNode var7;
             int[] var8;
             for(var7 = this.shipGroup.getEndNode(); var7 != null; var7 = var7.getParent()) {
-               if (var7.getID() == 13067 || var7.getID() == 13068 || var7.getID() == 13070 || var7.getID() == 13064 || var7.getID() == 13065 || var7.getID() == 13071) {
+               if (var7.getID() == 13067 ||
+        		   var7.getID() == 13068 ||
+        		   var7.getID() == 13070 ||
+        		   var7.getID() == 13064 ||
+        		   var7.getID() == 13065 || 
+        		   var7.getID() == 13071) {
                   var8 = this.enginesBoostScale_[var9++];
                   var7.setScale(var8[0] + var6, var8[1] + var6, var8[2] + var6 * 2);
                }
@@ -526,7 +545,12 @@ public final class PlayerEgo {
                }
 
                for(var7 = this.shipGroup.getEndNode(); var7 != null; var7 = var7.getParent()) {
-                  if (var7.getID() == 13067 || var7.getID() == 13068 || var7.getID() == 13070 || var7.getID() == 13064 || var7.getID() == 13065 || var7.getID() == 13071) {
+                  if (var7.getID() == 13067 ||
+            		  var7.getID() == 13068 ||
+            		  var7.getID() == 13070 ||
+            		  var7.getID() == 13064 ||
+            		  var7.getID() == 13065 ||
+            		  var7.getID() == 13071) {
                      var8 = this.enginesBoostScale_[var9++];
                      var7.setScale(var8[0], var8[1], var8[2]);
                   }
@@ -645,10 +669,10 @@ public final class PlayerEgo {
          }
 
          if (this.hasTurret) {
-            this.turretGroup.setTransform(this.shipGrandGroup_.getTransform());
+            this.turretGroup.setTransform(this.shipGrandGroup_.getToParentTransform());
             this.turretGroup.roll(-this.roll);
             if (this.turretMode) {
-               this.turretGrandGroup_.setTransform(this.shipGrandGroup_.getTransform());
+               this.turretGrandGroup_.setTransform(this.shipGrandGroup_.getToParentTransform());
                this.turretGrandGroup_.roll(-this.roll);
                this.turretGrandGroup_.updateTransform(true);
             }
@@ -682,12 +706,12 @@ public final class PlayerEgo {
 
          this.player.update((long)var1);
          if (this.turretMode) {
-            this.crosshair.update(this.turretGun.getTempTransform(), GlobalStatus.renderer.getCamera());
+            this.crosshair.update(this.turretGun.getLocalTransform(), GlobalStatus.renderer.getCamera());
          } else {
-            this.crosshair.update(this.shipGrandGroup_.getTransform(), GlobalStatus.renderer.getCamera());
+            this.crosshair.update(this.shipGrandGroup_.getToParentTransform(), GlobalStatus.renderer.getCamera());
          }
 
-         this.player.transform = this.shipGroup.getTempTransform();
+         this.player.transform = this.shipGroup.getLocalTransform();
          if (this.route != null) {
             var9 = this.route.getCurrent();
             this.route.update(this.shipGrandGroup_.getPosX(), this.shipGrandGroup_.getPosY(), this.shipGrandGroup_.getPosZ());
@@ -774,7 +798,7 @@ public final class PlayerEgo {
                      var4.scale((int)((float)(this.frameTime >> 2) * (float)(var8 >> 7)));
                      this.vecRight = this.vecUp.add(var4, this.vecRight);
                      this.vecRight.normalize();
-                     this.shipGrandGroup_.getTransform().setOrientation(this.vecRight);
+                     this.shipGrandGroup_.getToParentTransform().setOrientation(this.vecRight);
                      this.shipGrandGroup_.moveForward((int)this.frameTime * this.speed);
                      this.alignToHorizon((int)this.frameTime);
                      this.beingPushedAway = true;
@@ -1065,7 +1089,7 @@ public final class PlayerEgo {
       this.vecRight.scale((int)((float)this.frameTime * 4.0F));
       this.autoPilotDir = this.vecUp.add(this.vecRight, this.autoPilotDir);
       this.autoPilotDir.normalize();
-      this.shipGrandGroup_.getTransform().setOrientation(this.autoPilotDir);
+      this.shipGrandGroup_.getToParentTransform().setOrientation(this.autoPilotDir);
       if (this.relPitchSpeed == 0 && this.relYawSpeed == 0) {
          this.alignToHorizon((int)this.frameTime);
       }

@@ -46,7 +46,7 @@ public final class PlayerAsteroid extends KIPlayer {
       this.tier = AEMath.min(7, 2 + (int)((float)(this.sizeCoef_ + 15) / 100.0F * 5.0F));
       this.tempVector_.set(-4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192));
       this.tempVector_.normalize();
-      this.mainMesh_.getTransform().setOrientation(this.tempVector_);
+      this.mainMesh_.getToParentTransform().setOrientation(this.tempVector_);
       this.mainMesh_.moveTo(tempVector2_);
       this.mainMesh_.updateTransform(true);
       this.mainMesh_.setAnimationRangeInTime(var3 - 154, var3 - 154);
@@ -103,9 +103,9 @@ public final class PlayerAsteroid extends KIPlayer {
                this.player.setKIPlayer(this);
             }
 
-            this.explosionMesh.setTransform(this.mainMesh_.getTransform());
+            this.explosionMesh.setTransform(this.mainMesh_.getToParentTransform());
             this.explosionMesh.setAnimationMode((byte)1);
-            this.player.transform = this.explosionMesh.getTransform();
+            this.player.transform = this.explosionMesh.getToParentTransform();
             tempVector2_.subtract(this.level.getPlayer().getPosition());
             var7 = AEMath.min(40000, tempVector2_.getLength());
             float var5 = 1.0F - (float)var7 / 40000.0F;
@@ -147,7 +147,7 @@ public final class PlayerAsteroid extends KIPlayer {
                this.player.setBombForce(var3);
             }
 
-            this.tempVector_ = GlobalStatus.renderer.getCamera().getTempTransformPos(this.tempVector_);
+            this.tempVector_ = GlobalStatus.renderer.getCamera().getLocalPos(this.tempVector_);
             this.position.set(this.posX, this.posY, this.posZ);
             this.position.subtract(this.tempVector_, tempVector1_);
             int var4 = tempVector1_.getLength();
@@ -175,7 +175,7 @@ public final class PlayerAsteroid extends KIPlayer {
                this.passedTime = 0;
                tempVector1_.set(var6, var4, var7);
                if (this.level.getPlayer() != null) {
-                  this.playerTransform_ = this.level.getPlayer().shipGrandGroup_.getTempTransform();
+                  this.playerTransform_ = this.level.getPlayer().shipGrandGroup_.getLocalTransform();
                } else {
                   this.playerTransform_.identity();
                }
@@ -190,7 +190,7 @@ public final class PlayerAsteroid extends KIPlayer {
             }
 
             if (this.explosionMesh != null) {
-               this.explosionMesh.setTransform(this.mainMesh_.getTransform());
+               this.explosionMesh.setTransform(this.mainMesh_.getToParentTransform());
             }
 
          }
