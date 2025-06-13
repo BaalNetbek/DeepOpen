@@ -18,7 +18,6 @@ public final class Crosshair {
       screenPos = new AEVector3D();
 
       try {
-         String var1 = "/data/interface/hud_crosshair_png24.png";
          this.image = AEFile.loadImage("/data/interface/hud_crosshair_png24.png", true);
       } catch (Exception var2) {
          var2.printStackTrace();

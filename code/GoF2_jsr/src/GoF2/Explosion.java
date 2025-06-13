@@ -6,7 +6,7 @@ import AE.GlobalStatus;
 
 public final class Explosion {
    private int[] delays;
-   private int[] unused_1af;
+   //private int[] unused_1af;
    private int animationPlayTime;
    private AbstractMesh[] explosions;
    private AbstractMesh coreExplosion;
@@ -53,7 +53,7 @@ public final class Explosion {
 
    public final void OnRelease() {
       this.delays = null;
-      this.unused_1af = null;
+      //this.unused_1af = null;
       if (this.explosions != null) {
          for(int var1 = 0; var1 < this.explosions.length; ++var1) {
             if (this.explosions[var1] != null) {

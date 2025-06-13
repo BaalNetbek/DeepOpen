@@ -5,7 +5,11 @@ import AE.Math.AEMath;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
 import javax.microedition.lcdui.Image;
-
+/**
+ * 
+ * @author fishlabs
+ *
+ */
 public final class Radio {
    private RadioMessage[] messages;
    private RadioMessage currentMessage;

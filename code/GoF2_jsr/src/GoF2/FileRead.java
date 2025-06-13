@@ -214,56 +214,56 @@ public final class FileRead {
 
       try {
          InputStream var1 = (varClass == null ? (varClass = getClassForName("java.lang.Class")) : varClass).getResourceAsStream("/data/txt/systems.bin");
-         DataInputStream var18 = new DataInputStream(var1);
+         DataInputStream dis = new DataInputStream(var1);
          var0 = new SolarSystem[22];
 
-         for(int var2 = 0; var2 < 22; ++var2) {
-            String var3 = var18.readUTF();
-            int var4 = var18.readInt();
-            boolean var5 = var18.readInt() == 1;
-            int var6 = var18.readInt();
-            int var7 = var18.readInt();
-            int var8 = var18.readInt();
-            int var9 = var18.readInt();
-            int var10 = var18.readInt();
-            int var11 = var18.readInt();
-            int[] var12 = new int[var18.readInt()];
+         for(int id = 0; id < 22; ++id) {
+            String name = dis.readUTF();
+            int safety = dis.readInt();
+            boolean visibleByDefault = dis.readInt() == 1;
+            int race = dis.readInt();
+            int posX = dis.readInt();
+            int posY = dis.readInt();
+            int posZ = dis.readInt();
+            int jumpgateStationId = dis.readInt();
+            int starTextureId = dis.readInt();
+            int[] starRGB = new int[dis.readInt()];
 
-            for(int var13 = 0; var13 < var12.length; ++var13) {
-               var12[var13] = var18.readInt();
+            for(int i = 0; i < starRGB.length; ++i) {
+               starRGB[i] = dis.readInt();
             }
 
-            int[] var19 = new int[var18.readInt()];
+            int[] stationIDs = new int[dis.readInt()];
 
-            int var14;
-            for(var14 = 0; var14 < var19.length; ++var14) {
-               var19[var14] = var18.readInt();
+            for(int i = 0; i < stationIDs.length; ++i) {
+               stationIDs[i] = dis.readInt();
             }
 
-            var14 = var18.readInt();
-            int[] var15 = null;
-            if (var14 > 0) {
-               var15 = new int[var14];
+            int neighbourSysCount = dis.readInt();
+            int[] neighbourSystems = null;
+            if (neighbourSysCount > 0) {
+               neighbourSystems = new int[neighbourSysCount];
 
-               for(var14 = 0; var14 < var15.length; ++var14) {
-                  var15[var14] = var18.readInt();
+               for(int i = 0; i < neighbourSystems.length; ++i) {
+                  neighbourSystems[i] = dis.readInt();
+               }
+            }
+             
+            // Propably legacy from Deep or GOF
+            int unkCnt = dis.readInt();
+            int[] unk = null;
+            if (unkCnt > 0) {
+               unk = new int[unkCnt];
+
+               for(int i = 0; i < unk.length; ++i) {
+                  unk[i] = dis.readInt();
                }
             }
 
-            var14 = var18.readInt();
-            int[] var16 = null;
-            if (var14 > 0) {
-               var16 = new int[var14];
-
-               for(var14 = 0; var14 < var16.length; ++var14) {
-                  var16[var14] = var18.readInt();
-               }
-            }
-
-            var0[var2] = new SolarSystem(var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var19, var15, var16);
+            var0[id] = new SolarSystem(id, name, safety, visibleByDefault, race, posX, posY, posZ, jumpgateStationId, starTextureId, starRGB, stationIDs, neighbourSystems, unk);
          }
 
-         var18.close();
+         dis.close();
       } catch (IOException var17) {
          var17.printStackTrace();
       }
@@ -272,58 +272,55 @@ public final class FileRead {
    }
 
    public static Item[] loadItemsBinary() {
-      Item[] var0 = null;
+      Item[] items = null;
 
       try {
          InputStream var1 = (varClass == null ? (varClass = getClassForName("java.lang.Class")) : varClass).getResourceAsStream("/data/txt/items.bin");
-         DataInputStream var9 = new DataInputStream(var1);
-         var0 = new Item[176];
-         boolean var2 = false;
-         var2 = false;
-         var2 = false;
-         int[] var3 = null;
-         int[] var4 = null;
-         int[] var5 = null;
+         DataInputStream dis = new DataInputStream(var1);
+         items = new Item[176];
+         int[] bluePrintComponents = null;
+         int[] componentAmounts = null;
+         int[] atributes = null;
 
-         for(int var6 = 0; var6 < 176; ++var6) {
-            int var7;
-            int var10;
-            if ((var10 = var9.readInt()) > 0) {
-               var3 = new int[var10];
+         for(int i = 0; i < 176; ++i) {
+            int j;
+            int len;
+            if ((len = dis.readInt()) > 0) {
+               bluePrintComponents = new int[len];
 
-               for(var7 = 0; var7 < var10; ++var7) {
-                  var3[var7] = var9.readInt();
+               for(j = 0; j < len; ++j) {
+                  bluePrintComponents[j] = dis.readInt();
                }
             }
 
-            if ((var10 = var9.readInt()) > 0) {
-               var4 = new int[var10];
+            if ((len = dis.readInt()) > 0) {
+               componentAmounts = new int[len];
 
-               for(var7 = 0; var7 < var10; ++var7) {
-                  var4[var7] = var9.readInt();
+               for(j = 0; j < len; ++j) {
+                  componentAmounts[j] = dis.readInt();
                }
             }
 
-            if ((var10 = var9.readInt()) > 0) {
-               var5 = new int[var10];
+            if ((len = dis.readInt()) > 0) {
+               atributes = new int[len];
 
-               for(var7 = 0; var7 < var10; ++var7) {
-                  var5[var7] = var9.readInt();
+               for(j = 0; j < len; ++j) {
+                  atributes[j] = dis.readInt();
                }
             }
 
-            var0[var6] = new Item(var3, var4, var5);
-            var3 = null;
-            var4 = null;
-            var5 = null;
+            items[i] = new Item(bluePrintComponents, componentAmounts, atributes);
+            bluePrintComponents = null;
+            componentAmounts = null;
+            atributes = null;
          }
 
-         var9.close();
-      } catch (IOException var8) {
-         var8.printStackTrace();
+         dis.close();
+      } catch (IOException e) {
+         e.printStackTrace();
       }
 
-      return var0;
+      return items;
    }
 
    public static Ship[] loadShipsBinary() {

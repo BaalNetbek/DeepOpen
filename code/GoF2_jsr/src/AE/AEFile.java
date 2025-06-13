@@ -3,7 +3,12 @@ package AE;
 import java.io.DataInputStream;
 import java.io.InputStream;
 import javax.microedition.lcdui.Image;
-
+/**
+ * Class with static methods abstracting accessing files, especially images.
+ * 
+ * @author fishlabs
+ *
+ */
 public final class AEFile {
    private static Class clazs;
 
@@ -19,15 +24,12 @@ public final class AEFile {
          int[] var10000 = var5;
          int var8 = (int)((float)var3 * var17);
          int var7 = var3;
-         var6 = var6;
-         var5 = var5;
          int var9 = var10000.length / var3;
          int var10 = var6.length / var8;
 
          for(int var11 = 0; var11 < var8; ++var11) {
             for(int var12 = 0; var12 < var10; ++var12) {
                float var13 = (float)var11 * (float)(var7 - 1) / (float)(var8 - 1);
-               boolean var14 = false;
                int var19;
                if ((double)var13 - Math.floor((double)var13) > 0.5D) {
                   var19 = (int)Math.ceil((double)var13);
@@ -36,7 +38,6 @@ public final class AEFile {
                }
 
                var13 = (float)var12 * (float)(var9 - 1) / (float)(var10 - 1);
-               boolean var15 = false;
                int var20;
                if ((double)var13 - Math.floor((double)var13) > 0.5D) {
                   var20 = (int)Math.ceil((double)var13);
