@@ -436,13 +436,13 @@ y.a Ljavax/microedition/m3g/Transform; calcTransform
 y.a Lcd; tempPos
 y.a Ljavax/microedition/m3g/Appearance; appearance
 y.a Ljavax/microedition/m3g/PolygonMode; polygonMode
-y.d I fragCount
-y.a Ljavax/microedition/m3g/Mesh; fragment
-y.a [I fragPos
-y.b [I fragColors
-y.c [I fragScales
+y.d I count
+y.a Ljavax/microedition/m3g/Mesh; particle
+y.a [I positions
+y.b [I vertexColors
+y.c [I scales
 y.a F defualtScale
-y.a B materialType
+y.a B blending
 y.a()Lah; clone
 y.a()V OnRelease
 y.a(Lap;Laf;)V appendToRender
@@ -888,7 +888,7 @@ db.B I jumperRespawnTick
 db.d Lbg; raidRoute
 db.C I raidWavesCounter
 db.g Z friendlyFireAlerted
-db.h Z firstWarning
+db.h Z localsAlarmed
 db.a Z initStreamOutPosition
 db.b Z comingFromAlienWorld
 db.j I lastMissionFreighterHitpoints
@@ -1604,17 +1604,17 @@ ah.c(III)V moveTo
 ah.b(Lcd;)V moveTo
 ah.b(I)V moveForward
 ah.a(Lcd;)Lcd; getPosition
-ah.b(Lcd;)Lcd; getTempTransformPos
+ah.b(Lcd;)Lcd; getLocalPos
 ah.a()Lcd; getPostition
-ah.b()Lcd; getTempTransformPos
+ah.b()Lcd; getLocalPos
 ah.b()I getPosX
 ah.c()I getPosY
 ah.d()I getPosZ
-ah.e()I getTempTransformPosZ
+ah.e()I getLocalPosZ
 ah.c(Lcd;)Lcd; getDirection
-ah.d(Lcd;)Lcd; getTempTransformDirection
+ah.d(Lcd;)Lcd; getLocalDirection
 ah.c()Lcd; getDirection
-ah.d()Lcd; getTempTransformDirection
+ah.d()Lcd; getLocalDirection
 ah.e(Lcd;)Lcd; getUp
 ah.e()Lcd; getUp
 ah.f(Lcd;)Lcd; getRightVector
@@ -1631,8 +1631,8 @@ ah.h()I getEulerZ
 ah.f(III)V setScale
 ah.g(Lcd;)Lcd; copyScaleTo
 ah.g()Lcd; getScale
-ah.a()Lcl; getTransform
-ah.b()Lcl; getTempTransform
+ah.a()Lcl; getToParentTransform
+ah.b()Lcl; getLocalTransform
 ah.a(Lcl;)V setTransform
 ah.a(Lcl;)Lcl; getInverseTransform
 ah.a(Lcd;Lcd;Lcd;)V setTransform
@@ -1729,7 +1729,7 @@ av.a()V down
 av.b()V up
 av.c()V draw
 ar AE/Group
-ar.b Lah; endNode
+ar.b Lah; head
 ar.a(Lah;)V uniqueAppend_
 ar.b(Lah;)V removeNode
 ar.a()Lah; getEndNode
@@ -2359,7 +2359,7 @@ bz.a Z active
 bz.a Lag; beamMesh
 bz.a()V render
 bz.a(JLbw;Ldb;Lv;)V update
-ca AE/DummyClass_
+ca GoF2/DummyClass_
 cb GoF2/Agent
 cb.a Ljava/lang/String; fullName
 cb.b Ljava/lang/String; wingman1Name

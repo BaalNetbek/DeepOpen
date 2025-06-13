@@ -4,7 +4,7 @@
 
 Attempt to recreate code of Fishlabs games and their common core Abyss Engine for education and entertainment purposes, by revese engineering.
 
-Currently the essence of this repo is decompilation of [GoF2](/code/GoF2_jsr/) version 1.0.4 (the last update for J2ME published for free by the fishes)
+Currently the essence of this repo is decompiled code of [GoF2](/code/GoF2_jsr/) version 1.0.4 (the last update for J2ME published for free by the fishes)
 ___
 <p align="center">
   <img src="/extras/logger/progress_chart.png" />
