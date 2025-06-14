@@ -1,76 +1,85 @@
 package GoF2;
 
+import java.util.Random;
+
 import AE.AbstractMesh;
 import AE.ITexture;
 import AE.ParticlesMesh;
-import java.util.Random;
 
+/**
+ * Fading explosion effect made of 3D sprites. Using AE.ParticlesMesh.
+ * 
+ * @author fishlabs
+ *   
+ */
 public final class Impact {
-   public AbstractMesh mesh;
-   private int[] particlesLifeTime;
-   private int baseLifeTime;
-   private int spread;
-   private int lifeTimeRange;
+	public AbstractMesh mesh;
+	private final int[] particlesLifeTime;
+	private final int baseLifeTime;
+	private final int spread;
+	private final int lifeTimeRange;
 
-   public Impact(int var1, ITexture var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, byte var11) {
-      this.spread = var8;
-      this.baseLifeTime = var9;
-      this.lifeTimeRange = var10;
-      this.particlesLifeTime = new int[var1];
-      short var15 = 256;
-      this.mesh = new ParticlesMesh(var15, var4, var5, var6, var7, var8, var1, var11);
-      this.mesh.setTexture(var2);
-      ParticlesMesh var13;
-      int[] var16 = (var13 = (ParticlesMesh)this.mesh).getPositions();
-      int[] var14 = var13.getScales();
-      Random var17 = new Random();
+	public Impact(final int particleCount, final ITexture texture, final int var3, final int u1, int v1, final int u2, final int v2, final int particleSize, final int baseLifeTime, final int lifeTimeRange, final byte blending) {
+		this.spread = particleSize; // #NAME_ERROR Both names need verification.
+		this.baseLifeTime = baseLifeTime;
+		this.lifeTimeRange = lifeTimeRange;
+		this.particlesLifeTime = new int[particleCount];
+		final short textureSize = 256;
+		this.mesh = new ParticlesMesh(textureSize, u1, v1, u2, v2, particleSize, particleCount, blending);
+		this.mesh.setTexture(texture);
+		ParticlesMesh particlesMesh = (ParticlesMesh)this.mesh;
+		final int[] postions = particlesMesh.getPositions();
+		final int[] scales = particlesMesh.getScales();
+		final Random random = new Random();  // why not use AE.GlobalStatus.random?
+		
+		for(int i = 0; i < particleCount; ++i) {
+			postions[i * 3] = random.nextInt(particleSize >> 1) - (particleSize >> 2);
+			postions[i * 3 + 1] = random.nextInt(particleSize >> 1) - (particleSize >> 2);
+			postions[i * 3 + 2] = random.nextInt(particleSize >> 1) - (particleSize >> 2);
+			scales[i] = 0;
+			this.particlesLifeTime[i] = random.nextInt(lifeTimeRange) - (lifeTimeRange >> 1) + this.baseLifeTime;
+		}
 
-      for(var5 = 0; var5 < var1; ++var5) {
-         var16[var5 * 3] = var17.nextInt(var8 >> 1) - (var8 >> 2);
-         var16[var5 * 3 + 1] = var17.nextInt(var8 >> 1) - (var8 >> 2);
-         var16[var5 * 3 + 2] = var17.nextInt(var8 >> 1) - (var8 >> 2);
-         var14[var5] = 0;
-         this.particlesLifeTime[var5] = var17.nextInt(var10) - (var10 >> 1) + this.baseLifeTime;
-      }
+	}
 
-   }
+	public final void explode() {
+		ParticlesMesh particlesMesh = (ParticlesMesh)this.mesh;
+		final int[] positions = particlesMesh.getPositions();
+		final int[] scales = particlesMesh.getScales();
+		final int[] colors = particlesMesh.getColors();
+		final Random random = new Random();
 
-   public final void explode() {
-      ParticlesMesh var1;
-      int[] var2 = (var1 = (ParticlesMesh)this.mesh).getPositions();
-      int[] var3 = var1.getScales();
-      int[] var6 = var1.getColors();
-      Random var4 = new Random();
+		for(int i = 0; i < scales.length; ++i) {
+			positions[i * 3] = random.nextInt(this.spread >> 1) - (this.spread >> 2);
+			positions[i * 3 + 1] = random.nextInt(this.spread >> 1) - (this.spread >> 2);
+			positions[i * 3 + 2] = random.nextInt(this.spread >> 1) - (this.spread >> 2);
+			scales[i] = 0;
+			colors[i] = -1;
+			this.particlesLifeTime[i] = random.nextInt(this.lifeTimeRange) - (this.lifeTimeRange >> 1) + this.baseLifeTime;
+		}
 
-      for(int var5 = 0; var5 < var3.length; ++var5) {
-         var2[var5 * 3] = var4.nextInt(this.spread >> 1) - (this.spread >> 2);
-         var2[var5 * 3 + 1] = var4.nextInt(this.spread >> 1) - (this.spread >> 2);
-         var2[var5 * 3 + 2] = var4.nextInt(this.spread >> 1) - (this.spread >> 2);
-         var3[var5] = 0;
-         var6[var5] = -1;
-         this.particlesLifeTime[var5] = var4.nextInt(this.lifeTimeRange) - (this.lifeTimeRange >> 1) + this.baseLifeTime;
-      }
+	}
 
-   }
+	public final void update(final int frameTime) {
+		final int[] scales = ((ParticlesMesh)this.mesh).getScales();
+		final int[] colors = ((ParticlesMesh)this.mesh).getColors();
+		final int scaleDelta = frameTime * this.spread / this.baseLifeTime;
 
-   public final void update(int var1) {
-      int[] var2 = ((ParticlesMesh)this.mesh).getScales();
-      int[] var3 = ((ParticlesMesh)this.mesh).getColors();
-      int var4 = var1 * this.spread / this.baseLifeTime;
+		for(int i = 0; i < scales.length; ++i) {
+			if (this.particlesLifeTime[i] > 0 && this.particlesLifeTime[i] < this.baseLifeTime) {
+				scales[i] += scaleDelta;
+			} else if (this.particlesLifeTime[i] > -1024) {
+			 // int alpha = AEMath.max(0, (colors[i] >>> 24) - (frameTime >> 2)); suggestion
+				int alpha = (colors[i] >>> 24) - (frameTime >> 2);
+				alpha = alpha < 0 ? 0 : alpha;
+				// Actually useless for ALPHA_ADD blending.
+				colors[i] = alpha << 24 | 0x00ffffff; 
+			} else {
+				scales[i] = 0;
+			}
 
-      for(int var5 = 0; var5 < var2.length; ++var5) {
-         if (this.particlesLifeTime[var5] > 0 && this.particlesLifeTime[var5] < this.baseLifeTime) {
-            var2[var5] += var4;
-         } else if (this.particlesLifeTime[var5] > -1024) {
-            int var6 = (var6 = (var3[var5] >>> 24) - (var1 >> 2)) < 0 ? 0 : var6;
-            var3[var5] = var6 << 24 | 16777215;
-         } else {
-            var2[var5] = 0;
-         }
+			this.particlesLifeTime[i] -= frameTime;
+		}
 
-         int[] var10000 = this.particlesLifeTime;
-         var10000[var5] -= var1;
-      }
-
-   }
+	}
 }

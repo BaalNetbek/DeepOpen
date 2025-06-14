@@ -1,5 +1,5 @@
 package AE;
 
 public abstract class ITexture {
-   public abstract void OnRelease();
+	public abstract void OnRelease();
 }

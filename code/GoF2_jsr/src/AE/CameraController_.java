@@ -1,7 +1,7 @@
 package AE;
 
 public interface CameraController_ {
-   void update();
+	void update();
 
-   boolean isInLookAtMode();
+	boolean isInLookAtMode();
 }

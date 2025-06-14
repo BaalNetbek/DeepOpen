@@ -569,7 +569,7 @@ cx.a Lcd; currentPos
 cx.b Lcd; currentRot
 cx.a I currentFoV
 cx.a [[I keyFrames
-cx.a J totalTrackLenght
+cx.a J totalTrackLength
 cx.a(J)V update
 cx.a(FI)V interpolate
 cx.a()V computeLengths
@@ -1013,7 +1013,7 @@ bk.a()V OnRelease
 ax AE/JSRMesh
 ax.a [I uvOffsets
 ax.b [I uvRotations
-ax.d I animLenght
+ax.d I animLength
 ax.f I animStartFrame
 ax.g I animEndFrame
 ax.h I animCurrentFrame
@@ -1032,7 +1032,7 @@ ax.a Ljavax/microedition/m3g/Texture2D; texture
 ax.b Ljavax/microedition/m3g/Transform; textureTransform
 ax.d()V initializeMaterials
 ax.a(Ljavax/microedition/m3g/Node;)V appendNode
-ax.a(Ljavax/microedition/m3g/Node;I)I getAnimationLenght
+ax.a(Ljavax/microedition/m3g/Node;I)I getAnimationLength
 ax.b()V render
 ax.c()V renderTransparent
 ax.a(J)V update
@@ -1827,7 +1827,7 @@ bb.b [I newMedals
 bb.a I killStreak
 bb.b I pirateKillStreak
 bb.c I weaponsEquipped
-bb.a Z isDocked
+bb.a Z isArmed
 bb.d I maxCredits
 bb.b Z hasAll
 bb.c Z hasAllGold
@@ -2949,7 +2949,7 @@ Main/i.c I width
 Main/i.d I height
 Main/i.a [Ljava/lang/String; tabNames
 Main/i.a [[Ljava/lang/Object; perTabEntries
-Main/i.a [I listsLenghts
+Main/i.a [I listsLengths
 Main/i.e I scrollThumbSize
 Main/i.f I listRightPadding
 Main/i.p I scrollThumbPos

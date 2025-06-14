@@ -7,59 +7,55 @@ import AE.ITexture;
 import AE.Math.AEVector3D;
 
 public final class Sparks extends AbstractMesh {
-   private Impact impact;
-   private boolean inactive;
-   private boolean unused4a_;
+	private final Impact impact;
+	private boolean inactive;
+	private final boolean unused4a_;
 
-   private Sparks(ITexture var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, byte var10) {
-      this.impact = new Impact(var6, var1, 256, var2, var3, var4, var5, var9, var7, var8, (byte)2);
-      this.impact.mesh.setRenderLayer(2);
-      this.inactive = true;
-      this.unused4a_ = var6 > 1;
-   }
+	private Sparks(final ITexture texture, final int u1, final int v1, final int u2, final int v2, final int particleCount, final int baseParticleTime, final int particleTimeRange, final int var9, final byte blending) {
+		this.impact = new Impact(particleCount, texture, 256, u1, v1, u2, v2, var9, baseParticleTime, particleTimeRange, (byte)2);
+		this.impact.mesh.setRenderLayer(2);
+		this.inactive = true;
+		this.unused4a_ = particleCount > 1;
+	}
 
-   public Sparks(ITexture var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
-      this(var1, 33, 225, 63, 255, 10, 700, 100, 500, (byte)2);
-   }
+	public Sparks(final ITexture texture, final int u1, final int v1, final int u2, final int v2, final int particleCount, final int var7, final int var8, final int var9) {
+	  //this(texture, 33,225, 63,255,            10, 700, 100, 500, (byte)2);	
+		this(texture, u1, v1, u2, v2, particleCount, 700, 100, 500, (byte)2);
+	}
 
-   public final void moveTo(int var1, int var2, int var3) {
-      this.impact.mesh.moveTo(var1, var2, var3);
-   }
+	public final void moveTo(final int x, final int y, final int z) {
+		this.impact.mesh.moveTo(x, y, z);
+	}
 
-   public final void explode(AEVector3D var1) {
-      int var4 = var1.z;
-      int var3 = var1.y;
-      int var2 = var1.x;
-      this.impact.mesh.moveTo(var2, var3, var4);
-      this.impact.explode();
-      this.inactive = false;
-   }
+	public final void explode(final AEVector3D pos) {
+		this.impact.mesh.moveTo(pos.x, pos.y, pos.z);
+		this.impact.explode();
+		this.inactive = false;
+	}
 
-   public final void update(long var1) {
-      if (!this.inactive) {
-         this.impact.update((int)var1);
-      }
-   }
+	public final void update(final long frameTime) {
+		if (!this.inactive) {
+			this.impact.update((int)frameTime);
+		}
+	}
 
-   public final void render() {
-      if (!this.inactive) {
-         GlobalStatus.renderer.drawNodeInVF(this.impact.mesh);
-      }
-   }
+	public final void render() {
+		if (!this.inactive) {
+			GlobalStatus.renderer.drawNodeInVF(this.impact.mesh);
+		}
+	}
 
-   public final GraphNode clone() {
-      return null;
-   }
+	public final GraphNode clone() {
+		return null;
+	}
 
-   public final void setTexture(ITexture var1) {
-   }
+	public final void setTexture(final ITexture texture) {
+	}
 
-   public final void OnRelease() {
-      Impact var1;
-      if ((var1 = this.impact).mesh != null) {
-         var1.mesh.OnRelease();
-      }
-
-      var1.mesh = null;
-   }
+	public final void OnRelease() {
+		if (this.impact.mesh != null) {
+			this.impact.mesh.OnRelease();
+		}
+		this.impact.mesh = null;
+	}
 }
