@@ -80,8 +80,8 @@ ck.g()I getBonus
 ck.b(I)V setBonus
 ck.f()Z isInstantActionMission
 ck.g()Z isCampaignMission
-ck.d(Z)V setStartedStoryMission
-ck.h()I setCampaignMission
+ck.d(Z)V setCampaignMission
+ck.h()I getTargetStation
 ck.b()Ljava/lang/String; getTargetStationName
 ck.c(I)V setTargetStation
 ck.i()I getDifficulty
@@ -91,7 +91,7 @@ ck.c()Ljava/lang/String; getTargetName
 ck.a(Ljava/lang/String;)V setTargetName
 ck.d(I)V setType
 h AE/Math/AEMath
-h.a [S sineTable
+h.a [S SINE_QUARTER
 h.a(I)I sin
 h.b(I)I cos
 h.c(I)I invSin
@@ -232,9 +232,9 @@ cn.c [S helpFull
 cn.d [S soundLevels
 cn.e [S tips
 cn.f [S egoToughts
-cn.g [S freelanceWelcomings
-cn.h [S freelanceSuccess
-cn.i [S freelanceFail
+cn.g [S MISSION_START_MSG
+cn.h [S MISSION_SUCCESS_MSG
+cn.i [S MISSION_LOST_MSG
 cn.a [I catrogoryLengths_
 cn.a [Ljava/lang/String; langEntries
 cn.b [Ljava/lang/String; unusedBuffer_
@@ -1166,12 +1166,12 @@ aa.a(IJZ)V shoot_
 aa.a(IIJZ)Z shoot
 aa.a(J)V update
 ad GoF2/Globals
-ad.a Ljava/lang/String; pathMeshes
-ad.b Ljava/lang/String; pathTextures
-ad.a [[S barMeshIDs
-ad.a [S barFiguresMeshIDs
-ad.b [[S hangarMeshIDs
-ad.b [S projectilesMeshIDs
+ad.a Ljava/lang/String; PATH_MESHES
+ad.b Ljava/lang/String; PATH_TEXTURES
+ad.a [[S BAR_MESHES
+ad.a [S BAR_FIGURES
+ad.b [[S HANGAR_MESHES
+ad.b [S TYPE_WEAPONS
 ad.a [B CHAR_KEITH
 ad.c [B CHAR_BRENT
 ad.d [B CHAR_GUNANT
@@ -1778,7 +1778,7 @@ az.a()V left
 az.b()V right
 az.c()V draw
 ba GoF2/Gun
-ba.a [[[S positions
+ba.a [[[S MUZZLE_POSITIONS
 ba.a Ldb; level
 ba.a [Laa; targets
 ba.a [Lcd; projectilesPos
@@ -1821,7 +1821,7 @@ ba.b()V ignite
 ba.a(J)V calcCharacterCollision
 ba.c()V renderSparks
 bb GoF2/Achievements
-bb.a [[I medalTresholds
+bb.a [[I VALUES
 bb.a [I medals
 bb.b [I newMedals
 bb.a I killStreak
@@ -1829,8 +1829,8 @@ bb.b I pirateKillStreak
 bb.c I weaponsEquipped
 bb.a Z isArmed
 bb.d I maxCredits
-bb.b Z hasAll
-bb.c Z hasAllGold
+bb.b Z ALL_MEDALS
+bb.c Z ALL_GOLD_MEDALS
 bb.e I goldMedalsCount
 bb.f I unlockedMedalsCount
 bb.a(Lcq;)V checkForNewMedal
@@ -1909,11 +1909,11 @@ be.a(Lu;)V addItem
 be.a()[Lcb; getBarAgents
 be.a(Lbe;)Z equals
 bf GoF2/Generator
-bf.a [I storySignificantStations_
-bf.b [I itemTypeOccurance
+bf.a [I GENERATOR_CAMPAIGN_STATIONS
+bf.b [I GENERATOR_TYPE_PROBS
 bf.a(Lbe;)[Lch; getShipBuyList
 bf.a()[I getLootList
-bf.a([Lcw;I)I pickNextDestination
+bf.a([Lcw;I)I generateStationIndex
 bf.a(Lbe;)[Lcb; createAgents
 bf.a(Lcb;)Lck; createFreelanceMission
 bg GoF2/Route
@@ -2029,7 +2029,7 @@ bl.b(Lck;)V setFreelanceMission
 bl.c()Lck; getCampaignMission
 bl.c(Lck;)V startStoryMission
 bl.a()V incMissionCount
-bl.b(I)V getCurrentCampaignMissionIndex
+bl.b(I)V setCurrentCampaignMission
 bl.a()I getCurrentCampaignMission
 bl.b()V nextCampaignMission
 bl.a()Z gameWon
@@ -2593,8 +2593,8 @@ cg.a()Z canExplode
 cg.a(J)V update
 cg.b()Z isOver
 ch GoF2/Ship
-ch.a [S previewZoomOut
-ch.b [S previewPivotShift
+ch.a [S SHIP_PREVIEW_SCALING
+ch.b [S SHIP_HANGAR_OFFSETS
 ch.a I id
 ch.b I baseHP
 ch.c I basePrice

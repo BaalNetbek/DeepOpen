@@ -5,8 +5,8 @@ import AE.Math.AEMath;
 import AE.PaintCanvas.ImageFactory;
 
 public final class Generator {
-	private final int[] storySignificantStations_ = {10, 22, 27, 29, 30, 48, 55, 56, 76, 79, 91, 98};
-	private final int[] itemTypeOccurance = {5, 20, 2, 5, 100};
+	private final int[] GENERATOR_CAMPAIGN_STATIONS = {10, 22, 27, 29, 30, 48, 55, 56, 76, 79, 91, 98};
+	private final int[] GENERATOR_TYPE_PROBS = {5, 20, 2, 5, 100};
 
 	public static Ship[] getShipBuyList(final Station var0) {
 		if (var0.getSystemIndex() == 15 && Status.getCurrentCampaignMission() < 16) {
@@ -67,7 +67,7 @@ public final class Generator {
 			for(int var8 = 0; var8 < 100 && !var6; ++var8) {
 				var7 = GlobalStatus.random.nextInt(var1.length);
 				var4 = var3[var7].getType();
-				if (var3[var7].getBluePrintComponentsIds() == null && GlobalStatus.random.nextInt(100) < this.itemTypeOccurance[var4] && GlobalStatus.random.nextInt(100) < var1[var7].getOccurance() && var3[var7].getSinglePrice() > 0 && var7 != 175 && var7 != 164 && (var4 == 4 || var3[var7].getTecLevel() <= 7)) {
+				if (var3[var7].getBluePrintComponentsIds() == null && GlobalStatus.random.nextInt(100) < this.GENERATOR_TYPE_PROBS[var4] && GlobalStatus.random.nextInt(100) < var1[var7].getOccurance() && var3[var7].getSinglePrice() > 0 && var7 != 175 && var7 != 164 && (var4 == 4 || var3[var7].getTecLevel() <= 7)) {
 					var6 = true;
 				}
 			}
@@ -88,7 +88,7 @@ public final class Generator {
 		return var9;
 	}
 
-	private int pickNextDestination(final SolarSystem[] var1, final int var2) {
+	private int generateStationIndex(final SolarSystem[] var1, final int var2) {
 		int var3 = 0;
 		boolean var4 = false;
 
@@ -109,8 +109,8 @@ public final class Generator {
 			var4 = true;
 
 			int var7;
-			for(var7 = 0; var7 < this.storySignificantStations_.length; ++var7) {
-				if (var3 == this.storySignificantStations_[var7]) {
+			for(var7 = 0; var7 < this.GENERATOR_CAMPAIGN_STATIONS.length; ++var7) {
+				if (var3 == this.GENERATOR_CAMPAIGN_STATIONS[var7]) {
 					var4 = false;
 					break;
 				}
@@ -244,7 +244,7 @@ public final class Generator {
 	public final Mission createFreelanceMission(final Agent agent) {
 		new FileRead();
 		final SolarSystem[] loadSystemsBinary = FileRead.loadSystemsBinary();
-		int i = pickNextDestination(loadSystemsBinary, agent.getStationId());
+		int i = generateStationIndex(loadSystemsBinary, agent.getStationId());
 		if (Status.getSystem().getId() == 15) {
 			i = Status.getSystem().getStations()[0] + GlobalStatus.random.nextInt(4);
 		}
@@ -289,7 +289,7 @@ public final class Generator {
 		}
 		if (missionType == 11 || missionType == 0) {
 			while (i == Status.getStation().getId()) {
-				i = pickNextDestination(loadSystemsBinary, agent.getStationId());
+				i = generateStationIndex(loadSystemsBinary, agent.getStationId());
 			}
 		}
 		final int race = agent.getRace();

@@ -1,7 +1,11 @@
 package GoF2;
 
 public final class Item {
-	private static final boolean[] installableMultipleTimes = {true, true, true, true, true, true, true, true, false, false, false, true, true, false, false, false, false, false, false, false, true, false, true, true, true};
+	private static final boolean[] installableMultipleTimes = {
+	      true, true, true, true, true, true, true, true, false,
+	      false, false, true, true, false, false, false, false,
+	      false, false, false, true, false, true, true, true
+	};
 	private final int id;
 	private final int type;
 	private final int subType;

@@ -233,7 +233,7 @@ public final class StarMap {
 				for(var5 = 0; var5 < this.systems.length; ++var5) {
 					if (this.systems[var5].getStations() != null) {
 						for(var7 = 0; var7 < this.systems[var5].getStations().length; ++var7) {
-							if (var9.setCampaignMission() == this.systems[var5].getStations()[var7]) {
+							if (var9.getTargetStation() == this.systems[var5].getStations()[var7]) {
 								this.destinationOrMissionSystem_ = var5;
 								break;
 							}
@@ -996,11 +996,11 @@ public final class StarMap {
 
 		final Mission var7 = Status.getCampaignMission();
 		final Mission var4 = Status.getFreelanceMission();
-		if (var7 != null && !var7.isEmpty() && (var2 && this.selectedSystemStations[var1].getId() == var7.setCampaignMission() || !var2 && this.systems[var1].getStationEnumIndex(var7.setCampaignMission()) >= 0 || Status.getCurrentCampaignMission() > 32 && (var2 && this.selectedSystemStations[var1].getId() == Status.wormholeStation && var7.setCampaignMission() == -1 || !var2 && this.systems[var1].getStationEnumIndex(Status.wormholeStation) >= 0 && var7.setCampaignMission() == -1))) {
+		if (var7 != null && !var7.isEmpty() && (var2 && this.selectedSystemStations[var1].getId() == var7.getTargetStation() || !var2 && this.systems[var1].getStationEnumIndex(var7.getTargetStation()) >= 0 || Status.getCurrentCampaignMission() > 32 && (var2 && this.selectedSystemStations[var1].getId() == Status.wormholeStation && var7.getTargetStation() == -1 || !var2 && this.systems[var1].getStationEnumIndex(Status.wormholeStation) >= 0 && var7.getTargetStation() == -1))) {
 			this.legendItemIcons[1] = this.mainMissionIcon;
 		}
 
-		if (var4 != null && !var4.isEmpty() && (var2 && this.selectedSystemStations[var1].getId() == var4.setCampaignMission() || !var2 && this.systems[var1].getStationEnumIndex(var4.setCampaignMission()) >= 0)) {
+		if (var4 != null && !var4.isEmpty() && (var2 && this.selectedSystemStations[var1].getId() == var4.getTargetStation() || !var2 && this.systems[var1].getStationEnumIndex(var4.getTargetStation()) >= 0)) {
 			this.legendItemIcons[2] = this.sideMissionIcon;
 		}
 

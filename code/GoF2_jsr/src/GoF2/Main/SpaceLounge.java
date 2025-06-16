@@ -491,7 +491,7 @@ public final class SpaceLounge {
 					case 3:
 						if (this.agents[this.selectedAgent].getType() != 2 && this.agents[this.selectedAgent].getType() != 3) {
 							this.agents[this.selectedAgent].wasAskedForLocation = true;
-							if (this.agents[this.selectedAgent].getMission().setCampaignMission() == Status.getStation().getId()) {
+							if (this.agents[this.selectedAgent].getMission().getTargetStation() == Status.getStation().getId()) {
 								this.chatRows = Font.splitToLines(GlobalStatus.gameText.getText(441), GlobalStatus.screenWidth - this.chatTextPosX - this.answearsPosX);
 								this.chatType_ = 1;
 								this.chatScroll = 0;

@@ -535,7 +535,7 @@ public final class OptionsWindow {
 		Status.wormholeSystem = var4.wormholeSystem;
 		Status.lastVisitedNonVoidOrbit = var4.lastVisitedNonVoidOrbit;
 		Status.wormHoleTick = var4.wormHoleTick;
-		Status.getCurrentCampaignMissionIndex(var4.currentCampaignMissionIndex);
+		Status.setCurrentCampaignMission(var4.currentCampaignMissionIndex);
 		Status.setFreelanceMission(var4.freelanceMission);
 		Status.startStoryMission(var4.storyMission);
 		Status.setLastVisitedStations(var4.lastVisitedStations);

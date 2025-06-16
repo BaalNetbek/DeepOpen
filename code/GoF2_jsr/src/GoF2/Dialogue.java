@@ -178,7 +178,7 @@ public final class Dialogue {
 				} else if (this.mission.getType() == 7) {
 					this.message = GlobalStatus.gameText.getText(200);
 				} else {
-					this.message = GlobalStatus.gameText.getText(GameText.freelanceWelcomings[GlobalStatus.random.nextInt(GameText.freelanceWelcomings.length)]);
+					this.message = GlobalStatus.gameText.getText(GameText.MISSION_START_MSG[GlobalStatus.random.nextInt(GameText.MISSION_START_MSG.length)]);
 				}
 			} else if (this.type == 1) {
 				final boolean var5 = this.mission.getAgent() != null ? this.mission.getAgent().isSpecialAgent() : false;
@@ -186,14 +186,14 @@ public final class Dialogue {
 					this.message = GlobalStatus.gameText.getText(192) + (var5 ? "\n\n" + Status.replaceTokens(GlobalStatus.gameText.getText(211), this.mission.getAgent().getStationName(), "#S") : "");
 					this.message = Status.replaceTokens(Status.replaceTokens(this.message, this.level.egoScore + "", "#Q1"), this.level.challengerScore + "", "#Q2");
 				} else {
-					this.message = GlobalStatus.gameText.getText(GameText.freelanceSuccess[GlobalStatus.random.nextInt(GameText.freelanceSuccess.length)]) + "\n\n" + (var5 ? Status.replaceTokens(GlobalStatus.gameText.getText(211), this.mission.getAgent().getStationName(), "#S") : GlobalStatus.gameText.getText(97));
+					this.message = GlobalStatus.gameText.getText(GameText.MISSION_SUCCESS_MSG[GlobalStatus.random.nextInt(GameText.MISSION_SUCCESS_MSG.length)]) + "\n\n" + (var5 ? Status.replaceTokens(GlobalStatus.gameText.getText(211), this.mission.getAgent().getStationName(), "#S") : GlobalStatus.gameText.getText(97));
 				}
 
 				Status.getStanding().increase(this.mission.getClientRace());
 			} else if (this.mission.getType() == 12) {
 				this.message = Status.replaceTokens(Status.replaceTokens(GlobalStatus.gameText.getText(193), this.level.egoScore + "", "#Q1"), this.level.challengerScore + "", "#Q2");
 			} else {
-				this.message = GlobalStatus.gameText.getText(GameText.freelanceFail[GlobalStatus.random.nextInt(GameText.freelanceFail.length)]) + "\n\n" + GlobalStatus.gameText.getText(213);
+				this.message = GlobalStatus.gameText.getText(GameText.MISSION_LOST_MSG[GlobalStatus.random.nextInt(GameText.MISSION_LOST_MSG.length)]) + "\n\n" + GlobalStatus.gameText.getText(213);
 			}
 		} else {
 			var1 = this.type == 0 ? CAMPAIGN_BRIEFING[Status.getCurrentCampaignMission()][2 * this.page] : this.type == 1 ? CAMPAIGN_SUCCESS[Status.getCurrentCampaignMission()][2 * this.page] : 16;

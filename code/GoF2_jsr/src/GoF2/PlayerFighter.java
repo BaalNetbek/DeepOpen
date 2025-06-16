@@ -32,8 +32,18 @@ public final class PlayerFighter extends KIPlayer {
 	private int hitpoints;
 	private int damageAccumulator;
 	private boolean damageEscape;
-	private static Route defaultRoute_ = new Route(new int[]{20000, 0, 20000, 20000, 0, -20000, -20000, 0, -20000, -20000, 0, 20000});
-	private static Route stationRouteAliens = new Route(new int[]{40000, 0, 40000, 40000, 0, -40000, -40000, 0, -40000, -40000, 0, 40000});
+	private static Route defaultRoute_ = new Route(new int[] {
+	      20000, 0, 20000,
+	      20000, 0, -20000,
+	      -20000, 0, -20000,
+	      -20000, 0, 20000
+	      });
+	private static Route stationRouteAliens = new Route(new int[] {
+	      40000, 0, 40000,
+	      40000, 0, -40000,
+	      -40000, 0, -40000,
+	      -40000, 0, 40000
+	      });
 	private Route activeRoute;
 	private int initialWaypoint;
 	private int weaponActive;

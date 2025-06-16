@@ -243,7 +243,7 @@ public final class JSRMesh extends AbstractMesh {
 
 		return length;
 	}
-
+	
 	public final void render() {
 		if (this.opaqueNodes != null) {
 			if (this.needsUvFix) {

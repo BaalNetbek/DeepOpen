@@ -372,7 +372,7 @@ public final class Radar {
 						var15 = false;
 						final Mission var16 = Status.getCampaignMission();
 						final Mission var17 = Status.getFreelanceMission();
-						if (var16 != null && !var16.isEmpty() && var30[var12 - 1] == var16.setCampaignMission() && !var8) {
+						if (var16 != null && !var16.isEmpty() && var30[var12 - 1] == var16.getTargetStation() && !var8) {
 							if (this.mainMission == null) {
 								this.mainMission = AEFile.loadCryptedImage("/data/interface/menu_map_mainmission.png");
 							}
@@ -381,7 +381,7 @@ public final class Radar {
 							var15 = true;
 						}
 
-						if (var17 != null && !var17.isEmpty() && var30[var12 - 1] == var17.setCampaignMission() && !var8) {
+						if (var17 != null && !var17.isEmpty() && var30[var12 - 1] == var17.getTargetStation() && !var8) {
 							if (this.sideMission == null) {
 								this.sideMission = AEFile.loadCryptedImage("/data/interface/menu_map_sidemission.png");
 							}

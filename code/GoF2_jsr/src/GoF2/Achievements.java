@@ -8,7 +8,8 @@ package GoF2;
  *
  */
 public final class Achievements {
-	public static final int[][] medalTresholds;
+	/** medal thresholds */
+	public static final int[][] VALUES;
 	private static int[] medals;
 	private static int[] newMedals;
 	/**
@@ -22,8 +23,8 @@ public final class Achievements {
 	private static int weaponsEquipped;
 	private static boolean isArmed;
 	private static int maxCredits;
-	private static boolean hasAll;
-	private static boolean hasAllGold;
+	private static boolean ALL_MEDALS;
+	private static boolean ALL_GOLD_MEDALS;
 	private static int goldMedalsCount;
 	private static int unlockedMedalsCount;
 
@@ -54,14 +55,14 @@ public final class Achievements {
 
 		boolean qualifiable = false;
 
-		for(int i = 0; i < medalTresholds.length; ++i) {
+		for(int i = 0; i < VALUES.length; ++i) {
 			int reachedTier = 0;
 			if (medals[i] != 1) {
-				for(int j = 0; j < medalTresholds[i].length && reachedTier <= 0; ++j) {
+				for(int j = 0; j < VALUES[i].length && reachedTier <= 0; ++j) {
 					qualifiable = false;
 					switch(i) {
 					case 1:
-						qualifiable = ego.getHullDamageRate() <= medalTresholds[i][j];
+						qualifiable = ego.getHullDamageRate() <= VALUES[i][j];
 						break;
 					case 2:
 					case 3:
@@ -80,28 +81,28 @@ public final class Achievements {
 							}
 						}
 
-						qualifiable = equipmentSloted >= medalTresholds[i][j];
+						qualifiable = equipmentSloted >= VALUES[i][j];
 						break;
 					case 4:
-						qualifiable = Status.getKills() >= medalTresholds[i][j];
+						qualifiable = Status.getKills() >= VALUES[i][j];
 						break;
 					case 5:
-						qualifiable = Status.missionGoodsCarried > medalTresholds[i][j];
+						qualifiable = Status.missionGoodsCarried > VALUES[i][j];
 						break;
 					case 6:
-						qualifiable = Status.minedOre > medalTresholds[i][j];
+						qualifiable = Status.minedOre > VALUES[i][j];
 						break;
 					case 7:
-						qualifiable = Status.minedCores > medalTresholds[i][j];
+						qualifiable = Status.minedCores > VALUES[i][j];
 						break;
 					case 8:
-						qualifiable = Status.boughtBooze > medalTresholds[i][j];
+						qualifiable = Status.boughtBooze > VALUES[i][j];
 						break;
 					case 10:
-						qualifiable = Status.destroyedJunk > medalTresholds[i][j];
+						qualifiable = Status.destroyedJunk > VALUES[i][j];
 						break;
 					case 11:
-						qualifiable = Status.getStationsVisited() >= medalTresholds[i][j];
+						qualifiable = Status.getStationsVisited() >= VALUES[i][j];
 						break;
 					case 13:
 						equipmentSloted = 0;
@@ -112,7 +113,7 @@ public final class Achievements {
 							}
 						}
 
-						qualifiable = equipmentSloted >= medalTresholds[i][j];
+						qualifiable = equipmentSloted >= VALUES[i][j];
 						break;
 					case 14:
 						equipmentSloted = 0;
@@ -123,70 +124,70 @@ public final class Achievements {
 							}
 						}
 
-						qualifiable = equipmentSloted >= medalTresholds[i][j];
+						qualifiable = equipmentSloted >= VALUES[i][j];
 						break;
 					case 15:
-						qualifiable = Status.getPlayingTime() > medalTresholds[i][j] * 3600000;
+						qualifiable = Status.getPlayingTime() > VALUES[i][j] * 3600000;
 						break;
 					case 16:
-						qualifiable = Status.getMissionCount() > medalTresholds[i][j];
+						qualifiable = Status.getMissionCount() > VALUES[i][j];
 						break;
 					case 17:
-						qualifiable = Status.getJumpgateUsed() >= medalTresholds[i][j];
+						qualifiable = Status.getJumpgateUsed() >= VALUES[i][j];
 						break;
 					case 18:
-						qualifiable = Status.passengersCarried > medalTresholds[i][j];
+						qualifiable = Status.passengersCarried > VALUES[i][j];
 						break;
 					case 19:
-						qualifiable = Status.invisibleTime / 60000L >= medalTresholds[i][j];
+						qualifiable = Status.invisibleTime / 60000L >= VALUES[i][j];
 						break;
 					case 20:
-						qualifiable = Status.bombsUsed > medalTresholds[i][j];
+						qualifiable = Status.bombsUsed > VALUES[i][j];
 						break;
 					case 21:
-						qualifiable = Status.alienJunkSalvaged > medalTresholds[i][j];
+						qualifiable = Status.alienJunkSalvaged > VALUES[i][j];
 						break;
 					case 22:
 						qualifiable = !isArmed;
 						break;
 					case 23:
-						qualifiable = weaponsEquipped >= medalTresholds[i][j];
+						qualifiable = weaponsEquipped >= VALUES[i][j];
 						break;
 					case 24:
-						qualifiable = Status.getCargoSalvaged() >= medalTresholds[i][j];
+						qualifiable = Status.getCargoSalvaged() >= VALUES[i][j];
 						break;
 					case 25:
-						qualifiable = maxCredits >= medalTresholds[i][j];
+						qualifiable = maxCredits >= VALUES[i][j];
 						break;
 					case 26:
-						qualifiable = Status.barInteractions > medalTresholds[i][j];
+						qualifiable = Status.barInteractions > VALUES[i][j];
 						break;
 					case 27:
-						qualifiable = Status.commandedWingmen > medalTresholds[i][j];
+						qualifiable = Status.commandedWingmen > VALUES[i][j];
 						break;
 					case 28:
 						qualifiable = Status.getStanding().atWar();
 						break;
 					case 29:
-						qualifiable = Status.asteroidsDestroyed > medalTresholds[i][j];
+						qualifiable = Status.asteroidsDestroyed > VALUES[i][j];
 						break;
 					case 30:
 						qualifiable = Status.gameWon();
 						break;
 					case 31:
-						qualifiable = Status.maxFreeCargo > medalTresholds[i][j];
+						qualifiable = Status.maxFreeCargo > VALUES[i][j];
 						break;
 					case 32:
-						qualifiable = Status.missionsRejected > medalTresholds[i][j];
+						qualifiable = Status.missionsRejected > VALUES[i][j];
 						break;
 					case 33:
-						qualifiable = Status.askedToRepeate > medalTresholds[i][j];
+						qualifiable = Status.askedToRepeate > VALUES[i][j];
 						break;
 					case 34:
-						qualifiable = Status.acceptedNotAskingDifficulty > medalTresholds[i][j];
+						qualifiable = Status.acceptedNotAskingDifficulty > VALUES[i][j];
 						break;
 					case 35:
-						qualifiable = Status.acceptedNotAskingLocation > medalTresholds[i][j];
+						qualifiable = Status.acceptedNotAskingLocation > VALUES[i][j];
 						break;
 					case 36:
 						qualifiable = true;
@@ -225,16 +226,16 @@ public final class Achievements {
 			}
 		}
 
-		hasAll = unlockedMedalsCount == medals.length;
-		hasAllGold = goldMedalsCount == medals.length;
+		ALL_MEDALS = unlockedMedalsCount == medals.length;
+		ALL_GOLD_MEDALS = goldMedalsCount == medals.length;
 	}
 
 	public static boolean gotAllMedals() {
-		return hasAll;
+		return ALL_MEDALS;
 	}
 
 	public static boolean gotAllGoldMedals() {
-		return hasAllGold;
+		return ALL_GOLD_MEDALS;
 	}
 
 	public static int[] getMedals() {
@@ -302,8 +303,9 @@ public final class Achievements {
 	}
 
 	static {
-		medalTresholds = new int[][] { 
-			{ 0 }, { 5, 15, 30 },
+		VALUES = new int[][] { 
+			{ 0 }, 
+			{ 5, 15, 30 },
 			{ 11, 8, 5 },
 			{ 11, 8, 5 },
 			{ 250, 100, 50 },
@@ -339,7 +341,7 @@ public final class Achievements {
 			{ 10 },
 			{ 12 },
 			{ 0 } };
-		medals = new int[medalTresholds.length];
-		newMedals = new int[medalTresholds.length];
+		medals = new int[VALUES.length];
+		newMedals = new int[VALUES.length];
 	}
 }

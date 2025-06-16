@@ -629,6 +629,10 @@ public final class MGame extends IApplicationModule {
 					this.paused = true;
 					return true;
 				}
+				/**
+				 * #TODO check this
+				 * Current campaign mission is never 127. This is bug or legacy code.
+				 */
 				if (Status.getMission().isCampaignMission() && Status.getCurrentCampaignMission() == 127) {
 					Status.nextCampaignMission();
 					this.level.removeObjectives();
@@ -638,7 +642,9 @@ public final class MGame extends IApplicationModule {
 						Status.incMissionCount();
 					}
 
-					if (Status.getMission().isCampaignMission() && (!Status.getMission().isCampaignMission() || !Dialogue.hasSuccessDialogue(Status.getCurrentCampaignMission()))) {
+				 //if (Status.getMission().isCampaignMission() && (!Status.getMission().isCampaignMission() || !Dialogue.hasSuccessDialogue(Status.getCurrentCampaignMission()))) {
+					if (Status.getMission().isCampaignMission() 
+						&& !Dialogue.hasSuccessDialogue(Status.getCurrentCampaignMission())) {
 						return false;
 					}
 

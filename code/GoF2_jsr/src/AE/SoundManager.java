@@ -9,12 +9,37 @@ import javax.microedition.media.PlayerListener;
 import javax.microedition.media.control.VolumeControl;
 
 public final class SoundManager implements PlayerListener {
-	private static final String[] MUSIC_FILES_PATHS = {"/data/sound/gof2_theme.mid", "/data/sound/gof2_hangar.mid", "/data/sound/gof2_bar.mid", "/data/sound/gof2_gaction.mid", "/data/sound/gof2_gneutral.mid"};
-	private static final String[] SFX_FILES_PATHS = {"/data/sound/fx_boost_01.wav", "/data/sound/fx_explosion_01.wav", "/data/sound/fx_message_03.wav", "/data/sound/fx_message_02.wav", "/data/sound/fx_menu_04.wav", "/data/sound/fx_explosion_03.wav", "/data/sound/fx_mining_05.wav", "/data/sound/fx_boost_02.wav", "/data/sound/wpn_rocket_02.wav", "/data/sound/wpn_rocket_03.wav", "/data/sound/wpn_rocket_04.wav", "/data/sound/fx_thunder_01.wav", "/data/sound/wpn_nuke_02.wav", "/data/sound/fx_message_05.wav"};
+	private static final String[] MUSIC_FILES_PATHS = {
+	      "/data/sound/gof2_theme.mid",
+	      "/data/sound/gof2_hangar.mid",
+	      "/data/sound/gof2_bar.mid",
+	      "/data/sound/gof2_gaction.mid",
+	      "/data/sound/gof2_gneutral.mid"
+	      };
+	private static final String[] SFX_FILES_PATHS = {
+	      "/data/sound/fx_boost_01.wav",
+	      "/data/sound/fx_explosion_01.wav",
+	      "/data/sound/fx_message_03.wav",
+	      "/data/sound/fx_message_02.wav",
+	      "/data/sound/fx_menu_04.wav",
+	      "/data/sound/fx_explosion_03.wav",
+	      "/data/sound/fx_mining_05.wav",
+	      "/data/sound/fx_boost_02.wav",
+	      "/data/sound/wpn_rocket_02.wav",
+	      "/data/sound/wpn_rocket_03.wav",
+	      "/data/sound/wpn_rocket_04.wav",
+	      "/data/sound/fx_thunder_01.wav",
+	      "/data/sound/wpn_nuke_02.wav",
+	      "/data/sound/fx_message_05.wav"
+	      };
 	private static int lastSfxIndex;
 	private static long sfxStartTime;
-	private static final long[] SFX_DURATIONS = {1663L, 1542L, 297L, 551L, 50L, 790L, 2147L, 3087L, 576L, 884L, 892L, 3194L, 1697L, 215L};
-	private static short[] SFX_VOLUMES = {100, 95, 60, 70, 50, 80, 100, 100, 60, 60, 60, 100, 100, 80};
+	private static final long[] SFX_DURATIONS = {
+	      1663L, 1542L, 297L, 551L, 50L, 790L, 2147L,
+	      3087L, 576L, 884L, 892L, 3194L, 1697L, 215L};
+	private static short[] SFX_VOLUMES = {
+	      100, 95, 60, 70, 50, 80, 100,
+	      100, 60, 60, 60, 100, 100, 80};
 	private static Player musicPlayer;
 	private final Player[] sfxPlayers;
 	private VolumeControl tmpVolumeController;
@@ -82,8 +107,8 @@ public final class SoundManager implements PlayerListener {
 				musicPlayer.setLoopCount(-1);
 				musicPlayer.start();
 				GlobalStatus.currentMusic = var1;
-				VolumeControl var5;
-				(var5 = (VolumeControl)musicPlayer.getControl("VolumeControl")).setLevel(40);
+				VolumeControl var5 = (VolumeControl)musicPlayer.getControl("VolumeControl");
+				var5.setLevel(40);
 
 				try {
 					var5.setMute(false);
@@ -158,8 +183,8 @@ public final class SoundManager implements PlayerListener {
 		try {
 			if (GlobalStatus.musicOn) {
 				try {
-					VolumeControl var1;
-					(var1 = (VolumeControl)musicPlayer.getControl("VolumeControl")).setMute(false);
+					VolumeControl var1 = (VolumeControl)musicPlayer.getControl("VolumeControl");
+					var1.setMute(false);
 					AlertType.ERROR.playSound(GlobalStatus.display);
 					var1.setLevel(this.tmpMusicVolume);
 				} catch (final Exception var3) {

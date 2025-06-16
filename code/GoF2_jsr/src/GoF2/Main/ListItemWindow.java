@@ -277,11 +277,11 @@ public final class ListItemWindow {
 		if (var1) {
 			this.lastCam = GlobalStatus.renderer.getCamera();
 			this.shipPreviewCam = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1000, 10, 31768);
-			this.shipPreviewCam.translate(0, 400, -Ship.previewZoomOut[this.contextItem.getIndex()]);
+			this.shipPreviewCam.translate(0, 400, -Ship.SHIP_PREVIEW_SCALING[this.contextItem.getIndex()]);
 			this.shipPreviewCam.rotateEuler(256, 2048, 0);
 			new Group();
 			Group var2 = null;
-			(var2 = Globals.getShipGroup(this.contextItem.getIndex(), this.contextItem.ship.getRace())).translate(0, 0, Ship.previewPivotShift[this.contextItem.getIndex()]);
+			(var2 = Globals.getShipGroup(this.contextItem.getIndex(), this.contextItem.ship.getRace())).translate(0, 0, Ship.SHIP_HANGAR_OFFSETS[this.contextItem.getIndex()]);
 			this.ship = new Group();
 			this.ship.uniqueAppend_(var2);
 		} else if (this.lastCam != null) {

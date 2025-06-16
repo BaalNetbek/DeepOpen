@@ -139,7 +139,9 @@ public final class Status {
 
 		return null;
 	}
-
+	/*
+	 *  #TODO refactoring
+	 */
 	public static void departStation(final Station var0) {
 		if (var0 != voidStation) {
 			Station var1;
@@ -195,10 +197,10 @@ public final class Status {
 
 					GlobalStatus.random.setSeed(System.currentTimeMillis());
 
-					int var21;
+					int i;
 					int var23;
-					for(var21 = 0; var21 < var20.length; ++var21) {
-						final Item var9 = var20[var21];
+					for(i = 0; i < var20.length; ++i) {
+						final Item var9 = var20[i];
 						boolean var10 = false;
 						if (var3.getId() == var9.getAttribute(36)) {
 							var10 = true;
@@ -206,7 +208,7 @@ public final class Status {
 
 						int var11 = var9.getTecLevel();
 						final boolean var12 = var9.getIndex() >= 132 && var9.getIndex() < 154;
-						if (var10 || var9.getBluePrintComponentsIds() == null && var21 != 175 && var21 != 164 && var11 <= var3.getTecLevel() && var9.getOccurance() != 0 && var9.getSinglePrice() != 0 && (var9.getAttribute(35) != 1 || var14[var3.getSystemIndex()].getRace() == 1) && (!var12 || var9.getIndex() == 132 + var3.getSystemIndex())) {
+						if (var10 || var9.getBluePrintComponentsIds() == null && i != 175 && i != 164 && var11 <= var3.getTecLevel() && var9.getOccurance() != 0 && var9.getSinglePrice() != 0 && (var9.getAttribute(35) != 1 || var14[var3.getSystemIndex()].getRace() == 1) && (!var12 || var9.getIndex() == 132 + var3.getSystemIndex())) {
 							final int var13 = var9.getOccurance();
 							if (var10 || (var12 || var11 <= var6 && var11 >= var7) && GlobalStatus.random.nextInt(100) < var13) {
 								var23 = var14[var9.getLowestPriceSystemId()].getPosX();
@@ -224,9 +226,9 @@ public final class Status {
 						}
 					}
 
-					final Item[] var22 = new Item[var21 = var18.size()];
+					final Item[] var22 = new Item[i = var18.size()];
 
-					for(var23 = 0; var23 < var21; ++var23) {
+					for(var23 = 0; var23 < i; ++var23) {
 						var22[var23] = (Item)var18.elementAt(var23);
 					}
 
@@ -243,23 +245,23 @@ public final class Status {
 
 		mission = Mission.emptyMission_;
 
-		for(int var15 = 0; var15 < currentMissions.length; ++var15) {
-			if (currentMissions[var15] != null) {
-				if (currentMissions[var15].isCampaignMission() && currentMissions[var15].getType() == 25 && var0.getId() == wormholeStation) {
-					mission = currentMissions[var15];
+		for(int i = 0; i < currentMissions.length; ++i) {
+			if (currentMissions[i] != null) {
+				if (currentMissions[i].isCampaignMission() && currentMissions[i].getType() == 25 && var0.getId() == wormholeStation) {
+					mission = currentMissions[i];
 					break;
 				}
 
-				if (currentMissions[var15].setCampaignMission() == var0.getId() && currentMissions[var15].getType() != 8 && currentMissions[var15].getType() != 19 && currentMissions[var15].getType() != 16 && currentMissions[var15].getType() != 14 && currentMissions[var15].getType() != 13) {
-					if (currentMissions[var15].isCampaignMission() || currentMissions[var15].getType() != 11) {
-						mission = currentMissions[var15];
+				if (currentMissions[i].getTargetStation() == var0.getId() && currentMissions[i].getType() != 8 && currentMissions[i].getType() != 19 && currentMissions[i].getType() != 16 && currentMissions[i].getType() != 14 && currentMissions[i].getType() != 13) {
+					if (currentMissions[i].isCampaignMission() || currentMissions[i].getType() != 11) {
+						mission = currentMissions[i];
 					}
 					break;
 				}
 			}
 		}
 
-		if (!gameWon() && currentCampaignMissionIndex >= 32 && var0.getId() != currentMissions[0].setCampaignMission()) {
+		if (!gameWon() && currentCampaignMissionIndex >= 32 && var0.getId() != currentMissions[0].getTargetStation()) {
 			if (++wormHoleTick > 10) {
 				wormHoleTick = 0;
 				boolean var16 = false;
@@ -277,7 +279,7 @@ public final class Status {
 								} while(!visibleSystems[wormholeSystem]);
 							} while(wormholeSystem == 10);
 						} while(wormholeSystem == 15);
-					} while(mission.isCampaignMission() && mission.setCampaignMission() == wormholeStation);
+					} while(mission.isCampaignMission() && mission.getTargetStation() == wormholeStation);
 
 					var16 = true;
 					SolarSystem var17;
@@ -316,7 +318,7 @@ public final class Status {
 	}
 
 	public static void startStoryMission(final Mission var0) {
-		var0.setStartedStoryMission(true);
+		var0.setCampaignMission(true);
 		currentMissions[0] = var0;
 	}
 
@@ -324,7 +326,7 @@ public final class Status {
 		++missionsCount;
 	}
 
-	public static void getCurrentCampaignMissionIndex(final int var0) {
+	public static void setCurrentCampaignMission(final int var0) {
 		currentCampaignMissionIndex = var0;
 	}
 
@@ -566,7 +568,7 @@ public final class Status {
 					switch(var4.getType()) {
 					case 0:
 					case 11:
-						if (var0 && currentStation.getId() == var4.setCampaignMission()) {
+						if (var0 && currentStation.getId() == var4.getTargetStation()) {
 							return var4;
 						}
 					case 1:
@@ -583,7 +585,7 @@ public final class Status {
 					default:
 						break;
 					case 8:
-						if (var0 && currentStation.getId() == var4.setCampaignMission() && Item.isInList(var4.getCommodityIndex(), var4.getCommodityAmount_(), playersShip.getCargo())) {
+						if (var0 && currentStation.getId() == var4.getTargetStation() && Item.isInList(var4.getCommodityIndex(), var4.getCommodityAmount_(), playersShip.getCargo())) {
 							return var4;
 						}
 						break;
@@ -633,7 +635,7 @@ public final class Status {
 						}
 						break;
 					case 20:
-						if (!var0 && currentStation.getId() == var4.setCampaignMission() && var1 > 10000L) {
+						if (!var0 && currentStation.getId() == var4.getTargetStation() && var1 > 10000L) {
 							return var4;
 						}
 						break;
@@ -681,7 +683,7 @@ public final class Status {
 						}
 						break;
 					case 24:
-						if (var0 || !var0 && currentStation.getId() != var4.setCampaignMission() && var1 > 10000L) {
+						if (var0 || !var0 && currentStation.getId() != var4.getTargetStation() && var1 > 10000L) {
 							return var4;
 						}
 					}

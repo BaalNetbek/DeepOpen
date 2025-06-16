@@ -36,7 +36,7 @@ public final class StatusWindow extends HangarList {
 			super.setEntries(1, var9);
 		}
 
-		this.unused_2_ = GlobalStatus.gameText.getText(63) + ": " + var8 + "/" + Achievements.medalTresholds.length;
+		this.unused_2_ = GlobalStatus.gameText.getText(63) + ": " + var8 + "/" + Achievements.VALUES.length;
 	}
 
 	public final void draw() {

@@ -12,9 +12,9 @@ public final class GameText {
 	public static final short[] soundLevels = {8, 9, 10, 16};
 	public static final short[] tips = {165, 166, 167, 168, 169, 169, 170, 171, 172, 173, 174, 175, 176, 177};
 	public static final short[] egoToughts = {389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 373, 374, 389, 375, 389, 376, 389, 377, 377, 389, 378, 379, 389, 389, 389, 380, 389, 389, 389, 381, 382, 383, 384, 385, 389, 386, 389, 387, 389, 389, 388, 389};
-	public static final short[] freelanceWelcomings = {201, 202, 203, 204, 205};
-	public static final short[] freelanceSuccess = {195, 196, 197, 198, 199};
-	public static final short[] freelanceFail = {206, 207, 208, 209, 210};
+	public static final short[] MISSION_START_MSG = {201, 202, 203, 204, 205};
+	public static final short[] MISSION_SUCCESS_MSG = {195, 196, 197, 198, 199};
+	public static final short[] MISSION_LOST_MSG = {206, 207, 208, 209, 210};
 	private static final int[] catrogoryLengths_ = {12, 5, 1, 2, 8, 5, 5, 5, 5, 6, 8, 17, 19, 9, 9, 4, 9, 12, 8, 12, 14, 9, 3, 14, 19, 9, 27, 5, 4, 13, 6, 17, 2, 9, 4, 7, 2, 10, 2, 4, 8, 6, 12, 12, 7, 9, 32};
 	private static String[] langEntries = new String[1198];
 	private static String[] unusedBuffer_ = new String[422];

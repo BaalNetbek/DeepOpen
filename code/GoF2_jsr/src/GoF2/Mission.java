@@ -103,7 +103,9 @@ public final class Mission {
 	}
 
 	public final boolean isOutsideMission() {
-		return this.missionType == 10 || this.missionType == 9 || this.missionType == 0 || this.missionType == 1 || this.missionType == 7 || this.missionType == 11 || this.missionType == 4 || this.missionType == 2 || this.missionType == 3 || this.missionType == 5 || this.missionType == 6;
+		return this.missionType == 10 || this.missionType == 9 || this.missionType == 0 || this.missionType == 1
+		      || this.missionType == 7 || this.missionType == 11 || this.missionType == 4 || this.missionType == 2
+		      || this.missionType == 3 || this.missionType == 5 || this.missionType == 6;
 	}
 
 	public final String getClientName() {
@@ -138,11 +140,11 @@ public final class Mission {
 		return this.startedStoryMission;
 	}
 
-	public final void setStartedStoryMission(final boolean var1) {
-		this.startedStoryMission = true;
+	public final void setCampaignMission(final boolean var1) {
+		this.startedStoryMission = var1;
 	}
 
-	public final int setCampaignMission() {
+	public final int getTargetStation() {
 		return this.targetStationId;
 	}
 
@@ -176,6 +178,6 @@ public final class Mission {
 	}
 
 	public final void setType(final int var1) {
-		this.missionType = 11;
+		this.missionType = var1;
 	}
 }

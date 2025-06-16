@@ -5,8 +5,14 @@ package GoF2;
  * @author fishlabs
  */
 public final class Ship {
-	public static final short[] previewZoomOut = {622, 1338, 1066, 783, 1181, 912, 939, 1471, 1199, 1192, 763, 1633, 1103, 2000, 2000, 2000, 1802, 1930, 1590, 1205, 1024, 1623, 1266, 1038, 1370, 1370, 1110, 1276, 1722, 1553, 975, 1175, 627, 1185, 916, 767, 1738};
-	public static final short[] previewPivotShift = {24, -51, -37, 78, -197, 8, -14, 37, -104, 121, -100, -381, -132, 0, 0, 0, -520, -137, -206, 0, -182, -347, 2, -61, -116, -254, -316, -40, -182, -372, -68, -160, -142, 131, -102, -72, -402};
+	public static final short[] SHIP_PREVIEW_SCALING = {
+	      622, 1338, 1066, 783, 1181, 912, 939, 1471, 1199, 1192, 763, 1633, 1103, 2000, 2000, 2000, 1802, 1930, 1590,
+	      1205, 1024, 1623, 1266, 1038, 1370, 1370, 1110, 1276, 1722, 1553, 975, 1175, 627, 1185, 916, 767, 1738
+	};
+	public static final short[] SHIP_HANGAR_OFFSETS = { 
+	      24, -51, -37, 78, -197, 8, -14, 37, -104, 121, -100, -381, -132, 0, 0, 0, -520, -137, -206, 0, -182, -347, 2,
+	      -61, -116, -254, -316, -40, -182, -372, -68, -160, -142, 131, -102, -72, -402
+	};
 	private final int id;
 	private final int baseHP;
 	private int basePrice;
@@ -300,7 +306,6 @@ public final class Ship {
 	}
 	
 	/**
-	 * 
 	 * @param type equipable category (0-primary, 1-secondary, 2-turret, 3-equipment)				
 	 * @return equipped items of given type in array
 	 */

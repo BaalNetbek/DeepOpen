@@ -14,7 +14,7 @@ import AE.Math.Matrix;
 public final class Level {
 	private int currentMod;
 	private BoundingVolume asteroidField;
-	private final int[] barFigurePositions;
+	private final int[] LEVEL_BAR_CHAR_POSITIONS; // make it static. why not?
 	private AEVector3D asteroidFieldCenter;
 	private Waypoint asteroidsWaypoint;
 	private AbstractMesh skybox;
@@ -84,7 +84,13 @@ public final class Level {
 	}
 
 	public Level(final int var1) {
-		this.barFigurePositions = new int[]{630, 0, 175, 1570, 0, 340, 1024, 0, 600, 1260, 0, 650, 880, 0, 950};
+		this.LEVEL_BAR_CHAR_POSITIONS = new int[] {
+		      630, 0, 175,
+		      1570, 0, 340,
+		      1024, 0, 600,
+		      1260, 0, 650,
+		      880, 0, 950
+		      };
 		this.exploding_ = false;
 		this.tempVec = new AEVector3D();
 		this.currentMod = var1;
@@ -431,10 +437,10 @@ public final class Level {
 		case 0:
 		case 1:
 		case 3:
-			if (Globals.projectilesMeshIDs[var1] >= 0) {
+			if (Globals.TYPE_WEAPONS[var1] >= 0) {
 				final int var15 = var3 == 0 ? 800 : 400;
 				var9 = new Gun(var2, var5, 15, var4, var7, var6, var8, new AEVector3D(0, 0, var15), new AEVector3D());
-				var14 = AEResourceManager.getGeometryResource(Globals.projectilesMeshIDs[var1]);
+				var14 = AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var1]);
 				if (var3 == 3) {
 					var3 = 300 + 70 * (var1 - 28);
 					var14.setScale(var3, var3, var3);
@@ -451,12 +457,12 @@ public final class Level {
 			break;
 		case 2:
 			var9 = new Gun(var2, var5, 15, var4, var7, var6, var8, new AEVector3D(0, 0, 200), new AEVector3D());
-			var10 = new ObjectGun(var9, AEResourceManager.getGeometryResource(Globals.projectilesMeshIDs[var1]));
+			var10 = new ObjectGun(var9, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var1]));
 			break;
 		case 4:
 		case 5:
 			var9 = new Gun(var2, var5, 1, var4, var7, var6, var8, new AEVector3D(), new AEVector3D());
-			(var14 = AEResourceManager.getGeometryResource(Globals.projectilesMeshIDs[var1])).setRenderLayer(2);
+			(var14 = AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var1])).setRenderLayer(2);
 			var10 = new RocketGun(var9, var14, var3 == 5);
 			var11 = this.missilesSparks;
 			break;
@@ -480,7 +486,7 @@ public final class Level {
 			break;
 		case 8:
 			var9 = new Gun(var2, var5, 15, var4, var7, var6, var8, new AEVector3D(0, 0, 0), new AEVector3D());
-			var10 = new ObjectGun(var9, AEResourceManager.getGeometryResource(Globals.projectilesMeshIDs[var1]));
+			var10 = new ObjectGun(var9, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var1]));
 		}
 
 		var9.setLevel(this);
@@ -1137,7 +1143,7 @@ public final class Level {
 				Agent[] var9;
 				var3 = (var9 = Status.getStation().getBarAgents()).length;
 				this.ships = new KIPlayer[var3 + var1];
-				final boolean[] var5 = new boolean[this.barFigurePositions.length / 3];
+				final boolean[] var5 = new boolean[this.LEVEL_BAR_CHAR_POSITIONS.length / 3];
 
 				int var6;
 				for(var6 = 0; var6 < var5.length; ++var6) {
@@ -1145,7 +1151,7 @@ public final class Level {
 				}
 
 				for(var6 = 0; var6 < var3; ++var6) {
-					short var7 = Globals.barFiguresMeshIDs[var9[var6].getRace()];
+					short var7 = Globals.BAR_FIGURES[var9[var6].getRace()];
 					if (var9[var6].getRace() == 0 && !var9[var6].isMale()) {
 						var7 = 14224;
 					}
@@ -1156,7 +1162,7 @@ public final class Level {
 					} while(var5[var13]);
 
 					var5[var13] = true;
-					this.ships[var6] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var7), this.barFigurePositions[var13 * 3], this.barFigurePositions[var13 * 3 + 1], this.barFigurePositions[var13 * 3 + 2]);
+					this.ships[var6] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var7), this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3], this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3 + 1], this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3 + 2]);
 					this.ships[var6].mainMesh_.setRenderLayer(2);
 					this.ships[var6].mainMesh_.disableAnimation();
 				}
@@ -1174,7 +1180,7 @@ public final class Level {
 						break label88;
 					}
 
-					final short var14 = Globals.barMeshIDs[var11][GlobalStatus.random.nextInt(Globals.barMeshIDs[var11].length)];
+					final short var14 = Globals.BAR_MESHES[var11][GlobalStatus.random.nextInt(Globals.BAR_MESHES[var11].length)];
 					this.ships[var12] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var14), 0, 0, 0);
 					this.ships[var12].mainMesh_.setRenderLayer(2);
 					this.ships[var12].mainMesh_.setRotation(0, var12 * var6, 0);
@@ -1184,7 +1190,7 @@ public final class Level {
 				var1 = Status.getSystem().getRace() == 1 ? 2 : Status.getSystem().getRace() == 0 ? 0 : 1;
 				this.ships = new KIPlayer[7];
 				this.ships[0] = createShip(Status.getShip().getRace(), 0, Status.getShip().getIndex(), (Waypoint)null);
-				this.ships[0].setPosition(0, 1200, 10240 - Ship.previewPivotShift[Status.getShip().getIndex()] + 100);
+				this.ships[0].setPosition(0, 1200, 10240 - Ship.SHIP_HANGAR_OFFSETS[Status.getShip().getIndex()] + 100);
 				this.ships[0].geometry.setRotation(0, 2048, 0);
 				this.ships[0].setRoute(new Route(new int[]{0, 500, -100000}));
 				((PlayerFighter)this.ships[0]).removeTrail();
@@ -1195,11 +1201,11 @@ public final class Level {
 				int var2 = 0;
 
 				for(var3 = 1; var3 < 6; ++var3) {
-					short var4 = Globals.hangarMeshIDs[var1][GlobalStatus.random.nextInt(Globals.hangarMeshIDs[var1].length - 3)];
+					short var4 = Globals.HANGAR_MESHES[var1][GlobalStatus.random.nextInt(Globals.HANGAR_MESHES[var1].length - 3)];
 					if (var3 == 5) {
-						var4 = Globals.hangarMeshIDs[var1][Globals.hangarMeshIDs[var1].length - 2];
+						var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 2];
 					} else if (var3 == 1) {
-						var4 = Globals.hangarMeshIDs[var1][Globals.hangarMeshIDs[var1].length - 1];
+						var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 1];
 					}
 
 					this.ships[var3] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var4), 0, 0, var2 << 12);
@@ -1208,7 +1214,7 @@ public final class Level {
 					++var2;
 				}
 
-				final short var10 = Globals.hangarMeshIDs[var1][Globals.hangarMeshIDs[var1].length - 3];
+				final short var10 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 3];
 				this.ships[this.ships.length - 1] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var10), 0, 0, 8192);
 				this.ships[this.ships.length - 1].mainMesh_.setRenderLayer(2);
 				this.ships[this.ships.length - 1].mainMesh_.setRotation(0, 2048, 0);
@@ -1252,7 +1258,7 @@ public final class Level {
 					var6.setLevel(this);
 					var6.setSparks(this.gunSparks);
 					final int var5 = this.ships[var2].race == 9 ? 7 : this.ships[var2].race == 0 ? 1 : this.ships[var2].race == 1 ? 3 : 4;
-					this.enemyGuns[var3] = new ObjectGun(var6, AEResourceManager.getGeometryResource(Globals.projectilesMeshIDs[var5]));
+					this.enemyGuns[var3] = new ObjectGun(var6, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var5]));
 					this.enemyGuns[var3].setRenderLayer(2);
 					++var3;
 					this.ships[var2].addGun(var6, 0);
@@ -1264,7 +1270,7 @@ public final class Level {
 					var6.setSparks(this.gunSparks);
 					var6.index = 18;
 					var6.subType = 1;
-					this.enemyGuns[var3] = new ObjectGun(var6, AEResourceManager.getGeometryResource(Globals.projectilesMeshIDs[18]));
+					this.enemyGuns[var3] = new ObjectGun(var6, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[18]));
 					this.enemyGuns[var3].setRenderLayer(2);
 					++var3;
 					this.ships[var2].addGun(var6, 1);

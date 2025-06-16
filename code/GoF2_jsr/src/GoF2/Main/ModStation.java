@@ -208,7 +208,7 @@ public final class ModStation extends IApplicationModule {
 					this.popupOpen = true;
 				}
 
-				if (Status.getCurrentCampaignMission() == 20 && Status.getCampaignMission().setCampaignMission() == Status.getStation().getId()) {
+				if (Status.getCurrentCampaignMission() == 20 && Status.getCampaignMission().getTargetStation() == Status.getStation().getId()) {
 					var2 = Status.getStation().getShopItems();
 
 					for(var3 = 0; var3 < var2.length; ++var3) {
@@ -220,7 +220,7 @@ public final class ModStation extends IApplicationModule {
 					Status.getStation().addItem(Globals.getItems()[41].getCopyInAmmount(10, 0));
 				}
 
-				if (Status.getCurrentCampaignMission() == 27 && Status.getCampaignMission().setCampaignMission() == Status.getStation().getId()) {
+				if (Status.getCurrentCampaignMission() == 27 && Status.getCampaignMission().getTargetStation() == Status.getStation().getId()) {
 					Status.getShip().removeCargo(131);
 				}
 			}
@@ -887,10 +887,10 @@ public final class ModStation extends IApplicationModule {
 			}
 
 			this.helpMsgOpen = true;
-		} else if (Status.getCurrentCampaignMission() == 20 && Status.getStation().getId() == Status.getCampaignMission().setCampaignMission()) {
+		} else if (Status.getCurrentCampaignMission() == 20 && Status.getStation().getId() == Status.getCampaignMission().getTargetStation()) {
 			this.help = new Dialogue(GlobalStatus.gameText.getText(260));
 			this.helpMsgOpen = true;
-		} else if (Status.getCurrentCampaignMission() == 21 && Status.getStation().getId() == Status.getCampaignMission().setCampaignMission()) {
+		} else if (Status.getCurrentCampaignMission() == 21 && Status.getStation().getId() == Status.getCampaignMission().getTargetStation()) {
 			Status.getShip().getEquipment(1);
 			if (Status.getShip().hasEquipment(41)) {
 				if (!this.popupOpen && !this.missionMsgOpen && !this.medalMsgOpen) {

@@ -990,7 +990,7 @@ public final class RecordHandler {
 			var1.writeInt(var2.getClientRace());
 			var1.writeInt(var2.getBonus());
 			var1.writeInt(var2.getReward());
-			var1.writeInt(var2.setCampaignMission());
+			var1.writeInt(var2.getTargetStation());
 			var1.writeInt(var2.getDifficulty());
 			var1.writeInt(var2.getCommodityIndex());
 			var1.writeInt(var2.getCommodityAmount_());

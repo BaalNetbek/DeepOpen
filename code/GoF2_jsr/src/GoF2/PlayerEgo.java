@@ -16,7 +16,17 @@ public final class PlayerEgo {
 	private static int boostSpeed = 5;
 	private static int boostDuration = 5000;
 	private static int boostDelay = 20000;
-	private static int[][] turretPartsPositions = {{1, 0, 228, -72}, {7, 0, 215, 46}, {11, 0, 165, 147}, {17, 0, 224, 404}, {23, 0, 140, -21}, {24, 0, 195, 88}, {28, 0, 269, -69}, {33, 0, 255, -176}, {36, 0, 255, 1015}};
+	private static int[][] turretPartsPositions = {
+	      {1, 0, 228, -72},
+	      {7, 0, 215, 46},
+	      {11, 0, 165, 147},
+	      {17, 0, 224, 404},
+	      {23, 0, 140, -21},
+	      {24, 0, 195, 88},
+	      {28, 0, 269, -69},
+	      {33, 0, 255, -176},
+	      {36, 0, 255, 1015}
+	      };
 	public Player player;
 	public Group shipGrandGroup_;
 	private Group shipGroup;
@@ -345,11 +355,11 @@ public final class PlayerEgo {
 		}
 	}
 
-	public final void setGuns(final Gun[] var1, int var2) {
+	public final void setGuns(final Gun[] var1, int i) {
 		Player var6;
-		if ((var6 = this.player).guns != null && var2 <= 3 && var2 >= 0) {
-			var6.guns[var2] = new Gun[var1.length];
-			var6.guns[var2] = var1;
+		if ((var6 = this.player).guns != null && i <= 3 && i >= 0) {
+			var6.guns[i] = new Gun[var1.length];
+			var6.guns[i] = var1;
 		}
 
 		if (!this.hasTurret) {
@@ -384,11 +394,11 @@ public final class PlayerEgo {
 				this.turretGun.setRotationOrder((short)2);
 				this.turretGroup = new Group();
 
-				for(var2 = 0; var2 < turretPartsPositions.length; ++var2) {
-					if (turretPartsPositions[var2][0] == Status.getShip().getIndex()) {
-						this.turretStand.moveTo(turretPartsPositions[var2][1], turretPartsPositions[var2][2], turretPartsPositions[var2][3]);
-						this.turretGun.moveTo(turretPartsPositions[var2][1], turretPartsPositions[var2][2], turretPartsPositions[var2][3]);
-						this.turretShipId_ = var2;
+				for(i = 0; i < turretPartsPositions.length; ++i) {
+					if (turretPartsPositions[i][0] == Status.getShip().getIndex()) {
+						this.turretStand.moveTo(turretPartsPositions[i][1], turretPartsPositions[i][2], turretPartsPositions[i][3]);
+						this.turretGun.moveTo(turretPartsPositions[i][1], turretPartsPositions[i][2], turretPartsPositions[i][3]);
+						this.turretShipId_ = i;
 						break;
 					}
 				}
@@ -515,12 +525,12 @@ public final class PlayerEgo {
 				GraphNode var7;
 				int[] var8;
 				for(var7 = this.shipGroup.getEndNode(); var7 != null; var7 = var7.getParent()) {
-					if (var7.getID() == 13067 ||
-							var7.getID() == 13068 ||
-							var7.getID() == 13070 ||
-							var7.getID() == 13064 ||
-							var7.getID() == 13065 ||
-							var7.getID() == 13071) {
+					if (var7.getID() == 13067
+				      || var7.getID() == 13068 
+				      || var7.getID() == 13070 
+				      || var7.getID() == 13064 
+				      || var7.getID() == 13065
+				      || var7.getID() == 13071) {
 						var8 = this.enginesBoostScale_[var9];
 						var9++;
 						var7.setScale(var8[0] + var6, var8[1] + var6, var8[2] + var6 * 2);
@@ -539,12 +549,12 @@ public final class PlayerEgo {
 					}
 
 					for(var7 = this.shipGroup.getEndNode(); var7 != null; var7 = var7.getParent()) {
-						if (var7.getID() == 13067 ||
-								var7.getID() == 13068 ||
-								var7.getID() == 13070 ||
-								var7.getID() == 13064 ||
-								var7.getID() == 13065 ||
-								var7.getID() == 13071) {
+						if (var7.getID() == 13067
+					      || var7.getID() == 13068 
+					      || var7.getID() == 13070 
+					      || var7.getID() == 13064 
+					      || var7.getID() == 13065
+					      || var7.getID() == 13071) {
 							var8 = this.enginesBoostScale_[var9];
 							var9++;
 							var7.setScale(var8[0], var8[1], var8[2]);

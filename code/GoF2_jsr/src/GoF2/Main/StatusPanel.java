@@ -128,7 +128,7 @@ public final class StatusPanel {
 		if ((var1 == 256 || var1 == 16384) && this.statusWindows.getCurrentTab() == 1 && !this.infoOpen) {
 			final ListItem var3 = (ListItem)this.statusWindows.getSelectedItem();
 			if (Achievements.getMedals()[var3.itemId] != 0) {
-				String var2 = Status.replaceToken(GlobalStatus.gameText.getText(782 + var3.itemId), Achievements.medalTresholds[var3.itemId][var3.medalTier - 1] + "");
+				String var2 = Status.replaceToken(GlobalStatus.gameText.getText(782 + var3.itemId), Achievements.VALUES[var3.itemId][var3.medalTier - 1] + "");
 				if (var3.itemId == 2 && var3.medalTier == 2) {
 					var2 = var2 + "\n\n" + GlobalStatus.gameText.getText(134);
 
