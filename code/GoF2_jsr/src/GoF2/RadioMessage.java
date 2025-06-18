@@ -60,257 +60,193 @@ public final class RadioMessage {
 		this.finished = true;
 	}
 
-	public final boolean triggered(final long var1, final PlayerEgo var3) {
+	public final boolean triggered(final long var1, final PlayerEgo playerEgo) {
 		if (this.triggered) {
 			return false;
 		}
 		boolean var4;
-		label252: {
+		var4 = false;
+		Player[] var2;
+		int var6;
+		int var7;
+		Player[] var8;
+		int i;
+		Player[] var10;
+		switch(this.triggerCondition) {
+		case 0:
+			if (playerEgo.getRoute() != null) {
+				var4 = playerEgo.getRoute().getCurrent() > this.lastWaypoint_ && this.lastWaypoint_ == this.triggerType;
+				this.lastWaypoint_ = playerEgo.getRoute().getCurrent();
+			}
+			break;
+		case 1:
+			var10 = playerEgo.player.getEnemies();
+
+			for (var6 = 0; var6 < this.conditionsGroup.length; var6++) {
+				if (var10[this.conditionsGroup[var6]].isDead()) {
+					var4 = true;
+					break;
+				}
+			}
+			break;
+		case 2:
+			var10 = playerEgo.player.getEnemies();
+
+			for (var6 = 0; var6 < this.conditionsGroup.length; var6++) {
+				if (var10[this.conditionsGroup[var6]].friend && var10[this.conditionsGroup[var6]].isDead()) {
+					var4 = true;
+					break;
+				}
+			}
+			break;
+		case 3:
+			var4 = playerEgo.level.getEnemiesLeft() <= 0;
+			break;
+		case 4:
+			var4 = playerEgo.level.getFriendsLeft() <= 0;
+			break;
+		case 5:
+			var4 = var1 >= this.triggerType;
+			break;
+		case 6:
+			var4 = this.radio.getMessageFromQueue(this.triggerType).triggered;
+			break;
+		case 7:
+		case 13:
+		default:
+			break;
+		case 8:
+			var8 = playerEgo.player.getEnemies();
+
+			for (var7 = 0; var7 < this.conditionsGroup.length; var7++) {
+				if (!var8[var7].isAsteroid() && var8[this.conditionsGroup[var7]].isActive()) {
+					var4 = true;
+					break;
+				}
+			}
+			break;
+		case 9:
+			var4 = true;
+			var2 = playerEgo.player.getEnemies();
+			i = 0;
+
+			for (i = 0; i<this.conditionsGroup.length; i++) {
+
+
+				if (!var2[this.conditionsGroup[i]].isDead()) {
+					var4 = false;
+					break;
+				}
+			}
+			break;
+		case 10:
+			var2 = playerEgo.player.getEnemies();
+			
+			for (var6 = 0; var6 < this.conditionsGroup.length; var6++) {
+				if (var2[this.conditionsGroup[var6]].friend && var2[this.conditionsGroup[var6]].isActive()) {
+					var4 = true;
+					break;
+				}
+			}
+			break;
+		case 11:
+			var4 = ((Objective)null).achieved((int)var1);
+			break;
+		case 12:
+			var8 = playerEgo.player.getEnemies();
+
+			for (i = 0; i<this.conditionsGroup.length; i++) {
+				if (var8[this.conditionsGroup[i]].getHitpoints() < var8[this.conditionsGroup[i]].getMaxHitpoints() / 2) {
+					var4 = true;
+					break;
+				}
+			}
+			break;
+		case 14:
+			var4 = ((PlayerFighter)playerEgo.player.getEnemies()[this.triggerType].getKIPlayer()).lostMissionCrateToEgo();
+			break;
+		case 15:
 			var4 = false;
-			boolean var10000;
-			Player[] var2;
-			int var6;
-			int var7;
-			Player[] var8;
-			int var9;
-			Player[] var10;
-			switch(this.triggerCondition) {
-			case 0:
-				if (var3.getRoute() != null) {
-					var4 = var3.getRoute().getCurrent() > this.lastWaypoint_ && this.lastWaypoint_ == this.triggerType;
-					this.lastWaypoint_ = var3.getRoute().getCurrent();
+			var2 = playerEgo.player.getEnemies();
+			
+			for (var6 = 0; var6 < var2.length; var6++) {
+				if (var2[var6].isDead() && !var2[var6].isAsteroid()) {
+					var4 = true;
+					break;
 				}
-				break label252;
-			case 1:
-				var10 = var3.player.getEnemies();
-				var6 = 0;
 
-				while(true) {
-					if (var6 >= this.conditionsGroup.length) {
-						break label252;
-					}
+			}
+			break;
+		case 16:
+			var8 = playerEgo.player.getEnemies();
 
-					if (var10[this.conditionsGroup[var6]].isDead()) {
-						var4 = true;
-						break label252;
-					}
+			for(var7 = 0; var7 < var8.length; var7++) {
+				if (!var8[var7].isAsteroid() && var8[var7].isActive() && !var8[var7].isAlwaysFriend()) {
+					var4 = true;
+					break;
+				}
+			}
+			break;
+		case 17:
+			var2 = playerEgo.player.getEnemies();
+			var4 = true;
 
+			for (var6 = 0; var6 < var2.length; var6++) {
+				if (var6 != this.triggerType && !var2[var6].isAsteroid() && !var2[var6].isDead()) {
+					var4 = false;
+				   break;
+				}
+			}
+			break;
+		case 18:
+			var4 = ((PlayerFighter)playerEgo.player.getEnemies()[this.triggerType].getKIPlayer()).lostCargo() 
+					|| ((PlayerFighter)playerEgo.player.getEnemies()[this.triggerType].getKIPlayer()).unk151_();
+			break;
+		case 19:
+			var8 = playerEgo.player.getEnemies();
+			i = 0;
+			for (i = 0; i <this.conditionsGroup.length; i++) {
+				if (var8[this.conditionsGroup[i]].getHitpoints() < (var8[this.conditionsGroup[i]].getMaxHitpoints() * 0.75)) {
+					var4 = true;
+					break;
+				}
+			}
+			break;
+		case 20:
+			var4 = false;
+			var6 = 0;
+			var2 = playerEgo.player.getEnemies();
+			
+			for (i = 0; i<var2.length; i++) {
+				if (var2[i].isDead()) {
 					++var6;
 				}
-			case 2:
-				var10 = var3.player.getEnemies();
-				var6 = 0;
 
-				while(true) {
-					if (var6 >= this.conditionsGroup.length) {
-						break label252;
-					}
-
-					if (var10[this.conditionsGroup[var6]].friend && var10[this.conditionsGroup[var6]].isDead()) {
-						var4 = true;
-						break label252;
-					}
-
-					++var6;
+				if (var6 >= this.triggerType) {
+					var4 = true;
+					break;
 				}
-			case 3:
-				var4 = var3.level.getEnemiesLeft() <= 0;
-				break label252;
-			case 4:
-				var4 = var3.level.getFriendsLeft() <= 0;
-				break label252;
-			case 5:
-				var4 = var1 >= this.triggerType;
-				break label252;
-			case 6:
-				var10000 = this.radio.getMessageFromQueue(this.triggerType).triggered;
+			}
+			break;
+		case 21:
+			if (!playerEgo.player.getEnemies()[this.triggerType].getKIPlayer().stunned) {
 				break;
-			case 7:
-			case 13:
-			default:
-				break label252;
-			case 8:
-				var8 = var3.player.getEnemies();
-				var7 = 0;
-
-				while(true) {
-					if (var7 >= this.conditionsGroup.length) {
-						break label252;
-					}
-
-					if (!var8[var7].isAsteroid() && var8[this.conditionsGroup[var7]].isActive()) {
-						var4 = true;
-						break label252;
-					}
-
-					++var7;
-				}
-			case 9:
-				var4 = true;
-				var2 = var3.player.getEnemies();
-				var9 = 0;
-
-				while(true) {
-					if (var9 >= this.conditionsGroup.length) {
-						break label252;
-					}
-
-					if (!var2[this.conditionsGroup[var9]].isDead()) {
-						var4 = false;
-						break label252;
-					}
-
-					++var9;
-				}
-			case 10:
-				var2 = var3.player.getEnemies();
-				var6 = 0;
-
-				while(true) {
-					if (var6 >= this.conditionsGroup.length) {
-						break label252;
-					}
-
-					if (var2[this.conditionsGroup[var6]].friend && var2[this.conditionsGroup[var6]].isActive()) {
-						var4 = true;
-						break label252;
-					}
-
-					++var6;
-				}
-			case 11:
-				var10000 = ((Objective)null).achieved((int)var1);
-				break;
-			case 12:
-				var8 = var3.player.getEnemies();
-				var9 = 0;
-
-				while(true) {
-					if (var9 >= this.conditionsGroup.length) {
-						break label252;
-					}
-
-					if (var8[this.conditionsGroup[var9]].getHitpoints() < var8[this.conditionsGroup[var9]].getMaxHitpoints() / 2) {
-						var4 = true;
-						break label252;
-					}
-
-					++var9;
-				}
-			case 14:
-				var10000 = ((PlayerFighter)var3.player.getEnemies()[this.triggerType].getKIPlayer()).lostMissionCrateToEgo();
-				break;
-			case 15:
-				var4 = false;
-				var2 = var3.player.getEnemies();
-				var6 = 0;
-
-				while(true) {
-					if (var6 >= var2.length) {
-						break label252;
-					}
-
-					if (var2[var6].isDead() && !var2[var6].isAsteroid()) {
-						var4 = true;
-						break label252;
-					}
-
-					++var6;
-				}
-			case 16:
-				var8 = var3.player.getEnemies();
-				var7 = 0;
-
-				while(true) {
-					if (var7 >= var8.length) {
-						break label252;
-					}
-
-					if (!var8[var7].isAsteroid() && var8[var7].isActive() && !var8[var7].isAlwaysFriend()) {
-						var4 = true;
-						break label252;
-					}
-
-					++var7;
-				}
-			case 17:
-				var2 = var3.player.getEnemies();
-				var4 = true;
-				var6 = 0;
-
-				while(true) {
-					if (var6 >= var2.length) {
-						break label252;
-					}
-
-					if (var6 != this.triggerType && !var2[var6].isAsteroid() && !var2[var6].isDead()) {
-						var4 = false;
-						break label252;
-					}
-
-					++var6;
-				}
-			case 18:
-				var4 = ((PlayerFighter)var3.player.getEnemies()[this.triggerType].getKIPlayer()).hasCargo() || ((PlayerFighter)var3.player.getEnemies()[this.triggerType].getKIPlayer()).unk151_();
-				break label252;
-			case 19:
-				var8 = var3.player.getEnemies();
-				var9 = 0;
-
-				while(true) {
-					if (var9 >= this.conditionsGroup.length) {
-						break label252;
-					}
-
-					if (var8[this.conditionsGroup[var9]].getHitpoints() < var8[this.conditionsGroup[var9]].getMaxHitpoints() / 4 * 3) {
-						var4 = true;
-						break label252;
-					}
-
-					++var9;
-				}
-			case 20:
-				var4 = false;
-				var6 = 0;
-				var2 = var3.player.getEnemies();
-				var9 = 0;
-
-				while(true) {
-					if (var9 >= var2.length) {
-						break label252;
-					}
-
-					if (var2[var9].isDead()) {
-						++var6;
-					}
-
-					if (var6 >= this.triggerType) {
-						var4 = true;
-						break label252;
-					}
-
-					++var9;
-				}
-			case 21:
-				if (!var3.player.getEnemies()[this.triggerType].getKIPlayer().stunned) {
-					break label252;
-				}
-
-				var10000 = true;
-				break;
-			case 22:
-				var4 = var3.level.capturedCargoCount >= this.triggerType;
-				break label252;
-			case 23:
-				Radar var5;
-				var4 = (var5 = var3.radar).targetedStation != null && var5.targetedStation instanceof PlayerStation;
-				break label252;
-			case 24:
-				var10000 = !var3.player.getEnemies()[this.triggerType].isActive() && !var3.player.getEnemies()[this.triggerType].isDead();
 			}
 
-			var4 = var10000;
+			var4 = true;
+			break;
+		case 22:
+			var4 = playerEgo.level.capturedCargoCount >= this.triggerType;
+			break;
+		case 23:
+			Radar var5;
+			var4 = (var5 = playerEgo.radar).targetedStation != null && var5.targetedStation instanceof PlayerStation;
+			break;
+		case 24:
+			var4 = !playerEgo.player.getEnemies()[this.triggerType].isActive() && !playerEgo.player.getEnemies()[this.triggerType].isDead();
+			break;
 		}
+
 
 		this.triggered = var4;
 		if (this.triggered) {

@@ -51,14 +51,14 @@ public final class MissionsWindow {
 		this.alienShipMission = false;
 		String var1;
 		if (this.mainMission == null) {
-			var1 = "/data/interface/menu_map_mainmission.png";
+			//var1 = "/data/interface/menu_map_mainmission.png";
 			this.mainMission = AEFile.loadImage("/data/interface/menu_map_mainmission.png", true);
-			var1 = "/data/interface/menu_map_sidemission.png";
+			//var1 = "/data/interface/menu_map_sidemission.png";
 			this.sideMission = AEFile.loadImage("/data/interface/menu_map_sidemission.png", true);
 		}
 
 		if (!Status.gameWon()) {
-			var1 = Status.replaceTokens(GlobalStatus.gameText.getText(GameText.egoToughts[Status.getCurrentCampaignMission()]), Status.getCampaignMission().getTargetStationName(), "#");
+			var1 = Status.replaceTokens(GlobalStatus.gameText.getText(GameText.CAMPAIGN_MISSION_DESC[Status.getCurrentCampaignMission()]), Status.getCampaignMission().getTargetStationName(), "#");
 			this.storyMissionRows = Font.splitToLines(var1, GlobalStatus.screenWidth - 2 * this.innerWindowOffsetX - 4);
 		} else if (Achievements.gotAllGoldMedals() && Status.getShip().getIndex() != 8) {
 			this.alienShipMission = true;

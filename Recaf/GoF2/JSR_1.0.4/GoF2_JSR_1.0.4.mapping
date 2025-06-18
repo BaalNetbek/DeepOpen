@@ -226,12 +226,12 @@ j.d()V loadContent_
 j.b()V draw
 j.c()V drawInterupring_
 cn GoF2/GameText
-cn.a [S itemAtributes
+cn.a [S LISTITEMWINDOW_KEY_TEXT_IDS
 cn.b [S helpTitles
 cn.c [S helpFull
 cn.d [S soundLevels
 cn.e [S tips
-cn.f [S egoToughts
+cn.f [S CAMPAIGN_MISSION_DESC
 cn.g [S MISSION_START_MSG
 cn.h [S MISSION_SUCCESS_MSG
 cn.i [S MISSION_LOST_MSG
@@ -1456,7 +1456,7 @@ bh.b()V OnRelease
 bh.a(Z)V setMissionCrate
 bh.a()Z lostMissionCrateToEgo
 bh.h()Z diedWithMissionCrate
-bh.i()Z hasCargo
+bh.i()Z lostCargo
 bh.j()Z unk151_
 bh.a(III)V setPosition
 bh.a(ILo;)V setWingmanCommand
@@ -1530,7 +1530,7 @@ al.k I boardPosY
 al.l I failedBarPosX
 al.m I barsPadding
 al.a Z succeed
-al.a [I barRanges
+al.a [I _LAYER_WITDTHS
 al.a()Z gameLost
 al.a()I getMiningProgressRounded
 al.b()Z gotCore
@@ -2913,8 +2913,8 @@ Main/c.a()Z hangarNeedsUpdate
 Main/c.a(Z)V setHangarUpdate
 Main/b Main/ListItemWindow
 Main/b.a [S descriptions
-Main/b.b [S hiddenAttributes
-Main/b.a [Ljava/lang/String; atributeUnits
+Main/b.b [S LISTITEMWINDOW_HIDDEN_ATTRIBUTES
+Main/b.a [Ljava/lang/String; _LISTITEMWINDOW_UNITS
 Main/b.a Lcf; contextItem
 Main/b.a Ljavax/microedition/lcdui/Image; items
 Main/b.b Ljavax/microedition/lcdui/Image; itemTypes

@@ -6,12 +6,12 @@ import java.io.InputStream;
 import AE.GlobalStatus;
 
 public final class GameText {
-	public static final short[] itemAtributes = {157, 157, 157, 37, 36, 36, 36, 36, 36, 50, 42, 53, 54, 57, 43, 59, 52, 53, 60, 44, 58, 56, 45, 58, 53, 55, 58, 45, 46, 47, 59, 48, 49, 58, 53, 69};
+	public static final short[] LISTITEMWINDOW_KEY_TEXT_IDS = {157, 157, 157, 37, 36, 36, 36, 36, 36, 50, 42, 53, 54, 57, 43, 59, 52, 53, 60, 44, 58, 56, 45, 58, 53, 55, 58, 45, 46, 47, 59, 48, 49, 58, 53, 69};
 	public static final short[] helpTitles = {112, 296, 275, 79, 130, 218, 72, 146, 297, 63, 298};
 	public static final short[] helpFull = {306, 307, 308, 309, 312, 314, 315, 320, 321, 323, 324};
 	public static final short[] soundLevels = {8, 9, 10, 16};
 	public static final short[] tips = {165, 166, 167, 168, 169, 169, 170, 171, 172, 173, 174, 175, 176, 177};
-	public static final short[] egoToughts = {389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 373, 374, 389, 375, 389, 376, 389, 377, 377, 389, 378, 379, 389, 389, 389, 380, 389, 389, 389, 381, 382, 383, 384, 385, 389, 386, 389, 387, 389, 389, 388, 389};
+	public static final short[] CAMPAIGN_MISSION_DESC = {389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 389, 373, 374, 389, 375, 389, 376, 389, 377, 377, 389, 378, 379, 389, 389, 389, 380, 389, 389, 389, 381, 382, 383, 384, 385, 389, 386, 389, 387, 389, 389, 388, 389};
 	public static final short[] MISSION_START_MSG = {201, 202, 203, 204, 205};
 	public static final short[] MISSION_SUCCESS_MSG = {195, 196, 197, 198, 199};
 	public static final short[] MISSION_LOST_MSG = {206, 207, 208, 209, 210};

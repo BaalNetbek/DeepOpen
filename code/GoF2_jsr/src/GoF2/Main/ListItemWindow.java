@@ -20,8 +20,8 @@ import GoF2.TextBox;
 
 public final class ListItemWindow {
 	private final short[] descriptions = {327, 327, 327, 327, 327, 327, 327, 327, 328, 329, 329, 330, 331, 331, 331, 331, 331, 331, 331, 331, 331, 331, 332, 332, 333, 334, 335, 336, 337, 337, 337, 338, 338, 339, 340, 340, 341, 342, 341, 343, 343, 344, 344, 344, 345, 346, 347, 348, 348, 348, 349, 349, 349, 349, 350, 351, 351, 351, 352, 353, 0, 0, 0, 354, 354, 354, 354, 355, 356, 356, 356, 357, 357, 357, 358, 359, 360, 360, 360, 360, 361, 362, 362, 362, 362, 363, 364, 364, 364, 364, 365, 366, 366, 366, 367, 367, 368, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 371, 371, 371, 371, 371, 371, 371, 371, 371, 371, 371, 372, 372, 372, 372, 372, 372, 372, 372, 372, 372, 372};
-	private final short[] hiddenAttributes = {0, 1, 4, 5, 6, 7, 8, 35, 36};
-	private final String[] atributeUnits = {null, null, null, null, null, null, null, null, null, null, null, "ms", "m", "km/h", "m", null, null, "ms", null, "%", "%", null, "ms", "%", "ms", "ms", "%", "ms", null, null, "%", "%", null, "ms", "ms", null, null};
+	private final short[] LISTITEMWINDOW_HIDDEN_ATTRIBUTES = {0, 1, 4, 5, 6, 7, 8, 35, 36};
+	private final String[] _LISTITEMWINDOW_UNITS = {null, null, null, null, null, null, null, null, null, null, null, "ms", "m", "km/h", "m", null, null, "ms", null, "%", "%", null, "ms", "%", "ms", "ms", "%", "ms", null, null, "%", "%", null, "ms", "ms", null, null};
 	private ListItem contextItem;
 	private Image items;
 	private Image itemTypes;
@@ -95,8 +95,8 @@ public final class ListItemWindow {
 				boolean var7 = false;
 
 				int var8;
-				for(var8 = 0; var8 < this.hiddenAttributes.length; ++var8) {
-					if (this.hiddenAttributes[var8] == var12) {
+				for(var8 = 0; var8 < this.LISTITEMWINDOW_HIDDEN_ATTRIBUTES.length; ++var8) {
+					if (this.LISTITEMWINDOW_HIDDEN_ATTRIBUTES[var8] == var12) {
 						var7 = true;
 						break;
 					}
@@ -108,7 +108,7 @@ public final class ListItemWindow {
 						var10 = var10 + "\n";
 					}
 
-					var9 = var9 + GlobalStatus.gameText.getText(GameText.itemAtributes[var12]);
+					var9 = var9 + GlobalStatus.gameText.getText(GameText.LISTITEMWINDOW_KEY_TEXT_IDS[var12]);
 					if (((var12 == 29) || (var12 == 28)) || (var12 == 21)) {
 						var10 = var10 + GlobalStatus.gameText.getText(var8 == 0 ? 39 : 38);
 					} else if (var12 == 2) {
@@ -131,8 +131,8 @@ public final class ListItemWindow {
 						}
 
 						var10 = var10 + var8;
-						if (this.atributeUnits[var12] != null) {
-							var10 = var10 + this.atributeUnits[var12];
+						if (this._LISTITEMWINDOW_UNITS[var12] != null) {
+							var10 = var10 + this._LISTITEMWINDOW_UNITS[var12];
 						}
 					}
 				}

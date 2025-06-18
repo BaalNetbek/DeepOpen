@@ -57,12 +57,12 @@ public final class PlayerFighter extends KIPlayer {
 	private boolean unused821_;
 	private int crateTime_;
 
-	public PlayerFighter(final int var1, final int var2, final Player var3, final AbstractMesh var4, final int var5, final int var6, final int var7) {
-		super(var1, var2, var3, (AbstractMesh)null, var5, var6, var7);
-		this.race = var2;
+	public PlayerFighter(final int var1, final int race, final Player var3, final AbstractMesh var4, final int var5, final int var6, final int var7) {
+		super(var1, race, var3, (AbstractMesh)null, var5, var6, var7);
+		this.race = race;
 		this.initPos.set(var5, var6, var7);
 		this.hasCargo = true;
-		this.trail = new Trail(var2 != 9 && var2 != 8 ? 0 : 1);
+		this.trail = new Trail(race != 9 && race != 8 ? 0 : 1);
 		this.trail.setWidth(50);
 		this.trail.reset(this.initPos);
 		this.canBoost = true;
@@ -70,9 +70,9 @@ public final class PlayerFighter extends KIPlayer {
 		this.handling = this.defaultHandling;
 		defaultRoute_.setLoop(true);
 		stationRouteAliens.setLoop(true);
-		this.activeRoute_ = var2 == 9 ? stationRouteAliens.clone() : defaultRoute_.clone();
+		this.activeRoute_ = race == 9 ? stationRouteAliens.clone() : defaultRoute_.clone();
 		this.strayFromTarget_ = false;
-		if (var2 == 9) {
+		if (race == 9) {
 			this.cargo = null;
 		} else {
 			final Generator var8 = new Generator();
@@ -118,7 +118,7 @@ public final class PlayerFighter extends KIPlayer {
 		return this.diedWithMissionCrate;
 	}
 
-	public final boolean hasCargo() {
+	public final boolean lostCargo() {
 		return !this.hasCargo;
 	}
 

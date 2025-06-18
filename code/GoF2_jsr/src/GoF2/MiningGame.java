@@ -40,7 +40,7 @@ public final class MiningGame {
 	private final int failedBarPosX;
 	private final int barsPadding;
 	private boolean succeed;
-	private final int[] barRanges = {44, 39, 34, 29, 23, 18, 13};
+	private final int[] _LAYER_WITDTHS = {44, 39, 34, 29, 23, 18, 13};
 
 	public MiningGame(final int var1, final int var2, final Hud var3) {
 		if (this.background == null) {
@@ -92,9 +92,9 @@ public final class MiningGame {
 		}
 		this.frameTime = var1;
 		int var3;
-		final int var4 = -(var3 = (2 * this.barsPadding + 3 * this.barRanges[this.curLevel]) / 2);
+		final int var4 = -(var3 = (2 * this.barsPadding + 3 * this._LAYER_WITDTHS[this.curLevel]) / 2);
 		this.nextMinedProgress += var1;
-		if (AEMath.abs((int)this.cursorPos) > this.barRanges[this.curLevel] / 2) {
+		if (AEMath.abs((int)this.cursorPos) > this._LAYER_WITDTHS[this.curLevel] / 2) {
 			this.failProgress += var1;
 			if (this.failProgress > 2500.0F) {
 				this.failProgress = 2500.0F;
@@ -159,7 +159,7 @@ public final class MiningGame {
 			GlobalStatus.graphics.drawImage(this.greenComplete, this.boardPosX + 50, this.boardPosY, 36);
 		}
 
-		var1 = this.barRanges[this.curLevel];
+		var1 = this._LAYER_WITDTHS[this.curLevel];
 		int var3 = (int)((float)this.levelProgress / (float)this.nextLevelTreshold * var1);
 		GlobalStatus.graphics.setClip((GlobalStatus.screenWidth >> 1) - (var3 >> 1), this.boardPosY - var2, var3, 7);
 		GlobalStatus.graphics.drawImage(this.greenComplete, this.boardPosX + 50, this.boardPosY, 36);
