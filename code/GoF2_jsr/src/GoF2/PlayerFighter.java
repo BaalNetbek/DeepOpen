@@ -121,7 +121,9 @@ public final class PlayerFighter extends KIPlayer {
 	public final boolean lostCargo() {
 		return !this.hasCargo;
 	}
-
+	/*
+	 * Legacy from Deep
+	 */
 	public final boolean unk151_() {
 		return false;
 	}

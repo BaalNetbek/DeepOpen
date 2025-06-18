@@ -17,12 +17,9 @@ public final class Objective {
 		this.indexB_ = var3;
 	}
 
-	public final boolean achieved(int var1) {
-		int var2;
-		int var3;
-		KIPlayer[] var4;
-		KIPlayer[] var5;
-		KIPlayer[] var6;
+	public final boolean achieved(final int time) {
+		KIPlayer[] targets;
+		int i = 0, dead = 0;
 		switch(this.type) {
 		case 0:
 			if (this.level.getEnemiesLeft() == 0) {
@@ -43,7 +40,7 @@ public final class Objective {
 
 			return false;
 		case 3:
-			if (var1 > this.indexA_) {
+			if (time > this.indexA_) {
 				return true;
 			}
 
@@ -67,40 +64,36 @@ public final class Objective {
 
 			return false;
 		case 7:
-			var6 = this.level.getEnemies();
-			var1 = 0;
-
-			for(var3 = 0; var3 < this.indexA_; ++var3) {
-				if (var6[var3].isDead()) {
-					++var1;
+			targets = this.level.getEnemies();
+			for(i = 0; i < this.indexA_; ++i) {
+				if (targets[i].isDead()) {
+					++dead;
 				}
 			}
 
-			if (var1 == this.indexA_) {
+			if (dead == this.indexA_) {
 				return true;
 			}
 
 			return false;
 		case 8:
-			var5 = this.level.getAsteroids();
-			var1 = 0;
-
-			for(var2 = 0; var2 < var5.length; ++var2) {
-				if (var5[var2].isDead()) {
-					++var1;
+			targets = this.level.getAsteroids();
+			dead = 0;
+			for(i = 0; i < targets.length; ++i) {
+				if (targets[i].isDead()) {
+					++dead;
 				}
 			}
 
-			if (var1 > this.indexA_) {
+			if (dead > this.indexA_) {
 				return true;
 			}
 
 			return false;
 		case 9:
-			var6 = this.level.getAsteroids();
-
-			for(var1 = 0; var1 < var6.length; ++var1) {
-				if (var1 >= this.indexA_) {
+			targets = this.level.getAsteroids();
+			for(i = 0; i < targets.length; ++i) {
+				if (i >= this.indexA_) {
 					if (0 >= this.indexA_) {
 						return true;
 					}
@@ -111,10 +104,9 @@ public final class Objective {
 
 			return false;
 		case 10:
-			var4 = this.level.getAsteroids();
-
-			for(var2 = 0; var2 < var4.length; ++var2) {
-				if (var2 >= this.indexA_) {
+			targets = this.level.getAsteroids();
+			for(i = 0; i < targets.length; ++i) {
+				if (i >= this.indexA_) {
 					return false;
 				}
 			}
@@ -135,36 +127,33 @@ public final class Objective {
 		case 15:
 			return this.level.getEnemies()[this.indexA_].player.isActive();
 		case 16:
-			var6 = this.level.getEnemies();
-
-			for(var1 = 0; var1 < var6.length; ++var1) {
-				if (!((PlayerFighter)var6[var1]).lostMissionCrateToEgo()) {
+			targets = this.level.getEnemies();
+			for(i = 0; i < targets.length; ++i) {
+				if (!((PlayerFighter)targets[i]).lostMissionCrateToEgo()) {
 					return false;
 				}
 			}
 
 			return true;
 		case 17:
-			var4 = this.level.getEnemies();
-
-			for(var2 = 0; var2 < var4.length; ++var2) {
-				if (((PlayerFighter)var4[var2]).diedWithMissionCrate()) {
+			targets = this.level.getEnemies();
+			for(i = 0; i < targets.length; ++i) {
+				if (((PlayerFighter)targets[i]).diedWithMissionCrate()) {
 					return true;
 				}
 			}
 
 			return false;
 		case 18:
-			var5 = this.level.getEnemies();
-			var1 = 0;
-
-			for(var2 = this.indexA_; var2 < this.indexB_; ++var2) {
-				if (var5[var2].isDead()) {
-					++var1;
+			targets = this.level.getEnemies();
+			dead = 0;
+			for(i = this.indexA_; i < this.indexB_; ++i) {
+				if (targets[i].isDead()) {
+					++dead;
 				}
 			}
 
-			if (var1 == this.indexB_ - this.indexA_) {
+			if (dead == this.indexB_ - this.indexA_) {
 				return true;
 			}
 
@@ -173,21 +162,21 @@ public final class Objective {
 			return this.level.friendCargoWasStolen();
 		case 20:
 		case 21:
-			var4 = this.level.getEnemies();
-			var2 = 0;
-
-			for(var3 = this.indexA_; var3 < this.indexB_; ++var3) {
-				if (var4[var3].isDead() && var4[var3].race == 8) {
-					++var2;
+			targets = this.level.getEnemies();
+			//pirates
+			dead = 0;
+			for(i = this.indexA_; i < this.indexB_; ++i) {
+				if (targets[i].isDead() && targets[i].race == 8) {
+					++dead;
 				}
 			}
 
 			if (this.type == 20) {
-				if (var2 == this.indexB_ - this.indexA_ && this.level.egoScore > this.level.challengerScore) {
+				if (dead == this.indexB_ - this.indexA_ && this.level.egoScore > this.level.challengerScore) {
 					return true;
 				}
 			} else {
-				if (var2 == this.indexB_ - this.indexA_ && this.level.egoScore <= this.level.challengerScore) {
+				if (dead == this.indexB_ - this.indexA_ && this.level.egoScore <= this.level.challengerScore) {
 					return true;
 				}
 			}
