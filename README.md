@@ -21,13 +21,18 @@ ___
 ___
 
 ### Want to contribute?
-
-If you really do let me know in an Issue or some DM.
+You can:
+* Look for #TODO in the code. (please don't use refactor whole files in one commit)
+* Look for names that make no sense.
+* Document the code with javadoc.
+* Deobfuscate other (than GoF2) Abyss Engine games. First ones in queue would be Deep and GoF.
+* Write an issue if you want to discuss something or need help.
+* Document bugs.
 
 For analysis used mainly:\
  [Col-E/Recaf](https://github.com/Col-E/Recaf)\
  [shinovon/KEmulator](https://github.com/shinovon/KEmulator)\
- [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra)
+ [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) (GoF binaries from other platforms)
 
 More: \
  [Renaming inspiration](/extras/gof2-1.0.1-ios-symbols/simple-mapping)\
