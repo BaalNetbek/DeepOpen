@@ -76,6 +76,59 @@ public final class SystemPathFinder {
 
 		return var12;
 	}
+// Proycon alternative without label (essentialy goto)
+//   public final int[] getSystemPath(final SolarSystem[] array, final int n, final int n2) {
+//        final Node[] array2 = new Node[array.length];
+//        for (int i = 0; i < array.length; ++i) {
+//            array2[i] = new Node(this, i);
+//        }
+//        for (int j = 0; j < array.length; ++j) {
+//            final int[] neighbourSystems;
+//            if ((neighbourSystems = array[j].getNeighbourSystems()) != null) {
+//                for (int k = 0; k < neighbourSystems.length; ++k) {
+//                    if (Status.getVisibleSystems()[array[neighbourSystems[k]].getId()]) {
+//                        array2[j].neighbors.addElement(array2[neighbourSystems[k]]);
+//                    }
+//                }
+//            }
+//        }
+//        final Node node = array2[n];
+//        final Node node2 = array2[n2];
+//        final Node node3 = node;
+//        final Vector vector = new Vector();
+//        final Vector vector2;
+//        (vector2 = new Vector()).addElement(node3);
+//        node3.parentNode = null;
+//        while (true) {
+//            while (!vector2.isEmpty()) {
+//                final Node parentNode = (Node)vector2.firstElement();
+//                vector2.removeElementAt(0);
+//                if (parentNode == node2) {
+//                    final Vector constructPath = constructPath(node2);
+//                    final Vector vector3 = constructPath;
+//                    int[] array3 = null;
+//                    if (vector3 != null && vector3.size() > 0) {
+//                        (array3 = new int[vector3.size() + 1])[0] = n;
+//                        for (int l = 1; l < array3.length; ++l) {
+//                            array3[l] = ((Node)vector3.elementAt(l - 1)).systemIndex;
+//                        }
+//                    }
+//                    return array3;
+//                }
+//                vector.addElement(parentNode);
+//                for (int n3 = 0; n3 < parentNode.neighbors.size(); ++n3) {
+//                    final Node node4 = (Node)parentNode.neighbors.elementAt(n3);
+//                    if (!vector.contains(node4) && !vector2.contains(node4)) {
+//                        node4.parentNode = parentNode;
+//                        vector2.addElement(node4);
+//                    }
+//                }
+//            }
+//            final Vector constructPath = null;
+//            continue;
+//        }
+//    }
+	 
 
 	private static Vector constructPath(Node var0) {
 		Vector var1;

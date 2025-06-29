@@ -366,17 +366,17 @@ public final class Matrix {
 		setRotation(this.eulerX, var1, this.eulerZ);
 	}
 
-	public final void setRotation(int var1, int var2, int var3) {
-		this.eulerX = var1;
-		this.eulerY = var2;
-		this.eulerZ = var3;
+	public final void setRotation(int x, int y, int z) {
+		this.eulerX = x;
+		this.eulerY = y;
+		this.eulerZ = z;
 		this.isDirty = false;
-		final int var4 = AEMath.sin(var1);
-		final int var5 = AEMath.sin(var2);
-		final int var6 = AEMath.sin(var3);
-		var1 = AEMath.cos(var1);
-		var2 = AEMath.cos(var2);
-		var3 = AEMath.cos(var3);
+		final int var4 = AEMath.sin(x);
+		final int var5 = AEMath.sin(y);
+		final int var6 = AEMath.sin(z);
+		final int var1 = AEMath.cos(x);
+		final int var2 = AEMath.cos(y);
+		final int var3 = AEMath.cos(z);
 		int var7;
 		int var8;
 		int var9;
@@ -616,9 +616,9 @@ public final class Matrix {
 	}
 
 	public final Matrix getInverse(final Matrix var1) {
-		var1.scaleX = 16777216 / this.scaleX;
-		var1.scaleY = 16777216 / this.scaleY;
-		var1.scaleZ = 16777216 / this.scaleZ;
+		var1.scaleX = (1 << 24) / this.scaleX;
+		var1.scaleY = (1 << 24) / this.scaleY;
+		var1.scaleZ = (1 << 24) / this.scaleZ;
 		var1.rightX = this.rightX;
 		var1.upX = this.rightY;
 		var1.dirX = this.rightZ;
@@ -729,9 +729,9 @@ public final class Matrix {
 	}
 
 	public final AEVector3D inverseTransformVector(final AEVector3D var1) {
-		final int var2 = 16777216 / this.scaleX;
-		final int var3 = 16777216 / this.scaleY;
-		final int var4 = 16777216 / this.scaleZ;
+		final int var2 = (1 << 24) / this.scaleX;
+		final int var3 = (1 << 24) / this.scaleY;
+		final int var4 = (1 << 24) / this.scaleZ;
 		final int var5 = var2 * (-(this.rightX * this.positionX >> 12) - (this.rightY * this.positionY >> 12) - (this.rightZ * this.positionZ >> 12)) >> 12;
 		final int var6 = var3 * (-(this.upX * this.positionX >> 12) - (this.upY * this.positionY >> 12) - (this.upZ * this.positionZ >> 12)) >> 12;
 		final int var7 = var4 * (-(this.dirX * this.positionX >> 12) - (this.dirY * this.positionY >> 12) - (this.dirZ * this.positionZ >> 12)) >> 12;

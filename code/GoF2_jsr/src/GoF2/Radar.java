@@ -483,7 +483,7 @@ public final class Radar {
 												var41 = 1.0F;
 											}
 
-											final int var21 = -16777216 | (int)(var41 * 255.0F) << 16 | (int)((1.0F - var41) * 255.0F) << 8;
+											final int var21 = -(1 << 24) | (int)(var41 * 255.0F) << 16 | (int)((1.0F - var41) * 255.0F) << 8;
 											GlobalStatus.graphics.setColor(var21);
 											GlobalStatus.renderer.getCamera().getScreenPosition(this.playerPos);
 											this.tempContextPosition.x = this.screenProjectionX;

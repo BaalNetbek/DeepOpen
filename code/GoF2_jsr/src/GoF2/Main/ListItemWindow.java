@@ -114,23 +114,15 @@ public final class ListItemWindow {
 					} else if (var12 == 2) {
 						var10 = var10 + GlobalStatus.gameText.getText(var8 + 98);
 					} else {
-						label141: {
-							int var10000;
-							if (var12 == 13) {
-								var10000 = var8 * 250;
-							} else {
-								if (var12 != 12) {
-									break label141;
-								}
-
-								var14 = (var8 = (int)(var8 / 3600.0F * (var11.getAttribute(13) * 250))) % 100;
-								var10000 = (var8 + var14) % 100 == 0 ? var8 + var14 : var8 - var14;
-							}
-
-							var8 = var10000;
+						if (var12 == 13) {
+							var8 *= 250;
+						} 
+						if (var12 == 12) {
+							var14 = (var8 = (int)(var8 / 3600.0F * (var11.getAttribute(13) * 250))) % 100;
+							var8 = (var8 + var14) % 100 == 0 ? var8 + var14 : var8 - var14;
 						}
 
-						var10 = var10 + var8;
+						var10 += var8;
 						if (this._LISTITEMWINDOW_UNITS[var12] != null) {
 							var10 = var10 + this._LISTITEMWINDOW_UNITS[var12];
 						}
