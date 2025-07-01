@@ -1378,7 +1378,7 @@ ab.a Lcb; agent
 ab.a()[Lz; readAllPreviews
 ab.a()V readOptions
 ab.b()V writeOptions
-ab.a([B)Lz; readRecordAsByteArray
+ab.a([B)Lz; readRecordFromByteArray
 ab.a(I)Lz; recordStoreRead
 ab.a(I)V saveGame
 ab.a()[B recordStoreToByteArray
