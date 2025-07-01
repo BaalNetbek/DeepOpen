@@ -126,7 +126,7 @@ public final class StarMap {
 		this.logos = new Sprite(var7, var7.getHeight(), var7.getHeight());
 		this.backGroundTileX = this.fog.getWidth() << 1;
 		this.backGroundTileY = this.fog.getHeight() << 1;
-		new FileRead();
+		//new FileRead();
 		this.systems = FileRead.loadSystemsBinary();
 		this.sunGlow = AEFile.loadImage("/data/interface/map_sun_glow.png", true);
 		this.galaxyMapGroup = new CameraControllerGroup();
@@ -599,29 +599,27 @@ public final class StarMap {
 		}
 
 		draw();
-		final StarMap var10 = this;
-
 		try {
 			GlobalStatus.graphics3D.bindTarget(GlobalStatus.graphics);
-			if (var10.localSystem != null) {
-				GlobalStatus.renderer.drawNodeInVF(var10.localSystem);
+			if (this.localSystem != null) {
+				GlobalStatus.renderer.drawNodeInVF(this.localSystem);
 			} else {
-				var10.newSysAnimTimer += var10.frameTime;
+				this.newSysAnimTimer += this.frameTime;
 				var2 = 0;
 
 				while(true) {
-					if (var2 >= var10.stars.length) {
-						GlobalStatus.renderer.drawNodeInVF(var10.galaxyMapGroup);
+					if (var2 >= this.stars.length) {
+						GlobalStatus.renderer.drawNodeInVF(this.galaxyMapGroup);
 						break;
 					}
 
-					if (var2 == var10.selectedSystem && var10.discoverSystemCutscene && var10.newSystemAnimTime < 4000) {
-						var11 = (int)(var10.newSystemAnimTime / 4000.0F * (1024 + (AEMath.sin(var10.newSysAnimTimer + (var2 << 8)) >> 5)));
+					if (var2 == this.selectedSystem && this.discoverSystemCutscene && this.newSystemAnimTime < 4000) {
+						var11 = (int)(this.newSystemAnimTime / 4000.0F * (1024 + (AEMath.sin(this.newSysAnimTimer + (var2 << 8)) >> 5)));
 					} else {
-						var11 = 1024 + (AEMath.sin(var10.newSysAnimTimer + (var2 << 8)) >> 5);
+						var11 = 1024 + (AEMath.sin(this.newSysAnimTimer + (var2 << 8)) >> 5);
 					}
 
-					var10.stars[var2].setScale(var11, var11, var11);
+					this.stars[var2].setScale(var11, var11, var11);
 					++var2;
 				}
 			}
@@ -640,7 +638,7 @@ public final class StarMap {
 	private void initStarSysMap() {
 		final int var1 = this.systems[this.selectedSystem].getStations().length;
 		this.selectedSystemStations = new Station[var1];
-		new FileRead();
+		//new FileRead();
 		this.selectedSystemStations = FileRead.loadStationsBinary(this.systems[this.selectedSystem]);
 		this.planetRevolutAngs = new int[var1];
 		this.distsToStar = new int[var1];

@@ -49,7 +49,7 @@ public final class Radio {
 	public final void showMessage() {
 		this.msgCheckTick = 501L;
 	}
-
+	//refactor
 	public final void draw(final long var1, final long var3, final PlayerEgo var5) {
 		int var13;
 		if (this.currentMessage == null) {
@@ -57,7 +57,6 @@ public final class Radio {
 			if (this.msgCheckTick > 500L) {
 				this.msgCheckTick = 0L;
 				final long var8 = var1;
-				final Radio var11 = this;
 				if (this.messages == null) {
 					return;
 				}
@@ -65,24 +64,24 @@ public final class Radio {
 				var13 = 0;
 
 				while(true) {
-					if (var13 >= var11.messages.length) {
+					if (var13 >= this.messages.length) {
 						return;
 					}
 
-					if (var11.messages[var13].triggered(var8, var5)) {
-						int var12 = var11.messages[var13].getImageID();
+					if (this.messages[var13].triggered(var8, var5)) {
+						int var12 = this.messages[var13].getImageID();
 						if (var12 >= 21) {
 							final int var4 = var12 == 24 ? 2 : var12 == 23 ? 0 : var12 == 21 ? 3 : 1;
-							var11.face = ImageFactory.createChar(true, var4);
+							this.face = ImageFactory.createChar(true, var4);
 						} else {
-							var11.face = Globals.CHAR_IMAGES[var12];
+							this.face = Globals.CHAR_IMAGES[var12];
 						}
 
-						var11.faceImages = ImageFactory.faceFromByteArray(var11.face);
-						var11.font = var12 == 19 ? 3 : 1;
-						var11.rows = Font.splitToLines(GlobalStatus.gameText.getText(var11.messages[var13].getTextID()), GlobalStatus.screenWidth - 10, var11.font, ImageFactory.faceWidth + 3, ImageFactory.faceHeight + 3);
-						var11.msgStartTime = var8;
-						var11.msgTime = var11.rows.length * (int)(2000.0F * GlobalStatus.screenWidth / 240.0F) + 1500;
+						this.faceImages = ImageFactory.faceFromByteArray(this.face);
+						this.font = var12 == 19 ? 3 : 1;
+						this.rows = Font.splitToLines(GlobalStatus.gameText.getText(this.messages[var13].getTextID()), GlobalStatus.screenWidth - 10, this.font, ImageFactory.faceWidth + 3, ImageFactory.faceHeight + 3);
+						this.msgStartTime = var8;
+						this.msgTime = this.rows.length * (int)(2000.0F * GlobalStatus.screenWidth / 240.0F) + 1500;
 						break;
 					}
 

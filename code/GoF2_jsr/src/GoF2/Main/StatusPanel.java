@@ -238,7 +238,6 @@ public final class StatusPanel {
 				}
 			}
 
-			final StatusPanel var7 = this;
 			var2 = Font.getFontSpacingY();
 			GlobalStatus.graphics.setColor(0);
 			GlobalStatus.graphics.setClip(0, this.posY, GlobalStatus.screenWidth, this.scrollRows);
@@ -279,65 +278,65 @@ public final class StatusPanel {
 
 			int var5;
 			for(var5 = 0; var5 < 2; ++var5) {
-				int var6 = var7.posX + 6;
-				var7.standingLogos.setFrame(var5 == 0 ? 0 : 2);
-				var7.standingLogos.setPosition(var6, var3);
-				var7.standingLogos.paint(GlobalStatus.graphics);
-				var6 += var7.standingLogos.getHeight() + 4;
-				Font.drawString(GlobalStatus.gameText.getText(var5 == 0 ? 229 : 231), var6, var3 + Font.getFontSpacingY() + var7.standingCursor.getHeight(), 1);
-				var7.standingBarOutter.setTransform(0);
-				var7.standingBarOutter.setFrame(var8.isEnemy(var5 == 0 ? 0 : 2) ? 0 : var8.isFriend(var5 == 0 ? 0 : 2) ? 1 : 2);
-				var7.standingBarOutter.setRefPixelPosition(var6, var3 + var7.standingBarOutter.getHeight());
-				var7.standingBarOutter.paint(GlobalStatus.graphics);
-				var6 += var7.standingBarOutter.getWidth() + 1;
-				var7.standingBarInner.setTransform(0);
-				var7.standingBarInner.setRefPixelPosition(var6, var3 + var7.standingBarOutter.getHeight());
-				var7.standingBarInner.paint(GlobalStatus.graphics);
-				var6 = var7.posX + var7.width - 2;
-				var7.standingLogos.setFrame(var5 == 0 ? 1 : 3);
-				var7.standingLogos.setPosition(var6 - var7.standingLogos.getHeight(), var3);
-				var7.standingLogos.paint(GlobalStatus.graphics);
-				var6 -= 4 + var7.standingLogos.getHeight();
-				Font.drawString(GlobalStatus.gameText.getText(var5 == 0 ? 230 : 232), var6, var3 + Font.getFontSpacingY() + var7.standingCursor.getHeight(), 1, 18);
-				var7.standingBarOutter.setTransform(2);
-				var7.standingBarOutter.setFrame(var8.isEnemy(var5 == 0 ? 1 : 3) ? 0 : var8.isFriend(var5 == 0 ? 1 : 3) ? 1 : 2);
-				var7.standingBarOutter.setRefPixelPosition(var6, var3 + var7.standingBarOutter.getHeight());
-				var7.standingBarOutter.paint(GlobalStatus.graphics);
-				var6 -= var7.standingBarOutter.getWidth() + 1;
-				var7.standingBarInner.setTransform(2);
-				var7.standingBarInner.setRefPixelPosition(var6, var3 + var7.standingBarOutter.getHeight());
-				var7.standingBarInner.paint(GlobalStatus.graphics);
-				var6 = (GlobalStatus.screenWidth >> 1) - (int)(var8.getStanding(var5 == 0 ? 0 : 1) / 100.0F * (var7.standingBarOutter.getWidth() + 1 + var7.standingBarInner.getWidth()));
-				var7.standingCursor.setRefPixelPosition(var6, var3 + var7.standingBarOutter.getHeight());
-				var7.standingCursor.paint(GlobalStatus.graphics);
+				int var6 = this.posX + 6;
+				this.standingLogos.setFrame(var5 == 0 ? 0 : 2);
+				this.standingLogos.setPosition(var6, var3);
+				this.standingLogos.paint(GlobalStatus.graphics);
+				var6 += this.standingLogos.getHeight() + 4;
+				Font.drawString(GlobalStatus.gameText.getText(var5 == 0 ? 229 : 231), var6, var3 + Font.getFontSpacingY() + this.standingCursor.getHeight(), 1);
+				this.standingBarOutter.setTransform(0);
+				this.standingBarOutter.setFrame(var8.isEnemy(var5 == 0 ? 0 : 2) ? 0 : var8.isFriend(var5 == 0 ? 0 : 2) ? 1 : 2);
+				this.standingBarOutter.setRefPixelPosition(var6, var3 + this.standingBarOutter.getHeight());
+				this.standingBarOutter.paint(GlobalStatus.graphics);
+				var6 += this.standingBarOutter.getWidth() + 1;
+				this.standingBarInner.setTransform(0);
+				this.standingBarInner.setRefPixelPosition(var6, var3 + this.standingBarOutter.getHeight());
+				this.standingBarInner.paint(GlobalStatus.graphics);
+				var6 = this.posX + this.width - 2;
+				this.standingLogos.setFrame(var5 == 0 ? 1 : 3);
+				this.standingLogos.setPosition(var6 - this.standingLogos.getHeight(), var3);
+				this.standingLogos.paint(GlobalStatus.graphics);
+				var6 -= 4 + this.standingLogos.getHeight();
+				Font.drawString(GlobalStatus.gameText.getText(var5 == 0 ? 230 : 232), var6, var3 + Font.getFontSpacingY() + this.standingCursor.getHeight(), 1, 18);
+				this.standingBarOutter.setTransform(2);
+				this.standingBarOutter.setFrame(var8.isEnemy(var5 == 0 ? 1 : 3) ? 0 : var8.isFriend(var5 == 0 ? 1 : 3) ? 1 : 2);
+				this.standingBarOutter.setRefPixelPosition(var6, var3 + this.standingBarOutter.getHeight());
+				this.standingBarOutter.paint(GlobalStatus.graphics);
+				var6 -= this.standingBarOutter.getWidth() + 1;
+				this.standingBarInner.setTransform(2);
+				this.standingBarInner.setRefPixelPosition(var6, var3 + this.standingBarOutter.getHeight());
+				this.standingBarInner.paint(GlobalStatus.graphics);
+				var6 = (GlobalStatus.screenWidth >> 1) - (int)(var8.getStanding(var5 == 0 ? 0 : 1) / 100.0F * (this.standingBarOutter.getWidth() + 1 + this.standingBarInner.getWidth()));
+				this.standingCursor.setRefPixelPosition(var6, var3 + this.standingBarOutter.getHeight());
+				this.standingCursor.paint(GlobalStatus.graphics);
 				var3 += 3 * Font.getFontSpacingY() + 4;
 			}
 
-			var7.drawSubHeader(var3, GlobalStatus.gameText.getText(299));
+			this.drawSubHeader(var3, GlobalStatus.gameText.getText(299));
 			var3 += 22;
 
-			for(var5 = 0; var5 < var7.statsLeftColumn.length; ++var5) {
-				Font.drawString(var7.statsLeftColumn[var5], var7.posX + 2, var3, 1, 17);
-				Font.drawString(var7.statsRightColumn[var5], var7.posX + var7.width, var3, 0, 18);
+			for(var5 = 0; var5 < this.statsLeftColumn.length; ++var5) {
+				Font.drawString(this.statsLeftColumn[var5], this.posX + 2, var3, 1, 17);
+				Font.drawString(this.statsRightColumn[var5], this.posX + this.width, var3, 0, 18);
 				var3 += var2 + 2;
 			}
 
 			GlobalStatus.graphics.setClip(0, 0, GlobalStatus.screenWidth, GlobalStatus.screenHeight);
-			var2 = var7.width;
-			var3 = var7.height;
-			final int var9 = var7.scrollPos;
-			var5 = var7.scrollThumbSize;
+			var2 = this.width;
+			var3 = this.height;
+			final int var9 = this.scrollPos;
+			var5 = this.scrollThumbSize;
 			if (var5 > 0) {
-				var3 = (int)((float)(var7.posY - var9) / (float)(var3 - var7.scrollRows) * (var7.scrollRows - var5));
+				var3 = (int)((float)(this.posY - var9) / (float)(var3 - this.scrollRows) * (this.scrollRows - var5));
 				GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
-				GlobalStatus.graphics.drawLine(var7.posX + var2 + 3, var7.posY, var7.posX + var2 + 3, var7.posY + var7.scrollRows - 1);
+				GlobalStatus.graphics.drawLine(this.posX + var2 + 3, this.posY, this.posX + var2 + 3, this.posY + this.scrollRows - 1);
 				GlobalStatus.graphics.setColor(-35072);
-				GlobalStatus.graphics.fillRect(var7.posX + var2 + 2, var7.posY + var3, 3, var5);
+				GlobalStatus.graphics.fillRect(this.posX + var2 + 2, this.posY + var3, 3, var5);
 				GlobalStatus.graphics.setColor(-4827904);
-				GlobalStatus.graphics.drawLine(var7.posX + var2 + 2, var7.posY + 1 + var3, var7.posX + var2 + 2, var7.posY + var5 - 2 + var3);
-				GlobalStatus.graphics.drawLine(var7.posX + var2 + 2, var7.posY + var5 - 1 + var3, var7.posX + var2 + 3, var7.posY + var5 - 1 + var3);
+				GlobalStatus.graphics.drawLine(this.posX + var2 + 2, this.posY + 1 + var3, this.posX + var2 + 2, this.posY + var5 - 2 + var3);
+				GlobalStatus.graphics.drawLine(this.posX + var2 + 2, this.posY + var5 - 1 + var3, this.posX + var2 + 3, this.posY + var5 - 1 + var3);
 				GlobalStatus.graphics.setColor(-11520);
-				GlobalStatus.graphics.drawLine(var7.posX + var2 + 3, var7.posY + 1 + var3, var7.posX + var2 + 3, var7.posY + var5 - 2 + var3);
+				GlobalStatus.graphics.drawLine(this.posX + var2 + 3, this.posY + 1 + var3, this.posX + var2 + 3, this.posY + var5 - 2 + var3);
 				GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
 			}
 		}

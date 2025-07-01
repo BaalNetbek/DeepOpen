@@ -419,12 +419,11 @@ public final class Ship {
 
 		this.extendedCargo = (int)((float)this.baseCargo * (float)this.extendedCargo / 100.0F);
 		final int var10001 = this.basePrice;
-		final Ship var4 = this;
 		int var2 = 0;
 		if (this.cargoHold != null) {
-			for(int var3 = 0; var3 < var4.cargoHold.length; ++var3) {
-				if (var4.cargoHold[var3] != null) {
-					var2 += var4.cargoHold[var3].getTotalPrice();
+			for(int var3 = 0; var3 < this.cargoHold.length; ++var3) {
+				if (this.cargoHold[var3] != null) {
+					var2 += this.cargoHold[var3].getTotalPrice();
 				}
 			}
 		}

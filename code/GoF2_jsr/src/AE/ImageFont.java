@@ -4,7 +4,7 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 public final class ImageFont {
-	private Image charTexture;
+	private Image fontTexture;
 	private short[] posX;
 	private short[] posY;
 	private byte[] widths;
@@ -14,33 +14,41 @@ public final class ImageFont {
 	private static Graphics graphics;
 	private byte spacingX;
 	private byte offsetY = 0;
-
-	public ImageFont(final String var1, final Graphics var2, int var3, final int var4, final int var5) {
+	/**
+	 * 
+	 * @param path
+	 * @param var2
+	 * @param id  - legacy
+	 * @param var4
+	 * @param var5
+	 */
+	
+	public ImageFont(final String path, final Graphics var2, int id, final int var4, final int var5) {
 		graphics = var2;
 
 		try {
-			this.charTexture = Image.createImage(var1);
+			this.fontTexture = Image.createImage(path);
 			this.posX = new short[var4 * var5];
 			this.posY = new short[this.posX.length];
 			this.widths = new byte[this.posX.length];
-			this.tileHeight = this.spacingY = (byte)(this.charTexture.getHeight() / var4);
-			this.tileWidth = (byte)(this.charTexture.getWidth() / var5);
-			final int[] var7 = new int[this.charTexture.getWidth() * this.charTexture.getHeight()];
-			this.charTexture.getRGB(var7, 0, this.charTexture.getWidth(), 0, 0, this.charTexture.getWidth(), this.charTexture.getHeight());
+			this.tileHeight = this.spacingY = (byte)(this.fontTexture.getHeight() / var4);
+			this.tileWidth = (byte)(this.fontTexture.getWidth() / var5);
+			final int[] fontRGBdata = new int[this.fontTexture.getWidth() * this.fontTexture.getHeight()];
+			this.fontTexture.getRGB(fontRGBdata, 0, this.fontTexture.getWidth(), 0, 0, this.fontTexture.getWidth(), this.fontTexture.getHeight());
 
-			for(int var8 = 0; var8 < var5; ++var8) {
-				for(var3 = 0; var3 < var4; ++var3) {
-					this.posX[var8 + var5 * var3] = (short)(var8 * this.tileWidth);
-					this.posY[var8 + var5 * var3] = (short)(var3 * this.spacingY);
-					this.widths[var8 + var5 * var3] = getSymbolWidths(var8 * this.tileWidth, var3 * this.spacingY, var7);
+			for(int i = 0; i < var5; ++i) {
+				for(int j = 0; j < var4; ++j) {
+					this.posX[i + var5 * j] = (short)(i * this.tileWidth);
+					this.posY[i + var5 * j] = (short)(j * this.spacingY);
+					this.widths[i + var5 * j] = getSymbolWidth(i * this.tileWidth, j * this.spacingY, fontRGBdata);
 				}
 			}
-
+			// gof font specific 
 			this.widths[charToSymbolIdx('1')] = this.widths[charToSymbolIdx('0')];
 			this.spacingX = 1;
 			this.widths[0] = 4;
-		} catch (final Exception var6) {
-			this.charTexture = null;
+		} catch (final Exception e) {
+			this.fontTexture = null;
 		}
 
 		System.gc();
@@ -53,38 +61,45 @@ public final class ImageFont {
 	public final void setSpacingX(final int var1) {
 		this.spacingX = (byte)var1;
 	}
+	/** 
+	 * @param x
+	 * @param y
+	 * @param fontRGBdata
+	 * @return distance from left side to the most right of symbol
+	 */
+	private byte getSymbolWidth(final int x, final int y, final int[] fontRGBdata) {
+		byte width = (byte)(this.tileWidth - 1);
 
-	private byte getSymbolWidths(final int var1, final int var2, final int[] var3) {
-		byte var4 = (byte)(this.tileWidth - 1);
-
-		for(byte var5 = 0; var5 < this.tileWidth; ++var5) {
-			for(byte var6 = 0; var6 < this.spacingY; ++var6) {
-				if (var3[var5 + var1 + (var6 + var2) * this.charTexture.getWidth()] >>> 24 > 0 && var3[var5 + var1 + (var6 + var2) * this.charTexture.getWidth()] != -1) {
-					var4 = var5;
+		for(byte i = 0; i < this.tileWidth; ++i) {
+			for(byte j = 0; j < this.spacingY; ++j) {
+				int pixel = fontRGBdata[i + x + (j + y) * this.fontTexture.getWidth()];
+				//not fully transparent and not fully white
+				if (pixel >>> 24 > 0 && pixel != 0xffffffff) {
+					width = i;
 					break;
 				}
 			}
 		}
 
-		return (byte)(var4 + 1);
+		return (byte)(width + 1);
 	}
 
-	public final int stringWidth(final String var1) {
-		int var2 = 0;
-		for(int var4 = 0; var4 < var1.length(); ++var4) {
-			int var6 = charToSymbolIdx(var1.charAt(var4));
-			if (var6 == -1) {
-				var6 = charToSymbolIdx('.');
+	public final int stringWidth(final String text) {
+		int width = 0;
+		for(int i = 0; i < text.length(); ++i) {
+			int sym = charToSymbolIdx(text.charAt(i));
+			if (sym == -1) {
+				sym = charToSymbolIdx('.');
 
 				for(int var5 = 0; var5 < 3; ++var5) {
-					var2 += this.widths[var6] + this.spacingX;
+					width += this.widths[sym] + this.spacingX;
 				}
 			} else {
-				var2 += this.widths[var6] + this.spacingX;
+				width += this.widths[sym] + this.spacingX;
 			}
 		}
 
-		return var2;
+		return width;
 	}
 
 	public final int subStringWidth(final String text, int start, int end) {
@@ -109,8 +124,8 @@ public final class ImageFont {
 		return width;
 	}
 
-	private static int charToSymbolIdx(final char var0) {
-		switch(var0) {
+	private static int charToSymbolIdx(final char c) {
+		switch(c) {
 		case ' ':
 			return 0;
 		case '!':
@@ -619,41 +634,41 @@ public final class ImageFont {
 		this.offsetY = (byte)var1;
 	}
 
-	public final void drawString(final String var1, final int var2, final int var3) {
-		int var4 = 0;
-		for(int var6 = 0; var6 < var1.length(); ++var6) {
-			int var8 = charToSymbolIdx(var1.charAt(var6));
-			if (var8 == -1) {
-				var8 = charToSymbolIdx('.');
+	public final void drawString(final String text, final int x, final int y) {
+		int cursor = 0;
+		for(int i = 0; i < text.length(); ++i) {
+			int sym = charToSymbolIdx(text.charAt(i));
+			if (sym == -1) {
+				sym = charToSymbolIdx('.');
 
-				for(int var7 = 0; var7 < 3; ++var7) {
-					graphics.drawRegion(this.charTexture, this.posX[var8], this.posY[var8], this.widths[var8], this.tileHeight, 0, var2 + var4, var3 + this.offsetY, 0);
-					var4 += this.widths[var8] + this.spacingX;
+				for(int j = 0; j < 3; ++j) {
+					graphics.drawRegion(this.fontTexture, this.posX[sym], this.posY[sym], this.widths[sym], this.tileHeight, 0, x + cursor, y + this.offsetY, 0);
+					cursor += this.widths[sym] + this.spacingX;
 				}
 			} else {
-				graphics.drawRegion(this.charTexture, this.posX[var8], this.posY[var8], this.widths[var8], this.tileHeight, 0, var2 + var4, var3 + this.offsetY, 0);
-				var4 += this.widths[var8] + this.spacingX;
+				graphics.drawRegion(this.fontTexture, this.posX[sym], this.posY[sym], this.widths[sym], this.tileHeight, 0, x + cursor, y + this.offsetY, 0);
+				cursor += this.widths[sym] + this.spacingX;
 			}
 		}
 
 	}
 
-	public final void drawStringRightAlligned(final String var1, final int var2, final int var3) {
-		int var4 = 0;
-		for(int var6 = var1.length() - 1; var6 >= 0; --var6) {
-			int var8 = charToSymbolIdx(var1.charAt(var6));
-			if (var8 == -1) {
-				var8 = charToSymbolIdx('.');
+	public final void drawStringRightAlligned(final String text, final int x, final int y) {
+		int cursor = 0;
+		for(int i = text.length() - 1; i >= 0; --i) {
+			int sym = charToSymbolIdx(text.charAt(i));
+			if (sym == -1) {
+				sym = charToSymbolIdx('.');
 
-				for(int var7 = 0; var7 < 3; ++var7) {
-					var4 += this.widths[var8];
-					graphics.drawRegion(this.charTexture, this.posX[var8], this.posY[var8], this.widths[var8], this.tileHeight, 0, var2 - var4, var3 + this.offsetY, 0);
-					var4 += this.spacingX;
+				for(int j = 0; j < 3; ++j) {
+					cursor += this.widths[sym];
+					graphics.drawRegion(this.fontTexture, this.posX[sym], this.posY[sym], this.widths[sym], this.tileHeight, 0, x - cursor, y + this.offsetY, 0);
+					cursor += this.spacingX;
 				}
 			} else {
-				var4 += this.widths[var8];
-				graphics.drawRegion(this.charTexture, this.posX[var8], this.posY[var8], this.widths[var8], this.tileHeight, 0, var2 - var4, var3 + this.offsetY, 0);
-				var4 += this.spacingX;
+				cursor += this.widths[sym];
+				graphics.drawRegion(this.fontTexture, this.posX[sym], this.posY[sym], this.widths[sym], this.tileHeight, 0, x - cursor, y + this.offsetY, 0);
+				cursor += this.spacingX;
 			}
 		}
 

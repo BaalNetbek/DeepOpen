@@ -319,7 +319,6 @@ public final class ModStation extends IApplicationModule {
 			if (this.loadingTick >= 6000L) {
 				if (!this.popupOpen && !this.missionMsgOpen) {
 					if (!this.goodsCollected) {
-						final ModStation var2 = this;
 						String var3 = GlobalStatus.gameText.getText(92) + "\n";
 						ProducedGood[] var4 = Status.getWaitingGoods();
 						if (var4 != null) {
@@ -330,13 +329,13 @@ public final class ModStation extends IApplicationModule {
 									Status.getShip().addCargo(var9);
 									var3 = var3 + "\n" + var9.getAmount() + "x " + GlobalStatus.gameText.getText(569 + var9.getIndex());
 									var4[var5] = null;
-									var2.popupOpen = true;
+									this.popupOpen = true;
 								}
 							}
 						}
 
-						if (var2.popupOpen) {
-							var2.popup.set(var3, false);
+						if (this.popupOpen) {
+							this.popup.set(var3, false);
 						}
 
 						this.goodsCollected = true;

@@ -186,7 +186,7 @@ public final class Status {
 				} else {
 					final Vector var18 = new Vector();
 					final Item[] var20 = Globals.getItems();
-					new FileRead();
+					//new FileRead();
 					final SolarSystem[] var14 = FileRead.loadSystemsBinary();
 					int var6;
 					final int var7 = (var6 = var0.getTecLevel()) < 4 ? 1 : var6 / 2;
@@ -763,7 +763,7 @@ public final class Status {
 		currentSolarSystem = Galaxy.loadSystem_(var0.getSystemIndex());
 		if (currentSolarSystem != null) {
 			systemsVisited[currentStation.getSystemIndex()] = true;
-			new FileRead();
+			//new FileRead();
 			final Station[] var3 = FileRead.loadStationsBinary(currentSolarSystem);
 			currSysPlanetNames = null;
 			currSysPlanetNames = new String[var3.length];
@@ -937,7 +937,7 @@ public final class Status {
 	}
 
 	public static void calcCargoPrices() {
-		new FileRead();
+		//new FileRead();
 		final SolarSystem[] var0 = FileRead.loadSystemsBinary();
 
 		for(int var1 = 0; var1 < 3; ++var1) {
@@ -1054,7 +1054,7 @@ public final class Status {
 		}
 
 		waitingGoods = null;
-		new FileRead();
+		//new FileRead();
 		specialAgents = FileRead.loadAgents();
 		standing = new Standing();
 		wormholeStation = -1;

@@ -431,7 +431,7 @@ public final class SpaceLounge {
 								break;
 							case 4: {
 								var4 = GlobalStatus.gameText.getText(504);
-								new FileRead();
+								//new FileRead();
 								SolarSystem[] var10 = FileRead.loadSystemsBinary();
 								var4 = Status.replaceTokens(Status.replaceTokens(var4, var10[var6.getSellSystemIndex()].getName(), "#S"), Layout.formatCredits(var6.getSellItemPrice()), "#C");
 								break;
@@ -564,7 +564,6 @@ public final class SpaceLounge {
 
 			GlobalStatus.graphics.setClip(0, 0, GlobalStatus.screenWidth, GlobalStatus.screenHeight);
 			Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(218), false);
-			final SpaceLounge var5 = this;
 			if (this.chatType_ == 0) {
 				this.answearsPosY_ = GlobalStatus.screenHeight - 16 - (this.agents.length + 1) * Font.getFontSpacingY() + 2;
 			} else if (this.chatType_ == 2) {
@@ -605,29 +604,29 @@ public final class SpaceLounge {
 			} else {
 				var2 = 0;
 
-				for(var3 = this.chatScroll; var3 < var5.chatScroll + 4 && var3 < var5.chatRows.length; ++var3) {
-					final String var4 = var3 != var5.chatRows.length - 1 && var3 == var5.chatScroll + 4 - 1 ? ".." : "";
-					Font.drawString(var5.chatRows[var3] + (Layout.quickTickHigh_() ? var4 : ""), var5.chatTextPosX, var5.chatTextPosY + var2 * Font.getFontSpacingY(), 1);
+				for(var3 = this.chatScroll; var3 < this.chatScroll + 4 && var3 < this.chatRows.length; ++var3) {
+					final String var4 = var3 != this.chatRows.length - 1 && var3 == this.chatScroll + 4 - 1 ? ".." : "";
+					Font.drawString(this.chatRows[var3] + (Layout.quickTickHigh_() ? var4 : ""), this.chatTextPosX, this.chatTextPosY + var2 * Font.getFontSpacingY(), 1);
 					var2++;
 				}
 
-				if (var5.chatType_ != 1 && var5.chatType_ != 3) {
-					Font.drawString(GlobalStatus.gameText.getText(495), var5.answearsPosX, var5.answearsPosY_ + 3 + 0 * Font.getFontSpacingY(), var5.chatAnswear == 0 ? 2 : 1);
-					Font.drawString(GlobalStatus.gameText.getText(496), var5.answearsPosX, var5.answearsPosY_ + 3 + 1 * Font.getFontSpacingY(), var5.chatAnswear == 1 ? 2 : 1);
-					Font.drawString(GlobalStatus.gameText.getText(497), var5.answearsPosX, var5.answearsPosY_ + 3 + 2 * Font.getFontSpacingY(), var5.chatAnswear == 2 ? 2 : 1);
-					var3 = var5.agents[var5.selectedAgent].getType();
+				if (this.chatType_ != 1 && this.chatType_ != 3) {
+					Font.drawString(GlobalStatus.gameText.getText(495), this.answearsPosX, this.answearsPosY_ + 3 + 0 * Font.getFontSpacingY(), this.chatAnswear == 0 ? 2 : 1);
+					Font.drawString(GlobalStatus.gameText.getText(496), this.answearsPosX, this.answearsPosY_ + 3 + 1 * Font.getFontSpacingY(), this.chatAnswear == 1 ? 2 : 1);
+					Font.drawString(GlobalStatus.gameText.getText(497), this.answearsPosX, this.answearsPosY_ + 3 + 2 * Font.getFontSpacingY(), this.chatAnswear == 2 ? 2 : 1);
+					var3 = this.agents[this.selectedAgent].getType();
 					if (var3 != 2 && var3 != 3) {
-						if (var3 == 0 && var5.agents[var5.selectedAgent].getMission().isOutsideMission()) {
-							Font.drawString(GlobalStatus.gameText.getText(440), var5.answearsPosX, var5.answearsPosY_ + 3 + 3 * Font.getFontSpacingY(), var5.chatAnswear == 3 ? 2 : 1);
-							Font.drawString(GlobalStatus.gameText.getText(442), var5.answearsPosX, var5.answearsPosY_ + 3 + 4 * Font.getFontSpacingY(), var5.chatAnswear == 4 ? 2 : 1);
+						if (var3 == 0 && this.agents[this.selectedAgent].getMission().isOutsideMission()) {
+							Font.drawString(GlobalStatus.gameText.getText(440), this.answearsPosX, this.answearsPosY_ + 3 + 3 * Font.getFontSpacingY(), this.chatAnswear == 3 ? 2 : 1);
+							Font.drawString(GlobalStatus.gameText.getText(442), this.answearsPosX, this.answearsPosY_ + 3 + 4 * Font.getFontSpacingY(), this.chatAnswear == 4 ? 2 : 1);
 						}
 					} else {
-						Font.drawString(GlobalStatus.gameText.getText(415), var5.answearsPosX, var5.answearsPosY_ + 3 + 3 * Font.getFontSpacingY(), var5.chatAnswear == 3 ? 2 : 1);
+						Font.drawString(GlobalStatus.gameText.getText(415), this.answearsPosX, this.answearsPosY_ + 3 + 3 * Font.getFontSpacingY(), this.chatAnswear == 3 ? 2 : 1);
 					}
 
 					Layout.drawFooter(GlobalStatus.gameText.getText(253), "");
 				} else {
-					Layout.drawFooter(GlobalStatus.gameText.getText(73), var5.chatScroll > 0 ? GlobalStatus.gameText.getText(74) : var5.chatType_ == 1 ? GlobalStatus.gameText.getText(246) : "");
+					Layout.drawFooter(GlobalStatus.gameText.getText(73), this.chatScroll > 0 ? GlobalStatus.gameText.getText(74) : this.chatType_ == 1 ? GlobalStatus.gameText.getText(246) : "");
 				}
 			}
 
@@ -651,7 +650,7 @@ public final class SpaceLounge {
 						var8 = GlobalStatus.gameText.getText(505 + GlobalStatus.random.nextInt(2));
 						var8 = var8 + " " + GlobalStatus.gameText.getText(516 + var1.getMessageId());
 						var8 = var8 + " " + GlobalStatus.gameText.getText(508);
-						new FileRead();
+						//new FileRead();
 						final SolarSystem[] var11 = FileRead.loadSystemsBinary();
 						var8 = Status.replaceTokens(Status.replaceTokens(var8, var11[var1.getSellSystemIndex()].getName(), "#S"), Layout.formatCredits(var1.getSellItemPrice()), "#C");
 					} else {

@@ -30,40 +30,38 @@ public final class AEMesh extends AbstractMesh {
 	public AEMesh(final String var1, final int var2) {
 		setupMaterial();
 		final String var3 = var1;
-		final AEMesh var11 = this;
-
 		try {
 			if (!var3.endsWith(".aem")) {
-				var11.aemFile = new DataInputStream(var11.getClass().getResourceAsStream(var3 + ".aem"));
+				this.aemFile = new DataInputStream(this.getClass().getResourceAsStream(var3 + ".aem"));
 			} else {
-				var11.aemFile = new DataInputStream(var11.getClass().getResourceAsStream(var3));
+				this.aemFile = new DataInputStream(this.getClass().getResourceAsStream(var3));
 			}
 
 			final byte[] var4 = new byte[7];
-			var11.aemFile.read(var4, 0, 7);
+			this.aemFile.read(var4, 0, 7);
 			int var5;
 			int var7;
-			int var12 = var11.aemFile.readUnsignedByte();
+			int var12 = this.aemFile.readUnsignedByte();
 			if ((var12 & 16) != 0) {
-				final int[] var6 = new int[var5 = swapBytes(var11.aemFile.readUnsignedShort())];
+				final int[] var6 = new int[var5 = swapBytes(this.aemFile.readUnsignedShort())];
 
 				for(var7 = 0; var7 < var5; ++var7) {
-					var6[var7] = swapBytes(var11.aemFile.readUnsignedShort());
+					var6[var7] = swapBytes(this.aemFile.readUnsignedShort());
 				}
 
-				final int[] var13 = new int[var7 = swapBytes(var11.aemFile.readUnsignedShort())];
+				final int[] var13 = new int[var7 = swapBytes(this.aemFile.readUnsignedShort())];
 
 				for(int var8 = 0; var8 < var7; ++var8) {
-					var13[var8] = swapBytes(var11.aemFile.readUnsignedShort());
+					var13[var8] = swapBytes(this.aemFile.readUnsignedShort());
 				}
 
-				var11.triangleStripArray = new TriangleStripArray(var6, var13);
+				this.triangleStripArray = new TriangleStripArray(var6, var13);
 			}
 
-			final short[] var15 = new short[(var5 = swapBytes(var11.aemFile.readUnsignedShort())) * 3];
+			final short[] var15 = new short[(var5 = swapBytes(this.aemFile.readUnsignedShort())) * 3];
 
 			for(var7 = 0; var7 < var5 * 3; ++var7) {
-				var15[var7] = (short)swapBytes(var11.aemFile.readShort());
+				var15[var7] = (short)swapBytes(this.aemFile.readShort());
 			}
 
 			VertexArray var16;
@@ -73,8 +71,8 @@ public final class AEMesh extends AbstractMesh {
 				final short[] var17 = new short[var15.length / 3 << 1];
 
 				for(int var9 = 0; var9 < var17.length; var9 += 2) {
-					var17[var9] = (short)swapBytes(var11.aemFile.readShort());
-					var17[var9 + 1] = (short)(255 - (short)swapBytes(var11.aemFile.readShort()));
+					var17[var9] = (short)swapBytes(this.aemFile.readShort());
+					var17[var9 + 1] = (short)(255 - (short)swapBytes(this.aemFile.readShort()));
 				}
 
 				(var14 = new VertexArray(var17.length / 2, 2, 2)).set(0, var17.length / 2, var17);
@@ -84,29 +82,29 @@ public final class AEMesh extends AbstractMesh {
 				final short[] var19 = new short[var15.length];
 
 				for(var12 = 0; var12 < var19.length; ++var12) {
-					var19[var12] = (short)swapBytes(var11.aemFile.readShort());
+					var19[var12] = (short)swapBytes(this.aemFile.readShort());
 				}
 
 				new VertexArray(var19.length / 3, 3, 2).set(0, var19.length / 3, var19);
 			}
 
-			var11.vertexBuffer = new VertexBuffer();
-			var11.vertexBuffer.setPositions(var16, 1.0F, (float[])null);
-			var11.vertexBuffer.setNormals((VertexArray)null);
-			var11.vertexBuffer.setTexCoords(0, var14, 0.003921569F, (float[])null);
-			var11.appearance = new Appearance();
-			var11.isTransparent = var11.aemFile.read() != 0;
-			if (var11.isTransparent) {
-				var11.appearance.setCompositingMode(compositingMode);
-				var11.appearance.setPolygonMode(transparentPMode);
+			this.vertexBuffer = new VertexBuffer();
+			this.vertexBuffer.setPositions(var16, 1.0F, (float[])null);
+			this.vertexBuffer.setNormals((VertexArray)null);
+			this.vertexBuffer.setTexCoords(0, var14, 0.003921569F, (float[])null);
+			this.appearance = new Appearance();
+			this.isTransparent = this.aemFile.read() != 0;
+			if (this.isTransparent) {
+				this.appearance.setCompositingMode(compositingMode);
+				this.appearance.setPolygonMode(transparentPMode);
 			} else {
-				var11.appearance.setCompositingMode((CompositingMode)null);
-				var11.appearance.setPolygonMode(opaquePMode);
+				this.appearance.setCompositingMode((CompositingMode)null);
+				this.appearance.setPolygonMode(opaquePMode);
 			}
 
-			var11.transform = new Transform();
-			var11.transform.setIdentity();
-			var11.aemFile.close();
+			this.transform = new Transform();
+			this.transform.setIdentity();
+			this.aemFile.close();
 			System.gc();
 		} catch (final Exception var10) {
 			System.out.println("Error loading aemesh = " + var1);
