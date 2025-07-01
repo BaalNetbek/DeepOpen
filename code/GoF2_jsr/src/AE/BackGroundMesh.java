@@ -20,8 +20,6 @@ public final class BackGroundMesh extends AbstractMesh {
 
 	public BackGroundMesh(final String var1) {
 		final String var2 = var1;
-		final BackGroundMesh var5 = this;
-
 		try {
 			Object3D[] var3 = null;
 			if (!var2.endsWith(".m3g")) {
@@ -32,7 +30,7 @@ public final class BackGroundMesh extends AbstractMesh {
 
 			for(int var6 = 0; var6 < var3.length; ++var6) {
 				if (var3[var6] instanceof javax.microedition.m3g.Group) {
-					var5.mesh = (Node)var3[var6];
+					this.mesh = (Node)var3[var6];
 					break;
 				}
 			}

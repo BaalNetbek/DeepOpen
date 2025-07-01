@@ -184,11 +184,10 @@ public final class PlayerStation extends PlayerStaticFar {
         final int var4 = var1.z;
         final int var3 = var1.y;
         final int var2 = var1.x;
-        final PlayerStation var6 = this;
         if (var2 < this.maxPartDeflection && var2 > -this.maxPartDeflection && var3 < this.maxPartDeflection && var3 > -this.maxPartDeflection && var4 < this.maxPartDeflection && var4 > -this.maxPartDeflection && this.boundingBoxes != null) {
-            for(int var5 = 0; var5 < var6.boundingBoxes.length; ++var5) {
-                if (var6.boundingBoxes[var5].isPointInBounding(var2, var3, var4)) {
-                    var6.collidingPart = var5;
+            for(int var5 = 0; var5 < this.boundingBoxes.length; ++var5) {
+                if (this.boundingBoxes[var5].isPointInBounding(var2, var3, var4)) {
+                    this.collidingPart = var5;
                     return true;
                 }
             }

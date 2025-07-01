@@ -287,8 +287,8 @@ public final class Level {
 							}
 						}
 
-						AEVector3D var19;
-						(var19 = new AEVector3D(this.starSystem.getPlanets()[var14 + 1].getLocalPos())).scale(16384);
+						AEVector3D var19 = new AEVector3D(this.starSystem.getPlanets()[var14 + 1].getLocalPos());
+						var19.scale(16384);
 						this.ego.setPosition_(var19);
 						var19.x = -var19.x;
 						var19.y = -var19.y;
@@ -1167,8 +1167,8 @@ public final class Level {
 		case 4: // bar
 			int var11;
 			var1 = (var11 = Status.getSystem().getRace() == 1 ? 2 : Status.getSystem().getRace() == 0 ? 0 : 1) == 0 ? 20 : 6;
-			Agent[] var9;
-			var3 = (var9 = Status.getStation().getBarAgents()).length;
+			Agent[] var9 = Status.getStation().getBarAgents();
+			var3 = var9.length;
 			this.ships = new KIPlayer[var3 + var1];
 			final boolean[] var5 = new boolean[this.LEVEL_BAR_CHAR_POSITIONS.length / 3];
 

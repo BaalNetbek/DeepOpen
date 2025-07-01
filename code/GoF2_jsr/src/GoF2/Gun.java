@@ -296,55 +296,54 @@ public final class Gun {
 		}
 
 		if (this.inAir) {
-			final Gun var3 = this;
 			if (this.targets != null) {
 				boolean var7;
 				final boolean var8 = (var7 = this.subType == 7 || this.subType == 6) || this.subType == 4 || this.subType == 5;
 
 				label96:
-					for(int var9 = 0; var9 < var3.targets.length; ++var9) {
-						var3.tempTarget = var3.targets[var9];
-						if (var3.tempTarget.isActive()) {
-							for(int var10 = 0; var10 < var3.projectilesPos.length; ++var10) {
-								var3.tempPos.set(var3.projectilesPos[var10]);
-								var3.tempDir.set(var3.projectilesDir[var10]);
+					for(int var9 = 0; var9 < this.targets.length; ++var9) {
+						this.tempTarget = this.targets[var9];
+						if (this.tempTarget.isActive()) {
+							for(int var10 = 0; var10 < this.projectilesPos.length; ++var10) {
+								this.tempPos.set(this.projectilesPos[var10]);
+								this.tempDir.set(this.projectilesDir[var10]);
 								int var4;
 								int var5;
 								int var13;
-								if (var3.tempTarget.invincible_) {
-									var4 = var3.tempTarget.posX - var3.tempPos.x + var3.tempDir.x;
-									var5 = var3.tempTarget.posY - var3.tempPos.y + var3.tempDir.y;
-									var13 = var3.tempTarget.posZ - var3.tempPos.z + var3.tempDir.z;
+								if (this.tempTarget.invincible_) {
+									var4 = this.tempTarget.posX - this.tempPos.x + this.tempDir.x;
+									var5 = this.tempTarget.posY - this.tempPos.y + this.tempDir.y;
+									var13 = this.tempTarget.posZ - this.tempPos.z + this.tempDir.z;
 								} else {
-									var4 = var3.tempTarget.transform.getPositionX() - var3.tempPos.x + var3.tempDir.x;
-									var5 = var3.tempTarget.transform.getPositionY() - var3.tempPos.y + var3.tempDir.y;
-									var13 = var3.tempTarget.transform.getPositionZ() - var3.tempPos.z + var3.tempDir.z;
+									var4 = this.tempTarget.transform.getPositionX() - this.tempPos.x + this.tempDir.x;
+									var5 = this.tempTarget.transform.getPositionY() - this.tempPos.y + this.tempDir.y;
+									var13 = this.tempTarget.transform.getPositionZ() - this.tempPos.z + this.tempDir.z;
 								}
 
-								final int var11 = (int)var3.tempTarget.radius;
+								final int var11 = (int)this.tempTarget.radius;
 								if (var4 < var11 && var4 > -var11 && var5 < var11 && var5 > -var11 && var13 < var11 && var13 > -var11) {
-									if (var8 && var3.tempTarget.isAsteroid()) {
-										var3.tempTarget.damageHP(9999, false);
+									if (var8 && this.tempTarget.isAsteroid()) {
+										this.tempTarget.damageHP(9999, false);
 										break label96;
 									}
 
 									if (var7) {
-										var3.ignite();
+										this.ignite();
 										break label96;
 									}
 
-									var4 = Globals.getItems()[var3.index].getAttribute(10);
+									var4 = Globals.getItems()[this.index].getAttribute(10);
 									if (var4 != -979797979) {
-										var3.tempTarget.damageEmp(var4, var3.friendGun);
+										this.tempTarget.damageEmp(var4, this.friendGun);
 									}
 
-									var3.tempTarget.damageHP(var3.damage, var3.friendGun);
-									var3.tempTarget.setHitVector_(-var3.tempDir.x, -var3.tempDir.y, -var3.tempDir.z);
-									var3.projectilesTimeLeft[var10] = -1;
-									var3.tempVector.set(var3.projectilesDir[var10]);
-									var3.tempVector.normalize();
-									if (var3.sparks != null) {
-										var3.sparks.explode(var3.projectilesPos[var10]);
+									this.tempTarget.damageHP(this.damage, this.friendGun);
+									this.tempTarget.setHitVector_(-this.tempDir.x, -this.tempDir.y, -this.tempDir.z);
+									this.projectilesTimeLeft[var10] = -1;
+									this.tempVector.set(this.projectilesDir[var10]);
+									this.tempVector.normalize();
+									if (this.sparks != null) {
+										this.sparks.explode(this.projectilesPos[var10]);
 									}
 								}
 							}

@@ -347,11 +347,10 @@ public final class PlayerFixedObject extends KIPlayer {
         final int var4 = var1.z;
         final int var3 = var1.y;
         final int var2 = var1.x;
-        final PlayerFixedObject var6 = this;
         if (this.state != 4) {
-            for(int var5 = 0; var5 < var6.bounds.length; ++var5) {
-                if (var6.bounds[var5].isPointInBounding(var2, var3, var4)) {
-                    var6.collidingBound = var5;
+            for(int i = 0; i < this.bounds.length; ++i) {
+                if (this.bounds[i].isPointInBounding(var2, var3, var4)) {
+                    this.collidingBound = i;
                     return true;
                 }
             }

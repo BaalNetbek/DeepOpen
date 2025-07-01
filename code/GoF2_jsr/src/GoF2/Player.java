@@ -494,17 +494,16 @@ public final class Player {
 		final long var9 = var3;
 		final int var12 = var2;
 		var2 = var1;
-		final Player var11 = this;
 		boolean var6 = true;
 		if (this.guns != null && var1 < this.guns.length && var1 >= 0 && this.guns[var1] != null) {
-			for(int var7 = 0; var7 < var11.guns[var2].length; ++var7) {
+			for(int var7 = 0; var7 < this.guns[var2].length; ++var7) {
 				Gun var8;
-				if (((var8 = var11.guns[var2][var7]).subType == 7 || var8.subType == 6) && var8.projectilesTimeLeft[0] >= 0) {
+				if (((var8 = this.guns[var2][var7]).subType == 7 || var8.subType == 6) && var8.projectilesTimeLeft[0] >= 0) {
 					var8.ignite();
 				} else if (var8.index == var12 && var8.timeSinceLastShot > var8.reloadTimeMilis) {
 					if (var8.shoot(var13, var9, var4)) {
-						if (var11.playShootSound) {
-							switch(var11.guns[var2][var7].subType) {
+						if (this.playShootSound) {
+							switch(this.guns[var2][var7].subType) {
 							case 4:
 								GlobalStatus.soundManager.playSfx(8);
 								break;

@@ -68,18 +68,17 @@ public final class RocketGun extends ObjectGun {
         if (this.gun.inAir) {
             if (this.guided && this.gun.projectilesTimeLeft[0] < this.gun.range - 1500) {
                 final int var2 = (int)var1;
-                final RocketGun var8 = this;
-                Player[] var3 = this.gun.getTargets();
-                if (var3 != null) {
+                Player[] targets = this.gun.getTargets();
+                if (targets != null) {
                     label74: {
                         if (this.radar == null) {
                             int var4 = -1;
                             int var5 = Integer.MAX_VALUE;
 
-                            for(int var6 = 0; var6 < var3.length; ++var6) {
-                                if (var3[var6].isActive() && !var3[var6].isDead() && !var3[var6].isAsteroid()) {
-                                    postion = var8.gun.projectilesPos[0];
-                                    tempPos = var3[var6].getPosition(tempPos);
+                            for(int var6 = 0; var6 < targets.length; ++var6) {
+                                if (targets[var6].isActive() && !targets[var6].isDead() && !targets[var6].isAsteroid()) {
+                                    postion = this.gun.projectilesPos[0];
+                                    tempPos = targets[var6].getPosition(tempPos);
                                     distX = postion.x - tempPos.x;
                                     distY = postion.y - tempPos.y;
                                     distZ = postion.z - tempPos.z;
@@ -95,25 +94,25 @@ public final class RocketGun extends ObjectGun {
                                 break label74;
                             }
 
-                            tempPos = var3[var4].getPosition(tempPos);
+                            tempPos = targets[var4].getPosition(tempPos);
                         } else if (this.radar.getLockedEnemy() != null) {
                             tempPos = this.radar.getLockedEnemy().getPosition(tempPos);
                         }
 
-                        temp.x = tempPos.x - var8.gun.projectilesPos[0].x;
-                        temp.y = tempPos.y - var8.gun.projectilesPos[0].y;
-                        temp.z = tempPos.z - var8.gun.projectilesPos[0].z;
-                        direction.set(var8.gun.projectilesDir[0]);
+                        temp.x = tempPos.x - this.gun.projectilesPos[0].x;
+                        temp.y = tempPos.y - this.gun.projectilesPos[0].y;
+                        temp.z = tempPos.z - this.gun.projectilesPos[0].z;
+                        direction.set(this.gun.projectilesDir[0]);
                         temp.subtract(direction);
                         temp.scale(var2);
-                        var8.gun.projectilesDir[0] = direction.add(temp, var8.gun.projectilesDir[0]);
-                        var8.gun.projectilesDir[0].normalize();
-                        var8.gun.projectilesDir[0].scale((int)(var8.gun.projectileSpeed * var2) << 12);
-                        AEVector3D var10000 = var8.gun.projectilesDir[0];
+                        this.gun.projectilesDir[0] = direction.add(temp, this.gun.projectilesDir[0]);
+                        this.gun.projectilesDir[0].normalize();
+                        this.gun.projectilesDir[0].scale((int)(this.gun.projectileSpeed * var2) << 12);
+                        AEVector3D var10000 = this.gun.projectilesDir[0];
                         var10000.x >>= 12;
-                        var10000 = var8.gun.projectilesDir[0];
+                        var10000 = this.gun.projectilesDir[0];
                         var10000.y >>= 12;
-                        var10000 = var8.gun.projectilesDir[0];
+                        var10000 = this.gun.projectilesDir[0];
                         var10000.z >>= 12;
                     }
                 }

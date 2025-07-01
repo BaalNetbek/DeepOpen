@@ -294,13 +294,10 @@ public final class PlayerFighter extends KIPlayer {
 
                     this.target__ = null;
                     if (this.behavioutChangeTick > 5000) {
-                        PlayerFighter var12;
                         boolean var10001;
                         label655: {
                             if (this.strayFromTarget_) {
-                                var12 = this;
                             } else {
-                                var12 = this;
                                 if (GlobalStatus.random.nextInt(100) < 20) {
                                     var10001 = true;
                                     break label655;
@@ -311,7 +308,7 @@ public final class PlayerFighter extends KIPlayer {
                         }
 
                         label650: {
-                            var12.strayFromTarget_ = var10001;
+                            this.strayFromTarget_ = var10001;
                             this.behavioutChangeTick = 0;
                             if (GlobalStatus.random.nextInt(100) < 30 && var3.length > 1) {
                                 this.targetIsActive = false;
