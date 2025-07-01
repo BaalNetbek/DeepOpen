@@ -24,9 +24,12 @@ public final class Globals {
           {14020, 14021, 14022, 14023, 14024}
           };
     public static final short[] TYPE_WEAPONS = {
-          6754, 6755, 6756, 6760, 6761, 6762, 6763, 6764, 6765, -1, -1, -1, 6788, 6789, 6790, 6791, 6792, 6793, 6794,
-          6795, 6796, 6797, 6798, 6799, 6800, 6801, 6802, 6803, 6781, 6781, 6781, 6791, 6789, 6788, 6790, 6792, 6797,
-          6794, 6791, 6796, 6788, -1, -1, -1, -1, -1, -1, 6784, 6785, 6786
+          6754, 6755, 6756, 6760, 6761, 6762, 6763, 6764,
+          6765, -1, -1, -1, 6788, 6789, 6790, 6791, 6792,
+          6793, 6794, 6795, 6796, 6797, 6798, 6799, 6800,
+          6801, 6802, 6803, 6781, 6781, 6781, 6791, 6789,
+          6788, 6790, 6792, 6797, 6794, 6791, 6796, 6788,
+          -1, -1, -1, -1, -1, -1, 6784, 6785, 6786
           };
     public static final byte[] CHAR_KEITH;
     private static byte[] CHAR_BRENT;
@@ -113,7 +116,7 @@ public final class Globals {
         else {
             do {
                 ship = GlobalStatus.random.nextInt(37);
-            } while (ship == 0 ||
+            } while (ship == 0 || 
                     ship == 9 ||
                     ship == 8 ||
                     ship == 10 ||
@@ -400,6 +403,18 @@ public final class Globals {
         CHAR_VOID = new byte[]{9, 0, 0, 0, 0};
         CHAR_KHADOR = new byte[]{7, 0, 0, 0, 0};
         CHAR_NIVELIAN_SECURITY = new byte[]{2, 0, 0, 0, 0};
-        CHAR_IMAGES = new byte[][]{CHAR_KEITH, CHAR_BRENT, CHAR_GUNANT, CHAR_NORRIS, CHAR_MKKT_BKKT, CHAR_TOMMY, CHAR_CARLA, CHAR_ERRKT, CHAR_JEAN, CHAR_PIRATE_CHIEF, CHAR_PIRATE_1, CHAR_PIRATE_2, CHAR_SECURITY_GUY, CHAR_SECURITY_GIRL, CHAR_KIDNAPPER, CHAR_STORY, CHAR_COMPUTER, CHAR_INFO_PIC, CHAR_TERRAN_OFFICER, CHAR_VOID, CHAR_KHADOR, CHAR_NIVELIAN_SECURITY};
+        CHAR_IMAGES = new byte[][] { 
+			     CHAR_KEITH,          CHAR_BRENT,
+		        CHAR_GUNANT,         CHAR_NORRIS,
+		        CHAR_MKKT_BKKT,      CHAR_TOMMY,
+		        CHAR_CARLA,          CHAR_ERRKT,
+		        CHAR_JEAN,           CHAR_PIRATE_CHIEF,
+		        CHAR_PIRATE_1,       CHAR_PIRATE_2,
+		        CHAR_SECURITY_GUY,   CHAR_SECURITY_GIRL,
+		        CHAR_KIDNAPPER,      CHAR_STORY,
+		        CHAR_COMPUTER,       CHAR_INFO_PIC,
+		        CHAR_TERRAN_OFFICER, CHAR_VOID,
+		        CHAR_KHADOR,         CHAR_NIVELIAN_SECURITY
+	        };
     }
 }

@@ -350,7 +350,7 @@ public final class Dialogue {
                 this.message = GlobalStatus.gameText.getText(GameText.MISSION_LOST_MSG[GlobalStatus.random.nextInt(GameText.MISSION_LOST_MSG.length)]) + "\n\n" + GlobalStatus.gameText.getText(213);
             }
         } else {
-            var1 = this.type == 0 ? CAMPAIGN_BRIEFING[Status.getCurrentCampaignMission()][2 * this.page] : this.type == 1 ? CAMPAIGN_SUCCESS[Status.getCurrentCampaignMission()][2 * this.page] : 16;
+            var1 = (this.type == 0) ? CAMPAIGN_BRIEFING[Status.getCurrentCampaignMission()][2 * this.page] : this.type == 1 ? CAMPAIGN_SUCCESS[Status.getCurrentCampaignMission()][2 * this.page] : 16;
             this.face = Globals.CHAR_IMAGES[var1];
             this.name = GlobalStatus.gameText.getText(var1 + 819);
             if (this.type == 0) {

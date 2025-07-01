@@ -111,7 +111,6 @@ public final class Level {
 			this.successObjective = null;
 			this.gunSparks = new Sparks(AEResourceManager.getTextureResource(1), 33, 225, 63, 255, 10, 700, 100, 500);
 			this.missilesSparks = new Sparks(AEResourceManager.getTextureResource(1), 33, 225, 63, 255, 10, 700, 100, 500);
-			Level var1 = this;
 			if (this.skybox == null) {
 				this.skybox = AEResourceManager.getGeometryResource(9991);
 			}
@@ -143,49 +142,49 @@ public final class Level {
 							var4 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
 							final int var16 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
 							var6 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
-							var1.stationaries[2].setPosition(var4, var16, var6);
-							var1.stationaries[2].mainMesh_.setRotation(-4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192));
+							this.stationaries[2].setPosition(var4, var16, var6);
+							this.stationaries[2].mainMesh_.setRotation(-4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192));
 						}
 
 						if (!Status.gameWon()) {
-							var1.stationaries[3] = new PlayerWormHole(6805, AEResourceManager.getGeometryResource(6805), -40000 + GlobalStatus.random.nextInt(80000), -20000 + GlobalStatus.random.nextInt(40000), 40000 + GlobalStatus.random.nextInt(40000), var2);
-							var1.stationaries[3].setLevel(var1);
+							this.stationaries[3] = new PlayerWormHole(6805, AEResourceManager.getGeometryResource(6805), -40000 + GlobalStatus.random.nextInt(80000), -20000 + GlobalStatus.random.nextInt(40000), 40000 + GlobalStatus.random.nextInt(40000), var2);
+							this.stationaries[3].setLevel(this);
 						}
 
-						var1.mgameIntroCamRotY += 2048;
+						this.mgameIntroCamRotY += 2048;
 						if (!initStreamOutPosition) {
-							var1.mgameIntroCamRotY = 0;
+							this.mgameIntroCamRotY = 0;
 						}
 						break;
 					}
 
 					if (var4 == 1 && (Status.getSystem() == null || !Status.getSystem().currentOrbitHasJumpgate())) {
-						var1.stationaries[var4] = null;
+						this.stationaries[var4] = null;
 					} else {
 						if (Status.getStation() != null) {
 							if (var4 == 0) {
-								var1.mgameIntroCamRotY = Status.getStation().getName().length() + Status.getStation().getTecLevel() * 3;
-								var1.mgameIntroCamRotY = var1.mgameIntroCamRotY % 16 << 8;
+								this.mgameIntroCamRotY = Status.getStation().getName().length() + Status.getStation().getTecLevel() * 3;
+								this.mgameIntroCamRotY = this.mgameIntroCamRotY % 16 << 8;
 							} else {
-								var1.mgameIntroCamRotY += GlobalStatus.random.nextInt(2) == 0 ? -250 - GlobalStatus.random.nextInt(500) : 250 + GlobalStatus.random.nextInt(500);
+								this.mgameIntroCamRotY += GlobalStatus.random.nextInt(2) == 0 ? -250 - GlobalStatus.random.nextInt(500) : 250 + GlobalStatus.random.nextInt(500);
 							}
 
-							var1.tempVec.z = var4 == 1 ? 90000 : 120000;
-							final AEVector3D var10000 = var1.tempVec;
-							var10000.z += var1.mgameIntroCamRotY * 3;
+							this.tempVec.z = var4 == 1 ? 90000 : 120000;
+							final AEVector3D var10000 = this.tempVec;
+							var10000.z += this.mgameIntroCamRotY * 3;
 							Matrix var5;
-							(var5 = new Matrix()).setEulerY(var1.mgameIntroCamRotY);
-							(var3 = var5.transformVectorNoScale(var1.tempVec, var3)).y = 0;
+							(var5 = new Matrix()).setEulerY(this.mgameIntroCamRotY);
+							(var3 = var5.transformVectorNoScale(this.tempVec, var3)).y = 0;
 						}
 
-						var1.stationaries[var4] = new PlayerJumpgate(15, AEResourceManager.getGeometryResource(15), var3.x, var3.y, var3.z, var4 != 2);
+						this.stationaries[var4] = new PlayerJumpgate(15, AEResourceManager.getGeometryResource(15), var3.x, var3.y, var3.z, var4 != 2);
 					}
 
 					++var4;
 				}
 			}
 
-			var1.starSystem = new StarSystem();
+			this.starSystem = new StarSystem();
 			SolarSystem var10 = Status.getSystem();
 			if (var10 == null) {
 				starR = 10.0F;
@@ -201,8 +200,6 @@ public final class Level {
 			spaceG = (int)(starG / 3.0F);
 			spaceB = (int)(starB / 3.0F);
 			if (this.currentMod == 3) {
-				var1 = this;
-
 				try {
 					final Ship var11 = Status.getShip();
 					final Item[] var13 = Status.getShip().getEquipment();
@@ -213,13 +210,13 @@ public final class Level {
 					Player var17;
 					(var17 = new Player(1200.0F, Status.getShip().getBaseArmour(), var15[0], var15[1], var15[2])).setMaxShieldHP(Status.getShip().getShield());
 					var17.setMaxArmorHP(Status.getShip().getAdditionalArmour());
-					var1.ego = new PlayerEgo(var17);
-					var1.ego.setShip(Status.getShip().getIndex(), Status.getShip().getRace());
-					var1.ego.setLevel(var1);
-					var1.ego.shipGrandGroup_.setRotation(0, var1.mgameIntroCamRotY, 0);
+					this.ego = new PlayerEgo(var17);
+					this.ego.setShip(Status.getShip().getIndex(), Status.getShip().getRace());
+					this.ego.setLevel(this);
+					this.ego.shipGrandGroup_.setRotation(0, this.mgameIntroCamRotY, 0);
 					final int[] var20 = {0, 0, 0};
 					final Explosion var18 = new Explosion(var20.length / 3);
-					var1.ego.setExplosion(var18);
+					this.ego.setExplosion(var18);
 					final Gun[][] var21 = new Gun[3][];
 
 					for(var6 = 0; var6 < 3; ++var6) {
@@ -234,7 +231,7 @@ public final class Level {
 								Gun var7 = null;
 								if (var13[var6].isWeapon()) {
 									final int var22 = var13[var6].getType() == 1 ? var13[var6].getAmount() : -1;
-									(var7 = var1.createGun(var13[var6].getIndex(), var6, var13[var6].getSubType(), var22, var13[var6].getAttribute(9), var13[var6].getAttribute(11), var13[var6].getAttribute(12), var13[var6].getAttribute(13))).index = var13[var6].getIndex();
+									(var7 = this.createGun(var13[var6].getIndex(), var6, var13[var6].getSubType(), var22, var13[var6].getAttribute(9), var13[var6].getAttribute(11), var13[var6].getAttribute(12), var13[var6].getAttribute(13))).index = var13[var6].getIndex();
 									var7.subType = var13[var6].getSubType();
 									var7.setMagnitude(var13[var6].getAttribute(14));
 									int var10001;
@@ -270,7 +267,7 @@ public final class Level {
 
 					for(var6 = 0; var6 < var21.length; ++var6) {
 						if (var21[var6] != null) {
-							var1.ego.setGuns(var21[var6], var6);
+							this.ego.setGuns(var21[var6], var6);
 						}
 					}
 				} catch (final Exception var8) {
@@ -545,13 +542,13 @@ public final class Level {
 	private void createMission() {
 		Mission var1 = Status.getMission();
 		if (var1 != null) {
-			int var2;
+			int i;
 			int var3;
 			if (Status.inAlienOrbit()) {
-				var2 = 1 + GlobalStatus.random.nextInt(3);
-				this.ships = new KIPlayer[var2];
+				i = 1 + GlobalStatus.random.nextInt(3);
+				this.ships = new KIPlayer[i];
 
-				for(var3 = 0; var3 < var2; ++var3) {
+				for(var3 = 0; var3 < i; ++var3) {
 					this.ships[var3] = createShip(9, 0, Globals.getRandomEnemyFighter(9), (Waypoint)null);
 					this.ships[var3].setPosition(-40000 + GlobalStatus.random.nextInt(80000), -40000 + GlobalStatus.random.nextInt(80000), -40000 + GlobalStatus.random.nextInt(80000));
 					this.ships[var3].player.setAlwaysEnemy(true);
@@ -564,29 +561,35 @@ public final class Level {
 				int var8;
 				int var9;
 				Route var12;
-				int var13;
+				int race;
 				if (var1.isEmpty()) {
 					this.currentMod = 0;
 					createScene();
 					this.currentMod = 3;
-					final boolean var10 = Status.getSystem().getId() == 15 && Status.getCurrentCampaignMission() < 16;
-					final boolean var15 = Status.getStation().getId() == 78;
-					var13 = GlobalStatus.random.nextInt(100);
+					final boolean introOrThynome = Status.getSystem().getId() == 15 && Status.getCurrentCampaignMission() < 16;
+					final boolean varHastra = Status.getStation().getId() == 78;
 					var5 = 0;
-					Mission var17;
-					if ((var17 = Status.getFreelanceMission()) != null && (var17.getType() == 0 || var17.getType() == 11)) {
-						var5 = (int)(var17.getDifficulty() / 10.0F * 5.0F);
+					Mission freelance;
+					if ((freelance = Status.getFreelanceMission()) != null &&
+						 (freelance.getType() == 0 || freelance.getType() == 11)) 
+					{
+						var5 = (int)(freelance.getDifficulty() / 10.0F * 5.0F); //just >>2
 					}
 
 					var7 = Status.getSystem().getSafety();
-					final boolean var11 = !var10 && var13 < (var7 == 0 ? 80 : var7 == 1 ? 60 : var7 == 2 ? 35 : 10);
+					final boolean raid = !introOrThynome &&
+							GlobalStatus.random.nextInt(100) < (
+									var7 == 0 ? 80 :
+									var7 == 1 ? 60 :
+									var7 == 2 ? 35 :
+													10);
 					this.raidRoute = new Route(new int[]{-50000 + GlobalStatus.random.nextInt(100000), 0, 50000 + GlobalStatus.random.nextInt(50000)});
-					var13 = Status.getSystem().getRace();
-					var8 = GlobalStatus.random.nextInt(100) < 75 ? 8 : Standing.enemyRace(var13);
-					this.raidersCnt = var11 ? 0 + GlobalStatus.random.nextInt(4) : 0;
-					this.jumperCnt = var15 ? 0 : 0 + GlobalStatus.random.nextInt(2);
-					this.bigShipsCnt = !var15 && !var10 ? 0 + GlobalStatus.random.nextInt(5) : 0;
-					this.localFightersCnt = (var15 ? 0 : GlobalStatus.random.nextInt(2)) + (var10 ? 0 : var7) + this.bigShipsCnt / 4;
+					race = Status.getSystem().getRace();
+					var8 = GlobalStatus.random.nextInt(100) < 75 ? 8 : Standing.enemyRace(race);
+					this.raidersCnt = raid ? 0 + GlobalStatus.random.nextInt(4) : 0;
+					this.jumperCnt = varHastra ? 0 : 0 + GlobalStatus.random.nextInt(2);
+					this.bigShipsCnt = !varHastra && !introOrThynome ? 0 + GlobalStatus.random.nextInt(5) : 0;
+					this.localFightersCnt = (varHastra ? 0 : GlobalStatus.random.nextInt(2)) + (introOrThynome ? 0 : var7) + this.bigShipsCnt / 4;
 					if (Status.getStation().getId() == 10 || this.localFightersCnt + this.jumperCnt + this.bigShipsCnt + this.raidersCnt + var5 == 0) {
 						this.localFightersCnt = 4;
 					}
@@ -594,8 +597,8 @@ public final class Level {
 					this.ships = new KIPlayer[this.localFightersCnt + this.jumperCnt + this.bigShipsCnt + this.raidersCnt + var5];
 					var12 = new Route(new int[]{0, 0, 10000});
 
-					for(var2 = 0; var2 < this.localFightersCnt; ++var2) {
-						this.ships[var2] = createShip(var13, 0, Globals.getRandomEnemyFighter(var13), var12.getDockingTarget_());
+					for(i = 0; i < this.localFightersCnt; ++i) {
+						this.ships[i] = createShip(race, 0, Globals.getRandomEnemyFighter(race), var12.getDockingTarget_());
 					}
 
 					AbstractMesh var14 = null;
@@ -604,7 +607,7 @@ public final class Level {
 					}
 
 					for(var6 = this.localFightersCnt; var6 < this.localFightersCnt + this.jumperCnt; ++var6) {
-						this.ships[var6] = createShip(var13, 0, Globals.getRandomEnemyFighter(var8), (Waypoint)null);
+						this.ships[var6] = createShip(race, 0, Globals.getRandomEnemyFighter(var8), (Waypoint)null);
 						this.ships[var6].setDead();
 						final Route var19 = new Route(new int[]{-200000 + GlobalStatus.random.nextInt(400000), -100000 + GlobalStatus.random.nextInt(200000), 50000 + GlobalStatus.random.nextInt(100000)});
 						this.ships[var6].setRoute(var19);
@@ -612,21 +615,29 @@ public final class Level {
 						this.ships[var6].setJumpMesh(var14);
 					}
 
-					final boolean var18 = var13 == 0 && GlobalStatus.random.nextInt(100) < 30;
+					final boolean var18 = race == 0 && GlobalStatus.random.nextInt(100) < 30;
 
 					for(var7 = this.localFightersCnt + this.jumperCnt; var7 < this.localFightersCnt + this.jumperCnt + this.bigShipsCnt; ++var7) {
 						if (var18 && var7 == this.localFightersCnt + this.jumperCnt) {
-							this.ships[var7] = createShip(var13, 1, 14, (Waypoint)null);
+							this.ships[var7] = createShip(race, 1, 14, (Waypoint)null);
 							((PlayerFixedObject)this.ships[var7]).setMoving(false);
-							this.ships[var7].setPosition(-40000 + GlobalStatus.random.nextInt(80000), -5000 + GlobalStatus.random.nextInt(10000), 40000 + GlobalStatus.random.nextInt(80000));
+							this.ships[var7].setPosition(
+									  -40000 + GlobalStatus.random.nextInt(80000),
+										-5000 + GlobalStatus.random.nextInt(10000),
+										40000 + GlobalStatus.random.nextInt(80000)
+									);
 						} else {
-							this.ships[var7] = createShip(var13, 1, var13 == 1 ? 13 : 15, (Waypoint)null);
+							this.ships[var7] = createShip(race, 1, race == 1 ? 13 : 15, (Waypoint)null);
 							((PlayerFixedObject)this.ships[var7]).setMoving(true);
-							this.ships[var7].setPosition((-80000 + GlobalStatus.random.nextInt(60000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1), -20000 + GlobalStatus.random.nextInt(40000), -80000 + GlobalStatus.random.nextInt(160000));
+							this.ships[var7].setPosition(
+									  (-80000 + GlobalStatus.random.nextInt(60000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1),
+										-20000 + GlobalStatus.random.nextInt(40000),
+										-80000 + GlobalStatus.random.nextInt(160000)
+									);
 						}
 					}
 
-					if (var11) {
+					if (raid) {
 						var7 = Globals.getRandomEnemyFighter(var8);
 
 						for(var9 = this.localFightersCnt + this.jumperCnt + this.bigShipsCnt; var9 < this.ships.length - var5; ++var9) {
@@ -637,28 +648,36 @@ public final class Level {
 					for(var7 = this.localFightersCnt + this.jumperCnt + this.bigShipsCnt + this.raidersCnt; var7 < this.ships.length; ++var7) {
 						this.ships[var7] = createShip(8, 0, Globals.getRandomEnemyFighter(8), (Waypoint)null);
 						this.tempVec = this.ego.getPosition();
-						this.ships[var7].setPosition(-30000 + this.tempVec.x + GlobalStatus.random.nextInt(60000), -30000 + this.tempVec.y + GlobalStatus.random.nextInt(60000), -30000 + this.tempVec.z + GlobalStatus.random.nextInt(60000));
+						this.ships[var7].setPosition(
+										-30000 + this.tempVec.x + GlobalStatus.random.nextInt(60000),
+										-30000 + this.tempVec.y + GlobalStatus.random.nextInt(60000),
+										-30000 + this.tempVec.z + GlobalStatus.random.nextInt(60000)
+									);
 					}
 
 				} else {
-					var2 = Status.getSystem().getRace();
-					var3 = GlobalStatus.random.nextInt(100) < 75 ? 8 : Standing.enemyRace(var2);
+					i = Status.getSystem().getRace();
+					var3 = GlobalStatus.random.nextInt(100) < 75 ? 8 : Standing.enemyRace(i);
 					final boolean var4 = GlobalStatus.random.nextInt(2) == 0;
 					switch(var1.getType()) {
 					case 1:
-						this.enemyRoute_ = new Route(new int[]{-50000 + GlobalStatus.random.nextInt(100000), 0, var4 ? -50000 : 50000, -50000 + GlobalStatus.random.nextInt(100000), 0, var4 ? -75000 : 75000, -50000 + GlobalStatus.random.nextInt(100000), 0, var4 ? -100000 : 100000});
+						this.enemyRoute_ = new Route(new int[]{
+										-50000 + GlobalStatus.random.nextInt(100000), 0, var4 ? -50000 : 50000,
+										-50000 + GlobalStatus.random.nextInt(100000), 0, var4 ? -75000 : 75000,
+										-50000 + GlobalStatus.random.nextInt(100000), 0, var4 ? -100000 : 100000
+									});
 						var9 = 3 + (int)(5.0F * (Status.getMission().getDifficulty() / 10.0F));
-						var13 = 2 + GlobalStatus.random.nextInt(6);
-						this.ships = new KIPlayer[var9 + var13];
+						race = 2 + GlobalStatus.random.nextInt(6);
+						this.ships = new KIPlayer[var9 + race];
 
-						for(var13 = 0; var13 < var9; ++var13) {
-							this.ships[var13] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), (Waypoint)null);
-							this.ships[var13].player.setAlwaysEnemy(true);
+						for(race = 0; race < var9; ++race) {
+							this.ships[race] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), (Waypoint)null);
+							this.ships[race].player.setAlwaysEnemy(true);
 						}
 
-						for(var13 = var9; var13 < this.ships.length; ++var13) {
-							this.ships[var13] = createShip(var2, 0, Globals.getRandomEnemyFighter(var2), this.enemyRoute_.getWaypoint(GlobalStatus.random.nextInt(this.enemyRoute_.length())));
-							this.ships[var13].player.setAlwaysFriend(true);
+						for(race = var9; race < this.ships.length; ++race) {
+							this.ships[race] = createShip(i, 0, Globals.getRandomEnemyFighter(i), this.enemyRoute_.getWaypoint(GlobalStatus.random.nextInt(this.enemyRoute_.length())));
+							this.ships[race].player.setAlwaysFriend(true);
 						}
 
 						this.successObjective = new Objective(7, var9, this);
@@ -670,21 +689,21 @@ public final class Level {
 						var9 = 2 + (int)(4.0F * (var1.getDifficulty() / 10.0F));
 						this.ships = new KIPlayer[var9 + var7];
 
-						for(var13 = 0; var13 < var9; ++var13) {
-							this.ships[var13] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), (Waypoint)null);
-							((PlayerFighter)this.ships[var13]).setPosition(this.enemyRoute_.getWaypoint(0).x + var13 * 2000, this.enemyRoute_.getWaypoint(0).y + var13 * 2000, this.enemyRoute_.getWaypoint(0).z + var13 * 2000);
-							this.ships[var13].player.setAlwaysEnemy(true);
-							this.ships[var13].setRoute(this.enemyRoute_.clone());
-							this.ships[var13].getRoute().reachWaypoint_(0);
+						for(race = 0; race < var9; ++race) {
+							this.ships[race] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), (Waypoint)null);
+							((PlayerFighter)this.ships[race]).setPosition(this.enemyRoute_.getWaypoint(0).x + race * 2000, this.enemyRoute_.getWaypoint(0).y + race * 2000, this.enemyRoute_.getWaypoint(0).z + race * 2000);
+							this.ships[race].player.setAlwaysEnemy(true);
+							this.ships[race].setRoute(this.enemyRoute_.clone());
+							this.ships[race].getRoute().reachWaypoint_(0);
 						}
 
-						var13 = 0;
+						race = 0;
 
 						for(var8 = var9; var8 < this.ships.length; ++var8) {
-							this.ships[var8] = createShip(var2, 0, Globals.getRandomEnemyFighter(var2), (Waypoint)null);
+							this.ships[var8] = createShip(i, 0, Globals.getRandomEnemyFighter(i), (Waypoint)null);
 							this.ships[var8].player.setAlwaysFriend(true);
-							var3 = this.asteroids.length / 2 + var13;
-							var13++;
+							var3 = this.asteroids.length / 2 + race;
+							race++;
 							var16.set(this.asteroids[var3].getPosition(var16));
 							this.ships[var8].setPosition(var16.x, var16.y + 2000, var16.z);
 							this.ships[var8].hasCargo = false;
@@ -729,7 +748,7 @@ public final class Level {
 						this.successObjective = new Objective(18, 0, var8, this);
 						return;
 					case 6:
-						this.missionRoute = new Route(new int[]{('\uea60' + GlobalStatus.random.nextInt(80000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1), 0, ('\uea60' + GlobalStatus.random.nextInt(80000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1)});
+						this.missionRoute = new Route(new int[]{(60000 + GlobalStatus.random.nextInt(80000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1), 0, (60000 + GlobalStatus.random.nextInt(80000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1)});
 						this.ships = new KIPlayer[1];
 						this.ships[0] = createShip(8, 0, Globals.getRandomEnemyFighter(8), this.missionRoute.getWaypoint(0));
 						this.ships[0].setToSleep();
@@ -739,60 +758,60 @@ public final class Level {
 						return;
 					case 7:
 						var12 = new Route(new int[]{-20000 + GlobalStatus.random.nextInt(40000), 0, 20000 + GlobalStatus.random.nextInt(40000)});
-						var2 = (int)(2.0F * (Status.getMission().getDifficulty() / 10.0F));
+						i = (int)(2.0F * (Status.getMission().getDifficulty() / 10.0F));
 						var6 = 15 + (int)(35.0F * (Status.getMission().getDifficulty() / 10.0F));
-						this.ships = new KIPlayer[var6 + var2];
+						this.ships = new KIPlayer[var6 + i];
 
-						for(var7 = 0; var7 < this.ships.length - var2; ++var7) {
+						for(var7 = 0; var7 < this.ships.length - i; ++var7) {
 							this.ships[var7] = createJunk(var12.getWaypoint(0), 9996);
 							this.ships[var7].player.setAlwaysEnemy(true);
 						}
 
-						for(var7 = this.ships.length - var2; var7 < this.ships.length; ++var7) {
+						for(var7 = this.ships.length - i; var7 < this.ships.length; ++var7) {
 							this.ships[var7] = createShip(8, 0, Globals.getRandomEnemyFighter(8), (Waypoint)null);
 						}
 
-						this.successObjective = new Objective(7, this.ships.length - var2, this);
+						this.successObjective = new Objective(7, this.ships.length - i, this);
 						this.timeLimit = 121000;
 						return;
 					case 9:
 						this.enemyRoute_ = new Route(new int[]{10000, 0, 100000, 10000, 0, 150000, 10000, 0, 200000});
-						var2 = 2 + (int)(6.0F * (Status.getMission().getDifficulty() / 10.0F));
-						this.ships = new KIPlayer[var2 + 5];
+						i = 2 + (int)(6.0F * (Status.getMission().getDifficulty() / 10.0F));
+						this.ships = new KIPlayer[i + 5];
 						var3 = Standing.enemyRace(var1.getClientRace());
 						var9 = var1.getClientRace();
 
-						for(var13 = 0; var13 < this.ships.length; ++var13) {
-							if (var13 < var2) {
-								this.ships[var13] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), this.enemyRoute_.getWaypoint(GlobalStatus.random.nextInt(this.enemyRoute_.length())));
-								this.ships[var13].setToSleep();
-								this.ships[var13].player.setAlwaysEnemy(true);
+						for(race = 0; race < this.ships.length; ++race) {
+							if (race < i) {
+								this.ships[race] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), this.enemyRoute_.getWaypoint(GlobalStatus.random.nextInt(this.enemyRoute_.length())));
+								this.ships[race].setToSleep();
+								this.ships[race].player.setAlwaysEnemy(true);
 							} else {
-								this.ships[var13] = createShip(var9, 1, var9 == 1 ? 13 : 15, (Waypoint)null);
-								this.ships[var13].player.setMaxHP(100 + (AEMath.min(Status.getLevel(), 20) << 1) + (Status.getCurrentCampaignMission() << 1));
-								((PlayerFixedObject)this.ships[var13]).setMoving(true);
-								this.ships[var13].player.setAlwaysFriend(true);
-								this.ships[var13].hasCargo = false;
-								this.ships[var13].cargo = null;
+								this.ships[race] = createShip(var9, 1, var9 == 1 ? 13 : 15, (Waypoint)null);
+								this.ships[race].player.setMaxHP(100 + (AEMath.min(Status.getLevel(), 20) << 1) + (Status.getCurrentCampaignMission() << 1));
+								((PlayerFixedObject)this.ships[race]).setMoving(true);
+								this.ships[race].player.setAlwaysFriend(true);
+								this.ships[race].hasCargo = false;
+								this.ships[race].cargo = null;
 							}
 						}
 
-						((PlayerFixedObject)this.ships[var2]).setPosition(-2500, -300, 27000);
-						((PlayerFixedObject)this.ships[var2 + 1]).setPosition(6500, 3000, 24000);
-						((PlayerFixedObject)this.ships[var2 + 2]).setPosition(-4000, -2000, 19000);
-						((PlayerFixedObject)this.ships[var2 + 3]).setPosition(9000, -6000, 17000);
-						((PlayerFixedObject)this.ships[var2 + 4]).setPosition(3000, 7000, 15000);
-						this.successObjective = new Objective(18, 0, var2, this);
-						this.failObjective_ = new Objective(18, var2, var2 + 5, this);
+						((PlayerFixedObject)this.ships[i]).setPosition(-2500, -300, 27000);
+						((PlayerFixedObject)this.ships[i + 1]).setPosition(6500, 3000, 24000);
+						((PlayerFixedObject)this.ships[i + 2]).setPosition(-4000, -2000, 19000);
+						((PlayerFixedObject)this.ships[i + 3]).setPosition(9000, -6000, 17000);
+						((PlayerFixedObject)this.ships[i + 4]).setPosition(3000, 7000, 15000);
+						this.successObjective = new Objective(18, 0, i, this);
+						this.failObjective_ = new Objective(18, i, i + 5, this);
 						return;
 					case 10:
 						this.missionRoute = new Route(new int[]{-2500 + GlobalStatus.random.nextInt(5000), -2500 + GlobalStatus.random.nextInt(5000), 80000 + GlobalStatus.random.nextInt(30000), -2500 + GlobalStatus.random.nextInt(5000), -2500 + GlobalStatus.random.nextInt(5000), 120000 + GlobalStatus.random.nextInt(30000)});
-						var2 = 2 + GlobalStatus.random.nextInt(2);
-						var13 = 2 + (int)(2.0F * (Status.getMission().getDifficulty() / 10.0F));
+						i = 2 + GlobalStatus.random.nextInt(2);
+						race = 2 + (int)(2.0F * (Status.getMission().getDifficulty() / 10.0F));
 						var3 = Standing.enemyRace(var1.getClientRace());
-						this.ships = new KIPlayer[var2 + var13];
+						this.ships = new KIPlayer[i + race];
 
-						for(var9 = 0; var9 < var2; ++var9) {
+						for(var9 = 0; var9 < i; ++var9) {
 							this.ships[var9] = createShip(var3, 1, var3 == 1 ? 13 : 15, this.missionRoute.getWaypoint(1));
 							this.ships[var9].setToSleep();
 							this.ships[var9].player.setAlwaysEnemy(true);
@@ -800,13 +819,13 @@ public final class Level {
 							((PlayerFixedObject)this.ships[var9]).setPosition(this.missionRoute.getWaypoint(1).x + -10000 + GlobalStatus.random.nextInt(20000), this.missionRoute.getWaypoint(1).y + -10000 + GlobalStatus.random.nextInt(20000), this.missionRoute.getWaypoint(1).z + -10000 + GlobalStatus.random.nextInt(20000));
 						}
 
-						for(var9 = var2; var9 < this.ships.length; ++var9) {
+						for(var9 = i; var9 < this.ships.length; ++var9) {
 							this.ships[var9] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), this.missionRoute.getWaypoint(GlobalStatus.random.nextInt(this.missionRoute.length())));
 							this.ships[var9].setToSleep();
 							this.ships[var9].player.setAlwaysEnemy(true);
 						}
 
-						this.successObjective = new Objective(7, var2, this);
+						this.successObjective = new Objective(7, i, this);
 					case 8:
 					default:
 						return;
@@ -853,279 +872,289 @@ public final class Level {
 		int var3;
 		int var4;
 		int var5;
-		label214:
-			switch(Status.getCurrentCampaignMission()) {
-			case 0: // intro
+		//label214:
+		switch(Status.getCurrentCampaignMission()) {
+		case 0: // intro
+		this.ships = new KIPlayer[3];
+
+		for(int i = 0; i < this.ships.length; ++i) {
+			this.ships[i] = createShip(8, 0, 10, (Waypoint)null);
+			this.ships[i].setToSleep();
+			this.ships[i].player.setAlwaysEnemy(true);
+			var1 = this.asteroids[this.asteroids.length - 1 - i].getPosition(var1);
+			this.ships[i].setPosition(var1.x, var1.y, var1.z + 2000);
+			this.ships[i].hasCargo = false;
+			this.ships[i].cargo = null;
+			this.ships[i].player.setHitPoints(150);
+			if (i < 3) {
+				((PlayerFighter)this.ships[i]).setExhaustVisible(false);
+			}
+		}
+
+		this.ships[2].setPosition(0, 0, -40000);
+		this.enemyRoute_ = new Route(new int[]{0, 0, -30000, 0, 0, 0});
+		this.ships[2].setRoute(this.enemyRoute_);
+		this.ego.player.setHitPoints(9999999);
+		break;
+		case 1: // floating around Var Hastra
+			this.ships = new KIPlayer[1];
+			this.ships[0] = createShip(3, 0, 1, (Waypoint)null);
+			this.ships[0].setPosition(300, 50, -8000);
+			this.enemyRoute_ = new Route(new int[]{0, 0, -5000, 0, 0, 0});
+			this.ships[0].setRoute(this.enemyRoute_);
+			this.ships[0].setSpeed(0);
+		case 2:
+		case 3:
+		case 5:
+		case 6:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 13:
+		case 15:
+		case 17:
+		case 18:
+		case 19:
+		case 20:
+		case 22:
+		case 23:
+		case 27:
+		case 30:
+		case 31:
+		case 32:
+		case 33:
+		case 34:
+		case 35:
+		case 37:
+		case 39:
+		default:
+			break;
+		case 4: // last mining
+		this.ships = new KIPlayer[1];
+		this.ships[0] = createShip(8, 0, 1, (Waypoint)null);
+		this.ships[0].setInitActive(false);
+		this.ships[0].player.setAlwaysEnemy(true);
+		this.ships[0].setPosition(0, 0, -200000);
+		this.ships[0].setToSleep();
+		break;
+		case 7: // hunting Var Hastra pirates
+			this.missionRoute = new Route(new int[]{20000, 7000, 120000});
+			this.ships = new KIPlayer[4];
+
+			for(var5 = 0; var5 < 3; ++var5) {
+				this.ships[var5] = createShip(8, 0, 2, this.missionRoute.getDockingTarget_());
+				this.ships[var5].setToSleep();
+			}
+
+			this.ships[3] = createShip(3, 0, 1, (Waypoint)null);
+			this.ships[3].player.setAlwaysFriend(true);
+			this.ships[3].setPosition(this.ego.shipGrandGroup_.getPosX() + 700, this.ego.shipGrandGroup_.getPosY() + 50, this.ego.shipGrandGroup_.getPosZ() + 1000);
+			this.ships[3].setRoute(this.missionRoute.clone());
+			this.ships[3].player.setHitPoints(9999999);
+			this.ships[3].name = GlobalStatus.gameText.getText(821);
+			((PlayerFighter)this.ships[3]).setBoostProb(0);
+			this.successObjective = new Objective(18, 0, 3, this);
+			break;
+		case 14: // meeting convoi
+			this.enemyRoute_ = new Route(new int[]{0, 0, 50000});
+			this.ships = new KIPlayer[7];
+			// three pirate Betties
+			for(var5 = 0; var5 < 3; ++var5) {
+				this.ships[var5] = createShip(8, 0, 0, this.enemyRoute_.getDockingTarget_());
+			}
+			// two terran Tenetas
+			for(var5 = 3; var5 < 5; ++var5) {
+				this.ships[var5] = createShip(0, 0, 1, this.enemyRoute_.getDockingTarget_());
+			}
+			// two Battle Crusiers
+			for(var5 = 5; var5 < 7; ++var5) {
+				this.ships[var5] = createShip(0, 1, 14, this.enemyRoute_.getDockingTarget_());
+			}
+
+			this.successObjective = new Objective(22, 0, this);
+			break;
+		case 16: // Void attack on Alioth
+			this.enemyRoute_ = new Route(new int[]{0, 0, 130000});
+			this.ships = new KIPlayer[7];
+
+			for(var5 = 0; var5 < 4; ++var5) {
+				this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+			}
+
+			for(var5 = 4; var5 < 7; ++var5) {
+				this.ships[var5] = createShip(0, 0, 1, (Waypoint)null);
+				this.ships[var5].player.setAlwaysFriend(true);
+				this.ships[var5].player.setHitPoints(600);
+				((PlayerFighter)this.ships[var5]).setPosition(this.ego.shipGrandGroup_.getPosX() + -2000 + GlobalStatus.random.nextInt(4000), this.ego.shipGrandGroup_.getPosY() + -1700 + GlobalStatus.random.nextInt(3400), this.ego.shipGrandGroup_.getPosZ() + 2000 + -2000 + GlobalStatus.random.nextInt(4000));
+			}
+
+			this.successObjective = new Objective(18, 0, 4, this);
+			break;
+		case 21: // rescue Thomas Boyle
+			this.enemyRoute_ = new Route(new int[]{40000, -40000, 120000});
+			this.missionRoute = this.enemyRoute_.clone();
+			this.enemyRoute_.setLoop(true);
+			this.ships = new KIPlayer[3];
+			this.ships[1] = createShip(0, 0, 0, this.enemyRoute_.getDockingTarget_());
+			this.ships[2] = createShip(0, 0, 0, this.enemyRoute_.getDockingTarget_());
+			this.ships[0] = createShip(0, 0, 1, this.enemyRoute_.getDockingTarget_());
+			this.ships[0].name = GlobalStatus.gameText.getText(833); // "Kidnpapper"
+
+			for(var5 = 0; var5 < this.ships.length; ++var5) {
+				this.ships[var5].setToSleep();
+				this.ships[var5].setRoute(this.enemyRoute_.clone());
+				this.ships[var5].geometry.setRotation(0, 2048, 0);
+			}
+
+			this.successObjective = new Objective(22, 0, this);
+			this.failObjective_ = new Objective(7, 1, this);
+			break;
+		case 24:
+			this.enemyRoute_ = new Route(new int[]{100000, 0, 0, 100000, 0, -30000});
 			this.ships = new KIPlayer[3];
 
-			for(int i = 0; i < this.ships.length; ++i) {
-				this.ships[i] = createShip(8, 0, 10, (Waypoint)null);
-				this.ships[i].setToSleep();
-				this.ships[i].player.setAlwaysEnemy(true);
-				var1 = this.asteroids[this.asteroids.length - 1 - i].getPosition(var1);
-				this.ships[i].setPosition(var1.x, var1.y, var1.z + 2000);
-				this.ships[i].hasCargo = false;
-				this.ships[i].cargo = null;
-				this.ships[i].player.setHitPoints(150);
-				if (i < 3) {
-					((PlayerFighter)this.ships[i]).setExhaustVisible(false);
+			for(var5 = 0; var5 < 3; ++var5) {
+				this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5].setRoute(this.enemyRoute_.clone());
+			}
+
+			this.stationaries[3].setVisible(false);
+			this.successObjective = new Objective(22, 0, this);
+			break;
+		case 25:
+		case 29:
+			this.ships = new KIPlayer[3];
+			var5 = 0;
+			for(var5 = 0; var5 < 3; var5++){
+				this.ships[var5] = createShip(9, 0, 8, (Waypoint)null);
+				var2 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+				var3 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+				var4 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+				this.ships[var5].setPosition(var2, var3, var4);	
+			}
+			break;
+			// while(true) {
+			// 	if (var5 >= 3) {
+			// 		break label214;
+			// 	}
+
+			// 	this.ships[var5] = createShip(9, 0, 8, (Waypoint)null);
+			// 	var2 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+			// 	var3 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+			// 	var4 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+			// 	this.ships[var5].setPosition(var2, var3, var4);
+			// 	++var5;
+			// }
+		case 26:
+			this.ships = new KIPlayer[2];
+
+			for(var5 = 0; var5 < 2; ++var5) {
+				this.ships[var5] = createShip(9, 0, 8, (Waypoint)null);
+				((PlayerFighter)this.ships[var5]).geometry.setTransform(this.ego.shipGrandGroup_.getToParentTransform());
+				((PlayerFighter)this.ships[var5]).setPosition(this.ego.shipGrandGroup_.getPosX() + -700 + GlobalStatus.random.nextInt(1400), this.ego.shipGrandGroup_.getPosY() + -700 + GlobalStatus.random.nextInt(1400), this.ego.shipGrandGroup_.getPosZ() + 2000);
+			}
+
+			this.successObjective = new Objective(7, 2, this);
+			break;
+		case 28:
+			this.tempVec = this.stationaries[3].getPosition(this.tempVec);
+			this.enemyRoute_ = new Route(new int[]{this.tempVec.x, this.tempVec.y, this.tempVec.z});
+			this.ships = new KIPlayer[5];
+			var5 = 0;
+			for(var5 = 0; var5 < 5; var5++){
+				this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+			}
+			break;
+			// while(true) {
+			// 	if (var5 >= 5) {
+			// 		break label214;
+			// 	}
+
+			// 	this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+			// 	++var5;
+			// }
+		case 36:
+			Status.getMission().setAgent(new Agent(-1, GlobalStatus.gameText.getText(826), 29, 5, 1, true, -1, -1, -1));
+			createMission();
+			break;
+		case 38:
+			this.enemyRoute_ = new Route(new int[]{0, 10000, 50000});
+			this.ships = new KIPlayer[7];
+
+			for(var3 = 0; var3 < 2; ++var3) {
+				this.ships[var3] = createShip(2, 1, 15, this.enemyRoute_.getDockingTarget_());
+				this.ships[var3].player.setAlwaysFriend(true);
+				((PlayerFixedObject)this.ships[var3]).setMoving(false);
+				((PlayerFixedObject)this.ships[var3]).setPosition(this.enemyRoute_.getDockingTarget_().x + -10000 + GlobalStatus.random.nextInt(20000), this.enemyRoute_.getDockingTarget_().y + -10000 + GlobalStatus.random.nextInt(20000), this.enemyRoute_.getDockingTarget_().z + -10000 + GlobalStatus.random.nextInt(20000));
+			}
+
+			for(var3 = 2; var3 < this.ships.length; ++var3) {
+				this.ships[var3] = createShip(3, 0, Globals.getRandomEnemyFighter(3), this.enemyRoute_.getDockingTarget_());
+				this.ships[var3].setToSleep();
+				this.ships[var3].player.setAlwaysEnemy(true);
+			}
+
+			this.successObjective = new Objective(18, 2, 7, this);
+			this.failObjective_ = new Objective(7, 2, this);
+			break;
+		case 40:
+			this.enemyRoute_ = new Route(new int[]{-20000, -3000, 200000});
+			this.kamikazePath = new Route(new int[]{-20000, -3000, 65000, -20000, -3000, 200000});
+			this.ships = new KIPlayer[9];
+			this.ships[0] = createShip(0, 1, 13, (Waypoint)null);
+			this.ships[0].player.setAlwaysFriend(true);
+			this.ships[0].name = GlobalStatus.gameText.getText(826);
+			this.ships[0].player.setMaxHP(1200 + 5 * Status.getLevel());
+			((PlayerFixedObject)this.ships[0]).setMoving(true);
+			((PlayerFixedObject)this.ships[0]).setPosition(this.kamikazePath.getWaypoint(0).x, this.kamikazePath.getWaypoint(0).y, this.kamikazePath.getWaypoint(0).z);
+
+			for(var4 = 1; var4 < 5; ++var4) {
+				this.ships[var4] = createShip(0, 0, Globals.getRandomEnemyFighter(0), (Waypoint)null);
+				this.ships[var4].setRoute(this.kamikazePath.clone());
+				this.ships[var4].player.setAlwaysFriend(true);
+				if (var4 == 2) {
+					this.ships[2].name = GlobalStatus.gameText.getText(827);
 				}
 			}
 
-			this.ships[2].setPosition(0, 0, -40000);
-			this.enemyRoute_ = new Route(new int[]{0, 0, -30000, 0, 0, 0});
-			this.ships[2].setRoute(this.enemyRoute_);
-			this.ego.player.setHitPoints(9999999);
-			break;
-			case 1: // floating around Var Hastra
-				this.ships = new KIPlayer[1];
-				this.ships[0] = createShip(3, 0, 1, (Waypoint)null);
-				this.ships[0].setPosition(300, 50, -8000);
-				this.enemyRoute_ = new Route(new int[]{0, 0, -5000, 0, 0, 0});
-				this.ships[0].setRoute(this.enemyRoute_);
-				this.ships[0].setSpeed(0);
-			case 2:
-			case 3:
-			case 5:
-			case 6:
-			case 8:
-			case 9:
-			case 10:
-			case 11:
-			case 12:
-			case 13:
-			case 15:
-			case 17:
-			case 18:
-			case 19:
-			case 20:
-			case 22:
-			case 23:
-			case 27:
-			case 30:
-			case 31:
-			case 32:
-			case 33:
-			case 34:
-			case 35:
-			case 37:
-			case 39:
-			default:
-				break;
-			case 4: // last mining
-			this.ships = new KIPlayer[1];
-			this.ships[0] = createShip(8, 0, 1, (Waypoint)null);
-			this.ships[0].setInitActive(false);
-			this.ships[0].player.setAlwaysEnemy(true);
-			this.ships[0].setPosition(0, 0, -200000);
-			this.ships[0].setToSleep();
-			break;
-			case 7: // hunting Var Hastra pirates
-				this.missionRoute = new Route(new int[]{20000, 7000, 120000});
-				this.ships = new KIPlayer[4];
-
-				for(var5 = 0; var5 < 3; ++var5) {
-					this.ships[var5] = createShip(8, 0, 2, this.missionRoute.getDockingTarget_());
-					this.ships[var5].setToSleep();
-				}
-
-				this.ships[3] = createShip(3, 0, 1, (Waypoint)null);
-				this.ships[3].player.setAlwaysFriend(true);
-				this.ships[3].setPosition(this.ego.shipGrandGroup_.getPosX() + 700, this.ego.shipGrandGroup_.getPosY() + 50, this.ego.shipGrandGroup_.getPosZ() + 1000);
-				this.ships[3].setRoute(this.missionRoute.clone());
-				this.ships[3].player.setHitPoints(9999999);
-				this.ships[3].name = GlobalStatus.gameText.getText(821);
-				((PlayerFighter)this.ships[3]).setBoostProb(0);
-				this.successObjective = new Objective(18, 0, 3, this);
-				break;
-			case 14: // meeting convoi
-				this.enemyRoute_ = new Route(new int[]{0, 0, 50000});
-				this.ships = new KIPlayer[7];
-				// three pirate Betties
-				for(var5 = 0; var5 < 3; ++var5) {
-					this.ships[var5] = createShip(8, 0, 0, this.enemyRoute_.getDockingTarget_());
-				}
-				// two terran Tenetas
-				for(var5 = 3; var5 < 5; ++var5) {
-					this.ships[var5] = createShip(0, 0, 1, this.enemyRoute_.getDockingTarget_());
-				}
-				// two Battle Crusiers
-				for(var5 = 5; var5 < 7; ++var5) {
-					this.ships[var5] = createShip(0, 1, 14, this.enemyRoute_.getDockingTarget_());
-				}
-
-				this.successObjective = new Objective(22, 0, this);
-				break;
-			case 16: // Void attack on Alioth
-				this.enemyRoute_ = new Route(new int[]{0, 0, 130000});
-				this.ships = new KIPlayer[7];
-
-				for(var5 = 0; var5 < 4; ++var5) {
-					this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
-				}
-
-				for(var5 = 4; var5 < 7; ++var5) {
-					this.ships[var5] = createShip(0, 0, 1, (Waypoint)null);
-					this.ships[var5].player.setAlwaysFriend(true);
-					this.ships[var5].player.setHitPoints(600);
-					((PlayerFighter)this.ships[var5]).setPosition(this.ego.shipGrandGroup_.getPosX() + -2000 + GlobalStatus.random.nextInt(4000), this.ego.shipGrandGroup_.getPosY() + -1700 + GlobalStatus.random.nextInt(3400), this.ego.shipGrandGroup_.getPosZ() + 2000 + -2000 + GlobalStatus.random.nextInt(4000));
-				}
-
-				this.successObjective = new Objective(18, 0, 4, this);
-				break;
-			case 21: // rescue Thomas Boyle
-				this.enemyRoute_ = new Route(new int[]{40000, -40000, 120000});
-				this.missionRoute = this.enemyRoute_.clone();
-				this.enemyRoute_.setLoop(true);
-				this.ships = new KIPlayer[3];
-				this.ships[1] = createShip(0, 0, 0, this.enemyRoute_.getDockingTarget_());
-				this.ships[2] = createShip(0, 0, 0, this.enemyRoute_.getDockingTarget_());
-				this.ships[0] = createShip(0, 0, 1, this.enemyRoute_.getDockingTarget_());
-				this.ships[0].name = GlobalStatus.gameText.getText(833); // "Kidnpapper"
-
-				for(var5 = 0; var5 < this.ships.length; ++var5) {
-					this.ships[var5].setToSleep();
-					this.ships[var5].setRoute(this.enemyRoute_.clone());
-					this.ships[var5].geometry.setRotation(0, 2048, 0);
-				}
-
-				this.successObjective = new Objective(22, 0, this);
-				this.failObjective_ = new Objective(7, 1, this);
-				break;
-			case 24:
-				this.enemyRoute_ = new Route(new int[]{100000, 0, 0, 100000, 0, -30000});
-				this.ships = new KIPlayer[3];
-
-				for(var5 = 0; var5 < 3; ++var5) {
-					this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
-					this.ships[var5].setRoute(this.enemyRoute_.clone());
-				}
-
-				this.stationaries[3].setVisible(false);
-				this.successObjective = new Objective(22, 0, this);
-				break;
-			case 25:
-			case 29:
-				this.ships = new KIPlayer[3];
-				var5 = 0;
-
-				while(true) {
-					if (var5 >= 3) {
-						break label214;
-					}
-
-					this.ships[var5] = createShip(9, 0, 8, (Waypoint)null);
-					var2 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
-					var3 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
-					var4 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
-					this.ships[var5].setPosition(var2, var3, var4);
-					++var5;
-				}
-			case 26:
-				this.ships = new KIPlayer[2];
-
-				for(var5 = 0; var5 < 2; ++var5) {
-					this.ships[var5] = createShip(9, 0, 8, (Waypoint)null);
-					((PlayerFighter)this.ships[var5]).geometry.setTransform(this.ego.shipGrandGroup_.getToParentTransform());
-					((PlayerFighter)this.ships[var5]).setPosition(this.ego.shipGrandGroup_.getPosX() + -700 + GlobalStatus.random.nextInt(1400), this.ego.shipGrandGroup_.getPosY() + -700 + GlobalStatus.random.nextInt(1400), this.ego.shipGrandGroup_.getPosZ() + 2000);
-				}
-
-				this.successObjective = new Objective(7, 2, this);
-				break;
-			case 28:
-				this.tempVec = this.stationaries[3].getPosition(this.tempVec);
-				this.enemyRoute_ = new Route(new int[]{this.tempVec.x, this.tempVec.y, this.tempVec.z});
-				this.ships = new KIPlayer[5];
-				var5 = 0;
-
-				while(true) {
-					if (var5 >= 5) {
-						break label214;
-					}
-
-					this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
-					++var5;
-				}
-			case 36:
-				Status.getMission().setAgent(new Agent(-1, GlobalStatus.gameText.getText(826), 29, 5, 1, true, -1, -1, -1));
-				createMission();
-				break;
-			case 38:
-				this.enemyRoute_ = new Route(new int[]{0, 10000, 50000});
-				this.ships = new KIPlayer[7];
-
-				for(var3 = 0; var3 < 2; ++var3) {
-					this.ships[var3] = createShip(2, 1, 15, this.enemyRoute_.getDockingTarget_());
-					this.ships[var3].player.setAlwaysFriend(true);
-					((PlayerFixedObject)this.ships[var3]).setMoving(false);
-					((PlayerFixedObject)this.ships[var3]).setPosition(this.enemyRoute_.getDockingTarget_().x + -10000 + GlobalStatus.random.nextInt(20000), this.enemyRoute_.getDockingTarget_().y + -10000 + GlobalStatus.random.nextInt(20000), this.enemyRoute_.getDockingTarget_().z + -10000 + GlobalStatus.random.nextInt(20000));
-				}
-
-				for(var3 = 2; var3 < this.ships.length; ++var3) {
-					this.ships[var3] = createShip(3, 0, Globals.getRandomEnemyFighter(3), this.enemyRoute_.getDockingTarget_());
-					this.ships[var3].setToSleep();
-					this.ships[var3].player.setAlwaysEnemy(true);
-				}
-
-				this.successObjective = new Objective(18, 2, 7, this);
-				this.failObjective_ = new Objective(7, 2, this);
-				break;
-			case 40:
-				this.enemyRoute_ = new Route(new int[]{-20000, -3000, 200000});
-				this.kamikazePath = new Route(new int[]{-20000, -3000, 65000, -20000, -3000, 200000});
-				this.ships = new KIPlayer[9];
-				this.ships[0] = createShip(0, 1, 13, (Waypoint)null);
-				this.ships[0].player.setAlwaysFriend(true);
-				this.ships[0].name = GlobalStatus.gameText.getText(826);
-				this.ships[0].player.setMaxHP(1200 + 5 * Status.getLevel());
-				((PlayerFixedObject)this.ships[0]).setMoving(true);
-				((PlayerFixedObject)this.ships[0]).setPosition(this.kamikazePath.getWaypoint(0).x, this.kamikazePath.getWaypoint(0).y, this.kamikazePath.getWaypoint(0).z);
-
-				for(var4 = 1; var4 < 5; ++var4) {
-					this.ships[var4] = createShip(0, 0, Globals.getRandomEnemyFighter(0), (Waypoint)null);
-					this.ships[var4].setRoute(this.kamikazePath.clone());
-					this.ships[var4].player.setAlwaysFriend(true);
-					if (var4 == 2) {
-						this.ships[2].name = GlobalStatus.gameText.getText(827);
-					}
-				}
-
-				for(var4 = 5; var4 < 9; ++var4) {
-					this.ships[var4] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
-					this.ships[var4].player.setAlwaysEnemy(true);
-				}
-
-				this.stationaries[3].setPosition(-20000, -3000, 200000);
-				if (initStreamOutPosition) {
-					this.ego.setPosition_(-65000, 0, 80000);
-					this.ego.shipGrandGroup_.setRotation(0, 1024, 0);
-				}
-
-				this.failObjective_ = new Objective(7, 1, this);
-				break;
-			case 41:
-				this.ships = new KIPlayer[5];
-				this.ships[0] = createShip(1, 1, 13, (Waypoint)null);
-				this.ships[0].player.setAlwaysFriend(true);
-				this.ships[0].name = GlobalStatus.gameText.getText(826);
-				this.ships[0].player.setHitPoints(lastMissionFreighterHitpoints);
-				((PlayerFixedObject)this.ships[0]).setMoving(true);
-				((PlayerFixedObject)this.ships[0]).setPosition(0, 0, -200000);
-
-				for(var4 = 1; var4 < 5; ++var4) {
-					this.ships[var4] = createShip(9, 0, 8, (Waypoint)null);
-					this.ships[var4].player.setAlwaysEnemy(true);
-					var5 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
-					var2 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
-					var3 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
-					this.ships[var4].setPosition(var5, var2, var3);
-				}
-
-				this.ego.setPosition_(3000, 2000, -220000);
-				this.ego.shipGrandGroup_.setRotation(0, 0, 0);
-				this.successObjective = new Objective(25, 0, this);
-				this.failObjective_ = new Objective(7, 1, this);
+			for(var4 = 5; var4 < 9; ++var4) {
+				this.ships[var4] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+				this.ships[var4].player.setAlwaysEnemy(true);
 			}
+
+			this.stationaries[3].setPosition(-20000, -3000, 200000);
+			if (initStreamOutPosition) {
+				this.ego.setPosition_(-65000, 0, 80000);
+				this.ego.shipGrandGroup_.setRotation(0, 1024, 0);
+			}
+
+			this.failObjective_ = new Objective(7, 1, this);
+			break;
+		case 41:
+			this.ships = new KIPlayer[5];
+			this.ships[0] = createShip(1, 1, 13, (Waypoint)null);
+			this.ships[0].player.setAlwaysFriend(true);
+			this.ships[0].name = GlobalStatus.gameText.getText(826);
+			this.ships[0].player.setHitPoints(lastMissionFreighterHitpoints);
+			((PlayerFixedObject)this.ships[0]).setMoving(true);
+			((PlayerFixedObject)this.ships[0]).setPosition(0, 0, -200000);
+
+			for(var4 = 1; var4 < 5; ++var4) {
+				this.ships[var4] = createShip(9, 0, 8, (Waypoint)null);
+				this.ships[var4].player.setAlwaysEnemy(true);
+				var5 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+				var2 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+				var3 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
+				this.ships[var4].setPosition(var5, var2, var3);
+			}
+
+			this.ego.setPosition_(3000, 2000, -220000);
+			this.ego.shipGrandGroup_.setRotation(0, 0, 0);
+			this.successObjective = new Objective(25, 0, this);
+			this.failObjective_ = new Objective(7, 1, this);
+		}
 
 		this.radioMessages = createRadioMessages(Status.getCurrentCampaignMission());
 	}
@@ -1133,145 +1162,158 @@ public final class Level {
 	private void createScene() {
 		int var1;
 		int var3;
-		label88:
-			switch(this.currentMod) {
-			case 4: // bar
-				int var11;
-				var1 = (var11 = Status.getSystem().getRace() == 1 ? 2 : Status.getSystem().getRace() == 0 ? 0 : 1) == 0 ? 20 : 6;
-				Agent[] var9;
-				var3 = (var9 = Status.getStation().getBarAgents()).length;
-				this.ships = new KIPlayer[var3 + var1];
-				final boolean[] var5 = new boolean[this.LEVEL_BAR_CHAR_POSITIONS.length / 3];
+		//label88:
+		switch(this.currentMod) {
+		case 4: // bar
+			int var11;
+			var1 = (var11 = Status.getSystem().getRace() == 1 ? 2 : Status.getSystem().getRace() == 0 ? 0 : 1) == 0 ? 20 : 6;
+			Agent[] var9;
+			var3 = (var9 = Status.getStation().getBarAgents()).length;
+			this.ships = new KIPlayer[var3 + var1];
+			final boolean[] var5 = new boolean[this.LEVEL_BAR_CHAR_POSITIONS.length / 3];
 
-				int var6;
-				for(var6 = 0; var6 < var5.length; ++var6) {
-					var5[var6] = false;
+			int var6;
+			for(var6 = 0; var6 < var5.length; ++var6) {
+				var5[var6] = false;
+			}
+
+			for(var6 = 0; var6 < var3; ++var6) {
+				short var7 = Globals.BAR_FIGURES[var9[var6].getRace()];
+				if (var9[var6].getRace() == 0 && !var9[var6].isMale()) {
+					var7 = 14224;
 				}
 
-				for(var6 = 0; var6 < var3; ++var6) {
-					short var7 = Globals.BAR_FIGURES[var9[var6].getRace()];
-					if (var9[var6].getRace() == 0 && !var9[var6].isMale()) {
-						var7 = 14224;
-					}
+				int var13;
+				do {
+					var13 = GlobalStatus.random.nextInt(var5.length);
+				} while(var5[var13]);
 
-					int var13;
-					do {
-						var13 = GlobalStatus.random.nextInt(var5.length);
-					} while(var5[var13]);
+				var5[var13] = true;
+				this.ships[var6] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var7), this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3], this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3 + 1], this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3 + 2]);
+				this.ships[var6].mainMesh_.setRenderLayer(2);
+				this.ships[var6].mainMesh_.disableAnimation();
+			}
 
-					var5[var13] = true;
-					this.ships[var6] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var7), this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3], this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3 + 1], this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3 + 2]);
-					this.ships[var6].mainMesh_.setRenderLayer(2);
-					this.ships[var6].mainMesh_.disableAnimation();
-				}
-
-				if (var1 <= 0) {
-					return;
-				}
-
-				GlobalStatus.random.setSeed(Status.getStation().getId() + 1000);
-				var6 = 4096 / var1;
-				int var12 = var3;
-
-				while(true) {
-					if (var12 >= this.ships.length) {
-						break label88;
-					}
-
-					final short var14 = Globals.BAR_MESHES[var11][GlobalStatus.random.nextInt(Globals.BAR_MESHES[var11].length)];
-					this.ships[var12] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var14), 0, 0, 0);
-					this.ships[var12].mainMesh_.setRenderLayer(2);
-					this.ships[var12].mainMesh_.setRotation(0, var12 * var6, 0);
-					++var12;
-				}
-			case 23: // hangar
-				var1 = Status.getSystem().getRace() == 1 ? 2 : Status.getSystem().getRace() == 0 ? 0 : 1;
-				this.ships = new KIPlayer[7];
-				this.ships[0] = createShip(Status.getShip().getRace(), 0, Status.getShip().getIndex(), (Waypoint)null);
-				this.ships[0].setPosition(0, 1200, 10240 - Ship.SHIP_HANGAR_OFFSETS[Status.getShip().getIndex()] + 100);
-				this.ships[0].geometry.setRotation(0, 2048, 0);
-				this.ships[0].setRoute(new Route(new int[]{0, 500, -100000}));
-				((PlayerFighter)this.ships[0]).removeTrail();
-				((PlayerFighter)this.ships[0]).setExhaustVisible(false);
-				this.ships[0].setToSleep();
-				this.ships[0].player.setAlwaysFriend(true);
-				GlobalStatus.random.setSeed(Status.getStation().getId());
-				int var2 = 0;
-
-				for(var3 = 1; var3 < 6; ++var3) {
-					short var4 = Globals.HANGAR_MESHES[var1][GlobalStatus.random.nextInt(Globals.HANGAR_MESHES[var1].length - 3)];
-					if (var3 == 5) {
-						var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 2];
-					} else if (var3 == 1) {
-						var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 1];
-					}
-
-					this.ships[var3] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var4), 0, 0, var2 << 12);
-					this.ships[var3].mainMesh_.setRenderLayer(1);
-					this.ships[var3].mainMesh_.setRotation(0, 2048, 0);
-					++var2;
-				}
-
-				final short var10 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 3];
-				this.ships[this.ships.length - 1] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var10), 0, 0, 8192);
-				this.ships[this.ships.length - 1].mainMesh_.setRenderLayer(2);
-				this.ships[this.ships.length - 1].mainMesh_.setRotation(0, 2048, 0);
-				break;
-			default:
+			if (var1 <= 0) {
 				return;
 			}
 
+			GlobalStatus.random.setSeed(Status.getStation().getId() + 1000);
+			var6 = 4096 / var1;
+
+			for(int var12 = var3; var12 < this.ships.length; var12++) {
+				final short var14 = Globals.BAR_MESHES[var11][GlobalStatus.random.nextInt(Globals.BAR_MESHES[var11].length)];
+				this.ships[var12] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var14), 0, 0, 0);
+				this.ships[var12].mainMesh_.setRenderLayer(2);
+				this.ships[var12].mainMesh_.setRotation(0, var12 * var6, 0);
+			}
+			break;
+			// int var12 = var3;
+
+			// while(true) {
+			// 	if (var12 >= this.ships.length) {
+			// 		break label88;
+			// 	}
+
+			// 	final short var14 = Globals.BAR_MESHES[var11][GlobalStatus.random.nextInt(Globals.BAR_MESHES[var11].length)];
+			// 	this.ships[var12] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var14), 0, 0, 0);
+			// 	this.ships[var12].mainMesh_.setRenderLayer(2);
+			// 	this.ships[var12].mainMesh_.setRotation(0, var12 * var6, 0);
+			// 	++var12;
+			// }
+		case 23: // hangar
+			var1 = Status.getSystem().getRace() == 1 ? 2 : Status.getSystem().getRace() == 0 ? 0 : 1;
+			this.ships = new KIPlayer[7];
+			this.ships[0] = createShip(Status.getShip().getRace(), 0, Status.getShip().getIndex(), (Waypoint)null);
+			this.ships[0].setPosition(0, 1200, 10240 - Ship.SHIP_HANGAR_OFFSETS[Status.getShip().getIndex()] + 100);
+			this.ships[0].geometry.setRotation(0, 2048, 0);
+			this.ships[0].setRoute(new Route(new int[]{0, 500, -100000}));
+			((PlayerFighter)this.ships[0]).removeTrail();
+			((PlayerFighter)this.ships[0]).setExhaustVisible(false);
+			this.ships[0].setToSleep();
+			this.ships[0].player.setAlwaysFriend(true);
+			GlobalStatus.random.setSeed(Status.getStation().getId());
+			int var2 = 0;
+
+			for(var3 = 1; var3 < 6; ++var3) {
+				short var4 = Globals.HANGAR_MESHES[var1][GlobalStatus.random.nextInt(Globals.HANGAR_MESHES[var1].length - 3)];
+				if (var3 == 5) {
+					var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 2];
+				} else if (var3 == 1) {
+					var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 1];
+				}
+
+				this.ships[var3] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var4), 0, 0, var2 << 12);
+				this.ships[var3].mainMesh_.setRenderLayer(1);
+				this.ships[var3].mainMesh_.setRotation(0, 2048, 0);
+				++var2;
+			}
+
+			final short var10 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 3];
+			this.ships[this.ships.length - 1] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var10), 0, 0, 8192);
+			this.ships[this.ships.length - 1].mainMesh_.setRenderLayer(2);
+			this.ships[this.ships.length - 1].mainMesh_.setRotation(0, 2048, 0);
+			break;
+		default:
+			return;
+		}
+
 		GlobalStatus.random.setSeed(System.currentTimeMillis());
 	}
-
+	// manages difficulty
 	private void assignGuns() {
 		this.enemyGuns = null;
-		final int var1 = (int)(AEMath.min(Status.getLevel(), 20) / 1.8F) + (int)(Status.getCurrentCampaignMission() / 5.0F);
-		int var2 = 0;
+		final int dmgBonus = (int)(AEMath.min(Status.getLevel(), 20) / 1.8F) + (int)(Status.getCurrentCampaignMission() / 5.0F);
+		int gunCnt = 0;
 		if (this.ships != null) {
-			int var3;
-			for(var3 = 0; var3 < this.ships.length; ++var3) {
-				if (this.ships[var3] != null && this.ships[var3].armed) {
-					++var2;
-					if (this.ships[var3].isWingman()) {
-						++var2;
+			for(int i = 0; i < this.ships.length; ++i) {
+				if (this.ships[i] != null && this.ships[i].armed) {
+					++gunCnt;
+					if (this.ships[i].isWingman()) {
+						++gunCnt;
 					}
 				}
 			}
 
-			this.enemyGuns = new AbstractMesh[var2];
-			var3 = 0;
+			this.enemyGuns = new AbstractMesh[gunCnt];
+			gunCnt = 0;
 
-			for(var2 = 0; var2 < this.ships.length; ++var2) {
-				Gun var6;
-				if (this.ships[var2] != null && this.ships[var2].armed) {
-					int var4 = var1 + 2;
-					if (Status.getMission().getType() == 12 && this.ships[var2].player.isAlwaysFriend()) {
-						var4 = Status.getShip().getFirePower() + 2;
+			for(int i = 0; i < this.ships.length; ++i) {
+				Gun gun;
+				final KIPlayer ship = this.ships[i];
+				if (ship != null && ship.armed) {
+					int dmg = dmgBonus + 2;
+					if (Status.getMission().getType() == 12 && ship.player.isAlwaysFriend()) {
+						dmg = Status.getShip().getFirePower() + 2;
 					} else if (Status.getCurrentCampaignMission() == 4) {
-						var4 = 1;
+						dmg = 1;
 					}
-
-					(var6 = new Gun(0, var4, 4, -1, 3000, 600 - (Status.getCurrentCampaignMission() << 1), 16.0F, (AEVector3D)null, (AEVector3D)null)).setFriendGun(true);
-					var6.setLevel(this);
-					var6.setSparks(this.gunSparks);
-					final int var5 = this.ships[var2].race == 9 ? 7 : this.ships[var2].race == 0 ? 1 : this.ships[var2].race == 1 ? 3 : 4;
-					this.enemyGuns[var3] = new ObjectGun(var6, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var5]));
-					this.enemyGuns[var3].setRenderLayer(2);
-					++var3;
-					this.ships[var2].addGun(var6, 0);
+					//bots shoot faster as campaign progresses		
+					gun = new Gun(0, dmg, 4, -1, 3000, 600 - (Status.getCurrentCampaignMission() << 1), 16.0F, (AEVector3D)null, (AEVector3D)null);
+					gun.setFriendGun(true);
+					gun.setLevel(this);
+					gun.setSparks(this.gunSparks);
+					final int gunType = ship.race == 9 ? 7:
+											  ship.race == 0 ? 1:
+											  ship.race == 1 ? 3:
+													             4;
+					this.enemyGuns[gunCnt] = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[gunType]));
+					this.enemyGuns[gunCnt].setRenderLayer(2);
+					++gunCnt;
+					ship.addGun(gun, 0);
 				}
 
-				if (this.ships[var2].isWingman() && this.ships[var2].armed) {
-					(var6 = new Gun(18, 0, 4, -1, 3000, 400, 16.0F, (AEVector3D)null, (AEVector3D)null)).setFriendGun(true);
-					var6.setLevel(this);
-					var6.setSparks(this.gunSparks);
-					var6.index = 18;
-					var6.subType = 1;
-					this.enemyGuns[var3] = new ObjectGun(var6, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[18]));
-					this.enemyGuns[var3].setRenderLayer(2);
-					++var3;
-					this.ships[var2].addGun(var6, 1);
+				if (ship.isWingman() && ship.armed) {
+					gun = new Gun(18, 0, 4, -1, 3000, 400, 16.0F, (AEVector3D)null, (AEVector3D)null);
+					gun.setFriendGun(true);
+					gun.setLevel(this);
+					gun.setSparks(this.gunSparks);
+					gun.index = 18;
+					gun.subType = 1;
+					this.enemyGuns[gunCnt] = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[18]));
+					this.enemyGuns[gunCnt].setRenderLayer(2);
+					++gunCnt;
+					ship.addGun(gun, 1);
 				}
 			}
 		}
@@ -1374,12 +1416,12 @@ public final class Level {
 	/**
 	 *
 	 * @param race
-	 * @param var2
+	 * @param type
 	 * @param shipId
 	 * @param var4 ship spawns in proximity of 34 km of the point
 	 * @return
 	 */
-	private KIPlayer createShip(final int race, final int var2, final int shipId, final Waypoint var4) {
+	private KIPlayer createShip(final int race, final int type, final int shipId, final Waypoint var4) {
 		int spawnX = var4 != null ? var4.x : 0;
 		int spawnY = var4 != null ? var4.y : 0;
 		int spawnZ = var4 != null ? var4.z : 0;
@@ -1391,19 +1433,19 @@ public final class Level {
 		Player player = null;
 		int hp;
 		hp = 20 + AEMath.min(Status.getLevel(), 20) * 15 + (Status.getCurrentCampaignMission() << 2);
-		int var10 = 40 + AEMath.min(Status.getLevel(), 20) * 5;
+		int empp = 40 + AEMath.min(Status.getLevel(), 20) * 5;
 		int var11 = 15000;
-		if (var2 == 1) {
+		if (type == 1) {
 			hp <<= 2;
-			var10 *= 3;
+			empp *= 3;
 			var11 = 15000 * 3;
 			if (shipId == 14) {
 				hp *= 5;
 			}
 		}
-
-		(player = new Player(2000.0F, hp, 1, 1, 0)).setEmpData(var10, var11);
-		switch(var2) {
+		player = new Player(2000.0F, hp, 1, 1, 0);
+		player.setEmpData(empp, var11);
+		switch(type) {
 		case 0:
 			ship = new PlayerFighter(shipId, race, player, (AbstractMesh)null, spawnX, spawnY, spawnZ);
 			explosion = new Explosion(1);
@@ -1672,7 +1714,10 @@ public final class Level {
 	public final int unknown7f9_() {
 		return 0;
 	}
-
+	/**
+	 * not just enemies but actually every ai player
+	 * @return
+	 */
 	public final int getEnemiesLeft() {
 		return this.enemiesIntact;
 	}
@@ -1862,14 +1907,14 @@ public final class Level {
 				if (this.ships != null) {
 					boolean var11 = false;
 
-					for(int var6 = 0; var6 < this.ships.length; ++var6) {
-						final KIPlayer var7 = this.ships[var6];
-						if ((this.localFightersCnt > 0 && var6 < this.localFightersCnt || this.jumperCnt > 0 && var6 < this.localFightersCnt + this.jumperCnt && var6 > this.localFightersCnt) && var7.isDead() && !var7.player.isActive()) {
+					for(int i = 0; i < this.ships.length; ++i) {
+						final KIPlayer var7 = this.ships[i];
+						if ((this.localFightersCnt > 0 && i < this.localFightersCnt || this.jumperCnt > 0 && i < this.localFightersCnt + this.jumperCnt && i > this.localFightersCnt) && var7.isDead() && !var7.player.isActive()) {
 							var7.revive();
 							((PlayerFighter)var7).setPosition(0, 0, 0);
 						}
 
-						if (var4 >= 2 && this.raidWavesCounter < 2 && this.raidersCnt > 0 && var6 >= this.ships.length - this.raidersCnt && var7.isDead() && !var7.player.isActive()) {
+						if (var4 >= 2 && this.raidWavesCounter < 2 && this.raidersCnt > 0 && i >= this.ships.length - this.raidersCnt && var7.isDead() && !var7.player.isActive()) {
 							var11 = true;
 							var7.revive();
 							((PlayerFighter)var7).setPosition(var7.targetX, var7.targetY, this.ego.getPosition().z + 40000);
@@ -1890,42 +1935,36 @@ public final class Level {
 			if (this.alienRespawnTick > 40000) {
 				this.alienRespawnTick = 0;
 				if (this.ships != null) {
-					for(var4 = 0; var4 < this.ships.length; ++var4) {
-						if ((var5 = this.ships[var4]).race == 9 && var5.isDead() && !var5.player.isActive()) {
-							var5.revive();
-							PlayerFighter var10000;
-							int var10001;
-							int var10002;
-							int var10003;
+					for(int i = 0; i < this.ships.length; ++i) {
+						if ((var5 = this.ships[i]).race == 9 && var5.isDead() && !var5.player.isActive()) {
+							int x, y, z;
 							if (!Status.inAlienOrbit() && Status.getStation().isAttackedByAliens()) {
-								var10000 = (PlayerFighter)var5;
-								var10001 = this.stationaries[3].getPosition(this.tempVec).x - 10000 + GlobalStatus.random.nextInt(20000);
-								var10002 = this.stationaries[3].getPosition(this.tempVec).y - 10000 + GlobalStatus.random.nextInt(20000);
-								var10003 = this.stationaries[3].getPosition(this.tempVec).z - 10000 + GlobalStatus.random.nextInt(20000);
+								x = this.stationaries[3].getPosition(this.tempVec).x - 10000 + GlobalStatus.random.nextInt(20000);
+								y = this.stationaries[3].getPosition(this.tempVec).y - 10000 + GlobalStatus.random.nextInt(20000);
+								z = this.stationaries[3].getPosition(this.tempVec).z - 10000 + GlobalStatus.random.nextInt(20000);
 							} else {
-								var10000 = (PlayerFighter)var5;
-								var10001 = this.ego.getPosition().x - 30000 + GlobalStatus.random.nextInt(60000);
-								var10002 = this.ego.getPosition().y - 30000 + GlobalStatus.random.nextInt(60000);
-								var10003 = this.ego.getPosition().z + GlobalStatus.random.nextInt(2) == 0 ? 30000 : -30000;
+								x = this.ego.getPosition().x - 30000 + GlobalStatus.random.nextInt(60000);
+								y = this.ego.getPosition().y - 30000 + GlobalStatus.random.nextInt(60000);
+								z = this.ego.getPosition().z + GlobalStatus.random.nextInt(2) == 0 ? 30000 : -30000;
 							}
 
-							var10000.setPosition(var10001, var10002, var10003);
+							((PlayerFighter)var5).setPosition(x, y, z);
 						}
 					}
 				}
 			}
 		}
 
-		int var9;
+		int i;
 		if (this.egoGuns != null) {
-			for(var9 = 0; var9 < this.egoGuns.length; ++var9) {
-				((AbstractGun)this.egoGuns[var9]).update(var1);
+			for(i = 0; i < this.egoGuns.length; ++i) {
+				((AbstractGun)this.egoGuns[i]).update(var1);
 			}
 		}
 
 		if (this.enemyGuns != null) {
-			for(var9 = 0; var9 < this.enemyGuns.length; ++var9) {
-				((AbstractGun)this.enemyGuns[var9]).update(var1);
+			for(i = 0; i < this.enemyGuns.length; ++i) {
+				((AbstractGun)this.enemyGuns[i]).update(var1);
 			}
 		}
 

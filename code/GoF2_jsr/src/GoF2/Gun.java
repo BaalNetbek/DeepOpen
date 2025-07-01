@@ -100,29 +100,29 @@ public final class Gun {
 	private boolean friendGun;
 	private int spread;
 
-	public Gun(int var1, final int var2, final int var3, int var4, final int var5, final int var6, final float var7, final AEVector3D var8, final AEVector3D var9) {
-		this.damage = var2;
-		this.projectileSpeed = var7;
-		this.equipmentId = var1;
-		this.muzzleOffset = var8;
-		this.range = var5;
-		this.reloadTimeMilis = var6;
+	public Gun(int id, final int dmg, final int maxInAir, int ammo, final int range, final int reloadT, final float velocity, final AEVector3D offset, final AEVector3D var9) {
+		this.damage = dmg;
+		this.projectileSpeed = velocity;
+		this.equipmentId = id;
+		this.muzzleOffset = offset;
+		this.range = range;
+		this.reloadTimeMilis = reloadT;
 		this.timeSinceLastShot = 0;
-		if (var4 < 0) {
-			var4 = Integer.MAX_VALUE;
+		if (ammo < 0) {
+			ammo = Integer.MAX_VALUE;
 		}
 
-		this.ammo = var4;
-		this.projectilesTimeLeft = new int[var3];
-		this.projectilesPos = new AEVector3D[var3];
-		this.projectilesDir = new AEVector3D[var3];
+		this.ammo = ammo;
+		this.projectilesTimeLeft = new int[maxInAir];
+		this.projectilesPos = new AEVector3D[maxInAir];
+		this.projectilesDir = new AEVector3D[maxInAir];
 		this.tempPos = new AEVector3D();
 		this.tempDir = new AEVector3D();
 
-		for(var1 = 0; var1 < var3; ++var1) {
-			this.projectilesPos[var1] = new AEVector3D(50000, 0, 0);
-			this.projectilesDir[var1] = new AEVector3D();
-			this.projectilesTimeLeft[var1] = -1;
+		for(id = 0; id < maxInAir; ++id) {
+			this.projectilesPos[id] = new AEVector3D(50000, 0, 0);
+			this.projectilesDir[id] = new AEVector3D();
+			this.projectilesTimeLeft[id] = -1;
 		}
 
 		this.unused547_ = true;

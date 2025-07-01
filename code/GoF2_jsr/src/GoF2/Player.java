@@ -36,7 +36,10 @@ public final class Player {
 	private int egoInflictDamage;
 	private int dealtEmpDamage;
 	private boolean permanentEnemy;
-	private int empImpactForce;
+	/**
+	 * #TODO verify
+	 */
+	private int empImpactForce; 
 	private int elapsedEMPstun;
 	private boolean stunnedEMP;
 	private boolean tempEnemy_;

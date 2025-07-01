@@ -21,7 +21,7 @@ public final class Objective {
 		KIPlayer[] targets;
 		int i = 0, dead = 0;
 		switch(this.type) {
-		case 0:
+		case 0: //kill everyone
 			if (this.level.getEnemiesLeft() == 0) {
 				return true;
 			}
