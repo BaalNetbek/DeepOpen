@@ -7,7 +7,12 @@ import AE.ParticleSystemMesh;
 import AE.Math.AEVector3D;
 
 public final class Trail {
-	private static int[] UV = {80, 255, 95, 254, 32, 240, 63, 239};
+	private static int[] UV = {
+			80, 255,
+			95, 254,
+			32, 240,
+			63, 239
+			};
 	private int width = 60;
 	private final int[] vertices;
 	private final int[] tempVerts;
@@ -57,56 +62,49 @@ public final class Trail {
 		this.width = var1;
 	}
 
-	public final void update(final AEVector3D var1) {
+	public final void update(final AEVector3D pos) {
 		if (this.stop) {
-			this.sourcePos.set(var1);
+			this.sourcePos.set(pos);
 			this.stop = false;
 		}
 
-		final int var8 = this.sourcePos.z;
-		final int var7 = this.sourcePos.y;
-		int var6 = this.sourcePos.x;
-		final int var5 = var1.z;
-		final int var4 = var1.y;
-		final int var3 = var1.x;
-		final Trail var2 = this;
-		this.tempVerts[0] = var3 - this.width;
-		this.tempVerts[1] = var4;
-		this.tempVerts[2] = var5;
-		this.tempVerts[3] = var3 + this.width;
-		this.tempVerts[4] = var4;
-		this.tempVerts[5] = var5;
-		this.tempVerts[6] = var6 + this.width;
-		this.tempVerts[7] = var7;
-		this.tempVerts[8] = var8;
-		this.tempVerts[9] = var6 - this.width;
-		this.tempVerts[10] = var7;
-		this.tempVerts[11] = var8;
+		this.tempVerts[0] = pos.x - this.width;
+		this.tempVerts[1] = pos.y;
+		this.tempVerts[2] = pos.z;
+		this.tempVerts[3] = pos.x + this.width;
+		this.tempVerts[4] = pos.y;
+		this.tempVerts[5] = pos.z;
+		this.tempVerts[6] = this.sourcePos.x + this.width;
+		this.tempVerts[7] = this.sourcePos.y;
+		this.tempVerts[8] = this.sourcePos.z;
+		this.tempVerts[9] = this.sourcePos.x - this.width;
+		this.tempVerts[10] = this.sourcePos.y;
+		this.tempVerts[11] = this.sourcePos.z;
 
-		for(var6 = this.tempVerts.length - 1; var6 >= 23; var6 -= 12) {
-			var2.tempVerts[var6] = var2.tempVerts[var6 - 12];
-			var2.tempVerts[var6 - 1] = var2.tempVerts[var6 - 13];
-			var2.tempVerts[var6 - 2] = var2.tempVerts[var6 - 14];
-			var2.tempVerts[var6 - 3] = var2.tempVerts[var6 - 15];
-			var2.tempVerts[var6 - 4] = var2.tempVerts[var6 - 16];
-			var2.tempVerts[var6 - 5] = var2.tempVerts[var6 - 17];
-			var2.tempVerts[var6 - 6] = var2.tempVerts[var6 - 18];
-			var2.tempVerts[var6 - 7] = var2.tempVerts[var6 - 19];
-			var2.tempVerts[var6 - 8] = var2.tempVerts[var6 - 20];
-			var2.tempVerts[var6 - 9] = var2.tempVerts[var6 - 21];
-			var2.tempVerts[var6 - 10] = var2.tempVerts[var6 - 22];
-			var2.tempVerts[var6 - 11] = var2.tempVerts[var6 - 23];
+		for(int i = this.tempVerts.length - 1; i >= 23; i -= 12) {
+			this.tempVerts[i] = this.tempVerts[i - 12];
+			this.tempVerts[i - 1] = this.tempVerts[i - 13];
+			this.tempVerts[i - 2] = this.tempVerts[i - 14];
+			this.tempVerts[i - 3] = this.tempVerts[i - 15];
+			this.tempVerts[i - 4] = this.tempVerts[i - 16];
+			this.tempVerts[i - 5] = this.tempVerts[i - 17];
+			this.tempVerts[i - 6] = this.tempVerts[i - 18];
+			this.tempVerts[i - 7] = this.tempVerts[i - 19];
+			this.tempVerts[i - 8] = this.tempVerts[i - 20];
+			this.tempVerts[i - 9] = this.tempVerts[i - 21];
+			this.tempVerts[i - 10] = this.tempVerts[i - 22];
+			this.tempVerts[i - 11] = this.tempVerts[i - 23];
 		}
 
-		for(var6 = 0; var6 < var2.tempVerts.length; var6 += 3) {
-			var2.vertices[var6] = var2.tempVerts[var6] - var3;
-			var2.vertices[var6 + 1] = var2.tempVerts[var6 + 1] - var4;
-			var2.vertices[var6 + 2] = var2.tempVerts[var6 + 2] - var5;
+		for(int i = 0; i < this.tempVerts.length; i += 3) {
+			this.vertices[i] = this.tempVerts[i] - pos.x;
+			this.vertices[i + 1] = this.tempVerts[i + 1] - pos.y;
+			this.vertices[i + 2] = this.tempVerts[i + 2] - pos.z;
 		}
 
-		var2.mesh.moveTo(var3, var4, var5);
-		((ParticleSystemMesh)var2.mesh).setMeshData_(var2.vertices, var2.uvs);
-		this.sourcePos.set(var1);
+		this.mesh.moveTo(pos.x, pos.y, pos.z);
+		((ParticleSystemMesh)this.mesh).setMeshData_(this.vertices, this.uvs);
+		this.sourcePos.set(pos);
 	}
 
 	public final void reset(final AEVector3D var1) {

@@ -167,11 +167,9 @@ public final class CutScene extends IApplicationModule {
 				this.cameraTrack.update(this.frameTimeMs);
 			}
 
-			final CutScene var2 = this;
-
 			try {
-				var2.level.updateOrbit_(var2.frameTimeMs);
-				var2.level.render(var2.frameTimeMs);
+				this.level.updateOrbit_(this.frameTimeMs);
+				this.level.render(this.frameTimeMs);
 				GlobalStatus.graphics3D.bindTarget(GlobalStatus.graphics);
 				GlobalStatus.renderer.renderFrame(System.currentTimeMillis());
 				GlobalStatus.graphics3D.clear();
