@@ -1238,7 +1238,7 @@ o.a I speed
 o.a Laa; player
 o.a Lag; mainMesh_
 o.a Lar; geometry
-o.b I abstractId_
+o.b I meshId
 o.c I shipId_
 o.d I race
 o.a Ldb; level
@@ -1289,7 +1289,7 @@ o.a(Lcg;)V setExplosion
 o.a(Lbg;)V setRoute
 o.a()Lbg; getRoute
 o.a(Lba;I)V addGun
-o.a()I getId_
+o.a()I getMeshId
 o.a(Lcd;)Lcd; getPosition
 o.e()Z isDead
 o.f()Z isDying
@@ -2493,7 +2493,7 @@ b.a(Ljava/lang/String;Ljava/lang/String;Z)V drawFooter1
 b.b(IIII)V drawRect
 b.b(Ljava/lang/String;Ljava/lang/String;Z)V drawFooter
 ce AE/ImageFont
-ce.a Ljavax/microedition/lcdui/Image; charTexture
+ce.a Ljavax/microedition/lcdui/Image; fontTexture
 ce.a [S posX
 ce.b [S posY
 ce.a [B widths
@@ -2505,7 +2505,7 @@ ce.d B spacingX
 ce.e B offsetY
 ce.a(Ljavax/microedition/lcdui/Graphics;)V setGraphics
 ce.a(I)V setSpacingX
-ce.a(II[I)B getSymbolWidths
+ce.a(II[I)B getSymbolWidth
 ce.a(Ljava/lang/String;)I stringWidth
 ce.a(Ljava/lang/String;II)I subStringWidth
 ce.a(C)I charToSymbolIdx

@@ -109,7 +109,7 @@ public final class MiningGame {
 
 		if (this.levelProgress > this.nextLevelTreshold) {
 			this.levelProgress = 0;
-			++this.curLevel;
+			this.curLevel++;
 			this.nextLevelTreshold = (int)(this.nextLevelTreshold * 0.83F);
 			if (this.curLevel >= this.levels) {
 				this.succeed = true;

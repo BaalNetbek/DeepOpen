@@ -58,7 +58,7 @@ public final class Globals {
 	}
 
 	public static void OnInitialize() {
-		new FileRead();
+		//new FileRead();
 		ships = FileRead.loadShipsBinary();
 		items = FileRead.loadItemsBinary();
 	}
@@ -89,7 +89,7 @@ public final class Globals {
 	}
 
 	public static String getRandomName(final int var0, final boolean isMale) {
-		new FileRead();
+		//new FileRead();
 		final String[] firstNames = FileRead.loadNamesBinary(var0, isMale, true);
 		final String[] lastNames = FileRead.loadNamesBinary(var0, isMale, false);
 		final String firstName = firstNames == null ? "" : firstNames[GlobalStatus.random.nextInt(firstNames.length)];
@@ -131,7 +131,7 @@ public final class Globals {
 	 */
 	public static Group getShipGroup(final int var0, final int var1) {
 		final Group var2 = new Group();
-		new FileRead();
+		//new FileRead();
 		final int[] var3 = FileRead.loadShipParts(var0);
 		final int[] var6 = getRaceUVkeyframeId_(var1);
 
@@ -159,7 +159,7 @@ public final class Globals {
 	}
 
 	public static void buildShip(final Group var0, final int var1) {
-		new FileRead();
+		//new FileRead();
 		int[] var4;
 		int var2 = (var4 = FileRead.loadShipParts(var1)).length - 10;
 

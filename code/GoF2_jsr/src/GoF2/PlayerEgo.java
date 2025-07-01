@@ -764,7 +764,7 @@ public final class PlayerEgo {
 				KIPlayer var3 = var1[var2];
 				if (var3 != null && var3.outerCollide(this.shipGrandGroup_.getPosition(this.vecRight))) {
 					int var8;
-					if (var3.getId_() == 6805 && var3.isVisible()) {
+					if (var3.getMeshId() == 6805 && var3.isVisible()) {
 						if (!((PlayerWormHole)var3).isShrinking() && !isMining()) {
 							this.vecRight = var3.getPosition(this.vecRight);
 							this.vecRight.subtract(this.shipGrandGroup_.getPosition(this.vecUp));

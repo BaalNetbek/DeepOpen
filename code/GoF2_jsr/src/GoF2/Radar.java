@@ -522,7 +522,7 @@ public final class Radar {
 							} else {
 								this.playerPos = var1.getPosition(this.playerPos);
 								this.tempContextPosition = var25.player.getPosition(this.tempContextPosition);
-								if (this.playerPos.x - this.tempContextPosition.x <= 24000 && this.playerPos.x - this.tempContextPosition.x >= -24000 && this.playerPos.y - this.tempContextPosition.y <= 24000 && this.playerPos.y - this.tempContextPosition.y >= -24000 && this.playerPos.z - this.tempContextPosition.z <= 24000 && this.playerPos.z - this.tempContextPosition.z >= -24000 && var25.getId_() != 9996) {
+								if (this.playerPos.x - this.tempContextPosition.x <= 24000 && this.playerPos.x - this.tempContextPosition.x >= -24000 && this.playerPos.y - this.tempContextPosition.y <= 24000 && this.playerPos.y - this.tempContextPosition.y >= -24000 && this.playerPos.z - this.tempContextPosition.z <= 24000 && this.playerPos.z - this.tempContextPosition.z >= -24000 && var25.getMeshId() != 9996) {
 									label862: {
 										var25.withinRenderDistance = true;
 										Image var10001;

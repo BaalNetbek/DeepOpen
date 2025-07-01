@@ -374,7 +374,7 @@ public final class Level {
 		this.asteroidsWaypoint = new Waypoint(var5, var6, var7, (Route)null);
 		this.asteroidField = new BoundingSphere(var5, var6, var7, 0, 0, 0, 50000);
 
-		for(int var8 = 0; var8 < this.asteroids.length; ++var8) {
+		for(int i = 0; i < this.asteroids.length; ++i) {
 			if (Status.inAlienOrbit()) {
 				var1 = 164;
 			} else if (Status.inEmptyOrbit()) {
@@ -399,31 +399,30 @@ public final class Level {
 				}
 			}
 
-			var3 = var8 < this.asteroids.length / 2;
+			boolean closeStation = i < this.asteroids.length / 2;
 			Waypoint var9 = null;
-			if (var3) {
-				var9 = new Waypoint(0, 0, 20000, (Route)null);
+			if (closeStation) {
+				var9 = new Waypoint(0, 0, 20000, (Route)null); // here is why asteroids spawn in hangar
 			} else {
 				var9 = new Waypoint(var5, var6, var7, (Route)null);
 			}
 
-			final KIPlayer[] var10000 = this.asteroids;
 			final int var12 = Status.inAlienOrbit() ? 6804 : 6769;
 			final int var17 = var9.x - 30000 + GlobalStatus.random.nextInt(60000);
 			final int var18 = var9.y - 30000 + GlobalStatus.random.nextInt(60000);
-			final int var20 = var9.z - 30000 + GlobalStatus.random.nextInt(60000);
-			final PlayerAsteroid var21 = new PlayerAsteroid(var12, AEResourceManager.getGeometryResource(var12), var1, var3, var17, var18, var20);
-			var21.setLevel(this);
-			var21.setAsteroidCenter(this.asteroidFieldCenter);
+			final int var20 = var9.z - 30000 + GlobalStatus.random.nextInt(60000); 
+			final PlayerAsteroid asteroid = new PlayerAsteroid(var12, AEResourceManager.getGeometryResource(var12), var1, closeStation, var17, var18, var20);
+			asteroid.setLevel(this);
+			asteroid.setAsteroidCenter(this.asteroidFieldCenter);
 			if (this.currentMod == 23) { // hangar
-				var21.mainMesh_.setRenderLayer(1);
+				asteroid.mainMesh_.setRenderLayer(1);
 			} else {
-				var21.mainMesh_.setRenderLayer(2);
+				asteroid.mainMesh_.setRenderLayer(2);
 			}
 
 			final Explosion var16 = new Explosion(1);
-			var21.setExplosion(var16);
-			var10000[var8] = var21;
+			asteroid.setExplosion(var16);
+			this.asteroids[i] = asteroid;
 		}
 
 	}
@@ -472,10 +471,10 @@ public final class Level {
 			AbstractMesh var12 = null;
 			int var13;
 			if (var3 == 7) {
-				var12 = AEResourceManager.getGeometryResource(18);
+				var12 = AEResourceManager.getGeometryResource(18); //nuke
 				var13 = var1 - 44 + 1 << 9;
 			} else {
-				var12 = AEResourceManager.getGeometryResource(16);
+				var12 = AEResourceManager.getGeometryResource(16); //emp bomb
 				var13 = var1 - 41 + 1 << 9;
 			}
 			var12.setScale(var13, var13, var13);
@@ -509,38 +508,37 @@ public final class Level {
 			Status.wingmenTimeRemaining = 0;
 			Status.wingmanFace = null;
 		} else if (Status.getWingmenNames() != null && this.ego != null) {
-			final KIPlayer[] var1 = new KIPlayer[Status.getWingmenNames().length];
+			final KIPlayer[] wingmen = new KIPlayer[Status.getWingmenNames().length];
 
-			for(int var2 = 0; var2 < var1.length; ++var2) {
-				GlobalStatus.random.setSeed(Status.getWingmenNames()[var2].length() * 5);
-				final int var3 = Globals.getRandomEnemyFighter(Status.wingmanRace);
+			for(int id = 0; id < wingmen.length; ++id) {
+				GlobalStatus.random.setSeed(Status.getWingmenNames()[id].length() * 5);
 				GlobalStatus.random.setSeed(System.currentTimeMillis());
-				var1[var2] = createShip(5, 0, var3, (Waypoint)null);
+				wingmen[id] = createShip(5, 0, Globals.getRandomEnemyFighter(Status.wingmanRace), (Waypoint)null);
 				if (initStreamOutPosition && this.ego.shipGrandGroup_ != null) {
-					((PlayerFighter)var1[var2]).setPosition(this.stationaries[2].mainMesh_.getPosX() - 3000, this.stationaries[2].mainMesh_.getPosY() + 1000, this.stationaries[2].mainMesh_.getPosZ() + 5000);
+					((PlayerFighter)wingmen[id]).setPosition(this.stationaries[2].mainMesh_.getPosX() - 3000, this.stationaries[2].mainMesh_.getPosY() + 1000, this.stationaries[2].mainMesh_.getPosZ() + 5000);
 				} else {
-					((PlayerFighter)var1[var2]).setPosition(this.ego.shipGrandGroup_.getPosX() + -700 + GlobalStatus.random.nextInt(1400), this.ego.shipGrandGroup_.getPosY() + -700 + GlobalStatus.random.nextInt(1400), this.ego.shipGrandGroup_.getPosZ() + 2000);
+					((PlayerFighter)wingmen[id]).setPosition(this.ego.shipGrandGroup_.getPosX() + -700 + GlobalStatus.random.nextInt(1400), this.ego.shipGrandGroup_.getPosY() + -700 + GlobalStatus.random.nextInt(1400), this.ego.shipGrandGroup_.getPosZ() + 2000);
 				}
 
-				var1[var2].setWingman(true, var2);
-				var1[var2].player.setAlwaysFriend(true);
-				var1[var2].player.setHitPoints(600);
-				var1[var2].name = Status.getWingmenNames()[var2];
-				var1[var2].race = Status.wingmanRace;
+				wingmen[id].setWingman(true, id);
+				wingmen[id].player.setAlwaysFriend(true);
+				wingmen[id].player.setHitPoints(600);
+				wingmen[id].name = Status.getWingmenNames()[id];
+				wingmen[id].race = Status.wingmanRace;
 				if (Status.getMission().getType() == 12) {
-					var1[var2].armed = false;
+					wingmen[id].armed = false;
 				}
 			}
 
 			if (this.ships != null) {
-				final KIPlayer[] var4 = new KIPlayer[this.ships.length + var1.length];
-				System.arraycopy(this.ships, 0, var4, 0, this.ships.length);
-				System.arraycopy(var1, 0, var4, this.ships.length, var1.length);
-				this.ships = var4;
+				final KIPlayer[] newShips = new KIPlayer[this.ships.length + wingmen.length];
+				System.arraycopy(this.ships, 0, newShips, 0, this.ships.length);
+				System.arraycopy(wingmen, 0, newShips, this.ships.length, wingmen.length);
+				this.ships = newShips;
 				return;
 			}
 
-			this.ships = var1;
+			this.ships = wingmen;
 		}
 	}
 
@@ -1828,19 +1826,18 @@ public final class Level {
 
 		int var4;
 		KIPlayer var5;
-		Level var8;
 		if (Status.getMission() == null || Status.getMission().isEmpty()) {
 			var4 = (int)var1;
-			var8 = this;
+			//var8 = this;
 			this.commonRespawnTick += var4;
 			this.jumperRespawnTick += var4;
 			if (this.jumperRespawnTick > 20000) {
 				this.jumperRespawnTick = 0;
 				if (this.ships != null) {
-					for(var4 = 0; var4 < var8.ships.length; ++var4) {
-						if ((var5 = var8.ships[var4]).isJumper() && var5.isDead() && !var5.player.isActive()) {
+					for(var4 = 0; var4 < this.ships.length; ++var4) {
+						if ((var5 = this.ships[var4]).isJumper() && var5.isDead() && !var5.player.isActive()) {
 							var5.revive();
-							if (var4 < var8.localFightersCnt + var8.jumperCnt) {
+							if (var4 < this.localFightersCnt + this.jumperCnt) {
 								((PlayerFighter)var5).setPosition(0, 0, 0);
 							} else {
 								((PlayerFixedObject)var5).setPosition(10000, 0, -70000);
@@ -1851,36 +1848,36 @@ public final class Level {
 				}
 			}
 
-			if (var8.commonRespawnTick > 40000) {
-				var8.commonRespawnTick = 0;
+			if (this.commonRespawnTick > 40000) {
+				this.commonRespawnTick = 0;
 				var4 = 0;
-				if (var8.raidersCnt > 0 && var8.ships != null) {
-					for(int var10 = 0; var10 < var8.ships.length; ++var10) {
-						if (var10 >= var8.ships.length - var8.raidersCnt && !var8.ships[var10].isWingman() && var8.ships[var10].isDead() && !var8.ships[var10].player.isActive()) {
+				if (this.raidersCnt > 0 && this.ships != null) {
+					for(int var10 = 0; var10 < this.ships.length; ++var10) {
+						if (var10 >= this.ships.length - this.raidersCnt && !this.ships[var10].isWingman() && this.ships[var10].isDead() && !this.ships[var10].player.isActive()) {
 							++var4;
 						}
 					}
 				}
 
-				if (var8.ships != null) {
+				if (this.ships != null) {
 					boolean var11 = false;
 
-					for(int var6 = 0; var6 < var8.ships.length; ++var6) {
-						final KIPlayer var7 = var8.ships[var6];
-						if ((var8.localFightersCnt > 0 && var6 < var8.localFightersCnt || var8.jumperCnt > 0 && var6 < var8.localFightersCnt + var8.jumperCnt && var6 > var8.localFightersCnt) && var7.isDead() && !var7.player.isActive()) {
+					for(int var6 = 0; var6 < this.ships.length; ++var6) {
+						final KIPlayer var7 = this.ships[var6];
+						if ((this.localFightersCnt > 0 && var6 < this.localFightersCnt || this.jumperCnt > 0 && var6 < this.localFightersCnt + this.jumperCnt && var6 > this.localFightersCnt) && var7.isDead() && !var7.player.isActive()) {
 							var7.revive();
 							((PlayerFighter)var7).setPosition(0, 0, 0);
 						}
 
-						if (var4 >= 2 && var8.raidWavesCounter < 2 && var8.raidersCnt > 0 && var6 >= var8.ships.length - var8.raidersCnt && var7.isDead() && !var7.player.isActive()) {
+						if (var4 >= 2 && this.raidWavesCounter < 2 && this.raidersCnt > 0 && var6 >= this.ships.length - this.raidersCnt && var7.isDead() && !var7.player.isActive()) {
 							var11 = true;
 							var7.revive();
-							((PlayerFighter)var7).setPosition(var7.targetX, var7.targetY, var8.ego.getPosition().z + 40000);
+							((PlayerFighter)var7).setPosition(var7.targetX, var7.targetY, this.ego.getPosition().z + 40000);
 						}
 					}
 
 					if (var11) {
-						++var8.raidWavesCounter;
+						++this.raidWavesCounter;
 					}
 				}
 			}
@@ -1888,13 +1885,13 @@ public final class Level {
 
 		if (Status.getStation().isAttackedByAliens() || Status.inAlienOrbit()) {
 			var4 = (int)var1;
-			var8 = this;
+			//var8 = this;
 			this.alienRespawnTick += var4;
 			if (this.alienRespawnTick > 40000) {
 				this.alienRespawnTick = 0;
 				if (this.ships != null) {
-					for(var4 = 0; var4 < var8.ships.length; ++var4) {
-						if ((var5 = var8.ships[var4]).race == 9 && var5.isDead() && !var5.player.isActive()) {
+					for(var4 = 0; var4 < this.ships.length; ++var4) {
+						if ((var5 = this.ships[var4]).race == 9 && var5.isDead() && !var5.player.isActive()) {
 							var5.revive();
 							PlayerFighter var10000;
 							int var10001;
@@ -1902,14 +1899,14 @@ public final class Level {
 							int var10003;
 							if (!Status.inAlienOrbit() && Status.getStation().isAttackedByAliens()) {
 								var10000 = (PlayerFighter)var5;
-								var10001 = var8.stationaries[3].getPosition(var8.tempVec).x - 10000 + GlobalStatus.random.nextInt(20000);
-								var10002 = var8.stationaries[3].getPosition(var8.tempVec).y - 10000 + GlobalStatus.random.nextInt(20000);
-								var10003 = var8.stationaries[3].getPosition(var8.tempVec).z - 10000 + GlobalStatus.random.nextInt(20000);
+								var10001 = this.stationaries[3].getPosition(this.tempVec).x - 10000 + GlobalStatus.random.nextInt(20000);
+								var10002 = this.stationaries[3].getPosition(this.tempVec).y - 10000 + GlobalStatus.random.nextInt(20000);
+								var10003 = this.stationaries[3].getPosition(this.tempVec).z - 10000 + GlobalStatus.random.nextInt(20000);
 							} else {
 								var10000 = (PlayerFighter)var5;
-								var10001 = var8.ego.getPosition().x - 30000 + GlobalStatus.random.nextInt(60000);
-								var10002 = var8.ego.getPosition().y - 30000 + GlobalStatus.random.nextInt(60000);
-								var10003 = var8.ego.getPosition().z + GlobalStatus.random.nextInt(2) == 0 ? 30000 : -30000;
+								var10001 = this.ego.getPosition().x - 30000 + GlobalStatus.random.nextInt(60000);
+								var10002 = this.ego.getPosition().y - 30000 + GlobalStatus.random.nextInt(60000);
+								var10003 = this.ego.getPosition().z + GlobalStatus.random.nextInt(2) == 0 ? 30000 : -30000;
 							}
 
 							var10000.setPosition(var10001, var10002, var10003);

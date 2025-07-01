@@ -28,8 +28,8 @@ public final class PlayerAsteroid extends KIPlayer {
 	public boolean clampedByDistance;
 	public int oreItemId;
 
-	public PlayerAsteroid(final int var1, final AbstractMesh var2, final int var3, final boolean var4, final int var5, final int var6, final int var7) {
-		super(var1, -1, new Player(1500.0F, 30, 0, 0, 0), var2, var5, var6, var7);
+	public PlayerAsteroid(final int meshId, final AbstractMesh mesh, final int var3, final boolean var4, final int var5, final int var6, final int var7) {
+		super(meshId, -1, new Player(1500.0F, 30, 0, 0, 0), mesh, var5, var6, var7);
 		this.player.setKIPlayer(this);
 		this.oreItemId = var3;
 		this.posX = var5;

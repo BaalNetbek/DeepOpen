@@ -381,7 +381,7 @@ public final class Matrix {
 		int var8;
 		int var9;
 		switch(this.rotationOrder) {
-		case 0:
+		case 0: // Tait–Bryan XYZ
 			var7 = var1 * var3 >> 12;
 			var8 = var3 * var4 >> 12;
 			var9 = var5 * var6 >> 12;
@@ -395,7 +395,7 @@ public final class Matrix {
 			this.upZ = var8 + (var9 * var1 >> 12);
 			this.dirZ = var1 * var2 >> 12;
 			return;
-		case 1:
+		case 1: // Tait–Bryan XZY
 			var7 = var2 * var6 >> 12;
 			var8 = var5 * var6 >> 12;
 			this.rightX = var2 * var3 >> 12;
@@ -408,7 +408,7 @@ public final class Matrix {
 			this.upZ = var3 * var4 >> 12;
 			this.dirZ = (var1 * var2 >> 12) + (var8 * var4 >> 12);
 			return;
-		case 2:
+		case 2: // Tait–Bryan YXZ
 			var7 = var2 * var3 >> 12;
 			var8 = var4 * var6 >> 12;
 			var9 = var5 * var3 >> 12;

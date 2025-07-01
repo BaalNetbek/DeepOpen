@@ -136,7 +136,7 @@ public final class ListItemWindow {
 			}
 
 			if (var1.isItem()) {
-				new FileRead();
+				//new FileRead();
 				var5 = null;
 				final SolarSystem[] var15 = FileRead.loadSystemsBinary();
 				if (Status.lowestItemPrices[var1.getIndex()] > 0) {
@@ -271,9 +271,8 @@ public final class ListItemWindow {
 			this.shipPreviewCam = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1000, 10, 31768);
 			this.shipPreviewCam.translate(0, 400, -Ship.SHIP_PREVIEW_SCALING[this.contextItem.getIndex()]);
 			this.shipPreviewCam.rotateEuler(256, 2048, 0);
-			new Group();
-			Group var2 = null;
-			(var2 = Globals.getShipGroup(this.contextItem.getIndex(), this.contextItem.ship.getRace())).translate(0, 0, Ship.SHIP_HANGAR_OFFSETS[this.contextItem.getIndex()]);
+			Group var2 = Globals.getShipGroup(this.contextItem.getIndex(), this.contextItem.ship.getRace());
+			var2.translate(0, 0, Ship.SHIP_HANGAR_OFFSETS[this.contextItem.getIndex()]);
 			this.ship = new Group();
 			this.ship.uniqueAppend_(var2);
 		} else if (this.lastCam != null) {

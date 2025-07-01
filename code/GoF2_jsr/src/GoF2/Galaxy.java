@@ -12,7 +12,7 @@ public final class Galaxy {
 		if (var0 < 0) {
 			return null;
 		}
-		new FileRead();
+		//new FileRead();
 		final SolarSystem[] var1 = FileRead.loadSystemsBinary();
 		if (Status.getPlayingTime() == 0L) {
 			final boolean[] var2 = Status.getVisibleSystems();
@@ -64,7 +64,6 @@ public final class Galaxy {
 		SolarSystem[] var2 = null;
 		Item[] var3;
 		if (!var1) {
-			new FileRead();
 			var3 = null;
 			var2 = FileRead.loadSystemsBinary();
 		}
@@ -72,55 +71,55 @@ public final class Galaxy {
 		var3 = Globals.getItems();
 		final int[] var4 = new int[11];
 		final int[] var5 = new int[11];
-		int var6 = 0;
 
-		for(int var7 = 154; var7 < 164; ++var7) {
-			var5[var6] = var7;
+		for(int astId = 154, i = 0; astId < 164; ++astId) {
+			var5[i] = astId;
 			if (var1) {
-				var4[var6] = 0;
+				var4[i] = 0;
 			} else {
-				var4[var6] = (byte)invDistancePercent(var2[var0.getSystemIndex()].getPosX(), var2[var0.getSystemIndex()].getPosY(), var2[var3[var7].getLowestPriceSystemId()].getPosX(), var2[var3[var7].getLowestPriceSystemId()].getPosY());
-				if (var4[var6] < 50) {
-					var4[var6] = 0;
+				final SolarSystem solarSystem = var2[var3[astId].getLowestPriceSystemId()];
+				final SolarSystem solarSystem2 = var2[var0.getSystemIndex()];
+				var4[i] = (byte)invDistancePercent(solarSystem2.getPosX(), solarSystem2.getPosY(), solarSystem.getPosX(), solarSystem.getPosY());
+				if (var4[i] < 50) {
+					var4[i] = 0;
 				}
 
-				++var6;
+				++i;
 			}
 		}
 
 		var5[10] = 164;
 		var4[10] = var1 ? 100 : 0;
 
-		int var8;
 		int var9;
 		boolean var12;
 		do {
 			var12 = true;
 
-			for(var8 = 1; var8 < var4.length; ++var8) {
-				if (var4[var8 - 1] < var4[var8]) {
-					var9 = var4[var8 - 1];
-					final int var11 = var5[var8 - 1];
-					var4[var8 - 1] = var4[var8];
-					var5[var8 - 1] = var5[var8];
-					var4[var8] = var9;
-					var5[var8] = var11;
+			for(int i = 1; i < var4.length; ++i) {
+				if (var4[i - 1] < var4[i]) {
+					var9 = var4[i - 1];
+					final int var11 = var5[i - 1];
+					var4[i - 1] = var4[i];
+					var5[i - 1] = var5[i];
+					var4[i] = var9;
+					var5[i] = var11;
 					var12 = false;
 				}
 			}
 		} while(!var12);
 
-		for(var8 = 0; var8 < var4.length; ++var8) {
-			if (var4[var8] > 0) {
-				var4[var8] = (byte)(var4[var8] - var8 * 2);
+		for(int i = 0; i < var4.length; ++i) {
+			if (var4[i] > 0) {
+				var4[i] = (byte)(var4[i] - i * 2);
 			}
 		}
 
 		final int[] var10 = new int[var4.length << 1];
 
-		for(var9 = 0; var9 < var10.length; var9 += 2) {
-			var10[var9] = var5[var9 / 2];
-			var10[var9 + 1] = var4[var9 / 2];
+		for(int i = 0; i < var10.length; i += 2) {
+			var10[i] = var5[i / 2];
+			var10[i + 1] = var4[i / 2];
 		}
 
 		return var10;

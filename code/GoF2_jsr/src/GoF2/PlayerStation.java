@@ -19,7 +19,7 @@ public final class PlayerStation extends PlayerStaticFar {
 	public PlayerStation(final Station var1) {
 		super(-1, (AbstractMesh)null, 0, 0, 0);
 		this.player.setRadius(15000);
-		new FileRead();
+		//new FileRead();
 		int[] var2 = null;
 		if (!Status.inAlienOrbit()) {
 			var2 = FileRead.loadStationParts(var1.getId(), Status.getSystem().getRace());

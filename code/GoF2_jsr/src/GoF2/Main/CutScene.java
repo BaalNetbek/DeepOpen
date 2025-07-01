@@ -77,7 +77,7 @@ public final class CutScene extends IApplicationModule {
 		case 23:
 			GlobalStatus.renderer.setActiveCamera(this.hangarCam);
 			KIPlayer[] var1;
-			if ((var1 = this.level.getEnemies())[0].getId_() >= 0) {
+			if ((var1 = this.level.getEnemies())[0].getMeshId() >= 0) {
 				((PlayerFighter)var1[0]).setExhaustVisible(false);
 				return;
 			}
@@ -128,7 +128,7 @@ public final class CutScene extends IApplicationModule {
 				this.rotation = 1536.0F;
 				this.cameraGroupOfOne_.updateTransform(true);
 				KIPlayer[] var1;
-				if ((var1 = this.level.getEnemies())[0].getId_() >= 0) {
+				if ((var1 = this.level.getEnemies())[0].getMeshId() >= 0) {
 					this.shipPosY = var1[0].geometry.getPosY();
 					this.shipPosZ = var1[0].geometry.getPosZ();
 				}
@@ -184,7 +184,7 @@ public final class CutScene extends IApplicationModule {
 			if (this.sceneId == 23) {
 				final int var6 = AEMath.sin((int)this.lifeTime) >> 7;
 				KIPlayer[] var8;
-				if ((var8 = this.level.getEnemies())[0].getId_() >= 0) {
+				if ((var8 = this.level.getEnemies())[0].getMeshId() >= 0) {
 					var8[0].geometry.moveTo(0, this.shipPosY + var6, this.shipPosZ);
 				}
 

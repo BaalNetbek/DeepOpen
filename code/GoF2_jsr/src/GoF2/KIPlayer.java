@@ -13,7 +13,7 @@ public abstract class KIPlayer {
 	public Player player;
 	public AbstractMesh mainMesh_;
 	public Group geometry;
-	protected int abstractId_;
+	protected int meshId;
 	protected int shipId_;
 	protected int race;
 	protected Level level;
@@ -47,22 +47,22 @@ public abstract class KIPlayer {
 	protected boolean visible;
 	public boolean withinRenderDistance = true;
 
-	public KIPlayer(final int var1, final int var2, final Player var3, final AbstractMesh var4, final int var5, final int var6, final int var7) {
-		this.race = var2;
-		this.player = var3;
-		this.mainMesh_ = var4;
-		this.abstractId_ = var1;
+	public KIPlayer(final int meshId, final int race, final Player player, final AbstractMesh mesh, final int x, final int y, final int z) {
+		this.race = race;
+		this.player = player;
+		this.mainMesh_ = mesh;
+		this.meshId = meshId;
 		if (this.mainMesh_ != null) {
-			this.mainMesh_.moveTo(var5, var6, var7);
+			this.mainMesh_.moveTo(x, y, z);
 			this.mainMesh_.setRotation(0, 0, 0);
-			this.player.transform = var4.getToParentTransform();
+			this.player.transform = mesh.getToParentTransform();
 		}
 
 		this.player.setKIPlayer(this);
 		this.armed = false;
-		this.targetX = var5;
-		this.targetY = var6;
-		this.targetZ = var7;
+		this.targetX = x;
+		this.targetY = y;
+		this.targetZ = z;
 		this.isAsteroid = false;
 		this.junk = false;
 		this.hasCargo = false;
@@ -198,27 +198,27 @@ public abstract class KIPlayer {
 		return this.wingman;
 	}
 
-	public final void setWingman(final boolean var1, final int var2) {
-		this.wingman = true;
-		this.wingmanId = var2;
+	public final void setWingman(final boolean set, final int id) {
+		this.wingman = set;
+		this.wingmanId = id;
 		this.wingmanCommand = 2;
 	}
 
-	public void setWingmanCommand(final int var1, final KIPlayer var2) {
-		this.wingmanCommand = var1;
-		this.wingmanTarget = var2;
+	public void setWingmanCommand(final int cmd, final KIPlayer target) {
+		this.wingmanCommand = cmd;
+		this.wingmanTarget = target;
 	}
 
-	public void setSpeed(final int var1) {
-		this.speed = var1;
+	public void setSpeed(final int speed) {
+		this.speed = speed;
 	}
 
-	public final void setLevel(final Level var1) {
-		this.level = var1;
+	public final void setLevel(final Level lvl) {
+		this.level = lvl;
 	}
 
-	public final void setExplosion(final Explosion var1) {
-		this.explosion = var1;
+	public final void setExplosion(final Explosion expl) {
+		this.explosion = expl;
 	}
 
 	public final void setRoute(final Route var1) {
@@ -229,20 +229,16 @@ public abstract class KIPlayer {
 		return this.activeRoute_;
 	}
 
-	public final void addGun(final Gun var1, final int var2) {
-		final Player var10000 = this.player;
-		final int var3 = var2;
-		final Gun var5 = var1;
-		final Player var4 = var10000;
-		if (var10000.guns != null && var3 <= 3 && var3 >= 0) {
-			var4.guns[var3] = new Gun[1];
-			var4.guns[var3][0] = var5;
+	public final void addGun(final Gun gun, final int var2) {
+		if (this.player.guns != null && var2 <= 3 && var2 >= 0) { //why <=3 and not < 3? primary, secondary, turret did it forget something?
+			this.player.guns[var2] = new Gun[1];
+			this.player.guns[var2][0] = gun;
 		}
 
 	}
 
-	public final int getId_() {
-		return this.abstractId_;
+	public final int getMeshId() {
+		return this.meshId;
 	}
 
 	public AEVector3D getPosition(final AEVector3D var1) {
@@ -278,12 +274,19 @@ public abstract class KIPlayer {
 	public final void setJumpMesh(final AbstractMesh var1) {
 		this.jumpMesh = var1;
 	}
-
-	public final void createCrate(final int var1) {
-		switch (var1) {
+	/**
+	 * @param type 0-box, 1-asteroid, 2-junk, 3-void_junk
+	 */
+	public final void createCrate(final int type) {
+		switch (type) {
 		case 0:
 			this.waste = AEResourceManager.getGeometryResource(17);
 			this.waste.setScale(16384, 16384, 16384);
+			break;
+		case 1:
+		default:
+			this.waste = AEResourceManager.getGeometryResource(6769);
+			this.waste.setScale(512, 512, 512);
 			break;
 		case 2:
 			this.waste = AEResourceManager.getGeometryResource(9996);
@@ -292,10 +295,6 @@ public abstract class KIPlayer {
 		case 3:
 			this.waste = AEResourceManager.getGeometryResource(6767);
 			this.waste.setScale(2048, 2048, 2048);
-			break;
-		default:
-			this.waste = AEResourceManager.getGeometryResource(6769);
-			this.waste.setScale(512, 512, 512);
 			break;
 		}
 
@@ -306,17 +305,17 @@ public abstract class KIPlayer {
 	}
 
 	public final boolean cargoAvailable_() {
-		boolean var1 = false;
+		boolean available = false;
 		if (this.cargo != null) {
-			for(int var2 = 0; var2 < this.cargo.length; var2 += 2) {
-				if (this.cargo[var2 + 1] > 0) {
-					var1 = true;
+			for(int i = 0; i < this.cargo.length; i += 2) {
+				if (this.cargo[i + 1] > 0) {
+					available = true;
 					break;
 				}
 			}
 		}
 
-		return var1;
+		return available;
 	}
 
 	public abstract void update(long var1);

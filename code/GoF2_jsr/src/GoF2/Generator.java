@@ -242,7 +242,7 @@ public final class Generator {
 	}
 
 	public final Mission createFreelanceMission(final Agent agent) {
-		new FileRead();
+		//new FileRead();
 		final SolarSystem[] loadSystemsBinary = FileRead.loadSystemsBinary();
 		int i = generateStationIndex(loadSystemsBinary, agent.getStationId());
 		if (Status.getSystem().getId() == 15) {
