@@ -1907,14 +1907,14 @@ public final class Level {
 				if (this.ships != null) {
 					boolean var11 = false;
 
-					for(int i = 0; i < this.ships.length; ++i) {
-						final KIPlayer var7 = this.ships[i];
-						if ((this.localFightersCnt > 0 && i < this.localFightersCnt || this.jumperCnt > 0 && i < this.localFightersCnt + this.jumperCnt && i > this.localFightersCnt) && var7.isDead() && !var7.player.isActive()) {
+					for(int var6 = 0; var6 < this.ships.length; ++var6) {
+						final KIPlayer var7 = this.ships[var6];
+						if ((this.localFightersCnt > 0 && var6 < this.localFightersCnt || this.jumperCnt > 0 && var6 < this.localFightersCnt + this.jumperCnt && var6 > this.localFightersCnt) && var7.isDead() && !var7.player.isActive()) {
 							var7.revive();
 							((PlayerFighter)var7).setPosition(0, 0, 0);
 						}
 
-						if (var4 >= 2 && this.raidWavesCounter < 2 && this.raidersCnt > 0 && i >= this.ships.length - this.raidersCnt && var7.isDead() && !var7.player.isActive()) {
+						if (var4 >= 2 && this.raidWavesCounter < 2 && this.raidersCnt > 0 && var6 >= this.ships.length - this.raidersCnt && var7.isDead() && !var7.player.isActive()) {
 							var11 = true;
 							var7.revive();
 							((PlayerFighter)var7).setPosition(var7.targetX, var7.targetY, this.ego.getPosition().z + 40000);
@@ -1935,36 +1935,42 @@ public final class Level {
 			if (this.alienRespawnTick > 40000) {
 				this.alienRespawnTick = 0;
 				if (this.ships != null) {
-					for(int i = 0; i < this.ships.length; ++i) {
-						if ((var5 = this.ships[i]).race == 9 && var5.isDead() && !var5.player.isActive()) {
-							int x, y, z;
+					for(var4 = 0; var4 < this.ships.length; ++var4) {
+						if ((var5 = this.ships[var4]).race == 9 && var5.isDead() && !var5.player.isActive()) {
+							var5.revive();
+							PlayerFighter var10000;
+							int var10001;
+							int var10002;
+							int var10003;
 							if (!Status.inAlienOrbit() && Status.getStation().isAttackedByAliens()) {
-								x = this.stationaries[3].getPosition(this.tempVec).x - 10000 + GlobalStatus.random.nextInt(20000);
-								y = this.stationaries[3].getPosition(this.tempVec).y - 10000 + GlobalStatus.random.nextInt(20000);
-								z = this.stationaries[3].getPosition(this.tempVec).z - 10000 + GlobalStatus.random.nextInt(20000);
+								var10000 = (PlayerFighter)var5;
+								var10001 = this.stationaries[3].getPosition(this.tempVec).x - 10000 + GlobalStatus.random.nextInt(20000);
+								var10002 = this.stationaries[3].getPosition(this.tempVec).y - 10000 + GlobalStatus.random.nextInt(20000);
+								var10003 = this.stationaries[3].getPosition(this.tempVec).z - 10000 + GlobalStatus.random.nextInt(20000);
 							} else {
-								x = this.ego.getPosition().x - 30000 + GlobalStatus.random.nextInt(60000);
-								y = this.ego.getPosition().y - 30000 + GlobalStatus.random.nextInt(60000);
-								z = this.ego.getPosition().z + GlobalStatus.random.nextInt(2) == 0 ? 30000 : -30000;
+								var10000 = (PlayerFighter)var5;
+								var10001 = this.ego.getPosition().x - 30000 + GlobalStatus.random.nextInt(60000);
+								var10002 = this.ego.getPosition().y - 30000 + GlobalStatus.random.nextInt(60000);
+								var10003 = this.ego.getPosition().z + GlobalStatus.random.nextInt(2) == 0 ? 30000 : -30000;
 							}
 
-							((PlayerFighter)var5).setPosition(x, y, z);
+							var10000.setPosition(var10001, var10002, var10003);
 						}
 					}
 				}
 			}
 		}
 
-		int i;
+		int var9;
 		if (this.egoGuns != null) {
-			for(i = 0; i < this.egoGuns.length; ++i) {
-				((AbstractGun)this.egoGuns[i]).update(var1);
+			for(var9 = 0; var9 < this.egoGuns.length; ++var9) {
+				((AbstractGun)this.egoGuns[var9]).update(var1);
 			}
 		}
 
 		if (this.enemyGuns != null) {
-			for(i = 0; i < this.enemyGuns.length; ++i) {
-				((AbstractGun)this.enemyGuns[i]).update(var1);
+			for(var9 = 0; var9 < this.enemyGuns.length; ++var9) {
+				((AbstractGun)this.enemyGuns[var9]).update(var1);
 			}
 		}
 
