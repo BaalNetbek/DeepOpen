@@ -162,12 +162,16 @@ public final class Matrix {
         this.positionY += this.dirY * var1 >> 12;
         this.positionZ += this.dirZ * var1 >> 12;
     }
-
-    public final AEVector3D getPosition(final AEVector3D var1) {
-        var1.x = this.positionX;
-        var1.y = this.positionY;
-        var1.z = this.positionZ;
-        return var1;
+    /**
+     * Position is passed both in argument and return value.
+     * @param v vector that position is copied to
+     * @return parameter v holding position
+     */
+    public final AEVector3D getPosition(final AEVector3D v) {
+        v.x = this.positionX;
+        v.y = this.positionY;
+        v.z = this.positionZ;
+        return v;
     }
 
     public final AEVector3D getPosition() {

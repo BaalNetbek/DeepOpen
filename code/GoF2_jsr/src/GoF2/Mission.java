@@ -17,6 +17,7 @@ public final class Mission {
 	private boolean failed = false;
 	private boolean won = false;
 	private int commodityId;
+	/** turns to defending fighters count in Protection mission **/
 	private int commodityAmmout;
 	private int tasksTreshold_;
 	private boolean visibleOnMap;
