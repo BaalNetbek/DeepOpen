@@ -18,9 +18,9 @@ public final class Sparks extends AbstractMesh {
         this.unused4a_ = particleCount > 1;
     }
 
-    public Sparks(final ITexture texture, final int u1, final int v1, final int u2, final int v2, final int particleCount, final int var7, final int var8, final int var9) {
-      //this(texture, 33,225, 63,255,            10, 700, 100, 500, (byte)2);    
-        this(texture, u1, v1, u2, v2, particleCount, 700, 100, 500, (byte)2);
+    public Sparks(final ITexture texture, final int u1, final int v1, final int u2, final int v2, final int particleCount, final int baseParticleTime, final int particleTimeRange, final int var9) {
+      //this(texture, 33,225, 63,255,            10, 					700, 					 100,  500, (byte)2);    
+        this(texture, u1, v1, u2, v2, particleCount, baseParticleTime, particleTimeRange, var9, (byte)2);
     }
 
     public final void moveTo(final int x, final int y, final int z) {
@@ -44,11 +44,15 @@ public final class Sparks extends AbstractMesh {
             GlobalStatus.renderer.drawNodeInVF(this.impact.mesh);
         }
     }
-
+    /**
+     * Can't clone Sparks.
+     */
     public final GraphNode clone() {
         return null;
     }
-
+    /**
+     * Can't set texture for Sparks.
+     */
     public final void setTexture(final ITexture texture) {
     }
 

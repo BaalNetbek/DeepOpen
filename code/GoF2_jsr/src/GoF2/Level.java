@@ -139,15 +139,21 @@ public final class Level {
 					if (var4 >= 3) {
 						GlobalStatus.random.setSeed(System.currentTimeMillis());
 						if (Status.inAlienOrbit()) {
-							var4 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
-							final int var16 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
-							var6 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
-							this.stationaries[2].setPosition(var4, var16, var6);
-							this.stationaries[2].mainMesh_.setRotation(-4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192));
+							final int x,y,z;
+							x = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
+							y = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
+							z = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
+							this.stationaries[2].setPosition(x, y, z);
+							this.stationaries[2].mainMesh_.setRotation(-4096 + GlobalStatus.random.nextInt(8192),
+																					-4096 + GlobalStatus.random.nextInt(8192),
+																					-4096 + GlobalStatus.random.nextInt(8192));
 						}
 
 						if (!Status.gameWon()) {
-							this.stationaries[3] = new PlayerWormHole(6805, AEResourceManager.getGeometryResource(6805), -40000 + GlobalStatus.random.nextInt(80000), -20000 + GlobalStatus.random.nextInt(40000), 40000 + GlobalStatus.random.nextInt(40000), var2);
+							this.stationaries[3] = new PlayerWormHole(6805, AEResourceManager.getGeometryResource(6805),
+																			      -40000 + GlobalStatus.random.nextInt(80000),
+																			      -20000 + GlobalStatus.random.nextInt(40000),
+																			      40000 + GlobalStatus.random.nextInt(40000), var2);
 							this.stationaries[3].setLevel(this);
 						}
 
@@ -207,8 +213,8 @@ public final class Level {
 					(var15 = new int[3])[0] = var11.countEquippedOfType(0);
 					var15[1] = var11.countEquippedOfType(1);
 					var15[2] = var11.countEquippedOfType(2);
-					Player var17;
-					(var17 = new Player(1200.0F, Status.getShip().getBaseArmour(), var15[0], var15[1], var15[2])).setMaxShieldHP(Status.getShip().getShield());
+					Player var17 = new Player(1200.0F, Status.getShip().getBaseArmour(), var15[0], var15[1], var15[2]);
+					var17.setMaxShieldHP(Status.getShip().getShield());
 					var17.setMaxArmorHP(Status.getShip().getAdditionalArmour());
 					this.ego = new PlayerEgo(var17);
 					this.ego.setShip(Status.getShip().getIndex(), Status.getShip().getRace());
@@ -424,79 +430,81 @@ public final class Level {
 
 	}
 
-	private Gun createGun(final int var1, final int var2, int var3, final int var4, final int var5, final int var6, final int var7, final int var8) {
-		Gun var9 = null;
-		Object var10 = null;
-		Sparks var11 = this.gunSparks;
-		AbstractMesh var14;
-		switch(var3) {
+	private Gun createGun(final int itemIdx, final int equipmentIdx, int type, final int ammo, final int dmg, final int reload, final int range, final int velocity) {
+		Gun gun = null;
+		Object gunObject = null;
+		Sparks sparks = this.gunSparks;
+		AbstractMesh gunGeometry;
+		switch(type) {
 		case 0:
 		case 1:
 		case 3:
-			if (Globals.TYPE_WEAPONS[var1] >= 0) {
-				final int var15 = var3 == 0 ? 800 : 400;
-				var9 = new Gun(var2, var5, 15, var4, var7, var6, var8, new AEVector3D(0, 0, var15), new AEVector3D());
-				var14 = AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var1]);
-				if (var3 == 3) {
-					var3 = 300 + 70 * (var1 - 28);
-					var14.setScale(var3, var3, var3);
-					var14.setAnimationRangeInTime(var1 - 28 + 10, var1 - 28 + 10);
-					var14.setAnimationMode((byte)1);
-					(var9 = new Gun(var2, var5, 15, var4, var7, var6, var8, new AEVector3D(0, 0, 200), new AEVector3D())).setSpread(20);
+			if (Globals.TYPE_WEAPONS[itemIdx] >= 0) {
+				final int z = type == 0 ? 800 : 400;
+				gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, z), new AEVector3D());
+				gunGeometry = AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]);
+				if (type == 3) {
+					final int scale = 300 + 70 * (itemIdx - 28);
+					gunGeometry.setScale(scale, scale, scale);
+					gunGeometry.setAnimationRangeInTime(itemIdx - 28 + 10, itemIdx - 28 + 10);
+					gunGeometry.setAnimationMode((byte)1);
+					gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, 200), new AEVector3D());
+					gun.setSpread(20);
 				}
 
-				var10 = new ObjectGun(var9, var14);
+				gunObject = new ObjectGun(gun, gunGeometry);
 			} else {
-				var9 = new Gun(var2, var5, 1, var4, var7, var6, var8, new AEVector3D(0, 0, 400), new AEVector3D());
-				var10 = new LaserGun(var9, var1, this);
+				gun = new Gun(equipmentIdx, dmg, 1, ammo, range, reload, velocity, new AEVector3D(0, 0, 400), new AEVector3D());
+				gunObject = new LaserGun(gun, itemIdx, this);
 			}
 			break;
 		case 2:
-			var9 = new Gun(var2, var5, 15, var4, var7, var6, var8, new AEVector3D(0, 0, 200), new AEVector3D());
-			var10 = new ObjectGun(var9, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var1]));
+			gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, 200), new AEVector3D());
+			gunObject = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]));
 			break;
 		case 4:
 		case 5:
-			var9 = new Gun(var2, var5, 1, var4, var7, var6, var8, new AEVector3D(), new AEVector3D());
-			(var14 = AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var1])).setRenderLayer(2);
-			var10 = new RocketGun(var9, var14, var3 == 5);
-			var11 = this.missilesSparks;
+			gun = new Gun(equipmentIdx, dmg, 1, ammo, range, reload, velocity, new AEVector3D(), new AEVector3D());
+			gunGeometry = AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]);
+			gunGeometry.setRenderLayer(2);
+			gunObject = new RocketGun(gun, gunGeometry, type == 5);
+			sparks = this.missilesSparks;
 			break;
 		case 6:
 		case 7:
-			var9 = new Gun(var2, var5, 1, var4, var7, var6, var8, new AEVector3D(0, -200, 400), new AEVector3D());
+			gun = new Gun(equipmentIdx, dmg, 1, ammo, range, reload, velocity, new AEVector3D(0, -200, 400), new AEVector3D());
 			AbstractMesh var12 = null;
 			int var13;
-			if (var3 == 7) {
+			if (type == 7) {
 				var12 = AEResourceManager.getGeometryResource(18); //nuke
-				var13 = var1 - 44 + 1 << 9;
+				var13 = itemIdx - 44 + 1 << 9;
 			} else {
 				var12 = AEResourceManager.getGeometryResource(16); //emp bomb
-				var13 = var1 - 41 + 1 << 9;
+				var13 = itemIdx - 41 + 1 << 9;
 			}
 			var12.setScale(var13, var13, var13);
 
 			var12.setRenderLayer(2);
-			var10 = new RocketGun(var9, var12, false);
-			var11 = this.missilesSparks;
+			gunObject = new RocketGun(gun, var12, false);
+			sparks = this.missilesSparks;
 			break;
 		case 8:
-			var9 = new Gun(var2, var5, 15, var4, var7, var6, var8, new AEVector3D(0, 0, 0), new AEVector3D());
-			var10 = new ObjectGun(var9, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[var1]));
+			gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, 0), new AEVector3D());
+			gunObject = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]));
 		}
 
-		var9.setLevel(this);
-		var9.setSparks(var11);
+		gun.setLevel(this);
+		gun.setSparks(sparks);
 		if (this.egoGuns == null) {
-			this.egoGuns = new AbstractMesh[]{(AbstractMesh)var10};
+			this.egoGuns = new AbstractMesh[]{(AbstractMesh)gunObject};
 		} else {
-			final AbstractMesh[] var16 = new AbstractMesh[this.egoGuns.length + 1];
-			System.arraycopy(this.egoGuns, 0, var16, 0, this.egoGuns.length);
-			var16[var16.length - 1] = (AbstractMesh)var10;
-			this.egoGuns = var16;
+			final AbstractMesh[] newGuns = new AbstractMesh[this.egoGuns.length + 1];
+			System.arraycopy(this.egoGuns, 0, newGuns, 0, this.egoGuns.length);
+			newGuns[newGuns.length - 1] = (AbstractMesh)gunObject;
+			this.egoGuns = newGuns;
 		}
 
-		return var9;
+		return gun;
 	}
 
 	private void createWingmen() {
@@ -545,13 +553,13 @@ public final class Level {
 			int i;
 			int var3;
 			if (Status.inAlienOrbit()) {
-				i = 1 + GlobalStatus.random.nextInt(3);
-				this.ships = new KIPlayer[i];
+				final int alienCnt = 1 + GlobalStatus.random.nextInt(3);
+				this.ships = new KIPlayer[alienCnt];
 
-				for(var3 = 0; var3 < i; ++var3) {
-					this.ships[var3] = createShip(9, 0, Globals.getRandomEnemyFighter(9), (Waypoint)null);
-					this.ships[var3].setPosition(-40000 + GlobalStatus.random.nextInt(80000), -40000 + GlobalStatus.random.nextInt(80000), -40000 + GlobalStatus.random.nextInt(80000));
-					this.ships[var3].player.setAlwaysEnemy(true);
+				for(i = 0; i < alienCnt; ++i) {
+					this.ships[i] = createShip(9, 0, Globals.getRandomEnemyFighter(9), (Waypoint)null);
+					this.ships[i].setPosition(-40000 + GlobalStatus.random.nextInt(80000), -40000 + GlobalStatus.random.nextInt(80000), -40000 + GlobalStatus.random.nextInt(80000));
+					this.ships[i].player.setAlwaysEnemy(true);
 				}
 
 			} else {
@@ -606,30 +614,30 @@ public final class Level {
 						(var14 = AEResourceManager.getGeometryResource(6783)).setRenderLayer(2);
 					}
 
-					for(var6 = this.localFightersCnt; var6 < this.localFightersCnt + this.jumperCnt; ++var6) {
-						this.ships[var6] = createShip(race, 0, Globals.getRandomEnemyFighter(var8), (Waypoint)null);
-						this.ships[var6].setDead();
+					for(i = this.localFightersCnt; i < this.localFightersCnt + this.jumperCnt; ++i) {
+						this.ships[i] = createShip(race, 0, Globals.getRandomEnemyFighter(var8), (Waypoint)null);
+						this.ships[i].setDead();
 						final Route var19 = new Route(new int[]{-200000 + GlobalStatus.random.nextInt(400000), -100000 + GlobalStatus.random.nextInt(200000), 50000 + GlobalStatus.random.nextInt(100000)});
-						this.ships[var6].setRoute(var19);
-						this.ships[var6].setJumper(true);
-						this.ships[var6].setJumpMesh(var14);
+						this.ships[i].setRoute(var19);
+						this.ships[i].setJumper(true);
+						this.ships[i].setJumpMesh(var14);
 					}
 
 					final boolean var18 = race == 0 && GlobalStatus.random.nextInt(100) < 30;
 
-					for(var7 = this.localFightersCnt + this.jumperCnt; var7 < this.localFightersCnt + this.jumperCnt + this.bigShipsCnt; ++var7) {
-						if (var18 && var7 == this.localFightersCnt + this.jumperCnt) {
-							this.ships[var7] = createShip(race, 1, 14, (Waypoint)null);
-							((PlayerFixedObject)this.ships[var7]).setMoving(false);
-							this.ships[var7].setPosition(
+					for(i = this.localFightersCnt + this.jumperCnt; i < this.localFightersCnt + this.jumperCnt + this.bigShipsCnt; ++i) {
+						if (var18 && i == this.localFightersCnt + this.jumperCnt) {
+							this.ships[i] = createShip(race, 1, 14, (Waypoint)null);
+							((PlayerFixedObject)this.ships[i]).setMoving(false);
+							this.ships[i].setPosition(
 									  -40000 + GlobalStatus.random.nextInt(80000),
 										-5000 + GlobalStatus.random.nextInt(10000),
 										40000 + GlobalStatus.random.nextInt(80000)
 									);
 						} else {
-							this.ships[var7] = createShip(race, 1, race == 1 ? 13 : 15, (Waypoint)null);
-							((PlayerFixedObject)this.ships[var7]).setMoving(true);
-							this.ships[var7].setPosition(
+							this.ships[i] = createShip(race, 1, race == 1 ? 13 : 15, (Waypoint)null);
+							((PlayerFixedObject)this.ships[i]).setMoving(true);
+							this.ships[i].setPosition(
 									  (-80000 + GlobalStatus.random.nextInt(60000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1),
 										-20000 + GlobalStatus.random.nextInt(40000),
 										-80000 + GlobalStatus.random.nextInt(160000)
@@ -656,6 +664,7 @@ public final class Level {
 					}
 
 				} else {
+					int j;
 					i = Status.getSystem().getRace();
 					var3 = GlobalStatus.random.nextInt(100) < 75 ? 8 : Standing.enemyRace(i);
 					final boolean var4 = GlobalStatus.random.nextInt(2) == 0;
@@ -667,17 +676,17 @@ public final class Level {
 										-50000 + GlobalStatus.random.nextInt(100000), 0, var4 ? -100000 : 100000
 									});
 						var9 = 3 + (int)(5.0F * (Status.getMission().getDifficulty() / 10.0F));
-						race = 2 + GlobalStatus.random.nextInt(6);
-						this.ships = new KIPlayer[var9 + race];
+						j = 2 + GlobalStatus.random.nextInt(6);
+						this.ships = new KIPlayer[var9 + j];
 
-						for(race = 0; race < var9; ++race) {
-							this.ships[race] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), (Waypoint)null);
-							this.ships[race].player.setAlwaysEnemy(true);
+						for(j = 0; j < var9; ++j) {
+							this.ships[j] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), (Waypoint)null);
+							this.ships[j].player.setAlwaysEnemy(true);
 						}
 
-						for(race = var9; race < this.ships.length; ++race) {
-							this.ships[race] = createShip(i, 0, Globals.getRandomEnemyFighter(i), this.enemyRoute_.getWaypoint(GlobalStatus.random.nextInt(this.enemyRoute_.length())));
-							this.ships[race].player.setAlwaysFriend(true);
+						for(j = var9; j < this.ships.length; ++j) {
+							this.ships[j] = createShip(i, 0, Globals.getRandomEnemyFighter(i), this.enemyRoute_.getWaypoint(GlobalStatus.random.nextInt(this.enemyRoute_.length())));
+							this.ships[j].player.setAlwaysFriend(true);
 						}
 
 						this.successObjective = new Objective(7, var9, this);
@@ -689,27 +698,27 @@ public final class Level {
 						var9 = 2 + (int)(4.0F * (var1.getDifficulty() / 10.0F));
 						this.ships = new KIPlayer[var9 + var7];
 
-						for(race = 0; race < var9; ++race) {
-							this.ships[race] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), (Waypoint)null);
-							((PlayerFighter)this.ships[race]).setPosition(this.enemyRoute_.getWaypoint(0).x + race * 2000, this.enemyRoute_.getWaypoint(0).y + race * 2000, this.enemyRoute_.getWaypoint(0).z + race * 2000);
-							this.ships[race].player.setAlwaysEnemy(true);
-							this.ships[race].setRoute(this.enemyRoute_.clone());
-							this.ships[race].getRoute().reachWaypoint_(0);
+						for(j = 0; j < var9; ++j) {
+							this.ships[j] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), (Waypoint)null);
+							((PlayerFighter)this.ships[j]).setPosition(this.enemyRoute_.getWaypoint(0).x + j * 2000, this.enemyRoute_.getWaypoint(0).y + j * 2000, this.enemyRoute_.getWaypoint(0).z + j * 2000);
+							this.ships[j].player.setAlwaysEnemy(true);
+							this.ships[j].setRoute(this.enemyRoute_.clone());
+							this.ships[j].getRoute().reachWaypoint_(0);
 						}
 
-						race = 0;
+						int k = 0;
 
-						for(var8 = var9; var8 < this.ships.length; ++var8) {
-							this.ships[var8] = createShip(i, 0, Globals.getRandomEnemyFighter(i), (Waypoint)null);
-							this.ships[var8].player.setAlwaysFriend(true);
-							var3 = this.asteroids.length / 2 + race;
-							race++;
+						for(j = var9; j < this.ships.length; ++j) {
+							this.ships[j] = createShip(i, 0, Globals.getRandomEnemyFighter(i), (Waypoint)null);
+							this.ships[j].player.setAlwaysFriend(true);
+							var3 = this.asteroids.length / 2 + k;
+							k++;
 							var16.set(this.asteroids[var3].getPosition(var16));
-							this.ships[var8].setPosition(var16.x, var16.y + 2000, var16.z);
-							this.ships[var8].hasCargo = false;
-							this.ships[var8].cargo = null;
-							this.ships[var8].setSpeed(0);
-							this.ships[var8].player.setHitPoints(this.ships[var8].player.getMaxHitpoints() * 3);
+							this.ships[j].setPosition(var16.x, var16.y + 2000, var16.z);
+							this.ships[j].hasCargo = false;
+							this.ships[j].cargo = null;
+							this.ships[j].setSpeed(0);
+							this.ships[j].player.setHitPoints(this.ships[j].player.getMaxHitpoints() * 3);
 						}
 
 						this.successObjective = new Objective(18, 0, var9, this);
@@ -737,7 +746,7 @@ public final class Level {
 							this.missionRoute = createRoute(2 + GlobalStatus.random.nextInt(2));
 						}
 
-						var8 = 2 + (int)(5.0F * (Status.getMission().getDifficulty() / 10.0F));
+						var8 = 2 + (int)((Status.getMission().getDifficulty() * 5.0F / 10.0F));
 						this.ships = new KIPlayer[var8];
 
 						for(var3 = 0; var3 < this.ships.length; ++var3) {
@@ -781,18 +790,18 @@ public final class Level {
 						var3 = Standing.enemyRace(var1.getClientRace());
 						var9 = var1.getClientRace();
 
-						for(race = 0; race < this.ships.length; ++race) {
-							if (race < i) {
-								this.ships[race] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), this.enemyRoute_.getWaypoint(GlobalStatus.random.nextInt(this.enemyRoute_.length())));
-								this.ships[race].setToSleep();
-								this.ships[race].player.setAlwaysEnemy(true);
+						for(j = 0; j < this.ships.length; ++j) {
+							if (j < i) {
+								this.ships[j] = createShip(var3, 0, Globals.getRandomEnemyFighter(var3), this.enemyRoute_.getWaypoint(GlobalStatus.random.nextInt(this.enemyRoute_.length())));
+								this.ships[j].setToSleep();
+								this.ships[j].player.setAlwaysEnemy(true);
 							} else {
-								this.ships[race] = createShip(var9, 1, var9 == 1 ? 13 : 15, (Waypoint)null);
-								this.ships[race].player.setMaxHP(100 + (AEMath.min(Status.getLevel(), 20) << 1) + (Status.getCurrentCampaignMission() << 1));
-								((PlayerFixedObject)this.ships[race]).setMoving(true);
-								this.ships[race].player.setAlwaysFriend(true);
-								this.ships[race].hasCargo = false;
-								this.ships[race].cargo = null;
+								this.ships[j] = createShip(var9, 1, var9 == 1 ? 13 : 15, (Waypoint)null);
+								this.ships[j].player.setMaxHP(100 + (AEMath.min(Status.getLevel(), 20) << 1) + (Status.getCurrentCampaignMission() << 1));
+								((PlayerFixedObject)this.ships[j]).setMoving(true);
+								this.ships[j].player.setAlwaysFriend(true);
+								this.ships[j].hasCargo = false;
+								this.ships[j].cargo = null;
 							}
 						}
 
@@ -807,9 +816,9 @@ public final class Level {
 					case 10:
 						this.missionRoute = new Route(new int[]{-2500 + GlobalStatus.random.nextInt(5000), -2500 + GlobalStatus.random.nextInt(5000), 80000 + GlobalStatus.random.nextInt(30000), -2500 + GlobalStatus.random.nextInt(5000), -2500 + GlobalStatus.random.nextInt(5000), 120000 + GlobalStatus.random.nextInt(30000)});
 						i = 2 + GlobalStatus.random.nextInt(2);
-						race = 2 + (int)(2.0F * (Status.getMission().getDifficulty() / 10.0F));
+						j = 2 + (int)(2.0F * (Status.getMission().getDifficulty() / 10.0F));
 						var3 = Standing.enemyRace(var1.getClientRace());
-						this.ships = new KIPlayer[i + race];
+						this.ships = new KIPlayer[i + j];
 
 						for(var9 = 0; var9 < i; ++var9) {
 							this.ships[var9] = createShip(var3, 1, var3 == 1 ? 13 : 15, this.missionRoute.getWaypoint(1));
@@ -1760,38 +1769,38 @@ public final class Level {
 		GlobalStatus.graphics.fillRect(0, 0, GlobalStatus.screenWidth, GlobalStatus.screenHeight);
 		this.starSystem.render_();
 		GlobalStatus.renderer.drawNodeInVF(this.skybox);
-		int var3;
+		int i;
 		if (this.egoGuns != null) {
-			for(var3 = 0; var3 < this.egoGuns.length; ++var3) {
-				this.egoGuns[var3].render();
+			for(i = 0; i < this.egoGuns.length; ++i) {
+				this.egoGuns[i].render();
 			}
 		}
 
 		if (this.enemyGuns != null) {
-			for(var3 = 0; var3 < this.enemyGuns.length; ++var3) {
-				this.enemyGuns[var3].render();
+			for(i = 0; i < this.enemyGuns.length; ++i) {
+				this.enemyGuns[i].render();
 			}
 		}
 
 		if (this.ships != null) {
-			for(var3 = 0; var3 < this.ships.length; ++var3) {
-				this.ships[var3].update(var1);
-				this.ships[var3].appendToRender();
+			for(i = 0; i < this.ships.length; ++i) {
+				this.ships[i].update(var1);
+				this.ships[i].appendToRender();
 			}
 		}
 
 		if (this.asteroids != null) {
-			for(var3 = 0; var3 < this.asteroids.length; ++var3) {
-				this.asteroids[var3].update(var1);
-				this.asteroids[var3].appendToRender();
+			for(i = 0; i < this.asteroids.length; ++i) {
+				this.asteroids[i].update(var1);
+				this.asteroids[i].appendToRender();
 			}
 		}
 
 		if (this.stationaries != null) {
-			for(var3 = 0; var3 < this.stationaries.length; ++var3) {
-				if (this.stationaries[var3] != null) {
-					this.stationaries[var3].update(var1);
-					this.stationaries[var3].appendToRender();
+			for(i = 0; i < this.stationaries.length; ++i) {
+				if (this.stationaries[i] != null) {
+					this.stationaries[i].update(var1);
+					this.stationaries[i].appendToRender();
 				}
 			}
 		}
@@ -1816,35 +1825,35 @@ public final class Level {
 		GlobalStatus.graphics.fillRect(0, 0, GlobalStatus.screenWidth, GlobalStatus.screenHeight);
 		this.starSystem.render_();
 		GlobalStatus.renderer.drawNodeInVF(this.skybox);
-		int var3;
+		int i;
 		if (this.egoGuns != null) {
-			for(var3 = 0; var3 < this.egoGuns.length; ++var3) {
-				this.egoGuns[var3].render();
+			for(i = 0; i < this.egoGuns.length; ++i) {
+				this.egoGuns[i].render();
 			}
 		}
 
 		if (this.enemyGuns != null) {
-			for(var3 = 0; var3 < this.enemyGuns.length; ++var3) {
-				this.enemyGuns[var3].render();
+			for(i = 0; i < this.enemyGuns.length; ++i) {
+				this.enemyGuns[i].render();
 			}
 		}
 
 		if (this.ships != null) {
-			for(var3 = 0; var3 < this.ships.length; ++var3) {
-				this.ships[var3].appendToRender();
+			for(i = 0; i < this.ships.length; ++i) {
+				this.ships[i].appendToRender();
 			}
 		}
 
 		if (this.asteroids != null) {
-			for(var3 = 0; var3 < this.asteroids.length; ++var3) {
-				this.asteroids[var3].appendToRender();
+			for(i = 0; i < this.asteroids.length; ++i) {
+				this.asteroids[i].appendToRender();
 			}
 		}
 
 		if (this.stationaries != null) {
-			for(var3 = 0; var3 < this.stationaries.length; ++var3) {
-				if (this.stationaries[var3] != null) {
-					this.stationaries[var3].appendToRender();
+			for(i = 0; i < this.stationaries.length; ++i) {
+				if (this.stationaries[i] != null) {
+					this.stationaries[i].appendToRender();
 				}
 			}
 		}
@@ -1879,10 +1888,10 @@ public final class Level {
 			if (this.jumperRespawnTick > 20000) {
 				this.jumperRespawnTick = 0;
 				if (this.ships != null) {
-					for(var4 = 0; var4 < this.ships.length; ++var4) {
-						if ((var5 = this.ships[var4]).isJumper() && var5.isDead() && !var5.player.isActive()) {
+					for(int i = 0; i < this.ships.length; ++i) {
+						if ((var5 = this.ships[i]).isJumper() && var5.isDead() && !var5.player.isActive()) {
 							var5.revive();
-							if (var4 < this.localFightersCnt + this.jumperCnt) {
+							if (i < this.localFightersCnt + this.jumperCnt) {
 								((PlayerFighter)var5).setPosition(0, 0, 0);
 							} else {
 								((PlayerFixedObject)var5).setPosition(10000, 0, -70000);
@@ -1897,8 +1906,8 @@ public final class Level {
 				this.commonRespawnTick = 0;
 				var4 = 0;
 				if (this.raidersCnt > 0 && this.ships != null) {
-					for(int var10 = 0; var10 < this.ships.length; ++var10) {
-						if (var10 >= this.ships.length - this.raidersCnt && !this.ships[var10].isWingman() && this.ships[var10].isDead() && !this.ships[var10].player.isActive()) {
+					for(int i = 0; i < this.ships.length; ++i) {
+						if (i >= this.ships.length - this.raidersCnt && !this.ships[i].isWingman() && this.ships[i].isDead() && !this.ships[i].player.isActive()) {
 							++var4;
 						}
 					}
@@ -1929,9 +1938,9 @@ public final class Level {
 		}
 
 		if (Status.getStation().isAttackedByAliens() || Status.inAlienOrbit()) {
-			var4 = (int)var1;
+			//var4 = (int)var1;
 			//var8 = this;
-			this.alienRespawnTick += var4;
+			this.alienRespawnTick += var1;
 			if (this.alienRespawnTick > 40000) {
 				this.alienRespawnTick = 0;
 				if (this.ships != null) {

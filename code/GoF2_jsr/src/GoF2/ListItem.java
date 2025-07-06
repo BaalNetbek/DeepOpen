@@ -1,7 +1,10 @@
 package GoF2;
 
 import javax.microedition.lcdui.Image;
-
+/**
+ * 
+ * @author Fishlabs 2009
+ */
 public final class ListItem {
 	private Agent unused_owner__;
 	public BluePrint bluePrint;

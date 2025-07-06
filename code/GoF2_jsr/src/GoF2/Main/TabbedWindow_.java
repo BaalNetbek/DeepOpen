@@ -5,6 +5,7 @@ import AE.PaintCanvas.Font;
 import GoF2.Layout;
 
 public class TabbedWindow_ {
+	protected static final int ITEM_HEIGHT = 14;
 	protected int posX;
 	protected int posY;
 	protected int width;
@@ -30,38 +31,38 @@ public class TabbedWindow_ {
 	private int fontId_;
 	protected String titleBarText;
 
-	public TabbedWindow_(final int var1, final int var2, final int var3, final int var4, final String[] var5, final String var6) {
-		init(var1, var2, var3, var4, var5, var6);
+	public TabbedWindow_(final int posX, final int posY, final int width, final int height, final String[] tabNames, final String title) {
+		init(posX, posY, width, height, tabNames, title);
 		this.selectedTab = 0;
 		this.drawBackGround = true;
 		this.highlightSelection = true;
 	}
 
-	private void init(int var1, int var2, int var3, int var4, String[] var5, final String var6) {
-		if (var1 == 0 && var2 == 0 && var3 == GlobalStatus.screenWidth && var4 == GlobalStatus.screenHeight) {
-			var2 = 1;
-			var1 = 1;
-			var3 -= 3;
-			var4 = var4 - 4 - 14;
+	private void init(int posX, int posY, int width, int height, String[] tabNames, final String title) {
+		if (posX == 0 && posY == 0 && width == GlobalStatus.screenWidth && height == GlobalStatus.screenHeight) {
+			posY = 1;
+			posX = 1;
+			width -= 3;
+			height = height - 4 - ITEM_HEIGHT;
 		}
 
-		this.posX = var1;
-		this.posY = var2;
-		this.width = var3;
-		this.height = var4;
+		this.posX = posX;
+		this.posY = posY;
+		this.width = width;
+		this.height = height;
 		this.showTabs = true;
-		if (var5 == null) {
-			var5 = new String[]{""};
+		if (tabNames == null) {
+			tabNames = new String[]{""};
 			this.showTabs = false;
 		}
 
-		this.titleBarText = var6;
-		this.tabNames = var5;
-		this.perTabEntries = new Object[var5.length][200];
-		this.listsLengths = new int[var5.length];
+		this.titleBarText = title;
+		this.tabNames = tabNames;
+		this.perTabEntries = new Object[tabNames.length][200];
+		this.listsLengths = new int[tabNames.length];
 
-		for(var3 = 0; var3 < this.listsLengths.length; ++var3) {
-			this.listsLengths[var3] = 200;
+		for(width = 0; width < this.listsLengths.length; ++width) {
+			this.listsLengths[width] = 200;
 		}
 
 		this.unused2412_ = 0;
@@ -70,15 +71,15 @@ public class TabbedWindow_ {
 		this.scrollPos = 0;
 		this.rowHeight = getRowHeight();
 		this.tabHeight = getTabHeight();
-		this.innerLeftMargin = var1 + 6;
+		this.innerLeftMargin = posX + 6;
 		if (this.showTabs) {
-			this.itemListPosY = var2 + 14 + this.tabHeight;
+			this.itemListPosY = posY + ITEM_HEIGHT + this.tabHeight;
 		} else {
-			this.itemListPosY = var2 + 14;
+			this.itemListPosY = posY + ITEM_HEIGHT;
 		}
 
-		for(var3 = 0; var3 < var5.length; ++var3) {
-			this.selectedTab = var3;
+		for(width = 0; width < tabNames.length; ++width) {
+			this.selectedTab = width;
 			updateScroll();
 		}
 
@@ -233,33 +234,65 @@ public class TabbedWindow_ {
 	protected void drawTabs() {
 		if (this.showTabs) {
 			GlobalStatus.graphics.setColor(0);
-			GlobalStatus.graphics.drawLine(this.posX + (this.width >> 1), this.posY + 14, this.posX + (this.width >> 1), this.posY + 14 + 14);
-			GlobalStatus.graphics.drawLine(this.posX + this.width - (this.width >> 1) - 1, this.posY + 14, this.posX + this.width - (this.width >> 1) - 1, this.posY + 14 + 14);
+			GlobalStatus.graphics.drawLine(this.posX + (this.width >> 1),
+													this.posY + ITEM_HEIGHT,
+											      this.posX + (this.width >> 1),
+											      this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
+			GlobalStatus.graphics.drawLine(this.posX + this.width - (this.width >> 1) - 1,
+													this.posY + ITEM_HEIGHT,
+											      this.posX + this.width - (this.width >> 1) - 1,
+											      this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
 			GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
-			GlobalStatus.graphics.drawLine(this.posX + (this.width >> 1) - 1, this.posY + 14, this.posX + (this.width >> 1) - 1, this.posY + 14 + 14);
-			GlobalStatus.graphics.drawLine(this.posX + (this.width >> 1) + 1, this.posY + 14, this.posX + (this.width >> 1) + 1, this.posY + 14 + 14);
-			GlobalStatus.graphics.drawLine(this.posX + this.width - (this.width >> 1) - 2, this.posY + 14, this.posX + this.width - (this.width >> 1) - 2, this.posY + 14 + 14);
-			GlobalStatus.graphics.drawLine(this.posX + this.width - (this.width >> 1), this.posY + 14, this.posX + this.width - (this.width >> 1), this.posY + 14 + 14);
-			switch(this.selectedTab) {
-			case 0:
-				GlobalStatus.graphics.drawLine(this.posX + (this.width >> 1) - 1, this.posY + 14 + 14, this.posX + this.width - 3, this.posY + 14 + 14);
-				GlobalStatus.graphics.setColor(0);
-				GlobalStatus.graphics.fillRect(this.posX + (this.width >> 1) + 2, this.posY + 14 + 1, (this.width >> 1) - 3, this.posY + 14 - 2);
-				GlobalStatus.graphics.setColor(Layout.uiInactiveInnerLabelColor);
-				GlobalStatus.graphics.fillRect(this.posX + (this.width >> 1) + 3, this.posY + 14 + 2, (this.width >> 1) - 5, this.posY + 14 - 3);
-				break;
-			case 1:
-				GlobalStatus.graphics.drawLine(this.posX + 3, this.posY + 14 + 14, this.posX + (this.width >> 1) + 1, this.posY + 14 + 14);
-				GlobalStatus.graphics.setColor(0);
-				GlobalStatus.graphics.fillRect(this.posX + 3, this.posY + 14 + 1, (this.width >> 1) - 4, this.posY + 14 - 2);
-				GlobalStatus.graphics.setColor(Layout.uiInactiveInnerLabelColor);
-				GlobalStatus.graphics.fillRect(this.posX + 4, this.posY + 14 + 2, (this.width >> 1) - 6, this.posY + 14 - 3);
+			GlobalStatus.graphics.drawLine(this.posX + (this.width >> 1) - 1,
+													this.posY + ITEM_HEIGHT,
+											      this.posX + (this.width >> 1) - 1,
+											      this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
+			GlobalStatus.graphics.drawLine(this.posX + (this.width >> 1) + 1,
+													this.posY + ITEM_HEIGHT,
+											      this.posX + (this.width >> 1) + 1,
+								      			this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
+			GlobalStatus.graphics.drawLine(this.posX + this.width - (this.width >> 1) - 2,
+													this.posY + ITEM_HEIGHT,
+											      this.posX + this.width - (this.width >> 1) - 2,
+											      this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
+			GlobalStatus.graphics.drawLine(this.posX + this.width - (this.width >> 1),
+													this.posY + ITEM_HEIGHT,
+											      this.posX + this.width - (this.width >> 1),
+											      this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
+			switch (this.selectedTab) {
+				case 0:
+					GlobalStatus.graphics.drawLine(this.posX + (this.width >> 1) - 1,
+															this.posY + ITEM_HEIGHT + ITEM_HEIGHT,
+													      this.posX + this.width - 3,
+													      this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
+					GlobalStatus.graphics.setColor(0);
+					GlobalStatus.graphics.fillRect(this.posX + (this.width >> 1) + 2,
+															this.posY + ITEM_HEIGHT + 1,
+													      (this.width >> 1) - 3,
+													      this.posY + ITEM_HEIGHT - 2);
+					GlobalStatus.graphics.setColor(Layout.uiInactiveInnerLabelColor);
+					GlobalStatus.graphics.fillRect(this.posX + (this.width >> 1) + 3,
+															this.posY + ITEM_HEIGHT + 2,
+													      (this.width >> 1) - 5,
+													      this.posY + ITEM_HEIGHT - 3);
+					break;
+				case 1:
+					GlobalStatus.graphics.drawLine(this.posX + 3, this.posY + ITEM_HEIGHT + ITEM_HEIGHT,
+					      this.posX + (this.width >> 1) + 1, this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
+					GlobalStatus.graphics.setColor(0);
+					GlobalStatus.graphics.fillRect(this.posX + 3, this.posY + ITEM_HEIGHT + 1, (this.width >> 1) - 4,
+					      this.posY + ITEM_HEIGHT - 2);
+					GlobalStatus.graphics.setColor(Layout.uiInactiveInnerLabelColor);
+					GlobalStatus.graphics.fillRect(this.posX + 4, this.posY + ITEM_HEIGHT + 2, (this.width >> 1) - 6,
+					      this.posY + ITEM_HEIGHT - 3);
 			}
 
-			Layout.drawMenuPanelCorner(this.posX + 2, this.posY + 14, this.selectedTab == 0);
-			Layout.drawMenuPanelCorner(this.posX + (this.width >> 1) + 1, this.posY + 14, this.selectedTab == 1);
-			Font.drawString(this.tabNames[0], this.posX + this.width / 4, this.posY + 14 + 1, this.selectedTab == 0 ? 2 : 1, 24);
-			Font.drawString(this.tabNames[1], this.posX + this.width - this.width / 4, this.posY + 14 + 1, this.selectedTab == 1 ? 2 : 1, 24);
+			Layout.drawMenuPanelCorner(this.posX + 2, this.posY + ITEM_HEIGHT, this.selectedTab == 0);
+			Layout.drawMenuPanelCorner(this.posX + (this.width >> 1) + 1, this.posY + ITEM_HEIGHT, this.selectedTab == 1);
+			Font.drawString(this.tabNames[0], this.posX + this.width / 4, this.posY + ITEM_HEIGHT + 1,
+			      this.selectedTab == 0 ? 2 : 1, 24);
+			Font.drawString(this.tabNames[1], this.posX + this.width - this.width / 4, this.posY + ITEM_HEIGHT + 1,
+			      this.selectedTab == 1 ? 2 : 1, 24);
 		}
 
 	}
@@ -267,14 +300,14 @@ public class TabbedWindow_ {
 	protected final void drawScroll() {
 		if (this.scrollThumbSize > 0) {
 			GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
-			GlobalStatus.graphics.drawLine(this.posX + this.width - 7, this.itemListPosY + 2, this.posX + this.width - 7, this.posY + this.height - 3 - 14);
-			GlobalStatus.graphics.setColor(-35072);
-			GlobalStatus.graphics.fillRect(this.posX + this.width - 8, this.itemListPosY + 2 + this.scrollThumbPos, 3, this.scrollThumbSize - 14 - 2);
-			GlobalStatus.graphics.setColor(-4827904);
+			GlobalStatus.graphics.drawLine(this.posX + this.width - 7, this.itemListPosY + 2, this.posX + this.width - 7, this.posY + this.height - 3 - ITEM_HEIGHT);
+			GlobalStatus.graphics.setColor(0xFFFF7700);
+			GlobalStatus.graphics.fillRect(this.posX + this.width - 8, this.itemListPosY + 2 + this.scrollThumbPos, 3, this.scrollThumbSize - ITEM_HEIGHT - 2);
+			GlobalStatus.graphics.setColor(0xFFB65500);
 			GlobalStatus.graphics.drawLine(this.posX + this.width - 8, this.itemListPosY + 3 + this.scrollThumbPos, this.posX + this.width - 8, this.itemListPosY + this.scrollThumbPos + this.scrollThumbSize - 15);
 			GlobalStatus.graphics.drawLine(this.posX + this.width - 8, this.itemListPosY + this.scrollThumbPos + this.scrollThumbSize - 15, this.posX + this.width - 8 + 1, this.itemListPosY + this.scrollThumbPos + this.scrollThumbSize - 15);
-			GlobalStatus.graphics.setColor(-11520);
-			GlobalStatus.graphics.drawLine(this.posX + this.width - 7, this.itemListPosY + 2 + this.scrollThumbPos + 1, this.posX + this.width - 7, this.itemListPosY + this.scrollThumbPos + this.scrollThumbSize - 14 - 2);
+			GlobalStatus.graphics.setColor(0xFFFFD300);
+			GlobalStatus.graphics.drawLine(this.posX + this.width - 7, this.itemListPosY + 2 + this.scrollThumbPos + 1, this.posX + this.width - 7, this.itemListPosY + this.scrollThumbPos + this.scrollThumbSize - ITEM_HEIGHT - 2);
 			GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
 		}
 

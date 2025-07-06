@@ -1,6 +1,6 @@
 package GoF2;
 /**
- * Stores data of BluePrint product. C struct like.
+ * Stores data of BluePrint product.
  * @author fishlabs
  *
  */

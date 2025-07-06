@@ -329,14 +329,29 @@ public final class StatusPanel {
 			if (var5 > 0) {
 				var3 = (int)((float)(this.posY - var9) / (float)(var3 - this.scrollRows) * (this.scrollRows - var5));
 				GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
-				GlobalStatus.graphics.drawLine(this.posX + var2 + 3, this.posY, this.posX + var2 + 3, this.posY + this.scrollRows - 1);
-				GlobalStatus.graphics.setColor(-35072);
-				GlobalStatus.graphics.fillRect(this.posX + var2 + 2, this.posY + var3, 3, var5);
-				GlobalStatus.graphics.setColor(-4827904);
-				GlobalStatus.graphics.drawLine(this.posX + var2 + 2, this.posY + 1 + var3, this.posX + var2 + 2, this.posY + var5 - 2 + var3);
-				GlobalStatus.graphics.drawLine(this.posX + var2 + 2, this.posY + var5 - 1 + var3, this.posX + var2 + 3, this.posY + var5 - 1 + var3);
-				GlobalStatus.graphics.setColor(-11520);
-				GlobalStatus.graphics.drawLine(this.posX + var2 + 3, this.posY + 1 + var3, this.posX + var2 + 3, this.posY + var5 - 2 + var3);
+				GlobalStatus.graphics.drawLine(this.posX + var2 + 3,
+														this.posY,
+														this.posX + var2 + 3,
+												      this.posY + this.scrollRows - 1);
+				GlobalStatus.graphics.setColor(0xFFFF7700);
+				GlobalStatus.graphics.fillRect(this.posX + var2 + 2,
+														this.posY + var3,
+														3,
+														var5);
+				GlobalStatus.graphics.setColor(0xFFB65500);
+				GlobalStatus.graphics.drawLine(this.posX + var2 + 2,
+														this.posY + 1 + var3,
+														this.posX + var2 + 2,
+												      this.posY + var5 - 2 + var3);
+				GlobalStatus.graphics.drawLine(this.posX + var2 + 2,
+														this.posY + var5 - 1 + var3,
+														this.posX + var2 + 3,
+												      this.posY + var5 - 1 + var3);
+				GlobalStatus.graphics.setColor(0xFFFFD300);
+				GlobalStatus.graphics.drawLine(this.posX + var2 + 3,
+														this.posY + 1 + var3,
+														this.posX + var2 + 3,
+												      this.posY + var5 - 2 + var3);
 				GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
 			}
 		}

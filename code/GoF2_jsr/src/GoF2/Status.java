@@ -5,6 +5,13 @@ import java.util.Vector;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 
+/**
+ * Contains and manages shared variables holding
+ * current state, progress and objects in game.
+ * Many of them are saved by RecordHandler.
+ * 
+ * @author Fishlabs 2009
+ */
 public final class Status {
     private static int credits;
     private static int rating;
@@ -555,7 +562,7 @@ public final class Status {
     }
 
     public static Mission missionCompleted_(final boolean var0, final long var1) {
-        label140:
+       // label140:
             for(int var3 = 0; var3 < currentMissions.length; ++var3) {
                 Mission var4;
                 if ((var4 = currentMissions[var3]).hasWon()) {
@@ -604,18 +611,23 @@ public final class Status {
                     case 15:
                         var5 = playersShip.getEquipment();
                         var6 = 0;
-
-                        while(true) {
-                            if (var6 >= var5.length) {
-                                continue label140;
-                            }
-
-                            if (var5[var6] != null && var5[var6].getIndex() == var4.getStatusValue_()) {
-                                return var4;
-                            }
-
-                            ++var6;
+                        for (var6 = 0; var6 < var5.length; var6++) {
+                        	if (var5[var6] != null && var5[var6].getIndex() == var4.getStatusValue_()) {
+                              return var4;
+                          }
                         }
+                        break;
+//                        while(true) {
+//                            if (var6 >= var5.length) {
+//                                continue label140;
+//                            }
+//
+//                            if (var5[var6] != null && var5[var6].getIndex() == var4.getStatusValue_()) {
+//                                return var4;
+//                            }
+//
+//                            ++var6;
+//                        }
                     case 16:
                         if (stationsVisited >= var4.getStatusValue_()) {
                             var4.setWon(true);
@@ -642,18 +654,24 @@ public final class Status {
                     case 21:
                         var5 = playersShip.getEquipment();
                         var6 = 0;
-
-                        while(true) {
-                            if (var6 >= var5.length) {
-                                continue label140;
-                            }
-
-                            if (var5[var6] != null && var5[var6].getType() == var4.getStatusValue_()) {
-                                return var4;
-                            }
-
-                            ++var6;
+                        
+                        for (var6 = 0; var6 < var5.length; var6++) {
+	                     	if (var5[var6] != null && var5[var6].getType() == var4.getStatusValue_()) {
+	                           return var4;
+	                       }
                         }
+                        break;
+//                        while(true) {
+//                            if (var6 >= var5.length) {
+//                                continue label140;
+//                            }
+//
+//                            if (var5[var6] != null && var5[var6].getType() == var4.getStatusValue_()) {
+//                                return var4;
+//                            }
+//
+//                            ++var6;
+//                        }
                     case 22:
                         var5 = playersShip.getEquipment();
                         boolean var9 = false;

@@ -1,5 +1,9 @@
 package GoF2;
-
+/**
+ * Item manages information about equipable item or an commodity.
+ * 
+ * @author Fishlabs 2009
+ */
 public final class Item {
 	private static final boolean[] installableMultipleTimes = {
 	      true, true, true, true, true, true, true, true, false,

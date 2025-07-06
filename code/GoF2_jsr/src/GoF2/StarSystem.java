@@ -14,23 +14,53 @@ import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 import AE.Math.Matrix;
 
+/**
+ * Manages skybox elements (star, planets, nebulas).
+ * 
+ * @author Fishlabs 2009
+ */
 public final class StarSystem {
-    private final int[] astronomicalObjPlacings = {-4616, -10639, -13667, -2949, -17362, 7030, -398, -7882, 15401, 7177, 3255, -16472, 12676, 6461, -10634, -10046, 12526, -7558, -10697, -13537, -5158, 18625, 4517, -684, -10685, -11195, 8126, 5693, -4063, 16472, 3209, 11007, 13435, 9044, -11172, 10999, 1211, -19330, 1470, -9770, 4503, 16022, -7591, 6356, -16362, 5962, 16281, -9492, 11976, -9221, -8374, 11035, 9992, 9033, -16959, -5712, -3570, -12936, 12109, 3078};
-    private final int[] planetSmallImages = {5, 1, 2, 3, 0, 2, 4, 5, 4, 4, 1, 5, 2, 3, 2, 3, 2, 2, 2, 5};
-    private AbstractMesh[] starAndPlanets;
-    private final CameraControllerGroup cameraControler;
-    private AEVector3D tempVec;
-    private final LensFlareFX lensFlare;
-    private final Sprite sun;
-    private Sprite planet;
-    private Image[] localPlanetsImgs;
-    private KIPlayer[] localPlanets;
-    private AbstractMesh[] nebulaPivots;
-    private Image[] nebulaImgs;
-    private boolean[] occupiedNebulaPos;
-    private boolean[] occupiedAstroObjPos;
-    public static int currentPlanetEnumIndex;
-    private final boolean inAlienSpace;
+	private final int[] astronomicalObjPlacings = {
+	      -4616, -10639, -13667,
+	      -2949, -17362, 7030,
+	      -398, -7882, 15401,
+	      7177, 3255, -16472,
+	      12676, 6461, -10634,
+	      -10046, 12526, -7558,
+	      -10697, -13537, -5158,
+	      18625, 4517, -684,
+	      -10685, -11195, 8126,
+	      5693, -4063, 16472,
+	      3209, 11007, 13435,
+	      9044, -11172, 10999,
+	      1211, -19330, 1470,
+	      -9770, 4503, 16022,
+	      -7591, 6356, -16362,
+	      5962, 16281, -9492,
+	      11976, -9221, -8374,
+	      11035, 9992, 9033,
+	      -16959, -5712, -3570,
+	      -12936, 12109, 3078
+	};
+	private final int[] planetSmallImages = {
+	      5, 1, 2, 3, 0, 2, 4, 5, 4,
+	      4, 1, 5, 2, 3, 2, 3, 2, 2,
+	      2, 5
+	};
+	private AbstractMesh[] starAndPlanets;
+	private final CameraControllerGroup cameraControler;
+	private AEVector3D tempVec;
+	private final LensFlareFX lensFlare;
+	private final Sprite sun;
+	private Sprite planet;
+	private Image[] localPlanetsImgs;
+	private KIPlayer[] localPlanets;
+	private AbstractMesh[] nebulaPivots;
+	private Image[] nebulaImgs;
+	private boolean[] occupiedNebulaPos;
+	private boolean[] occupiedAstroObjPos;
+	public static int currentPlanetEnumIndex;
+	private final boolean inAlienSpace;
 
     public StarSystem() {
         new Transform();

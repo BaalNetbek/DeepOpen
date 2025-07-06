@@ -1,5 +1,11 @@
 package GoF2;
 
+/**
+ * Standing stands for 'reputation'. 
+ * Manages player standing with nations that are at war.
+ * 
+ * @author Fishlabs 2009
+ */
 public final class Standing {
     private int[] stand = new int[2];
 

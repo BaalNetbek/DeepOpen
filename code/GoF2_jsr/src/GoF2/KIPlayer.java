@@ -7,6 +7,16 @@ import AE.Group;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 
+/**
+ * AIPlayer, parent for classes representing all interactive 3D 
+ * objects in space (also figures in SpaceLongue),
+ * e.g. asteroids, ships, stations, jumpgates
+ * and NOT planets, projectiles etc.
+ * 
+ * KI, Künstliche Intelligenz (ger.)  
+ * 
+ * @author Fishlabs 2009
+ */
 public abstract class KIPlayer {
 	protected short state = 0;
 	protected int speed = 2;

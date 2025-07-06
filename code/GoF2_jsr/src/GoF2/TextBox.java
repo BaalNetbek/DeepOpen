@@ -145,12 +145,12 @@ public final class TextBox {
             final int var1 = this.posY + 2 - (int)((float)this.topPadding / (float)this.fontSpacingY__ * (this.height - 7));
             GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
             GlobalStatus.graphics.drawLine(this.posX + this.width, this.posY + 2, this.posX + this.width, this.posY + this.height - 4);
-            GlobalStatus.graphics.setColor(-35072);
+            GlobalStatus.graphics.setColor(0xFFFF7700);
             GlobalStatus.graphics.fillRect(this.posX + this.width - 1, var1, 3, this.vBarPercent);
-            GlobalStatus.graphics.setColor(-4827904);
+            GlobalStatus.graphics.setColor(0xFFB65500);
             GlobalStatus.graphics.drawLine(this.posX + this.width - 1, var1 + 1, this.posX + this.width - 1, var1 + this.vBarPercent - 2);
             GlobalStatus.graphics.drawLine(this.posX + this.width - 1, var1 + this.vBarPercent - 1, this.posX + this.width - 1, var1 + this.vBarPercent - 1);
-            GlobalStatus.graphics.setColor(-11520);
+            GlobalStatus.graphics.setColor(0xFFFFD300);
             GlobalStatus.graphics.drawLine(this.posX + this.width, var1 + 1, this.posX + this.width, var1 + this.vBarPercent - 2);
             GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
         }

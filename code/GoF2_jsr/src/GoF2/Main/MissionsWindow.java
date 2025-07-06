@@ -291,14 +291,29 @@ public final class MissionsWindow {
 			if ((var5 = this).scrollThumbSize > 0) {
 				var2 = (int)((float)(var5.innerWindowOffsetY - var5.scrollPos) / (float)(var5.contentHeight - var5.innerWindowsHeight) * (var5.innerWindowsHeight - var5.scrollThumbSize));
 				GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
-				GlobalStatus.graphics.drawLine(var5.innerWindowOffsetX + var5.innerWindowWidth + 3, var5.innerWindowOffsetY, var5.innerWindowOffsetX + var5.innerWindowWidth + 3, var5.innerWindowOffsetY + var5.innerWindowsHeight - 1);
-				GlobalStatus.graphics.setColor(-35072);
-				GlobalStatus.graphics.fillRect(var5.innerWindowOffsetX + var5.innerWindowWidth + 2, var5.innerWindowOffsetY + var2, 3, var5.scrollThumbSize);
-				GlobalStatus.graphics.setColor(-4827904);
-				GlobalStatus.graphics.drawLine(var5.innerWindowOffsetX + var5.innerWindowWidth + 2, var5.innerWindowOffsetY + 1 + var2, var5.innerWindowOffsetX + var5.innerWindowWidth + 2, var5.innerWindowOffsetY + var5.scrollThumbSize - 2 + var2);
-				GlobalStatus.graphics.drawLine(var5.innerWindowOffsetX + var5.innerWindowWidth + 2, var5.innerWindowOffsetY + var5.scrollThumbSize - 1 + var2, var5.innerWindowOffsetX + var5.innerWindowWidth + 3, var5.innerWindowOffsetY + var5.scrollThumbSize - 1 + var2);
-				GlobalStatus.graphics.setColor(-11520);
-				GlobalStatus.graphics.drawLine(var5.innerWindowOffsetX + var5.innerWindowWidth + 3, var5.innerWindowOffsetY + 1 + var2, var5.innerWindowOffsetX + var5.innerWindowWidth + 3, var5.innerWindowOffsetY + var5.scrollThumbSize - 2 + var2);
+				GlobalStatus.graphics.drawLine(var5.innerWindowOffsetX + var5.innerWindowWidth + 3,
+														var5.innerWindowOffsetY,
+												      var5.innerWindowOffsetX + var5.innerWindowWidth + 3,
+												      var5.innerWindowOffsetY + var5.innerWindowsHeight - 1);
+				GlobalStatus.graphics.setColor(0xFFFF7700);
+				GlobalStatus.graphics.fillRect(var5.innerWindowOffsetX + var5.innerWindowWidth + 2,
+				      								var5.innerWindowOffsetY + var2,
+				      								3,
+				      								var5.scrollThumbSize);
+				GlobalStatus.graphics.setColor(0xFFB65500);
+				GlobalStatus.graphics.drawLine(var5.innerWindowOffsetX + var5.innerWindowWidth + 2,
+												      var5.innerWindowOffsetY + 1 + var2,
+												      var5.innerWindowOffsetX + var5.innerWindowWidth + 2,
+												      var5.innerWindowOffsetY + var5.scrollThumbSize - 2 + var2);
+				GlobalStatus.graphics.drawLine(var5.innerWindowOffsetX + var5.innerWindowWidth + 2,
+												      var5.innerWindowOffsetY + var5.scrollThumbSize - 1 + var2,
+												      var5.innerWindowOffsetX + var5.innerWindowWidth + 3,
+												      var5.innerWindowOffsetY + var5.scrollThumbSize - 1 + var2);
+				GlobalStatus.graphics.setColor(0xFFFFD300);
+				GlobalStatus.graphics.drawLine(var5.innerWindowOffsetX + var5.innerWindowWidth + 3,
+												      var5.innerWindowOffsetY + 1 + var2,
+												      var5.innerWindowOffsetX + var5.innerWindowWidth + 3,
+												      var5.innerWindowOffsetY + var5.scrollThumbSize - 2 + var2);
 				GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
 			}
 

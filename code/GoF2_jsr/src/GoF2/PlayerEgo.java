@@ -12,6 +12,13 @@ import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 import AE.Math.Matrix;
 
+/**
+ * The player's ship. Represent the user
+ * pilotable ship and it's parameters.
+ * Not inheriting from KIPlayer.
+ * 
+ * @author Fishlabs 2009
+ */
 public final class PlayerEgo {
 	private static int boostSpeed = 5;
 	private static int boostDuration = 5000;

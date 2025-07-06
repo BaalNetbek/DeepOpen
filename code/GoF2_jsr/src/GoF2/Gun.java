@@ -100,10 +100,10 @@ public final class Gun {
 	private boolean friendGun;
 	private int spread;
 
-	public Gun(int id, final int dmg, final int maxInAir, int ammo, final int range, final int reloadT, final float velocity, final AEVector3D offset, final AEVector3D var9) {
+	public Gun(int equipmentIdx, final int dmg, final int maxInAir, int ammo, final int range, final int reloadT, final float velocity, final AEVector3D offset, final AEVector3D var9) {
 		this.damage = dmg;
 		this.projectileSpeed = velocity;
-		this.equipmentId = id;
+		this.equipmentId = equipmentIdx;
 		this.muzzleOffset = offset;
 		this.range = range;
 		this.reloadTimeMilis = reloadT;
@@ -119,10 +119,10 @@ public final class Gun {
 		this.tempPos = new AEVector3D();
 		this.tempDir = new AEVector3D();
 
-		for(id = 0; id < maxInAir; ++id) {
-			this.projectilesPos[id] = new AEVector3D(50000, 0, 0);
-			this.projectilesDir[id] = new AEVector3D();
-			this.projectilesTimeLeft[id] = -1;
+		for(equipmentIdx = 0; equipmentIdx < maxInAir; ++equipmentIdx) {
+			this.projectilesPos[equipmentIdx] = new AEVector3D(50000, 0, 0);
+			this.projectilesDir[equipmentIdx] = new AEVector3D();
+			this.projectilesTimeLeft[equipmentIdx] = -1;
 		}
 
 		this.unused547_ = true;

@@ -76,7 +76,65 @@ public final class SystemPathFinder {
 
         return var12;
     }
-// Proycon alternative without label (essentialy goto)
+// JADX alternative
+// public final class SystemPathFinder {
+//     public final int[] getSystemPath(GoF2.SolarSystem[] solarSystemArr, int i, int i2) {
+//         java.util.Vector vectorConstructPath;
+//         GoF2.Node[] nodeArr = new GoF2.Node[solarSystemArr.length];
+//         for (int i3 = 0; i3 < solarSystemArr.length; i3++) {
+//             nodeArr[i3] = new GoF2.Node(this, i3);
+//         }
+//         for (int i4 = 0; i4 < solarSystemArr.length; i4++) {
+//             int[] neighbourSystems = solarSystemArr[i4].getNeighbourSystems();
+//             if (neighbourSystems != null) {
+//                 for (int i5 = 0; i5 < neighbourSystems.length; i5++) {
+//                     if (GoF2.Status.getVisibleSystems()[solarSystemArr[neighbourSystems[i5]].getId()]) {
+//                         nodeArr[i4].neighbors.addElement(nodeArr[neighbourSystems[i5]]);
+//                     }
+//                 }
+//             }
+//         }
+//         GoF2.Node node = nodeArr[i];
+//         GoF2.Node node2 = nodeArr[i2];
+//         java.util.Vector vector = new java.util.Vector();
+//         java.util.Vector vector2 = new java.util.Vector();
+//         vector2.addElement(node);
+//         node.parentNode = null;
+//         while (true) {
+//             if (vector2.isEmpty()) {
+//                 vectorConstructPath = null;
+//                 break;
+//             }
+//             GoF2.Node node3 = (GoF2.Node) vector2.firstElement();
+//             vector2.removeElementAt(0);
+//             if (node3 == node2) {
+//                 vectorConstructPath = constructPath(node2);
+//                 break;
+//             }
+//             vector.addElement(node3);
+//             for (int i6 = 0; i6 < node3.neighbors.size(); i6++) {
+//                 GoF2.Node node4 = (GoF2.Node) node3.neighbors.elementAt(i6);
+//                 if (!vector.contains(node4) && !vector2.contains(node4)) {
+//                     node4.parentNode = node3;
+//                     vector2.addElement(node4);
+//                 }
+//             }
+//         }
+//         java.util.Vector vector3 = vectorConstructPath;
+//         int[] iArr = null;
+//         if (vector3 != null && vector3.size() > 0) {
+//             int[] iArr2 = new int[vector3.size() + 1];
+//             iArr = iArr2;
+//             iArr2[0] = i;
+//             for (int i7 = 1; i7 < iArr.length; i7++) {
+//                 iArr[i7] = ((GoF2.Node) vector3.elementAt(i7 - 1)).systemIndex;
+//             }
+//         }
+//         return iArr;
+//     }
+
+
+// Proycon alternative 
 //   public final int[] getSystemPath(final SolarSystem[] array, final int n, final int n2) {
 //        final Node[] array2 = new Node[array.length];
 //        for (int i = 0; i < array.length; ++i) {
