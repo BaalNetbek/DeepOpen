@@ -374,7 +374,7 @@ public final class Ship {
                 case Item.BLASTER:
                 case Item.AUTOCANNON:
                 case Item.THERMO:
-                case Item.TURRET:
+                case Item.TURRET_SUB:
                     this.firePower += this.equipped[i].getAttribute(Item.DAMAGE);
                     break;
                 case Item.SHIELD:
@@ -416,17 +416,16 @@ public final class Ship {
         }
 
         this.extendedCargo = (int)((float)this.baseCargo * (float)this.extendedCargo / 100.0F);
-        final int var10001 = this.basePrice;
         int var2 = 0;
         if (this.cargoHold != null) {
-            for(int var3 = 0; var3 < this.cargoHold.length; ++var3) {
-                if (this.cargoHold[var3] != null) {
-                    var2 += this.cargoHold[var3].getTotalPrice();
+            for(int i = 0; i < this.cargoHold.length; ++i) {
+                if (this.cargoHold[i] != null) {
+                    var2 += this.cargoHold[i].getTotalPrice();
                 }
             }
         }
 
-        this.basePrice = var10001 + var2;
+        this.basePrice = this.basePrice + var2;
     }
 
     public final int getMaxPassengers() {
@@ -434,9 +433,9 @@ public final class Ship {
     }
 
     public final void removeEquipment(final Item var1, final int var2) {
-        for(int var3 = 0; var3 < this.equipped.length; ++var3) {
-            if (this.equipped[var3] != null && this.equipped[var3].equals(var1) && var3 == var2) {
-                this.equipped[var3] = null;
+        for(int i = 0; i < this.equipped.length; ++i) {
+            if (this.equipped[i] != null && this.equipped[i].equals(var1) && i == var2) {
+                this.equipped[i] = null;
                 break;
             }
         }
@@ -445,9 +444,9 @@ public final class Ship {
     }
 
     public final void removeSimilarEquipment(final Item var1) {
-        for(int var2 = 0; var2 < this.equipped.length; ++var2) {
-            if (this.equipped[var2] != null && this.equipped[var2].equals(var1)) {
-                this.equipped[var2] = null;
+        for(int i = 0; i < this.equipped.length; ++i) {
+            if (this.equipped[i] != null && this.equipped[i].equals(var1)) {
+                this.equipped[i] = null;
                 break;
             }
         }
@@ -462,8 +461,8 @@ public final class Ship {
     public final int getSlotAvailableTypes() {
         int var1 = 0;
 
-        for(int var2 = 0; var2 < this.itemTypeSlots.length; ++var2) {
-            if (this.itemTypeSlots[var2] > 0) {
+        for(int i = 0; i < this.itemTypeSlots.length; ++i) {
+            if (this.itemTypeSlots[i] > 0) {
                 ++var1;
             }
         }
@@ -474,8 +473,8 @@ public final class Ship {
     public final int countEquippedOfType(final int var1) {
         int var2 = 0;
 
-        for(int var3 = 0; var3 < this.equipped.length; ++var3) {
-            if (this.equipped[var3] != null && this.equipped[var3].getType() == var1) {
+        for(int i = 0; i < this.equipped.length; ++i) {
+            if (this.equipped[i] != null && this.equipped[i].getType() == var1) {
                 ++var2;
             }
         }

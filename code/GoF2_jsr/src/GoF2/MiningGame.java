@@ -62,13 +62,13 @@ public final class MiningGame {
         this.succeed = false;
         this.minedItemId = var2;
         this.levels = var1;
-        final Item var5 = Status.getShip().getFirstEquipmentOfSort(19);
+        final Item var5 = Status.getShip().getFirstEquipmentOfSort(Item.MINING_LASER);
         this.nextLevelTreshold = 6000;
         if (var5 != null) {
-            final float var6 = var5.getAttribute(30) / 100.0F;
+            final float var6 = var5.getAttribute(Item.MINING_CONTROL) / 100.0F;
             this.driftSuppress = 25.0F + var6 * 55.0F;
             this.controlability = 50.0F + var6 * 200.0F;
-            this.minigSpeed = var5.getAttribute(31) / 100.0F;
+            this.minigSpeed = var5.getAttribute(Item.MINING_EFFICIENCY) / 100.0F;
         }
 
         this.minedIndicatorHighlightCounter = 400;

@@ -116,7 +116,7 @@ public final class Level {
 			}
 
 			int var4;
-			int var6;
+			int i;
 			// ModStation, SpaceLounge
 			if (this.currentMod != 23 && this.currentMod != 4) {
 				boolean var2 = comingFromAlienWorld || Status.getStation().isAttackedByAliens() || Status.inAlienOrbit();
@@ -198,15 +198,15 @@ public final class Level {
 			}
 
 			this.starSystem = new StarSystem();
-			SolarSystem var10 = Status.getSystem();
-			if (var10 == null) {
+			final SolarSystem currSys = Status.getSystem();
+			if (currSys == null) {
 				starR = 10.0F;
 				starG = 136.0F;
 				starB = 10.0F;
 			} else {
-				starR = var10.starR;
-				starG = var10.starG;
-				starB = var10.starB;
+				starR = currSys.starR;
+				starG = currSys.starG;
+				starB = currSys.starB;
 			}
 
 			spaceR = (int)(starR / 3.0F);
@@ -214,81 +214,67 @@ public final class Level {
 			spaceB = (int)(starB / 3.0F);
 			if (this.currentMod == 3) {
 				try {
-					final Ship var11 = Status.getShip();
-					final Item[] var13 = Status.getShip().getEquipment();
-					int[] var15;
-					(var15 = new int[3])[0] = var11.countEquippedOfType(0);
-					var15[1] = var11.countEquippedOfType(1);
-					var15[2] = var11.countEquippedOfType(2);
-					Player var17 = new Player(1200.0F, Status.getShip().getBaseArmour(), var15[0], var15[1], var15[2]);
-					var17.setMaxShieldHP(Status.getShip().getShield());
-					var17.setMaxArmorHP(Status.getShip().getAdditionalArmour());
-					this.ego = new PlayerEgo(var17);
+					final Ship egoShip = Status.getShip();
+					final Item[] eqdItems = Status.getShip().getEquipment();
+					int[] eqdGunsCounts = new int[3];
+					eqdGunsCounts[0] = egoShip.countEquippedOfType(Item.PRIMARY);
+					eqdGunsCounts[1] = egoShip.countEquippedOfType(Item.SECONDARY);
+					eqdGunsCounts[2] = egoShip.countEquippedOfType(Item.TURRET);
+					Player player = new Player(1200.0F, Status.getShip().getBaseArmour(), eqdGunsCounts[0], eqdGunsCounts[1], eqdGunsCounts[2]);
+					player.setMaxShieldHP(Status.getShip().getShield());
+					player.setMaxArmorHP(Status.getShip().getAdditionalArmour());
+					this.ego = new PlayerEgo(player);
 					this.ego.setShip(Status.getShip().getIndex(), Status.getShip().getRace());
 					this.ego.setLevel(this);
 					this.ego.shipGrandGroup_.setRotation(0, this.mgameIntroCamRotY, 0);
-					final int[] var20 = {0, 0, 0};
-					final Explosion var18 = new Explosion(var20.length / 3);
-					this.ego.setExplosion(var18);
-					final Gun[][] var21 = new Gun[3][];
+					final int[] wtf = {0, 0, 0}; // legacy code propably
+					final Explosion explosion = new Explosion(wtf.length / 3);
+					this.ego.setExplosion(explosion);
+					final Gun[][] eqdGuns = new Gun[3][];
 
-					for(var6 = 0; var6 < 3; ++var6) {
-						if (var15[var6] > 0) {
-							var21[var6] = new Gun[var15[var6]];
+					for(i = 0; i < 3; ++i) {
+						if (eqdGunsCounts[i] > 0) {
+							eqdGuns[i] = new Gun[eqdGunsCounts[i]];
 						}
 					}
 
-					if (var13 != null) {
-						for(var6 = 0; var6 < var13.length; ++var6) {
-							if (var13[var6] != null) {
-								Gun var7 = null;
-								if (var13[var6].isWeapon()) {
-									final int var22 = var13[var6].getType() == 1 ? var13[var6].getAmount() : -1;
-									var7  = this.createGun(
-											var13[var6].getIndex(), var6, var13[var6].getSubType(), var22,
-									      var13[var6].getAttribute(9),  var13[var6].getAttribute(11),
-									      var13[var6].getAttribute(12), var13[var6].getAttribute(13));
-									var7.index = var13[var6].getIndex();
-									var7.subType = var13[var6].getSubType();
-									var7.setMagnitude(var13[var6].getAttribute(14));
-									int var10001;
-									int var10004;
-									Gun[] var23;
-									switch(var13[var6].getType()) {
-									case 0:
-										var7.setPosition(var15[0] - 1, var11.countEquippedOfType(0));
-										var23 = var21[0];
-										var10004 = var15[0];
-										var10001 = var15[0];
-										var15[0] = var10004 - 1;
-										var23[var10001 - 1] = var7;
+					if (eqdItems != null) {
+						for(i = 0; i < eqdItems.length; ++i) {
+							if (eqdItems[i] != null) {
+								Gun gun = null;
+								if (eqdItems[i].isWeapon()) {
+									final int ammount = eqdItems[i].getType() == 1 ? eqdItems[i].getAmount() : -1;
+									gun  = this.createGun(
+											eqdItems[i].getIndex(), i, eqdItems[i].getSubType(), ammount,
+									      eqdItems[i].getAttribute(Item.DAMAGE),  eqdItems[i].getAttribute(Item.RELOAD),
+									      eqdItems[i].getAttribute(Item.RANGE), eqdItems[i].getAttribute(Item.VELOCITY));
+									gun.index = eqdItems[i].getIndex();
+									gun.subType = eqdItems[i].getSubType();
+									gun.setMagnitude(eqdItems[i].getAttribute(Item.EXPLOSION_RANGE));
+
+									switch(eqdItems[i].getType()) {
+									case Item.PRIMARY:
+										gun.setPosition(eqdGunsCounts[0] - 1, egoShip.countEquippedOfType(Item.PRIMARY));
+										eqdGuns[Item.PRIMARY][--eqdGunsCounts[0]] = gun;
 										break;
-									case 1:
-										var23 = var21[1];
-										var10004 = var15[1];
-										var10001 = var15[1];
-										var15[1] = var10004 - 1;
-										var23[var10001 - 1] = var7;
+									case Item.SECONDARY:
+										eqdGuns[Item.SECONDARY][--eqdGunsCounts[1]] = gun;
 										break;
-									case 2:
-										var23 = var21[2];
-										var10004 = var15[2];
-										var10001 = var15[2];
-										var15[2] = var10004 - 1;
-										var23[var10001 - 1] = var7;
+									case Item.TURRET:
+										eqdGuns[Item.TURRET][--eqdGunsCounts[2]] = gun;
 									}
 								}
 							}
 						}
 					}
 
-					for(var6 = 0; var6 < var21.length; ++var6) {
-						if (var21[var6] != null) {
-							this.ego.setGuns(var21[var6], var6);
+					for(i = 0; i < eqdGuns.length; ++i) {
+						if (eqdGuns[i] != null) {
+							this.ego.setGuns(eqdGuns[i], i);
 						}
 					}
-				} catch (final Exception var8) {
-					var8.printStackTrace();
+				} catch (final Exception e) {
+					e.printStackTrace();
 				}
 
 				if (initStreamOutPosition && this.ego.shipGrandGroup_ != null) {
@@ -505,7 +491,7 @@ public final class Level {
 			gunObject = new RocketGun(gun, var12, false);
 			sparks = this.missilesSparks;
 			break;
-		case Item.TURRET:
+		case Item.TURRET_SUB:
 			gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, 0), new AEVector3D());
 			gunObject = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]));
 		}

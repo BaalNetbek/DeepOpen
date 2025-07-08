@@ -397,7 +397,7 @@ public final class Status {
             startStoryMission(new Mission(11, 0, 78));
             return;
         case 10:
-            final Item var4 = playersShip.getFirstEquipmentOfSort(19);
+            final Item var4 = playersShip.getFirstEquipmentOfSort(Item.MINING_LASER);
             playersShip.removeEquipment(var4);
             startStoryMission(new Mission(11, 0, 79));
             return;

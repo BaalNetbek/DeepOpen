@@ -121,8 +121,8 @@ public final class Hud {
 				this.actionmenuButtonsState[0][0] = 0;
 			}
 
-			final Item var6 = Status.getShip().getFirstEquipmentOfSort(21);
-			final Item var9 = Status.getShip().getFirstEquipmentOfSort(18);
+			final Item var6 = Status.getShip().getFirstEquipmentOfSort(Item.CLOAK);
+			final Item var9 = Status.getShip().getFirstEquipmentOfSort(Item.JUMP_DRIVE);
 			if (var6 == null && var9 == null) {
 				this.cloakAndDrive = null;
 			} else {

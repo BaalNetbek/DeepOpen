@@ -19,10 +19,21 @@ import GoF2.Status;
 import GoF2.TextBox;
 
 public final class ListItemWindow {
-    private final short[] descriptions = {327, 327, 327, 327, 327, 327, 327, 327, 328, 329, 329, 330, 331, 331, 331, 331, 331, 331, 331, 331, 331, 331, 332, 332, 333, 334, 335, 336, 337, 337, 337, 338, 338, 339, 340, 340, 341, 342, 341, 343, 343, 344, 344, 344, 345, 346, 347, 348, 348, 348, 349, 349, 349, 349, 350, 351, 351, 351, 352, 353, 0, 0, 0, 354, 354, 354, 354, 355, 356, 356, 356, 357, 357, 357, 358, 359, 360, 360, 360, 360, 361, 362, 362, 362, 362, 363, 364, 364, 364, 364, 365, 366, 366, 366, 367, 367, 368, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 371, 371, 371, 371, 371, 371, 371, 371, 371, 371, 371, 372, 372, 372, 372, 372, 372, 372, 372, 372, 372, 372};
-    private final short[] LISTITEMWINDOW_HIDDEN_ATTRIBUTES = {0, 1, 4, 5, 6, 7, 8, 35, 36};
-    private final String[] _LISTITEMWINDOW_UNITS = {null, null, null, null, null, null, null, null, null, null, null, "ms", "m", "km/h", "m", null, null, "ms", null, "%", "%", null, "ms", "%", "ms", "ms", "%", "ms", null, null, "%", "%", null, "ms", "ms", null, null};
-    private ListItem contextItem;
+	private final short[] descriptions = {
+	      327, 327, 327, 327, 327, 327, 327, 327, 328, 329, 329, 330, 331, 331, 331, 331, 331, 331, 331, 331, 331, 331,
+	      332, 332, 333, 334, 335, 336, 337, 337, 337, 338, 338, 339, 340, 340, 341, 342, 341, 343, 343, 344, 344, 344,
+	      345, 346, 347, 348, 348, 348, 349, 349, 349, 349, 350, 351, 351, 351, 352, 353, 0, 0, 0, 354, 354, 354, 354,
+	      355, 356, 356, 356, 357, 357, 357, 358, 359, 360, 360, 360, 360, 361, 362, 362, 362, 362, 363, 364, 364, 364,
+	      364, 365, 366, 366, 366, 367, 367, 368, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369,
+	      369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 369, 370,
+	      370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 370, 371,
+	      371, 371, 371, 371, 371, 371, 371, 371, 371, 371, 372, 372, 372, 372, 372, 372, 372, 372, 372, 372, 372};
+	private final short[] LISTITEMWINDOW_HIDDEN_ATTRIBUTES = {
+	      0, 1, 4, 5, 6, 7, 8, 35, 36};
+	private final String[] _LISTITEMWINDOW_UNITS = {
+	      null, null, null, null, null, null, null, null, null, null, null, "ms", "m", "km/h", "m", null, null, "ms",
+	      null, "%", "%", null, "ms", "%", "ms", "ms", "%", "ms", null, null, "%", "%", null, "ms", "ms", null, null};
+	  private ListItem contextItem;
     private Image items;
     private Image itemTypes;
     private Image ships;
@@ -60,22 +71,22 @@ public final class ListItemWindow {
         String var10 = "";
         if (!var1.isItem() && !var1.isBluePrint() && !var1.isPendingProduct()) {
             if (var1.isShip()) {
-                var9 = var9 + GlobalStatus.gameText.getText(60);
-                var10 = var10 + var1.ship.getBaseHP();
-                var9 = var9 + "\n" + GlobalStatus.gameText.getText(61);
-                var10 = var10 + "\n" + var1.ship.getBaseLoad();
-                var9 = var9 + "\n" + GlobalStatus.gameText.getText(123);
-                var10 = var10 + "\n" + var1.ship.getSlotTypes(0);
-                var9 = var9 + "\n" + GlobalStatus.gameText.getText(124);
-                var10 = var10 + "\n" + var1.ship.getSlotTypes(1);
-                var9 = var9 + "\n" + GlobalStatus.gameText.getText(125);
-                var10 = var10 + "\n" + var1.ship.getSlotTypes(2);
-                var9 = var9 + "\n" + GlobalStatus.gameText.getText(127);
-                var10 = var10 + "\n" + var1.ship.getSlotTypes(3);
-                var9 = var9 + "\n" + GlobalStatus.gameText.getText(59);
-                var10 = var10 + "\n" + (int)(var1.ship.getHandling() * 100.0F);
-                var9 = var9 + "\n" + GlobalStatus.gameText.getText(36);
-                var10 = var10 + "\n" + Layout.formatCredits(var1.getPrice());
+                var9 += GlobalStatus.gameText.getText(60);
+                var10 += var1.ship.getBaseHP();
+                var9 += "\n" + GlobalStatus.gameText.getText(61);
+                var10 += "\n" + var1.ship.getBaseLoad();
+                var9 += "\n" + GlobalStatus.gameText.getText(123);
+                var10 += "\n" + var1.ship.getSlotTypes(0);
+                var9 += "\n" + GlobalStatus.gameText.getText(124);
+                var10 += "\n" + var1.ship.getSlotTypes(1);
+                var9 += "\n" + GlobalStatus.gameText.getText(125);
+                var10 += "\n" + var1.ship.getSlotTypes(2);
+                var9 += "\n" + GlobalStatus.gameText.getText(127);
+                var10 += "\n" + var1.ship.getSlotTypes(3);
+                var9 += "\n" + GlobalStatus.gameText.getText(59);
+                var10 += "\n" + (int)(var1.ship.getHandling() * 100.0F);
+                var9 += "\n" + GlobalStatus.gameText.getText(36);
+                var10 += "\n" + Layout.formatCredits(var1.getPrice());
                 this.textBox.setText(var9);
                 this.highlightedText.setText(var10);
                 this.yaw = 1900.0F;
@@ -89,50 +100,49 @@ public final class ListItemWindow {
         } else {
             final Item var11 = var1.isItem() ? var1.item : var1.isBluePrint() ? Globals.getItems()[var1.bluePrint.getIndex()] : Globals.getItems()[var1.producedGood.index];
 
-            int var12;
+
             int var14;
-            for(var12 = 0; var12 < 37; ++var12) {
+            for(int i = 0; i < 37; ++i) {
                 boolean var7 = false;
 
-                int var8;
-                for(var8 = 0; var8 < this.LISTITEMWINDOW_HIDDEN_ATTRIBUTES.length; ++var8) {
-                    if (this.LISTITEMWINDOW_HIDDEN_ATTRIBUTES[var8] == var12) {
+                for(int j = 0; j < this.LISTITEMWINDOW_HIDDEN_ATTRIBUTES.length; ++j) {
+                    if (this.LISTITEMWINDOW_HIDDEN_ATTRIBUTES[j] == i) {
                         var7 = true;
                         break;
                     }
                 }
-
-                if (!var7 && (var8 = var11.getAttribute(var12)) != Item.NULL_ATTRIBUTE) {
+                int attrVal = var11.getAttribute(i);
+                if (!var7 && attrVal  != Item.NULL_ATTRIBUTE) {
                     if (!var9.equals("")) {
-                        var9 = var9 + "\n";
-                        var10 = var10 + "\n";
+                        var9 += "\n";
+                        var10 += "\n";
                     }
 
-                    var9 = var9 + GlobalStatus.gameText.getText(GameText.LISTITEMWINDOW_KEY_TEXT_IDS[var12]);
-                    if (((var12 == 29) || (var12 == 28)) || (var12 == 21)) {
-                        var10 = var10 + GlobalStatus.gameText.getText(var8 == 0 ? 39 : 38);
-                    } else if (var12 == 2) {
-                        var10 = var10 + GlobalStatus.gameText.getText(var8 + 98);
+                    var9 += GlobalStatus.gameText.getText(GameText.LISTITEMWINDOW_KEY_TEXT_IDS[i]);
+                    if (((i == Item.SHOW_CARGO) || (i == Item.SHOW_ASTEROID)) || (i == Item.TRACTOR_AUTOMATIC)) {
+                        var10 += GlobalStatus.gameText.getText(attrVal == 0 ? 39 : 38);
+                    } else if (i == Item.SUB_TYPE) {
+                        var10 += GlobalStatus.gameText.getText(attrVal + 98);
                     } else {
-                        if (var12 == 13) {
-                            var8 *= 250;
+                        if (i == Item.VELOCITY) {
+                            attrVal *= 250;
                         } 
-                        if (var12 == 12) {
-                            var14 = (var8 = (int)(var8 / 3600.0F * (var11.getAttribute(13) * 250))) % 100;
-                            var8 = (var8 + var14) % 100 == 0 ? var8 + var14 : var8 - var14;
+                        if (i == Item.RANGE) {
+                            var14 = (attrVal = (int)(attrVal / 3600.0F * (var11.getAttribute(Item.VELOCITY) * 250))) % 100;
+                            attrVal = (attrVal + var14) % 100 == 0 ? attrVal + var14 : attrVal - var14;
                         }
 
-                        var10 += var8;
-                        if (this._LISTITEMWINDOW_UNITS[var12] != null) {
-                            var10 = var10 + this._LISTITEMWINDOW_UNITS[var12];
+                        var10 += attrVal;
+                        if (this._LISTITEMWINDOW_UNITS[i] != null) {
+                            var10 += this._LISTITEMWINDOW_UNITS[i];
                         }
                     }
                 }
             }
 
             if (!var1.isBluePrint() && !var1.isPendingProduct() && var6) {
-                var9 = var9 + "\n" + GlobalStatus.gameText.getText(36);
-                var10 = var10 + "\n" + Layout.formatCredits(var11.getSinglePrice());
+                var9 += "\n" + GlobalStatus.gameText.getText(36);
+                var10 += "\n" + Layout.formatCredits(var11.getSinglePrice());
             }
 
             if (var1.isItem()) {
@@ -166,25 +176,25 @@ public final class ListItemWindow {
                 }
 
                 final String var16 = GlobalStatus.gameText.getText(this.descriptions[var1.getIndex()]);
-                var9 = var9 + "\n\n" + var16;
+                var9 += "\n\n" + var16;
                 if (this.lowPriceSysRow != null) {
-                    var9 = var9 + "\n\n" + this.lowPriceSysRow;
+                    var9 += "\n\n" + this.lowPriceSysRow;
                 }
 
                 if (this.highPriceSysRow != null) {
-                    var9 = var9 + "\n\n" + this.highPriceSysRow;
+                    var9 += "\n\n" + this.highPriceSysRow;
                 }
             } else if (var1.isBluePrint() || var1.isPendingProduct()) {
                 final String var13 = GlobalStatus.gameText.getText(this.descriptions[var1.getIndex()]);
-                var9 = var9 + "\n\n" + var13;
+                var9 += "\n\n" + var13;
             }
 
             this.textBox.setText(var9);
             this.highlightedText.setText(var10);
-            var12 = this.textBox.getTextHeight_() - this.highlightedText.getTextHeight_();
+            int space = this.textBox.getTextHeight_() - this.highlightedText.getTextHeight_();
 
-            for(var14 = 0; var14 < var12; ++var14) {
-                var10 = var10 + "\n";
+            for(var14 = 0; var14 < space; ++var14) {
+                var10 += "\n";
             }
 
             this.highlightedText.setText(var10);

@@ -144,10 +144,10 @@ public final class PlayerEgo {
 		this.lockedOnAsteroid = false;
 		this.isMinig = false;
 		this.inWormhole = false;
-		this.cloak = Status.getShip().getFirstEquipmentOfSort(21);
+		this.cloak = Status.getShip().getFirstEquipmentOfSort(Item.CLOAK);
 		this.cloakTime = -1;
-		this.cloakDuration = this.cloak == null ? 0 : this.cloak.getAttribute(33);
-		this.cloakLoadingTime = this.cloak == null ? 0 : this.cloak.getAttribute(34);
+		this.cloakDuration = this.cloak == null ? 0 : this.cloak.getAttribute(Item.CLOAK_DURATION);
+		this.cloakLoadingTime = this.cloak == null ? 0 : this.cloak.getAttribute(Item.CLOAK_RELOAD);
 		this.cloakOn = false;
 		this.autoDriven = false;
 	}
@@ -190,8 +190,8 @@ public final class PlayerEgo {
 		}
 
 		this.shipGrandGroup_.uniqueAppend_(this.shipGroup);
-		if (Status.getShip().getFirstEquipmentOfSort(13) != null) {
-			this.tractorBeam = new TractorBeam(this.shipGrandGroup_, Status.getShip().getFirstEquipmentOfSort(13).getIndex() - 68);
+		if (Status.getShip().getFirstEquipmentOfSort(Item.TRACTOR_BEAM) != null) {
+			this.tractorBeam = new TractorBeam(this.shipGrandGroup_, Status.getShip().getFirstEquipmentOfSort(Item.TRACTOR_BEAM).getIndex() - 68); // todo replace constant
 		}
 
 	}
@@ -376,7 +376,7 @@ public final class PlayerEgo {
 				short var9 = -1;
 				short var4 = -1;
 				byte var5 = -1;
-				this.turretRotationSpeed = var8[0].getAttribute(15);
+				this.turretRotationSpeed = var8[0].getAttribute(Item.TURRET_HANDLING);
 				switch(var8[0].getIndex()) {
 				case 47:
 					var9 = 6770;

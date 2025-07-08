@@ -148,15 +148,15 @@ public final class Radar {
             var9 = AEFile.loadImage("/data/interface/hud_meteor_class.png", true);
             this.meteorClass = new Sprite(var9, 11, 11);
             this.meteorClass.defineReferencePixel(11, 11);
-            final Item var10 = Status.getShip().getFirstEquipmentOfSort(19);
-            final Item var8 = Status.getShip().getFirstEquipmentOfSort(17);
-            final Item var3 = Status.getShip().getFirstEquipmentOfSort(13);
+            final Item var10 = Status.getShip().getFirstEquipmentOfSort(Item.MINING_LASER);
+            final Item var8 = Status.getShip().getFirstEquipmentOfSort(Item.SCANNER);
+            final Item var3 = Status.getShip().getFirstEquipmentOfSort(Item.TRACTOR_BEAM);
             this.drillPresent = var10 != null;
             if (var8 != null) {
                 this.scanerPresent = true;
-                this.showCargo = var8.getAttribute(29) == 1;
-                this.showAasteroids = var8.getAttribute(28) == 1;
-                this.scanTime = var8.getAttribute(27);
+                this.showCargo = var8.getAttribute(Item.SHOW_CARGO) == 1;
+                this.showAasteroids = var8.getAttribute(Item.SHOW_ASTEROID) == 1;
+                this.scanTime = var8.getAttribute(Item.SCAN_TIME);
             } else {
                 this.scanerPresent = false;
                 this.showCargo = false;
@@ -166,8 +166,8 @@ public final class Radar {
 
             if (var3 != null) {
                 this.tractorBeamPresent = true;
-                this.tractorBeamAutomatic = var3.getAttribute(21) == 1;
-                this.tractorBeamScanTime = var3.getAttribute(22);
+                this.tractorBeamAutomatic = var3.getAttribute(Item.TRACTOR_AUTOMATIC) == 1;
+                this.tractorBeamScanTime = var3.getAttribute(Item.TRACTOR_SCAN_TIME);
             } else {
                 this.tractorBeamPresent = false;
                 this.tractorBeamScanTime = 0;

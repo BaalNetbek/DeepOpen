@@ -6,6 +6,11 @@ package GoF2;
  */
 public final class Item {
 	
+	// types
+	public static final int PRIMARY = 0;
+	public static final int SECONDARY = 1;
+	public static final int TURRET = 2;
+	public static final int EQUIPMENT = 3;
 	// sub types 
 	public static final int LASER = 0;
 	public static final int BLASTER = 1;
@@ -15,7 +20,7 @@ public final class Item {
 	public static final int TORPEDO = 5;
 	public static final int EMP_BOMB = 6;
 	public static final int NUKE = 7;
-	public static final int TURRET = 8;
+	public static final int TURRET_SUB = 8;
 	public static final int SHIELD = 9;
 	public static final int ARMOR = 10;
 	public static final int EMP_PROTECTION = 11;
@@ -34,7 +39,7 @@ public final class Item {
 	public static final int ORE_CORE = 24;
 	
 	// Not defined attribute values
-	private static final int NULL_ATTRIBUTE = -979797979;
+	public static final int NULL_ATTRIBUTE = -979797979;
 	// attributes
 	public static final int ID = 0;
 	public static final int TYPE = 1;
@@ -49,7 +54,7 @@ public final class Item {
 	public static final int EMP_DAMAGE = 10;
 	public static final int RELOAD = 11;			// ms
 	public static final int RANGE = 12;				// m
-	public static final int PROJECTILE_SPEED = 13;  // 250 km/h
+	public static final int VELOCITY = 13;  // 250 km/h
 	public static final int EXPLOSION_RANGE = 14;
 	public static final int TURRET_HANDLING = 15;
 	public static final int SHIELD_VALUE = 16;

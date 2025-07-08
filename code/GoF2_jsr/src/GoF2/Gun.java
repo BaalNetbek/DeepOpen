@@ -254,7 +254,7 @@ public final class Gun {
 								var6 = 1.0F;
 							}
 
-							final int var4 = Globals.getItems()[this.index].getAttribute(10);
+							final int var4 = Globals.getItems()[this.index].getAttribute(Item.EMP_DAMAGE);
 							if (this.subType == Item.NUKE) {
 								if (var4 != Item.NULL_ATTRIBUTE) {
 									this.tempTarget.setEmpForce_(var4 * var6);
@@ -333,7 +333,7 @@ public final class Gun {
 										break label96;
 									}
 
-									var4 = Globals.getItems()[this.index].getAttribute(10);
+									var4 = Globals.getItems()[this.index].getAttribute(Item.EMP_DAMAGE);
 									if (var4 != Item.NULL_ATTRIBUTE) {
 										this.tempTarget.damageEmp(var4, this.friendGun);
 									}
