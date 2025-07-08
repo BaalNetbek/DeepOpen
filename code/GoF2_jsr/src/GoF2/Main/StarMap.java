@@ -28,7 +28,11 @@ import GoF2.Status;
 import GoF2.SystemPathFinder;
 
 public final class StarMap {
-	private final int[] planetSizes = {320, 192, 256, 256, 192, 256, 192, 192, 320, 256, 192, 192, 320, 256, 320, 256, 256, 256, 320, 192};
+	private final int[] planetSizes = {
+	      320, 192, 256, 256, 192,
+	      256, 192, 192, 320, 256, 
+	      192, 192, 320, 256, 320, 
+	      256, 256, 256, 320, 192};
 	private final int tmpMapInnerHeight;
 	private final int windowFrameWidth;
 	private final int windowFrameHeight;
@@ -856,7 +860,7 @@ public final class StarMap {
 								float var8 = var6 * 2.0F;
 
 								for(int var10 = 0; var10 < 8; ++var10) {
-									GlobalStatus.graphics.setColor(var10 == this.highlightedPathDot ? -4138775 : -12950906);
+									GlobalStatus.graphics.setColor(var10 == this.highlightedPathDot ? 0xFFC0D8E9 : 0xFF3A6286);
 									GlobalStatus.graphics.fillArc((int)(this.tmpStarScreenPos1.x + var7) - 2, (int)(this.tmpStarScreenPos1.y + var8) - 2, 4, 4, 0, 360);
 									var7 += var12;
 									var8 += var6;
@@ -922,7 +926,7 @@ public final class StarMap {
 		if (this.localSystem == null && !this.discoverSystemCutscene) {
 			var1 = (int)(this.curSqrSize * 1.5F);
 			if (var1 > 0) {
-				GlobalStatus.graphics.setColor(-8086094);
+				GlobalStatus.graphics.setColor(0xFF849DB2);
 				GlobalStatus.graphics.drawLine((int)this.curScreenPosX, (int)this.curScreenPosY + var1, (int)this.curScreenPosX - var1, (int)this.curScreenPosY);
 				GlobalStatus.graphics.drawLine((int)this.curScreenPosX - var1, (int)this.curScreenPosY, (int)this.curScreenPosX, (int)this.curScreenPosY - var1);
 				GlobalStatus.graphics.drawLine((int)this.curScreenPosX, (int)this.curScreenPosY - var1, (int)this.curScreenPosX + var1, (int)this.curScreenPosY);

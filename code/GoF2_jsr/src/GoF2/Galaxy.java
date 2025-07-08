@@ -41,8 +41,8 @@ public final class Galaxy {
 		visitedStations[var0] = true;
 	}
 
-	public static int invDistancePercent(final int var0, final int var1, final int var2, final int var3) {
-		return 100 - (AEMath.sqrt((var2 - var0) * (var2 - var0) + (var3 - var1) * (var3 - var1) << 12) >> 12);
+	public static int invDistancePercent(final int x1, final int y1, final int x2, final int y2) {
+		return 100 - (AEMath.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) << 12) >> 12);
 	}
 
 	public static int distancePercent(final int var0, final int var1, final int var2, final int var3) {

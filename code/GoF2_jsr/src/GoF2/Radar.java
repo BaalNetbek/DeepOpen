@@ -473,7 +473,7 @@ public final class Radar {
 
                                 for(var37 = 0; var37 < var33.length; ++var37) {
                                     Gun var40 = var33[var37];
-                                    if (var40 != null && (var40.subType == 7 || var40.subType == 6) && var40.inAir) {
+                                    if (var40 != null && (var40.subType == Item.NUKE || var40.subType == Item.EMP_BOMB) && var40.inAir) {
                                         this.playerPos.set(var40.projectilesPos[0]);
                                         this.tempContextPosition = var25.getPosition(this.tempContextPosition);
                                         this.tempContextPosition.subtract(this.playerPos);

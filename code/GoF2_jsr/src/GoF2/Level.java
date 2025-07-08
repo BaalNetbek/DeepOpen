@@ -117,6 +117,7 @@ public final class Level {
 
 			int var4;
 			int var6;
+			// ModStation, SpaceLounge
 			if (this.currentMod != 23 && this.currentMod != 4) {
 				boolean var2 = comingFromAlienWorld || Status.getStation().isAttackedByAliens() || Status.inAlienOrbit();
 				if (Status.getCurrentCampaignMission() > 42) {
@@ -452,15 +453,15 @@ public final class Level {
 		Sparks sparks = this.gunSparks;
 		AbstractMesh gunGeometry;
 		switch(type) {
-		case 0:
-		case 1:
-		case 3:
+		case Item.LASER:
+		case Item.BLASTER:
+		case Item.THERMO:
 			if (Globals.TYPE_WEAPONS[itemIdx] >= 0) {
 				final int z = type == 0 ? 800 : 400;
 				gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, z), new AEVector3D());
 				gunGeometry = AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]);
-				if (type == 3) {
-					final int scale = 300 + 70 * (itemIdx - 28);
+				if (type == Item.THERMO) {
+					final int scale = 300 + 70 * (itemIdx - 28); // 1st thermo idx
 					gunGeometry.setScale(scale, scale, scale);
 					gunGeometry.setAnimationRangeInTime(itemIdx - 28 + 10, itemIdx - 28 + 10);
 					gunGeometry.setAnimationMode((byte)1);
@@ -469,33 +470,33 @@ public final class Level {
 				}
 
 				gunObject = new ObjectGun(gun, gunGeometry);
-			} else {
+			} else { // Laser
 				gun = new Gun(equipmentIdx, dmg, 1, ammo, range, reload, velocity, new AEVector3D(0, 0, 400), new AEVector3D());
 				gunObject = new LaserGun(gun, itemIdx, this);
 			}
 			break;
-		case 2:
+		case Item.AUTOCANNON:
 			gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, 200), new AEVector3D());
 			gunObject = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]));
 			break;
-		case 4:
-		case 5:
+		case Item.ROCKET:
+		case Item.TORPEDO:
 			gun = new Gun(equipmentIdx, dmg, 1, ammo, range, reload, velocity, new AEVector3D(), new AEVector3D());
 			gunGeometry = AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]);
 			gunGeometry.setRenderLayer(2);
 			gunObject = new RocketGun(gun, gunGeometry, type == 5);
 			sparks = this.missilesSparks;
 			break;
-		case 6:
-		case 7:
+		case Item.EMP_BOMB:
+		case Item.NUKE:
 			gun = new Gun(equipmentIdx, dmg, 1, ammo, range, reload, velocity, new AEVector3D(0, -200, 400), new AEVector3D());
 			AbstractMesh var12 = null;
 			int var13;
-			if (type == 7) {
-				var12 = AEResourceManager.getGeometryResource(18); //nuke
+			if (type == Item.NUKE) {
+				var12 = AEResourceManager.getGeometryResource(18); 
 				var13 = itemIdx - 44 + 1 << 9;
-			} else {
-				var12 = AEResourceManager.getGeometryResource(16); //emp bomb
+			} else { // EMP Bomb
+				var12 = AEResourceManager.getGeometryResource(16);
 				var13 = itemIdx - 41 + 1 << 9;
 			}
 			var12.setScale(var13, var13, var13);
@@ -504,7 +505,7 @@ public final class Level {
 			gunObject = new RocketGun(gun, var12, false);
 			sparks = this.missilesSparks;
 			break;
-		case 8:
+		case Item.TURRET:
 			gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, 0), new AEVector3D());
 			gunObject = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]));
 		}
@@ -1405,7 +1406,7 @@ public final class Level {
 					gun.setLevel(this);
 					gun.setSparks(this.gunSparks);
 					gun.index = 18;
-					gun.subType = 1;
+					gun.subType = Item.BLASTER;
 					this.enemyGuns[gunCnt] = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[18]));
 					this.enemyGuns[gunCnt].setRenderLayer(2);
 					++gunCnt;

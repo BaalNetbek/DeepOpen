@@ -488,41 +488,36 @@ public final class Player {
 		playShootSound__(var1, var2, false, this.transform);
 	}
 
-	public final boolean shoot(final int var1, int var2, final long var3, final boolean var5) {
-		final Matrix var13 = this.transform;
-		final boolean var4 = false;
-		final long var9 = var3;
-		final int var12 = var2;
-		var2 = var1;
+	public final boolean shoot(final int var1, int var22, final long var3, final boolean var5) {
 		boolean var6 = true;
 		if (this.guns != null && var1 < this.guns.length && var1 >= 0 && this.guns[var1] != null) {
-			for(int var7 = 0; var7 < this.guns[var2].length; ++var7) {
-				Gun var8;
-				if (((var8 = this.guns[var2][var7]).subType == 7 || var8.subType == 6) && var8.projectilesTimeLeft[0] >= 0) {
-					var8.ignite();
-				} else if (var8.index == var12 && var8.timeSinceLastShot > var8.reloadTimeMilis) {
-					if (var8.shoot(var13, var9, var4)) {
+			for(int i = 0; i < this.guns[var1].length; ++i) {
+				Gun gun = this.guns[var1][i];
+				if ((gun.subType == Item.NUKE || gun.subType == Item.EMP_BOMB) && gun.projectilesTimeLeft[0] >= 0) {
+					gun.ignite();
+				} else if (gun.index == var22 && gun.timeSinceLastShot > gun.reloadTimeMilis) {
+					if (gun.shoot(this.transform, var3, var5)) {
 						if (this.playShootSound) {
-							switch(this.guns[var2][var7].subType) {
-							case 4:
+							switch(this.guns[var1][i].subType) {
+							case Item.ROCKET:
 								GlobalStatus.soundManager.playSfx(8);
 								break;
-							case 5:
+							case Item.TORPEDO:
 								GlobalStatus.soundManager.playSfx(9);
 								break;
-							case 6:
+							case Item.EMP_BOMB:
 								GlobalStatus.soundManager.playSfx(10);
 								break;
-							case 7:
+							case Item.NUKE:
 								GlobalStatus.soundManager.playSfx(10);
 							}
 						}
 
-						var8.timeSinceLastShot = 0;
+						gun.timeSinceLastShot = 0;
 						break;
 					}
 
-					if (var8.ammo <= 0) {
+					if (gun.ammo <= 0) {
 						var6 = false;
 					}
 				}

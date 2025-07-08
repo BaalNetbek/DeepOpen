@@ -102,7 +102,7 @@ public final class ListItemWindow {
                     }
                 }
 
-                if (!var7 && (var8 = var11.getAttribute(var12)) != -979797979) {
+                if (!var7 && (var8 = var11.getAttribute(var12)) != Item.NULL_ATTRIBUTE) {
                     if (!var9.equals("")) {
                         var9 = var9 + "\n";
                         var10 = var10 + "\n";

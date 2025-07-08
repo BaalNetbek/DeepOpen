@@ -7,10 +7,10 @@ import AE.GlobalStatus;
 import AE.PaintCanvas.Font;
 
 public final class Layout {
-	public static int uiInnerOutlineColor = -14328435;
-	public static int uiOuterTopRightOutlineColor = -14398096;
-	public static int uiOuterDownLeftOutlineInnerLabalBgColor = -15914687;
-	public static int uiInactiveInnerLabelColor = -14935012;
+	public static int uiInnerOutlineColor = 0xFF255D8D;
+	public static int uiOuterTopRightOutlineColor = 0xFF244D70;
+	public static int uiOuterDownLeftOutlineInnerLabalBgColor = 0xFF0D2941;
+	public static int uiInactiveInnerLabelColor = 0xFF1C1C1C;
 	private static int footerHeight;
 	private static Image skipArrow;
 	private static Image lock;

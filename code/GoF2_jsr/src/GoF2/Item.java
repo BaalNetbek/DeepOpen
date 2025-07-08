@@ -5,6 +5,75 @@ package GoF2;
  * @author Fishlabs 2009
  */
 public final class Item {
+	
+	// sub types 
+	public static final int LASER = 0;
+	public static final int BLASTER = 1;
+	public static final int AUTOCANNON = 2;
+	public static final int THERMO = 3;
+	public static final int ROCKET = 4;
+	public static final int TORPEDO = 5;
+	public static final int EMP_BOMB = 6;
+	public static final int NUKE = 7;
+	public static final int TURRET = 8;
+	public static final int SHIELD = 9;
+	public static final int ARMOR = 10;
+	public static final int EMP_PROTECTION = 11;
+	public static final int COMPRESSION = 12;
+	public static final int TRACTOR_BEAM = 13;
+	public static final int BOOSTER = 14;
+	public static final int REPAIR_BOT = 15;
+	public static final int STEERING_NOZZLE = 16;
+	public static final int SCANNER = 17;
+	public static final int JUMP_DRIVE = 18;
+	public static final int MINING_LASER = 19;
+	public static final int CABIN = 20;
+	public static final int CLOAK = 21;
+	public static final int COMMODITY = 22;
+	public static final int ORE = 23;
+	public static final int ORE_CORE = 24;
+	
+	// Not defined attribute values
+	private static final int NULL_ATTRIBUTE = -979797979;
+	// attributes
+	public static final int ID = 0;
+	public static final int TYPE = 1;
+	public static final int SUB_TYPE = 2;
+	public static final int TEC_LEVEL = 3;
+	public static final int LOW_PRICE_SYSTEM_ID = 4;
+	public static final int HIGH_PRICE_SYSTEM_ID = 5;
+	public static final int OCCURANCE = 6;			// %	
+	public static final int MIN_PRICE = 7;
+	public static final int MAX_PRICE = 8;
+	public static final int DAMAGE = 9;
+	public static final int EMP_DAMAGE = 10;
+	public static final int RELOAD = 11;			// ms
+	public static final int RANGE = 12;				// m
+	public static final int PROJECTILE_SPEED = 13;  // 250 km/h
+	public static final int EXPLOSION_RANGE = 14;
+	public static final int TURRET_HANDLING = 15;
+	public static final int SHIELD_VALUE = 16;
+	public static final int SHIELD_REGEN_TIME = 17;
+	public static final int ARMOR_VALUE = 18;
+	public static final int EMP_ARMOR = 19;
+	public static final int CARGO_EXPANSION = 20; 	// %
+	public static final int TRACTOR_AUTOMATIC = 21;
+	public static final int TRACTOR_SCAN_TIME = 22; // ms
+	public static final int SPEED_BOOST = 23; 		// %
+	public static final int BOOST_LOAD_TIME = 24;	// ms
+	public static final int BOOST_LENGTH = 25;		// ms
+	public static final int HANDLING_BOOST = 26;	// %
+	public static final int SCAN_TIME = 27;			// ms
+	public static final int SHOW_ASTEROID = 28;
+	public static final int SHOW_CARGO = 29;
+	public static final int MINING_CONTROL = 30;
+	public static final int MINING_EFFICIENCY = 31;
+	public static final int CABIN_SIZE = 32;
+	public static final int CLOAK_DURATION = 33;
+	public static final int CLOAK_RELOAD = 34;		// ms
+	public static final int RACE = 35;
+	public static final int GUARANTEED_TO_HAVE_SYSTEM = 36;
+	
 	private static final boolean[] installableMultipleTimes = {
 	      true, true, true, true, true, true, true, true, false,
 	      false, false, true, true, false, false, false, false,
@@ -32,15 +101,15 @@ public final class Item {
 		this.blueprintComponentsIds = var1;
 		this.blueprintComponentsQuantities = var2;
 		this.atributesIndexed = var3;
-		this.id = this.atributesIndexed[1];
-		this.type = this.atributesIndexed[3];
-		this.subType = this.atributesIndexed[5];
-		this.tecLevel = this.atributesIndexed[7];
-		this.occurance = this.atributesIndexed[13];
-		this.minPrice = this.atributesIndexed[15];
-		this.maxPrice = this.atributesIndexed[17];
-		this.lowestPriceSystemId = this.atributesIndexed[9];
-		this.highestPriceSystemId = this.atributesIndexed[11];
+		this.id = this.atributesIndexed[(ID<<1)+1];
+		this.type = this.atributesIndexed[(TYPE<<1)+1];
+		this.subType = this.atributesIndexed[(SUB_TYPE<<1)+1];
+		this.tecLevel = this.atributesIndexed[(TEC_LEVEL<<1)+1];
+		this.occurance = this.atributesIndexed[(OCCURANCE<<1)+1];
+		this.minPrice = this.atributesIndexed[(MIN_PRICE<<1)+1];
+		this.maxPrice = this.atributesIndexed[(MAX_PRICE<<1)+1];
+		this.lowestPriceSystemId = this.atributesIndexed[(LOW_PRICE_SYSTEM_ID<<1)+1];
+		this.highestPriceSystemId = this.atributesIndexed[(HIGH_PRICE_SYSTEM_ID<<1)+1];
 		this.price = this.minPrice + (this.maxPrice - this.minPrice) / 2;
 		final boolean var4 = false;
 		this.unsaleable = var4;
@@ -149,7 +218,7 @@ public final class Item {
 			}
 		}
 
-		return -979797979;
+		return NULL_ATTRIBUTE;
 	}
 
 	public final int transaction(final boolean var1) {

@@ -143,12 +143,12 @@ public final class Font {
 	}
 
 	public static void setMainFontSpacingY(final int var0) {
-		symbolMaps[0].setSpacingY(11);
+		symbolMaps[0].setSpacingY(var0);
 	}
 
 	public static void setSpacingY(final int var0, final int var1) {
 		if (var1 >= 0 && var1 < symbolMaps.length) {
-			symbolMaps[var1].setSpacingY(11);
+			symbolMaps[var1].setSpacingY(var0);
 		}
 	}
 

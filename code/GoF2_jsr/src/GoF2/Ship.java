@@ -6,12 +6,16 @@ package GoF2;
  */
 public final class Ship {
     public static final short[] SHIP_PREVIEW_SCALING = {
-          622, 1338, 1066, 783, 1181, 912, 939, 1471, 1199, 1192, 763, 1633, 1103, 2000, 2000, 2000, 1802, 1930, 1590,
-          1205, 1024, 1623, 1266, 1038, 1370, 1370, 1110, 1276, 1722, 1553, 975, 1175, 627, 1185, 916, 767, 1738
+          622, 1338, 1066, 783, 1181, 912, 939, 1471, 1199,
+          1192, 763, 1633, 1103, 2000, 2000, 2000, 1802, 1930,
+          1590, 1205, 1024, 1623, 1266, 1038, 1370, 1370, 1110,
+          1276, 1722, 1553, 975, 1175, 627, 1185, 916, 767, 1738
     };
     public static final short[] SHIP_HANGAR_OFFSETS = { 
-          24, -51, -37, 78, -197, 8, -14, 37, -104, 121, -100, -381, -132, 0, 0, 0, -520, -137, -206, 0, -182, -347, 2,
-          -61, -116, -254, -316, -40, -182, -372, -68, -160, -142, 131, -102, -72, -402
+          24, -51, -37, 78, -197, 8, -14, 37, -104, 121,
+          -100, -381, -132, 0, 0, 0, -520, -137, -206, 
+          0, -182, -347, 2, -61, -116, -254, -316, -40,
+          -182, -372, -68, -160, -142, 131, -102, -72, -402
     };
     private final int id;
     private final int baseHP;
@@ -315,16 +319,16 @@ public final class Ship {
         }
         final Item[] typeEq = new Item[this.itemTypeSlots[type]];
         
-        int i, offset = 0;
-        for(i = 0; i < type; ++i) {
+        int offset = 0;
+        for(int i = 0; i < type; ++i) {
             offset += this.itemTypeSlots[i];
         }
 
-        i = 0;
-        for(int j = offset; j < offset + this.itemTypeSlots[type]; ++j) {
-            if (i < typeEq.length) {
-                typeEq[i] = this.equipped[j];
-                i++;
+        int j = 0;
+        for(int i = offset; i < offset + this.itemTypeSlots[type]; ++i) {
+            if (j < typeEq.length) {
+                typeEq[j] = this.equipped[i];
+                j++;
             } else {
                 System.err.println("Ship.getEquipment() failed");
             }
@@ -363,57 +367,51 @@ public final class Ship {
         this.passengersCapacity = 0;
         this.basePrice = this.price;
 
-        for(int var1 = 0; var1 < this.equipped.length; ++var1) {
-            if (this.equipped[var1] != null) {
-                switch(this.equipped[var1].getSubType()) {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 8:
-                    this.firePower += this.equipped[var1].getAttribute(9);
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 11:
-                case 13:
-                case 17:
-                case 19:
-                default:
+        for(int i = 0; i < this.equipped.length; ++i) {
+            if (this.equipped[i] != null) {
+                switch(this.equipped[i].getSubType()) {
+                case Item.LASER:
+                case Item.BLASTER:
+                case Item.AUTOCANNON:
+                case Item.THERMO:
+                case Item.TURRET:
+                    this.firePower += this.equipped[i].getAttribute(Item.DAMAGE);
                     break;
-                case 9:
-                    this.shield = this.equipped[var1].getAttribute(16);
-                    this.shieldRegenTime = this.equipped[var1].getAttribute(17);
+                case Item.SHIELD:
+                    this.shield = this.equipped[i].getAttribute(Item.SHIELD_VALUE);
+                    this.shieldRegenTime = this.equipped[i].getAttribute(Item.SHIELD_REGEN_TIME);
                     break;
-                case 10:
-                    this.additionalArmour = this.equipped[var1].getAttribute(18);
+                case Item.ARMOR:
+                    this.additionalArmour = this.equipped[i].getAttribute(Item.ARMOR_VALUE);
                     break;
-                case 12:
-                    this.extendedCargo += this.equipped[var1].getAttribute(20);
+                case Item.COMPRESSION:
+                    this.extendedCargo += this.equipped[i].getAttribute(Item.CARGO_EXPANSION);
                     break;
-                case 14:
-                    this.boostPercent = this.equipped[var1].getAttribute(23);
-                    this.boostDuration = this.equipped[var1].getAttribute(25);
-                    this.boostRegenTime = this.equipped[var1].getAttribute(24);
+                case Item.BOOSTER:
+                    this.boostPercent = this.equipped[i].getAttribute(Item.SPEED_BOOST);
+                    this.boostDuration = this.equipped[i].getAttribute(Item.BOOST_LENGTH);
+                    this.boostRegenTime = this.equipped[i].getAttribute(Item.BOOST_LOAD_TIME);
                     break;
-                case 15:
+                case Item.REPAIR_BOT:
                     this.repairBot = true;
                     break;
-                case 16:
-                    this.extendedHandlingPercent = this.equipped[var1].getAttribute(26);
+                case Item.STEERING_NOZZLE:
+                    this.extendedHandlingPercent = this.equipped[i].getAttribute(Item.HANDLING_BOOST);
                     break;
-                case 18:
+                case Item.JUMP_DRIVE:
                     this.jumpDrive = true;
                     break;
-                case 20:
-                    this.passengersCapacity += this.equipped[var1].getAttribute(32);
+                case Item.CABIN:
+                    this.passengersCapacity += this.equipped[i].getAttribute(Item.CABIN_SIZE);
                     break;
-                case 21:
+                case Item.CLOAK:
                     this.cloak = true;
+                    break;
+                default:
+               	  break; 
                 }
 
-                this.basePrice += this.equipped[var1].getTotalPrice();
+                this.basePrice += this.equipped[i].getTotalPrice();
             }
         }
 

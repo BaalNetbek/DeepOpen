@@ -92,6 +92,7 @@ public final class Gun {
 	public int reloadTimeMilis;
 	boolean inAir;
 	private final boolean unused547_;
+	/** Item index */
 	public int index;
 	public int subType;
 	private int magnitude;
@@ -234,14 +235,14 @@ public final class Gun {
 	}
 
 	public final void ignite() {
-		if (this.subType == 7) {
+		if (this.subType == Item.NUKE) {
 			++Status.bombsUsed;
 		}
 
 		if (this.targets != null) {
 			for(int var1 = 0; var1 < this.targets.length; ++var1) {
 				this.tempTarget = this.targets[var1];
-				if ((this.subType != 6 || !this.tempTarget.isAsteroid()) && this.tempTarget.isActive()) {
+				if ((this.subType != Item.EMP_BOMB || !this.tempTarget.isAsteroid()) && this.tempTarget.isActive()) {
 					for(int var2 = 0; var2 < this.projectilesPos.length; ++var2) {
 						this.tempPos.set(this.projectilesPos[var2]);
 						this.tempVector = this.tempTarget.transform.getPosition(this.tempVector);
@@ -254,8 +255,8 @@ public final class Gun {
 							}
 
 							final int var4 = Globals.getItems()[this.index].getAttribute(10);
-							if (this.subType == 7) {
-								if (var4 != -979797979) {
+							if (this.subType == Item.NUKE) {
+								if (var4 != Item.NULL_ATTRIBUTE) {
 									this.tempTarget.setEmpForce_(var4 * var6);
 								}
 
@@ -280,7 +281,7 @@ public final class Gun {
 			}
 		}
 
-		final boolean var5 = this.subType == 7;
+		final boolean var5 = this.subType == Item.NUKE;
 		this.level.flashScreen(var5 ? 3 : 4);
 		GlobalStatus.soundManager.playSfx(var5 ? 11 : 12);
 		if (this.sparks != null) {
@@ -297,8 +298,8 @@ public final class Gun {
 
 		if (this.inAir) {
 			if (this.targets != null) {
-				boolean var7;
-				final boolean var8 = (var7 = this.subType == 7 || this.subType == 6) || this.subType == 4 || this.subType == 5;
+				boolean var7 = this.subType == Item.NUKE || this.subType == Item.EMP_BOMB;
+				final boolean var8 = var7 || this.subType == Item.ROCKET || this.subType == Item.TORPEDO;
 
 				label96:
 					for(int var9 = 0; var9 < this.targets.length; ++var9) {
@@ -333,7 +334,7 @@ public final class Gun {
 									}
 
 									var4 = Globals.getItems()[this.index].getAttribute(10);
-									if (var4 != -979797979) {
+									if (var4 != Item.NULL_ATTRIBUTE) {
 										this.tempTarget.damageEmp(var4, this.friendGun);
 									}
 
@@ -356,7 +357,7 @@ public final class Gun {
 					final int[] var10000 = this.projectilesTimeLeft;
 					var10000[var12] -= (int)var1;
 					this.projectilesPos[var12].add(this.projectilesDir[var12]);
-					if (this.projectilesTimeLeft[var12] <= 0 && (this.subType == 7 || this.subType == 6)) {
+					if (this.projectilesTimeLeft[var12] <= 0 && (this.subType == Item.NUKE || this.subType == Item.EMP_BOMB)) {
 						ignite();
 					}
 				} else {
