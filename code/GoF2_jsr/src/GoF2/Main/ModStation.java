@@ -199,7 +199,8 @@ public final class ModStation extends IApplicationModule {
 			if (!this.loadedFromSave) {
 				if (!this.medalMsgOpen && this.help == null && !this.paidBribe && Status.getStanding().isEnemy(Status.getSystem().getRace())) {
 					final Standing var8 = Status.getStanding();
-					var6 = (var3 = Status.getSystem().getRace()) != 1 && var3 != 0 ? 1 : 0;
+					var3 = Status.getSystem().getRace();
+					var6 = var3 != Globals.VOSSK && var3 != Globals.TERRAN ? Globals.VOSSK : Globals.TERRAN;
 					this.bribe = (int)(AEMath.abs(var8.getStanding(var6)) / 100.0F * 2800.0F);
 					this.bribe += -100 + GlobalStatus.random.nextInt(200);
 					final String var9 = Status.replaceTokens(GlobalStatus.gameText.getText(85), "" + this.bribe, "#C");

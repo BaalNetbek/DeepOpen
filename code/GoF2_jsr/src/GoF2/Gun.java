@@ -153,8 +153,8 @@ public final class Gun {
 		return this.magnitude;
 	}
 
-	public final void setPosition(final int var1, final int var2) {
-		final short[] var3 = MUZZLE_POSITIONS[var2 - 1][var1];
+	public final void setOffset(final int gunIdx, final int gunsEquippedCount) {
+		final short[] var3 = MUZZLE_POSITIONS[gunsEquippedCount - 1][gunIdx];
 		this.tempVector.set(this.muzzleOffset);
 		this.muzzleOffset = new AEVector3D(var3[0] + this.tempVector.x, var3[1] + this.tempVector.y, var3[2] + this.tempVector.z);
 	}
@@ -223,7 +223,7 @@ public final class Gun {
 					--this.ammo;
 					gunItem.changeAmount(-1);
 					if (this.ammo == 0) {
-						Status.getShip().removeSimilarEquipment(gunItem);
+						Status.getShip().freeSlot(gunItem);
 					}
 				}
 

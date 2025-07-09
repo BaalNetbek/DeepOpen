@@ -716,7 +716,7 @@ public final class SpaceLounge {
 						}
 					} while(!var16);
 
-					if (var1.getRace() != 0 && var7 == 16) {
+					if (var1.getRace() != Globals.TERRAN && var7 == 16) {
 						var7 = 4;
 					}
 

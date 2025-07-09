@@ -15,9 +15,8 @@ public final class Generator {
 		Ship[] var1 = null;
 		final int var2 = Status.getSystem().getRace();
 		final boolean var7 = var0.getId() == 10 && Achievements.gotAllGoldMedals();
-		final int var10000 = var2 != 1 && !var7 ? GlobalStatus.random.nextInt(6) : 1;
-		final int var8 = var10000;
-		if (var10000 == 0) {
+		final int var8 = var2 != Globals.VOSSK && !var7 ? GlobalStatus.random.nextInt(6) : 1;
+		if (var8 == 0) {
 			return null;
 		} else {
 			var1 = new Ship[var8];
@@ -156,30 +155,30 @@ public final class Generator {
 		}
 		boolean wingmanGenerated = false;
 		for (int i = n2; i < agents.length; ++i) {
-			int n5 = Status.getSystem().getRace();
+			int race = Status.getSystem().getRace();
 			if (GlobalStatus.random.nextInt(100) < 20) {
-				n5 = GlobalStatus.random.nextInt(8);
+				race = GlobalStatus.random.nextInt(8);
 			}
 			int l = 0;
-			int nextInt = -1;
+			int agentType = -1;
 			while (l == 0) {
-				nextInt = GlobalStatus.random.nextInt(7);
-				if ((n5 != 1 || nextInt != 6) && nextInt != 4 && nextInt != 3) {
+				agentType = GlobalStatus.random.nextInt(7);
+				if ((race != Globals.VOSSK || agentType != 6) && agentType != 4 && agentType != 3) {
 					l = 1;
 				}
 			}
-			if (GlobalStatus.random.nextInt(100) < 33 || (nextInt == 5 || nextInt == 6) && Status.getCurrentCampaignMission() < 16) {
-				nextInt = 0;
+			if (GlobalStatus.random.nextInt(100) < 33 || (agentType == 5 || agentType == 6) && Status.getCurrentCampaignMission() < 16) {
+				agentType = 0;
 			}
-			final boolean b2 = nextInt == 6 || n5 != 0 || GlobalStatus.random.nextInt(100) < 60;
-			final Agent agent = new Agent(-1, Globals.getRandomName(n5, b2), station.getId(), Status.getSystem().getId(), n5, b2, -1, -1, -1);
-			agent.setType(nextInt);
-			agent.setImageParts(ImageFactory.createChar(b2, n5));
+			final boolean male = agentType == 6 || race != Globals.TERRAN || GlobalStatus.random.nextInt(100) < 60;
+			final Agent agent = new Agent(-1, Globals.getRandomName(race, male), station.getId(), Status.getSystem().getId(), race, male, -1, -1, -1);
+			agent.setType(agentType);
+			agent.setImageParts(ImageFactory.createChar(male, race));
 			if (agent.getType() == 6) {
 				final int nextInt2;
 				final String[] array3 = new String[nextInt2 = GlobalStatus.random.nextInt(3)];
-				for (int n6 = 0; n6 < nextInt2; ++n6) {
-					array3[n6] = Globals.getRandomName(agent.getRace(), true);
+				for (int j = 0; j < nextInt2; ++j) {
+					array3[j] = Globals.getRandomName(agent.getRace(), true);
 				}
 				agent.wingman1Name = null;
 				agent.wingman2Name = null;
@@ -224,15 +223,15 @@ public final class Generator {
 			}
 		}
 		final Standing standing = Status.getStanding();
-		final int[] array5 = { 2, 3, 0, 1 };
-		for (int i = 0; i < array5.length; ++i) {
-			final int n9 = array5[i];
-			if (standing.isEnemy(n9)) {
-				for (int n10 = 0; n10 < agents.length; ++n10) {
-					if (agents[n10].isGenericAgent_() && agents[n10].getType() != 7) {
-						agents[n10] = new Agent(-1, Globals.getRandomName(n9, true), station.getId(), Status.getSystem().getId(), n9, true, -1, -1, -1);
-						agents[n10].setType(7);
-						agents[n10].setImageParts(ImageFactory.createChar(true, n9));
+		final int[] warEnemies = { Globals.NIVELIAN, Globals.MIDORIAN, Globals.TERRAN, Globals.VOSSK };
+		for (int i = 0; i < warEnemies.length; ++i) {
+			final int race = warEnemies[i];
+			if (standing.isEnemy(race)) {
+				for (int j = 0; j < agents.length; ++j) {
+					if (agents[j].isGenericAgent_() && agents[j].getType() != 7) {
+						agents[j] = new Agent(-1, Globals.getRandomName(race, true), station.getId(), Status.getSystem().getId(), race, true, -1, -1, -1);
+						agents[j].setType(7);
+						agents[j].setImageParts(ImageFactory.createChar(true, race));
 						break;
 					}
 				}
@@ -242,7 +241,6 @@ public final class Generator {
 	}
 
 	public final Mission createFreelanceMission(final Agent agent) {
-		//new FileRead();
 		final SolarSystem[] loadSystemsBinary = FileRead.loadSystemsBinary();
 		int i = generateStationIndex(loadSystemsBinary, agent.getStationId());
 		if (Status.getSystem().getId() == 15) {

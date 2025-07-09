@@ -7,6 +7,19 @@ import AE.GraphNode;
 import AE.Group;
 
 public final class Globals {
+    // races
+    public static final int TERRAN = 0;
+    public static final int VOSSK = 1;
+    public static final int NIVELIAN = 2;
+    public static final int MIDORIAN = 3;
+    public static final int MULTIPOD = 4;
+    public static final int CYBORG = 5;
+    public static final int BOBOLIAN = 6;
+    public static final int GREY = 7;
+    public static final int PIRATE = 8;
+    public static final int VOID = 9;
+    public static final int WOMAN = 10;
+
     private static String PATH_MESHES = "/data/3d/";
     private static String PATH_TEXTURES = "/data/textures/";
     public static final short[][] BAR_MESHES = {
@@ -107,10 +120,10 @@ public final class Globals {
 
     public static int getRandomEnemyFighter(final int race) {
         int ship = 0;
-        if (race == 9) {
+        if (race == Globals.VOID) {
             ship = 8;
         }
-        else if (race == 1) {
+        else if (race == Globals.VOSSK) {
             ship = 9;
         }
         else {

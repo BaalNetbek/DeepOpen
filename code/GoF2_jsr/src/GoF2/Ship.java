@@ -190,7 +190,7 @@ public final class Ship {
 
     public final Item getFirstEquipmentOfSort(final int var1) {
         for(int var2 = 0; var2 < this.equipped.length; ++var2) {
-            if (this.equipped[var2] != null && this.equipped[var2].getSubType() == var1) {
+            if (this.equipped[var2] != null && this.equipped[var2].getSort() == var1) {
                 return this.equipped[var2];
             }
         }
@@ -369,7 +369,7 @@ public final class Ship {
 
         for(int i = 0; i < this.equipped.length; ++i) {
             if (this.equipped[i] != null) {
-                switch(this.equipped[i].getSubType()) {
+                switch(this.equipped[i].getSort()) {
                 case Item.LASER:
                 case Item.BLASTER:
                 case Item.AUTOCANNON:
@@ -432,7 +432,7 @@ public final class Ship {
         return this.passengersCapacity;
     }
 
-    public final void removeEquipment(final Item var1, final int var2) {
+    public final void freeSlot(final Item var1, final int var2) {
         for(int i = 0; i < this.equipped.length; ++i) {
             if (this.equipped[i] != null && this.equipped[i].equals(var1) && i == var2) {
                 this.equipped[i] = null;
@@ -443,7 +443,7 @@ public final class Ship {
         refreshValue();
     }
 
-    public final void removeSimilarEquipment(final Item var1) {
+    public final void freeSlot(final Item var1) {
         for(int i = 0; i < this.equipped.length; ++i) {
             if (this.equipped[i] != null && this.equipped[i].equals(var1)) {
                 this.equipped[i] = null;
@@ -454,11 +454,14 @@ public final class Ship {
         refreshValue();
     }
 
-    public final int getSlotTypes(final int var1) {
-        return this.itemTypeSlots[var1];
+    public final int getSlots(final int type) {
+        return this.itemTypeSlots[type];
     }
-
-    public final int getSlotAvailableTypes() {
+    /**
+     * For example ships has primary and equipment slots then returns 2.
+     * @return number of types of items mountable in the ship
+     */
+    public final int getSlotTypes() {
         int var1 = 0;
 
         for(int i = 0; i < this.itemTypeSlots.length; ++i) {
@@ -470,11 +473,11 @@ public final class Ship {
         return var1;
     }
 
-    public final int countEquippedOfType(final int var1) {
+    public final int getUsedSlots(final int type) {
         int var2 = 0;
 
         for(int i = 0; i < this.equipped.length; ++i) {
-            if (this.equipped[i] != null && this.equipped[i].getType() == var1) {
+            if (this.equipped[i] != null && this.equipped[i].getType() == type) {
                 ++var2;
             }
         }

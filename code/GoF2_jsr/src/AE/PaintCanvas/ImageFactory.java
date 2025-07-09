@@ -4,6 +4,7 @@ import javax.microedition.lcdui.Image;
 
 import AE.AEFile;
 import AE.GlobalStatus;
+import GoF2.Globals;
 import GoF2.Layout;
 
 public final class ImageFactory {
@@ -13,35 +14,47 @@ public final class ImageFactory {
 	public static int itemHeight = 15;
 	public static int faceWidth = 42;
 	public static int faceHeight = 52;
-	private static byte[][] faces = {{11, 11, 9, 11, 4}, {5, 4, 6, 10}, {5, 5, 5, 5}, {2, 2, 2, 2}, {2, 2, 3, 3}, {0, 0, 0, 0, 0}, {2, 3, 5, 1}, {2, 2, 2, 2}, {1, 1, 1, 1}, {1, 1, 1, 1}, {4, 4, 4, 14}, {2, 0, 0, 0}};
+	private static byte[][] faces = {
+	      {11, 11, 9, 11, 4},
+	      {5, 4, 6, 10},
+	      {5, 5, 5, 5},
+	      {2, 2, 2, 2},
+	      {2, 2, 3, 3},
+	      {0, 0, 0, 0, 0},
+	      {2, 3, 5, 1},
+	      {2, 2, 2, 2},
+	      {1, 1, 1, 1},
+	      {1, 1, 1, 1},
+	      {4, 4, 4, 14},
+	      {2, 0, 0, 0}};
 
 	private ImageFactory() {
 	}
 
 	public static byte[] createChar(final boolean var0, int var1) {
-		if (var1 == 3) {
-			var1 = GlobalStatus.random.nextInt(4) == 0 ? 0 : 2;
+		if (var1 == Globals.MIDORIAN) {
+			var1 = GlobalStatus.random.nextInt(4) == 0 ? Globals.TERRAN : Globals.NIVELIAN;
 		}
 
-		if (!var0 && var1 == 0) {
-			var1 = 10;
+		if (!var0 && var1 == Globals.TERRAN) {
+			var1 = Globals.WOMAN;
 		}
 
 		byte[] var4;
-		if (var1 == 0) {
+		if (var1 == Globals.TERRAN) {
 			var4 = new byte[faces[var1].length];
 		} else {
 			var4 = new byte[faces[var1].length + 1];
 		}
 
-		if (var1 == 5) {
+		if (var1 == Globals.CYBORG) {
 			var1 = 0;
 		}
 
 		var4[0] = (byte)var1;
 
-		for(int var2 = 1; var2 < var4.length; ++var2) {
-			var4[var2] = (byte)GlobalStatus.random.nextInt(faces[var1][var2 - 1]);
+		for(int i = 1; i < var4.length; ++i) {
+			var4[i] = (byte)GlobalStatus.random.nextInt(faces[var1][i - 1]);
 		}
 
 		return var4;

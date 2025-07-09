@@ -597,7 +597,7 @@ u.a()Z canBeInstalledMultipleTimes
 u.a()I getIndex
 u.b()I getType
 u.c()I getTecLevel
-u.d()I getSubType
+u.d()I getSort
 u.e()I getSinglePrice
 u.f()I getTotalPrice
 u.g()I getMaxPrice
@@ -1810,7 +1810,7 @@ ba.a(I)V setSpread
 ba.a(Z)V setFriendGun
 ba.b(I)V setMagnitude
 ba.a()I getMagnitude
-ba.a(II)V setPosition
+ba.a(II)V setOffset
 ba.a()V OnRelease
 ba.a(Lbk;)V setSparks
 ba.a(Ldb;)V setLevel
@@ -2662,11 +2662,11 @@ ch.a(I)[Lu; getEquipment
 ch.a(Lu;I)V setEquipment
 ch.d()V refreshValue
 ch.s()I getMaxPassengers
-ch.b(Lu;I)V removeEquipment
-ch.d(Lu;)V removeSimilarEquipment
-ch.a(I)I getSlotTypes
-ch.t()I getSlotAvailableTypes
-ch.b(I)I countEquippedOfType
+ch.b(Lu;I)V freeSlot
+ch.d(Lu;)V freeSlot
+ch.a(I)I getSlots
+ch.t()I getSlotTypes
+ch.b(I)I getUsedSlots
 ch.a()Lch; cloneBase
 ch.b()V setSellingPrice
 ch.c()V adjustPrice

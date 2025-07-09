@@ -11,7 +11,7 @@ public final class Item {
 	public static final int SECONDARY = 1;
 	public static final int TURRET = 2;
 	public static final int EQUIPMENT = 3;
-	// sub types 
+	// sorts (sub types)
 	public static final int LASER = 0;
 	public static final int BLASTER = 1;
 	public static final int AUTOCANNON = 2;
@@ -136,7 +136,7 @@ public final class Item {
 		return this.tecLevel;
 	}
 
-	public final int getSubType() {
+	public final int getSort() {
 		return this.subType;
 	}
 

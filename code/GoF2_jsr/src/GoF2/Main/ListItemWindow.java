@@ -76,13 +76,13 @@ public final class ListItemWindow {
                 var9 += "\n" + GlobalStatus.gameText.getText(61);
                 var10 += "\n" + var1.ship.getBaseLoad();
                 var9 += "\n" + GlobalStatus.gameText.getText(123);
-                var10 += "\n" + var1.ship.getSlotTypes(0);
+                var10 += "\n" + var1.ship.getSlots(0);
                 var9 += "\n" + GlobalStatus.gameText.getText(124);
-                var10 += "\n" + var1.ship.getSlotTypes(1);
+                var10 += "\n" + var1.ship.getSlots(1);
                 var9 += "\n" + GlobalStatus.gameText.getText(125);
-                var10 += "\n" + var1.ship.getSlotTypes(2);
+                var10 += "\n" + var1.ship.getSlots(2);
                 var9 += "\n" + GlobalStatus.gameText.getText(127);
-                var10 += "\n" + var1.ship.getSlotTypes(3);
+                var10 += "\n" + var1.ship.getSlots(3);
                 var9 += "\n" + GlobalStatus.gameText.getText(59);
                 var10 += "\n" + (int)(var1.ship.getHandling() * 100.0F);
                 var9 += "\n" + GlobalStatus.gameText.getText(36);

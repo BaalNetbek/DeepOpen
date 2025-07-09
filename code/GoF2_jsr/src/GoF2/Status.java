@@ -209,14 +209,20 @@ public final class Status {
                     for(i = 0; i < var20.length; ++i) {
                         final Item var9 = var20[i];
                         boolean var10 = false;
-                        if (var3.getId() == var9.getAttribute(36)) {
+                        if (var3.getId() == var9.getAttribute(Item.GUARANTEED_TO_HAVE_SYSTEM)) {
                             var10 = true;
                         }
 
                         int var11 = var9.getTecLevel();
                         final boolean var12 = var9.getIndex() >= 132 && var9.getIndex() < 154;
-                        if (var10 || var9.getBluePrintComponentsIds() == null && i != 175 && i != 164 && var11 <= var3.getTecLevel() && var9.getOccurance() != 0 && var9.getSinglePrice() != 0 && (var9.getAttribute(35) != 1 || var14[var3.getSystemIndex()].getRace() == 1) && (!var12 || var9.getIndex() == 132 + var3.getSystemIndex())) {
-                            final int var13 = var9.getOccurance();
+								if (var10 || var9.getBluePrintComponentsIds() == null
+										&& i != 175 && i != 164
+								      && var11 <= var3.getTecLevel()
+								      && var9.getOccurance() != 0
+								      && var9.getSinglePrice() != 0
+								      && (var9.getAttribute(Item.RACE) != Globals.VOSSK || var14[var3.getSystemIndex()].getRace() == Globals.VOSSK)
+								      && (!var12 || var9.getIndex() == 132 + var3.getSystemIndex())) {
+								    final int var13 = var9.getOccurance();
                             if (var10 || (var12 || var11 <= var6 && var11 >= var7) && GlobalStatus.random.nextInt(100) < var13) {
                                 var23 = var14[var9.getLowestPriceSystemId()].getPosX();
                                 var11 = var14[var9.getLowestPriceSystemId()].getPosY();
@@ -680,7 +686,7 @@ public final class Status {
                         for(int var8 = 0; var8 < var5.length; ++var8) {
                             if (var5[var8] != null && var5[var8].getType() == 0) {
                                 var9 = true;
-                            } else if (var5[var8] != null && var5[var8].getSubType() == 10) {
+                            } else if (var5[var8] != null && var5[var8].getSort() == 10) {
                                 var7 = true;
                             }
                         }
@@ -694,7 +700,7 @@ public final class Status {
                             var5 = playersShip.getEquipment();
 
                             for(var6 = 0; var6 < var5.length; ++var6) {
-                                if (var5[var6] != null && var5[var6].getSubType() == var4.getStatusValue_()) {
+                                if (var5[var6] != null && var5[var6].getSort() == var4.getStatusValue_()) {
                                     return var4;
                                 }
                             }

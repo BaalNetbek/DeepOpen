@@ -343,7 +343,7 @@ public final class Player {
 
 	public final void damageEmp(final int var1, final boolean var2) {
 		if (this.vulnerable && this.active && this.empPoints > 0 && this.hp > 0) {
-			if (!var2 && this.kiPlayer != null && !this.tempEnemy_ && this.kiPlayer.race != 9 && Status.getSystem() != null && this.kiPlayer.race == Status.getSystem().getRace()) {
+			if (!var2 && this.kiPlayer != null && !this.tempEnemy_ && this.kiPlayer.race != Globals.VOID && Status.getSystem() != null && this.kiPlayer.race == Status.getSystem().getRace()) {
 				this.dealtEmpDamage += var1;
 				if (this.dealtEmpDamage > this.maxEmpPoints / 3) {
 					this.permanentEnemy = true;
@@ -354,7 +354,7 @@ public final class Player {
 			this.empPoints -= var1;
 			if (this.empPoints <= 0) {
 				if (!var2 && this.kiPlayer != null) {
-					if (!this.tempEnemy_ && this.kiPlayer.race != 9 && Status.getSystem() != null && this.kiPlayer.race == Status.getSystem().getRace()) {
+					if (!this.tempEnemy_ && this.kiPlayer.race != Globals.VOID && Status.getSystem() != null && this.kiPlayer.race == Status.getSystem().getRace()) {
 						this.kiPlayer.level.alarmAllFriends(this.kiPlayer.race, false);
 					}
 
@@ -376,7 +376,7 @@ public final class Player {
 
 	public final void damageHP(int var1, final boolean var2) {
 		if (this.vulnerable && this.active && this.hp > 0) {
-			if (!var2 && this.kiPlayer != null && !this.tempEnemy_ && this.kiPlayer.race != 9 && Status.getSystem() != null && this.kiPlayer.race == Status.getSystem().getRace()) {
+			if (!var2 && this.kiPlayer != null && !this.tempEnemy_ && this.kiPlayer.race != Globals.VOID && Status.getSystem() != null && this.kiPlayer.race == Status.getSystem().getRace()) {
 				this.egoInflictDamage += var1;
 				if (this.egoInflictDamage > this.maxHp / 3) {
 					this.permanentEnemy = true;

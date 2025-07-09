@@ -76,13 +76,13 @@ public class HangarList extends TabbedWindow_ {
 			}
 		}
 
-		final ListItem[] listItems = new ListItem[ship.getEquipment().length + 2 + ship.getSlotAvailableTypes()];
+		final ListItem[] listItems = new ListItem[ship.getEquipment().length + 2 + ship.getSlotTypes()];
 
 		int listStep = 0;
 		listItems[listStep++] = new ListItem(GlobalStatus.gameText.getText(77)); //Ship
 		listItems[listStep++] = new ListItem(ship);
 		for(int i = 0; i < 4; ++i) {
-			if (ship.getSlotTypes(i) > 0) {
+			if (ship.getSlots(i) > 0) {
 				final String sectionName = GlobalStatus.gameText.getText(i == 0 ? 123 : //Primary weapons
 																							i == 1 ? 124 : //Secondary weapons
 																							i == 2 ? 125 : //Turrets
@@ -721,7 +721,7 @@ public class HangarList extends TabbedWindow_ {
 								return 0;
 							}
 
-							if (var7 != null && var7.getSubType() == 20 && Status.passengerCount > 0) {
+							if (var7 != null && var7.getSort() == 20 && Status.passengerCount > 0) {
 								this.popup.setAsWarning(GlobalStatus.gameText.getText(160));
 								this.popupOpen = true;
 								return 0;
@@ -746,14 +746,14 @@ public class HangarList extends TabbedWindow_ {
 								return 0;
 							}
 
-							if (var1.isNonFancyHeader()) {
+							if (var1.isNonFancyHeader()) { // HangarWindow:::demountItem() - gof2hd
 								var10 = var7.getType() == 1;
 								if (var1.isSellButton()) {
 									var4 = Status.replaceTokens(new String(GlobalStatus.gameText.getText(88)), GlobalStatus.gameText.getText(569 + var7.getIndex()), "#N");
 									this.popup.setAsWarning(var4);
 									var5 = var7.makeItem(var10 ? var7.getAmount() : 1);
 									Status.getShip().addCargo(var5);
-									Status.getShip().removeSimilarEquipment(var7);
+									Status.getShip().freeSlot(var7);
 									initShipTab(Status.getShip());
 									initShopTab(Item.combineItems(Status.getShip().getCargo(), Status.getStation().getShopItems()));
 									setCurrentTab(0);
@@ -763,7 +763,7 @@ public class HangarList extends TabbedWindow_ {
 									var5 = var7.makeItem(var10 ? var7.getAmount() : 1);
 									Status.getStation().addItem(var5);
 									Status.changeCredits(var7.getTotalPrice());
-									Status.getShip().removeSimilarEquipment(var7);
+									Status.getShip().freeSlot(var7);
 									initShipTab(Status.getShip());
 									initShopTab(Item.combineItems(Status.getShip().getCargo(), Status.getStation().getShopItems()));
 									setCurrentTab(0);
@@ -772,7 +772,7 @@ public class HangarList extends TabbedWindow_ {
 								this.popupOpen = true;
 							} else {
 								final ListItem var12 = (ListItem)this.perTabEntries[this.selectedTab][1];
-								if (Status.getShip().getFirstEquipmentOfSort(var1.item.getSubType()) != null && !var1.item.canBeInstalledMultipleTimes() && (!var12.isItem() || var12.item.getSubType() != var1.item.getSubType())) {
+								if (Status.getShip().getFirstEquipmentOfSort(var1.item.getSort()) != null && !var1.item.canBeInstalledMultipleTimes() && (!var12.isItem() || var12.item.getSort() != var1.item.getSort())) {
 									var4 = new String(GlobalStatus.gameText.getText(164));
 									this.popup.setAsWarning(var4);
 									this.popupOpen = true;
@@ -798,7 +798,7 @@ public class HangarList extends TabbedWindow_ {
 									this.popup.setAsWarning(var15);
 									var6 = var12.item.makeItem(var14 ? var12.item.getAmount() : 1);
 									Status.getShip().addCargo(var6);
-									Status.getShip().removeEquipment(var12.item, var12.inTabIndex);
+									Status.getShip().freeSlot(var12.item, var12.inTabIndex);
 									Status.getShip().setEquipment(var1.item.makeItem(var14 ? var1.item.getAmount() : 1), var12.inTabIndex);
 									Status.getShip().removeCargo(var1.item.getIndex(), var14 ? var1.item.getAmount() : 1);
 									initShipTab(Status.getShip());
@@ -1236,7 +1236,7 @@ public class HangarList extends TabbedWindow_ {
 				return;
 			}
 
-			var10000 = var9.label + (var9.showCountItemType >= 0 ? " (" + Status.getShip().countEquippedOfType(var9.showCountItemType) + "/" + Status.getShip().getSlotTypes(var9.showCountItemType) + ")" : "");
+			var10000 = var9.label + (var9.showCountItemType >= 0 ? " (" + Status.getShip().getUsedSlots(var9.showCountItemType) + "/" + Status.getShip().getSlots(var9.showCountItemType) + ")" : "");
 			var10001 = this.innerLeftMargin + 5;
 			var10002 = this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 5;
 			var10003 = 0;

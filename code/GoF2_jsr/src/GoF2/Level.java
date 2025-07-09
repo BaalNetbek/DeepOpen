@@ -217,9 +217,9 @@ public final class Level {
 					final Ship egoShip = Status.getShip();
 					final Item[] eqdItems = Status.getShip().getEquipment();
 					int[] eqdGunsCounts = new int[3];
-					eqdGunsCounts[0] = egoShip.countEquippedOfType(Item.PRIMARY);
-					eqdGunsCounts[1] = egoShip.countEquippedOfType(Item.SECONDARY);
-					eqdGunsCounts[2] = egoShip.countEquippedOfType(Item.TURRET);
+					eqdGunsCounts[0] = egoShip.getUsedSlots(Item.PRIMARY);
+					eqdGunsCounts[1] = egoShip.getUsedSlots(Item.SECONDARY);
+					eqdGunsCounts[2] = egoShip.getUsedSlots(Item.TURRET);
 					Player player = new Player(1200.0F, Status.getShip().getBaseArmour(), eqdGunsCounts[0], eqdGunsCounts[1], eqdGunsCounts[2]);
 					player.setMaxShieldHP(Status.getShip().getShield());
 					player.setMaxArmorHP(Status.getShip().getAdditionalArmour());
@@ -245,16 +245,16 @@ public final class Level {
 								if (eqdItems[i].isWeapon()) {
 									final int ammount = eqdItems[i].getType() == 1 ? eqdItems[i].getAmount() : -1;
 									gun  = this.createGun(
-											eqdItems[i].getIndex(), i, eqdItems[i].getSubType(), ammount,
+											eqdItems[i].getIndex(), i, eqdItems[i].getSort(), ammount,
 									      eqdItems[i].getAttribute(Item.DAMAGE),  eqdItems[i].getAttribute(Item.RELOAD),
 									      eqdItems[i].getAttribute(Item.RANGE), eqdItems[i].getAttribute(Item.VELOCITY));
 									gun.index = eqdItems[i].getIndex();
-									gun.subType = eqdItems[i].getSubType();
+									gun.subType = eqdItems[i].getSort();
 									gun.setMagnitude(eqdItems[i].getAttribute(Item.EXPLOSION_RANGE));
 
 									switch(eqdItems[i].getType()) {
 									case Item.PRIMARY:
-										gun.setPosition(eqdGunsCounts[0] - 1, egoShip.countEquippedOfType(Item.PRIMARY));
+										gun.setOffset(eqdGunsCounts[0] - 1, egoShip.getUsedSlots(Item.PRIMARY));
 										eqdGuns[Item.PRIMARY][--eqdGunsCounts[0]] = gun;
 										break;
 									case Item.SECONDARY:
@@ -637,7 +637,7 @@ public final class Level {
 						this.ships[i].setJumpMesh(var14);
 					}
 
-					final boolean var18 = localRace == 0 && GlobalStatus.random.nextInt(100) < 30;
+					final boolean var18 = localRace == Globals.TERRAN && GlobalStatus.random.nextInt(100) < 30;
 
 					for(int i = this.localFightersCnt + this.jumperCnt; i < this.localFightersCnt + this.jumperCnt + this.bigShipsCnt; ++i) {
 						if (var18 && i == this.localFightersCnt + this.jumperCnt) {
@@ -649,7 +649,7 @@ public final class Level {
 										40000 + GlobalStatus.random.nextInt(80000)
 									);
 						} else {
-							this.ships[i] = createShip(localRace, 1, localRace == 1 ? 13 : 15, (Waypoint)null);
+							this.ships[i] = createShip(localRace, 1, localRace == Globals.VOSSK ? 13 : 15, (Waypoint)null);
 							((PlayerFixedObject)this.ships[i]).setMoving(true);
 							this.ships[i].setPosition(
 									  (-80000 + GlobalStatus.random.nextInt(60000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1),
@@ -1243,7 +1243,7 @@ public final class Level {
 		switch(this.currentMod) {
 		case 4: // bar
 			int var11;
-			var1 = (var11 = Status.getSystem().getRace() == 1 ? 2 : Status.getSystem().getRace() == 0 ? 0 : 1) == 0 ? 20 : 6;
+			var1 = (var11 = Status.getSystem().getRace() == Globals.VOSSK ? 2 : Status.getSystem().getRace() == Globals.TERRAN ? 0 : 1) == 0 ? 20 : 6;
 			Agent[] var9 = Status.getStation().getBarAgents();
 			var3 = var9.length;
 			this.ships = new KIPlayer[var3 + var1];
@@ -1256,7 +1256,7 @@ public final class Level {
 
 			for(var6 = 0; var6 < var3; ++var6) {
 				short var7 = Globals.BAR_FIGURES[var9[var6].getRace()];
-				if (var9[var6].getRace() == 0 && !var9[var6].isMale()) {
+				if (var9[var6].getRace() == Globals.TERRAN && !var9[var6].isMale()) {
 					var7 = 14224;
 				}
 
@@ -1289,7 +1289,7 @@ public final class Level {
 				this.ships[var12].mainMesh_.setRotation(0, var12 * var6, 0);
 			}
 			break;
-			// int var12 = var3;
+			// int var12 = var3; //original decomp
 
 			// while(true) {
 			// 	if (var12 >= this.ships.length) {
@@ -1303,7 +1303,7 @@ public final class Level {
 			// 	++var12;
 			// }
 		case 23: // hangar
-			var1 = Status.getSystem().getRace() == 1 ? 2 : Status.getSystem().getRace() == 0 ? 0 : 1;
+			var1 = Status.getSystem().getRace() == Globals.VOSSK ? 2 : Status.getSystem().getRace() == Globals.TERRAN ? 0 : 1;
 			this.ships = new KIPlayer[7];
 			this.ships[0] = createShip(Status.getShip().getRace(), 0, Status.getShip().getIndex(), (Waypoint)null);
 			this.ships[0].setPosition(0, 1200, 10240 - Ship.SHIP_HANGAR_OFFSETS[Status.getShip().getIndex()] + 100);
@@ -1376,9 +1376,9 @@ public final class Level {
 					gun.setFriendGun(true);
 					gun.setLevel(this);
 					gun.setSparks(this.gunSparks);
-					final int gunType = ship.race == 9 ? 7:
-											  ship.race == 0 ? 1:
-											  ship.race == 1 ? 3:
+					final int gunType = ship.race == Globals.VOID ? 7:
+											  ship.race == Globals.TERRAN ? 1:
+											  ship.race == Globals.VOSSK ? 3:
 													             4;
 					this.enemyGuns[gunCnt] = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[gunType]));
 					this.enemyGuns[gunCnt].setRenderLayer(2);
@@ -2029,7 +2029,7 @@ public final class Level {
 				this.alienRespawnTick = 0;
 				if (this.ships != null) {
 					for(int i = 0; i < this.ships.length; ++i) {
-						if ((var5 = this.ships[i]).race == 9 && var5.isDead() && !var5.player.isActive()) {
+						if ((var5 = this.ships[i]).race == Globals.VOID && var5.isDead() && !var5.player.isActive()) {
 							var5.revive();	
 							int x, y, z;
 							if (!Status.inAlienOrbit() && Status.getStation().isAttackedByAliens()) {
@@ -2097,7 +2097,7 @@ public final class Level {
 	private void createRadioMessage(final boolean alarmFriends, int var2) {
 		if (this.ego != null && this.ego.radio != null && Status.getMission().isEmpty()) {
 			this.radioMessages = new RadioMessage[1];
-			var2 = var2 == 2 ? 24 : var2 == 0 ? 23 : var2 == 3 ? 21 : 22;
+			var2 = var2 == Globals.VOSSK ? 24 : var2 == Globals.TERRAN ? 23 : var2 == Globals.MIDORIAN ? 21 : 22;
 			final short var4 = (short)((alarmFriends ? 250 : 247) + GlobalStatus.random.nextInt(3));
 			this.radioMessages[0] = new RadioMessage(var4, var2, 5, 0);
 			this.ego.radio.setMessages(this.radioMessages);

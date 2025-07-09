@@ -185,7 +185,7 @@ public abstract class KIPlayer {
 				var6.capturedCargoCount += var2.getAmount();
 				if (var5) {
 					this.lostMissionCrateToEgo = true;
-				} else if (this.race == 9) {
+				} else if (this.race == Globals.VOID) {
 					Status.alienJunkSalvaged += var2.getAmount();
 				} else if (var2.getIndex() >= 132 && var2.getIndex() < 154) {
 					Status.drinkTypesPossesed[var2.getIndex() - 132] = true;
