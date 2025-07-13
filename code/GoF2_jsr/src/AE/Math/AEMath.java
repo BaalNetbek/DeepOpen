@@ -158,7 +158,7 @@ public final class AEMath {
 		x = Float.floatToIntBits(x * TO_FLOAT);       // evil floating point bit level hacking
 		x = 0x5F375A86 - (x >> 1);                         // what the fuck?  
 		x = (int)(Float.intBitsToFloat(x) * TO_Q);
-		x = x * (Q_THREE_HALFS - ((x * x >> Q) * x_half >> Q)) >> Q; // 1st iteration
+		x = x * (Q_THREE_HALFS - ((x_half * x >> Q) * x >> Q)) >> Q; // 1st iteration
 		return abs(x);
 	}
 
