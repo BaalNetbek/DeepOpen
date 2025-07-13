@@ -1,6 +1,36 @@
 package AE.Math;
 
 public final class AEMath {
+	public static final int Q = 12;
+	public static final int Q_1 = 1 << Q;
+	public static final int Q_EIGHTH = Q_1 / 8;
+	public static final int Q_QUARTER = Q_1 / 4;
+	public static final int Q_THREE_EIGHTHS = Q_1 * 3/8;
+	public static final int Q_HALF = Q_1 / 2;
+	public static final int Q_THREE_QUARTERS = Q_1 * 3/4;
+	public static final int Q_THREE_HALFS = Q_1 * 3/2;
+	public static final int Q_2 = Q_1 * 2;
+	public static final int Q_4 = Q_1 * 4;
+	public static final int Q_6 = Q_1 * 6;
+	public static final int Q_8 = Q_1 * 8;
+	public static final float TO_FLOAT = 1.0f / (float)Q_1;
+	public static final float TO_Q = (float)Q_1;
+	public static final int Q_PI = Q_1;
+	public static final int Q_PI_HALF = Q_HALF;
+	public static final int Q_PI_THREE_QUARTERS = Q_PI * 3/4;
+	public static final int Q_PI_QUARTER = Q_QUARTER;
+	public static final int Q_PI_THIRD = (Q_1) / 3;
+	public static final int Q_PI_SIXTH = (Q_1) / 6;
+	public static final int Q_180d = Q_PI;
+	public static final int Q_135d = Q_PI_THREE_QUARTERS;
+	public static final int Q_90d = Q_PI_HALF;
+	public static final int Q_45d = Q_PI_QUARTER;
+	public static final int Q_60d = Q_PI_THIRD;
+	public static final int Q_30d = Q_PI_SIXTH;
+	public static final int Q_DIV (int a, int b) { return (a<<Q)/b; }
+	public static final int Q_MUL (int a, int b) { return a*b>>Q; }
+	public static final int Q_SQR (int a) { return a*a>>Q; }
+	
 	private static final short[] SINE_QUARTER = {
 	        0,   6,  13,  19,  25,  31,  38,  44,  50,  57,  63,  69,  75,  82,  88,  94, 101, 107,
 	      113, 119, 126, 132, 138, 144, 151, 157, 163, 170, 176, 182, 188, 195, 201, 207, 214, 220, 226, 232, 239,
@@ -59,40 +89,48 @@ public final class AEMath {
 	      4091, 4092, 4092, 4092, 4092, 4093, 4093, 4093, 4093, 4094, 4094, 4094, 4094, 4094, 4095, 4095, 4095, 4095,
 	      4095, 4095, 4095, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096
 			};
-
+//	private static final short[] SINE_QUARTER = new short[1 + (1 << (Q - 2))];
+//	 
+//	static {
+//	      float dn = 2.0f * (float)Math.PI * TO_FLOAT;
+//	      for (int i = 0; i < SINE_QUARTER.length; i++) {
+//	          SINE_QUARTER[i] = (short)(Math.sin(dn * i) * TO_Q + 0.5f);
+//	      }
+//	   }
+	
 	public static int sin(int var0) {
-		var0 &= 4095;
-		if (var0 >= 3072) {
-			return -SINE_QUARTER[4096 - var0];
+		var0 &= (Q_PI - 1);
+		if (var0 >= Q_PI_THREE_QUARTERS) {
+			return -SINE_QUARTER[Q_PI - var0];
 		}
-		if (var0 >= 2048) {
-			return -SINE_QUARTER[var0 - 2048];
+		if (var0 >= Q_PI_HALF) {
+			return -SINE_QUARTER[var0 - Q_PI_HALF];
 		}
-		if (var0 >= 1024) {
-				return SINE_QUARTER[2048 - var0];
+		if (var0 >= Q_PI_QUARTER) {
+				return SINE_QUARTER[Q_PI_HALF - var0];
 		}
 		return SINE_QUARTER[var0];
 		
 	}
 
-	public static int cos(int var0) {
-		var0 -= 1024;
-		var0 &= 4095;
-		if (var0 >= 3072) {
-			return SINE_QUARTER[4096 - var0];
+	public static int cos(int angle) {
+		angle -= Q_PI_QUARTER;
+		angle &= (Q_PI - 1);
+		if (angle >= Q_PI_THREE_QUARTERS) {
+			return SINE_QUARTER[Q_PI - angle];
 		}
-		if (var0 >= 2048) {
-			return SINE_QUARTER[var0 - 2048];
+		if (angle >= Q_PI_HALF) {
+			return SINE_QUARTER[angle - Q_PI_HALF];
 		}
-		if (var0 >= 1024) {
-			return -SINE_QUARTER[2048 - var0];
+		if (angle >= Q_PI_QUARTER) {
+			return -SINE_QUARTER[Q_PI_HALF - angle];
 		}
-		return -SINE_QUARTER[var0];
+		return -SINE_QUARTER[angle];
 		
 	}
 
    public static int invSin(int n) {
-      int n2 = 4096 - (n * n >> 12);
+      int n2 = Q_PI - (n * n >> Q);
       if (n2 <= 0) {
           return AEMath.atan2(n, 0);
       }
@@ -102,25 +140,25 @@ public final class AEMath {
 	public static int atan2(final int y, int x) {
 		final int var2 = abs(y) + 1;
 		if (x >= 0) {
-			x = (x - var2 << 12) / (x + var2);
+			x = (x - var2 << Q) / (x + var2);
 			if (y < 0) {
-				return -(512 - (x * 512 >> 12));
+				return -(Q_EIGHTH - (x * Q_EIGHTH >> Q));
 			}
-			return 512 - (x * 512 >> 12);
+			return Q_EIGHTH - (x * Q_EIGHTH >> Q);
 		}
-		x = (x + var2 << 12) / (var2 - x);
+		x = (x + var2 << Q) / (var2 - x);
 		if (y < 0) {
-			return -(1536 - (x * 512 >> 12));
+			return -(Q_THREE_EIGHTHS - (x * Q_EIGHTH >> Q));
 		}
-		return 1536 - (x * 512 >> 12);
+		return Q_THREE_EIGHTHS - (x * Q_EIGHTH >> Q);
 	}
 
 	public static int invSqrt(int x) {
-		final int x2 = x >> 1;
-		x = Float.floatToIntBits(x * 2.4414062E-4F);       // evil floating point bit level hacking
+		final int x_half = x >> 1;
+		x = Float.floatToIntBits(x * TO_FLOAT);       // evil floating point bit level hacking
 		x = 0x5F375A86 - (x >> 1);                         // what the fuck?  
-		x = (int)(Float.intBitsToFloat(x) * 4096.0F);
-		x = x * (6144 - ((x2 * x >> 12) * x >> 12)) >> 12; // 1st iteration
+		x = (int)(Float.intBitsToFloat(x) * TO_Q);
+		x = x * (Q_THREE_HALFS - ((x * x >> Q) * x_half >> Q)) >> Q; // 1st iteration
 		return abs(x);
 	}
 
@@ -131,9 +169,9 @@ public final class AEMath {
 		int n = Integer.MAX_VALUE;
 		long y = Integer.MAX_VALUE;
 
-		for(int var3 = 30; var3 >= 0; --var3) {
+		for(int i = 30; i >= 0; --i) {
 			n >>= 1;
-			long var7 = x - (y * y >> 12);
+			long var7 = x - (y * y >> Q);
 			if (var7 > 0L) {
 				y += n;
 			} else {
