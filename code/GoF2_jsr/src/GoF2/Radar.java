@@ -850,43 +850,45 @@ public final class Radar {
         }
     }
 
-    private String calcDistance(int var1, int var2, int var3, final Player var4) {
-        this.playerPos = var4.getPosition(this.playerPos);
+    private String calcDistance(int x, int y, int z, final Player player) {
+        this.playerPos = player.getPosition(this.playerPos);
         this.floatVector.x = this.playerPos.x >> 1;
         this.floatVector.y = this.playerPos.y >> 1;
         this.floatVector.z = this.playerPos.z >> 1;
-        var1 >>= 1;
-        var2 >>= 1;
-        var3 >>= 1;
-        final float var6 = ((this.floatVector.x - var1) * (this.floatVector.x - var1) + (this.floatVector.y - var2) * (this.floatVector.y - var2) + (this.floatVector.z - var3) * (this.floatVector.z - var3)) / 4096.0F;
-        float var7 = 65536.0F;
-        float var9 = 65536.0F;
-
-        for(int var5 = 0; var5 < 20; ++var5) {
-            var7 *= 0.5F;
-            float var10 = var6 - var9 * var9;
+        x >>= 1;
+        y >>= 1;
+        z >>= 1;
+        final float distSqr = ((this.floatVector.x - x) * (this.floatVector.x - x) + (this.floatVector.y - y) * (this.floatVector.y - y) + (this.floatVector.z - z) * (this.floatVector.z - z)) / 4096.0F;
+        float a = 65536.0F;
+        float b = 65536.0F;
+        
+        // square root approximation
+        // b = sqrt(distSqr)
+        for(int i = 0; i < 20; ++i) {
+            a *= 0.5F;
+            float var10 = distSqr - b * b;
             if (var10 > 0.0F) {
-                var9 += var7;
+                b += a;
             } else if (var10 < 0.0F) {
-                var9 -= var7;
+                b -= a;
             }
         }
 
-        var1 = (var1 = (int)var9) * 12;
-        String var8 = var1 + "m";
-        if (var1 >= 1000) {
-            var2 = var1 % 1000;
-            if (var2 >= 100) {
-                var8 = "" + var2;
+        int meters = (int)b * 12;
+        String distance = meters + "m";
+        if (meters >= 1000) {
+            y = meters % 1000;
+            if (y >= 100) {
+                distance = "" + y;
             } else {
-                var8 = "0";
+                distance = "0";
             }
 
-            var8 = var8.substring(0, 1);
-            var8 = var1 / 1000 + "." + var8 + "km";
+            distance = distance.substring(0, 1);
+            distance = meters / 1000 + "." + distance + "km";
         }
 
-        return var8;
+        return distance;
     }
 
     public final KIPlayer getLockedAsteroid() {

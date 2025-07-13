@@ -128,7 +128,7 @@ cl.a Lcd; temp
 cl.a()V identity
 cl.a(Lcl;)V set
 cl.b(Lcl;)V multiply
-cl.a(Lcl;Lcl;)Lcl; multiplyTwo
+cl.a(Lcl;Lcl;)Lcl; multiplyTo
 cl.a(III)V translate
 cl.a(Lcd;)V translate
 cl.b(III)V translateTo

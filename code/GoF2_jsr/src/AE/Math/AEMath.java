@@ -1,7 +1,15 @@
 package AE.Math;
-
+/**
+ * This class contains mathematical functions for fixed-point numbers. 
+ * Constant Q defines number of [decimal] digits that represent fractional part.
+ * By default Q equals 12. This means that variable of type short can fit 
+ * numbers from range  7.999755859375 to -8 with step 0.000244140625.
+ * min for int (32 bit) int  is -524,288.
+ * min for long (64 bit) is -2,251,799,813,685,248.
+ */
 public final class AEMath {
 	public static final int Q = 12;
+	
 	public static final int Q_1 = 1 << Q;
 	public static final int Q_EIGHTH = Q_1 / 8;
 	public static final int Q_QUARTER = Q_1 / 4;
@@ -14,6 +22,7 @@ public final class AEMath {
 	public static final int Q_6 = Q_1 * 6;
 	public static final int Q_8 = Q_1 * 8;
 	public static final float TO_FLOAT = 1.0f / (float)Q_1;
+	public static final float TO_FLOAT_SQR = TO_FLOAT / (float)Q_1;
 	public static final float TO_Q = (float)Q_1;
 	public static final int Q_PI = Q_1;
 	public static final int Q_PI_HALF = Q_HALF;
@@ -89,6 +98,8 @@ public final class AEMath {
 	      4091, 4092, 4092, 4092, 4092, 4093, 4093, 4093, 4093, 4094, 4094, 4094, 4094, 4094, 4095, 4095, 4095, 4095,
 	      4095, 4095, 4095, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096
 			};
+	
+// Alternative computing at runtime
 //	private static final short[] SINE_QUARTER = new short[1 + (1 << (Q - 2))];
 //	 
 //	static {
@@ -98,18 +109,18 @@ public final class AEMath {
 //	      }
 //	   }
 	
-	public static int sin(int var0) {
-		var0 &= (Q_PI - 1);
-		if (var0 >= Q_PI_THREE_QUARTERS) {
-			return -SINE_QUARTER[Q_PI - var0];
+	public static int sin(int angle) {
+		angle &= (Q_PI - 1);
+		if (angle >= Q_PI_THREE_QUARTERS) {
+			return -SINE_QUARTER[Q_PI - angle];
 		}
-		if (var0 >= Q_PI_HALF) {
-			return -SINE_QUARTER[var0 - Q_PI_HALF];
+		if (angle >= Q_PI_HALF) {
+			return -SINE_QUARTER[angle - Q_PI_HALF];
 		}
-		if (var0 >= Q_PI_QUARTER) {
-				return SINE_QUARTER[Q_PI_HALF - var0];
+		if (angle >= Q_PI_QUARTER) {
+				return SINE_QUARTER[Q_PI_HALF - angle];
 		}
-		return SINE_QUARTER[var0];
+		return SINE_QUARTER[angle];
 		
 	}
 
@@ -171,14 +182,13 @@ public final class AEMath {
 
 		for(int i = 30; i >= 0; --i) {
 			n >>= 1;
-			long var7 = x - (y * y >> Q);
-			if (var7 > 0L) {
+			long temp = x - (y * y >> Q);
+			if (temp > 0L) {
 				y += n;
 			} else {
-				if (var7 >= 0L) {
+				if (temp >= 0L) {
 					return (int)y;
 				}
-
 				y -= n;
 			}
 		}

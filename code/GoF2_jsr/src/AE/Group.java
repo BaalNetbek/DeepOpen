@@ -87,7 +87,7 @@ public class Group extends GraphNode {
 		if (this.boundsDirty_ || var1) {
 			if (this.transformDirty_ || var1) {
 				if (this.group != null) {
-					this.localTransformation = this.group.localTransformation.multiplyTwo(this.compositeTransformation, this.localTransformation);
+					this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
 				} else {
 					this.localTransformation.set(this.compositeTransformation);
 				}
