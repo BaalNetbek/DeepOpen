@@ -606,7 +606,7 @@ public final class SpaceLounge {
 
 				for(var3 = this.chatScroll; var3 < this.chatScroll + 4 && var3 < this.chatRows.length; ++var3) {
 					final String var4 = var3 != this.chatRows.length - 1 && var3 == this.chatScroll + 4 - 1 ? ".." : "";
-					Font.drawString(this.chatRows[var3] + (Layout.quickTickHigh_() ? var4 : ""), this.chatTextPosX, this.chatTextPosY + var2 * Font.getFontSpacingY(), 1);
+					Font.drawString(this.chatRows[var3] + (Layout.quickClockHigh_() ? var4 : ""), this.chatTextPosX, this.chatTextPosY + var2 * Font.getFontSpacingY(), 1);
 					var2++;
 				}
 

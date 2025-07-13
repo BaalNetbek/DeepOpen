@@ -1048,7 +1048,7 @@ public final class StarMap {
 			var3 = this.tmpStarScreenPos2.x + var5 + Font.getTextWidth(this.systems[var1].getName(), 0) + 7;
 			boolean var6 = true;
 			if (this.overviewOnly_ && !var2 && this.destinationOrMissionSystem_ == this.systems[var1].getId()) {
-				var6 = Layout.quickTickHigh_();
+				var6 = Layout.quickClockHigh_();
 			}
 
 			if (var6) {

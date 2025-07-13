@@ -79,8 +79,8 @@ public final class Radar {
     private AbstractMesh contextPlanet;
     public AbstractMesh targetedPlanet;
     public KIPlayer tractorBeamTarget;
-    public KIPlayer contextStation;
-    public KIPlayer targetedStation;
+    public KIPlayer contextLandmark;
+    public KIPlayer targetedLandmark;
     public boolean draw;
     private boolean onPlanetCourse_;
     private int targetedPlanetLocalIndex;
@@ -105,11 +105,11 @@ public final class Radar {
         this.stationaryPlayersNames[1] = GlobalStatus.gameText.getText(271);
         this.stationaryPlayersNames[2] = "";
         this.stationaryPlayersNames[3] = GlobalStatus.gameText.getText(269);
-        AbstractMesh[] var5 = var1.getPlayerGuns_();
-        if (var5 != null) {
-            for(int var2 = 0; var2 < var5.length; ++var2) {
-                if (var5[var2] instanceof RocketGun) {
-                    ((RocketGun)var5[var2]).setRadar(this);
+        AbstractMesh[] guns = var1.getPlayerGuns_();
+        if (guns != null) {
+            for(int i = 0; i < guns.length; ++i) {
+                if (guns[i] instanceof RocketGun) {
+                    ((RocketGun)guns[i]).setRadar(this);
                 }
             }
         }
@@ -233,13 +233,20 @@ public final class Radar {
     private void elipsoidIntersect(final Camera var1, final KIPlayer var2) {
         this.elipsoidIntersect(var1, var2.getPosition(this.tempPos));
     }
-
+    /** Thats a big function
+     * 
+     * @param var1
+     * @param var2
+     * @param var3
+     * @param var4
+     * @param var5
+     */
     public final void draw(final Player var1, final Camera var2, final TargetFollowCamera var3, final Hud var4, final int var5) {
         if (!this.draw) {
             KIPlayer[] var23 = this.level.getEnemies();
             if (var23 != null) {
-                for(int var24 = 0; var24 < var23.length; ++var24) {
-                    var23[var24].withinRenderDistance = true;
+                for(int i = 0; i < var23.length; ++i) {
+                    var23[i].withinRenderDistance = true;
                 }
             }
 
@@ -247,17 +254,20 @@ public final class Radar {
             Mission var6;
             final boolean var7 = !(var6 = Status.getMission()).isEmpty() && var6.getType() != 11 && var6.getType() != 0;
             final boolean var22 = this.level.getPlayer().isLookingBack();
-            boolean var8 = Status.inAlienOrbit();
+            final boolean inAlienOrbit = Status.inAlienOrbit();
             this.enemies = this.level.getEnemies();
             this.landmarks = this.level.getLandmarks();
             this.playerRoute = this.level.getPlayerRoute();
             this.asteroids = this.level.getAsteroids();
             this.planets = this.level.getStarSystem().getPlanets();
-            if (!var8) {
-                this.onPlanetCourse_ = this.level.getPlayer().goingToPlanet() && !this.level.getPlayer().isDockingToPlanet() && this.level.getPlayer().getAutoPilotTarget() == this.level.getStarSystem().getPlanetTargets()[Status.getSystem().getStationEnumIndex(Status.getSystem().getStations()[this.targetedPlanetLocalIndex])];
-            } else {
-                this.onPlanetCourse_ = this.level.getPlayer().goingToPlanet() && !this.level.getPlayer().isDockingToPlanet();
-            }
+				if (!inAlienOrbit) {
+					this.onPlanetCourse_ = this.level.getPlayer().goingToPlanet() && !this.level.getPlayer().isDockingToPlanet()
+					      && this.level.getPlayer()
+					            .getAutoPilotTarget() == this.level.getStarSystem().getPlanetTargets()[Status.getSystem()
+					                  .getStationEnumIndex(Status.getSystem().getStations()[this.targetedPlanetLocalIndex])];
+				} else {
+					this.onPlanetCourse_ = this.level.getPlayer().goingToPlanet() && !this.level.getPlayer().isDockingToPlanet();
+				}
 
             if (this.playerRoute != null && this.playerRoute.getDockingTarget_() != null) {
                 this.elipsoidIntersect(var2, this.playerRoute.getDockingTarget_());
@@ -271,79 +281,78 @@ public final class Radar {
             }
 
             boolean var9 = this.targetedAsteroid != null || this.tractorBeamTarget != null || this.targetedPlanet != null;
-            boolean var10 = false;
-            int var12;
-            int var13;
+            boolean aimingAtLandmark = false;
+            
             if (this.landmarks != null) {
-                for(int var11 = 0; var11 < this.landmarks.length; ++var11) {
-                    if (var11 != 2 && this.landmarks[var11] != null && this.landmarks[var11].isVisible()) {
-                        this.elipsoidIntersect(var2, this.landmarks[var11]);
+                for(int i = 0; i < this.landmarks.length; ++i) {
+                    if (i != 2 && this.landmarks[i] != null && this.landmarks[i].isVisible()) {
+                        this.elipsoidIntersect(var2, this.landmarks[i]);
                         if (this.inViewFrustum) {
-                            if (!var9 && !var10 && !var22 && var11 != 3) {
-                                var12 = Crosshair.screenPos.x - 30;
-                                var13 = Crosshair.screenPos.y - 30;
-                                if (this.screenProjectionX > var12 && this.screenProjectionX < var12 + 60 && this.screenProjectionY > var13 && this.screenProjectionY < var13 + 60) {
-                                    if (this.contextStation != this.landmarks[var11]) {
+                            if (!var9 && !aimingAtLandmark && !var22 && i != 3) {
+                           	  final int xX = Crosshair.screenPos.x - 30;
+                           	  final int xY = Crosshair.screenPos.y - 30;
+                                if (this.screenProjectionX > xX && this.screenProjectionX < xX + 60 && this.screenProjectionY > xY && this.screenProjectionY < xY + 60) {
+                                    if (this.contextLandmark != this.landmarks[i]) {
                                         this.landmarkScanPassedTime = 0;
                                     }
 
-                                    this.contextStation = this.landmarks[var11];
-                                    var10 = true;
+                                    this.contextLandmark = this.landmarks[i];
+                                    aimingAtLandmark = true;
                                 }
                             }
 
                             this.playerPos = var1.getPosition(this.playerPos);
-                            this.tempContextPosition = this.landmarks[var11].player.getPosition(this.tempContextPosition);
-                            if (var11 != 3) {
+                            this.tempContextPosition = this.landmarks[i].player.getPosition(this.tempContextPosition);
+                            if (i != 3) {
                                 GlobalStatus.graphics.drawImage(this.lockonWaypoint2, this.screenProjectionX, this.screenProjectionY, 3);
                             }
 
-                            Font.drawString(this.stationaryPlayersNames[var11], var11 == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY, 0);
-                            if (var11 < 2) {
-                                if (var11 == 0 && !var8) {
-                                    Font.drawString(GlobalStatus.gameText.getText(37) + ": " + Status.getStation().getTecLevel(), var11 == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 10, 1);
-                                    this.closestStatPlayerDistanceVisible = calcDistance(this.landmarks[var11].targetX, this.landmarks[var11].targetY, this.landmarks[var11].targetZ, var1);
-                                    Font.drawString(this.closestStatPlayerDistanceVisible, var11 == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 20, 1);
+                            Font.drawString(this.stationaryPlayersNames[i], i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY, 0);
+                            if (i < 2) {
+                                if (i == 0 && !inAlienOrbit) {
+                                    Font.drawString(GlobalStatus.gameText.getText(37) + ": " + Status.getStation().getTecLevel(), i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 10, 1);
+                                    this.closestStatPlayerDistanceVisible = calcDistance(this.landmarks[i].targetX, this.landmarks[i].targetY, this.landmarks[i].targetZ, var1);
+                                    Font.drawString(this.closestStatPlayerDistanceVisible, i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 20, 1);
                                 } else {
-                                    this.closestStatPlayerDistanceVisible = calcDistance(this.landmarks[var11].targetX, this.landmarks[var11].targetY, this.landmarks[var11].targetZ, var1);
-                                    Font.drawString(this.closestStatPlayerDistanceVisible, var11 == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 10, 1);
+                                    this.closestStatPlayerDistanceVisible = calcDistance(this.landmarks[i].targetX, this.landmarks[i].targetY, this.landmarks[i].targetZ, var1);
+                                    Font.drawString(this.closestStatPlayerDistanceVisible, i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 10, 1);
                                 }
                             }
-                        } else if (var11 == 3) {
+                        } else if (i == 3) {
                             GlobalStatus.graphics.drawImage(this.vortex, this.screenProjectionX, this.screenProjectionY, 3);
                         }
                     }
                 }
 
                 if (!var22) {
-                    if (this.targetedStation != null) {
-                        if (this.targetedStation.isDead()) {
-                            this.targetedStation = null;
+                    if (this.targetedLandmark != null) {
+                        if (this.targetedLandmark.isDead()) {
+                            this.targetedLandmark = null;
                         }
 
-                        this.targetedStation = null;
+                        this.targetedLandmark = null;
                     }
 
-                    if (var10 && !this.level.getPlayer().isDockingToAsteroid() && !this.level.getPlayer().isAutoPilot()) {
+                    if (aimingAtLandmark && !this.level.getPlayer().isDockingToAsteroid() && !this.level.getPlayer().isAutoPilot()) {
                         this.landmarkScanPassedTime += var5;
                         if (this.landmarkScanPassedTime > this.scanTime) {
-                            this.targetedStation = this.contextStation;
+                            this.targetedLandmark = this.contextLandmark;
                         }
 
                         if (this.landmarkScanPassedTime > 0) {
-                            if (this.contextStation != null && !this.contextStation.equals(this.targetedStation)) {
+                            if (this.contextLandmark != null && !this.contextLandmark.equals(this.targetedLandmark)) {
                                 this.scanProcessAnim.setFrame((int)((this.scanProcessAnim.getRawFrameCount() - 2) * ((float)this.landmarkScanPassedTime / (float)this.scanTime)));
                                 this.scanProcessAnim.setRefPixelPosition(Crosshair.screenPos.x, Crosshair.screenPos.y);
                                 this.scanProcessAnim.paint(GlobalStatus.graphics);
-                            } else if (Layout.quickTickHigh_()) {
+                            } else if (Layout.quickClockHigh_()) {
                                 this.scanProcessAnim.setFrame(this.scanProcessAnim.getRawFrameCount() - 2);
                                 this.scanProcessAnim.setRefPixelPosition(Crosshair.screenPos.x, Crosshair.screenPos.y);
                                 this.scanProcessAnim.paint(GlobalStatus.graphics);
                             }
                         }
                     } else {
-                        if (this.targetedStation == null) {
-                            this.contextStation = null;
+                        if (this.targetedLandmark == null) {
+                            this.contextLandmark = null;
                         }
 
                         this.landmarkScanPassedTime = 0;
@@ -351,20 +360,20 @@ public final class Radar {
                 }
             }
 
-            var9 = this.targetedAsteroid != null || this.tractorBeamTarget != null || this.targetedStation != null;
+            var9 = this.targetedAsteroid != null || this.tractorBeamTarget != null || this.targetedLandmark != null;
             boolean var28 = false;
             boolean var14;
             boolean var15;
             int var18;
             int var19;
             if (this.planets != null) {
-                for(var12 = 1; var12 < this.planets.length; ++var12) {
-                    this.elipsoidIntersect(var2, this.planets[var12].getLocalPos(this.tempPos));
+                for(int i = 1; i < this.planets.length; ++i) {
+                    this.elipsoidIntersect(var2, this.planets[i].getLocalPos(this.tempPos));
                     if (this.inViewFrustum) {
                         int[] var30;
-                        var8 = (var30 = Status.getSystem().getStations())[var12 - 1] == Status.getStation().getId();
+                        final boolean var8 = (var30 = Status.getSystem().getStations())[i - 1] == Status.getStation().getId();
                         var14 = false;
-                        if (Status.getSystem().getJumpGateEnumIndex() == var12 - 1 && !var8) {
+                        if (Status.getSystem().getJumpGateEnumIndex() == i - 1 && !var8) {
                             GlobalStatus.graphics.drawImage(this.mapJumpgate, this.screenProjectionX + 10, this.screenProjectionY - 10, 0);
                             var14 = true;
                         }
@@ -372,7 +381,7 @@ public final class Radar {
                         var15 = false;
                         final Mission var16 = Status.getCampaignMission();
                         final Mission var17 = Status.getFreelanceMission();
-                        if (var16 != null && !var16.isEmpty() && var30[var12 - 1] == var16.getTargetStation() && !var8) {
+                        if (var16 != null && !var16.isEmpty() && var30[i - 1] == var16.getTargetStation() && !var8) {
                             if (this.mainMission == null) {
                                 this.mainMission = AEFile.loadCryptedImage("/data/interface/menu_map_mainmission.png");
                             }
@@ -381,7 +390,7 @@ public final class Radar {
                             var15 = true;
                         }
 
-                        if (var17 != null && !var17.isEmpty() && var30[var12 - 1] == var17.getTargetStation() && !var8) {
+                        if (var17 != null && !var17.isEmpty() && var30[i - 1] == var17.getTargetStation() && !var8) {
                             if (this.sideMission == null) {
                                 this.sideMission = AEFile.loadCryptedImage("/data/interface/menu_map_sidemission.png");
                             }
@@ -391,27 +400,27 @@ public final class Radar {
                         }
 
                         if (!var9 && !var28 && !var22) {
-                            var18 = StarSystem.currentPlanetEnumIndex == var12 ? 100 : 30;
+                            var18 = StarSystem.currentPlanetEnumIndex == i ? 100 : 30; //planet scan radius
                             var19 = Crosshair.screenPos.x - (var18 >> 1);
                             final int var20 = Crosshair.screenPos.y - (var18 >> 1);
                             if (this.screenProjectionX > var19 && this.screenProjectionX < var19 + var18 && this.screenProjectionY > var20 && this.screenProjectionY < var20 + var18) {
-                                if (var12 != StarSystem.currentPlanetEnumIndex) {
-                                    if (this.contextPlanet != this.planets[var12]) {
+                                if (i != StarSystem.currentPlanetEnumIndex) {
+                                    if (this.contextPlanet != this.planets[i]) {
                                         this.planetScanPassedTime = 0;
                                     }
 
-                                    this.targetedPlanetLocalIndex = var12 - 1;
-                                    this.contextPlanet = this.planets[var12];
+                                    this.targetedPlanetLocalIndex = i - 1;
+                                    this.contextPlanet = this.planets[i];
                                     var28 = true;
                                 }
 
-                                Font.drawString(Status.getPlanetNames()[var12 - 1], this.screenProjectionX + 10 + (var14 ? 14 : 0) + (var15 ? 14 : 0), this.screenProjectionY - 10, 0);
+                                Font.drawString(Status.getPlanetNames()[i - 1], this.screenProjectionX + 10 + (var14 ? 14 : 0) + (var15 ? 14 : 0), this.screenProjectionY - 10, 0);
                             }
                         }
                     }
                 }
 
-                if (!var10 && !var22) {
+                if (!aimingAtLandmark && !var22) {
                     if (this.targetedPlanet != null) {
                         this.targetedPlanet = null;
                     }
@@ -434,7 +443,7 @@ public final class Radar {
                                 this.scanProcessAnim.setFrame((int)((this.scanProcessAnim.getRawFrameCount() - 2) * ((float)this.planetScanPassedTime / (float)this.scanTime)));
                                 this.scanProcessAnim.setRefPixelPosition(Crosshair.screenPos.x, Crosshair.screenPos.y);
                                 this.scanProcessAnim.paint(GlobalStatus.graphics);
-                            } else if (!this.level.getPlayer().isDockingToPlanet() && Layout.quickTickHigh_()) {
+                            } else if (!this.level.getPlayer().isDockingToPlanet() && Layout.quickClockHigh_()) {
                                 this.scanProcessAnim.setFrame(this.scanProcessAnim.getRawFrameCount() - 2);
                                 this.scanProcessAnim.setRefPixelPosition(Crosshair.screenPos.x, Crosshair.screenPos.y);
                                 this.scanProcessAnim.paint(GlobalStatus.graphics);
@@ -457,22 +466,21 @@ public final class Radar {
             }
 
             boolean var29 = false;
-            int var36;
-            int var37;
+
             if (this.scanerPresent && this.enemies != null) {
-                for(var13 = 0; var13 < this.enemies.length; ++var13) {
-                    KIPlayer var25;
-                    if ((var25 = this.enemies[var13]).player.isActive() && (!var25.isDying() || var25.hasCargo)) {
+                for(int i = 0; i < this.enemies.length; ++i) {
+                    KIPlayer var25 = this.enemies[i];
+                    if (var25.player.isActive() && (!var25.isDying() || var25.hasCargo)) {
                         this.elipsoidIntersect(var2, var25);
                         var14 = var25.hasCargo && (var25.isDead() || var25.isDying());
                         if (!var25.isDead() && !var25.isDying() || var25.hasCargo) {
                             var15 = var25.equals(this.targetedPlayer);
                             Gun[] var33;
                             if (!var25.isDead() && this.level.getPlayer().player.hasGunOfType(1) && (var33 = this.level.getPlayer().player.guns[1]) != null) {
-                                GlobalStatus.graphics.setStrokeStyle(1);
-
-                                for(var37 = 0; var37 < var33.length; ++var37) {
-                                    Gun var40 = var33[var37];
+                                
+                           	  GlobalStatus.graphics.setStrokeStyle(Graphics.DOTTED);
+                                for(int j = 0; j < var33.length; ++j) {
+                                    Gun var40 = var33[j];
                                     if (var40 != null && (var40.subType == Item.NUKE || var40.subType == Item.EMP_BOMB) && var40.inAir) {
                                         this.playerPos.set(var40.projectilesPos[0]);
                                         this.tempContextPosition = var25.getPosition(this.tempContextPosition);
@@ -491,10 +499,8 @@ public final class Radar {
                                             this.tempContextPosition.z = 0;
                                             this.tempContextPosition.subtract(this.playerPos);
                                             this.tempContextPosition.z = 0;
-                                            AEVector3D var10000 = this.tempContextPosition;
-                                            var10000.x <<= 12;
-                                            var10000 = this.tempContextPosition;
-                                            var10000.y <<= 12;
+                                            this.tempContextPosition.x <<= 12;
+                                            this.tempContextPosition.y <<= 12;
                                             this.tempContextPosition.normalize();
                                             this.tempContextPosition.scale(16);
                                             this.playerPos.add(this.tempContextPosition);
@@ -503,7 +509,7 @@ public final class Radar {
                                     }
                                 }
 
-                                GlobalStatus.graphics.setStrokeStyle(0);
+                                GlobalStatus.graphics.setStrokeStyle(Graphics.SOLID);
                             }
 
                             if (!var25.isAsteroid && !var25.junk && !var14 && var25.player.enemy) {
@@ -514,7 +520,7 @@ public final class Radar {
                             if (!this.inViewFrustum) {
                                 if (var14) {
                                     GlobalStatus.graphics.drawImage(this.radarIconNeutral, this.screenProjectionX, this.screenProjectionY, 3);
-                                    GlobalStatus.graphics.drawImage(this.enemies[var13].junk ? this.spacejunk : this.enemies[var13].race == 9 ? this.crateVoid : this.crate, this.screenProjectionX, this.screenProjectionY, 3);
+                                    GlobalStatus.graphics.drawImage(this.enemies[i].junk ? this.spacejunk : this.enemies[i].race == 9 ? this.crateVoid : this.crate, this.screenProjectionX, this.screenProjectionY, 3);
                                 } else {
                                     var35 = var25.player.enemy ? var15 ? this.radarIconEnemyLock : this.radarIconEnemy : var25.player.friend ? var15 ? this.radarIconFriendLock : this.hudRadarIconFriend : var15 ? this.radarIconNeutralLock : this.radarIconNeutral2;
                                     GlobalStatus.graphics.drawImage(var35, this.screenProjectionX, this.screenProjectionY, 3);
@@ -531,7 +537,7 @@ public final class Radar {
                                             var42 = GlobalStatus.graphics;
                                             var10001 = this.bracketBox;
                                         } else {
-                                            var36 = var25.player.enemy ? 0 : var25.player.friend ? 6 : 4;
+                                            int var36 = var25.player.enemy ? 0 : var25.player.friend ? 6 : 4;
                                             this.enemyArmorBarHeight = (int)(var25.player.getDamageRate() / 100.0F * 16.0F);
                                             this.bars.setFrame(var36 + 1);
                                             this.bars.setPosition(this.screenProjectionX + 8 + 2, this.screenProjectionY - 8);
@@ -570,8 +576,8 @@ public final class Radar {
                                         var29 = true;
                                         this.contextShip = var25;
                                     } else {
-                                        var36 = Crosshair.screenPos.x - 30;
-                                        var37 = Crosshair.screenPos.y - 30;
+                                    	 final int var36 = Crosshair.screenPos.x - 30;
+                                    	 final int var37 = Crosshair.screenPos.y - 30;
                                         if (this.screenProjectionX > var36 && this.screenProjectionX < var36 + 60 && this.screenProjectionY > var37 && this.screenProjectionY < var37 + 60 && (var14 && this.tractorBeamPresent || this.pastIntro && !this.onPlanetCourse_)) {
                                             if (this.contextShip != var25) {
                                                 this.enemyScanPassedTime = 0;
@@ -605,8 +611,8 @@ public final class Radar {
                                         if (this.playerPos.x - this.tempContextPosition.x < 24000 || this.playerPos.x - this.tempContextPosition.x > -24000 || this.playerPos.y - this.tempContextPosition.y < 24000 || this.playerPos.y - this.tempContextPosition.y > -24000 || this.playerPos.z - this.tempContextPosition.z < 24000 || this.playerPos.z - this.tempContextPosition.z > -24000) {
                                             int[] var26 = this.targetedPlayer.cargo;
                                             if (var26 != null) {
-                                                for(int var32 = 0; var32 < var26.length; var32 += 2) {
-                                                    if (var26[var32 + 1] > 0) {
+                                                for(int i = 0; i < var26.length; i += 2) {
+                                                    if (var26[i + 1] > 0) {
                                                         var4.catchCargo(var26[0], 1, false, false, false, true);
                                                         break;
                                                     }
@@ -643,14 +649,14 @@ public final class Radar {
                 }
             }
 
-            var13 = 0;
+            int k = 0;
 
-            for(int var27 = 0; var27 < this.asteroidsInFront.length; ++var27) {
-                this.asteroidsInFront[var27] = -1;
+            for(int i = 0; i < this.asteroidsInFront.length; ++i) {
+                this.asteroidsInFront[i] = -1;
             }
 
-            var9 = this.contextShip != null && this.targetedPlayer == null || this.tractorBeamTarget != null || this.targetedStation != null || this.targetedPlanet != null;
-            var8 = false;
+            var9 = this.contextShip != null && this.targetedPlayer == null || this.tractorBeamTarget != null || this.targetedLandmark != null || this.targetedPlanet != null;
+            boolean var8 = false;
             if (!this.level.getPlayer().isLockedOnAsteroid_() && this.asteroids != null) {
                 var14 = false;
                 if (this.showAasteroids) {
@@ -678,10 +684,13 @@ public final class Radar {
                                 } else {
                                     var18 = Crosshair.screenPos.x - 20;
                                     var19 = Crosshair.screenPos.y - 20;
-                                    if (this.screenProjectionX > var18 && this.screenProjectionX < var18 + 40 && this.screenProjectionY > var19 && this.screenProjectionY < var19 + 40 && !((PlayerAsteroid)var38).clampedByDistance && this.pastIntro && var13 < 4) {
-                                        this.asteroidsInFront[var13] = var34;
-                                        ++var13;
-                                    }
+												if (this.screenProjectionX > var18 && this.screenProjectionX < var18 + 40
+												      && this.screenProjectionY > var19 && this.screenProjectionY < var19 + 40
+												      && !((PlayerAsteroid) var38).clampedByDistance && this.pastIntro
+												      && k < 4) {
+													this.asteroidsInFront[k] = var34;
+													++k;
+												}
                                 }
                             }
 
@@ -699,10 +708,10 @@ public final class Radar {
                 }
 
                 var34 = 999999;
-                var36 = -1;
+                int var36 = -1;
 
-                for(var37 = 0; var37 < 5; ++var37) {
-                    var18 = this.asteroidsInFront[var37];
+                for(int i = 0; i < 5; ++i) {
+                    var18 = this.asteroidsInFront[i];
                     if (var18 >= 0) {
                         this.tempCameraSpacePos = this.asteroids[var18].getPosition(this.tempCameraSpacePos);
                         this.tempPos = var1.getPosition(this.tempPos);
@@ -757,7 +766,7 @@ public final class Radar {
                                     this.scanProcessAnim.setRefPixelPosition(Crosshair.screenPos.x, Crosshair.screenPos.y);
                                     this.scanProcessAnim.paint(GlobalStatus.graphics);
                                 }
-                            } else if (Layout.quickTickHigh_()) {
+                            } else if (Layout.quickClockHigh_()) {
                                 this.scanProcessAnim.setFrame(this.scanProcessAnim.getRawFrameCount() - 2);
                                 this.scanProcessAnim.setRefPixelPosition(Crosshair.screenPos.x, Crosshair.screenPos.y);
                                 this.scanProcessAnim.paint(GlobalStatus.graphics);
@@ -794,11 +803,11 @@ public final class Radar {
             if (this.targetedPlanet != null) {
                 Font.drawString(Status.getPlanetNames()[this.targetedPlanetLocalIndex], GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, 1, 18);
             } else {
-                KIPlayer var2 = this.targetedAsteroid != null ? this.targetedAsteroid : this.targetedPlayer != null ? this.targetedPlayer : this.targetedStation != null ? this.targetedStation : null;
+                KIPlayer var2 = this.targetedAsteroid != null ? this.targetedAsteroid : this.targetedPlayer != null ? this.targetedPlayer : this.targetedLandmark != null ? this.targetedLandmark : null;
                 if (var2 != null) {
                     final boolean var3 = var2.equals(this.targetedAsteroid);
-                    final boolean var4 = var2.equals(this.targetedStation);
-                    final String var5 = this.targetedStation == this.landmarks[0] ? this.stationaryPlayersNames[0] : this.targetedStation == this.landmarks[3] ? this.stationaryPlayersNames[3] : this.stationaryPlayersNames[1];
+                    final boolean var4 = var2.equals(this.targetedLandmark);
+                    final String var5 = this.targetedLandmark == this.landmarks[0] ? this.stationaryPlayersNames[0] : this.targetedLandmark == this.landmarks[3] ? this.stationaryPlayersNames[3] : this.stationaryPlayersNames[1];
                     if (var3) {
                         ImageFactory.drawItemFrameless(((PlayerAsteroid)var2).oreItemId, var1.items, GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, 40);
                         this.meteorClass.setFrame(((PlayerAsteroid)var2).getQualityFrameIndex());
@@ -815,7 +824,7 @@ public final class Radar {
                     }
 
                     if (var2.name != null && var2.name.equals(GlobalStatus.gameText.getText(833))) {
-                        if (Layout.quickTickHigh_()) {
+                        if (Layout.quickClockHigh_()) {
                             Font.drawString(var2.name, GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, 2, 18);
                         }
                     } else {

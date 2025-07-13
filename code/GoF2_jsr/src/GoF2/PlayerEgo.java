@@ -20,6 +20,8 @@ import AE.Math.Matrix;
  * @author Fishlabs 2009
  */
 public final class PlayerEgo {
+	private static final int CLOAK_READY = -1;
+	
 	private static int boostSpeed = 5;
 	private static int boostDuration = 5000;
 	private static int boostDelay = 20000;
@@ -145,7 +147,7 @@ public final class PlayerEgo {
 		this.isMinig = false;
 		this.inWormhole = false;
 		this.cloak = Status.getShip().getFirstEquipmentOfSort(Item.CLOAK);
-		this.cloakTime = -1;
+		this.cloakTime = CLOAK_READY;
 		this.cloakDuration = this.cloak == null ? 0 : this.cloak.getAttribute(Item.CLOAK_DURATION);
 		this.cloakLoadingTime = this.cloak == null ? 0 : this.cloak.getAttribute(Item.CLOAK_RELOAD);
 		this.cloakOn = false;
@@ -299,7 +301,7 @@ public final class PlayerEgo {
 		return this.boostTime >= 0;
 	}
 
-	public final float getCurrentBoostedSpeed() {
+	public final float getBoostPercentage() { 
 		float var1 = (float)this.boostTime / (float)(boostDuration / 6);
 		if (var1 < 1.0F) {
 			return var1;
@@ -307,18 +309,23 @@ public final class PlayerEgo {
 		return var1 > 5.0F ? 6.0F - var1 : 1.0F;
 	}
 
-	public final float getBoostCharge() {
-		float var1;
-		return (var1 = (float)this.boostTime / (float)boostDelay) > 0.0F ? 1.0F : var1 + 1.0F;
+	public final float getBoostRate() {
+		float var1 = (float)this.boostTime / (float)boostDelay;
+		return (var1) > 0.0F ? 1.0F : var1 + 1.0F;
 	}
 
-	public final float getCloakRechargeRate() {
-		float var1;
-		return (var1 = this.cloakOn ? (float)this.cloakTime / (float)this.cloakDuration : (float)this.cloakTime / (float)this.cloakLoadingTime) > 0.0F ? var1 : 1.0F;
+	public final float getCloakRate() {
+		final float var1;
+		if (this.cloakOn) {
+			var1 = (float)this.cloakTime / (float)this.cloakDuration;
+		} else
+			var1 = (float)this.cloakTime / (float)this.cloakLoadingTime;
+		//float var1 = this.cloakOn ? (float)this.cloakTime / (float)this.cloakDuration : (float)this.cloakTime / (float)this.cloakLoadingTime;
+		return var1 > 0.0F ? var1 : 1.0F;
 	}
 
-	public final boolean isChargingCloak_() {
-		return !this.cloakOn && this.cloakTime == -1;
+	public final boolean isCloakReady() {
+		return !this.cloakOn && this.cloakTime == CLOAK_READY;
 	}
 
 	public final boolean isCloaked() {
@@ -527,7 +534,7 @@ public final class PlayerEgo {
 			int var9;
 			if (this.boostActive) {
 				var9 = 0;
-				final int var6 = (int)(getCurrentBoostedSpeed() * 2048.0F);
+				final int var6 = (int)(getBoostPercentage() * 2048.0F);
 
 				GraphNode var7;
 				int[] var8;
@@ -599,7 +606,7 @@ public final class PlayerEgo {
 				if (this.cloakTime >= 0) {
 					this.cloakTime = (int)(this.cloakTime + this.frameTime);
 					if (this.cloakTime > this.cloakLoadingTime) {
-						this.cloakTime = -1;
+						this.cloakTime = CLOAK_READY;
 					}
 				}
 			}

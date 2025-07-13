@@ -422,7 +422,7 @@ public final class ModStation extends IApplicationModule {
 						Layout.drawTextItem(GlobalStatus.gameText.getText(66), this.menuPosX, this.menuPosY + 14 + 50, this.menuWidth, this.menuItemHighlights[5] == 1, false, true);
 					} else if (!this.missionMsgOpen && !this.hangarOpen && !this.mapOpen && !this.optionsOpen && !this.missionsOpen && !this.popupOpen && !this.medalMsgOpen && !this.statusOpen) {
 						Layout.addTicks((int)this.frameTime);
-						Layout.setTickHighlight(Layout.slowTickHigh_());
+						Layout.setTickHighlight(Layout.slowClockHigh_());
 					}
 
 					if (this.medalMsgOpen) {
@@ -432,7 +432,7 @@ public final class ModStation extends IApplicationModule {
 						Layout.drawFooter("", "");
 						this.popup.draw();
 					} else {
-						Layout.drawFooter(GlobalStatus.gameText.getText(67), Status.getCurrentCampaignMission() == 2 && Layout.quickTickHigh_() ? "" : GlobalStatus.gameText.getText(239));
+						Layout.drawFooter(GlobalStatus.gameText.getText(67), Status.getCurrentCampaignMission() == 2 && Layout.quickClockHigh_() ? "" : GlobalStatus.gameText.getText(239));
 					}
 				}
 

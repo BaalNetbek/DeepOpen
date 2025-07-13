@@ -370,10 +370,10 @@ cq.c()V silentBoost_
 cq.a()I getMiningProgress
 cq.d()Z boosting
 cq.e()Z readyToBoost
-cq.a()F getCurrentBoostedSpeed
-cq.b()F getBoostCharge
-cq.c()F getCloakRechargeRate
-cq.f()Z isChargingCloak_
+cq.a()F getBoostPercentage
+cq.b()F getBoostRate
+cq.c()F getCloakRate
+cq.f()Z isCloakReady
 cq.g()Z isCloaked
 cq.b(Z)V setCollide
 cq.a(Ldb;)V setLevel
@@ -2319,8 +2319,8 @@ bw.g Lo; targetedAsteroid
 bw.b Lag; contextPlanet
 bw.a Lag; targetedPlanet
 bw.b Lo; tractorBeamTarget
-bw.c Lo; contextStation
-bw.d Lo; targetedStation
+bw.c Lo; contextLandmark
+bw.d Lo; targetedLandmark
 bw.a Z draw
 bw.c Z onPlanetCourse_
 bw.l I targetedPlanetLocalIndex
@@ -2468,8 +2468,8 @@ b.b Z tickHighlight
 b.a()V OnRelease
 b.b()V OnInitialize
 b.a(I)V addTicks
-b.a()Z slowTickHigh_
-b.b()Z quickTickHigh_
+b.a()Z slowClockHigh_
+b.b()Z quickClockHigh_
 b.a(IIII)V drawMask
 b.c()V fillClip
 b.a(Ljava/lang/String;IIIZ)V drawTextItem

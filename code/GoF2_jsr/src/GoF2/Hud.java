@@ -11,7 +11,12 @@ import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
 
 public final class Hud {
-	private final String[][] actionmenuLabels = {{"", "", "", ""}, {"", "", "", ""}, {"", "", "", ""}, {"", "", "", ""}, {"", "", "", ""}};
+	private final String[][] actionmenuLabels = {
+			{"", "", "", ""},
+			{"", "", "", ""},
+			{"", "", "", ""},
+			{"", "", "", ""},
+			{"", "", "", ""}};
 	private byte[][] actionmenuButtonsState;
 	private static int lastWingmenAction;
 	private static int drawSecondaryIcon = -1;
@@ -101,18 +106,18 @@ public final class Hud {
 			this.hasArmor = Status.getShip().getAdditionalArmour() > 0;
 			this.hasWeapon = Status.getShip().getFirePower() > 0;
 			this.actionmenuButtonsState = new byte[5][4];
-			final Item[] var8 = Status.getShip().getEquipment(1);
-			boolean var2 = true;
-			if (var8 != null) {
-				for(int var3 = 0; var3 < var8.length; ++var3) {
-					if (var8[var3] != null) {
-						var2 = false;
+			final Item[] secondaries = Status.getShip().getEquipment(Item.SECONDARY);
+			boolean noSecondaries = true;
+			if (secondaries != null) {
+				for(int i = 0; i < secondaries.length; ++i) {
+					if (secondaries[i] != null) {
+						noSecondaries = false;
 						break;
 					}
 				}
 			}
 
-			if (!var2) {
+			if (!noSecondaries) {
 				this.actionmenuButtonsState[0][0] = 1;
 				initSecondariesSubMenu();
 				this.actionmenuLabels[0][0] = GlobalStatus.gameText.getText(124);
@@ -121,29 +126,29 @@ public final class Hud {
 				this.actionmenuButtonsState[0][0] = 0;
 			}
 
-			final Item var6 = Status.getShip().getFirstEquipmentOfSort(Item.CLOAK);
-			final Item var9 = Status.getShip().getFirstEquipmentOfSort(Item.JUMP_DRIVE);
-			if (var6 == null && var9 == null) {
+			final Item cloak = Status.getShip().getFirstEquipmentOfSort(Item.CLOAK);
+			final Item drive = Status.getShip().getFirstEquipmentOfSort(Item.JUMP_DRIVE);
+			if (cloak == null && drive == null) {
 				this.cloakAndDrive = null;
 			} else {
-				this.cloakAndDrive = new Item[var6 != null && var9 != null ? 2 : 1];
+				this.cloakAndDrive = new Item[cloak != null && drive != null ? 2 : 1];
 			}
 
 			int var5 = 0;
-			if (var6 != null) {
+			if (cloak != null) {
 				this.actionmenuButtonsState[0][1] = 1;
-				this.actionmenuLabels[0][1] = GlobalStatus.gameText.getText(569 + var6.getIndex());
+				this.actionmenuLabels[0][1] = GlobalStatus.gameText.getText(569 + cloak.getIndex());
 				++var5;
-				this.cloakAndDrive[0] = var6;
+				this.cloakAndDrive[0] = cloak;
 			} else {
 				this.actionmenuButtonsState[0][1] = 0;
 				this.actionmenuLabels[0][1] = "";
 			}
 
-			if (var9 != null) {
+			if (drive != null) {
 				this.actionmenuButtonsState[0][3] = 1;
-				this.actionmenuLabels[0][3] = GlobalStatus.gameText.getText(569 + var9.getIndex());
-				this.cloakAndDrive[var5] = var9;
+				this.actionmenuLabels[0][3] = GlobalStatus.gameText.getText(569 + drive.getIndex());
+				this.cloakAndDrive[var5] = drive;
 			} else {
 				this.actionmenuButtonsState[0][3] = 0;
 				this.actionmenuLabels[0][3] = "";
@@ -169,25 +174,25 @@ public final class Hud {
 			this.actionmenuOpen = false;
 			this.drawUI = true;
 			this.jumpDriveSelected = false;
-		} catch (final Exception var4) {
-			var4.printStackTrace();
+		} catch (final Exception e) {
+			e.printStackTrace();
 		}
 	}
 
 	private void initSecondariesSubMenu() {
 		this.secondaries = Status.getShip().getEquipment(1);
-		final Item[] var1 = this.secondaries;
+		final Item[] sds = this.secondaries;
 
-		for(int var2 = 0; var2 < this.actionmenuLabels[1].length; ++var2) {
-			if (var2 < var1.length && var1[var2] != null && var1[var2].getAmount() > 0) {
-				this.actionmenuButtonsState[1][var2] = 1;
-				this.actionmenuLabels[1][var2] = var1[var2].toString() + "(" + var1[var2].getAmount() + ")";
+		for(int i = 0; i < this.actionmenuLabels[1].length; ++i) {
+			if (i < sds.length && sds[i] != null && sds[i].getAmount() > 0) {
+				this.actionmenuButtonsState[1][i] = 1;
+				this.actionmenuLabels[1][i] = sds[i].toString() + "(" + sds[i].getAmount() + ")";
 			} else {
-				if (var2 < var1.length && var1[var2] == null) {
-					this.actionmenuButtonsState[1][var2] = 0;
+				if (i < sds.length && sds[i] == null) {
+					this.actionmenuButtonsState[1][i] = 0;
 				}
 
-				this.actionmenuLabels[1][var2] = "";
+				this.actionmenuLabels[1][i] = "";
 			}
 		}
 
@@ -223,9 +228,9 @@ public final class Hud {
 	}
 
 	private void appendHudEvent(final ListItem var1) {
-		for(int var2 = 1; var2 < this.logMessages.length; ++var2) {
-			if (this.logMessages[var2] == null) {
-				this.logMessages[var2] = var1;
+		for(int i = 1; i < this.logMessages.length; ++i) {
+			if (this.logMessages[i] == null) {
+				this.logMessages[i] = var1;
 				this.displayLog_ = true;
 				return;
 			}
@@ -255,8 +260,8 @@ public final class Hud {
 		}
 	}
 
-	public final void hudEvent(final int var1, final PlayerEgo var2) {
-		switch(var1) {
+	public final void hudEvent(final int event, final PlayerEgo ego) {
+		switch(event) {
 		case 1: //Auto fire on
 			if (!this.hasWeapon) {
 				return;
@@ -272,7 +277,7 @@ public final class Hud {
 			this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(16);
 			break;
 		case 3: //Boost
-			if (!this.drawBoostIcon || !var2.readyToBoost()) {
+			if (!this.drawBoostIcon || !ego.readyToBoost()) {
 				return;
 			}
 
@@ -352,9 +357,9 @@ public final class Hud {
 		}
 	}
 
-	private boolean sameHudEventAsBeforeAggregate(final String var1) {
-		for(int var2 = this.logMessages.length - 1; var2 > 0; --var2) {
-			if (this.logMessages[var2] != null && this.logMessages[var2].label.equals(var1)) {
+	private boolean sameHudEventAsBeforeAggregate(final String eventText) {
+		for(int i = this.logMessages.length - 1; i > 0; --i) {
+			if (this.logMessages[i] != null && this.logMessages[i].label.equals(eventText)) {
 				return true;
 			}
 		}
@@ -366,36 +371,37 @@ public final class Hud {
 		this.playerHit = true;
 	}
 
-	public final void catchCargo(final int var1, final int var2, final boolean var3, final boolean var4, final boolean var5, final boolean var6) {
-		this.cargoFull = var3;
+	public final void catchCargo(final int itemId, final int ammount, final boolean fullCargo, final boolean missionItem, final boolean uncountable, final boolean var6) {
+		this.cargoFull = fullCargo;
 		ListItem var7;
-		if (var4) {
+		if (missionItem) {
 			this.logMsg = GlobalStatus.gameText.getText(261);
 			this.logMsg = Status.replaceTokens(this.logMsg, GlobalStatus.gameText.getText(569 + (Status.getMission().getType() == 3 ? 116 : 117)), "#N");
 			this.logMsg = Status.replaceTokens(this.logMsg, "1", "#Q");
-			(var7 = new ListItem(this.logMsg)).items = this.items;
-			var7.itemId = var1;
+			var7 = new ListItem(this.logMsg);
+			var7.items = this.items;
+			var7.itemId = itemId;
 		} else {
-			if (var3) {
+			if (fullCargo) {
 				this.logMsg = GlobalStatus.gameText.getText(159);
 				appendHudEvent(new ListItem(this.logMsg, 1));
 				return;
 			}
 
-			if (var2 <= 0) {
+			if (ammount <= 0) {
 				return;
 			}
 
-			if (var5) {
-				this.logMsg = var2 + "t " + GlobalStatus.gameText.getText(var1 + 569);
+			if (uncountable) {
+				this.logMsg = ammount + "t " + GlobalStatus.gameText.getText(itemId + 569);
 			} else if (var6) {
-				this.logMsg = GlobalStatus.gameText.getText(var1 + 569);
+				this.logMsg = GlobalStatus.gameText.getText(itemId + 569);
 			} else {
-				this.logMsg = var2 + "x " + GlobalStatus.gameText.getText(var1 + 569);
+				this.logMsg = ammount + "x " + GlobalStatus.gameText.getText(itemId + 569);
 			}
-
-			(var7 = new ListItem(this.logMsg)).items = this.items;
-			var7.itemId = var1;
+			var7 = new ListItem(this.logMsg);
+			var7.items = this.items;
+			var7.itemId = itemId;
 			if (var6) {
 				var7.isSelectable = true;
 			}
@@ -458,7 +464,7 @@ public final class Hud {
 
 				this.hudIcons.setPosition(2, 2);
 				this.hudIcons.paint(GlobalStatus.graphics);
-				GlobalStatus.graphics.setClip(2, var7 + 2 - (int)(var5.getBoostCharge() * var7), var7, var7);
+				GlobalStatus.graphics.setClip(2, var7 + 2 - (int)(var5.getBoostRate() * var7), var7, var7);
 				this.hudIcons.setFrame(4);
 				this.hudIcons.setPosition(2, 2);
 				this.hudIcons.paint(GlobalStatus.graphics);
@@ -472,7 +478,7 @@ public final class Hud {
 			}
 
 			this.hudIcons.setPosition(4 + this.hudIconsHeight, 2);
-			if (this.logMessages[1] == null || !this.logMessages[1].label.equals(GlobalStatus.gameText.getText(276)) || Layout.quickTickHigh_()) {
+			if (this.logMessages[1] == null || !this.logMessages[1].label.equals(GlobalStatus.gameText.getText(276)) || Layout.quickClockHigh_()) {
 				this.hudIcons.paint(GlobalStatus.graphics);
 			}
 
@@ -492,9 +498,9 @@ public final class Hud {
 				this.hudIcons.setPosition(GlobalStatus.screenWidth - 2 - this.hudIconsHeight, 2);
 				this.hudIcons.paint(GlobalStatus.graphics);
 				if (var5.isCloaked()) {
-					GlobalStatus.graphics.setClip(GlobalStatus.screenWidth - 2 - this.hudIconsHeight, var7 + 2 - (int)((1.0F - var5.getCloakRechargeRate()) * var7), var7, var7);
+					GlobalStatus.graphics.setClip(GlobalStatus.screenWidth - 2 - this.hudIconsHeight, var7 + 2 - (int)((1.0F - var5.getCloakRate()) * var7), var7, var7);
 				} else {
-					GlobalStatus.graphics.setClip(GlobalStatus.screenWidth - 2 - this.hudIconsHeight, var7 + 2 - (int)(var5.getCloakRechargeRate() * var7), var7, var7);
+					GlobalStatus.graphics.setClip(GlobalStatus.screenWidth - 2 - this.hudIconsHeight, var7 + 2 - (int)(var5.getCloakRate() * var7), var7, var7);
 				}
 
 				this.hudIcons.setFrame(11);
@@ -528,7 +534,7 @@ public final class Hud {
 				var10 = (GlobalStatus.screenHeight >> 1) + (var10 == 1 ? -this.menuAnimStep : var10 == 3 ? this.menuAnimStep : 0);
 				this.quickMenu.setRefPixelPosition(var12, var10);
 				this.quickMenu.setFrame(2);
-				if (!var11 || var11 && Layout.quickTickHigh_()) {
+				if (!var11 || var11 && Layout.quickClockHigh_()) {
 					this.quickMenu.paint(GlobalStatus.graphics);
 					if (this.actionSubMenuOpen == 1) {
 						var7 = var5.getCurrentSecondaryWeaponIndex();
@@ -570,7 +576,7 @@ public final class Hud {
 			}
 
 			if (var10 < 100 && this.hullDamageTick < 3000) {
-				if (Layout.quickTickHigh_()) {
+				if (Layout.quickClockHigh_()) {
 					this.hullDamageTick = (int)(this.hullDamageTick + var1);
 					GlobalStatus.graphics.drawImage(this.hullAlarm, this.screenMidX, 41, 17);
 					this.hullAlarmNumbers.setFrame(var10 / 10);
@@ -769,7 +775,12 @@ public final class Hud {
 					}
 				}
 
-				if (this.actionmenuSelectDir == 0 && this.actionmenuSelectDir == 3 && !var2.getPlayer().isCloaked() && !var2.getPlayer().isChargingCloak_() || this.actionmenuSelectDir > 0 && this.actionmenuLabels[this.actionSubMenuOpen][this.actionmenuSelectDir - 1].equals("")) {
+				if (this.actionmenuSelectDir == 0 
+						&& this.actionmenuSelectDir == 3
+						&& !var2.getPlayer().isCloaked()
+				      && !var2.getPlayer().isCloakReady()
+				      || this.actionmenuSelectDir > 0
+				            && this.actionmenuLabels[this.actionSubMenuOpen][this.actionmenuSelectDir - 1].equals("")) {
 					this.actionmenuSelectDir = var5;
 				}
 

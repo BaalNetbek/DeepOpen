@@ -942,7 +942,7 @@ public final class OptionsWindow {
 				Layout.drawTitleBarWindow(GlobalStatus.gameText.getText(34), posX, headerHeight, windowWidth, 4 * this.fontSpacingY, true);
 				this.nameInput.update(this.frameTime);
 				Font.drawString(this.nameInput.getText() + this.nameInput.getNextChar(), posX + 10, this.optionsListPosY + this.fontSpacingY, 0);
-				if (Layout.quickTickHigh_()) {
+				if (Layout.quickClockHigh_()) {
 					Font.drawString("_", posX + 10 + Font.getStringWidth(this.nameInput.getText()), this.optionsListPosY + 2 + this.fontSpacingY, 0);
 				}
 				break;

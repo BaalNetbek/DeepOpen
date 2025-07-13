@@ -465,16 +465,16 @@ public final class Player {
 					this.guns[var1][var6].timeSinceLastShot = 0;
 					if (this.playShootSound) {
 						switch(this.guns[var1][var6].subType) {
-						case 4:
+						case Item.ROCKET:
 							GlobalStatus.soundManager.playSfx(8);
 							break;
-						case 5:
+						case Item.TORPEDO:
 							GlobalStatus.soundManager.playSfx(9);
 							break;
-						case 6:
+						case Item.EMP_BOMB:
 							GlobalStatus.soundManager.playSfx(10);
 							break;
-						case 7:
+						case Item.NUKE:
 							GlobalStatus.soundManager.playSfx(10);
 						}
 					}

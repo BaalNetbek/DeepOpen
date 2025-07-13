@@ -211,8 +211,8 @@ public final class RadioMessage {
             triggered = playerEgo.level.capturedCargoCount >= this.triggerType;
             break;
         case 23:
-            triggered = playerEgo.radar.targetedStation != null 
-                        && playerEgo.radar.targetedStation instanceof PlayerStation;
+            triggered = playerEgo.radar.targetedLandmark != null 
+                        && playerEgo.radar.targetedLandmark instanceof PlayerStation;
             break;
         case 24:
             triggered = !playerEgo.player.getEnemies()[this.triggerType].isActive() 

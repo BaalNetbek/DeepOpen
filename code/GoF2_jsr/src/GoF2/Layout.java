@@ -59,7 +59,7 @@ public final class Layout {
 		quickTickCounter += var0;
 	}
 
-	public static boolean slowTickHigh_() {
+	public static boolean slowClockHigh_() {
 		if (slowTickCounter <= 1000L) {
 			return false;
 		}
@@ -70,7 +70,7 @@ public final class Layout {
 		return true;
 	}
 
-	public static boolean quickTickHigh_() {
+	public static boolean quickClockHigh_() {
 		if (quickTickCounter <= 300L) {
 			return false;
 		}

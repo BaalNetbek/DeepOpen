@@ -404,7 +404,7 @@ public final class MGame extends IApplicationModule {
 				}
 
 				if (this.playerEgo.boosting() && !this.playerEgo.isDockingToPlanet()) {
-					this.fov = 750 + (int)(this.playerEgo.getCurrentBoostedSpeed() * 150.0F);
+					this.fov = 750 + (int)(this.playerEgo.getBoostPercentage() * 150.0F);
 					this.camera.setFoV(this.fov);
 				}
 
@@ -1170,12 +1170,12 @@ public final class MGame extends IApplicationModule {
 					}
 
 					if (var1 == 256) {
-						if (this.radar.targetedStation != null) {
+						if (this.radar.targetedLandmark != null) {
 							if (!this.playerEgo.isAutoPilot()) {
-								this.playerEgo.setAutoPilot(this.radar.targetedStation);
-								if (this.radar.targetedStation.equals(this.level.getLandmarks()[0])) {
+								this.playerEgo.setAutoPilot(this.radar.targetedLandmark);
+								if (this.radar.targetedLandmark.equals(this.level.getLandmarks()[0])) {
 									this.hud.hudEvent(10, this.playerEgo);
-								} else if (this.radar.targetedStation.equals(this.level.getLandmarks()[3])) {
+								} else if (this.radar.targetedLandmark.equals(this.level.getLandmarks()[3])) {
 									this.hud.hudEvent(15, this.playerEgo);
 								} else {
 									this.hud.hudEvent(12, this.playerEgo);
@@ -1185,8 +1185,8 @@ public final class MGame extends IApplicationModule {
 							} else if (!this.playerEgo.isLookingBack()) {
 								this.hud.hudEvent(6, this.playerEgo);
 								this.playerEgo.setAutoPilot((KIPlayer)null);
-								this.radar.targetedStation = null;
-								this.radar.contextStation = null;
+								this.radar.targetedLandmark = null;
+								this.radar.contextLandmark = null;
 								this.playerEgo.resetGunDelay();
 							}
 						} else {
@@ -1251,7 +1251,7 @@ public final class MGame extends IApplicationModule {
 							}
 
 							if (this.playerEgo.isDockingToStream_()) {
-								this.playerEgo.dockToAsteroid(this.radar.targetedStation, this.targetFollowCamera, this.radar);
+								this.playerEgo.dockToAsteroid(this.radar.targetedLandmark, this.targetFollowCamera, this.radar);
 								this.hud.hudEvent(6, this.playerEgo);
 								return;
 							}

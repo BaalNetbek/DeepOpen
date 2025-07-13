@@ -919,7 +919,7 @@ public class HangarList extends TabbedWindow_ {
 		GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
 		GlobalStatus.graphics.drawRect(this.posX + 2, this.posY + this.height - ITEM_HEIGHT, this.width - 4, (ITEM_HEIGHT - 2));
 		boolean var1 = this.shipLoad > Status.getShip().getCargoPlus();
-		if (var1 && Layout.quickTickHigh_() || !var1) {
+		if (var1 && Layout.quickClockHigh_() || !var1) {
 			Font.drawString(this.shipLoad + "/" + Status.getShip().getCargoPlus() + "t", this.innerLeftMargin, this.posY + this.height - ITEM_HEIGHT, var1 ? 2 : 1, 17);
 		}
 
@@ -1144,7 +1144,7 @@ public class HangarList extends TabbedWindow_ {
 						}
 
 						Layout.drawStringWidthLimited((var9.bluePrint.getTonsPerProduction2() > 1 ? var9.bluePrint.getTonsPerProduction() + "x " : "") + Globals.getItemName(var9.getIndex()), this.innerLeftMargin + ImageFactory.itemFrameWidth + 6, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1, this.width - this.innerLeftMargin - ImageFactory.itemFrameWidth - 20 - 9 - this.listRightPadding + 2, this.selectedEntry == var2 ? 2 : 0);
-						if (!var10 || var10 && Layout.quickTickHigh_()) {
+						if (!var10 || var10 && Layout.quickClockHigh_()) {
 							Font.drawString((int)(var9.bluePrint.getCompletionRate() * 100.0F) + "%", this.posX + this.width - 6 - this.listRightPadding, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1, this.selectedEntry == var2 ? 2 : 1, 18);
 						}
 
@@ -1186,7 +1186,7 @@ public class HangarList extends TabbedWindow_ {
 					Layout.drawStringWidthLimited(Globals.getItemName(var9.getIndex()), this.innerLeftMargin + 20 + ImageFactory.itemFrameWidth + 6, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1, this.width - this.innerLeftMargin - ImageFactory.itemFrameWidth - 40 - 9 - this.listRightPadding + 2 - (this.selectedTab == 4 ? 10 : 0), this.selectedEntry == var2 ? 2 : 0);
 					Font.drawString(Layout.formatCredits(var9.item.getSinglePrice()), this.innerLeftMargin + 20 + ImageFactory.itemFrameWidth + 6, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8, this.selectedEntry == var2 ? 2 : 1, 0);
 					Font.drawString(var4, this.posX + this.width - 6 - this.listRightPadding, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1, this.selectedEntry == var2 ? 2 : 1, 18);
-					if (this.trading_ && !this.popupOpen && var2 == this.selectedEntry && Layout.quickTickHigh_()) {
+					if (this.trading_ && !this.popupOpen && var2 == this.selectedEntry && Layout.quickClockHigh_()) {
 						Font.drawString("<", this.innerLeftMargin + 20, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8, 2, 18);
 						Font.drawString(">", this.posX + this.width - 6 - this.listRightPadding, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8, 2, 18);
 					}
