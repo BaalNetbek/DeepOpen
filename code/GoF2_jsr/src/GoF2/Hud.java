@@ -180,7 +180,7 @@ public final class Hud {
 	}
 
 	private void initSecondariesSubMenu() {
-		this.secondaries = Status.getShip().getEquipment(1);
+		this.secondaries = Status.getShip().getEquipment(Item.SECONDARY);
 		final Item[] sds = this.secondaries;
 
 		for(int i = 0; i < this.actionmenuLabels[1].length; ++i) {
@@ -668,7 +668,7 @@ public final class Hud {
 
 			Item[] var7 = null;
 			if (this.actionSubMenuOpen == 1) {
-				var7 = Status.getShip().getEquipment(1);
+				var7 = Status.getShip().getEquipment(Item.SECONDARY);
 			} else {
 				var7 = this.cloakAndDrive;
 			}
@@ -796,7 +796,7 @@ public final class Hud {
 
 				var5 = var1 == 2 ? 0 : var1 == 32 ? 1 : var1 == 64 ? 2 : var1 == 4 ? 3 : this.actionmenuSelectDir;
 				if (!this.actionmenuLabels[1][var5].equals("")) {
-					var1 = Status.getShip().getEquipment(1)[var5].getIndex();
+					var1 = Status.getShip().getEquipment(Item.SECONDARY)[var5].getIndex();
 					var2.getPlayer().setCurrentSecondaryWeaponIndex(Status.getShip().getEquipment(1)[var5].getIndex());
 					GlobalStatus.displayedSecondary = var1;
 					drawSecondaryIcon = this.actionmenuSelectDir;

@@ -103,7 +103,8 @@ public final class MiningGame {
             }
         } else {
             this.levelProgress += var1;
-            float var5 = (var5 = 0.15F + (this.curLevel + 1) / 7.0F * 2.35F) * this.minigSpeed;
+            float var5 = 0.15F + (this.curLevel + 1) / 7.0F * 2.35F;
+            var5 *= this.minigSpeed;
             this.miningProgress += var5 / 1000.0F * var1;
         }
 

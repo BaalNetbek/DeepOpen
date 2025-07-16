@@ -202,8 +202,8 @@ public final class Ship {
         if (this.equipped == null) {
             return false;
         }
-        for(int var2 = 0; var2 < this.equipped.length; ++var2) {
-            if (this.equipped[var2] != null && this.equipped[var2].getIndex() == var1) {
+        for(int i = 0; i < this.equipped.length; ++i) {
+            if (this.equipped[i] != null && this.equipped[i].getIndex() == var1) {
                 return true;
             }
         }

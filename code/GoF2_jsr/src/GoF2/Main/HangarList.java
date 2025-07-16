@@ -665,7 +665,7 @@ public class HangarList extends TabbedWindow_ {
 							}
 
 							Item[] var9;
-							if (var1.isItem() && var1.item.getType() == 1 && var1.item.getAmount() > 0 && (var9 = Status.getShip().getEquipment(1)) != null) {
+							if (var1.isItem() && var1.item.getType() == 1 && var1.item.getAmount() > 0 && (var9 = Status.getShip().getEquipment(Item.SECONDARY)) != null) {
 								for(var3 = 0; var3 < var9.length; ++var3) {
 									Item var20 = var9[var3];
 									if (var20 != null && var20.getIndex() == var1.item.getIndex()) {

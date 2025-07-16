@@ -53,8 +53,8 @@ public final class RocketGun extends ObjectGun {
         this.radar = var1;
     }
 
-    public final void update(final long var1) {
-        this.gun.calcCharacterCollision(var1);
+    public final void update(final long dt) {
+        this.gun.calcCharacterCollision(dt);
         tempPos.set(this.gun.projectilesPos[0]);
         if (this.gun.fired) {
             this.trail.reset(tempPos);
@@ -67,7 +67,6 @@ public final class RocketGun extends ObjectGun {
         this.rocketMesh_.getToParentTransform().setOrientation(temp);
         if (this.gun.inAir) {
             if (this.guided && this.gun.projectilesTimeLeft[0] < this.gun.range - 1500) {
-                final int var2 = (int)var1;
                 Player[] targets = this.gun.getTargets();
                 if (targets != null) {
                     label74: {
@@ -75,16 +74,16 @@ public final class RocketGun extends ObjectGun {
                             int var4 = -1;
                             int var5 = Integer.MAX_VALUE;
 
-                            for(int var6 = 0; var6 < targets.length; ++var6) {
-                                if (targets[var6].isActive() && !targets[var6].isDead() && !targets[var6].isAsteroid()) {
+                            for(int i = 0; i < targets.length; ++i) {
+                                if (targets[i].isActive() && !targets[i].isDead() && !targets[i].isAsteroid()) {
                                     postion = this.gun.projectilesPos[0];
-                                    tempPos = targets[var6].getPosition(tempPos);
+                                    tempPos = targets[i].getPosition(tempPos);
                                     distX = postion.x - tempPos.x;
                                     distY = postion.y - tempPos.y;
                                     distZ = postion.z - tempPos.z;
                                     int var7;
                                     if (distX < 15000 && distX > -15000 && distY < 15000 && distY > -15000 && distZ < 15000 && distZ > -15000 && (var7 = distX * distX + distY * distY + distZ * distZ) < var5) {
-                                        var4 = var6;
+                                        var4 = i;
                                         var5 = var7;
                                     }
                                 }
@@ -104,23 +103,20 @@ public final class RocketGun extends ObjectGun {
                         temp.z = tempPos.z - this.gun.projectilesPos[0].z;
                         direction.set(this.gun.projectilesDir[0]);
                         temp.subtract(direction);
-                        temp.scale(var2);
+                        temp.scale((int)dt);
                         this.gun.projectilesDir[0] = direction.add(temp, this.gun.projectilesDir[0]);
                         this.gun.projectilesDir[0].normalize();
-                        this.gun.projectilesDir[0].scale((int)(this.gun.projectileSpeed * var2) << 12);
-                        AEVector3D var10000 = this.gun.projectilesDir[0];
-                        var10000.x >>= 12;
-                        var10000 = this.gun.projectilesDir[0];
-                        var10000.y >>= 12;
-                        var10000 = this.gun.projectilesDir[0];
-                        var10000.z >>= 12;
+                        this.gun.projectilesDir[0].scale((int)(this.gun.projectileSpeed * (int)dt) << 12);
+                        this.gun.projectilesDir[0].x >>= 12;
+                        this.gun.projectilesDir[0].y >>= 12;
+                        this.gun.projectilesDir[0].z >>= 12;
                     }
                 }
             }
 
             tempPos.set(this.gun.projectilesPos[0]);
             this.trail.update(tempPos);
-            if (tempPos.z == 50000) {
+            if (tempPos.z == 50000) { // >= better or not? it has to do sth with last lines of Gun.calcCharacterCollision()
                 this.gun.inAir = false;
             }
         }

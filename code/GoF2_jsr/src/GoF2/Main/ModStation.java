@@ -891,7 +891,7 @@ public final class ModStation extends IApplicationModule {
 			this.help = new Dialogue(GlobalStatus.gameText.getText(260));
 			this.helpMsgOpen = true;
 		} else if (Status.getCurrentCampaignMission() == 21 && Status.getStation().getId() == Status.getCampaignMission().getTargetStation()) {
-			Status.getShip().getEquipment(1);
+			Status.getShip().getEquipment(Item.SECONDARY);
 			if (Status.getShip().hasEquipment(41)) {
 				if (!this.popupOpen && !this.missionMsgOpen && !this.medalMsgOpen) {
 					this.popup.set(GlobalStatus.gameText.getText(217), true);

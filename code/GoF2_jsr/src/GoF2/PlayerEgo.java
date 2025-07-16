@@ -356,16 +356,16 @@ public final class PlayerEgo {
 		return this.player.getHitpoints() <= 0;
 	}
 
-	public final void shoot(final int var1, final int var2) {
+	public final void shoot(final int dt, final int var2) {
 		if (this.turretMode) {
 			this.calcMatrix_.set(this.turretGun.getLocalTransform());
-			this.player.playShootSound__(2, var1, false, this.calcMatrix_);
+			this.player.playShootSound__(2, dt, false, this.calcMatrix_);
 		} else if (var2 == 1) {
-			if (!this.player.shoot(var2, this.currentSecondaryId, var1, false)) {
+			if (!this.player.shoot(var2, this.currentSecondaryId, dt, false)) {
 				this.currentSecondaryId = -1;
 			}
 		} else {
-			this.player.shoot_(var2, var1, false);
+			this.player.shoot_(var2, dt, false);
 		}
 	}
 
@@ -515,7 +515,7 @@ public final class PlayerEgo {
 		return this.inWormhole;
 	}
 
-	public final void update(final int var1, final Radar var2, final Hud var3, final Radio var4, final int var5) {
+	public final void update(final int dt, final Radar var2, final Hud var3, final Radio var4, final int var5) {
 		if (this.hud == null) {
 			this.hud = var3;
 			this.radar = var2;
@@ -524,13 +524,13 @@ public final class PlayerEgo {
 
 		if (!this.freeze) {
 			this.laggingPos = this.shipGrandGroup_.getLocalPos(this.laggingPos);
-			this.frameTime = var1;
-			if (this.boostTime < 0 && this.boostTime + var1 * 3 > 0) {
+			this.frameTime = dt;
+			if (this.boostTime < 0 && this.boostTime + dt * 3 > 0) {
 				var3.hudEvent(4, this);
 				this.boostTime = 0;
 			}
 
-			this.boostTime += var1;
+			this.boostTime += dt;
 			int var9;
 			if (this.boostActive) {
 				var9 = 0;
@@ -623,7 +623,7 @@ public final class PlayerEgo {
 					this.disanceFromCamera_ = (int)(this.disanceFromCamera_ + this.frameTime);
 				}
 
-				this.shipGrandGroup_.moveForward(var1 * this.speed);
+				this.shipGrandGroup_.moveForward(dt * this.speed);
 			}
 
 			if (this.collisionsOn) {
@@ -665,23 +665,23 @@ public final class PlayerEgo {
 					this.relPitchSpeed = this.relYawSpeed = 0;
 					alignToHorizon((int)this.frameTime);
 				} else {
-					this.shipGrandGroup_.pitch((int)(this.handling * (this.relPitchSpeed * var1 / 3)));
-					this.shipYaw = (int)(this.handling * (this.relYawSpeed * var1 / 3));
+					this.shipGrandGroup_.pitch((int)(this.handling * (this.relPitchSpeed * dt / 3)));
+					this.shipYaw = (int)(this.handling * (this.relYawSpeed * dt / 3));
 					this.shipGrandGroup_.yaw(this.shipYaw);
 					if (this.relPitchSpeed == 0 && this.relYawSpeed == 0) {
 						alignToHorizon((int)this.frameTime);
 					}
 				}
 
-				this.shipGrandGroup_.moveForward(var1 * this.speed);
+				this.shipGrandGroup_.moveForward(dt * this.speed);
 			}
 
 			if (this.lockedOnAsteroid || !this.beingPushedAway && !this.turretMode) {
 				this.shipGroup.setRotation(0, 0, -this.roll);
 				if (this.roll > 0 && this.relYawSpeed == 0) {
-					this.roll -= var1 / 2;
-				} else if (this.roll < -var1 / 2 && this.relYawSpeed == 0) {
-					this.roll += var1 / 2;
+					this.roll -= dt / 2;
+				} else if (this.roll < -dt / 2 && this.relYawSpeed == 0) {
+					this.roll += dt / 2;
 				}
 
 				this.relPitchSpeed = this.relYawSpeed = 0;
@@ -698,7 +698,7 @@ public final class PlayerEgo {
 			}
 
 			if (Status.getShip().getShieldRegenTime() > 0) {
-				this.shieldRegenTick += var1;
+				this.shieldRegenTick += dt;
 				if (this.shieldRegenTick > 100L) {
 					this.shieldRegenTick = 0L;
 					this.player.regenerateShield(this.shieldRegenRate);
@@ -706,8 +706,8 @@ public final class PlayerEgo {
 			}
 
 			if (Status.getShip().hasRepairBot()) {
-				this.repairHPTick += var1;
-				this.repairArmorTick += var1;
+				this.repairHPTick += dt;
+				this.repairArmorTick += dt;
 				if (this.repairHPTick > 600L) {
 					this.repairHPTick = 0L;
 					if (this.player.getHitpoints() < this.player.getMaxHitpoints()) {
@@ -723,7 +723,7 @@ public final class PlayerEgo {
 				}
 			}
 
-			this.player.update(var1);
+			this.player.update(dt);
 			if (this.turretMode) {
 				this.crosshair.update(this.turretGun.getLocalTransform(), GlobalStatus.renderer.getCamera());
 			} else {

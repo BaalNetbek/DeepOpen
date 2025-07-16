@@ -35,26 +35,26 @@ public final class ParticleSystemMesh extends AbstractMesh {
 		if (this.appearance == null) {
 			this.appearance = new Appearance();
 			if (blending != 0) {
-				final CompositingMode var5 = new CompositingMode();
+				final CompositingMode cmode = new CompositingMode();
 				switch(blending) {
 				case 1:
 				case 3:
-					var5.setBlending(64);
+					cmode.setBlending(CompositingMode.ALPHA);
 					break;
 				case 2:
-					var5.setBlending(65);
+					cmode.setBlending(CompositingMode.ALPHA_ADD);
 				}
 
-				var5.setDepthWriteEnable(false);
-				var5.setDepthTestEnable(true);
-				this.appearance.setCompositingMode(var5);
+				cmode.setDepthWriteEnable(false);
+				cmode.setDepthTestEnable(true);
+				this.appearance.setCompositingMode(cmode);
 			}
 
-			PolygonMode var6;
-			(var6 = new PolygonMode()).setCulling(162);
-			var6.setShading(164);
-			var6.setPerspectiveCorrectionEnable(false);
-			this.appearance.setPolygonMode(var6);
+			PolygonMode pmode = new PolygonMode();
+			pmode.setCulling(PolygonMode.CULL_NONE);
+			pmode.setShading(PolygonMode.SHADE_FLAT);
+			pmode.setPerspectiveCorrectionEnable(false);
+			this.appearance.setPolygonMode(pmode);
 		}
 
 		this.quadCount = quadCount;
@@ -67,26 +67,25 @@ public final class ParticleSystemMesh extends AbstractMesh {
 		this.uvArray.set(0, quadCount * 4, this.uvs);
 		this.vertexBuffer.setPositions(this.vertexArray, 1.0F, zeroBias3D);
 		this.vertexBuffer.setTexCoords(0, this.uvArray, 0.00390625F, zeroBias2D);
-		final int[] var7 = new int[quadCount * 6];
-		int var8 = 0;
-
-		for(int var4 = 0; var4 < var7.length; var8 += 4) {
-			var7[var4] = var8;
-			var7[var4 + 1] = var8 + 2;
-			var7[var4 + 2] = var8 + 1;
-			var7[var4 + 3] = var8 + 3;
-			var7[var4 + 4] = var8 + 2;
-			var7[var4 + 5] = var8;
-			var4 += 6;
+		
+		final int[] indicies = new int[quadCount * 6];
+		int j = 0;
+		for(int i = 0; i < indicies.length; j += 4) {
+			indicies[i] = j;
+			indicies[i + 1] = j + 2;
+			indicies[i + 2] = j + 1;
+			indicies[i + 3] = j + 3;
+			indicies[i + 4] = j + 2;
+			indicies[i + 5] = j;
+			i += 6;
 		}
 
-		final int[] var9 = new int[quadCount * 2];
-
-		for(quadCount = 0; quadCount < var9.length; ++quadCount) {
-			var9[quadCount] = 3;
+		final int[] stripLengths = new int[quadCount * 2];
+		for(int i = 0; i < stripLengths.length; ++i) {
+			stripLengths[i] = 3;
 		}
 
-		this.tStrips = new TriangleStripArray(var7, var9);
+		this.tStrips = new TriangleStripArray(indicies, stripLengths);
 		this.mesh = new Mesh(this.vertexBuffer, this.tStrips, this.appearance);
 	}
 
@@ -134,7 +133,7 @@ public final class ParticleSystemMesh extends AbstractMesh {
 
 	}
 
-	public final void setMeshData_(final int[] vc, final int[] var2) {
+	public final void setMeshData_(final int[] vc, final int[] uv) {
 		int i;
 		for(i = 0; i < vc.length; ++i) {
 			this.vertices[i] = (short)vc[i];
@@ -143,8 +142,8 @@ public final class ParticleSystemMesh extends AbstractMesh {
 		this.vertexArray.set(0, 4 * this.quadCount, this.vertices);
 		this.mesh.getVertexBuffer().setPositions(this.vertexArray, 1.0F, zeroBias3D);
 
-		for(i = 0; i < var2.length; ++i) {
-			this.uvs[i] = (byte)var2[i];
+		for(i = 0; i < uv.length; ++i) {
+			this.uvs[i] = (byte)uv[i];
 		}
 
 		this.uvArray.set(0, 4 * this.quadCount, this.uvs);
@@ -153,9 +152,7 @@ public final class ParticleSystemMesh extends AbstractMesh {
 		this.radius = 0;
 
 		for(i = 0; i < vc.length; i += 3) {
-			final int var4 = vc[i]     * vc[i]
-					+ vc[i + 1] * vc[i + 1]
-							+ vc[i + 2] * vc[i + 2];
+			final int var4 = vc[i] * vc[i] + vc[i + 1] * vc[i + 1] + vc[i + 2] * vc[i + 2];
 			if (this.radius < var4) {
 				this.radius = var4;
 			}
@@ -165,11 +162,11 @@ public final class ParticleSystemMesh extends AbstractMesh {
 	}
 
 	public final void setTexture(final ITexture texture) {
-		final Texture2D var2 = new Texture2D(((JSRTexture)texture).getTexturesArray()[0].getImage());
-		var2.setBlending(Texture2D.FUNC_MODULATE);
-		var2.setFiltering(Texture2D.FILTER_BASE_LEVEL, Texture2D.FILTER_NEAREST);
-		var2.setWrapping(Texture2D.WRAP_CLAMP, Texture2D.WRAP_CLAMP);
-		this.appearance.setTexture(0, var2);
-		this.textureWidth = var2.getImage().getWidth();
+		final Texture2D tex2d = new Texture2D(((JSRTexture)texture).getTexturesArray()[0].getImage());
+		tex2d.setBlending(Texture2D.FUNC_MODULATE);
+		tex2d.setFiltering(Texture2D.FILTER_BASE_LEVEL, Texture2D.FILTER_NEAREST);
+		tex2d.setWrapping(Texture2D.WRAP_CLAMP, Texture2D.WRAP_CLAMP);
+		this.appearance.setTexture(0, tex2d);
+		this.textureWidth = tex2d.getImage().getWidth();
 	}
 }

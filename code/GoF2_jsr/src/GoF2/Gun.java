@@ -352,17 +352,17 @@ public final class Gun {
 					}
 			}
 
-			for(int var12 = 0; var12 < this.projectilesPos.length; ++var12) {
-				if (this.projectilesTimeLeft[var12] > 0) {
+			for(int i = 0; i < this.projectilesPos.length; ++i) {
+				if (this.projectilesTimeLeft[i] > 0) {
 					final int[] var10000 = this.projectilesTimeLeft;
-					var10000[var12] -= (int)var1;
-					this.projectilesPos[var12].add(this.projectilesDir[var12]);
-					if (this.projectilesTimeLeft[var12] <= 0 && (this.subType == Item.NUKE || this.subType == Item.EMP_BOMB)) {
+					var10000[i] -= (int)var1;
+					this.projectilesPos[i].add(this.projectilesDir[i]);
+					if (this.projectilesTimeLeft[i] <= 0 && (this.subType == Item.NUKE || this.subType == Item.EMP_BOMB)) {
 						ignite();
 					}
 				} else {
-					this.projectilesPos[var12].set(50000, 50000, 50000);
-					this.projectilesDir[var12].set(0, 0, 0);
+					this.projectilesPos[i].set(50000, 50000, 50000);
+					this.projectilesDir[i].set(0, 0, 0);
 				}
 			}
 		}

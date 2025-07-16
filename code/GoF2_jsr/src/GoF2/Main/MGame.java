@@ -1225,7 +1225,7 @@ public final class MGame extends IApplicationModule {
 						this.hud.hudEvent(3, this.playerEgo);
 					}
 
-					if (var1 == 32768 && this.playerEgo.player.hasGunOfType(1)) {
+					if (var1 == 32768 && this.playerEgo.player.hasGunOfType(Item.SECONDARY)) {
 						this.playerEgo.shoot((int)this.frameTime, 1);
 					}
 
