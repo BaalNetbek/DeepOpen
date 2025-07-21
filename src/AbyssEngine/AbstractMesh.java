@@ -3,6 +3,7 @@ package AbyssEngine;
 import javax.microedition.m3g.Light;
 import javax.microedition.m3g.Transform;
 
+
 public abstract class AbstractMesh extends Class_13a3 {
    protected int renderLayer;
    protected Matrix matrix = new Matrix();
@@ -26,7 +27,15 @@ public abstract class AbstractMesh extends Class_13a3 {
    public void appendToRender(Camera var1, Class_db var2) {
       if (this.draw && var1.sub_14a(this.var_19f) != 0) {
          this.matrix = var1.tempTransform.getInverse(this.matrix);
+         try {
+         if (this instanceof JSRMesh) {
+             ((JSRMesh) this).rotateUV(AEGraphics3D.lightInv);
+         }
+         }catch (Exception e) {
+             e.printStackTrace();
+         }
          this.matrix.multiply(this.tempTransform);
+
          /*
          if (this.light != null) {
              AEGraphics3D.graphics3D.resetLights();

@@ -12,6 +12,7 @@ public final class AEGraphics3D extends AbstractGraphics3D {
    public static Light ambient;
    public static Light omni;
    public static Transform identity = new Transform();
+   public static Matrix lightInv = new Matrix();
    
    public AEGraphics3D() {
       graphics3D = Graphics3D.getInstance();
@@ -44,7 +45,9 @@ public final class AEGraphics3D extends AbstractGraphics3D {
 		 Transform transform = new Transform();
 		 float arr[] = new float[16];
 		 camera.tempTransform.getInverse(matrix);
+		 
 		 matrix.multiply(lighLocalMatrix);
+		 lightInv = matrix;
 		 matrix.scaledToFloatArray(arr);
 		 transform.set(arr);
 		 
@@ -90,6 +93,7 @@ public final class AEGraphics3D extends AbstractGraphics3D {
 			float arr[] = new float[16];
 			Matrix cameraInv = new Matrix();
 			camera.tempTransform.getInverse(cameraInv);
+			lightInv = cameraInv;
 			 cameraInv.multiply(lightSrcMatrix);
 			 cameraInv.scaledToFloatArray(arr);
 			 lighLocalTransform.set(arr);

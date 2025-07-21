@@ -46,6 +46,7 @@ public final class Skybox {
          this.var_153 = new AbstractMesh[var8.length + 1];
          this.localPlanets = new KIPlayer[var8.length];
          var2 = AEImage.loadImage("/data/interface/planet_" + Status.getStation().getPlanetTextureId() + ".png", true);
+         var2 = AEImage.resizeImage(var2, (int)(var2.getWidth()*GameStatus.screenHeight/320*2), (int)(var2.getHeight()*GameStatus.screenHeight/320*2));
          this.planet = new Sprite(var2);
          this.planet.defineReferencePixel(this.planet.getWidth() / 2, this.planet.getHeight() / 2);
          GameStatus.random.setSeed((long)(Status.getStation().getId() * 300));
@@ -144,8 +145,9 @@ public final class Skybox {
                      this.var_509[var9] = true;
                   }
                }
-
-               this.nebulaImgs[var14] = AEImage.loadImage("/data/interface/nebula" + var9 + ".png", true);
+               //scaling 
+               var2 = AEImage.loadImage("/data/interface/nebula" + var9 + ".png", true);
+               this.nebulaImgs[var14] = AEImage.resizeImage(var2, (int)(var2.getWidth()*GameStatus.screenHeight/320), (int)(var2.getHeight()*GameStatus.screenHeight/320));
                this.var_1f8.sub_25(this.nebulaPivots[var14]);
             }
          }
@@ -154,7 +156,9 @@ public final class Skybox {
       GameStatus.random.setSeed(System.currentTimeMillis());
       this.var_25a = new AEVector3D();
       this.lensFlare = new LensFlareFX();
+    //scaling
       var2 = AEImage.loadImage("/data/interface/sun_" + (this.inAlienSpace ? 0 : Status.getSystem().getStarTextureIndex()) + ".png", true);
+      var2 = AEImage.resizeImage(var2, (int)(var2.getWidth()*GameStatus.screenHeight/320), (int)(var2.getHeight()*GameStatus.screenHeight/320));
       this.sun = new Sprite(var2);
       this.sun.defineReferencePixel(this.sun.getWidth(), this.sun.getHeight());
       if (!this.inAlienSpace) {
@@ -165,7 +169,9 @@ public final class Skybox {
          for(var4 = 0; var4 < var12.length; ++var4) {
             var13 = this.var_fb[var12[var4]];
             if (var11[var13] == null) {
-               var11[var13] = AEImage.loadImage("/data/interface/star_" + var13 + ".png", true);
+        	var2 = AEImage.loadImage("/data/interface/star_" + var13 + ".png", true);
+               var2 = AEImage.resizeImage(var2, (int)(var2.getWidth()*GameStatus.screenHeight/320), (int)(var2.getHeight()*GameStatus.screenHeight/320));
+               var11[var13] = var2;
             }
 
             this.localPlanetsImgs[var4] = var11[var13];

@@ -299,7 +299,7 @@ public final class ShipPreview {
          AEGraphics3D.setLights(var_4c3, lightPos, lights);
          */
          Matrix lightPos = new Matrix(); 
-         lightPos.translateTo(4096, 4096, 4096);
+         lightPos.translateTo(4096, 4096, -4096);
          Light light = new Light();
          light.setMode(Light.OMNI);
          light.setIntensity(2.0f);

@@ -25,12 +25,12 @@ public class PlayerStaticFar extends PlayerStatic {
          this.positon.set(this.posX, this.posY, this.posZ);
          this.positon.subtract(this.var_727, var_2e9);
          int var3;
-         if ((var3 = var_2e9.getLength()) > 28000) {
+         if ((var3 = var_2e9.getLength()) > 188000) {
             var_2e9.normalize();
-            var_2e9.scale(28000);
+            var_2e9.scale(188000);
             var_2e9.add(this.var_727);
             this.var_25d.sub_1f3(var_2e9);
-            var3 = (int)(28000.0F / (float)var3 * 4096.0F);
+            var3 = (int)(188000.0F / (float)var3 * 4096.0F);
             this.var_25d.sub_7af(var3, var3, var3);
          } else {
             this.var_25d.sub_7af(4096, 4096, 4096);

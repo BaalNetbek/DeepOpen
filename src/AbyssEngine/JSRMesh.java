@@ -16,7 +16,6 @@ import javax.microedition.m3g.VertexBuffer;
 import javax.microedition.m3g.World;
 
 
-
 public final class JSRMesh extends AbstractMesh {
    private static int[] var_56 = new int[]{1, 2, 2, 2, 1, 2, 1, 0, 0, 2};
    private static int[] var_10e = new int[]{0, 0, 0, 0, 1, 0, 0, 1, 0, 1};
@@ -163,8 +162,9 @@ public final class JSRMesh extends AbstractMesh {
 	        VertexArray rotatedNormals = new VertexArray(vertexCount, componentCount, encoding);
 	        rotatedNormals.set(0, vertexCount, normals);
 	        vertexBuffer.setNormals(rotatedNormals);
-	    }  
-	    if (encoding == 2) { // short
+	        vertexBuffer.setTexCoords(1, rotatedNormals, 0.0039370079f*0.5f, new float[] {0.5F, 0.5F ,0.5F});
+	        
+	    } else if (encoding == 2) { // short
 	    	System.out.println("Found short encoded normals in mesh: " + resourceId);
 	        short[] normals = new short[vertexCount * componentCount];
 	        normalArray.get(0, vertexCount, normals);
@@ -181,8 +181,52 @@ public final class JSRMesh extends AbstractMesh {
 	        VertexArray rotatedNormals = new VertexArray(vertexCount, componentCount, encoding);
 	        rotatedNormals.set(0, vertexCount, normals);
 	        vertexBuffer.setNormals(rotatedNormals);
-	    } 
+	        vertexBuffer.setTexCoords(1, rotatedNormals, 0.0039370079f*0.5f, new float[] {0.5F, 0.5F ,0.5F});
+	    } else {
+		return;
+	    }
+	    
+	    
 	}
+	
+	public void rotateUV(Matrix m) {
+	    VertexBuffer vertexBuffer;
+	    VertexArray normalArray;
+	    if (opaqueNodes != null)
+	    for (int i = 0; i < opaqueNodes.length; i++) {
+		if (opaqueNodes[i] instanceof Mesh) {
+        		vertexBuffer = ((Mesh) opaqueNodes[i]).getVertexBuffer();
+        		normalArray = vertexBuffer.getNormals();
+        		int vertexCount = normalArray.getVertexCount();
+        		byte[] normals = new byte[vertexCount * 3];
+        		normalArray.get(0, vertexCount, normals);
+        		short[] texcoords = new short[vertexCount * 3];
+        	        for (int j = 0; j < vertexCount; j++) {
+        	            int idx = j * 3;
+        		    int x = ((int)normals[idx])<<5;
+        		    int y = ((int)normals[idx + 1])<<5;
+        		    int z = ((int)normals[idx + 2])<<5;
+        		    AEVector3D v = new AEVector3D(x,y,z);
+//        		    AEVector3D lighDir = m.getDirection();
+//        		    if (0 < (lighDir.x*v.x >> 12) + (lighDir.y*v.y >> 12) + (lighDir.z*v.z >> 12)) {
+//        			texcoords[idx] = 4096;
+//                		texcoords[idx + 1] =0;
+//                		texcoords[idx + 2] =0;
+//        		    }
+//        		    else {
+        			v = m.sub_b26(v);
+        			texcoords[idx] = (short) v.x;
+                		texcoords[idx + 1] =(short) v.y;
+                		texcoords[idx + 2] =(short) v.z;
+//        		    }
+        	        }
+        	        normalArray = new VertexArray(vertexCount, 3, 2);
+        	        normalArray.set(0,vertexCount, texcoords);
+        		vertexBuffer.setTexCoords(1, normalArray, 1.0f/127.0f/2.0f/32.0f, new float[] {0.5F, 0.5F ,0.5F});
+		}
+	    }
+	}
+	
 
    private JSRMesh(JSRMesh var1) {
       initializeMaterials();
@@ -520,7 +564,7 @@ public final class JSRMesh extends AbstractMesh {
 
             var6.setMaterial((Material)null);
             Material var8;
-            (var8 = new Material()).setShininess(50.0F);
+            (var8 = new Material()).setShininess(30.0F);
             if (transparent) {
                var8.setColor(Material.EMISSIVE, 0xffffffff);
             }
@@ -537,14 +581,18 @@ public final class JSRMesh extends AbstractMesh {
                   if (var7) {
                      this.texture = (Texture2D)((Texture2D)var2[var4].duplicate());
                      var6.setTexture(0, this.texture);
+                     var6.setTexture(1, AEResourceManager.getSpecTexture());
                   } else {
                      var6.setTexture(0, var2[var4]);
+                     var6.setTexture(1, AEResourceManager.getSpecTexture());
                   }
                } else if (var7) {
                   this.texture = (Texture2D)((Texture2D)var2[0].duplicate());
                   var6.setTexture(0, this.texture);
+                  var6.setTexture(1, AEResourceManager.getSpecTexture());
                } else {
                   var6.setTexture(0, var2[0]);
+                  var6.setTexture(1, AEResourceManager.getSpecTexture());
                }
             }
 

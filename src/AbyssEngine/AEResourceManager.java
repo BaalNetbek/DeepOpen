@@ -1,5 +1,7 @@
 package AbyssEngine;
 
+import javax.microedition.m3g.Texture2D;
+
 public final class AEResourceManager {
    private static int[] var_c0;
    private static AbstractTexture[] var_ea;
@@ -87,7 +89,7 @@ public final class AEResourceManager {
                   AbstractTexture var3 = sub_10b(0);
                   return var10000[var1] = new JSRTexture((JSRTexture)var3);
                }
-
+               
                return var_ea[var1] = new JSRTexture(var2);
             }
 
@@ -96,6 +98,12 @@ public final class AEResourceManager {
       }
 
       return null;
+   }
+   public static Texture2D getSpecTexture() {
+       Texture2D spec = ((JSRTexture)sub_10b(2)).getTexturesArray()[0];
+       spec.setFiltering(Texture2D.FILTER_LINEAR, Texture2D.FILTER_LINEAR);
+       spec.setBlending(Texture2D.FUNC_ADD);
+       return spec;
    }
 
    public static AbstractMesh getGeometryResource(int var0) {

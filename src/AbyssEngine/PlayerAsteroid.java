@@ -146,13 +146,13 @@ public final class PlayerAsteroid extends KIPlayer {
             int var4 = var_1c5.getLength();
             
             if (!this.var_42f) {
-               if (var4 > 10000 ) {
+               if (var4 > 188000 ) {
                   var_1c5.normalize();
-                  var_1c5.scale(10000);
+                  var_1c5.scale(188000);
                   var_1c5.add(this.var_727);
                   this.var_25d.sub_1f3(var_1c5);
                   float var2;
-                  var4 = (int)((var2 = 10000.0F / (float)var4) * (float)this.var_54b);
+                  var4 = (int)((var2 = 188000.0F / (float)var4) * (float)this.var_54b);
                   var7 = (int)(var2 * (float)this.var_694);
                   var6 = (int)(var2 * (float)this.var_707);
                   this.var_25d.sub_7af(var4, var7, var6);

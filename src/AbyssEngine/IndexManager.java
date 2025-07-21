@@ -153,6 +153,7 @@ public final class IndexManager {
    public static void buildResourceList() {
       AEResourceManager.sub_53(0, pathTextures + "space");
       AEResourceManager.sub_53(1, pathTextures + "space");
+      AEResourceManager.sub_53(2, pathTextures + "spec");
       AEResourceManager.setupSkybox_(9991, pathMeshes + "skybox.m3g", 1);
       AEResourceManager.sub_ad(18, pathMeshes + "nuke.m3g", 2000, 0);
       AEResourceManager.sub_ad(16, pathMeshes + "emp.m3g", 2000, 0);
@@ -377,6 +378,11 @@ public final class IndexManager {
       CHAR_VOID = new byte[]{9, 0, 0, 0, 0};
       CHAR_KHADOR = new byte[]{7, 0, 0, 0, 0};
       CHAR_NIVELIAN_SECURITY = new byte[]{2, 0, 0, 0, 0};
-      CHAR_IMAGES = new byte[][]{CHAR_KEITH, CHAR_BRENT, CHAR_GUNANT, CHAR_NORRIS, CHAR_MKKT_BKKT, CHAR_TOMMY, CHAR_CARLA, CHAR_ERRKT, CHAR_JEAN, CHAR_PIRATE_CHIEF, CHAR_PIRATE_1, CHAR_PIRATE_2, CHAR_SECURITY_GUY, CHAR_SECURITY_GIRL, CHAR_KIDNAPPER, CHAR_STORY, CHAR_COMPUTER, CHAR_INFO_PIC, CHAR_TERRAN_OFFICER, CHAR_VOID, CHAR_KHADOR, CHAR_NIVELIAN_SECURITY};
+      CHAR_IMAGES = new byte[][]{
+	  CHAR_KEITH, CHAR_BRENT, CHAR_GUNANT, CHAR_NORRIS, CHAR_MKKT_BKKT,
+	  CHAR_TOMMY, CHAR_CARLA, CHAR_ERRKT, CHAR_JEAN, CHAR_PIRATE_CHIEF,
+	  CHAR_PIRATE_1, CHAR_PIRATE_2, CHAR_SECURITY_GUY, CHAR_SECURITY_GIRL,
+	  CHAR_KIDNAPPER, CHAR_STORY, CHAR_COMPUTER, CHAR_INFO_PIC,
+	  CHAR_TERRAN_OFFICER, CHAR_VOID, CHAR_KHADOR, CHAR_NIVELIAN_SECURITY};
    }
 }
