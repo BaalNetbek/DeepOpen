@@ -193,41 +193,47 @@ public final class JSRMesh extends AbstractMesh {
 	}
 	
 	public void rotateUV(Matrix m) {
-	    VertexBuffer vertexBuffer;
-	    VertexArray normalArray;
-	    if (opaqueNodes != null)
-	    for (int i = 0; i < opaqueNodes.length; i++) {
-		if (opaqueNodes[i] instanceof Mesh) {
-        		vertexBuffer = ((Mesh) opaqueNodes[i]).getVertexBuffer();
-        		normalArray = vertexBuffer.getNormals();
-        		int vertexCount = normalArray.getVertexCount();
-        		byte[] normals = new byte[vertexCount * 3];
-        		normalArray.get(0, vertexCount, normals);
-        		short[] texcoords = new short[vertexCount * 3];
-        	        for (int j = 0; j < vertexCount; j++) {
-        	            int idx = j * 3;
-        		    int x = ((int)normals[idx])<<5;
-        		    int y = ((int)normals[idx + 1])<<5;
-        		    int z = ((int)normals[idx + 2])<<5;
-        		    AEVector3D v = new AEVector3D(x,y,z);
-//        		    AEVector3D lighDir = m.getDirection();
-//        		    if (0 < (lighDir.x*v.x >> 12) + (lighDir.y*v.y >> 12) + (lighDir.z*v.z >> 12)) {
-//        			texcoords[idx] = 4096;
-//                		texcoords[idx + 1] =0;
-//                		texcoords[idx + 2] =0;
-//        		    }
-//        		    else {
-        			v = m.transformVectorNoScale(v);
-        			texcoords[idx] = (short) v.x;
-                		texcoords[idx + 1] =(short) v.y;
-                		texcoords[idx + 2] =(short) v.z;
-//        		    }
-        	        }
-        	        normalArray = new VertexArray(vertexCount, 3, 2);
-        	        normalArray.set(0,vertexCount, texcoords);
-        		vertexBuffer.setTexCoords(1, normalArray, 1.0f/127.0f/2.0f/32.0f, new float[] {0.5F, 0.5F ,0.5F});
-		}
-	    }
+    	    VertexBuffer vertexBuffer;
+    	    VertexArray normalArray;
+    	    AEVector3D lightDir = m.getDirection();
+    	    Matrix inv = new Matrix();
+    	    inv = this.globalTransform.getInverse(inv);
+    	    if (opaqueNodes != null) {
+        	    for (int i = 0; i < opaqueNodes.length; i++) {
+        		if (opaqueNodes[i] instanceof Mesh) {
+                		vertexBuffer = ((Mesh) opaqueNodes[i]).getVertexBuffer();
+                		normalArray = vertexBuffer.getNormals();
+                		int vertexCount = normalArray.getVertexCount();
+                		byte[] normals = new byte[vertexCount * 3];
+                		normalArray.get(0, vertexCount, normals);
+                		short[] texcoords = new short[vertexCount * 3];
+                	        for (int j = 0; j < vertexCount; j++) {
+                	            int idx = j * 3;
+                		    int x = ((int)normals[idx])<<5; // to Q12 for higher precision
+                		    int y = ((int)normals[idx + 1])<<5;
+                		    int z = ((int)normals[idx + 2])<<5;
+                		    AEVector3D normal = new AEVector3D(x,y,z);
+            			    normal = inv.transformVectorNoScale(normal);
+                		    normal = m.transformVectorNoScale(normal);
+                		    if (0 < normal.dot(lightDir)) {
+                			
+                			texcoords[idx] = (short) normal.x;
+                        		texcoords[idx + 1] =(short) normal.y;
+                        		texcoords[idx + 2] =(short) normal.z;
+        
+                		    }
+                		    else {
+                			texcoords[idx] = 127<<5;
+                        		texcoords[idx + 1] =127<<5;
+                        		texcoords[idx + 2] =0<<5;	
+                		    }
+                	        }
+                	        normalArray = new VertexArray(vertexCount, 3, 2);
+                	        normalArray.set(0,vertexCount, texcoords);
+                		vertexBuffer.setTexCoords(1, normalArray, 1.0f/127.0f/2.0f/32.0f, new float[] {0.5F, 0.5F ,0.5F});
+        		}
+        	    }
+    	    }
 	}
 	
 
