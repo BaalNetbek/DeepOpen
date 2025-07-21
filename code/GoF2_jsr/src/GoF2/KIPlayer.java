@@ -246,7 +246,7 @@ public abstract class KIPlayer {
 		}
 
 	}
-
+	/** or just id/customId? because PlayerFixedObject for example*/
 	public final int getMeshId() {
 		return this.meshId;
 	}

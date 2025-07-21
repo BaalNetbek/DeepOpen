@@ -227,7 +227,7 @@ public final class LevelScript {
 					playerEgo.setFreeze(true);
 					this.step = 9;
 					playerEgo.fakeExplode();
-					this.level.flashScreen(3);
+					this.level.flashScreen(Explosion.HUGE);
 					playerEgo.setExhaustVisible(false);
 				}
 

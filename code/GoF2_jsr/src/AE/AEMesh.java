@@ -16,6 +16,9 @@ import javax.microedition.m3g.VertexBuffer;
 import AE.PaintCanvas.AEGraphics3D;
 
 public final class AEMesh extends AbstractMesh {
+	private static final int FACES = 1<<4;
+	private static final int UVS = 1<<1;
+	private static final int NORMALS = 1<<2;
 	private static float[] transformArray = new float[16];
 	private DataInputStream aemFile;
 	private VertexBuffer vertexBuffer;
@@ -40,7 +43,7 @@ public final class AEMesh extends AbstractMesh {
 			this.aemFile.read(magic, 0, 7);
 			int flags = this.aemFile.readUnsignedByte();
 			
-			if ((flags & 16) != 0) {
+			if ((flags & FACES) != 0) {
 				final int[] faceIndc = new int[swapBytes(this.aemFile.readUnsignedShort())];
 
 				for(int i = 0; i < faceIndc.length; ++i) {
@@ -65,7 +68,7 @@ public final class AEMesh extends AbstractMesh {
 			vcArr.set(0, vcRaw.length / 3, vcRaw);
 			
 			VertexArray uvArr = null;
-			if ((flags & 2) != 0) {
+			if ((flags & UVS) != 0) {
 				final short[] uvRaw = new short[vcRaw.length / 3 << 1];
 
 				for(int i = 0; i < uvRaw.length; i += 2) {
@@ -77,7 +80,7 @@ public final class AEMesh extends AbstractMesh {
 			}
 			
 			VertexArray normArr = null;
-			if ((flags & 4) != 0) {
+			if ((flags & NORMALS) != 0) {
 				final short[] normRaw = new short[vcRaw.length];
 
 				for(int i = 0; i < normRaw.length; ++i) {
@@ -89,16 +92,16 @@ public final class AEMesh extends AbstractMesh {
 			}
 
 			this.vertexBuffer = new VertexBuffer();
-			this.vertexBuffer.setPositions(vcArr, 1.0F, (float[])null);
-			this.vertexBuffer.setNormals((VertexArray)null);
-			this.vertexBuffer.setTexCoords(0, uvArr, 1.0f/255.0f, (float[])null);
+			this.vertexBuffer.setPositions(vcArr, 1.0F, null);
+			this.vertexBuffer.setNormals(normArr);
+			this.vertexBuffer.setTexCoords(0, uvArr, 1.0f/255.0f, null);
 			this.appearance = new Appearance();
 			this.isTransparent = this.aemFile.read() != 0;
 			if (this.isTransparent) {
 				this.appearance.setCompositingMode(compositingMode);
 				this.appearance.setPolygonMode(transparentPMode);
 			} else {
-				this.appearance.setCompositingMode((CompositingMode)null);
+				this.appearance.setCompositingMode(null);
 				this.appearance.setPolygonMode(opaquePMode);
 			}
 

@@ -2400,8 +2400,8 @@ cb.a(I)V setEvent
 cb.b()Z isSpecialAgent
 cb.c()Z isGenericAgent_
 cb.a([B)V setImageParts
-cb.a()[B getFace
-cb.b(I)V setType
+cb.a()[B getImageParts
+cb.b(I)V setOffer
 cb.a(Lck;)V setMission
 cb.a()Lck; getMission
 cb.d()Z isKnown
@@ -2417,14 +2417,14 @@ cb.a(Ljava/lang/String;)V setMessage
 cb.k()I getSellItemIndex
 cb.l()I getSellItemQuantity
 cb.m()I getSellItemPrice
-cb.a(III)V setSellItem
-cb.e()Z isAccepted
-cb.a(Z)V setAccepted
-cb.f()Z getUnused0_
-cb.b(Z)V setUnused0_
+cb.a(III)V setSellItemData
+cb.e()Z hasAcceptedOffer
+cb.a(Z)V setOfferAccepted
+cb.f()Z hasReward
+cb.b(Z)V giveRewardAtNextChat
 cb.c()Ljava/lang/String; getStationName
-cb.b(Ljava/lang/String;)V setAgentsStationName
-cb.c(Ljava/lang/String;)V setAgentsSystemName
+cb.b(Ljava/lang/String;)V setStationName
+cb.c(Ljava/lang/String;)V setSystemName
 x AE/JSRCamera
 x.a Ljavax/microedition/m3g/Camera; camera
 x.a Ljavax/microedition/m3g/Transform; transform

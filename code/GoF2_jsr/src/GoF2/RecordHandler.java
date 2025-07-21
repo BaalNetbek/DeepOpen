@@ -828,15 +828,15 @@ public final class RecordHandler {
         var1.writeInt(var2.getSystemId());
         var1.writeInt(var2.wingmanFriendsCount);
         var1.writeBoolean(var2.isMale());
-        var1.writeBoolean(var2.getUnused0_());
-        var1.writeBoolean(var2.isAccepted());
+        var1.writeBoolean(var2.hasReward());
+        var1.writeBoolean(var2.hasAcceptedOffer());
         var1.writeBoolean(var2.wasAskedForDifficulty);
         var1.writeBoolean(var2.wasAskedForLocation);
-        if (var2.getFace() != null) {
-            var1.writeInt(var2.getFace().length);
+        if (var2.getImageParts() != null) {
+            var1.writeInt(var2.getImageParts().length);
 
-            for(int var3 = 0; var3 < var2.getFace().length; ++var3) {
-                var1.writeByte(var2.getFace()[var3]);
+            for(int var3 = 0; var3 < var2.getImageParts().length; ++var3) {
+                var1.writeByte(var2.getImageParts()[var3]);
             }
         } else {
             var1.writeInt(-1);
@@ -938,17 +938,17 @@ public final class RecordHandler {
         Agent agent = new Agent(var6, var22, var12, var13, var8, var15, var3, var4, var10);
         agent.setCosts(var2);
         agent.setEvent(var5);
-        agent.setType(var7);
-        agent.setSellItem(var9, var11, var10);
+        agent.setOffer(var7);
+        agent.setSellItemData(var9, var11, var10);
         agent.wingman1Name = var25;
         agent.wingman2Name = var26;
         agent.wingmanFriendsCount = var14;
-        agent.setUnused0_(var16);
-        agent.setAccepted(var17);
+        agent.giveRewardAtNextChat(var16);
+        agent.setOfferAccepted(var17);
         agent.setImageParts(var21);
         agent.setMessage(var28);
-        agent.setAgentsStationName(var23);
-        agent.setAgentsSystemName(var24);
+        agent.setStationName(var23);
+        agent.setSystemName(var24);
         agent.setMission(mission);
         agent.wasAskedForDifficulty = var18;
         agent.wasAskedForLocation = var19;

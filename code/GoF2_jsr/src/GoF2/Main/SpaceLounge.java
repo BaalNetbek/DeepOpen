@@ -60,7 +60,7 @@ public final class SpaceLounge {
 
 		for(int var2 = 0; var2 < this.agents.length; ++var2) {
 			Agent var3;
-			if (((var3 = this.agents[var2]).getType() == 6 || var3.getType() == 0 && var3.getMission() != null && var3.getMission().getType() == 12) && var3.isAccepted()) {
+			if (((var3 = this.agents[var2]).getType() == 6 || var3.getType() == 0 && var3.getMission() != null && var3.getMission().getType() == 12) && var3.hasAcceptedOffer()) {
 				var1 = var2;
 				break;
 			}
@@ -99,7 +99,7 @@ public final class SpaceLounge {
 
 		int var2;
 		for(var2 = 0; var2 < this.agents.length; ++var2) {
-			this.clientsFaces[var2] = ImageFactory.faceFromByteArray(this.agents[var2].getFace());
+			this.clientsFaces[var2] = ImageFactory.faceFromByteArray(this.agents[var2].getImageParts());
 		}
 
 		this.answearsPosX = 9;
@@ -281,7 +281,7 @@ public final class SpaceLounge {
 								}
 
 								if (!Status.getFreelanceMission().getAgent().isGenericAgent_()) {
-									Status.getFreelanceMission().getAgent().setAccepted(false);
+									Status.getFreelanceMission().getAgent().setOfferAccepted(false);
 								}
 
 								Status.setFreelanceMission(Mission.emptyMission_);
@@ -350,7 +350,7 @@ public final class SpaceLounge {
 							Status.setWingmenNames(var6.getWingmenNames());
 							Status.wingmanRace = var6.getRace();
 							Status.wingmenTimeRemaining = 600000;
-							Status.wingmanFace = var6.getFace();
+							Status.wingmanFace = var6.getImageParts();
 							if (Achievements.gotAllMedals()) {
 								Status.changeCredits(var6.getCosts());
 							} else {
@@ -362,7 +362,7 @@ public final class SpaceLounge {
 							Status.changeCredits(-var6.getCosts());
 						}
 
-						var6.setAccepted(true);
+						var6.setOfferAccepted(true);
 						this.chatRows = Font.splitToLines(var8, GlobalStatus.screenWidth - this.chatTextPosX - this.answearsPosX);
 						this.chatType_ = 3;
 						this.chatScroll = 0;
@@ -644,7 +644,7 @@ public final class SpaceLounge {
 			var8 = null;
 			if (var1.getEvent() > 0) {
 			} else {
-				if (!var1.isAccepted()) {
+				if (!var1.hasAcceptedOffer()) {
 					++Status.barInteractions;
 					if (var1.getType() == 4) {
 						var8 = GlobalStatus.gameText.getText(505 + GlobalStatus.random.nextInt(2));
@@ -674,7 +674,7 @@ public final class SpaceLounge {
 			this.chatType_ = 3;
 		} else {
 			if (var1.isKnown() && var1.getType() != 7) {
-				if (var1.isAccepted()) {
+				if (var1.hasAcceptedOffer()) {
 					var8 = GlobalStatus.gameText.getText(var1.getType() == 5 ? 491 : var1.getType() != 6 && (var1.getMission() == null || var1.getMission().getType() != 12) ? 492 : 493);
 					this.chatRows = Font.splitToLines(var8, GlobalStatus.screenWidth - this.chatTextPosX - this.answearsPosX);
 					this.chatScroll = 0;
@@ -780,8 +780,8 @@ public final class SpaceLounge {
 				}
 			}
 
-			var1.setAgentsStationName(Status.getStation().getName());
-			var1.setAgentsSystemName(Status.getSystem().getName());
+			var1.setStationName(Status.getStation().getName());
+			var1.setSystemName(Status.getSystem().getName());
 			this.chatType_ = 1;
 			this.chatScroll = 0;
 		}

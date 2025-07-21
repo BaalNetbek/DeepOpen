@@ -364,60 +364,60 @@ public final class Level {
 	}
 
 	private void createAsteroids() {
-		int var1 = 154;
-		int var2 = 0;
-		boolean var3 = false;
+		int ore = 154;
+		int j = 0;
+		boolean oreGood = false;
 		this.asteroids = new KIPlayer[50];
-		final int[] var4 = Galaxy.getAsteroidProbabilities(Status.getStation());
+		final int[] orePropabilites = Galaxy.getAsteroidProbabilities(Status.getStation());
 		GlobalStatus.random.setSeed(Status.getStation().getId());
-		final int var5 = -50000 + GlobalStatus.random.nextInt(100000);
-		final int var6 = -50000 + GlobalStatus.random.nextInt(100000);
-		final int var7 = 10000 + GlobalStatus.random.nextInt(100000);
+		final int field_x = -50000 + GlobalStatus.random.nextInt(100000);
+		final int field_y = -50000 + GlobalStatus.random.nextInt(100000);
+		final int field_z = 10000 + GlobalStatus.random.nextInt(100000);
 		GlobalStatus.random.setSeed(System.currentTimeMillis());
-		this.asteroidFieldCenter = new AEVector3D(var5, var6, var7);
-		this.asteroidsWaypoint = new Waypoint(var5, var6, var7, (Route)null);
-		this.asteroidField = new BoundingSphere(var5, var6, var7, 0, 0, 0, 50000);
+		this.asteroidFieldCenter = new AEVector3D(field_x, field_y, field_z);
+		this.asteroidsWaypoint = new Waypoint(field_x, field_y, field_z, (Route)null);
+		this.asteroidField = new BoundingSphere(field_x, field_y, field_z, 0, 0, 0, 50000);
 
 		for(int i = 0; i < this.asteroids.length; ++i) {
 			if (Status.inAlienOrbit()) {
-				var1 = 164;
+				ore = 164;
 			} else if (Status.inEmptyOrbit()) {
-				var1 = 154;
+				ore = 154;
 			} else {
-				var3 = false;
+				oreGood = false;
 
-				while(!var3) {
-					if (GlobalStatus.random.nextInt(100) < var4[var2 + 1]) {
-						var1 = var4[var2];
-						if (var1 < 164) {
-							var3 = true;
+				while(!oreGood) {
+					if (GlobalStatus.random.nextInt(100) < orePropabilites[j + 1]) {
+						ore = orePropabilites[j];
+						if (ore < 164) {
+							oreGood = true;
 						}
 
-						var2 += 2;
-						if (var2 >= var4.length) {
-							var2 = 0;
+						j += 2;
+						if (j >= orePropabilites.length) {
+							j = 0;
 						}
 					} else {
-						var2 = 0;
+						j = 0;
 					}
 				}
 			}
 
 			boolean closeStation = i < this.asteroids.length / 2;
-			Waypoint var9 = null;
+			Waypoint wayPoint = null;
 			if (closeStation) {
-				var9 = new Waypoint(0, 0, 20000, (Route)null); // here is why asteroids spawn in hangar
+				wayPoint = new Waypoint(0, 0, 20000, (Route)null); // here is why asteroids spawn in hangar
 			} else {
-				var9 = new Waypoint(var5, var6, var7, (Route)null);
+				wayPoint = new Waypoint(field_x, field_y, field_z, (Route)null);
 			}
 
-			final int var12 = Status.inAlienOrbit() ? 6804 : 6769;
-			final int var17 = var9.x - 30000 + GlobalStatus.random.nextInt(60000);
-			final int var18 = var9.y - 30000 + GlobalStatus.random.nextInt(60000);
-			final int var20 = var9.z - 30000 + GlobalStatus.random.nextInt(60000); 
+			final int meshResId = Status.inAlienOrbit() ? 6804 : 6769;
+			final int x = wayPoint.x - 30000 + GlobalStatus.random.nextInt(60000);
+			final int y = wayPoint.y - 30000 + GlobalStatus.random.nextInt(60000);
+			final int z = wayPoint.z - 30000 + GlobalStatus.random.nextInt(60000); 
 			final PlayerAsteroid asteroid = new PlayerAsteroid(
-					var12, AEResourceManager.getGeometryResource(var12),
-					var1, closeStation, var17, var18, var20);
+					meshResId, AEResourceManager.getGeometryResource(meshResId),
+					ore, closeStation, x, y, z);
 			asteroid.setLevel(this);
 			asteroid.setAsteroidCenter(this.asteroidFieldCenter);
 			if (this.currentMod == 23) { // hangar
@@ -425,9 +425,7 @@ public final class Level {
 			} else {
 				asteroid.mainMesh_.setRenderLayer(2);
 			}
-
-			final Explosion var16 = new Explosion(1);
-			asteroid.setExplosion(var16);
+			asteroid.setExplosion(new Explosion(1));
 			this.asteroids[i] = asteroid;
 		}
 
@@ -1485,18 +1483,17 @@ public final class Level {
 		var2 = var1 != null ? var1.x : 0;
 		int var3 = var1 != null ? var1.y : 0;
 		int var6 = var1 != null ? var1.z : 0;
-		var2 = var2 + GlobalStatus.random.nextInt(20000) - 10000;
-		var3 = var3 + GlobalStatus.random.nextInt(20000) - 10000;
-		var6 = var6 + GlobalStatus.random.nextInt(20000) - 10000;
-		AbstractMesh var4;
-		(var4 = AEResourceManager.getGeometryResource(9996)).setRenderLayer(2);
-		Player var5 = null;
-		var5 = new Player(1000.0F, 1, 0, 0, 0);
-		PlayerJunk var7;
-		(var7 = new PlayerJunk(9996, var5, var4, var2, var3, var6)).setExplosion(new Explosion(1));
-		var7.mainMesh_.rotateEuler(var2, var3, var6);
-		var7.setLevel(this);
-		return var7;
+		var2 += GlobalStatus.random.nextInt(20000) - 10000;
+		var3 += GlobalStatus.random.nextInt(20000) - 10000;
+		var6 += GlobalStatus.random.nextInt(20000) - 10000;
+		AbstractMesh mesh = AEResourceManager.getGeometryResource(9996);
+		mesh.setRenderLayer(2);
+		Player player = new Player(1000.0F, 1, 0, 0, 0);
+		PlayerJunk junk = new PlayerJunk(9996, player, mesh, var2, var3, var6);
+		junk.setExplosion(new Explosion(1));
+		junk.mainMesh_.rotateEuler(var2, var3, var6);
+		junk.setLevel(this);
+		return junk;
 	}
 	/**
 	 *
@@ -1538,9 +1535,9 @@ public final class Level {
 			break;
 		case 1:
 			ship = new PlayerFixedObject(shipId, race, player, (AbstractMesh)null, spawnX, spawnY, spawnZ);
-			final BoundingVolume[] var16 = new BoundingVolume[1];
-			var16[0] = new BoundingAAB(spawnX, spawnY, spawnZ, 0, 300, 0, 4000, 4000, 15000);
-			((PlayerFixedObject)ship).setBounds(var16);
+			final BoundingVolume[] bounds = new BoundingVolume[1];
+			bounds[0] = new BoundingAAB(spawnX, spawnY, spawnZ, 0, 300, 0, 4000, 4000, 15000);
+			((PlayerFixedObject)ship).setBounds(bounds);
 			explosion = new Explosion(1);
 			explosion.setBig();
 			ship.setGroup(Globals.getShipGroup(shipId, race), shipId);
@@ -1551,27 +1548,27 @@ public final class Level {
 		return ship;
 	}
 
-	private static Route createRoute(final int var0) {
-		final int[] var3 = new int[var0 * 3];
+	private static Route createRoute(final int len) {
+		final int[] wayPoints = new int[len * 3];
 
-		for(int var1 = 0; var1 < var3.length; var1 += 3) {
-			final int var2 = GlobalStatus.random.nextInt(2) == 0 ? 1 : -1;
-			var3[var1] = 50000 + GlobalStatus.random.nextInt(30000);
-			var3[var1] *= var2;
-			var3[var1 + 1] = -10000 + GlobalStatus.random.nextInt(20000);
-			if (var1 != 0) {
-				var3[var1 + 2] = var3[var1 - 3 + 2] + 50000 + GlobalStatus.random.nextInt(30000);
+		for(int i = 0; i < wayPoints.length; i += 3) {
+			final int rndSign = GlobalStatus.random.nextInt(2) == 0 ? 1 : -1;
+			wayPoints[i] = 50000 + GlobalStatus.random.nextInt(30000);
+			wayPoints[i] *= rndSign;
+			wayPoints[i + 1] = -10000 + GlobalStatus.random.nextInt(20000);
+			if (i != 0) {
+				wayPoints[i + 2] = wayPoints[i - 3 + 2] + 50000 + GlobalStatus.random.nextInt(30000);
 			} else {
-				var3[var1 + 2] = 50000 + GlobalStatus.random.nextInt(30000);
+				wayPoints[i + 2] = 50000 + GlobalStatus.random.nextInt(30000);
 			}
 		}
 
-		return new Route(var3);
+		return new Route(wayPoints);
 	}
 
-	private RadioMessage[] createRadioMessages(final int var1) {
+	private RadioMessage[] createRadioMessages(final int missionIdx) {
 		this.radioMessages = null;
-		switch(var1) {
+		switch(missionIdx) {
 		case 0:
 			this.radioMessages = new RadioMessage[22];
 			this.radioMessages[0] = new RadioMessage(844, 17, 5, 15000);
@@ -1723,23 +1720,23 @@ public final class Level {
 			this.lastFlashDuration = var1 >= 3 ? 10000 : var1 == 1 ? 7000 : 2000;
 			this.flashIntensity = this.lastFlashDuration;
 			switch (var1) {
-			case 3:
+			case Explosion.HUGE:
 				this.explosionR = 255.0F;
 				this.explosionG = 255.0F;
 				this.explosionB = 255.0F;
 				this.ego.hit();
 				break;
-			case 2:
+			case Explosion.SMALL: 
 				this.explosionR = bgR * 1.5F;
 				this.explosionG = bgG * 1.5F;
 				this.explosionB = bgB * 1.5F;
 				break;
-			case 4:
+			case Explosion.EMP:
 				this.explosionR = 0.0F;
 				this.explosionG = 0.0F;
 				this.explosionB = 255.0F;
 				break;
-			default: {
+			default: { //big explosion - 0, bigger - 1
 				final float var2 = var1 == 1 ? 8.0F : 5.0F;
 				this.explosionR = AEMath.max(10, AEMath.min(255, (int)(bgR * var2)));
 				this.explosionG = AEMath.max(10, AEMath.min(255, (int)(bgG * var2)));
@@ -1750,17 +1747,17 @@ public final class Level {
 		}
 	}
 
-	public final void enemyDied(final boolean var1) {
+	public final void enemyDied(final boolean killedByEgo) {
 		--this.enemiesIntact;
 		++this.enemiesDestroyed;
-		if (!var1) {
+		if (!killedByEgo) {
 			Status.incKills();
 			++this.egoScore;
 		} else {
 			++this.challengerScore;
 		}
 
-		flashScreen(1);
+		flashScreen(Explosion.BIG);
 	}
 
 	public final void junkDied() {
@@ -1941,7 +1938,7 @@ public final class Level {
 
 	public final void updateOrbit_(final long var1) {
 		if (Status.inAlienOrbit() && GlobalStatus.random.nextInt(25) == 0) {
-			flashScreen(2);
+			flashScreen(Explosion.SMALL);
 		}
 
 		if (this.exploding_) {

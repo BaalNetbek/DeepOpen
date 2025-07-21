@@ -13,19 +13,19 @@ public class ObjectGun extends AbstractMesh implements AbstractGun {
 	protected AbstractMesh rocketMesh_;
 	protected static AEVector3D temp;
 
-	public ObjectGun(final Gun var1, final AbstractMesh var2) {
-		this.gun = var1;
+	public ObjectGun(final Gun gun, final AbstractMesh mesh) {
+		this.gun = gun;
 		temp = new AEVector3D();
-		if (var2 == null) {
+		if (mesh == null) {
 			this.projectiles = null;
 		} else {
-			this.projectiles = new AbstractMesh[var1.projectilesPos.length];
+			this.projectiles = new AbstractMesh[gun.projectilesPos.length];
 
-			for(int var3 = 0; var3 < this.projectiles.length; ++var3) {
-				temp.set(var2.getScale());
-				this.projectiles[var3] = (AbstractMesh)var2.clone();
-				this.projectiles[var3].setScale(temp.x, temp.y, temp.z);
-				this.projectiles[var3].setRenderLayer(2);
+			for(int i = 0; i < this.projectiles.length; ++i) {
+				temp.set(mesh.getScale());
+				this.projectiles[i] = (AbstractMesh)mesh.clone();
+				this.projectiles[i].setScale(temp.x, temp.y, temp.z);
+				this.projectiles[i].setRenderLayer(2);
 			}
 
 		}
@@ -60,8 +60,8 @@ public class ObjectGun extends AbstractMesh implements AbstractGun {
 
 	}
 
-	public void update(final long var1) {
-		this.gun.calcCharacterCollision(var1);
+	public void update(final long dt) {
+		this.gun.calcCharacterCollision(dt);
 	}
 
 	public final GraphNode clone() {

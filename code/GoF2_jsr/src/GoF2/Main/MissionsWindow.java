@@ -69,7 +69,7 @@ public final class MissionsWindow {
 		if (Status.getFreelanceMission().isEmpty()) {
 			this.freelanceRows = Font.splitToLines(GlobalStatus.gameText.getText(69), GlobalStatus.screenWidth - 2 * this.innerWindowOffsetX - 4);
 		} else {
-			this.clientsFace = ImageFactory.faceFromByteArray(Status.getFreelanceMission().getAgent().getFace());
+			this.clientsFace = ImageFactory.faceFromByteArray(Status.getFreelanceMission().getAgent().getImageParts());
 			this.freelanceRows = Font.splitToLines(Status.getFreelanceMission().getAgent().getMessage(), GlobalStatus.screenWidth - 2 * this.innerWindowOffsetX - 4);
 		}
 
@@ -226,7 +226,7 @@ public final class MissionsWindow {
 					}
 
 					if (!Status.getFreelanceMission().getAgent().isGenericAgent_()) {
-						Status.getFreelanceMission().getAgent().setAccepted(false);
+						Status.getFreelanceMission().getAgent().setOfferAccepted(false);
 					}
 
 					Status.setFreelanceMission(Mission.emptyMission_);

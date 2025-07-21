@@ -5,6 +5,12 @@ import AE.AbstractMesh;
 import AE.GlobalStatus;
 
 public final class Explosion {
+	// SMALL < MEDIUM < BIG
+	public final static int MEDIUM = 0;
+	public final static int BIG = 1;
+	public final static int SMALL = 2;
+	public final static int HUGE = 3;
+	public final static int EMP = 4;
 	private int[] delays;
 	//private int[] unused_1af;
 	private int animationPlayTime;
@@ -16,17 +22,17 @@ public final class Explosion {
 			this.explosions = new AbstractMesh[var1];
 			this.delays = new int[var1];
 
-			for(var1 = 0; var1 < this.explosions.length; ++var1) {
-				this.explosions[var1] = AEResourceManager.getGeometryResource(9992);
-				this.explosions[var1].setAnimationSpeed(100);
-				this.explosions[var1].setAnimationRangeInTime(1, 20);
-				this.explosions[var1].setScale(8192, 8192, 8192);
-				this.explosions[var1].setRenderLayer(2);
-				this.explosions[var1].disableAnimation();
-				if (var1 == 0) {
-					this.delays[var1] = 0;
+			for(int i = 0; i < this.explosions.length; ++i) {
+				this.explosions[i] = AEResourceManager.getGeometryResource(9992);
+				this.explosions[i].setAnimationSpeed(100);
+				this.explosions[i].setAnimationRangeInTime(1, 20);
+				this.explosions[i].setScale(8192, 8192, 8192);
+				this.explosions[i].setRenderLayer(2);
+				this.explosions[i].disableAnimation();
+				if (i == 0) {
+					this.delays[i] = 0;
 				} else {
-					this.delays[var1] = this.delays[var1 - 1] + GlobalStatus.random.nextInt(1000) + 1000;
+					this.delays[i] = this.delays[i - 1] + GlobalStatus.random.nextInt(1000) + 1000;
 				}
 			}
 		}

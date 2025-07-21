@@ -219,7 +219,7 @@ public final class Dialogue {
         if (var2 == 2) {
             var4 = var1.getAgent();
             if (var4 != null && !var4.isGenericAgent_()) {
-                var4.setAccepted(false);
+                var4.setOfferAccepted(false);
             }
 
             var1.setFailed(true);

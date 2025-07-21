@@ -6,11 +6,11 @@ import AE.GlobalStatus;
 public final class PlayerJunk extends KIPlayer {
     private long frameTime;
 
-    public PlayerJunk(int var1, final Player var2, final AbstractMesh var3, final int var4, final int var5, final int var6) {
-        super(9996, -1, var2, var3, var4, var5, var6);
-        this.player.transform = var3.getToParentTransform();
-        var1 = 4096 + GlobalStatus.random.nextInt(8096);
-        var3.setScale(var1, var1, var1);
+    public PlayerJunk(int meshId, final Player player, final AbstractMesh mesh, final int x, final int y, final int z) {
+        super(9996, -1, player, mesh, x, y, z);
+        this.player.transform = mesh.getToParentTransform();
+        meshId = 4096 + GlobalStatus.random.nextInt(8096);
+        mesh.setScale(meshId, meshId, meshId);
         this.junk = true;
     }
 

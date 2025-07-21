@@ -28,10 +28,10 @@ public final class PlayerAsteroid extends KIPlayer {
 	public boolean clampedByDistance;
 	public int oreItemId;
 
-	public PlayerAsteroid(final int meshId, final AbstractMesh mesh, final int var3, final boolean var4, final int var5, final int var6, final int var7) {
+	public PlayerAsteroid(final int meshId, final AbstractMesh mesh, final int ore, final boolean var4, final int var5, final int var6, final int var7) {
 		super(meshId, -1, new Player(1500.0F, 30, 0, 0, 0), mesh, var5, var6, var7);
 		this.player.setKIPlayer(this);
-		this.oreItemId = var3;
+		this.oreItemId = ore;
 		this.posX = var5;
 		this.posY = var6;
 		this.posZ = var7;
@@ -49,7 +49,7 @@ public final class PlayerAsteroid extends KIPlayer {
 		this.mainMesh_.getToParentTransform().setOrientation(this.tempVector_);
 		this.mainMesh_.moveTo(tempVector2_);
 		this.mainMesh_.updateTransform(true);
-		this.mainMesh_.setAnimationRangeInTime(var3 - 154, var3 - 154);
+		this.mainMesh_.setAnimationRangeInTime(ore - 154, ore - 154);
 		this.mainMesh_.disableAnimation();
 		this.rotationEnabled = true;
 		this.isAsteroid = true;

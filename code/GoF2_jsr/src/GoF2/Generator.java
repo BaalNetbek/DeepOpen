@@ -172,7 +172,7 @@ public final class Generator {
 			}
 			final boolean male = agentType == 6 || race != Globals.TERRAN || GlobalStatus.random.nextInt(100) < 60;
 			final Agent agent = new Agent(-1, Globals.getRandomName(race, male), station.getId(), Status.getSystem().getId(), race, male, -1, -1, -1);
-			agent.setType(agentType);
+			agent.setOffer(agentType);
 			agent.setImageParts(ImageFactory.createChar(male, race));
 			if (agent.getType() == 6) {
 				final int nextInt2;
@@ -209,12 +209,12 @@ public final class Generator {
 				if (item.getType() == 3 || item.getType() == 0 || item.getType() == 2) {
 					quantity = 1;
 				}
-				agent.setSellItem(sellItem, quantity, quantity * (int)((40 + GlobalStatus.random.nextInt(120)) / 100.0f * Globals.getItems()[sellItem].getSinglePrice()));
+				agent.setSellItemData(sellItem, quantity, quantity * (int)((40 + GlobalStatus.random.nextInt(120)) / 100.0f * Globals.getItems()[sellItem].getSinglePrice()));
 			}
 			agents[i] = agent;
 			if (agents[i].getType() == 6) {
 				if (wingmanGenerated) {
-					agents[i].setType(1);
+					agents[i].setOffer(1);
 				}
 				wingmanGenerated = true;
 			}
@@ -230,7 +230,7 @@ public final class Generator {
 				for (int j = 0; j < agents.length; ++j) {
 					if (agents[j].isGenericAgent_() && agents[j].getType() != 7) {
 						agents[j] = new Agent(-1, Globals.getRandomName(race, true), station.getId(), Status.getSystem().getId(), race, true, -1, -1, -1);
-						agents[j].setType(7);
+						agents[j].setOffer(7);
 						agents[j].setImageParts(ImageFactory.createChar(true, race));
 						break;
 					}
@@ -351,7 +351,7 @@ public final class Generator {
 		}
 		final int n5 = (int)n3 % 50;
 		final float n6 = (n3 + n5) % 50.0f == 0.0f ? n3 + n5 : n3 - n5;
-		final Mission mission = new Mission(missionType, fullName, agent.getFace(), race, (int)n6, i, min);
+		final Mission mission = new Mission(missionType, fullName, agent.getImageParts(), race, (int)n6, i, min);
 		int n7 = (int)(n6 / 10.0f + GlobalStatus.random.nextInt((int)n6 / 10));
 		if (missionType == 8) {
 			n7 *= 0.5f;

@@ -25,25 +25,22 @@ public final class PlayerFixedObject extends KIPlayer {
     private int posY;
     private int posZ;
 
-    public PlayerFixedObject(final int var1, int var2, final Player var3, final AbstractMesh var4, final int var5, final int var6, final int var7) {
-        super(var1, var2, var3, (AbstractMesh)null, var5, var6, var7);
-        this.pos.set(var5, var6, var7);
-        this.posX = var5;
-        this.posY = var6;
-        this.posZ = var7;
+    public PlayerFixedObject(final int shipIdx, int race, final Player player, final AbstractMesh mesh, final int x, final int y, final int z) {
+        super(shipIdx, race, player, mesh, x, y, z);
+        this.pos.set(x, y, z);
+        this.posX = x;
+        this.posY = y;
+        this.posZ = z;
         this.moving = false;
         if (!Status.getMission().isCampaignMission() || Status.getCurrentCampaignMission() != 40 && Status.getCurrentCampaignMission() != 41) {
-            final Generator var8 = new Generator();
-            this.cargo = var8.getLootList();
+            final Generator g = new Generator();
+            this.cargo = g.getLootList();
             if (this.cargo != null) {
-                for(var2 = 0; var2 < this.cargo.length; var2 += 2) {
-                    int[] var10000;
-                    if (var1 == 14) {
-                        var10000 = this.cargo;
-                        var10000[var2 + 1] *= 5 + GlobalStatus.random.nextInt(8);
+                for(int i = 0; i < this.cargo.length; i += 2) {
+                    if (shipIdx == 14) {
+                        this.cargo[i + 1] *= 5 + GlobalStatus.random.nextInt(8);
                     } else {
-                        var10000 = this.cargo;
-                        var10000[var2 + 1] *= 1 + GlobalStatus.random.nextInt(4);
+                        this.cargo[i + 1] *= 1 + GlobalStatus.random.nextInt(4);
                     }
                 }
             }

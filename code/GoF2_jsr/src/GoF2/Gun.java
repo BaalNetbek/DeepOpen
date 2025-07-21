@@ -240,11 +240,11 @@ public final class Gun {
 		}
 
 		if (this.targets != null) {
-			for(int var1 = 0; var1 < this.targets.length; ++var1) {
-				this.tempTarget = this.targets[var1];
+			for(int i = 0; i < this.targets.length; ++i) {
+				this.tempTarget = this.targets[i];
 				if ((this.subType != Item.EMP_BOMB || !this.tempTarget.isAsteroid()) && this.tempTarget.isActive()) {
-					for(int var2 = 0; var2 < this.projectilesPos.length; ++var2) {
-						this.tempPos.set(this.projectilesPos[var2]);
+					for(int j = 0; j < this.projectilesPos.length; ++j) {
+						this.tempPos.set(this.projectilesPos[j]);
 						this.tempVector = this.tempTarget.transform.getPosition(this.tempVector);
 						this.tempVector.subtract(this.tempPos);
 						int var3 = this.tempVector.getLength();
@@ -272,8 +272,8 @@ public final class Gun {
 
 							this.tempVector.normalize();
 							this.tempTarget.setHitVector_(this.tempVector.x, this.tempVector.y, this.tempVector.z);
-							this.projectilesTimeLeft[var2] = -1;
-							this.tempVector.set(this.projectilesDir[var2]);
+							this.projectilesTimeLeft[j] = -1;
+							this.tempVector.set(this.projectilesDir[j]);
 							this.tempVector.normalize();
 						}
 					}
@@ -281,70 +281,68 @@ public final class Gun {
 			}
 		}
 
-		final boolean var5 = this.subType == Item.NUKE;
-		this.level.flashScreen(var5 ? 3 : 4);
-		GlobalStatus.soundManager.playSfx(var5 ? 11 : 12);
+		final boolean isNuke = this.subType == Item.NUKE;
+		this.level.flashScreen(isNuke ? Explosion.HUGE : Explosion.EMP);
+		GlobalStatus.soundManager.playSfx(isNuke ? 11 : 12);
 		if (this.sparks != null) {
 			this.sparks.explode(this.projectilesPos[0]);
 		}
 
 	}
 
-	public final void calcCharacterCollision(final long var1) {
-		this.timeSinceLastShot = (int)(this.timeSinceLastShot + var1);
+	public final void calcCharacterCollision(final long dt) {
+		this.timeSinceLastShot = (int)(this.timeSinceLastShot + dt);
 		if (this.sparks != null) {
-			this.sparks.update(var1);
+			this.sparks.update(dt);
 		}
 
 		if (this.inAir) {
 			if (this.targets != null) {
-				boolean var7 = this.subType == Item.NUKE || this.subType == Item.EMP_BOMB;
-				final boolean var8 = var7 || this.subType == Item.ROCKET || this.subType == Item.TORPEDO;
+				final boolean isBomb = this.subType == Item.NUKE || this.subType == Item.EMP_BOMB;
+				final boolean isRocket = isBomb || this.subType == Item.ROCKET || this.subType == Item.TORPEDO;
 
 				label96:
-					for(int var9 = 0; var9 < this.targets.length; ++var9) {
-						this.tempTarget = this.targets[var9];
+					for(int i = 0; i < this.targets.length; ++i) {
+						this.tempTarget = this.targets[i];
 						if (this.tempTarget.isActive()) {
-							for(int var10 = 0; var10 < this.projectilesPos.length; ++var10) {
-								this.tempPos.set(this.projectilesPos[var10]);
-								this.tempDir.set(this.projectilesDir[var10]);
-								int var4;
-								int var5;
-								int var13;
+							for(int j = 0; j < this.projectilesPos.length; ++j) {
+								this.tempPos.set(this.projectilesPos[j]);
+								this.tempDir.set(this.projectilesDir[j]);
+								int x, y, z;
 								if (this.tempTarget.invincible_) {
-									var4 = this.tempTarget.posX - this.tempPos.x + this.tempDir.x;
-									var5 = this.tempTarget.posY - this.tempPos.y + this.tempDir.y;
-									var13 = this.tempTarget.posZ - this.tempPos.z + this.tempDir.z;
+									x = this.tempTarget.posX - this.tempPos.x + this.tempDir.x;
+									y = this.tempTarget.posY - this.tempPos.y + this.tempDir.y;
+									z = this.tempTarget.posZ - this.tempPos.z + this.tempDir.z;
 								} else {
-									var4 = this.tempTarget.transform.getPositionX() - this.tempPos.x + this.tempDir.x;
-									var5 = this.tempTarget.transform.getPositionY() - this.tempPos.y + this.tempDir.y;
-									var13 = this.tempTarget.transform.getPositionZ() - this.tempPos.z + this.tempDir.z;
+									x = this.tempTarget.transform.getPositionX() - this.tempPos.x + this.tempDir.x;
+									y = this.tempTarget.transform.getPositionY() - this.tempPos.y + this.tempDir.y;
+									z = this.tempTarget.transform.getPositionZ() - this.tempPos.z + this.tempDir.z;
 								}
 
-								final int var11 = (int)this.tempTarget.radius;
-								if (var4 < var11 && var4 > -var11 && var5 < var11 && var5 > -var11 && var13 < var11 && var13 > -var11) {
-									if (var8 && this.tempTarget.isAsteroid()) {
+								final int r = (int)this.tempTarget.radius;
+								if (x < r && x > -r && y < r && y > -r && z < r && z > -r) {
+									if (isRocket && this.tempTarget.isAsteroid()) {
 										this.tempTarget.damageHP(9999, false);
 										break label96;
 									}
 
-									if (var7) {
+									if (isBomb) {
 										this.ignite();
 										break label96;
 									}
 
-									var4 = Globals.getItems()[this.index].getAttribute(Item.EMP_DAMAGE);
-									if (var4 != Item.NULL_ATTRIBUTE) {
-										this.tempTarget.damageEmp(var4, this.friendGun);
+									x = Globals.getItems()[this.index].getAttribute(Item.EMP_DAMAGE);
+									if (x != Item.NULL_ATTRIBUTE) {
+										this.tempTarget.damageEmp(x, this.friendGun);
 									}
 
 									this.tempTarget.damageHP(this.damage, this.friendGun);
 									this.tempTarget.setHitVector_(-this.tempDir.x, -this.tempDir.y, -this.tempDir.z);
-									this.projectilesTimeLeft[var10] = -1;
-									this.tempVector.set(this.projectilesDir[var10]);
+									this.projectilesTimeLeft[j] = -1;
+									this.tempVector.set(this.projectilesDir[j]);
 									this.tempVector.normalize();
 									if (this.sparks != null) {
-										this.sparks.explode(this.projectilesPos[var10]);
+										this.sparks.explode(this.projectilesPos[j]);
 									}
 								}
 							}
@@ -354,11 +352,10 @@ public final class Gun {
 
 			for(int i = 0; i < this.projectilesPos.length; ++i) {
 				if (this.projectilesTimeLeft[i] > 0) {
-					final int[] var10000 = this.projectilesTimeLeft;
-					var10000[i] -= (int)var1;
+					this.projectilesTimeLeft[i] -= dt;
 					this.projectilesPos[i].add(this.projectilesDir[i]);
 					if (this.projectilesTimeLeft[i] <= 0 && (this.subType == Item.NUKE || this.subType == Item.EMP_BOMB)) {
-						ignite();
+						this.ignite();
 					}
 				} else {
 					this.projectilesPos[i].set(50000, 50000, 50000);

@@ -1,5 +1,8 @@
 package GoF2;
-
+/**
+ * This class represents SpaceLounge characters when they are inside or outside the bar.
+ * @author fishlabs 2009
+ */
 public final class Agent {
 	public String fullName;
 	public String wingman1Name;
@@ -23,19 +26,20 @@ public final class Agent {
 	private String stationName;
 	public String systemName;
 	private boolean accepted;
-	private boolean unused_0_;
+	/**unused*/
+	private boolean reward;
 	private byte[] face;
 	private Mission mission;
 	public boolean wasAskedForDifficulty;
 	public boolean wasAskedForLocation;
 
-	public Agent(final int var1, final String var2, final int var3, final int var4, final int var5, final boolean var6, final int var7, final int var8, final int var9) {
-		this.messageId = var1;
-		this.fullName = var2;
-		this.stationId = var3;
-		this.systemId = var4;
-		this.race = var5;
-		this.male = var6;
+	public Agent(final int message, final String name, final int stationIdx, final int systemIdx, final int race, final boolean isMale, final int var7, final int var8, final int var9) {
+		this.messageId = message;
+		this.fullName = name;
+		this.stationId = stationIdx;
+		this.systemId = systemIdx;
+		this.race = race;
+		this.male = isMale;
 		this.event = 0;
 		this.secretSystemId = var7;
 		if (var7 >= 0) {
@@ -48,10 +52,10 @@ public final class Agent {
 		}
 
 		this.sellingPrice = var9;
-		this.origin_ = var1 >= 0 ? 0 : 1;
+		this.origin_ = message >= 0 ? 0 : 1;
 		this.wingmanFriendsCount = 0;
 		this.accepted = false;
-		this.unused_0_ = false;
+		this.reward = false;
 		this.wasAskedForDifficulty = false;
 		this.wasAskedForLocation = false;
 	}
@@ -100,20 +104,20 @@ public final class Agent {
 		return this.origin_ == 1;
 	}
 
-	public final void setImageParts(final byte[] var1) {
-		this.face = var1;
+	public final void setImageParts(final byte[] face) {
+		this.face = face;
 	}
 
-	public final byte[] getFace() {
+	public final byte[] getImageParts() {
 		return this.face;
 	}
-
-	public final void setType(final int var1) {
+	/** setType */
+	public final void setOffer(final int var1) {
 		this.type = var1;
 	}
 
-	public final void setMission(final Mission var1) {
-		this.mission = var1;
+	public final void setMission(final Mission mission) {
+		this.mission = mission;
 	}
 
 	public final Mission getMission() {
@@ -132,8 +136,8 @@ public final class Agent {
 		return this.blueprintItemId;
 	}
 
-	public final void setCosts(final int var1) {
-		this.diplomacyPrice = var1;
+	public final void setCosts(final int diplomaticBribe) {
+		this.diplomacyPrice = diplomaticBribe;
 	}
 
 	public final int getCosts() {
@@ -144,30 +148,30 @@ public final class Agent {
 		return this.wingmanFriendsCount;
 	}
 
-	public final String getWingmanName(final int var1) {
+	public final String getWingmanName(final int unused) {
 		return this.wingman1Name;
 	}
 
 	public final String[] getWingmenNames() {
-		String[] var1;
-		(var1 = new String[1 + this.wingmanFriendsCount])[0] = this.fullName;
+		String[] names = new String[1 + this.wingmanFriendsCount];
+		names[0] = this.fullName;
 		if (this.wingmanFriendsCount > 0) {
-			var1[1] = this.wingman1Name;
+			names[1] = this.wingman1Name;
 		}
 
 		if (this.wingmanFriendsCount > 1) {
-			var1[2] = this.wingman2Name;
+			names[2] = this.wingman2Name;
 		}
 
-		return var1;
+		return names;
 	}
 
 	public final String getMessage() {
 		return this.message;
 	}
 
-	public final void setMessage(final String var1) {
-		this.message = var1;
+	public final void setMessage(final String text) {
+		this.message = text;
 	}
 
 	public final int getSellItemIndex() {
@@ -182,37 +186,37 @@ public final class Agent {
 		return this.sellingPrice;
 	}
 
-	public final void setSellItem(final int var1, final int var2, final int var3) {
-		this.itemId = var1;
-		this.itemQuantity = var2;
-		this.sellingPrice = var3;
+	public final void setSellItemData(final int itemIdx, final int ammount, final int price) {
+		this.itemId = itemIdx;
+		this.itemQuantity = ammount;
+		this.sellingPrice = price;
 	}
 
-	public final boolean isAccepted() {
+	public final boolean hasAcceptedOffer() {
 		return this.accepted;
 	}
 
-	public final void setAccepted(final boolean var1) {
-		this.accepted = var1;
+	public final void setOfferAccepted(final boolean accepted) {
+		this.accepted = accepted;
 	}
-
-	public final boolean getUnused0_() {
-		return this.unused_0_;
+	/**unused*/
+	public final boolean hasReward() {
+		return this.reward;
 	}
-
-	public final void setUnused0_(final boolean var1) {
-		this.unused_0_ = var1;
+	/**unused*/
+	public final void giveRewardAtNextChat(final boolean var1) {
+		this.reward = var1;
 	}
 
 	public final String getStationName() {
 		return this.stationName;
 	}
 
-	public final void setAgentsStationName(final String var1) {
-		this.stationName = var1.equals("") ? null : var1;
+	public final void setStationName(final String name) {
+		this.stationName = name.equals("") ? null : name;
 	}
 
-	public final void setAgentsSystemName(final String var1) {
-		this.systemName = var1.equals("") ? null : var1;
+	public final void setSystemName(final String name) {
+		this.systemName = name.equals("") ? null : name;
 	}
 }
