@@ -1,99 +1,99 @@
 package Main;
 
-import AbyssEngine.AEMath;
-import AbyssEngine.Galaxy;
-import AbyssEngine.GameRecord;
-import AbyssEngine.GameStatus;
-import AbyssEngine.LangManager;
-import AbyssEngine.Layout;
-import AbyssEngine.LoadingScreen;
-import AbyssEngine.Medals;
-import AbyssEngine.Mission;
-import AbyssEngine.Popup;
-import AbyssEngine.RecordHandler;
-import AbyssEngine.SoundManager;
-import AbyssEngine.Status;
-import AbyssEngine.SymbolMapManager_;
-import AbyssEngine.TextBox;
-import AbyssEngine.TextInput_;
-import AbyssEngine.Time;
+import AE.Math.AEMath;
+import GoF2.Galaxy;
+import GoF2.GameRecord;
+import AE.GlobalStatus;
+import GoF2.GameText;
+import GoF2.Layout;
+import GoF2.LoadingScreen;
+import GoF2.Achievements;
+import GoF2.Mission;
+import GoF2.Popup;
+import GoF2.RecordHandler;
+import AE.SoundManager;
+import GoF2.Status;
+import AE.PaintCanvas.Font;
+import GoF2.TextBox;
+import AE.TextInput;
+import AE.Time;
 import javax.microedition.lcdui.Image;
 
 public final class OptionsWindow {
-   private static int var_191;
-   private static int var_251;
-   private static int var_2a3;
-   private static int[] listEntriesCounts_ = new int[]{6, 4, 3, 4, 3, 3, 11, 0, 0, 2, 12, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-   private Image var_34e;
-   private int var_373;
-   private int var_3be;
+   private static int posX;
+   private static int headerHeight;
+   private static int windowWidth;
+   private static int[] menuItemCounts = new int[]{6, 4, 3, 4, 3, 3, 11, 0, 0, 2, 12, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+   private Image gameLogo;
+   private int fontSpacingY;
+   private int saveGameItemHeight;
    private int selectedRow;
    private int subMenu;
-   private String var_467;
-   private Popup choiceConfirm;
+   private String saveInfo;
+   private Popup confirmPopup;
    private boolean confirmPopupOpen;
-   private boolean var_600;
+   private boolean forcePauseMenu_;
    private GameRecord[] saves;
-   private String var_696;
-   private Class_1e2 var_6eb;
-   private TextBox about;
+   private String stationName;
+   private ListWindow_ manualWindow;
+   private TextBox credits;
    private TextBox instructions;
    private TextBox controls;
-   private TextBox var_7bc;
-   private TextInput_ var_817;
+   private TextBox hidden__;
+   private TextInput nameInput;
    private int frameTime;
    private int musicLevel;
    private int soundLevel;
-   private int var_911;
-   private boolean webConncetionRelatedConfirm_ = false;
-   private String var_992 = null;
-   private String var_a15 = null;
-   private String var_a9e = null;
-   private int var_ad1 = -1;
-   private boolean var_b06 = false;
-   private Image var_b34 = null;
-   private int var_b51;
+   private int recordWindowWidth;
+   private boolean webAccessAvailable = false;
+   private String operatorURL = null;
+   private String operatorsPrompt = null;
+   private String operatorMenuEntry = null;
+   private int wapMode = -1;
+   private boolean unused_b06 = false;
+   private Image unused_b34 = null;
+   private int optionsListPosY;
 
    public OptionsWindow() {
-      this.sub_33();
-      if (this.webConncetionRelatedConfirm_) {
-         listEntriesCounts_[0] = 7;
+      this.initWapItem();
+      if (this.webAccessAvailable) {
+         menuItemCounts[0] = 7;
       }
 
-      this.var_34e = LoadingScreen.sub_4a();
-      var_251 = this.var_34e.getHeight() + 25;
-      this.var_b51 = var_251 + 16;
-      var_2a3 = 117;
-      var_191 = GameStatus.screenWidth - var_2a3 >> 1;
-      this.var_373 = SymbolMapManager_.sub_2c2();
+      this.gameLogo = LoadingScreen.getGameLogo();
+      headerHeight = this.gameLogo.getHeight() + 25;
+      this.optionsListPosY = headerHeight + 16;
+      windowWidth = 117;
+      posX = GlobalStatus.screenWidth - windowWidth >> 1;
+      this.fontSpacingY = Font.getFontSpacingY();
       this.selectedRow = 0;
       this.subMenu = 0;
-      this.choiceConfirm = new Popup(20, GameStatus.screenHeight / 2, GameStatus.screenWidth - 40);
+      this.confirmPopup = new Popup(20, GlobalStatus.screenHeight / 2, GlobalStatus.screenWidth - 40);
       this.confirmPopupOpen = false;
-      this.var_600 = false;
-      this.about = new TextBox(var_191 / 2 + 8, this.var_b51, var_2a3 + var_191 - 16, GameStatus.screenHeight - var_251 - 48, GameStatus.langManager.getLangString(23) + "\n\n" + GameStatus.langManager.getLangString(25));
-      this.instructions = new TextBox(var_191 / 2 + 8, this.var_b51, var_2a3 + var_191 - 16, GameStatus.screenHeight - var_251 - 48, "");
-      this.controls = new TextBox(var_191 / 2 + 8, this.var_b51, var_2a3 + var_191 - 16, GameStatus.screenHeight - var_251 - 48, GameStatus.langManager.getLangString(22));
-      this.var_7bc = new TextBox(var_191 + 8, this.var_b51, var_2a3 - 16, GameStatus.screenHeight - var_251 - 48, "");
-      String[] var1 = new String[LangManager.helpFull.length];
+      this.forcePauseMenu_ = false;
+      this.credits = new TextBox(posX / 2 + 8, this.optionsListPosY, windowWidth + posX - 16, GlobalStatus.screenHeight - headerHeight - 48, GlobalStatus.gameText.getText(23) + "\n\n" + GlobalStatus.gameText.getText(25));
+      this.instructions = new TextBox(posX / 2 + 8, this.optionsListPosY, windowWidth + posX - 16, GlobalStatus.screenHeight - headerHeight - 48, "");
+      this.controls = new TextBox(posX / 2 + 8, this.optionsListPosY, windowWidth + posX - 16, GlobalStatus.screenHeight - headerHeight - 48, GlobalStatus.gameText.getText(22));
+      this.hidden__ = new TextBox(posX + 8, this.optionsListPosY, windowWidth - 16, GlobalStatus.screenHeight - headerHeight - 48, "");
+      String[] var1 = new String[GameText.helpFull.length];
 
       for(int var2 = 0; var2 < var1.length; ++var2) {
-         var1[var2] = GameStatus.langManager.getLangString(LangManager.helpTitles[var2]);
+         var1[var2] = GlobalStatus.gameText.getText(GameText.helpTitles[var2]);
       }
 
-      this.var_6eb = new Class_1e2(var_191, var_251 + 2, var_2a3, GameStatus.screenHeight - var_251 - 16 - 10, (String[])null);
-      this.var_6eb.sub_8b(12);
-      this.var_6eb.sub_16a(0, var1);
-      this.var_6eb.sub_391(true);
-      this.var_6eb.sub_346(false);
-      this.var_6eb.sub_3ac();
-      this.var_817 = new TextInput_(10);
-      this.musicLevel = GameStatus.musicVolume;
-      this.soundLevel = GameStatus.sfxVolume;
-      listEntriesCounts_[12] = 2;
+      this.manualWindow = new ListWindow_(posX, headerHeight + 2, windowWidth, GlobalStatus.screenHeight - headerHeight - 16 - 10, (String[])null);
+      this.manualWindow.setRowHeight(12);
+      this.manualWindow.setEntries(0, var1);
+      this.manualWindow.setSelectionHighlight(true);
+      this.manualWindow.setBackGroundDraw(false);
+      this.manualWindow.decFontIndex_();
+      this.nameInput = new TextInput(10);
+      this.musicLevel = GlobalStatus.musicVolume;
+      this.soundLevel = GlobalStatus.sfxVolume;
+      menuItemCounts[12] = 2;
    }
 
-   private static String sub_23(String var0) {
+   private static String unescape(String var0) {
       int var1 = 0;
       int var2 = var0.length();
       StringBuffer var3 = new StringBuffer();
@@ -115,119 +115,119 @@ public final class OptionsWindow {
       }
    }
 
-   private void sub_33() {
+   private void initWapItem() {
       try {
          try {
-            this.var_992 = GameStatus.midlet.getAppProperty("Operator-URL-ru");
-            this.var_a9e = GameStatus.midlet.getAppProperty("Operator-Menu-ru");
+            this.operatorURL = GlobalStatus.midlet.getAppProperty("Operator-URL-ru");
+            this.operatorMenuEntry = GlobalStatus.midlet.getAppProperty("Operator-Menu-ru");
          } catch (Exception var10) {
-            this.webConncetionRelatedConfirm_ = false;
-            this.var_992 = null;
-            this.var_a15 = null;
-            this.var_a9e = null;
+            this.webAccessAvailable = false;
+            this.operatorURL = null;
+            this.operatorsPrompt = null;
+            this.operatorMenuEntry = null;
 
             try {
-               this.var_992 = GameStatus.midlet.getAppProperty("Operator-URL-gn");
-               this.var_a9e = GameStatus.midlet.getAppProperty("Operator-Menu-gn");
+               this.operatorURL = GlobalStatus.midlet.getAppProperty("Operator-URL-gn");
+               this.operatorMenuEntry = GlobalStatus.midlet.getAppProperty("Operator-Menu-gn");
             } catch (Exception var9) {
-               this.webConncetionRelatedConfirm_ = false;
+               this.webAccessAvailable = false;
                return;
             }
 
-            if (this.var_992 == null || this.var_a9e == null) {
-               this.webConncetionRelatedConfirm_ = false;
+            if (this.operatorURL == null || this.operatorMenuEntry == null) {
+               this.webAccessAvailable = false;
                return;
             }
          }
 
-         if (this.var_992 == null || this.var_a9e == null) {
+         if (this.operatorURL == null || this.operatorMenuEntry == null) {
             try {
-               this.var_992 = GameStatus.midlet.getAppProperty("Operator-URL-gn");
-               this.var_a9e = GameStatus.midlet.getAppProperty("Operator-Menu-gn");
+               this.operatorURL = GlobalStatus.midlet.getAppProperty("Operator-URL-gn");
+               this.operatorMenuEntry = GlobalStatus.midlet.getAppProperty("Operator-Menu-gn");
             } catch (Exception var8) {
-               this.webConncetionRelatedConfirm_ = false;
+               this.webAccessAvailable = false;
                return;
             }
          }
 
          try {
-            this.var_a15 = GameStatus.midlet.getAppProperty("Operator-Prompt-ru");
+            this.operatorsPrompt = GlobalStatus.midlet.getAppProperty("Operator-Prompt-ru");
          } catch (Exception var7) {
-            this.var_a15 = null;
+            this.operatorsPrompt = null;
 
             try {
-               this.var_a15 = GameStatus.midlet.getAppProperty("Operator-Prompt-gn");
+               this.operatorsPrompt = GlobalStatus.midlet.getAppProperty("Operator-Prompt-gn");
             } catch (Exception var6) {
             }
          }
 
-         if (this.var_a15 == null) {
+         if (this.operatorsPrompt == null) {
             try {
-               this.var_a15 = GameStatus.midlet.getAppProperty("Operator-Prompt-gn");
+               this.operatorsPrompt = GlobalStatus.midlet.getAppProperty("Operator-Prompt-gn");
             } catch (Exception var5) {
             }
          }
 
-         if (this.var_a15 != null) {
-            this.var_a15 = sub_23(this.var_a15);
+         if (this.operatorsPrompt != null) {
+            this.operatorsPrompt = unescape(this.operatorsPrompt);
          }
 
-         if (this.var_a9e != null) {
-            this.var_a9e = sub_23(this.var_a9e);
+         if (this.operatorMenuEntry != null) {
+            this.operatorMenuEntry = unescape(this.operatorMenuEntry);
          }
 
-         System.out.println("wap_url: " + this.var_992);
-         System.out.println("wap_menu: " + this.var_a9e);
-         System.out.println("wap_prompt: " + this.var_a15);
-         String var1 = GameStatus.midlet.getAppProperty("Operator-Mode");
-         if (this.var_992 != null && var1 != null) {
+         System.out.println("wap_url: " + this.operatorURL);
+         System.out.println("wap_menu: " + this.operatorMenuEntry);
+         System.out.println("wap_prompt: " + this.operatorsPrompt);
+         String var1 = GlobalStatus.midlet.getAppProperty("Operator-Mode");
+         if (this.operatorURL != null && var1 != null) {
             char[] var2 = new char[]{'1', '2'};
 
             for(int var3 = 0; var3 < var2.length; ++var3) {
                int var4;
                if ((var4 = var1.indexOf(String.valueOf(var2[var3]))) >= 0) {
-                  this.var_ad1 = Integer.valueOf(String.valueOf(var1.charAt(var4))).intValue();
+                  this.wapMode = Integer.valueOf(String.valueOf(var1.charAt(var4))).intValue();
                }
             }
 
-            System.out.println("wap_mode: " + this.var_ad1);
-            if (this.var_ad1 < 1 || this.var_ad1 > 2) {
-               this.var_ad1 = 2;
+            System.out.println("wap_mode: " + this.wapMode);
+            if (this.wapMode < 1 || this.wapMode > 2) {
+               this.wapMode = 2;
             }
 
-            this.webConncetionRelatedConfirm_ = true;
+            this.webAccessAvailable = true;
          } else {
             throw new Exception();
          }
       } catch (Exception var11) {
-         this.webConncetionRelatedConfirm_ = false;
+         this.webAccessAvailable = false;
       }
    }
 
-   private void sub_70(GameRecord[] var1) {
-      this.var_911 = 0;
+   private void loadSavePreviews(GameRecord[] var1) {
+      this.recordWindowWidth = 0;
       if (var1 != null) {
          for(int var2 = 0; var2 < var1.length; ++var2) {
-            this.var_467 = var2 + 1 + ".  " + (var1[var2] == null ? GameStatus.langManager.getLangString(26) : Time.timeToHM(var1[var2].playTime) + (var2 == 3 ? " AUTOSAVE" : " " + var1[var2].stationName));
+            this.saveInfo = var2 + 1 + ".  " + (var1[var2] == null ? GlobalStatus.gameText.getText(26) : Time.timeToHM(var1[var2].playTime) + (var2 == 3 ? " AUTOSAVE" : " " + var1[var2].stationName));
             int var3;
-            if ((var3 = SymbolMapManager_.sub_25b(this.var_467, 1)) > this.var_911) {
-               this.var_911 = var3;
+            if ((var3 = Font.getTextWidth(this.saveInfo, 1)) > this.recordWindowWidth) {
+               this.recordWindowWidth = var3;
             }
          }
 
-         this.var_911 += 24;
+         this.recordWindowWidth += 24;
       } else {
-         this.var_911 = var_2a3 + (var_2a3 >> 1);
+         this.recordWindowWidth = windowWidth + (windowWidth >> 1);
       }
    }
 
-   public final void sub_e6() {
+   public final void OnRelease() {
       this.saves = null;
-      this.choiceConfirm = null;
-      this.var_34e = null;
+      this.confirmPopup = null;
+      this.gameLogo = null;
    }
 
-   public final void sub_12b(int var1, int var2) {
+   public final void scrollAndTick_(int var1, int var2) {
       this.frameTime = var2;
       Layout.addTicks(var2);
       if ((var1 & 64) != 0) {
@@ -237,7 +237,7 @@ public final class OptionsWindow {
          }
 
          if (this.subMenu == 8) {
-            this.about.scrollUp(var2);
+            this.credits.scrollUp(var2);
             return;
          }
 
@@ -252,7 +252,7 @@ public final class OptionsWindow {
          }
 
          if (this.subMenu == 8) {
-            this.about.scrollDown(var2);
+            this.credits.scrollDown(var2);
             return;
          }
 
@@ -263,13 +263,13 @@ public final class OptionsWindow {
 
    }
 
-   public final boolean sub_148() {
+   public final boolean update() {
       RecordHandler var1;
       switch(this.subMenu) {
       case 0:
          if (this.confirmPopupOpen && this.selectedRow == 5) {
-            if (this.choiceConfirm.sub_9a()) {
-               GameStatus.var_bfb.sub_54();
+            if (this.confirmPopup.getChoice()) {
+               GlobalStatus.applicationManager.Quit();
                return true;
             }
 
@@ -281,21 +281,21 @@ public final class OptionsWindow {
          case 0:
             if (Status.getPlayingTime() <= 0L) {
                Status.startNewGame();
-               GameStatus.var_bfb.setScene(GameStatus.scenes[2]);
-               SoundManager.sub_2a5();
+               GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[2]);
+               SoundManager.stopMusic__();
                return true;
             }
 
             if (!this.confirmPopupOpen) {
-               this.choiceConfirm.sub_8f(GameStatus.langManager.getLangString(30), true);
+               this.confirmPopup.set(GlobalStatus.gameText.getText(30), true);
                this.confirmPopupOpen = true;
                return false;
             }
 
-            if (this.choiceConfirm.sub_9a()) {
+            if (this.confirmPopup.getChoice()) {
                Status.startNewGame();
-               GameStatus.var_bfb.setScene(GameStatus.scenes[2]);
-               SoundManager.sub_2a5();
+               GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[2]);
+               SoundManager.stopMusic__();
                return true;
             }
 
@@ -308,7 +308,7 @@ public final class OptionsWindow {
                this.saves = var1.readAllPreviews();
             }
 
-            this.sub_70(this.saves);
+            this.loadSavePreviews(this.saves);
             this.selectedRow = 0;
             return false;
          case 2:
@@ -318,7 +318,7 @@ public final class OptionsWindow {
                this.saves = var1.readAllPreviews();
             }
 
-            this.sub_70(this.saves);
+            this.loadSavePreviews(this.saves);
             this.selectedRow = 0;
             return false;
          case 3:
@@ -331,25 +331,25 @@ public final class OptionsWindow {
             return false;
          case 5:
             if (!this.confirmPopupOpen) {
-               this.choiceConfirm.sub_8f(GameStatus.langManager.getLangString(31), true);
+               this.confirmPopup.set(GlobalStatus.gameText.getText(31), true);
                this.confirmPopupOpen = true;
             }
 
             return false;
          case 6:
-            if (this.webConncetionRelatedConfirm_) {
-               switch(this.var_ad1) {
+            if (this.webAccessAvailable) {
+               switch(this.wapMode) {
                case 1:
                   try {
-                     if (!this.confirmPopupOpen && this.var_a15 != null) {
-                        this.choiceConfirm.sub_8f(this.var_a15, true);
-                     } else if (this.var_a15 == null || this.choiceConfirm.sub_9a()) {
-                        GameStatus.midlet.platformRequest(this.var_992);
-                        GameStatus.var_bfb.sub_54();
+                     if (!this.confirmPopupOpen && this.operatorsPrompt != null) {
+                        this.confirmPopup.set(this.operatorsPrompt, true);
+                     } else if (this.operatorsPrompt == null || this.confirmPopup.getChoice()) {
+                        GlobalStatus.midlet.platformRequest(this.operatorURL);
+                        GlobalStatus.applicationManager.Quit();
                         return true;
                      }
 
-                     if (this.var_a15 != null) {
+                     if (this.operatorsPrompt != null) {
                         this.confirmPopupOpen = !this.confirmPopupOpen;
                      }
                   } catch (Exception var3) {
@@ -358,13 +358,13 @@ public final class OptionsWindow {
                   return false;
                default:
                   try {
-                     if (!this.confirmPopupOpen && this.var_a15 != null) {
-                        this.choiceConfirm.sub_8f(this.var_a15, true);
-                     } else if (this.var_a15 == null || this.choiceConfirm.sub_9a()) {
-                        GameStatus.midlet.platformRequest(this.var_992);
+                     if (!this.confirmPopupOpen && this.operatorsPrompt != null) {
+                        this.confirmPopup.set(this.operatorsPrompt, true);
+                     } else if (this.operatorsPrompt == null || this.confirmPopup.getChoice()) {
+                        GlobalStatus.midlet.platformRequest(this.operatorURL);
                      }
 
-                     if (this.var_a15 != null) {
+                     if (this.operatorsPrompt != null) {
                         this.confirmPopupOpen = !this.confirmPopupOpen;
                      }
                   } catch (Exception var2) {
@@ -387,10 +387,10 @@ public final class OptionsWindow {
             }
 
             if (!this.confirmPopupOpen) {
-               this.choiceConfirm.sub_8f(GameStatus.langManager.getLangString(29), true);
+               this.confirmPopup.set(GlobalStatus.gameText.getText(29), true);
                this.confirmPopupOpen = true;
             } else {
-               if (this.choiceConfirm.sub_9a()) {
+               if (this.confirmPopup.getChoice()) {
                   this.loadGameRecord();
                }
 
@@ -400,38 +400,38 @@ public final class OptionsWindow {
          break;
       case 2:
          if (this.confirmPopupOpen) {
-            if (!this.choiceConfirm.sub_9a()) {
+            if (!this.confirmPopup.getChoice()) {
                this.confirmPopupOpen = false;
                return true;
             }
 
-            GameStatus.loadingScreen.startLoading_(false);
-            (var1 = new RecordHandler()).sub_115(this.selectedRow);
+            GlobalStatus.loadingScreen.startLoading_(false);
+            (var1 = new RecordHandler()).saveGame(this.selectedRow);
             this.saves[this.selectedRow] = var1.readPreview(this.selectedRow);
-            this.sub_70(this.saves);
-            GameStatus.loadingScreen.close();
-            this.choiceConfirm.sub_8f(GameStatus.langManager.getLangString(28), false);
+            this.loadSavePreviews(this.saves);
+            GlobalStatus.loadingScreen.close();
+            this.confirmPopup.set(GlobalStatus.gameText.getText(28), false);
          } else if (this.selectedRow < this.saves.length && this.saves[this.selectedRow] == null) {
-            GameStatus.loadingScreen.startLoading_(false);
-            (var1 = new RecordHandler()).sub_115(this.selectedRow);
+            GlobalStatus.loadingScreen.startLoading_(false);
+            (var1 = new RecordHandler()).saveGame(this.selectedRow);
             this.saves = var1.readAllPreviews();
-            GameStatus.loadingScreen.close();
-            this.choiceConfirm.sub_8f(GameStatus.langManager.getLangString(28), false);
+            GlobalStatus.loadingScreen.close();
+            this.confirmPopup.set(GlobalStatus.gameText.getText(28), false);
             this.confirmPopupOpen = true;
          } else {
-            this.choiceConfirm.sub_8f(GameStatus.langManager.getLangString(27), true);
+            this.confirmPopup.set(GlobalStatus.gameText.getText(27), true);
             this.confirmPopupOpen = true;
          }
          break;
       case 3:
-         this.sub_2c1();
+         this.optionsRight();
          break;
       case 4:
          switch(this.selectedRow) {
          case 0:
             this.subMenu = 6;
             this.selectedRow = 0;
-            this.var_6eb.selectedEntry = 0;
+            this.manualWindow.selectedEntry = 0;
             return false;
          case 1:
             this.subMenu = 7;
@@ -444,9 +444,9 @@ public final class OptionsWindow {
          }
       case 5:
          if (this.confirmPopupOpen) {
-            if (this.choiceConfirm.sub_9a()) {
-               GameStatus.var_bfb.setScene(GameStatus.scenes[0]);
-               GameStatus.soundManager.playMusic(0);
+            if (this.confirmPopup.getChoice()) {
+               GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[0]);
+               GlobalStatus.soundManager.playMusic(0);
                return true;
             }
 
@@ -463,7 +463,7 @@ public final class OptionsWindow {
                return false;
             case 2:
                if (!this.confirmPopupOpen) {
-                  this.choiceConfirm.sub_8f(GameStatus.langManager.getLangString(31), true);
+                  this.confirmPopup.set(GlobalStatus.gameText.getText(31), true);
                   this.confirmPopupOpen = true;
                }
             }
@@ -471,7 +471,7 @@ public final class OptionsWindow {
          break;
       case 6:
          this.instructions.zeroTopPadding();
-         this.instructions.sub_e0(GameStatus.langManager.getLangString(LangManager.helpFull[this.selectedRow]));
+         this.instructions.setText(GlobalStatus.gameText.getText(GameText.helpFull[this.selectedRow]));
          this.subMenu = 15 + this.selectedRow;
          System.out.println(this.selectedRow + "  " + this.subMenu);
       case 7:
@@ -484,12 +484,12 @@ public final class OptionsWindow {
          case 0:
             if (Status.getPlayingTime() > 0L) {
                if (!this.confirmPopupOpen) {
-                  this.choiceConfirm.sub_8f(GameStatus.langManager.getLangString(30), true);
+                  this.confirmPopup.set(GlobalStatus.gameText.getText(30), true);
                   this.confirmPopupOpen = true;
                   return false;
                }
 
-               if (this.choiceConfirm.sub_9a()) {
+               if (this.confirmPopup.getChoice()) {
                   this.subMenu = 11;
                   this.selectedRow = 0;
                }
@@ -515,9 +515,9 @@ public final class OptionsWindow {
       RecordHandler var1 = var10000;
       new GameRecord();
       Object var3 = null;
-      GameRecord var4 = var1.sub_106(var2);
+      GameRecord var4 = var1.recordStoreRead(var2);
       Status.startNewGame();
-      Galaxy.setVisitedStations(var4.var_df);
+      Galaxy.setVisitedStations(var4.visitedStations);
       Status.setLastXP(var4.lastWorth);
       Status.setCredits(var4.credits);
       Status.setRating(var4.rating);
@@ -526,104 +526,104 @@ public final class OptionsWindow {
       Status.setMissionCount(var4.missionCount);
       Status.setLevel(var4.level);
       Status.setLastXP(var4.lastWorth);
-      Status.setGoodsProduced(var4.var_4b1);
-      Status.sub_ca6(var4.var_4d6);
-      Status.setJumpgateUsed(var4.var_552);
-      Status.setCargoSalvaged(var4.var_5ee);
-      Status.sub_690(var4.var_663);
+      Status.setGoodsProduced(var4.goodsProduced);
+      Status.setPirateKills(var4.pirateKills);
+      Status.setJumpgateUsed(var4.jumpGateUses);
+      Status.setCargoSalvaged(var4.cargoSalvaged);
+      Status.getUnusedVar(var4.unused__);
       Status.setStationsVisited(var4.stationsVisited);
-      Status.wormholeStation = var4.var_81e;
-      Status.wormholeSystem = var4.var_883;
-      Status.lastVisitedNonVoidOrbit = var4.var_8e6;
-      Status.var_cae = var4.var_97f;
-      Status.getCurrentCampaignMissionIndex(var4.var_73b);
-      Status.setFreelanceMission(var4.var_9a3);
-      Status.startStoryMission(var4.var_a05);
-      Status.setLastVisitedStations(var4.var_a51);
-      Status.minedOreTypes = var4.var_a74;
-      Status.minedCoreTypes = var4.var_ad5;
-      Status.var_d88 = var4.var_b28;
-      Status.minedOre = var4.var_b4b;
-      Status.minedCores = var4.var_b83;
-      Status.var_e59 = var4.var_bce;
-      Status.drinksVar1 = var4.var_c0d;
-      Status.var_ea8 = var4.var_c47;
-      Status.drinksVar2 = var4.var_c81;
-      Status.var_f13 = var4.var_cbe;
-      Status.invisibleTime = var4.var_cfa;
-      Status.bombsUsed = var4.var_d55;
-      Status.alienJunkSalvaged = var4.var_d83;
-      Status.barInteractions = var4.var_dcf;
-      Status.commandedWingmen = var4.var_de1;
-      Status.asteroidsDestroyed = var4.var_e29;
-      Status.maxFreeCargo = var4.var_e62;
-      Status.missionsRejected = var4.var_e81;
-      Status.askedToRepeate = var4.var_e95;
-      Status.acceptedNotAskingDifficulty = var4.var_ea3;
-      Status.acceptedNotAskingLocation = var4.var_ede;
-      Medals.init();
-      if (var4.var_a68 != null) {
-         Medals.setMedals(var4.var_a68);
+      Status.wormholeStation = var4.wormholeStation;
+      Status.wormholeSystem = var4.wormholeSystem;
+      Status.lastVisitedNonVoidOrbit = var4.lastVisitedNonVoidOrbit;
+      Status.wormHoleTick = var4.wormHoleTick;
+      Status.setCurrentCampaignMission(var4.currentCampaignMissionIndex);
+      Status.setFreelanceMission(var4.freelanceMission);
+      Status.startStoryMission(var4.storyMission);
+      Status.setLastVisitedStations(var4.lastVisitedStations);
+      Status.minedOreTypes = var4.minedOreTypes;
+      Status.minedCoreTypes = var4.minedCoreTypes;
+      Status.missionGoodsCarried = var4.missionGoodsCarried;
+      Status.minedOre = var4.minedOre;
+      Status.minedCores = var4.minedCores;
+      Status.boughtBooze = var4.boughtBooze;
+      Status.drinkTypesPossesed = var4.drinkTypesPossesed;
+      Status.destroyedJunk = var4.destroyedJunk;
+      Status.systemsVisited = var4.systemsVisited;
+      Status.passengersCarried = var4.passengersCarried;
+      Status.invisibleTime = var4.invisibleTime;
+      Status.bombsUsed = var4.bombsUsed;
+      Status.alienJunkSalvaged = var4.alienJunkSalvaged;
+      Status.barInteractions = var4.barInteractions;
+      Status.commandedWingmen = var4.commandedWingmen;
+      Status.asteroidsDestroyed = var4.asteroidsDestroyed;
+      Status.maxFreeCargo = var4.maxFreeCargo;
+      Status.missionsRejected = var4.missionsRejected;
+      Status.askedToRepeate = var4.askedToRepeate;
+      Status.acceptedNotAskingDifficulty = var4.acceptedNotAskingDifficulty;
+      Status.acceptedNotAskingLocation = var4.acceptedNotAskingLocation;
+      Achievements.init();
+      if (var4.achievements != null) {
+         Achievements.setMedals(var4.achievements);
       }
 
-      Status.setShip(var4.var_14f4);
-      Status.setCurrentStation_andInitSystem_(var4.var_1521);
-      Status.setMission(Mission.var_dc);
-      Status.standing = var4.var_1566;
-      Status.blueprints = var4.var_157c;
-      Status.waitingGoods = var4.var_15d9;
-      Status.SpecialAgents = var4.var_162f;
-      Status.wingmenNames = var4.var_1646;
-      Status.wingmenRace_ = var4.var_1685;
-      Status.wingmenTimeRemaining = var4.var_16d5;
-      Status.var_8f8wingmenVar2 = var4.var_1721;
-      Status.var_9a8 = var4.var_175b;
-      Status.visibleSystems = var4.var_17bb;
-      Status.lowestItemPrices = var4.var_17e0;
-      Status.highestItemPrices = var4.var_1829;
-      Status.lowestItemPriceSystems = var4.var_186b;
-      Status.highestItemPriceSystems = var4.var_187b;
-      GameStatus.shopHelpShown = var4.var_f30;
-      GameStatus.var_264 = var4.var_f50;
-      GameStatus.var_2b3 = var4.var_f5f;
-      GameStatus.var_2cc = var4.var_f6c;
-      GameStatus.var_2e8 = var4.var_fc2;
-      GameStatus.barHelpShown = var4.var_100f;
-      GameStatus.galaxyMapHelpShown = var4.var_1038;
-      GameStatus.systemMapHelpShown = var4.var_1047;
-      GameStatus.var_40c = var4.var_108f;
-      GameStatus.miningHelpShown = var4.var_10ed;
-      GameStatus.asteroidHelpShown = var4.var_119d;
-      GameStatus.missionsHelpShown = var4.var_11c5;
-      GameStatus.cargoFullHelpShown = var4.var_11eb;
-      GameStatus.wingmenHelpShown = var4.var_121f;
-      GameStatus.var_554 = var4.var_1273;
-      GameStatus.boosterHelpShown = var4.var_12c6;
-      GameStatus.statusHelpShown = var4.var_12e2;
-      GameStatus.medalsHelpShown = var4.var_132f;
-      GameStatus.fanWingmenNoticeShown = var4.var_1378;
-      GameStatus.voidxNoticeShown = var4.var_1392;
-      GameStatus.reputationHelpShown = var4.var_13ae;
-      GameStatus.buyingHelpShown = var4.var_13db;
-      GameStatus.itemMountingHelpShown = var4.var_13f8;
-      GameStatus.itemMounting2HelpShown = var4.var_1407;
-      GameStatus.interplanetHelpShown = var4.var_1428;
-      GameStatus.jumpDriveHelpShown = var4.var_1449;
-      GameStatus.cloakHelpShown = var4.var_1459;
-      Status.loadingsCount = var4.var_148e;
-      Status.timeSpentLoading = var4.var_14c1;
-      var4.var_df = null;
-      ((InsideStation)((InsideStation)GameStatus.scenes[1])).sub_a9();
-      GameStatus.var_bfb.setScene(GameStatus.scenes[1]);
+      Status.setShip(var4.egoShip);
+      Status.setCurrentStation_andInitSystem_(var4.currentStation);
+      Status.setMission(Mission.emptyMission_);
+      Status.standing = var4.standing;
+      Status.blueprints = var4.blueprints;
+      Status.waitingGoods = var4.waitingGoods;
+      Status.specialAgents = var4.specialAgents;
+      Status.wingmenNames = var4.wingmenNames;
+      Status.wingmanRace = var4.wingmanRace;
+      Status.wingmenTimeRemaining = var4.wingmenTimeRemaining;
+      Status.wingmanFace = var4.wingmanFace;
+      Status.passengerCount = var4.passengerCount;
+      Status.visibleSystems = var4.visibleSystems;
+      Status.lowestItemPrices = var4.lowestItemPrices;
+      Status.highestItemPrices = var4.highestItemPrices;
+      Status.lowestItemPriceSystems = var4.lowestItemPriceSystems;
+      Status.highestItemPriceSystems = var4.highestItemPriceSystems;
+      GlobalStatus.shopHelpShown = var4.shopHelpShown;
+      GlobalStatus.shipHelpShown = var4.shipHelpShown;
+      GlobalStatus.actionsHelpShown = var4.actionsHelpShown;
+      GlobalStatus.bluePrintsHelpShown = var4.bluePrintsHelpShown;
+      GlobalStatus.bluePrintInfoHelpShown = var4.bluePrintInfoHelpShown;
+      GlobalStatus.barHelpShown = var4.barHelpShown;
+      GlobalStatus.galaxyMapHelpShown = var4.galaxyMapHelpShown;
+      GlobalStatus.systemMapHelpShown = var4.systemMapHelpShown;
+      GlobalStatus.somehelpShown_unused_ = var4.unused12121_;
+      GlobalStatus.miningHelpShown = var4.miningHelpShown;
+      GlobalStatus.asteroidHelpShown = var4.asteroidHelpShown;
+      GlobalStatus.missionsHelpShown = var4.missionsHelpShown;
+      GlobalStatus.cargoFullHelpShown = var4.cargoFullHelpShown;
+      GlobalStatus.wingmenHelpShown = var4.wingmenHelpShown;
+      GlobalStatus.actionMenuHelpShown = var4.actionMenuHelpShown;
+      GlobalStatus.boosterHelpShown = var4.boosterHelpShown;
+      GlobalStatus.statusHelpShown = var4.statusHelpShown;
+      GlobalStatus.medalsHelpShown = var4.medalsHelpShown;
+      GlobalStatus.fanWingmenNoticeShown = var4.fanWingmenNoticeShown;
+      GlobalStatus.voidxNoticeShown = var4.voidxNoticeShown;
+      GlobalStatus.reputationHelpShown = var4.reputationHelpShown;
+      GlobalStatus.buyingHelpShown = var4.buyingHelpShown;
+      GlobalStatus.itemMountingHelpShown = var4.itemMountingHelpShown;
+      GlobalStatus.itemMounting2HelpShown = var4.itemMounting2HelpShown;
+      GlobalStatus.interplanetHelpShown = var4.interplanetHelpShown;
+      GlobalStatus.jumpDriveHelpShown = var4.jumpDriveHelpShown;
+      GlobalStatus.cloakHelpShown = var4.cloakHelpShown;
+      Status.loadingsCount = var4.loadingsCount;
+      Status.loadingTime = var4.timeSpentLoading;
+      var4.visitedStations = null;
+      ((ModStation)((ModStation)GlobalStatus.scenes[1])).fromGameSave();
+      GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[1]);
    }
 
-   public final void sub_1e5(int var1) {
+   public final void scrollUp(int var1) {
       if (!this.confirmPopupOpen) {
          if (this.subMenu != 7 && this.subMenu != 8 && this.subMenu != 13 && this.subMenu != 14 && this.subMenu < 15) {
             if (this.selectedRow > 0) {
                --this.selectedRow;
             } else {
-               this.selectedRow = listEntriesCounts_[this.subMenu] - 1;
+               this.selectedRow = menuItemCounts[this.subMenu] - 1;
             }
 
             if (this.selectedRow == 2 && this.subMenu == 0 && Status.getPlayingTime() == 0L) {
@@ -631,20 +631,20 @@ public final class OptionsWindow {
             }
 
             if (this.subMenu == 6) {
-               this.var_6eb.sub_b4();
+               this.manualWindow.scrollUp();
                return;
             }
          } else if (this.subMenu == 13) {
-            this.var_7bc.scrollDown(var1);
+            this.hidden__.scrollDown(var1);
          }
 
       }
    }
 
-   public final void sub_215(int var1) {
+   public final void scrollDown(int var1) {
       if (!this.confirmPopupOpen) {
          if (this.subMenu != 7 && this.subMenu != 8 && this.subMenu != 13 && this.subMenu != 14 && this.subMenu < 15) {
-            if (this.selectedRow < listEntriesCounts_[this.subMenu] - 1) {
+            if (this.selectedRow < menuItemCounts[this.subMenu] - 1) {
                ++this.selectedRow;
             } else {
                this.selectedRow = 0;
@@ -655,19 +655,19 @@ public final class OptionsWindow {
             }
 
             if (this.subMenu == 6) {
-               this.var_6eb.sub_6b();
+               this.manualWindow.scrollDown();
                return;
             }
          } else if (this.subMenu == 13) {
-            this.var_7bc.scrollUp(var1);
+            this.hidden__.scrollUp(var1);
          }
 
       }
    }
 
-   public final void sub_23d() {
+   public final void optionsLeft() {
       if (this.confirmPopupOpen) {
-         this.choiceConfirm.sub_c6();
+         this.confirmPopup.left();
       } else {
          if (this.subMenu == 3) {
             switch(this.selectedRow) {
@@ -680,10 +680,10 @@ public final class OptionsWindow {
                this.updateSoundLevel();
                return;
             case 2:
-               this.sub_2c1();
+               this.optionsRight();
                return;
             case 3:
-               this.sub_2c1();
+               this.optionsRight();
             }
          }
 
@@ -701,22 +701,22 @@ public final class OptionsWindow {
 
       switch(this.soundLevel) {
       case 0:
-         GameStatus.sfxOn = true;
-         GameStatus.soundManager.setSfxVolume(60);
+         GlobalStatus.sfxOn = true;
+         GlobalStatus.soundManager.setSfxVolume(60);
          break;
       case 1:
-         GameStatus.sfxOn = true;
-         GameStatus.soundManager.setSfxVolume(80);
+         GlobalStatus.sfxOn = true;
+         GlobalStatus.soundManager.setSfxVolume(80);
          break;
       case 2:
-         GameStatus.sfxOn = true;
-         GameStatus.soundManager.setSfxVolume(100);
+         GlobalStatus.sfxOn = true;
+         GlobalStatus.soundManager.setSfxVolume(100);
          break;
       case 3:
-         GameStatus.sfxOn = false;
+         GlobalStatus.sfxOn = false;
       }
 
-      GameStatus.sfxVolume = this.soundLevel;
+      GlobalStatus.sfxVolume = this.soundLevel;
    }
 
    private void updateMusicLevel() {
@@ -730,34 +730,34 @@ public final class OptionsWindow {
 
       switch(this.musicLevel) {
       case 0:
-         GameStatus.musicOn = true;
-         GameStatus.soundManager.setMusicVolume(60);
-         if (GameStatus.var_bfb.sub_28() != GameStatus.scenes[2] && !SoundManager.isMusicPlaying()) {
-            GameStatus.soundManager.playMusic(0);
+         GlobalStatus.musicOn = true;
+         GlobalStatus.soundManager.setMusicVolume(60);
+         if (GlobalStatus.applicationManager.GetCurrentApplicationModule() != GlobalStatus.scenes[2] && !SoundManager.isMusicPlaying()) {
+            GlobalStatus.soundManager.playMusic(0);
          }
          break;
       case 1:
-         GameStatus.musicOn = true;
-         GameStatus.soundManager.setMusicVolume(80);
+         GlobalStatus.musicOn = true;
+         GlobalStatus.soundManager.setMusicVolume(80);
          break;
       case 2:
-         GameStatus.musicOn = true;
-         GameStatus.soundManager.setMusicVolume(100);
-         if (GameStatus.var_bfb.sub_28() != GameStatus.scenes[2] && !SoundManager.isMusicPlaying()) {
-            GameStatus.soundManager.playMusic(0);
+         GlobalStatus.musicOn = true;
+         GlobalStatus.soundManager.setMusicVolume(100);
+         if (GlobalStatus.applicationManager.GetCurrentApplicationModule() != GlobalStatus.scenes[2] && !SoundManager.isMusicPlaying()) {
+            GlobalStatus.soundManager.playMusic(0);
          }
          break;
       case 3:
-         SoundManager.sub_2a5();
-         GameStatus.musicOn = false;
+         SoundManager.stopMusic__();
+         GlobalStatus.musicOn = false;
       }
 
-      GameStatus.musicVolume = this.musicLevel;
+      GlobalStatus.musicVolume = this.musicLevel;
    }
 
-   public final void sub_2c1() {
+   public final void optionsRight() {
       if (this.confirmPopupOpen) {
-         this.choiceConfirm.sub_ff();
+         this.confirmPopup.right();
       } else {
          if (this.subMenu == 3) {
             switch(this.selectedRow) {
@@ -770,20 +770,20 @@ public final class OptionsWindow {
                this.updateSoundLevel();
                return;
             case 2:
-               if (GameStatus.vibrationOn = !GameStatus.vibrationOn) {
-                  GameStatus.vibrate(150);
+               if (GlobalStatus.vibrationOn = !GlobalStatus.vibrationOn) {
+                  GlobalStatus.vibrate(150);
                   return;
                }
                break;
             case 3:
-               GameStatus.invertedControlsOn = !GameStatus.invertedControlsOn;
+               GlobalStatus.invertedControlsOn = !GlobalStatus.invertedControlsOn;
             }
          }
 
       }
    }
 
-   public final boolean sub_2d7() {
+   public final boolean goBack() {
       if (this.confirmPopupOpen) {
          return false;
       } else if (this.subMenu != 0 && this.subMenu != 5) {
@@ -824,8 +824,8 @@ public final class OptionsWindow {
                }
 
                this.subMenu = 0;
-               if (this.var_600) {
-                  this.sub_38c();
+               if (this.forcePauseMenu_) {
+                  this.resetPauseMenu();
                }
             }
 
@@ -836,50 +836,50 @@ public final class OptionsWindow {
       }
    }
 
-   public final boolean sub_2e7() {
-      this.sub_148();
+   public final boolean update1_() {
+      this.update();
       return false;
    }
 
-   public final void sub_33e(int var1) {
+   public final void reset_(int var1) {
       this.selectedRow = var1;
       this.subMenu = 0;
    }
 
-   public final void sub_38c() {
+   public final void resetPauseMenu() {
       this.subMenu = 5;
       this.selectedRow = 0;
       this.confirmPopupOpen = false;
-      this.var_600 = true;
+      this.forcePauseMenu_ = true;
    }
 
-   public final void sub_3a2() {
-      GameStatus.graphics.drawImage(this.var_34e, GameStatus.screenWidth / 2, 10, 17);
+   public final void draw() {
+      GlobalStatus.graphics.drawImage(this.gameLogo, GlobalStatus.screenWidth / 2, 10, 17);
       label197:
       switch(this.subMenu) {
       case 0:
-         this.var_3be = Status.getPlayingTime() > 0L ? this.var_373 : 0;
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(67), var_191, var_251, var_2a3, ((Status.getPlayingTime() > 0L ? listEntriesCounts_[this.subMenu] : listEntriesCounts_[this.subMenu] - 1) + 2) * this.var_373);
-         Layout.scale(GameStatus.langManager.getLangString(0), var_191, this.var_b51, var_2a3, this.selectedRow == 0);
-         Layout.scale(GameStatus.langManager.getLangString(1), var_191, this.var_b51 + this.var_373, var_2a3, this.selectedRow == 1);
+         this.saveGameItemHeight = Status.getPlayingTime() > 0L ? this.fontSpacingY : 0;
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(67), posX, headerHeight, windowWidth, ((Status.getPlayingTime() > 0L ? menuItemCounts[this.subMenu] : menuItemCounts[this.subMenu] - 1) + 2) * this.fontSpacingY);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(0), posX, this.optionsListPosY, windowWidth, this.selectedRow == 0);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(1), posX, this.optionsListPosY + this.fontSpacingY, windowWidth, this.selectedRow == 1);
          if (Status.getPlayingTime() > 0L) {
-            Layout.scale(GameStatus.langManager.getLangString(2), var_191, this.var_b51 + 2 * this.var_373, var_2a3, this.selectedRow == 2);
+            Layout.drawTextItem(GlobalStatus.gameText.getText(2), posX, this.optionsListPosY + 2 * this.fontSpacingY, windowWidth, this.selectedRow == 2);
          }
 
-         Layout.scale(GameStatus.langManager.getLangString(3), var_191, this.var_b51 + 2 * this.var_373 + this.var_3be, var_2a3, this.selectedRow == 3);
-         Layout.scale(GameStatus.langManager.getLangString(4), var_191, this.var_b51 + 3 * this.var_373 + this.var_3be, var_2a3, this.selectedRow == 4);
-         Layout.scale(GameStatus.langManager.getLangString(5), var_191, this.var_b51 + 4 * this.var_373 + this.var_3be, var_2a3, this.selectedRow == 5);
-         if (this.webConncetionRelatedConfirm_) {
-            Layout.scale(this.var_a9e, var_191, this.var_b51 + 5 * this.var_373 + this.var_3be, var_2a3, this.selectedRow == 6);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(3), posX, this.optionsListPosY + 2 * this.fontSpacingY + this.saveGameItemHeight, windowWidth, this.selectedRow == 3);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(4), posX, this.optionsListPosY + 3 * this.fontSpacingY + this.saveGameItemHeight, windowWidth, this.selectedRow == 4);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(5), posX, this.optionsListPosY + 4 * this.fontSpacingY + this.saveGameItemHeight, windowWidth, this.selectedRow == 5);
+         if (this.webAccessAvailable) {
+            Layout.drawTextItem(this.operatorMenuEntry, posX, this.optionsListPosY + 5 * this.fontSpacingY + this.saveGameItemHeight, windowWidth, this.selectedRow == 6);
          }
          break;
       case 1:
       case 2:
-         int var1 = 6 * this.var_373;
+         int var1 = 6 * this.fontSpacingY;
          if (this.subMenu == 2) {
-            Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(2), GameStatus.screenWidth - this.var_911 >> 1, var_251, this.var_911, var1);
+            Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(2), GlobalStatus.screenWidth - this.recordWindowWidth >> 1, headerHeight, this.recordWindowWidth, var1);
          } else {
-            Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(1), GameStatus.screenWidth - this.var_911 >> 1, var_251, this.var_911, var1);
+            Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(1), GlobalStatus.screenWidth - this.recordWindowWidth >> 1, headerHeight, this.recordWindowWidth, var1);
          }
 
          var1 = 0;
@@ -889,54 +889,54 @@ public final class OptionsWindow {
                break label197;
             }
 
-            this.var_467 = var1 + 1 + ".  ";
+            this.saveInfo = var1 + 1 + ".  ";
             if (this.saves[var1] == null) {
-               this.var_467 = this.var_467 + GameStatus.langManager.getLangString(26);
+               this.saveInfo = this.saveInfo + GlobalStatus.gameText.getText(26);
             } else {
-               this.var_467 = this.var_467 + Time.timeToHM(this.saves[var1].playTime);
-               this.var_696 = this.saves[var1].stationName;
+               this.saveInfo = this.saveInfo + Time.timeToHM(this.saves[var1].playTime);
+               this.stationName = this.saves[var1].stationName;
                if (var1 == 3) {
-                  this.var_467 = this.var_467 + " AUTOSAVE";
+                  this.saveInfo = this.saveInfo + " AUTOSAVE";
                } else {
-                  this.var_467 = this.var_467 + " " + this.var_696;
+                  this.saveInfo = this.saveInfo + " " + this.stationName;
                }
             }
 
-            Layout.scale(this.var_467, GameStatus.screenWidth - this.var_911 >> 1, this.var_b51 + var1 * this.var_373, this.var_911, this.selectedRow == var1);
+            Layout.drawTextItem(this.saveInfo, GlobalStatus.screenWidth - this.recordWindowWidth >> 1, this.optionsListPosY + var1 * this.fontSpacingY, this.recordWindowWidth, this.selectedRow == var1);
             ++var1;
          }
       case 3:
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(3), var_191, var_251, var_2a3, (listEntriesCounts_[this.subMenu] + 2) * this.var_373);
-         Layout.scale(GameStatus.langManager.getLangString(6) + "  " + GameStatus.langManager.getLangString(LangManager.soundLevels[this.musicLevel]), var_191, this.var_b51, var_2a3, this.selectedRow == 0);
-         Layout.scale(GameStatus.langManager.getLangString(7) + "  " + GameStatus.langManager.getLangString(LangManager.soundLevels[this.soundLevel]), var_191, this.var_b51 + this.var_373, var_2a3, this.selectedRow == 1);
-         Layout.scale(GameStatus.langManager.getLangString(11) + "  " + GameStatus.langManager.getLangString(GameStatus.vibrationOn ? 15 : 16), var_191, this.var_b51 + 2 * this.var_373, var_2a3, this.selectedRow == 2);
-         Layout.scale(GameStatus.langManager.getLangString(14) + "  " + GameStatus.langManager.getLangString(GameStatus.invertedControlsOn ? 15 : 16), var_191, this.var_b51 + 3 * this.var_373, var_2a3, this.selectedRow == 3);
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(3), posX, headerHeight, windowWidth, (menuItemCounts[this.subMenu] + 2) * this.fontSpacingY);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(6) + "  " + GlobalStatus.gameText.getText(GameText.soundLevels[this.musicLevel]), posX, this.optionsListPosY, windowWidth, this.selectedRow == 0);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(7) + "  " + GlobalStatus.gameText.getText(GameText.soundLevels[this.soundLevel]), posX, this.optionsListPosY + this.fontSpacingY, windowWidth, this.selectedRow == 1);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(11) + "  " + GlobalStatus.gameText.getText(GlobalStatus.vibrationOn ? 15 : 16), posX, this.optionsListPosY + 2 * this.fontSpacingY, windowWidth, this.selectedRow == 2);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(14) + "  " + GlobalStatus.gameText.getText(GlobalStatus.invertedControlsOn ? 15 : 16), posX, this.optionsListPosY + 3 * this.fontSpacingY, windowWidth, this.selectedRow == 3);
          break;
       case 4:
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(4), var_191, var_251, var_2a3, (listEntriesCounts_[this.subMenu] + 2) * this.var_373);
-         Layout.scale(GameStatus.langManager.getLangString(19), var_191, this.var_b51, var_2a3, this.selectedRow == 0);
-         Layout.scale(GameStatus.langManager.getLangString(20), var_191, this.var_b51 + this.var_373, var_2a3, this.selectedRow == 1);
-         Layout.scale(GameStatus.langManager.getLangString(21), var_191, this.var_b51 + 2 * this.var_373, var_2a3, this.selectedRow == 2);
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(4), posX, headerHeight, windowWidth, (menuItemCounts[this.subMenu] + 2) * this.fontSpacingY);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(19), posX, this.optionsListPosY, windowWidth, this.selectedRow == 0);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(20), posX, this.optionsListPosY + this.fontSpacingY, windowWidth, this.selectedRow == 1);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(21), posX, this.optionsListPosY + 2 * this.fontSpacingY, windowWidth, this.selectedRow == 2);
          break;
       case 5:
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(17), var_191, var_251, var_2a3, (listEntriesCounts_[this.subMenu] + 2) * this.var_373);
-         Layout.scale(GameStatus.langManager.getLangString(3), var_191, this.var_b51, var_2a3, this.selectedRow == 0);
-         Layout.scale(GameStatus.langManager.getLangString(4), var_191, this.var_b51 + this.var_373, var_2a3, this.selectedRow == 1);
-         Layout.scale(GameStatus.langManager.getLangString(5), var_191, this.var_b51 + 2 * this.var_373, var_2a3, this.selectedRow == 2);
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(17), posX, headerHeight, windowWidth, (menuItemCounts[this.subMenu] + 2) * this.fontSpacingY);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(3), posX, this.optionsListPosY, windowWidth, this.selectedRow == 0);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(4), posX, this.optionsListPosY + this.fontSpacingY, windowWidth, this.selectedRow == 1);
+         Layout.drawTextItem(GlobalStatus.gameText.getText(5), posX, this.optionsListPosY + 2 * this.fontSpacingY, windowWidth, this.selectedRow == 2);
          break;
       case 6:
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(19), var_191, var_251, var_2a3, AEMath.min(this.var_6eb.sub_18a() * SymbolMapManager_.sub_2c2() + 30, GameStatus.screenHeight - var_251 - 16 - 10));
-         this.var_6eb.sub_171();
-         this.var_6eb.sub_312();
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(19), posX, headerHeight, windowWidth, AEMath.min(this.manualWindow.getFirstListLen_() * Font.getFontSpacingY() + 30, GlobalStatus.screenHeight - headerHeight - 16 - 10));
+         this.manualWindow.drawItems();
+         this.manualWindow.drawScroll();
          break;
       case 7:
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(20), var_191 / 2, var_251, var_2a3 + var_191, AEMath.min(GameStatus.screenHeight - var_251 - 16 - 10, this.controls.sub_115()));
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(20), posX / 2, headerHeight, windowWidth + posX, AEMath.min(GlobalStatus.screenHeight - headerHeight - 16 - 10, this.controls.getHeight_()));
          this.controls.draw();
          break;
       case 8:
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(21), var_191 / 2, var_251, var_2a3 + var_191, GameStatus.screenHeight - var_251 - 16 - 10);
-         SymbolMapManager_.sub_102(GameStatus.gameVersion, (GameStatus.screenWidth >> 1) - (SymbolMapManager_.sub_250(GameStatus.gameVersion) >> 1), 10 + this.var_34e.getHeight() + 2, 1);
-         this.about.draw();
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(21), posX / 2, headerHeight, windowWidth + posX, GlobalStatus.screenHeight - headerHeight - 16 - 10);
+         Font.drawString(GlobalStatus.gameVersion, (GlobalStatus.screenWidth >> 1) - (Font.getStringWidth(GlobalStatus.gameVersion) >> 1), 10 + this.gameLogo.getHeight() + 2, 1);
+         this.credits.draw();
       case 9:
       case 10:
       case 12:
@@ -945,11 +945,11 @@ public final class OptionsWindow {
       default:
          break;
       case 11:
-         Layout.drawTitleBarWindow(GameStatus.langManager.getLangString(34), var_191, var_251, var_2a3, 4 * this.var_373, true);
-         this.var_817.sub_ed(this.frameTime);
-         SymbolMapManager_.sub_102(this.var_817.sub_13f() + this.var_817.sub_11b(), var_191 + 10, this.var_b51 + this.var_373, 0);
-         if (Layout.sub_119()) {
-            SymbolMapManager_.sub_102("_", var_191 + 10 + SymbolMapManager_.sub_250(this.var_817.sub_13f()), this.var_b51 + 2 + this.var_373, 0);
+         Layout.drawTitleBarWindow(GlobalStatus.gameText.getText(34), posX, headerHeight, windowWidth, 4 * this.fontSpacingY, true);
+         this.nameInput.update(this.frameTime);
+         Font.drawString(this.nameInput.getText() + this.nameInput.getNextChar(), posX + 10, this.optionsListPosY + this.fontSpacingY, 0);
+         if (Layout.quickClockHigh_()) {
+            Font.drawString("_", posX + 10 + Font.getStringWidth(this.nameInput.getText()), this.optionsListPosY + 2 + this.fontSpacingY, 0);
          }
          break;
       case 15:
@@ -963,39 +963,39 @@ public final class OptionsWindow {
       case 23:
       case 24:
       case 25:
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(LangManager.helpTitles[this.selectedRow]), var_191 / 2, var_251, var_2a3 + var_191, GameStatus.screenHeight - var_251 - 16 - 10);
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(GameText.helpTitles[this.selectedRow]), posX / 2, headerHeight, windowWidth + posX, GlobalStatus.screenHeight - headerHeight - 16 - 10);
          this.instructions.draw();
       }
 
       if (this.confirmPopupOpen) {
-         this.choiceConfirm.sub_19a();
-         Layout.sub_535("", "", false);
+         this.confirmPopup.draw();
+         Layout.drawFooter1("", "", false);
       } else if (this.subMenu == 0) {
-         Layout.sub_535(GameStatus.langManager.getLangString(253), Status.getPlayingTime() == 0L ? "" : GameStatus.langManager.getLangString(65), false);
+         Layout.drawFooter1(GlobalStatus.gameText.getText(253), Status.getPlayingTime() == 0L ? "" : GlobalStatus.gameText.getText(65), false);
       } else if (this.subMenu == 5) {
-         Layout.sub_535(GameStatus.langManager.getLangString(253), GameStatus.langManager.getLangString(18), false);
+         Layout.drawFooter1(GlobalStatus.gameText.getText(253), GlobalStatus.gameText.getText(18), false);
       } else {
          if (this.subMenu != 11) {
             if (this.subMenu != 7 && this.subMenu != 8 && this.subMenu != 14 && this.subMenu != 13 && (this.subMenu < 15 || this.subMenu > 24)) {
-               Layout.sub_535(GameStatus.langManager.getLangString(35), GameStatus.langManager.getLangString(65), false);
+               Layout.drawFooter1(GlobalStatus.gameText.getText(35), GlobalStatus.gameText.getText(65), false);
                return;
             }
 
-            Layout.sub_535("", GameStatus.langManager.getLangString(65), false);
+            Layout.drawFooter1("", GlobalStatus.gameText.getText(65), false);
          }
 
       }
    }
 
-   public final boolean sub_401(int var1) {
+   public final boolean handleKeystate(int var1) {
       if (this.subMenu == 11) {
-         if (var1 == 8192 && this.var_817.sub_13f().length() == 0) {
+         if (var1 == 8192 && this.nameInput.getText().length() == 0) {
             this.selectedRow = 0;
             this.subMenu = 9;
          }
 
          if (var1 != 0 && var1 != -1) {
-            this.var_817.sub_53(var1);
+            this.nameInput.handleKeystate(var1);
          }
       }
 

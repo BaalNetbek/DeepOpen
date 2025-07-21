@@ -1,19 +1,19 @@
 package Main;
 
-import AbyssEngine.AEGraphics3D;
-import AbyssEngine.AEResourceManager;
-import AbyssEngine.AbstractScene;
-import AbyssEngine.Class_3sceneHelper;
-import AbyssEngine.Class_db;
-import AbyssEngine.GameStatus;
-import AbyssEngine.IndexManager;
-import AbyssEngine.LangManager;
-import AbyssEngine.Layout;
-import AbyssEngine.LoadingScreen;
-import AbyssEngine.RecordHandler;
-import AbyssEngine.SoundManager;
-import AbyssEngine.Status;
-import AbyssEngine.SymbolMapManager_;
+import AE.PaintCanvas.AEGraphics3D;
+import AE.AEResourceManager;
+import AE.IApplicationModule;
+import GoF2.ApplicationManager;
+import AE.Renderer;
+import AE.GlobalStatus;
+import GoF2.Globals;
+import GoF2.GameText;
+import GoF2.Layout;
+import GoF2.LoadingScreen;
+import GoF2.RecordHandler;
+import AE.SoundManager;
+import GoF2.Status;
+import AE.PaintCanvas.Font;
 import java.util.Random;
 import javax.microedition.lcdui.game.GameCanvas;
 
@@ -23,167 +23,167 @@ public final class GOF2Canvas extends GameCanvas {
    private int keysState;
    private int lastKeyStates;
    private int lastFrameSignleKeyRelease;
-   private int lastFrameSignleKeyPress;
-   private int var_2bf;
-   private Class_3sceneHelper var_2f1 = null;
+   private int newKeysPressed;
+   private int tempKeysPressed;
+   private ApplicationManager applicationManager = null;
    private LoadingScreen loadingScreen;
-   private boolean var_355;
-   private boolean resized_;
+   private boolean unused355_;
+   private boolean resized;
    private boolean initialized;
-   private long var_4ba;
-   private long var_4e5;
+   private long pausedTime;
+   private long sysTime;
 
    GOF2Canvas(GOF2MIDlet var1) {
       super(false);
-      GameStatus.sub_d1();
-      this.resized_ = true;
+      GlobalStatus.checkDeviceControlSupport();
+      this.resized = true;
       this.initialized = false;
       this.midlet = var1;
-      this.var_355 = false;
-      this.var_4ba = 0L;
-      this.var_4e5 = 0L;
-      GameStatus.display = var1.getDisplay();
-      GameStatus.random = new Random();
+      this.unused355_ = false;
+      this.pausedTime = 0L;
+      this.sysTime = 0L;
+      GlobalStatus.display = var1.getDisplay();
+      GlobalStatus.random = new Random();
 
       try {
-         GameStatus.gameVersion = "v " + var1.getAppProperty("MIDlet-Version");
+         GlobalStatus.gameVersion = "v " + var1.getAppProperty("MIDlet-Version");
       } catch (Exception var2) {
          var2.printStackTrace();
       }
    }
 
-   public final void sub_8b() {
-      if (this.var_2f1.sub_28() == GameStatus.scenes[2]) {
-         ((MGame)((MGame)GameStatus.scenes[2])).sub_1da();
+   public final void pause() {
+      if (this.applicationManager.GetCurrentApplicationModule() == GlobalStatus.scenes[2]) {
+         ((MGame)((MGame)GlobalStatus.scenes[2])).pause();
       }
 
-      GameStatus.soundManager.sub_260();
-      GameStatus.var_bd5 = true;
+      GlobalStatus.soundManager.stop();
+      GlobalStatus.paused = true;
    }
 
    protected final void hideNotify() {
       this.midlet.pause();
    }
 
-   final synchronized void sub_ca() {
-       if(GameStatus.screenWidth != this.getWidth() ||
-       GameStatus.screenHeight != this.getHeight())
-	   this.resized_ = true;
-      if (this.resized_) {
-         this.resized_ = false;
-         GameStatus.screenWidth = this.getWidth();
-         GameStatus.screenHeight = this.getHeight();
+   final synchronized void update_() {
+       if(GlobalStatus.screenWidth != this.getWidth() ||
+       GlobalStatus.screenHeight != this.getHeight())
+	   this.resized = true;
+      if (this.resized) {
+         this.resized = false;
+         GlobalStatus.screenWidth = this.getWidth();
+         GlobalStatus.screenHeight = this.getHeight();
          this.setFullScreenMode(true);
          this.flushGraphics();
-         GameStatus.screenWidth = this.getWidth();
-         GameStatus.screenHeight = this.getHeight();
+         GlobalStatus.screenWidth = this.getWidth();
+         GlobalStatus.screenHeight = this.getHeight();
          this.setFullScreenMode(true);
       } else if (!this.initialized) {
          this.initialized = true;
-         GameStatus.graphics = this.getGraphics();
-         GameStatus.screenWidth = this.getWidth();
-         GameStatus.screenHeight = this.getHeight();
-         (GameStatus.langManager = new LangManager()).setup(GameStatus.language);
-         GameStatus.screenWidth = this.getWidth();
-         GameStatus.screenHeight = this.getHeight();
+         GlobalStatus.graphics = this.getGraphics();
+         GlobalStatus.screenWidth = this.getWidth();
+         GlobalStatus.screenHeight = this.getHeight();
+         (GlobalStatus.gameText = new GameText()).setLanguage(GlobalStatus.language);
+         GlobalStatus.screenWidth = this.getWidth();
+         GlobalStatus.screenHeight = this.getHeight();
          this.setFullScreenMode(true);
-         SymbolMapManager_.sub_77(GameStatus.graphics);
-         SymbolMapManager_.addCharMap("/data/interface/font_w.png", 0, 15, 16);
-         SymbolMapManager_.setPrimarySymMapSpacing(0);
-         SymbolMapManager_.setPrimarySymMapHeightMaxRange(11);
-         SymbolMapManager_.setSymMapSetOffsetY(-2, 0);
-         SymbolMapManager_.addCharMap("/data/interface/font_g.png", 1, 15, 16);
-         SymbolMapManager_.setSymMapSpacing(0, 1);
-         SymbolMapManager_.setSymHeightMaxRange(11, 1);
-         SymbolMapManager_.setSymMapSetOffsetY(-2, 1);
-         SymbolMapManager_.addCharMap("/data/interface/font_r.png", 2, 15, 16);
-         SymbolMapManager_.setSymMapSpacing(0, 2);
-         SymbolMapManager_.setSymHeightMaxRange(11, 2);
-         SymbolMapManager_.setSymMapSetOffsetY(-2, 2);
-         SymbolMapManager_.addCharMap("/data/interface/font_void.png", 2, 15, 16);
-         SymbolMapManager_.setSymMapSpacing(0, 3);
-         SymbolMapManager_.setSymHeightMaxRange(11, 3);
-         SymbolMapManager_.setSymMapSetOffsetY(-2, 3);
-         Layout.init();
+         Font.setGraphics(GlobalStatus.graphics);
+         Font.addCharMap("/data/interface/font_w.png", 0, 15, 16);
+         Font.setPrimarySymMapSpacing(0);
+         Font.setMainFontSpacingY(11);
+         Font.setSymMapSetOffsetY(-2, 0);
+         Font.addCharMap("/data/interface/font_g.png", 1, 15, 16);
+         Font.setSymMapSpacing(0, 1);
+         Font.setSpacingY(11, 1);
+         Font.setSymMapSetOffsetY(-2, 1);
+         Font.addCharMap("/data/interface/font_r.png", 2, 15, 16);
+         Font.setSymMapSpacing(0, 2);
+         Font.setSpacingY(11, 2);
+         Font.setSymMapSetOffsetY(-2, 2);
+         Font.addCharMap("/data/interface/font_void.png", 2, 15, 16);
+         Font.setSymMapSpacing(0, 3);
+         Font.setSpacingY(11, 3);
+         Font.setSymMapSetOffsetY(-2, 3);
+         Layout.OnInitialize();
          this.loadingScreen = new LoadingScreen();
          this.loadingScreen.setGameCanvas(this);
          this.loadingScreen.startLoading_(true);
-         GameStatus.loadingScreen = this.loadingScreen;
-         GameStatus.resetHelp();
+         GlobalStatus.loadingScreen = this.loadingScreen;
+         GlobalStatus.resetHints();
          (new RecordHandler()).readOptions();
-         GameStatus.musicOn = false;
-         GameStatus.graphics3D = new AEGraphics3D();
-         (GameStatus.renderer = new Class_db(GameStatus.graphics3D)).sub_120();
-         GameStatus.renderer.sub_120();
-         GameStatus.renderer.sub_120();
-         GameStatus.soundManager = new SoundManager();
-         IndexManager.buildResourceList();
-         IndexManager.sub_27();
+         GlobalStatus.musicOn = false;
+         GlobalStatus.graphics3D = new AEGraphics3D();
+         (GlobalStatus.renderer = new Renderer(GlobalStatus.graphics3D)).addLayer();
+         GlobalStatus.renderer.addLayer();
+         GlobalStatus.renderer.addLayer();
+         GlobalStatus.soundManager = new SoundManager();
+         Globals.buildResourceList();
+         Globals.OnInitialize();
          Status.setCredits(0);
-         this.var_2f1 = new Class_3sceneHelper(this.midlet, this.loadingScreen);
-         GameStatus.var_bfb = this.var_2f1;
-         (GameStatus.scenes = new AbstractScene[4])[3] = new Intro();
-         GameStatus.scenes[0] = new Class_f7scene();
-         GameStatus.scenes[1] = new InsideStation();
-         GameStatus.scenes[2] = new MGame();
+         this.applicationManager = new ApplicationManager(this.midlet, this.loadingScreen);
+         GlobalStatus.applicationManager = this.applicationManager;
+         (GlobalStatus.scenes = new IApplicationModule[4])[3] = new Intro();
+         GlobalStatus.scenes[0] = new ModMainMenu();
+         GlobalStatus.scenes[1] = new ModStation();
+         GlobalStatus.scenes[2] = new MGame();
          Status.startNewGame();
-         this.var_2f1.setScene(GameStatus.scenes[3]);
+         this.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[3]);
       } else {
-         Layout.sub_490();
-         this.var_2f1.renderScene_andLoad_(this.keyStates);
-         if (this.lastFrameSignleKeyPress == 16384) {
-            Layout.sub_411(true);
-            this.var_2bf = this.lastFrameSignleKeyPress;
-         } else if (this.lastFrameSignleKeyPress == 8192) {
-            Layout.sub_411(false);
-            this.var_2bf = this.lastFrameSignleKeyPress;
+         Layout.navigationDelayDownTick();
+         this.applicationManager.renderScene(this.keyStates);
+         if (this.newKeysPressed == 16384) {
+            Layout.selectNavigationButton(true);
+            this.tempKeysPressed = this.newKeysPressed;
+         } else if (this.newKeysPressed == 8192) {
+            Layout.selectNavigationButton(false);
+            this.tempKeysPressed = this.newKeysPressed;
          }
 
-         if (Layout.sub_44a()) {
-            this.var_2f1.handleKeystate(this.var_2bf);
-            this.var_2bf = -1;
+         if (Layout.navigationDelayPassed()) {
+            this.applicationManager.handleKeystate(this.tempKeysPressed);
+            this.tempKeysPressed = -1;
          }
 
-         if (this.lastFrameSignleKeyPress != -1 && this.var_2bf == -1) {
-            this.var_2f1.handleKeystate(this.lastFrameSignleKeyPress);
+         if (this.newKeysPressed != -1 && this.tempKeysPressed == -1) {
+            this.applicationManager.handleKeystate(this.newKeysPressed);
          }
 
-         this.lastFrameSignleKeyPress = -1;
+         this.newKeysPressed = -1;
          this.lastFrameSignleKeyRelease = -1;
          this.flushGraphics();
       }
    }
 
-   final void sub_10d() {
-      this.var_2f1.sub_28().freeResources();
-      IndexManager.freeResources();
-      Layout.sub_3a();
-      SymbolMapManager_.sub_58();
-      GameStatus.soundManager.stopMusic();
-      AEResourceManager.destroy();
+   final void OnRelease() {
+      this.applicationManager.GetCurrentApplicationModule().OnRelease();
+      Globals.OnRelease();
+      Layout.OnRelease();
+      Font.OnRelease();
+      GlobalStatus.soundManager.OnRelease();
+      AEResourceManager.OnRelease();
       this.loadingScreen.close();
       this.loadingScreen = null;
    }
 
-   public final void sub_125() {
-      Layout.screenFillMenuBackground();
-      SymbolMapManager_.sub_22a(SymbolMapManager_.sub_3b2(GameStatus.langManager.getLangString(81), GameStatus.screenWidth - 20), GameStatus.screenWidth >> 1, GameStatus.screenHeight >> 1, 1, 24);
-      if (this.var_4e5 == 0L) {
-         this.var_4e5 = System.currentTimeMillis();
+   public final void handlePausedState() {
+      Layout.drawBG();
+      Font.drawLinesAligned(Font.splitToLines(GlobalStatus.gameText.getText(81), GlobalStatus.screenWidth - 20), GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight >> 1, 1, 24);
+      if (this.sysTime == 0L) {
+         this.sysTime = System.currentTimeMillis();
       }
 
       long var1 = System.currentTimeMillis();
-      this.var_4ba += var1 - this.var_4e5;
-      this.var_4e5 = var1;
-      if (this.lastFrameSignleKeyPress == 256) {
-         if (Status.getPlayingTime() > this.var_4ba) {
-            Status.incPlayingTime(-this.var_4ba);
+      this.pausedTime += var1 - this.sysTime;
+      this.sysTime = var1;
+      if (this.newKeysPressed == 256) {
+         if (Status.getPlayingTime() > this.pausedTime) {
+            Status.incPlayingTime(-this.pausedTime);
          }
 
-         this.var_4ba = 0L;
-         this.var_4e5 = 0L;
+         this.pausedTime = 0L;
+         this.sysTime = 0L;
          this.midlet.resume();
-         this.lastFrameSignleKeyPress = 0;
+         this.newKeysPressed = 0;
          this.lastFrameSignleKeyRelease = 0;
          this.keysState = 0;
          this.lastKeyStates = 0;
@@ -263,7 +263,7 @@ public final class GOF2Canvas extends GameCanvas {
          this.keysState |= 4096;
       }
 
-      this.lastFrameSignleKeyPress = this.keysState & ~this.lastKeyStates;
+      this.newKeysPressed = this.keysState & ~this.lastKeyStates;
    }
 
    public final void keyRepeated(int var1) {

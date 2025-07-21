@@ -1,47 +1,46 @@
 package Main;
 
-import AbyssEngine.AEGraphics3D;
-import AbyssEngine.AEImage;
-import AbyssEngine.AEMath;
-import AbyssEngine.AEResourceManager;
-import AbyssEngine.AEVector3D;
-import AbyssEngine.AbstractMesh;
-import AbyssEngine.Camera;
-import AbyssEngine.Class_1025;
-import AbyssEngine.Class_198;
-import AbyssEngine.FileRead;
-import AbyssEngine.GameStatus;
-import AbyssEngine.Group;
-import AbyssEngine.Layout;
-import AbyssEngine.Level;
-import AbyssEngine.Matrix;
-import AbyssEngine.Medals;
-import AbyssEngine.Mission;
-import AbyssEngine.Popup;
-import AbyssEngine.ProducedGood;
-import AbyssEngine.SolarSystem;
-import AbyssEngine.Station;
-import AbyssEngine.Status;
-import AbyssEngine.SymbolMapManager_;
-import AbyssEngine.SystemPathFinder;
+import AE.PaintCanvas.AEGraphics3D;
+import AE.AEFile;
+import AE.Math.AEMath;
+import AE.AEResourceManager;
+import AE.Math.AEVector3D;
+import AE.AbstractMesh;
+import AE.Camera;
+import AE.EaseInOut;
+import AE.CameraControllerGroup;
+import GoF2.FileRead;
+import AE.GlobalStatus;
+import AE.Group;
+import GoF2.Layout;
+import GoF2.Level;
+import AE.Math.Matrix;
+import GoF2.Achievements;
+import GoF2.Mission;
+import GoF2.Popup;
+import GoF2.ProducedGood;
+import GoF2.SolarSystem;
+import GoF2.Station;
+import GoF2.Status;
+import AE.PaintCanvas.Font;
+import GoF2.SystemPathFinder;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
-import javax.microedition.m3g.Light;
 
 public final class StarMap {
-   private final int[] var_e4 = new int[]{320, 192, 256, 256, 192, 256, 192, 192, 320, 256, 192, 192, 320, 256, 320, 256, 256, 256, 320, 192};
-   private int var_123;
-   private int var_201;
-   private int var_254;
-   private int var_292;
-   private int var_2ce;
-   private int var_349;
-   private float var_35d;
-   private float var_39b;
-   private float var_3af;
-   private float var_401;
-   private int var_452;
-   private int var_4b6;
+   private final int[] planetSizes = new int[]{320, 192, 256, 256, 192, 256, 192, 192, 320, 256, 192, 192, 320, 256, 320, 256, 256, 256, 320, 192};
+   private int tmpMapInnerHeight;
+   private int windowFrameWidth;
+   private int windowFrameHeight;
+   private int mapInnerWidth;
+   private int mapInnerHeight;
+   private int state;
+   private float curScreenPosX;
+   private float curScreenPosY;
+   private float scrollX;
+   private float scrollY;
+   private int backGroundTileX;
+   private int backGroundTileY;
    private int frameTime;
    private boolean curPushLeft;
    private boolean curPushRight;
@@ -51,186 +50,186 @@ public final class StarMap {
    private float curSpeedY;
    private float curDirX;
    private float curDirY;
-   private Image var_764;
-   private Image var_776;
-   private Image var_78f;
-   private Image var_7eb;
-   private Image var_81d;
-   private Image var_848;
-   private Image var_871;
-   private Sprite var_895;
-   private Sprite var_8f6;
-   private Sprite var_924;
+   private Image fog;
+   private Image bluePrintIcon;
+   private Image mainMissionIcon;
+   private Image sideMissionIcon;
+   private Image jumpGateIcon;
+   private Image checkMark;
+   private Image raceLogoBig;
+   private Sprite cursorLine;
+   private Sprite systemStar;
+   private Sprite logos;
    private SolarSystem[] systems;
-   private Station[] var_993;
-   private Popup var_9e6;
+   private Station[] selectedSystemStations;
+   private Popup popup;
    private int selectedSystem;
    private int selectedPlanet;
-   private AbstractMesh[] var_a6c;
-   private Group var_aad;
-   private Camera var_b0a;
-   private Camera var_b3a;
-   private AEVector3D var_b6f;
-   private AEVector3D var_b93;
-   private Matrix var_bf7;
-   private AbstractMesh[] var_c27;
-   private AbstractMesh[] var_c63;
-   private int[] var_c8d;
-   private int[] var_cb1;
+   private AbstractMesh[] stars;
+   private Group galaxyMapGroup;
+   private Camera starNetCamera_;
+   private Camera lastCamera;
+   private AEVector3D tmpStarScreenPos2;
+   private AEVector3D tmpStarScreenPos1;
+   private Matrix matrix;
+   private AbstractMesh[] localStarAndPlanetsMeshes;
+   private AbstractMesh[] localOrbits;
+   private int[] planetRevolutAngs;
+   private int[] distsToStar;
    private int[] pathToDestination_;
-   private Group var_ce0;
-   private boolean var_cfc;
-   private boolean var_d20;
-   private boolean var_d7c;
-   private boolean jumpMapModeVar1_;
-   private boolean jumpMapModeVar2_;
-   private Class_1025 var_df9;
-   private Class_1025 var_e4c;
-   private Class_1025 var_e9b;
-   private boolean var_ee8;
-   private Image var_f1d;
-   private int var_f2b;
-   private int var_f8b;
-   private int var_ffe;
-   private float var_101a;
-   private boolean var_105c;
-   public boolean var_1071;
-   private AbstractMesh var_10c8;
-   private AbstractMesh var_110d;
-   private Image[] var_114f = new Image[5];
-   private boolean[] var_1168 = new boolean[10];
+   private Group localSystem;
+   private boolean galaxyMapView;
+   private boolean overviewOnly_;
+   private boolean destinationConfirmPopupOpen;
+   private boolean fromJumpGate;
+   private boolean fromStation;
+   private EaseInOut smoothCamTransitionX;
+   private EaseInOut smoothCamTransitionY;
+   private EaseInOut smoothCamTransitionZ;
+   private boolean scopingOut;
+   private Image sunGlow;
+   private int newSysAnimTimer;
+   private int pathDisplayDelay;
+   private int highlightedPathDot;
+   private float curSqrSize;
+   private boolean galaxyMapUnlocked;
+   public boolean destSelected;
+   private AbstractMesh wormhole;
+   private AbstractMesh arrow;
+   private Image[] legendItemIcons = new Image[5];
+   private boolean[] occupiedOrbits_ = new boolean[10];
    private int destinationOrMissionSystem_;
-   private boolean var_11d9;
-   private int var_11e9;
-   private int var_124c;
-   private boolean var_1271;
-   private int var_129f;
-   private boolean var_1302;
+   private boolean legendOpen;
+   private int legendWindowWidth;
+   private int discoveredSystemId;
+   private boolean discoverSystemCutscene;
+   private int newSystemAnimTime;
+   private boolean jumpToAlienWorldPopupOpen;
 
    public StarMap(boolean var1, Mission var2, boolean var3, int var4) {
-      this.var_123 = GameStatus.screenHeight - 14;
-      this.var_349 = 0;
+      this.tmpMapInnerHeight = GlobalStatus.screenHeight - 14;
+      this.state = 0;
       this.selectedSystem = -1;
-      this.var_201 = 2;
-      this.var_254 = 15;
-      this.var_292 = GameStatus.screenWidth - 4;
-      this.var_2ce = this.var_123 - this.var_254;
+      this.windowFrameWidth = 2;
+      this.windowFrameHeight = 15;
+      this.mapInnerWidth = GlobalStatus.screenWidth - 4;
+      this.mapInnerHeight = this.tmpMapInnerHeight - this.windowFrameHeight;
       String var5 = "/data/interface/fog.png";
-      this.var_764 = AEImage.loadImage("/data/interface/fog.png", true);
+      this.fog = AEFile.loadImage("/data/interface/fog.png", true);
       var5 = "/data/interface/menu_map_jumpgate.png";
-      this.var_81d = AEImage.loadImage("/data/interface/menu_map_jumpgate.png", true);
+      this.jumpGateIcon = AEFile.loadImage("/data/interface/menu_map_jumpgate.png", true);
       var5 = "/data/interface/menu_map_mainmission.png";
-      this.var_78f = AEImage.loadImage("/data/interface/menu_map_mainmission.png", true);
+      this.mainMissionIcon = AEFile.loadImage("/data/interface/menu_map_mainmission.png", true);
       var5 = "/data/interface/menu_map_sidemission.png";
-      this.var_7eb = AEImage.loadImage("/data/interface/menu_map_sidemission.png", true);
+      this.sideMissionIcon = AEFile.loadImage("/data/interface/menu_map_sidemission.png", true);
       var5 = "/data/interface/map_blueprint.png";
-      this.var_776 = AEImage.loadImage("/data/interface/map_blueprint.png", true);
+      this.bluePrintIcon = AEFile.loadImage("/data/interface/map_blueprint.png", true);
       var5 = "/data/interface/menu_map_visited.png";
-      this.var_848 = AEImage.loadImage("/data/interface/menu_map_visited.png", true);
+      this.checkMark = AEFile.loadImage("/data/interface/menu_map_visited.png", true);
       var5 = "/data/interface/menu_map_direction.png";
-      Image var7 = AEImage.loadImage("/data/interface/menu_map_direction.png", true);
-      this.var_895 = new Sprite(var7);
+      Image var7 = AEFile.loadImage("/data/interface/menu_map_direction.png", true);
+      this.cursorLine = new Sprite(var7);
       var5 = "/data/interface/logos_small.png";
-      var7 = AEImage.loadImage("/data/interface/logos_small.png", true);
-      this.var_924 = new Sprite(var7, var7.getHeight(), var7.getHeight());
-      this.var_452 = this.var_764.getWidth() << 1;
-      this.var_4b6 = this.var_764.getHeight() << 1;
+      var7 = AEFile.loadImage("/data/interface/logos_small.png", true);
+      this.logos = new Sprite(var7, var7.getHeight(), var7.getHeight());
+      this.backGroundTileX = this.fog.getWidth() << 1;
+      this.backGroundTileY = this.fog.getHeight() << 1;
       new FileRead();
       this.systems = FileRead.loadSystemsBinary();
       var5 = "/data/interface/map_sun_glow.png";
-      this.var_f1d = AEImage.loadImage("/data/interface/map_sun_glow.png", true);
-      this.var_aad = new Class_198();
-      this.var_a6c = new AbstractMesh[this.systems.length];
+      this.sunGlow = AEFile.loadImage("/data/interface/map_sun_glow.png", true);
+      this.galaxyMapGroup = new CameraControllerGroup();
+      this.stars = new AbstractMesh[this.systems.length];
 
-      for(int var8 = 0; var8 < this.var_a6c.length; ++var8) {
+      for(int var8 = 0; var8 < this.stars.length; ++var8) {
          int var6 = this.systems[var8].getStarTextureIndex();
-         this.var_a6c[var8] = AEResourceManager.getGeometryResource(6781);
-         this.var_a6c[var8].sub_980(var6, var6);
-         this.var_a6c[var8].sub_9aa((byte)1);
-         this.var_a6c[var8].setRenderLayer(2);
-         this.var_a6c[var8].sub_48(5000);
-         this.var_a6c[var8].sub_5c5(0, 2048, 0);
-         this.var_a6c[var8].sub_7af(1024, 1024, 1024);
-         this.var_a6c[var8].moveTo(-8000 + (int)((float)(100 - this.systems[var8].getPosX()) / 100.0F * 10000.0F), -7000 + (int)((float)(100 - this.systems[var8].getPosY()) / 100.0F * 9000.0F), 2000 + (int)((float)(100 - this.systems[var8].getPosZ()) / 100.0F * 2500.0F));
-         this.var_aad.sub_25(this.var_a6c[var8]);
+         this.stars[var8] = AEResourceManager.getGeometryResource(6781);
+         this.stars[var8].setAnimationRangeInTime(var6, var6);
+         this.stars[var8].setAnimationMode((byte)1);
+         this.stars[var8].setRenderLayer(2);
+         this.stars[var8].setRadius(5000);
+         this.stars[var8].rotateEuler(0, 2048, 0);
+         this.stars[var8].setScale(1024, 1024, 1024);
+         this.stars[var8].moveTo(-8000 + (int)((float)(100 - this.systems[var8].getPosX()) / 100.0F * 10000.0F), -7000 + (int)((float)(100 - this.systems[var8].getPosY()) / 100.0F * 9000.0F), 2000 + (int)((float)(100 - this.systems[var8].getPosZ()) / 100.0F * 2500.0F));
+         this.galaxyMapGroup.uniqueAppend_(this.stars[var8]);
       }
 
       if (Status.getCurrentCampaignMission() >= 32 && Status.wormholeSystem >= 0) {
-         this.var_10c8 = AEResourceManager.getGeometryResource(6805);
-         this.var_10c8.setDraw(true);
-         this.var_10c8.sub_918(30);
-         this.var_10c8.sub_7af(512, 512, 512);
-         this.var_10c8.sub_9aa((byte)2);
-         this.var_10c8.sub_1f3(this.var_a6c[Status.wormholeSystem].sub_237());
-         this.var_aad.sub_25(this.var_10c8);
+         this.wormhole = AEResourceManager.getGeometryResource(6805);
+         this.wormhole.setDraw(true);
+         this.wormhole.setAnimationSpeed(30);
+         this.wormhole.setScale(512, 512, 512);
+         this.wormhole.setAnimationMode((byte)2);
+         this.wormhole.moveTo(this.stars[Status.wormholeSystem].getPostition());
+         this.galaxyMapGroup.uniqueAppend_(this.wormhole);
       }
 
-      this.var_aad.sub_109(true);
-      this.var_b6f = new AEVector3D();
-      this.var_b93 = new AEVector3D();
+      this.galaxyMapGroup.updateTransform(true);
+      this.tmpStarScreenPos2 = new AEVector3D();
+      this.tmpStarScreenPos1 = new AEVector3D();
       new AEVector3D();
-      this.var_bf7 = new Matrix();
-      GameStatus.random.setSeed(System.currentTimeMillis());
-      this.sub_4e(var1, var2, var3, var4);
+      this.matrix = new Matrix();
+      GlobalStatus.random.setSeed(System.currentTimeMillis());
+      this.init(var1, var2, var3, var4);
    }
 
-   public final void sub_4e(boolean var1, Mission var2, boolean var3, int var4) {
-      this.var_d20 = var1;
-      this.var_1271 = var3;
-      this.var_124c = var4;
-      this.var_35d = (float)(GameStatus.screenWidth >> 1);
-      this.var_39b = (float)(this.var_254 + (this.var_2ce >> 1));
-      this.var_3af = 0.0F;
-      this.var_401 = 0.0F;
-      this.var_b3a = GameStatus.renderer.getCamera();
-      if (this.var_b0a == null) {
-         this.var_b0a = Camera.sub_1b1(this.var_292, this.var_2ce + 20, 1000, 10, 31768);
-         this.var_b0a.sub_18f(0, 0, -2500);
-         this.var_b0a.sub_5c5(0, 2048, 0);
-         this.var_b0a.moveTo((int)this.var_3af * 20, (int)this.var_401 * 20, 0);
-         this.var_b0a.sub_109(true);
+   public final void init(boolean var1, Mission var2, boolean var3, int var4) {
+      this.overviewOnly_ = var1;
+      this.discoverSystemCutscene = var3;
+      this.discoveredSystemId = var4;
+      this.curScreenPosX = (float)(GlobalStatus.screenWidth >> 1);
+      this.curScreenPosY = (float)(this.windowFrameHeight + (this.mapInnerHeight >> 1));
+      this.scrollX = 0.0F;
+      this.scrollY = 0.0F;
+      this.lastCamera = GlobalStatus.renderer.getCamera();
+      if (this.starNetCamera_ == null) {
+         this.starNetCamera_ = Camera.create(this.mapInnerWidth, this.mapInnerHeight + 20, 1000, 10, 31768);
+         this.starNetCamera_.translate(0, 0, -2500);
+         this.starNetCamera_.rotateEuler(0, 2048, 0);
+         this.starNetCamera_.moveTo((int)this.scrollX * 20, (int)this.scrollY * 20, 0);
+         this.starNetCamera_.updateTransform(true);
       }
 
-      GameStatus.renderer.sub_19(this.var_b0a);
-      this.var_105c = Status.getCurrentCampaignMission() >= 16;
-      this.var_349 = this.var_105c ? 0 : 3;
+      GlobalStatus.renderer.setActiveCamera(this.starNetCamera_);
+      this.galaxyMapUnlocked = Status.getCurrentCampaignMission() >= 16;
+      this.state = this.galaxyMapUnlocked ? 0 : 3;
       this.selectedSystem = Status.getSystem().getId();
-      if (this.var_349 == 3) {
-         this.sub_158();
-         this.var_b0a.sub_ba(500);
-         this.var_cfc = false;
+      if (this.state == 3) {
+         this.initStarSysMap();
+         this.starNetCamera_.setFoV(500);
+         this.galaxyMapView = false;
          this.selectedPlanet = 0;
 
-         while(this.var_993[this.selectedPlanet].getId() != Status.getStation().getId()) {
-            this.sub_a9(32);
+         while(this.selectedSystemStations[this.selectedPlanet].getId() != Status.getStation().getId()) {
+            this.handleKeystate(32);
          }
 
-         this.sub_dd();
+         this.updateCameraTrack();
       } else {
-         this.var_cfc = true;
+         this.galaxyMapView = true;
          if (var3) {
-            this.var_b6f.set(this.var_a6c[var4].sub_237());
+            this.tmpStarScreenPos2.set(this.stars[var4].getPostition());
          } else {
-            this.var_b6f.set(this.var_a6c[Status.getSystem().getId()].sub_237());
+            this.tmpStarScreenPos2.set(this.stars[Status.getSystem().getId()].getPostition());
          }
 
-         this.var_b0a.moveTo(this.var_b6f.x, this.var_b6f.y, 0);
-         this.var_3af = (float)(this.var_b6f.x / 20);
-         this.var_401 = (float)(this.var_b6f.y / 20);
-         this.sub_188(0.0F, 0.0F);
-         this.var_b0a.sub_109(true);
-         this.var_b0a.sub_fa(this.var_b6f);
-         this.sub_188((float)this.var_b6f.x - this.var_35d, (float)this.var_b6f.y - this.var_39b);
-         this.var_ee8 = false;
+         this.starNetCamera_.moveTo(this.tmpStarScreenPos2.x, this.tmpStarScreenPos2.y, 0);
+         this.scrollX = (float)(this.tmpStarScreenPos2.x / 20);
+         this.scrollY = (float)(this.tmpStarScreenPos2.y / 20);
+         this.navigateMap(0.0F, 0.0F);
+         this.starNetCamera_.updateTransform(true);
+         this.starNetCamera_.getScreenPosition(this.tmpStarScreenPos2);
+         this.navigateMap((float)this.tmpStarScreenPos2.x - this.curScreenPosX, (float)this.tmpStarScreenPos2.y - this.curScreenPosY);
+         this.scopingOut = false;
       }
 
-      this.var_11d9 = false;
-      this.jumpMapModeVar1_ = false;
-      this.jumpMapModeVar2_ = false;
-      this.var_1071 = false;
+      this.legendOpen = false;
+      this.fromJumpGate = false;
+      this.fromStation = false;
+      this.destSelected = false;
 
-      for(int var8 = 0; var8 < this.var_a6c.length; ++var8) {
-         this.var_a6c[var8].setDraw(Status.getVisibleSystems()[var8]);
+      for(int var8 = 0; var8 < this.stars.length; ++var8) {
+         this.stars[var8].setDraw(Status.getVisibleSystems()[var8]);
       }
 
       this.pathToDestination_ = null;
@@ -239,11 +238,11 @@ public final class StarMap {
       int var7;
       if (var1) {
          Mission var9 = var2;
-         if (!var2.isEmpty() && var2.sub_12c() && Status.getSystem().getNeighbourSystems() != null) {
+         if (!var2.isEmpty() && var2.isVisible() && Status.getSystem().getNeighbourSystems() != null) {
             for(var5 = 0; var5 < this.systems.length; ++var5) {
                if (this.systems[var5].getStations() != null) {
                   for(var7 = 0; var7 < this.systems[var5].getStations().length; ++var7) {
-                     if (var9.setCampaignMission() == this.systems[var5].getStations()[var7]) {
+                     if (var9.getTargetStation() == this.systems[var5].getStations()[var7]) {
                         this.destinationOrMissionSystem_ = var5;
                         break;
                      }
@@ -258,171 +257,171 @@ public final class StarMap {
          }
       }
 
-      this.var_11e9 = 0;
+      this.legendWindowWidth = 0;
       short[] var10 = new short[]{223, 224, 271, 279, 278, 132};
 
       for(var5 = 0; var5 < var10.length; ++var5) {
-         if ((var7 = SymbolMapManager_.sub_25b(GameStatus.langManager.getLangString(var10[var5]), 1)) > this.var_11e9) {
-            this.var_11e9 = var7;
+         if ((var7 = Font.getTextWidth(GlobalStatus.gameText.getText(var10[var5]), 1)) > this.legendWindowWidth) {
+            this.legendWindowWidth = var7;
          }
       }
 
-      this.var_11e9 += 32;
-      this.var_129f = 0;
+      this.legendWindowWidth += 32;
+      this.newSystemAnimTime = 0;
    }
 
-   public final void sub_98() {
-      this.var_b0a = null;
-      this.var_10c8 = null;
-      this.var_110d = null;
+   public final void OnRelease() {
+      this.starNetCamera_ = null;
+      this.wormhole = null;
+      this.arrow = null;
    }
 
-   public final boolean sub_a9(int var1) {
+   public final boolean handleKeystate(int var1) {
       if (var1 == 256) {
-         if (this.var_349 == 0 && this.selectedSystem >= 0 && !this.var_d20 && !this.var_1271) {
-            if (this.var_d7c) {
-               this.var_d7c = false;
-               if (this.var_1302 && this.var_9e6.sub_9a()) {
-                  Level.autopilotDestination = Status.voidStation;
-                  this.var_1071 = true;
-                  GameStatus.renderer.sub_19(this.var_b3a);
+         if (this.state == 0 && this.selectedSystem >= 0 && !this.overviewOnly_ && !this.discoverSystemCutscene) {
+            if (this.destinationConfirmPopupOpen) {
+               this.destinationConfirmPopupOpen = false;
+               if (this.jumpToAlienWorldPopupOpen && this.popup.getChoice()) {
+                  Level.programmedStation = Status.voidStation;
+                  this.destSelected = true;
+                  GlobalStatus.renderer.setActiveCamera(this.lastCamera);
                }
 
-               this.var_1302 = false;
+               this.jumpToAlienWorldPopupOpen = false;
                return true;
             }
 
-            if (!this.jumpMapModeVar2_ && !Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getId())) {
-               if (this.var_9e6 == null) {
-                  this.var_9e6 = new Popup();
+            if (!this.fromStation && !Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getId())) {
+               if (this.popup == null) {
+                  this.popup = new Popup();
                }
 
-               this.var_9e6.sub_8f(GameStatus.langManager.getLangString(241), false);
-               this.var_d7c = true;
+               this.popup.set(GlobalStatus.gameText.getText(241), false);
+               this.destinationConfirmPopupOpen = true;
             } else {
-               this.var_349 = 1;
+               this.state = 1;
             }
-         } else if (this.var_349 == 3) {
-            if (this.var_d7c) {
-               if (this.var_9e6.sub_9a()) {
-                  if (!this.var_d20) {
-                     if (this.jumpMapModeVar1_) {
-                        Level.autopilotDestination = this.var_993[this.selectedPlanet];
-                        this.var_1071 = true;
-                        GameStatus.renderer.sub_19(this.var_b3a);
+         } else if (this.state == 3) {
+            if (this.destinationConfirmPopupOpen) {
+               if (this.popup.getChoice()) {
+                  if (!this.overviewOnly_) {
+                     if (this.fromJumpGate) {
+                        Level.programmedStation = this.selectedSystemStations[this.selectedPlanet];
+                        this.destSelected = true;
+                        GlobalStatus.renderer.setActiveCamera(this.lastCamera);
                         return true;
                      }
 
-                     if (this.jumpMapModeVar1_) {
-                        Status.sub_1e5(this.var_993[this.selectedPlanet]);
-                        Level.autopilotDestination = null;
-                        Level.sub_16a();
+                     if (this.fromJumpGate) {
+                        Status.departStation(this.selectedSystemStations[this.selectedPlanet]);
+                        Level.programmedStation = null;
+                        Level.setInitStreamOut();
                         Status.jumpgateUsed();
                      } else if (Status.getCurrentCampaignMission() != 3) {
                         Status.baseArmour = -1;
                         Status.shield = -1;
                         Status.additionalArmour = -1;
-                        Status.sub_1e5(Status.getStation());
-                        if (!this.var_993[this.selectedPlanet].equals(Status.getStation())) {
-                           Level.autopilotDestination = this.var_993[this.selectedPlanet];
+                        Status.departStation(Status.getStation());
+                        if (!this.selectedSystemStations[this.selectedPlanet].equals(Status.getStation())) {
+                           Level.programmedStation = this.selectedSystemStations[this.selectedPlanet];
                         }
 
-                        if (this.jumpMapModeVar2_) {
-                           Level.var_1311 = true;
+                        if (this.fromStation) {
+                           Level.driveJumping = true;
                         }
 
-                        Medals.resetNewMedals();
+                        Achievements.resetNewMedals();
                      }
 
-                     GameStatus.var_bfb.setScene(GameStatus.scenes[2]);
+                     GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[2]);
                   }
 
                   return true;
                }
 
-               this.var_d7c = false;
+               this.destinationConfirmPopupOpen = false;
                return true;
             }
 
-            if (!this.var_d20 && this.var_993[this.selectedPlanet].getId() != Status.getStation().getId()) {
-               if (this.var_9e6 == null) {
-                  this.var_9e6 = new Popup();
+            if (!this.overviewOnly_ && this.selectedSystemStations[this.selectedPlanet].getId() != Status.getStation().getId()) {
+               if (this.popup == null) {
+                  this.popup = new Popup();
                }
 
-               this.var_9e6.sub_8f(GameStatus.langManager.getLangString(295) + ": " + this.var_993[this.selectedPlanet].getName() + "\n" + GameStatus.langManager.getLangString(242), true);
-               this.var_d7c = true;
+               this.popup.set(GlobalStatus.gameText.getText(295) + ": " + this.selectedSystemStations[this.selectedPlanet].getName() + "\n" + GlobalStatus.gameText.getText(242), true);
+               this.destinationConfirmPopupOpen = true;
             }
          }
       }
 
-      if (var1 == 16384 && !this.var_d7c && !this.var_1271) {
-         this.var_11d9 = !this.var_11d9;
+      if (var1 == 16384 && !this.destinationConfirmPopupOpen && !this.discoverSystemCutscene) {
+         this.legendOpen = !this.legendOpen;
       }
 
       if (var1 == 8192) {
-         if (this.var_349 == 0) {
-            GameStatus.renderer.sub_19(this.var_b3a);
+         if (this.state == 0) {
+            GlobalStatus.renderer.setActiveCamera(this.lastCamera);
             return false;
          }
 
-         if (this.var_349 == 3) {
-            if (!this.var_105c) {
-               GameStatus.renderer.sub_19(this.var_b3a);
+         if (this.state == 3) {
+            if (!this.galaxyMapUnlocked) {
+               GlobalStatus.renderer.setActiveCamera(this.lastCamera);
                return false;
             }
 
-            this.var_ee8 = true;
+            this.scopingOut = true;
             this.selectedPlanet = 0;
-            this.sub_dd();
+            this.updateCameraTrack();
          }
       }
 
-      if (this.var_d7c) {
+      if (this.destinationConfirmPopupOpen) {
          if (var1 == 4) {
-            this.var_9e6.sub_c6();
+            this.popup.left();
          } else if (var1 == 32) {
-            this.var_9e6.sub_ff();
+            this.popup.right();
          }
-      } else if (this.var_349 == 3) {
+      } else if (this.state == 3) {
          if (var1 != 64 && var1 != 32) {
             if (var1 == 2 || var1 == 4) {
                --this.selectedPlanet;
                if (this.selectedPlanet < 0) {
-                  this.selectedPlanet = this.var_993.length - 1;
+                  this.selectedPlanet = this.selectedSystemStations.length - 1;
                }
 
-               this.sub_dd();
+               this.updateCameraTrack();
             }
          } else {
             ++this.selectedPlanet;
-            if (this.selectedPlanet >= this.var_993.length) {
+            if (this.selectedPlanet >= this.selectedSystemStations.length) {
                this.selectedPlanet = 0;
             }
 
-            this.sub_dd();
+            this.updateCameraTrack();
          }
       }
 
       return true;
    }
 
-   private void sub_dd() {
-      int var1 = this.var_ee8 ? 0 : this.selectedPlanet + 2;
-      int var2 = this.var_ee8 ? -6000 : -4000;
-      this.var_b6f = this.var_c27[var1].sub_22a(this.var_b6f);
-      this.var_df9.sub_fe(this.var_b0a.sub_29c(), this.var_b6f.x);
-      this.var_e4c.sub_fe(this.var_b0a.sub_2c5(), this.var_b6f.y);
-      this.var_e9b.sub_fe(this.var_b0a.sub_31f(), this.var_b6f.z + var2);
+   private void updateCameraTrack() {
+      int var1 = this.scopingOut ? 0 : this.selectedPlanet + 2;
+      int var2 = this.scopingOut ? -6000 : -4000;
+      this.tmpStarScreenPos2 = this.localStarAndPlanetsMeshes[var1].getLocalPos(this.tmpStarScreenPos2);
+      this.smoothCamTransitionX.SetRange(this.starNetCamera_.getPosX(), this.tmpStarScreenPos2.x);
+      this.smoothCamTransitionY.SetRange(this.starNetCamera_.getPosY(), this.tmpStarScreenPos2.y);
+      this.smoothCamTransitionZ.SetRange(this.starNetCamera_.getPosZ(), this.tmpStarScreenPos2.z + var2);
    }
 
-   public final void sub_101(int var1, int var2) {
-      if (this.var_1271) {
+   public final void update(int var1, int var2) {
+      if (this.discoverSystemCutscene) {
          var1 = 0;
-         this.var_129f += var2;
+         this.newSystemAnimTime += var2;
       }
 
       this.frameTime = var2;
-      if (this.var_349 == 0) {
+      if (this.state == 0) {
          this.curPushLeft = false;
          this.curPushRight = false;
          this.curPushUp = false;
@@ -479,206 +478,206 @@ public final class StarMap {
             }
          }
 
-         this.sub_188(var8, var3);
-         this.var_101a = -1.0F;
+         this.navigateMap(var8, var3);
+         this.curSqrSize = -1.0F;
 
          for(var1 = 0; var1 < this.systems.length; ++var1) {
             if (Status.getVisibleSystems()[var1]) {
-               this.var_b0a.sub_fa(this.var_a6c[var1].sub_22a(this.var_b6f));
-               if (this.var_b6f.z < 0 && this.var_35d > (float)(this.var_b6f.x - 20) && this.var_35d < (float)(this.var_b6f.x + 20) && this.var_39b > (float)(this.var_b6f.y - 20) && this.var_39b < (float)(this.var_b6f.y + 20)) {
-                  float var9 = ((float)this.var_b6f.x - this.var_35d) / 4.0F;
-                  float var4 = ((float)this.var_b6f.y - this.var_39b) / 4.0F;
+               this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
+               if (this.tmpStarScreenPos2.z < 0 && this.curScreenPosX > (float)(this.tmpStarScreenPos2.x - 20) && this.curScreenPosX < (float)(this.tmpStarScreenPos2.x + 20) && this.curScreenPosY > (float)(this.tmpStarScreenPos2.y - 20) && this.curScreenPosY < (float)(this.tmpStarScreenPos2.y + 20)) {
+                  float var9 = ((float)this.tmpStarScreenPos2.x - this.curScreenPosX) / 4.0F;
+                  float var4 = ((float)this.tmpStarScreenPos2.y - this.curScreenPosY) / 4.0F;
                   float var5 = (var9 < 0.0F ? -var9 : var9) * 4.0F;
                   float var6 = (var4 < 0.0F ? -var4 : var4) * 4.0F;
-                  this.var_101a = var5 > var6 ? var5 : var6;
-                  this.var_101a = 10.0F - this.var_101a;
-                  if ((float)this.var_b6f.x < this.var_35d) {
+                  this.curSqrSize = var5 > var6 ? var5 : var6;
+                  this.curSqrSize = 10.0F - this.curSqrSize;
+                  if ((float)this.tmpStarScreenPos2.x < this.curScreenPosX) {
                      var8 = var9;
-                  } else if ((float)this.var_b6f.x > this.var_35d) {
+                  } else if ((float)this.tmpStarScreenPos2.x > this.curScreenPosX) {
                      var8 = var9;
                   }
 
-                  if ((float)this.var_b6f.y > this.var_39b) {
+                  if ((float)this.tmpStarScreenPos2.y > this.curScreenPosY) {
                      var3 = var4;
-                  } else if ((float)this.var_b6f.y < this.var_39b) {
+                  } else if ((float)this.tmpStarScreenPos2.y < this.curScreenPosY) {
                      var3 = var4;
                   }
 
-                  if (AEMath.abs((int)var8) > AEMath.abs((int)((float)this.var_b6f.x - this.var_35d))) {
+                  if (AEMath.abs((int)var8) > AEMath.abs((int)((float)this.tmpStarScreenPos2.x - this.curScreenPosX))) {
                      var8 *= 0.5F;
                   }
 
-                  if (AEMath.abs((int)var3) > AEMath.abs((int)((float)this.var_b6f.y - this.var_39b))) {
+                  if (AEMath.abs((int)var3) > AEMath.abs((int)((float)this.tmpStarScreenPos2.y - this.curScreenPosY))) {
                      var3 *= 0.5F;
                   }
 
                   if (!this.curPushLeft && !this.curPushRight && !this.curPushUp && !this.curPushDown) {
-                     this.sub_188(var8, var3);
+                     this.navigateMap(var8, var3);
                   }
                   break;
                }
             }
          }
-      } else if (this.var_349 == 1) {
-         this.var_b6f = this.var_b0a.sub_22a(this.var_b6f);
-         if (this.var_b6f.z < this.var_a6c[this.selectedSystem].sub_32d() - 150) {
-            this.var_b6f.subtract(this.var_a6c[this.selectedSystem].sub_28c());
-            this.var_b6f.scale(-1024);
-            this.var_b0a.sub_19c(this.var_b6f);
+      } else if (this.state == 1) {
+         this.tmpStarScreenPos2 = this.starNetCamera_.getLocalPos(this.tmpStarScreenPos2);
+         if (this.tmpStarScreenPos2.z < this.stars[this.selectedSystem].getLocalPosZ() - 150) {
+            this.tmpStarScreenPos2.subtract(this.stars[this.selectedSystem].getLocalPos());
+            this.tmpStarScreenPos2.scale(-1024);
+            this.starNetCamera_.translate(this.tmpStarScreenPos2);
          } else {
-            if (this.var_cfc) {
-               this.sub_158();
-               this.var_b0a.sub_ba(500);
+            if (this.galaxyMapView) {
+               this.initStarSysMap();
+               this.starNetCamera_.setFoV(500);
             } else {
-               for(var2 = 0; var2 < this.var_c27.length; ++var2) {
-                  this.var_c27[var2] = null;
+               for(var2 = 0; var2 < this.localStarAndPlanetsMeshes.length; ++var2) {
+                  this.localStarAndPlanetsMeshes[var2] = null;
                }
 
-               this.var_c27 = null;
-               if (this.var_10c8 != null && this.var_ce0 != null) {
-                  this.var_ce0.sub_7f(this.var_10c8);
+               this.localStarAndPlanetsMeshes = null;
+               if (this.wormhole != null && this.localSystem != null) {
+                  this.localSystem.removeNode(this.wormhole);
                }
 
-               this.var_ce0 = null;
+               this.localSystem = null;
 
-               for(var2 = 0; var2 < this.var_c63.length; ++var2) {
-                  this.var_c63[var2] = null;
+               for(var2 = 0; var2 < this.localOrbits.length; ++var2) {
+                  this.localOrbits[var2] = null;
                }
 
-               this.var_c63 = null;
-               this.var_b0a.sub_ba(1000);
-               this.var_b0a.setRotation(0, 2048, 0);
-               this.var_b0a.moveTo((int)this.var_3af * 20, (int)this.var_401 * 20, this.var_b0a.sub_31f());
-               if (this.var_10c8 != null && this.var_aad != null) {
-                  this.var_aad.sub_25(this.var_10c8);
-                  this.var_10c8.sub_85f().identity();
-                  this.var_10c8.sub_7af(512, 512, 512);
-                  this.var_10c8.sub_1f3(this.var_a6c[Status.wormholeSystem].sub_237());
+               this.localOrbits = null;
+               this.starNetCamera_.setFoV(1000);
+               this.starNetCamera_.setRotation(0, 2048, 0);
+               this.starNetCamera_.moveTo((int)this.scrollX * 20, (int)this.scrollY * 20, this.starNetCamera_.getPosZ());
+               if (this.wormhole != null && this.galaxyMapGroup != null) {
+                  this.galaxyMapGroup.uniqueAppend_(this.wormhole);
+                  this.wormhole.getToParentTransform().identity();
+                  this.wormhole.setScale(512, 512, 512);
+                  this.wormhole.moveTo(this.stars[Status.wormholeSystem].getPostition());
                }
             }
 
-            this.var_349 = 2;
+            this.state = 2;
          }
-      } else if (this.var_349 == 2) {
-         this.var_b6f = this.var_b0a.sub_216(this.var_b6f);
-         if (this.var_cfc) {
-            if (this.var_b6f.z > this.var_a6c[this.selectedSystem].sub_31f() - 6000) {
-               this.var_b93.set(this.var_a6c[this.selectedSystem].sub_216(this.var_b93));
-               AEVector3D var10000 = this.var_b93;
+      } else if (this.state == 2) {
+         this.tmpStarScreenPos2 = this.starNetCamera_.getPosition(this.tmpStarScreenPos2);
+         if (this.galaxyMapView) {
+            if (this.tmpStarScreenPos2.z > this.stars[this.selectedSystem].getPosZ() - 6000) {
+               this.tmpStarScreenPos1.set(this.stars[this.selectedSystem].getPosition(this.tmpStarScreenPos1));
+               AEVector3D var10000 = this.tmpStarScreenPos1;
                var10000.z -= 6000;
-               this.var_b6f.subtract(this.var_b93);
-               this.var_b6f.scale(-1024);
-               this.var_b0a.sub_19c(this.var_b6f);
+               this.tmpStarScreenPos2.subtract(this.tmpStarScreenPos1);
+               this.tmpStarScreenPos2.scale(-1024);
+               this.starNetCamera_.translate(this.tmpStarScreenPos2);
             } else {
-               this.var_cfc = false;
-               this.var_349 = 3;
-               this.sub_dd();
+               this.galaxyMapView = false;
+               this.state = 3;
+               this.updateCameraTrack();
             }
-         } else if (this.var_b6f.z > 0) {
-            this.var_b93.set(this.var_a6c[this.selectedSystem].sub_216(this.var_b93));
-            this.var_b93.z = 0;
-            this.var_b6f.subtract(this.var_b93);
-            this.var_b6f.scale(-1024);
-            this.var_b0a.sub_18f(0, 0, this.var_b6f.z);
+         } else if (this.tmpStarScreenPos2.z > 0) {
+            this.tmpStarScreenPos1.set(this.stars[this.selectedSystem].getPosition(this.tmpStarScreenPos1));
+            this.tmpStarScreenPos1.z = 0;
+            this.tmpStarScreenPos2.subtract(this.tmpStarScreenPos1);
+            this.tmpStarScreenPos2.scale(-1024);
+            this.starNetCamera_.translate(0, 0, this.tmpStarScreenPos2.z);
          } else {
-            this.var_cfc = true;
-            this.var_349 = 0;
+            this.galaxyMapView = true;
+            this.state = 0;
          }
-      } else if (this.var_349 == 3) {
+      } else if (this.state == 3) {
 
-         this.var_df9.sub_b7(var2 << 1);
-         this.var_e4c.sub_b7(var2 << 1);
-         this.var_e9b.sub_b7(var2 << 1);
-         this.var_b0a.moveTo(this.var_df9.sub_135(), this.var_e4c.sub_135(), this.var_e9b.sub_135());
-         if (this.var_ee8 && this.var_df9.sub_14d(true) && this.var_e4c.sub_14d(true) && this.var_e9b.sub_14d(true)) {
-            this.var_349 = 1;
-            this.var_ee8 = false;
+         this.smoothCamTransitionX.Increase(var2 << 1);
+         this.smoothCamTransitionY.Increase(var2 << 1);
+         this.smoothCamTransitionZ.Increase(var2 << 1);
+         this.starNetCamera_.moveTo(this.smoothCamTransitionX.GetValue(), this.smoothCamTransitionY.GetValue(), this.smoothCamTransitionZ.GetValue());
+         if (this.scopingOut && this.smoothCamTransitionX.IsAtMaxPhase(true) && this.smoothCamTransitionY.IsAtMaxPhase(true) && this.smoothCamTransitionZ.IsAtMaxPhase(true)) {
+            this.state = 1;
+            this.scopingOut = false;
          }
       }
 
       int var11;
-      if (this.var_ce0 != null) {
-         for(var2 = 2; var2 < this.var_c27.length; ++var2) {
-            this.var_bf7.identity();
-            var11 = this.var_c8d[var2 - 2];
-            this.var_bf7.addEulerAngles(0, var11, 0);
-            this.var_b6f.set(0, 0, this.var_cb1[var2 - 2]);
-            this.var_b93.set(0, 0, 0);
-            this.var_b93 = this.var_bf7.sub_9e9(this.var_b6f, this.var_b93);
-            this.var_c27[var2].sub_1f3(this.var_b93);
-            this.var_b6f.set(this.var_c27[var2].sub_216(this.var_b93));
-            this.var_b6f.normalize();
+      if (this.localSystem != null) {
+         for(var2 = 2; var2 < this.localStarAndPlanetsMeshes.length; ++var2) {
+            this.matrix.identity();
+            var11 = this.planetRevolutAngs[var2 - 2];
+            this.matrix.addEulerAngles(0, var11, 0);
+            this.tmpStarScreenPos2.set(0, 0, this.distsToStar[var2 - 2]);
+            this.tmpStarScreenPos1.set(0, 0, 0);
+            this.tmpStarScreenPos1 = this.matrix.transformVector(this.tmpStarScreenPos2, this.tmpStarScreenPos1);
+            this.localStarAndPlanetsMeshes[var2].moveTo(this.tmpStarScreenPos1);
+            this.tmpStarScreenPos2.set(this.localStarAndPlanetsMeshes[var2].getPosition(this.tmpStarScreenPos1));
+            this.tmpStarScreenPos2.normalize();
          }
       }
 
-      this.sub_2b5();
+      this.draw();
       StarMap var10 = this;
 
       try {
-         GameStatus.graphics3D.bindTarget(GameStatus.graphics);
-         if (var10.var_ce0 != null) {
-            GameStatus.renderer.sub_87(var10.var_ce0);
+         GlobalStatus.graphics3D.bindTarget(GlobalStatus.graphics);
+         if (var10.localSystem != null) {
+            GlobalStatus.renderer.drawNodeInVF(var10.localSystem);
          } else {
-            var10.var_f2b += var10.frameTime;
+            var10.newSysAnimTimer += var10.frameTime;
             var2 = 0;
 
             while(true) {
-               if (var2 >= var10.var_a6c.length) {
-                  GameStatus.renderer.sub_87(var10.var_aad);
+               if (var2 >= var10.stars.length) {
+                  GlobalStatus.renderer.drawNodeInVF(var10.galaxyMapGroup);
                   break;
                }
 
                boolean var12 = false;
-               if (var2 == var10.selectedSystem && var10.var_1271 && var10.var_129f < 4000) {
-                  var11 = (int)((float)var10.var_129f / 4000.0F * (float)(1024 + (AEMath.sin(var10.var_f2b + (var2 << 8)) >> 5)));
+               if (var2 == var10.selectedSystem && var10.discoverSystemCutscene && var10.newSystemAnimTime < 4000) {
+                  var11 = (int)((float)var10.newSystemAnimTime / 4000.0F * (float)(1024 + (AEMath.sin(var10.newSysAnimTimer + (var2 << 8)) >> 5)));
                } else {
-                  var11 = 1024 + (AEMath.sin(var10.var_f2b + (var2 << 8)) >> 5);
+                  var11 = 1024 + (AEMath.sin(var10.newSysAnimTimer + (var2 << 8)) >> 5);
                }
 
-               var10.var_a6c[var2].sub_7af(var11, var11, var11);
+               var10.stars[var2].setScale(var11, var11, var11);
                ++var2;
             }
          }
 
-         GameStatus.renderer.sub_cc(System.currentTimeMillis());
-         GameStatus.graphics3D.clear();
-         GameStatus.graphics3D.releaseTarget();
+         GlobalStatus.renderer.renderFrame(System.currentTimeMillis());
+         GlobalStatus.graphics3D.clear();
+         GlobalStatus.graphics3D.releaseTarget();
       } catch (Exception var7) {
-         GameStatus.graphics3D.releaseTarget();
+         GlobalStatus.graphics3D.releaseTarget();
          var7.printStackTrace();
       }
 
-      this.sub_23f();
+      this.drawKey();
    }
 
-   private void sub_158() {
+   private void initStarSysMap() {
       int var1 = this.systems[this.selectedSystem].getStations().length;
-      this.var_993 = new Station[var1];
+      this.selectedSystemStations = new Station[var1];
       new FileRead();
-      this.var_993 = FileRead.loadStationsBinary(this.systems[this.selectedSystem]);
-      this.var_c8d = new int[var1];
-      this.var_cb1 = new int[var1];
-      GameStatus.random.setSeed((long)(this.systems[this.selectedSystem].getId() * 1000));
-      this.var_c27 = new AbstractMesh[var1 + 2];
-      this.var_ce0 = new Group();
+      this.selectedSystemStations = FileRead.loadStationsBinary(this.systems[this.selectedSystem]);
+      this.planetRevolutAngs = new int[var1];
+      this.distsToStar = new int[var1];
+      GlobalStatus.random.setSeed((long)(this.systems[this.selectedSystem].getId() * 1000));
+      this.localStarAndPlanetsMeshes = new AbstractMesh[var1 + 2];
+      this.localSystem = new Group();
 
       int var2;
-      for(var2 = 0; var2 < this.var_1168.length; ++var2) {
-         this.var_1168[var2] = false;
+      for(var2 = 0; var2 < this.occupiedOrbits_.length; ++var2) {
+         this.occupiedOrbits_[var2] = false;
       }
 
       int var3;
-      for(var2 = 0; var2 < this.var_c27.length; ++var2) {
+      for(var2 = 0; var2 < this.localStarAndPlanetsMeshes.length; ++var2) {
          if (var2 > 1) {
-            this.var_c27[var2] = AEResourceManager.getGeometryResource(6778);
+            this.localStarAndPlanetsMeshes[var2] = AEResourceManager.getGeometryResource(6778);
          } else {
             var3 = this.systems[this.selectedSystem].getStarTextureIndex();
-            this.var_c27[var2] = AEResourceManager.getGeometryResource(6781);
-            this.var_c27[var2].sub_980(var3, var3);
+            this.localStarAndPlanetsMeshes[var2] = AEResourceManager.getGeometryResource(6781);
+            this.localStarAndPlanetsMeshes[var2].setAnimationRangeInTime(var3, var3);
          }
 
-         this.var_c27[var2].sub_9aa((byte)1);
-         this.var_c27[var2].sub_48(5000);
+         this.localStarAndPlanetsMeshes[var2].setAnimationMode((byte)1);
+         this.localStarAndPlanetsMeshes[var2].setRadius(5000);
          if (var2 > 1) {
             Matrix var7 = new Matrix();
             int var4 = 0;
@@ -686,162 +685,162 @@ public final class StarMap {
 
             int var6;
             while(!var5) {
-               var6 = GameStatus.random.nextInt(this.var_1168.length);
-               if (!this.var_1168[var6]) {
-                  this.var_1168[var6] = true;
-                  var4 = 4096 / this.var_1168.length * var6;
+               var6 = GlobalStatus.random.nextInt(this.occupiedOrbits_.length);
+               if (!this.occupiedOrbits_[var6]) {
+                  this.occupiedOrbits_[var6] = true;
+                  var4 = 4096 / this.occupiedOrbits_.length * var6;
                   var5 = true;
                }
             }
 
-            this.var_c8d[var2 - 2] = var4;
+            this.planetRevolutAngs[var2 - 2] = var4;
             var7.addEulerAngles(0, var4, 0);
-            var6 = var2 == 2 ? 512 : this.var_cb1[var2 - 3];
-            this.var_cb1[var2 - 2] = var6 + 128 + GameStatus.random.nextInt(376);
-            AEVector3D var9 = new AEVector3D(0, 0, this.var_cb1[var2 - 2]);
+            var6 = var2 == 2 ? 512 : this.distsToStar[var2 - 3];
+            this.distsToStar[var2 - 2] = var6 + 128 + GlobalStatus.random.nextInt(376);
+            AEVector3D var9 = new AEVector3D(0, 0, this.distsToStar[var2 - 2]);
             AEVector3D var10 = new AEVector3D();
-            var10 = var7.sub_9e9(var9, var10);
-            this.var_c27[var2].sub_19c(var10);
-            var3 = this.var_993[var2 - 2].getPlanetTextureId();
-            var4 = this.var_e4[var3];
-            this.var_c27[var2].sub_7af(var4, var4, var4);
-            (new AEVector3D(this.var_c27[var2].sub_237())).normalize();
-            this.var_c27[var2].sub_980(var3, var3);
+            var10 = var7.transformVector(var9, var10);
+            this.localStarAndPlanetsMeshes[var2].translate(var10);
+            var3 = this.selectedSystemStations[var2 - 2].getPlanetTextureId();
+            var4 = this.planetSizes[var3];
+            this.localStarAndPlanetsMeshes[var2].setScale(var4, var4, var4);
+            (new AEVector3D(this.localStarAndPlanetsMeshes[var2].getPostition())).normalize();
+            this.localStarAndPlanetsMeshes[var2].setAnimationRangeInTime(var3, var3);
          } else {
-            this.var_c27[var2].sub_18f(0, 0, var2 * 32);
-            this.var_c27[var2].sub_5c5(0, 2048, 256);
-            this.var_c27[var2].sub_7af(256, 256, 256);
+            this.localStarAndPlanetsMeshes[var2].translate(0, 0, var2 * 32);
+            this.localStarAndPlanetsMeshes[var2].rotateEuler(0, 2048, 256);
+            this.localStarAndPlanetsMeshes[var2].setScale(256, 256, 256);
          }
 
-         this.var_c27[var2].setRenderLayer(2);
-         this.var_ce0.sub_25(this.var_c27[var2]);
+         this.localStarAndPlanetsMeshes[var2].setRenderLayer(2);
+         this.localSystem.uniqueAppend_(this.localStarAndPlanetsMeshes[var2]);
       }
 
-      this.var_c27[1].setDraw(false);
-      this.var_c27[0].setDraw(false);
-      this.var_c63 = new AbstractMesh[var1];
+      this.localStarAndPlanetsMeshes[1].setDraw(false);
+      this.localStarAndPlanetsMeshes[0].setDraw(false);
+      this.localOrbits = new AbstractMesh[var1];
 
-      for(var2 = 0; var2 < this.var_c63.length; ++var2) {
-         this.var_c63[var2] = AEResourceManager.getGeometryResource(6779);
-         this.var_c63[var2].setRenderLayer(2);
-         this.var_c63[var2].sub_5c5(-1024, 0, 0);
-         this.var_ce0.sub_25(this.var_c63[var2]);
-         var3 = this.var_cb1[var2];
-         this.var_c63[var2].sub_7af(var3 << 1, var3 << 1, var3 << 1);
+      for(var2 = 0; var2 < this.localOrbits.length; ++var2) {
+         this.localOrbits[var2] = AEResourceManager.getGeometryResource(6779);
+         this.localOrbits[var2].setRenderLayer(2);
+         this.localOrbits[var2].rotateEuler(-1024, 0, 0);
+         this.localSystem.uniqueAppend_(this.localOrbits[var2]);
+         var3 = this.distsToStar[var2];
+         this.localOrbits[var2].setScale(var3 << 1, var3 << 1, var3 << 1);
       }
 
-      this.var_ce0.sub_1f3(this.var_b0a.sub_216(this.var_b6f));
-      this.var_ce0.setRotation(-256, 0, 256);
-      this.var_df9 = new Class_1025(0, 0);
-      this.var_e4c = new Class_1025(0, 0);
-      this.var_e9b = new Class_1025(0, 0);
-      this.var_ce0.sub_109(true);
-      Image var8 = AEImage.loadImage("/data/interface/sun_" + this.systems[this.selectedSystem].getStarTextureIndex() + ".png", true);
-      this.var_8f6 = new Sprite(var8);
-      this.var_8f6.defineReferencePixel(this.var_8f6.getWidth(), this.var_8f6.getHeight());
-      if (this.var_10c8 != null && this.selectedSystem == Status.wormholeSystem) {
-         if (this.var_aad != null) {
-            this.var_aad.sub_7f(this.var_10c8);
+      this.localSystem.moveTo(this.starNetCamera_.getPosition(this.tmpStarScreenPos2));
+      this.localSystem.setRotation(-256, 0, 256);
+      this.smoothCamTransitionX = new EaseInOut(0, 0);
+      this.smoothCamTransitionY = new EaseInOut(0, 0);
+      this.smoothCamTransitionZ = new EaseInOut(0, 0);
+      this.localSystem.updateTransform(true);
+      Image var8 = AEFile.loadImage("/data/interface/sun_" + this.systems[this.selectedSystem].getStarTextureIndex() + ".png", true);
+      this.systemStar = new Sprite(var8);
+      this.systemStar.defineReferencePixel(this.systemStar.getWidth(), this.systemStar.getHeight());
+      if (this.wormhole != null && this.selectedSystem == Status.wormholeSystem) {
+         if (this.galaxyMapGroup != null) {
+            this.galaxyMapGroup.removeNode(this.wormhole);
          }
 
-         this.var_10c8.sub_7af(256, 256, 256);
-         this.var_10c8.sub_1f3(this.var_c27[this.systems[this.selectedSystem].verifyStationInSystem(Status.wormholeStation) + 2].sub_237());
-         this.var_ce0.sub_25(this.var_10c8);
+         this.wormhole.setScale(256, 256, 256);
+         this.wormhole.moveTo(this.localStarAndPlanetsMeshes[this.systems[this.selectedSystem].getStationEnumIndex(Status.wormholeStation) + 2].getPostition());
+         this.localSystem.uniqueAppend_(this.wormhole);
       }
 
-      if (this.var_110d == null) {
-         this.var_110d = AEResourceManager.getGeometryResource(13999);
+      if (this.arrow == null) {
+         this.arrow = AEResourceManager.getGeometryResource(13999);
       }
 
       if (this.systems[this.selectedSystem].getId() == Status.getSystem().getId()) {
-         this.var_110d.sub_8c9(this.var_c27[this.systems[this.selectedSystem].verifyStationInSystem(Status.getStation().getId()) + 2].sub_85f());
-         this.var_110d.setRotation(512, 0, -1024);
-         this.var_ce0.sub_25(this.var_110d);
+         this.arrow.setTransform(this.localStarAndPlanetsMeshes[this.systems[this.selectedSystem].getStationEnumIndex(Status.getStation().getId()) + 2].getToParentTransform());
+         this.arrow.setRotation(512, 0, -1024);
+         this.localSystem.uniqueAppend_(this.arrow);
       }
 
-      GameStatus.random.setSeed(System.currentTimeMillis());
+      GlobalStatus.random.setSeed(System.currentTimeMillis());
    }
 
-   private void sub_188(float var1, float var2) {
-      if (!this.var_d7c) {
-         if (this.var_35d >= (float)(GameStatus.screenWidth >> 1) && var1 > 0.0F || this.var_35d <= (float)(GameStatus.screenWidth >> 1) && var1 < 0.0F) {
-            this.var_3af -= var1;
+   private void navigateMap(float var1, float var2) {
+      if (!this.destinationConfirmPopupOpen) {
+         if (this.curScreenPosX >= (float)(GlobalStatus.screenWidth >> 1) && var1 > 0.0F || this.curScreenPosX <= (float)(GlobalStatus.screenWidth >> 1) && var1 < 0.0F) {
+            this.scrollX -= var1;
          }
 
-         if (this.var_39b >= (float)(this.var_254 + (this.var_2ce >> 1)) && var2 > 0.0F || this.var_39b <= (float)(this.var_254 + (this.var_2ce >> 1)) && var2 < 0.0F) {
-            this.var_401 -= var2;
+         if (this.curScreenPosY >= (float)(this.windowFrameHeight + (this.mapInnerHeight >> 1)) && var2 > 0.0F || this.curScreenPosY <= (float)(this.windowFrameHeight + (this.mapInnerHeight >> 1)) && var2 < 0.0F) {
+            this.scrollY -= var2;
          }
 
-         if (this.var_3af >= 0.0F) {
-            this.var_3af = 0.0F;
-            this.var_35d += var1;
-            if (this.var_35d > (float)(GameStatus.screenWidth >> 1)) {
-               this.var_35d = (float)(GameStatus.screenWidth >> 1);
+         if (this.scrollX >= 0.0F) {
+            this.scrollX = 0.0F;
+            this.curScreenPosX += var1;
+            if (this.curScreenPosX > (float)(GlobalStatus.screenWidth >> 1)) {
+               this.curScreenPosX = (float)(GlobalStatus.screenWidth >> 1);
             }
 
-            if (this.var_35d <= (float)(this.var_201 + 5)) {
-               this.var_35d = (float)(this.var_201 + 5);
-            }
-         }
-
-         if (this.var_401 >= 0.0F) {
-            this.var_401 = 0.0F;
-            this.var_39b += var2;
-            if (this.var_39b > (float)(this.var_254 + (this.var_2ce >> 1))) {
-               this.var_39b = (float)(this.var_254 + (this.var_2ce >> 1));
-            }
-
-            if (this.var_39b <= (float)(this.var_254 + 5)) {
-               this.var_39b = (float)(this.var_254 + 5);
+            if (this.curScreenPosX <= (float)(this.windowFrameWidth + 5)) {
+               this.curScreenPosX = (float)(this.windowFrameWidth + 5);
             }
          }
 
-         if (this.var_3af <= (float)(-this.var_452 + this.var_292)) {
-            this.var_3af = (float)(-this.var_452 + this.var_292);
-            this.var_35d += var1;
-            if (this.var_35d < (float)(GameStatus.screenWidth >> 1)) {
-               this.var_35d = (float)(GameStatus.screenWidth >> 1);
+         if (this.scrollY >= 0.0F) {
+            this.scrollY = 0.0F;
+            this.curScreenPosY += var2;
+            if (this.curScreenPosY > (float)(this.windowFrameHeight + (this.mapInnerHeight >> 1))) {
+               this.curScreenPosY = (float)(this.windowFrameHeight + (this.mapInnerHeight >> 1));
             }
 
-            if (this.var_35d >= (float)(this.var_201 + this.var_292 - 5)) {
-               this.var_35d = (float)(this.var_201 + this.var_292 - 5);
-            }
-         }
-
-         if (this.var_401 <= (float)(-this.var_4b6 + this.var_2ce)) {
-            this.var_401 = (float)(-this.var_4b6 + this.var_2ce);
-            this.var_39b += var2;
-            if (this.var_39b < (float)(this.var_254 + (this.var_2ce >> 1))) {
-               this.var_39b = (float)(this.var_254 + (this.var_2ce >> 1));
-            }
-
-            if (this.var_39b >= (float)(this.var_254 + this.var_2ce - 5)) {
-               this.var_39b = (float)(this.var_254 + this.var_2ce - 5);
+            if (this.curScreenPosY <= (float)(this.windowFrameHeight + 5)) {
+               this.curScreenPosY = (float)(this.windowFrameHeight + 5);
             }
          }
 
-         this.var_b0a.moveTo((int)this.var_3af * 20, (int)this.var_401 * 20, 0);
+         if (this.scrollX <= (float)(-this.backGroundTileX + this.mapInnerWidth)) {
+            this.scrollX = (float)(-this.backGroundTileX + this.mapInnerWidth);
+            this.curScreenPosX += var1;
+            if (this.curScreenPosX < (float)(GlobalStatus.screenWidth >> 1)) {
+               this.curScreenPosX = (float)(GlobalStatus.screenWidth >> 1);
+            }
+
+            if (this.curScreenPosX >= (float)(this.windowFrameWidth + this.mapInnerWidth - 5)) {
+               this.curScreenPosX = (float)(this.windowFrameWidth + this.mapInnerWidth - 5);
+            }
+         }
+
+         if (this.scrollY <= (float)(-this.backGroundTileY + this.mapInnerHeight)) {
+            this.scrollY = (float)(-this.backGroundTileY + this.mapInnerHeight);
+            this.curScreenPosY += var2;
+            if (this.curScreenPosY < (float)(this.windowFrameHeight + (this.mapInnerHeight >> 1))) {
+               this.curScreenPosY = (float)(this.windowFrameHeight + (this.mapInnerHeight >> 1));
+            }
+
+            if (this.curScreenPosY >= (float)(this.windowFrameHeight + this.mapInnerHeight - 5)) {
+               this.curScreenPosY = (float)(this.windowFrameHeight + this.mapInnerHeight - 5);
+            }
+         }
+
+         this.starNetCamera_.moveTo((int)this.scrollX * 20, (int)this.scrollY * 20, 0);
       }
    }
 
-   public final boolean sub_1ae() {
-      return this.var_349 == 3;
+   public final boolean scopedOnSystem() {
+      return this.state == 3;
    }
 
    public final void setJumpMapMode(boolean var1, boolean var2) {
-      this.jumpMapModeVar1_ = var1;
-      this.jumpMapModeVar2_ = var2;
+      this.fromJumpGate = var1;
+      this.fromStation = var2;
    }
 
-   private void sub_23f() {
-	  if (var_c27 != null && var_c27[0] != null)
-	      GameStatus.renderer.setLight(var_c27[0].sub_8a0(),  AEGraphics3D.omni);
+   private void drawKey() {
+	  if (localStarAndPlanetsMeshes != null && localStarAndPlanetsMeshes[0] != null)
+	      GlobalStatus.renderer.setLight(localStarAndPlanetsMeshes[0].getLocalTransform(),  AEGraphics3D.omni);
       int var1;
       int var3;
-      switch(this.var_349) {
+      switch(this.state) {
       case 0:
-         GameStatus.graphics.setColor(Layout.uiOuterTopRightOutlineColor);
-         this.var_b0a.sub_fa(this.var_a6c[Status.getSystem().getId()].sub_22a(this.var_b93));
+         GlobalStatus.graphics.setColor(Layout.uiOuterTopRightOutlineColor);
+         this.starNetCamera_.getScreenPosition(this.stars[Status.getSystem().getId()].getLocalPos(this.tmpStarScreenPos1));
          var1 = this.selectedSystem;
          this.selectedSystem = -1;
          int[] var2 = Status.getSystem().getNeighbourSystems();
@@ -851,13 +850,13 @@ public final class StarMap {
          float var12;
          for(var3 = 0; var3 < this.systems.length; ++var3) {
             if (Status.getVisibleSystems()[var3]) {
-               this.var_b0a.sub_fa(this.var_a6c[var3].sub_22a(this.var_b6f));
-               if (this.var_b6f.z < 0) {
-                  if (this.var_35d > (float)(this.var_b6f.x - 10) && this.var_35d < (float)(this.var_b6f.x + 10) && this.var_39b > (float)(this.var_b6f.y - 10) && this.var_39b < (float)(this.var_b6f.y + 10)) {
+               this.starNetCamera_.getScreenPosition(this.stars[var3].getLocalPos(this.tmpStarScreenPos2));
+               if (this.tmpStarScreenPos2.z < 0) {
+                  if (this.curScreenPosX > (float)(this.tmpStarScreenPos2.x - 10) && this.curScreenPosX < (float)(this.tmpStarScreenPos2.x + 10) && this.curScreenPosY > (float)(this.tmpStarScreenPos2.y - 10) && this.curScreenPosY < (float)(this.tmpStarScreenPos2.y + 10)) {
                      this.selectedSystem = var3;
                   }
 
-                  if (var2 != null && !this.jumpMapModeVar2_) {
+                  if (var2 != null && !this.fromStation) {
                      boolean var4 = false;
 
                      for(int var5 = 0; var5 < var2.length; ++var5) {
@@ -868,14 +867,14 @@ public final class StarMap {
                      }
 
                      if (var4) {
-                        var12 = (float)(this.var_b6f.x - this.var_b93.x) / 10.0F;
-                        var6 = (float)(this.var_b6f.y - this.var_b93.y) / 10.0F;
+                        var12 = (float)(this.tmpStarScreenPos2.x - this.tmpStarScreenPos1.x) / 10.0F;
+                        var6 = (float)(this.tmpStarScreenPos2.y - this.tmpStarScreenPos1.y) / 10.0F;
                         var7 = var12 * 2.0F;
                         float var8 = var6 * 2.0F;
 
                         for(int var10 = 0; var10 < 8; ++var10) {
-                           GameStatus.graphics.setColor(var10 == this.var_ffe ? -4138775 : -12950906);
-                           GameStatus.graphics.fillArc((int)((float)this.var_b93.x + var7) - 2, (int)((float)this.var_b93.y + var8) - 2, 4, 4, 0, 360);
+                           GlobalStatus.graphics.setColor(var10 == this.highlightedPathDot ? -4138775 : -12950906);
+                           GlobalStatus.graphics.fillArc((int)((float)this.tmpStarScreenPos1.x + var7) - 2, (int)((float)this.tmpStarScreenPos1.y + var8) - 2, 4, 4, 0, 360);
                            var7 += var12;
                            var8 += var6;
                         }
@@ -884,265 +883,265 @@ public final class StarMap {
                }
 
                if (var1 < 0) {
-                  this.sub_29e(var3, false);
+                  this.drawOnScreenInfo(var3, false);
                }
             }
          }
 
          if (this.pathToDestination_ != null) {
             for(var3 = 0; var3 < this.pathToDestination_.length - 1; ++var3) {
-               this.var_b0a.sub_fa(this.var_a6c[this.pathToDestination_[var3]].sub_22a(this.var_b93));
-               this.var_b0a.sub_fa(this.var_a6c[this.pathToDestination_[var3 + 1]].sub_22a(this.var_b6f));
-               float var11 = (float)(this.var_b6f.x - this.var_b93.x) / 10.0F;
-               var12 = (float)(this.var_b6f.y - this.var_b93.y) / 10.0F;
+               this.starNetCamera_.getScreenPosition(this.stars[this.pathToDestination_[var3]].getLocalPos(this.tmpStarScreenPos1));
+               this.starNetCamera_.getScreenPosition(this.stars[this.pathToDestination_[var3 + 1]].getLocalPos(this.tmpStarScreenPos2));
+               float var11 = (float)(this.tmpStarScreenPos2.x - this.tmpStarScreenPos1.x) / 10.0F;
+               var12 = (float)(this.tmpStarScreenPos2.y - this.tmpStarScreenPos1.y) / 10.0F;
                var6 = var11 * 2.0F;
                var7 = var12 * 2.0F;
 
                for(int var13 = 0; var13 < 8; ++var13) {
-                  GameStatus.graphics.setColor((var3 << 3) + var13 == this.var_ffe ? -1 : -4740812);
-                  GameStatus.graphics.fillArc((int)((float)this.var_b93.x + var6) - 2, (int)((float)this.var_b93.y + var7) - 2, 4, 4, 0, 360);
+                  GlobalStatus.graphics.setColor((var3 << 3) + var13 == this.highlightedPathDot ? -1 : -4740812);
+                  GlobalStatus.graphics.fillArc((int)((float)this.tmpStarScreenPos1.x + var6) - 2, (int)((float)this.tmpStarScreenPos1.y + var7) - 2, 4, 4, 0, 360);
                   var6 += var11;
                   var7 += var12;
                }
             }
          }
 
-         if (this.selectedSystem >= 0 && (!this.var_1271 || this.var_129f >= 4000)) {
-            this.sub_29e(this.selectedSystem, false);
+         if (this.selectedSystem >= 0 && (!this.discoverSystemCutscene || this.newSystemAnimTime >= 4000)) {
+            this.drawOnScreenInfo(this.selectedSystem, false);
          }
 
-         if (!this.jumpMapModeVar2_) {
-            this.var_f8b += this.frameTime;
-            if (this.var_f8b > 400) {
-               ++this.var_ffe;
-               if (this.var_ffe > (this.pathToDestination_ == null ? 20 : this.pathToDestination_.length << 3)) {
-                  this.var_ffe = 0;
+         if (!this.fromStation) {
+            this.pathDisplayDelay += this.frameTime;
+            if (this.pathDisplayDelay > 400) {
+               ++this.highlightedPathDot;
+               if (this.highlightedPathDot > (this.pathToDestination_ == null ? 20 : this.pathToDestination_.length << 3)) {
+                  this.highlightedPathDot = 0;
                }
             }
          }
-         this.var_871 = null; 
+         this.raceLogoBig = null; 
          break;
       case 3:
-	  if (var_871 == null) {
-         this.var_871 = AEImage.loadImage("/data/interface/logo_" + this.systems[this.selectedSystem].getRace() + ".png", true);
+	  if (raceLogoBig == null) {
+         this.raceLogoBig = AEFile.loadImage("/data/interface/logo_" + this.systems[this.selectedSystem].getRace() + ".png", true);
 	  }
-	  GameStatus.graphics.drawImage(this.var_871, 5, 18, 20);
+	  GlobalStatus.graphics.drawImage(this.raceLogoBig, 5, 18, 20);
 
-         for(var3 = 0; var3 < this.var_993.length; ++var3) {
+         for(var3 = 0; var3 < this.selectedSystemStations.length; ++var3) {
             if (var3 != this.selectedPlanet) {
-               this.sub_29e(var3, true);
+               this.drawOnScreenInfo(var3, true);
             }
          }
 
-         this.sub_29e(this.selectedPlanet, true);
+         this.drawOnScreenInfo(this.selectedPlanet, true);
          break;
       default:
-         Layout.sub_3c6("", "");
+         Layout.drawFooter("", "");
       }
 
-      if (this.var_ce0 == null && !this.var_1271) {
-         if ((var1 = (int)(this.var_101a * 1.5F)) > 0) {
-            GameStatus.graphics.setColor(-8086094);
-            GameStatus.graphics.drawLine((int)this.var_35d, (int)this.var_39b + var1, (int)this.var_35d - var1, (int)this.var_39b);
-            GameStatus.graphics.drawLine((int)this.var_35d - var1, (int)this.var_39b, (int)this.var_35d, (int)this.var_39b - var1);
-            GameStatus.graphics.drawLine((int)this.var_35d, (int)this.var_39b - var1, (int)this.var_35d + var1, (int)this.var_39b);
-            GameStatus.graphics.drawLine((int)this.var_35d + var1, (int)this.var_39b, (int)this.var_35d, (int)this.var_39b + var1);
+      if (this.localSystem == null && !this.discoverSystemCutscene) {
+         if ((var1 = (int)(this.curSqrSize * 1.5F)) > 0) {
+            GlobalStatus.graphics.setColor(-8086094);
+            GlobalStatus.graphics.drawLine((int)this.curScreenPosX, (int)this.curScreenPosY + var1, (int)this.curScreenPosX - var1, (int)this.curScreenPosY);
+            GlobalStatus.graphics.drawLine((int)this.curScreenPosX - var1, (int)this.curScreenPosY, (int)this.curScreenPosX, (int)this.curScreenPosY - var1);
+            GlobalStatus.graphics.drawLine((int)this.curScreenPosX, (int)this.curScreenPosY - var1, (int)this.curScreenPosX + var1, (int)this.curScreenPosY);
+            GlobalStatus.graphics.drawLine((int)this.curScreenPosX + var1, (int)this.curScreenPosY, (int)this.curScreenPosX, (int)this.curScreenPosY + var1);
          }
 
-         this.var_895.setTransform(0);
-         this.var_895.setRefPixelPosition((int)this.var_35d, (int)this.var_39b + var1);
-         this.var_895.paint(GameStatus.graphics);
-         this.var_895.setTransform(3);
-         this.var_895.setRefPixelPosition((int)this.var_35d, (int)this.var_39b - var1);
-         this.var_895.paint(GameStatus.graphics);
-         this.var_895.setTransform(5);
-         this.var_895.setRefPixelPosition((int)this.var_35d - var1, (int)this.var_39b);
-         this.var_895.paint(GameStatus.graphics);
-         this.var_895.setTransform(6);
-         this.var_895.setRefPixelPosition((int)this.var_35d + var1, (int)this.var_39b);
-         this.var_895.paint(GameStatus.graphics);
+         this.cursorLine.setTransform(0);
+         this.cursorLine.setRefPixelPosition((int)this.curScreenPosX, (int)this.curScreenPosY + var1);
+         this.cursorLine.paint(GlobalStatus.graphics);
+         this.cursorLine.setTransform(3);
+         this.cursorLine.setRefPixelPosition((int)this.curScreenPosX, (int)this.curScreenPosY - var1);
+         this.cursorLine.paint(GlobalStatus.graphics);
+         this.cursorLine.setTransform(5);
+         this.cursorLine.setRefPixelPosition((int)this.curScreenPosX - var1, (int)this.curScreenPosY);
+         this.cursorLine.paint(GlobalStatus.graphics);
+         this.cursorLine.setTransform(6);
+         this.cursorLine.setRefPixelPosition((int)this.curScreenPosX + var1, (int)this.curScreenPosY);
+         this.cursorLine.paint(GlobalStatus.graphics);
       }
 
-      if (this.var_349 == 3) {
-         Layout.sub_2db(GameStatus.langManager.getLangString(72) + ": " + this.systems[this.selectedSystem].getName() + " " + GameStatus.langManager.getLangString(41), false);
-         Layout.sub_3c6(GameStatus.langManager.getLangString(223), GameStatus.langManager.getLangString(65));
-         SymbolMapManager_.sub_161(!this.var_d20 && Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getId()) && this.var_993[this.selectedPlanet].getId() != Status.getStation().getId() ? GameStatus.langManager.getLangString(222) : "", GameStatus.screenWidth >> 1, GameStatus.screenHeight - 4, 1, 40);
+      if (this.state == 3) {
+         Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(72) + ": " + this.systems[this.selectedSystem].getName() + " " + GlobalStatus.gameText.getText(41), false);
+         Layout.drawFooter(GlobalStatus.gameText.getText(223), GlobalStatus.gameText.getText(65));
+         Font.drawString(!this.overviewOnly_ && Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getId()) && this.selectedSystemStations[this.selectedPlanet].getId() != Status.getStation().getId() ? GlobalStatus.gameText.getText(222) : "", GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - 4, 1, 40);
       } else {
-         Layout.sub_2db(GameStatus.langManager.getLangString(72), false);
-         if (this.var_1271) {
-            Layout.sub_3c6("", GameStatus.langManager.getLangString(65));
+         Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(72), false);
+         if (this.discoverSystemCutscene) {
+            Layout.drawFooter("", GlobalStatus.gameText.getText(65));
          } else {
-            Layout.sub_3c6(GameStatus.langManager.getLangString(223), GameStatus.langManager.getLangString(65));
-            SymbolMapManager_.sub_161(this.var_d20 ? "" : GameStatus.langManager.getLangString(221), GameStatus.screenWidth >> 1, GameStatus.screenHeight - 4, 1, 40);
+            Layout.drawFooter(GlobalStatus.gameText.getText(223), GlobalStatus.gameText.getText(65));
+            Font.drawString(this.overviewOnly_ ? "" : GlobalStatus.gameText.getText(221), GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - 4, 1, 40);
          }
       }
 
-      if (this.var_11d9 && (this.var_349 == 0 || this.var_349 == 3)) {
-         Layout.drawFilledTitleBarWindow(GameStatus.langManager.getLangString(223), 1, GameStatus.screenHeight - 16 - 90 - 4, this.var_11e9, 94);
-         int var9 = GameStatus.screenHeight - 3 - 16 - 13;
-         GameStatus.graphics.drawImage(this.var_776, 10, var9, 20);
-         SymbolMapManager_.sub_161(GameStatus.langManager.getLangString(132), 25, var9, 1, 17);
+      if (this.legendOpen && (this.state == 0 || this.state == 3)) {
+         Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(223), 1, GlobalStatus.screenHeight - 16 - 90 - 4, this.legendWindowWidth, 94);
+         int var9 = GlobalStatus.screenHeight - 3 - 16 - 13;
+         GlobalStatus.graphics.drawImage(this.bluePrintIcon, 10, var9, 20);
+         Font.drawString(GlobalStatus.gameText.getText(132), 25, var9, 1, 17);
          var9 -= 15;
-         GameStatus.graphics.drawImage(this.var_848, 10, var9, 20);
-         SymbolMapManager_.sub_161(GameStatus.langManager.getLangString(224), 25, var9, 1, 17);
+         GlobalStatus.graphics.drawImage(this.checkMark, 10, var9, 20);
+         Font.drawString(GlobalStatus.gameText.getText(224), 25, var9, 1, 17);
          var9 -= 15;
-         GameStatus.graphics.drawImage(this.var_81d, 10, var9, 20);
-         SymbolMapManager_.sub_161(GameStatus.langManager.getLangString(271), 25, var9, 1, 17);
+         GlobalStatus.graphics.drawImage(this.jumpGateIcon, 10, var9, 20);
+         Font.drawString(GlobalStatus.gameText.getText(271), 25, var9, 1, 17);
          var9 -= 15;
-         GameStatus.graphics.drawImage(this.var_7eb, 10, var9, 20);
-         SymbolMapManager_.sub_161(GameStatus.langManager.getLangString(279), 25, var9, 1, 17);
+         GlobalStatus.graphics.drawImage(this.sideMissionIcon, 10, var9, 20);
+         Font.drawString(GlobalStatus.gameText.getText(279), 25, var9, 1, 17);
          var9 -= 15;
-         GameStatus.graphics.drawImage(this.var_78f, 10, var9, 20);
-         SymbolMapManager_.sub_161(GameStatus.langManager.getLangString(278), 25, var9, 1, 17);
+         GlobalStatus.graphics.drawImage(this.mainMissionIcon, 10, var9, 20);
+         Font.drawString(GlobalStatus.gameText.getText(278), 25, var9, 1, 17);
       }
 
-      if (this.var_d7c) {
-         this.var_9e6.sub_19a();
+      if (this.destinationConfirmPopupOpen) {
+         this.popup.draw();
       }
 
    }
 
-   private void sub_29e(int var1, boolean var2) {
+   private void drawOnScreenInfo(int var1, boolean var2) {
       int var3;
-      for(var3 = 0; var3 < this.var_114f.length; ++var3) {
-         this.var_114f[var3] = null;
+      for(var3 = 0; var3 < this.legendItemIcons.length; ++var3) {
+         this.legendItemIcons[var3] = null;
       }
 
-      if (var2 && this.var_993[var1].sub_175() || !var2 && this.systems[var1].isFullyDiscovered()) {
-         this.var_114f[0] = this.var_848;
+      if (var2 && this.selectedSystemStations[var1].isDiscovered() || !var2 && this.systems[var1].isFullyDiscovered()) {
+         this.legendItemIcons[0] = this.checkMark;
       }
 
       Mission var7 = Status.getCampaignMission();
       Mission var4 = Status.getFreelanceMission();
-      if (var7 != null && !var7.isEmpty() && (var2 && this.var_993[var1].getId() == var7.setCampaignMission() || !var2 && this.systems[var1].verifyStationInSystem(var7.setCampaignMission()) >= 0 || Status.getCurrentCampaignMission() > 32 && (var2 && this.var_993[var1].getId() == Status.wormholeStation && var7.setCampaignMission() == -1 || !var2 && this.systems[var1].verifyStationInSystem(Status.wormholeStation) >= 0 && var7.setCampaignMission() == -1))) {
-         this.var_114f[1] = this.var_78f;
+      if (var7 != null && !var7.isEmpty() && (var2 && this.selectedSystemStations[var1].getId() == var7.getTargetStation() || !var2 && this.systems[var1].getStationEnumIndex(var7.getTargetStation()) >= 0 || Status.getCurrentCampaignMission() > 32 && (var2 && this.selectedSystemStations[var1].getId() == Status.wormholeStation && var7.getTargetStation() == -1 || !var2 && this.systems[var1].getStationEnumIndex(Status.wormholeStation) >= 0 && var7.getTargetStation() == -1))) {
+         this.legendItemIcons[1] = this.mainMissionIcon;
       }
 
-      if (var4 != null && !var4.isEmpty() && (var2 && this.var_993[var1].getId() == var4.setCampaignMission() || !var2 && this.systems[var1].verifyStationInSystem(var4.setCampaignMission()) >= 0)) {
-         this.var_114f[2] = this.var_7eb;
+      if (var4 != null && !var4.isEmpty() && (var2 && this.selectedSystemStations[var1].getId() == var4.getTargetStation() || !var2 && this.systems[var1].getStationEnumIndex(var4.getTargetStation()) >= 0)) {
+         this.legendItemIcons[2] = this.sideMissionIcon;
       }
 
-      if (var2 && this.systems[this.selectedSystem].getJumpgateStationIndex() == this.var_993[var1].getId()) {
-         this.var_114f[3] = this.var_81d;
+      if (var2 && this.systems[this.selectedSystem].getJumpgateStationIndex() == this.selectedSystemStations[var1].getId()) {
+         this.legendItemIcons[3] = this.jumpGateIcon;
       }
 
       ProducedGood[] var8;
       int var9;
       if ((var8 = Status.getWaitingGoods()) != null) {
          for(var9 = 0; var9 < var8.length; ++var9) {
-            if (var8[var9] != null && (var2 && var8[var9].stationId == this.var_993[var1].getId() || !var2 && this.systems[var1].verifyStationInSystem(var8[var9].stationId) >= 0)) {
-               this.var_114f[4] = this.var_776;
+            if (var8[var9] != null && (var2 && var8[var9].stationId == this.selectedSystemStations[var1].getId() || !var2 && this.systems[var1].getStationEnumIndex(var8[var9].stationId) >= 0)) {
+               this.legendItemIcons[4] = this.bluePrintIcon;
                break;
             }
          }
       }
 
       if (var2) {
-         this.var_b0a.sub_fa(this.var_c27[var1 + 2].sub_22a(this.var_b6f));
+         this.starNetCamera_.getScreenPosition(this.localStarAndPlanetsMeshes[var1 + 2].getLocalPos(this.tmpStarScreenPos2));
       } else {
-         this.var_b0a.sub_fa(this.var_a6c[var1].sub_22a(this.var_b6f));
+         this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
       }
 
       boolean var11 = false;
       boolean var10 = false;
       if (var2) {
-         var9 = this.var_b6f.y - 4;
-         var3 = this.var_b6f.x + 10 + SymbolMapManager_.sub_25b(this.var_993[var1].getName(), 0) + 7;
-         SymbolMapManager_.sub_161(this.var_993[var1].getName(), this.var_b6f.x + 10, var9, this.selectedPlanet == var1 ? 2 : (this.var_993[var1].sub_175() ? 0 : 1), 17);
+         var9 = this.tmpStarScreenPos2.y - 4;
+         var3 = this.tmpStarScreenPos2.x + 10 + Font.getTextWidth(this.selectedSystemStations[var1].getName(), 0) + 7;
+         Font.drawString(this.selectedSystemStations[var1].getName(), this.tmpStarScreenPos2.x + 10, var9, this.selectedPlanet == var1 ? 2 : (this.selectedSystemStations[var1].isDiscovered() ? 0 : 1), 17);
          if (var1 == this.selectedPlanet) {
-            SymbolMapManager_.sub_102(GameStatus.langManager.getLangString(37) + ": " + this.var_993[var1].getTecLevel(), this.var_b6f.x + 10, var9 + SymbolMapManager_.sub_2c2(), this.var_993[var1].sub_175() ? 0 : 1);
+            Font.drawString(GlobalStatus.gameText.getText(37) + ": " + this.selectedSystemStations[var1].getTecLevel(), this.tmpStarScreenPos2.x + 10, var9 + Font.getFontSpacingY(), this.selectedSystemStations[var1].isDiscovered() ? 0 : 1);
          }
       } else {
-         var9 = this.var_b6f.y - SymbolMapManager_.sub_2c2() - 4;
+         var9 = this.tmpStarScreenPos2.y - Font.getFontSpacingY() - 4;
          byte var5 = 10;
          if (this.selectedSystem == var1) {
-            this.var_924.setFrame(this.systems[var1].getRace());
-            this.var_924.setPosition(this.var_b6f.x + 10, var9 - 4);
-            this.var_924.paint(GameStatus.graphics);
+            this.logos.setFrame(this.systems[var1].getRace());
+            this.logos.setPosition(this.tmpStarScreenPos2.x + 10, var9 - 4);
+            this.logos.paint(GlobalStatus.graphics);
             var5 = 27;
          }
 
-         var3 = this.var_b6f.x + var5 + SymbolMapManager_.sub_25b(this.systems[var1].getName(), 0) + 7;
+         var3 = this.tmpStarScreenPos2.x + var5 + Font.getTextWidth(this.systems[var1].getName(), 0) + 7;
          boolean var6 = true;
-         if (this.var_d20 && !var2 && this.destinationOrMissionSystem_ == this.systems[var1].getId()) {
-            var6 = Layout.sub_119();
+         if (this.overviewOnly_ && !var2 && this.destinationOrMissionSystem_ == this.systems[var1].getId()) {
+            var6 = Layout.quickClockHigh_();
          }
 
          if (var6) {
-            SymbolMapManager_.sub_161(this.systems[var1].getName(), this.var_b6f.x + var5, var9 - 2, this.selectedSystem != var1 && this.selectedSystem != Status.getSystem().getId() ? 1 : 2, 17);
+            Font.drawString(this.systems[var1].getName(), this.tmpStarScreenPos2.x + var5, var9 - 2, this.selectedSystem != var1 && this.selectedSystem != Status.getSystem().getId() ? 1 : 2, 17);
          }
 
          if (var1 == this.selectedSystem) {
-            SymbolMapManager_.sub_102(GameStatus.langManager.getLangString(219) + ": ", this.var_b6f.x + 10, var9 + 2 * SymbolMapManager_.sub_2c2(), 0);
-            SymbolMapManager_.sub_102(GameStatus.langManager.getLangString(229 + this.systems[this.selectedSystem].getRace()), this.var_b6f.x + 10, var9 + 3 * SymbolMapManager_.sub_2c2(), 1);
-            SymbolMapManager_.sub_102(GameStatus.langManager.getLangString(220) + ": ", this.var_b6f.x + 10, var9 + 4 * SymbolMapManager_.sub_2c2(), 0);
-            SymbolMapManager_.sub_102(GameStatus.langManager.getLangString(225 + this.systems[this.selectedSystem].getSafety()), this.var_b6f.x + 10, var9 + 5 * SymbolMapManager_.sub_2c2(), 1);
+            Font.drawString(GlobalStatus.gameText.getText(219) + ": ", this.tmpStarScreenPos2.x + 10, var9 + 2 * Font.getFontSpacingY(), 0);
+            Font.drawString(GlobalStatus.gameText.getText(229 + this.systems[this.selectedSystem].getRace()), this.tmpStarScreenPos2.x + 10, var9 + 3 * Font.getFontSpacingY(), 1);
+            Font.drawString(GlobalStatus.gameText.getText(220) + ": ", this.tmpStarScreenPos2.x + 10, var9 + 4 * Font.getFontSpacingY(), 0);
+            Font.drawString(GlobalStatus.gameText.getText(225 + this.systems[this.selectedSystem].getSafety()), this.tmpStarScreenPos2.x + 10, var9 + 5 * Font.getFontSpacingY(), 1);
          }
       }
 
-      for(int var12 = 0; var12 < this.var_114f.length; ++var12) {
-         if (this.var_114f[var12] != null) {
-            GameStatus.graphics.drawImage(this.var_114f[var12], var3, var9 - 1, 20);
-            var3 += this.var_114f[var12].getWidth() + 2;
+      for(int var12 = 0; var12 < this.legendItemIcons.length; ++var12) {
+         if (this.legendItemIcons[var12] != null) {
+            GlobalStatus.graphics.drawImage(this.legendItemIcons[var12], var3, var9 - 1, 20);
+            var3 += this.legendItemIcons[var12].getWidth() + 2;
          }
       }
 
    }
 
-   private void sub_2b5() {
-      GameStatus.graphics.setColor(0);
-      GameStatus.graphics.fillRect(0, 0, GameStatus.screenWidth, GameStatus.screenHeight);
-      if (this.var_349 == 3) {
-         Layout.sub_2c1(GameStatus.langManager.getLangString(72) + ": " + this.systems[this.selectedSystem].getName() + " " + GameStatus.langManager.getLangString(41));
+   private void draw() {
+      GlobalStatus.graphics.setColor(0);
+      GlobalStatus.graphics.fillRect(0, 0, GlobalStatus.screenWidth, GlobalStatus.screenHeight);
+      if (this.state == 3) {
+         Layout.drawWindowFrame(GlobalStatus.gameText.getText(72) + ": " + this.systems[this.selectedSystem].getName() + " " + GlobalStatus.gameText.getText(41));
       } else {
-         Layout.sub_2c1(GameStatus.langManager.getLangString(72));
+         Layout.drawWindowFrame(GlobalStatus.gameText.getText(72));
       }
 
       int var3;
-      if (this.var_ce0 != null) {
+      if (this.localSystem != null) {
          SolarSystem var4 = this.systems[this.selectedSystem];
-         GameStatus.graphics.setColor(var4.spaceShadeR, var4.spaceShadeG, var4.spaceShadeB);
-         GameStatus.graphics.fillRect(this.var_201, this.var_254, this.var_292, this.var_2ce);
-         this.var_b6f = this.var_c27[0].sub_22a(this.var_b6f);
-         this.var_b0a.sub_fa(this.var_b6f);
-         int var5 = this.var_b6f.x;
-         var3 = this.var_b6f.y;
-         this.var_8f6.setTransform(0);
-         this.var_8f6.setRefPixelPosition(var5, var3);
-         this.var_8f6.paint(GameStatus.graphics);
-         this.var_8f6.setTransform(5);
-         this.var_8f6.setRefPixelPosition(var5 - 1, var3);
-         this.var_8f6.paint(GameStatus.graphics);
-         this.var_8f6.setTransform(3);
-         this.var_8f6.setRefPixelPosition(var5 - 1, var3 - 1);
-         this.var_8f6.paint(GameStatus.graphics);
-         this.var_8f6.setTransform(6);
-         this.var_8f6.setRefPixelPosition(var5, var3 - 1);
-         this.var_8f6.paint(GameStatus.graphics);
+         GlobalStatus.graphics.setColor(var4.starR, var4.starG, var4.starB);
+         GlobalStatus.graphics.fillRect(this.windowFrameWidth, this.windowFrameHeight, this.mapInnerWidth, this.mapInnerHeight);
+         this.tmpStarScreenPos2 = this.localStarAndPlanetsMeshes[0].getLocalPos(this.tmpStarScreenPos2);
+         this.starNetCamera_.getScreenPosition(this.tmpStarScreenPos2);
+         int var5 = this.tmpStarScreenPos2.x;
+         var3 = this.tmpStarScreenPos2.y;
+         this.systemStar.setTransform(0);
+         this.systemStar.setRefPixelPosition(var5, var3);
+         this.systemStar.paint(GlobalStatus.graphics);
+         this.systemStar.setTransform(5);
+         this.systemStar.setRefPixelPosition(var5 - 1, var3);
+         this.systemStar.paint(GlobalStatus.graphics);
+         this.systemStar.setTransform(3);
+         this.systemStar.setRefPixelPosition(var5 - 1, var3 - 1);
+         this.systemStar.paint(GlobalStatus.graphics);
+         this.systemStar.setTransform(6);
+         this.systemStar.setRefPixelPosition(var5, var3 - 1);
+         this.systemStar.paint(GlobalStatus.graphics);
       } else {
-         GameStatus.graphics.drawImage(this.var_764, (int)((float)this.var_201 + this.var_3af), (int)((float)this.var_254 + this.var_401), 0);
-         GameStatus.graphics.drawImage(this.var_764, (int)((float)this.var_201 + this.var_3af) + (this.var_452 >> 1), (int)((float)this.var_254 + this.var_401), 0);
-         GameStatus.graphics.drawImage(this.var_764, (int)((float)this.var_201 + this.var_3af), (int)((float)this.var_254 + this.var_401) + (this.var_4b6 >> 1), 0);
-         GameStatus.graphics.drawImage(this.var_764, (int)((float)this.var_201 + this.var_3af) + (this.var_452 >> 1), (int)((float)this.var_254 + this.var_401) + (this.var_4b6 >> 1), 0);
+         GlobalStatus.graphics.drawImage(this.fog, (int)((float)this.windowFrameWidth + this.scrollX), (int)((float)this.windowFrameHeight + this.scrollY), 0);
+         GlobalStatus.graphics.drawImage(this.fog, (int)((float)this.windowFrameWidth + this.scrollX) + (this.backGroundTileX >> 1), (int)((float)this.windowFrameHeight + this.scrollY), 0);
+         GlobalStatus.graphics.drawImage(this.fog, (int)((float)this.windowFrameWidth + this.scrollX), (int)((float)this.windowFrameHeight + this.scrollY) + (this.backGroundTileY >> 1), 0);
+         GlobalStatus.graphics.drawImage(this.fog, (int)((float)this.windowFrameWidth + this.scrollX) + (this.backGroundTileX >> 1), (int)((float)this.windowFrameHeight + this.scrollY) + (this.backGroundTileY >> 1), 0);
 
-         for(int var1 = 0; var1 < this.var_a6c.length; ++var1) {
-            if (this.var_a6c[var1].sub_87() && (!this.var_1271 || this.var_124c != var1 || this.var_129f >= 4000)) {
+         for(int var1 = 0; var1 < this.stars.length; ++var1) {
+            if (this.stars[var1].isVisible() && (!this.discoverSystemCutscene || this.discoveredSystemId != var1 || this.newSystemAnimTime >= 4000)) {
                int[] var2;
                if ((var2 = this.systems[var1].getNeighbourSystems()) != null) {
-                  this.var_b0a.sub_fa(this.var_a6c[var1].sub_22a(this.var_b6f));
-                  GameStatus.graphics.setColor(Layout.uiOuterTopRightOutlineColor);
+                  this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
+                  GlobalStatus.graphics.setColor(Layout.uiOuterTopRightOutlineColor);
 
                   for(var3 = 0; var3 < var2.length; ++var3) {
-                     if (this.var_a6c[var2[var3]].sub_87() && (!this.var_1271 || this.var_124c != var3 || this.var_129f >= 4000)) {
-                        this.var_b0a.sub_fa(this.var_a6c[var2[var3]].sub_22a(this.var_b93));
-                        GameStatus.graphics.drawLine(this.var_b6f.x, this.var_b6f.y, this.var_b93.x, this.var_b93.y);
+                     if (this.stars[var2[var3]].isVisible() && (!this.discoverSystemCutscene || this.discoveredSystemId != var3 || this.newSystemAnimTime >= 4000)) {
+                        this.starNetCamera_.getScreenPosition(this.stars[var2[var3]].getLocalPos(this.tmpStarScreenPos1));
+                        GlobalStatus.graphics.drawLine(this.tmpStarScreenPos2.x, this.tmpStarScreenPos2.y, this.tmpStarScreenPos1.x, this.tmpStarScreenPos1.y);
                      }
                   }
                }
 
-               GameStatus.renderer.getCamera().sub_fa(this.var_a6c[var1].sub_22a(this.var_b6f));
-               if (this.var_b6f.z < 0) {
-                  GameStatus.graphics.drawImage(this.var_f1d, this.var_b6f.x, this.var_b6f.y, 3);
+               GlobalStatus.renderer.getCamera().getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
+               if (this.tmpStarScreenPos2.z < 0) {
+                  GlobalStatus.graphics.drawImage(this.sunGlow, this.tmpStarScreenPos2.x, this.tmpStarScreenPos2.y, 3);
                }
             }
          }
@@ -1151,12 +1150,12 @@ public final class StarMap {
    }
 
    public final void askForJumpIntoAlienWorld() {
-      this.var_1302 = true;
-      if (this.var_9e6 == null) {
-         this.var_9e6 = new Popup();
+      this.jumpToAlienWorldPopupOpen = true;
+      if (this.popup == null) {
+         this.popup = new Popup();
       }
 
-      this.var_9e6.sub_8f(GameStatus.langManager.getLangString(243), true);
-      this.var_d7c = true;
+      this.popup.set(GlobalStatus.gameText.getText(243), true);
+      this.destinationConfirmPopupOpen = true;
    }
 }

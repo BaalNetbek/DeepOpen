@@ -1,6 +1,6 @@
 package Main;
 
-import AbyssEngine.GameStatus;
+import AE.GlobalStatus;
 import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
 
@@ -12,15 +12,15 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
    public static final int PRE_PAUSE = 4;
    private GOF2Canvas canvas;
    private Display display;
-   private boolean var_619 = false;
-   private boolean var_626 = false;
+   private boolean started = false;
+   private boolean selfDestructing = false;
    private Thread thread;
 
    public GOF2MIDlet() {
       try {
          this.display = Display.getDisplay(this);
-         GameStatus.display = this.display;
-         GameStatus.midlet = this;
+         GlobalStatus.display = this.display;
+         GlobalStatus.midlet = this;
          this.canvas = new GOF2Canvas(this);
          this.thread = new Thread(this);
          this.state = 1;
@@ -36,9 +36,9 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
       try {
          this.display.setCurrent(this.canvas);
          this.canvas.setFullScreenMode(true);
-         if (!this.var_619) {
+         if (!this.started) {
             this.thread.start();
-            this.var_619 = true;
+            this.started = true;
          }
 
       } catch (Exception var1) {
@@ -59,8 +59,8 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
 
    public void destroyApp(boolean var1) {
       try {
-         this.var_626 = true;
-         this.canvas.sub_10d();
+         this.selfDestructing = true;
+         this.canvas.OnRelease();
          this.notifyDestroyed();
       } catch (Exception var2) {
       }
@@ -71,27 +71,27 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
          while(true) {
             switch(this.state) {
             case 1:
-               if (GameStatus.var_9da && !this.var_626 && GameStatus.var_9fc != -1) {
-                  GameStatus.soundManager.playMusic(GameStatus.var_9fc);
+               if (GlobalStatus.soundDeviceUnavailable && !this.selfDestructing && GlobalStatus.currentMusic != -1) {
+                  GlobalStatus.soundManager.playMusic(GlobalStatus.currentMusic);
                }
 
-               this.canvas.sub_ca();
+               this.canvas.update_();
                this.canvas.synchronizeKeyState();
                break;
             case 2:
-               if (GameStatus.soundManager != null && GameStatus.musicOn) {
-                  GameStatus.soundManager.sub_287();
+               if (GlobalStatus.soundManager != null && GlobalStatus.musicOn) {
+                  GlobalStatus.soundManager.resume();
                }
 
-               GameStatus.var_bd5 = false;
+               GlobalStatus.paused = false;
                this.state = 1;
                break;
             case 3:
-               this.canvas.sub_125();
+               this.canvas.handlePausedState();
                this.canvas.synchronizeKeyState();
                break;
             case 4:
-               this.canvas.sub_8b();
+               this.canvas.pause();
                this.state = 3;
             }
 

@@ -1,172 +1,172 @@
 package Main;
 
-import AbyssEngine.AEResourceManager;
-import AbyssEngine.AEVector3D;
-import AbyssEngine.AbstractMesh;
-import AbyssEngine.AbstractScene;
-import AbyssEngine.AutoPilotList;
-import AbyssEngine.Camera;
-import AbyssEngine.Class_198;
-import AbyssEngine.Class_23e;
-import AbyssEngine.Class_661;
-import AbyssEngine.Class_7flight;
-import AbyssEngine.Class_876;
-import AbyssEngine.Class_c53cameraRelated;
-import AbyssEngine.Class_fd6;
-import AbyssEngine.Dialogue;
-import AbyssEngine.FileRead;
-import AbyssEngine.Galaxy;
-import AbyssEngine.GameStatus;
-import AbyssEngine.GraphNode;
-import AbyssEngine.Hud;
-import AbyssEngine.Item;
-import AbyssEngine.KIPlayer;
-import AbyssEngine.Layout;
-import AbyssEngine.Level;
-import AbyssEngine.MGameContext;
-import AbyssEngine.Medals;
-import AbyssEngine.Mission;
-import AbyssEngine.PlayerEgo;
-import AbyssEngine.PlayerJumpgate;
-import AbyssEngine.Popup;
-import AbyssEngine.Status;
-import AbyssEngine.SymbolMapManager_;
+import AE.AEResourceManager;
+import AE.Math.AEVector3D;
+import AE.AbstractMesh;
+import AE.IApplicationModule;
+import GoF2.AutoPilotList;
+import AE.Camera;
+import AE.CameraControllerGroup;
+import GoF2.Radio;
+import GoF2.Route;
+import GoF2.LevelScript;
+import GoF2.Objective;
+import AE.TargetFollowCamera;
+import AE.LookAtCamera;
+import GoF2.Dialogue;
+import GoF2.FileRead;
+import GoF2.Galaxy;
+import AE.GlobalStatus;
+import AE.GraphNode;
+import GoF2.Hud;
+import GoF2.Item;
+import GoF2.KIPlayer;
+import GoF2.Layout;
+import GoF2.Level;
+import GoF2.Radar;
+import GoF2.Achievements;
+import GoF2.Mission;
+import GoF2.PlayerEgo;
+import GoF2.PlayerJumpgate;
+import GoF2.Popup;
+import GoF2.Status;
+import AE.PaintCanvas.Font;
 
-public final class MGame extends AbstractScene {
-   private int var_47;
+public final class MGame extends IApplicationModule {
+   private int lookingBack;
    private long currentTimeMs;
    private long lastFrameTimeMs;
    private long frameTime;
-   private long var_187;
-   private long var_1c2;
-   private long var_209;
-   private boolean var_287;
+   private long menuListScrollTick;
+   private long unusedTick_;
+   private long fiveSecTick;
+   private boolean loaded;
    private PlayerEgo playerEgo;
-   private Camera var_3c0;
-   private Class_198 var_446;
-   private Class_c53cameraRelated var_450;
-   private Class_fd6 var_48b;
+   private Camera camera;
+   private CameraControllerGroup cameras_;
+   private TargetFollowCamera targetFollowCamera;
+   private LookAtCamera lookAtCamera;
    private boolean isIntro;
-   private boolean var_53f;
-   private boolean var_55d;
-   private boolean var_58b;
+   private boolean paused;
+   private boolean dialogueOpen_;
+   private boolean cinematicBreak_;
    private boolean egoDead;
-   private int var_5ea;
-   private Hud var_611;
-   private Level var_630;
-   private Class_7flight var_689;
-   private MGameContext var_6d2;
-   private Class_23e var_736;
-   private OptionsWindow var_75e;
-   private Dialogue var_7af;
-   private Dialogue var_7f9;
+   private int fov;
+   private Hud hud;
+   private Level level;
+   private LevelScript levelScript;
+   private Radar radar;
+   private Radio radio;
+   private OptionsWindow pauseMenu;
+   private Dialogue sequentialDialogue_;
+   private Dialogue interuptDialogue;
    private StarMap starMap;
-   private AutoPilotList var_865;
+   private AutoPilotList autoPilotList;
    private Popup popup;
    private boolean jumpgateReached;
-   private boolean var_947;
-   private boolean var_976;
+   private boolean unused947_;
+   private boolean mapOpen_;
    private boolean autopilotMenuOpen;
-   private boolean var_9d5;
-   private boolean var_a07;
-   private boolean var_a4e;
-   private boolean var_a7d;
-   private boolean var_b21;
+   private boolean touchesStream;
+   private boolean touchesStation;
+   private boolean jumpGateSoundStarted;
+   private boolean interruptedByDialogue;
+   private boolean inTurretMode;
    private boolean actionMenuOpen;
    private int keysPressed;
-   private boolean var_c3b;
-   private boolean var_c80;
-   private boolean var_ce4;
-   private AbstractMesh var_d04;
-   private boolean var_d4a;
-   private AEVector3D var_d9c = new AEVector3D();
+   private boolean shootingDisabled;
+   private boolean usingJumpDrive;
+   private boolean jumpDriveAnimStarted;
+   private AbstractMesh jumpFlash;
+   private boolean wingmenLeftNoticeShown;
+   private AEVector3D egoJumpPos = new AEVector3D();
 private boolean loadingDrawn;
 
-   public final void freeResources() {
+   public final void OnRelease() {
       if (this.playerEgo != null) {
-         this.playerEgo.sub_1181();
+         this.playerEgo.OnRelease();
       }
 
       this.playerEgo = null;
       if (this.starMap != null) {
-         this.starMap.sub_98();
+         this.starMap.OnRelease();
       }
 
       this.starMap = null;
-      if (this.var_7af != null) {
-         this.var_7af.sub_146();
+      if (this.sequentialDialogue_ != null) {
+         this.sequentialDialogue_.OnRelease();
       }
 
-      this.var_7af = null;
-      this.var_3c0 = null;
-      if (this.var_630 != null) {
-         this.var_630.sub_c8b();
+      this.sequentialDialogue_ = null;
+      this.camera = null;
+      if (this.level != null) {
+         this.level.onRelease();
       }
 
-      this.var_630 = null;
-      if (this.var_6d2 != null) {
-         this.var_6d2.sub_42();
+      this.level = null;
+      if (this.radar != null) {
+         this.radar.OnRelease();
       }
 
-      this.var_6d2 = null;
-      if (this.var_736 != null) {
-         this.var_736.sub_39();
+      this.radar = null;
+      if (this.radio != null) {
+         this.radio.OnRelease();
       }
 
-      this.var_736 = null;
-      this.var_611.sub_1e9();
-      if (this.var_75e != null) {
-         this.var_75e.sub_e6();
+      this.radio = null;
+      this.hud.OnRelease();
+      if (this.pauseMenu != null) {
+         this.pauseMenu.OnRelease();
       }
 
-      if (this.var_d04 != null) {
-         this.var_d04.destroy();
-         this.var_d04 = null;
+      if (this.jumpFlash != null) {
+         this.jumpFlash.OnRelease();
+         this.jumpFlash = null;
       }
 
-      this.var_450.sub_43((GraphNode)null);
-      this.var_450.sub_54((GraphNode)null);
-      this.var_446 = null;
-      this.var_3c0 = null;
-      this.var_75e = null;
-      this.var_689 = null;
-      this.var_287 = false;
-      this.var_865 = null;
+      this.targetFollowCamera.setTarget((GraphNode)null);
+      this.targetFollowCamera.OnRelease((GraphNode)null);
+      this.cameras_ = null;
+      this.camera = null;
+      this.pauseMenu = null;
+      this.levelScript = null;
+      this.loaded = false;
+      this.autoPilotList = null;
       System.gc();
    }
 
-   public final void loadResources() {
-      if (this.var_630 == null) {
-         this.var_630 = new Level();
+   public final void OnInitialize() {
+      if (this.level == null) {
+         this.level = new Level();
       }
 
-      if (this.var_630.sub_198()) {
-         this.playerEgo = this.var_630.getPlayerEgo();
-         this.var_611 = new Hud();
-         this.var_736 = new Class_23e();
-         this.var_736.sub_96(this.var_630.sub_872());
-         this.var_3c0 = Camera.sub_1b1(GameStatus.screenWidth, GameStatus.screenHeight, 750, 600, 200000);
-         this.var_446 = new Class_198();
-         this.var_446.sub_25(this.var_3c0);
-         GameStatus.renderer.sub_19(this.var_3c0);
-         this.var_450 = new Class_c53cameraRelated(this.playerEgo.var_50e, this.var_3c0);
-         this.var_48b = new Class_fd6(this.playerEgo.var_50e, this.var_3c0);
-         this.var_48b.sub_120(false);
-         this.var_446.sub_5c(this.var_48b);
-         this.var_446.sub_5c(this.var_450);
-         this.var_6d2 = new MGameContext(this.var_630);
-         this.var_689 = new Class_7flight(this.var_450, this.var_48b, this.var_630, this.var_611, this.var_6d2);
-         Class_7flight.sub_1b8(this.var_450, this.var_630);
-         this.playerEgo.sub_295(this.var_450, this.var_48b);
+      if (this.level.createSpace()) {
+         this.playerEgo = this.level.getPlayer();
+         this.hud = new Hud();
+         this.radio = new Radio();
+         this.radio.setMessages(this.level.getMessages());
+         this.camera = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 750, 600, 200000);
+         this.cameras_ = new CameraControllerGroup();
+         this.cameras_.uniqueAppend_(this.camera);
+         GlobalStatus.renderer.setActiveCamera(this.camera);
+         this.targetFollowCamera = new TargetFollowCamera(this.playerEgo.shipGrandGroup_, this.camera);
+         this.lookAtCamera = new LookAtCamera(this.playerEgo.shipGrandGroup_, this.camera);
+         this.lookAtCamera.setLookAt(false);
+         this.cameras_.addController(this.lookAtCamera);
+         this.cameras_.addController(this.targetFollowCamera);
+         this.radar = new Radar(this.level);
+         this.levelScript = new LevelScript(this.targetFollowCamera, this.lookAtCamera, this.level, this.hud, this.radar);
+         LevelScript.resetCamera(this.targetFollowCamera, this.level);
+         this.playerEgo.setCamControllers(this.targetFollowCamera, this.lookAtCamera);
          this.isIntro = Status.getCurrentCampaignMission() == 0;
          this.egoDead = false;
-         this.var_47 = 0;
-         this.var_53f = false;
-         this.var_58b = false;
-         this.var_209 = 0L;
+         this.lookingBack = 0;
+         this.paused = false;
+         this.cinematicBreak_ = false;
+         this.fiveSecTick = 0L;
          this.autopilotMenuOpen = false;
          this.jumpgateReached = false;
-         this.var_947 = false;
+         this.unused947_ = false;
          this.currentTimeMs = System.currentTimeMillis();
          this.lastFrameTimeMs = System.currentTimeMillis();
          if (Status.baseArmour >= 0) {
@@ -174,14 +174,14 @@ private boolean loadingDrawn;
          }
 
          if (Status.shield >= 0) {
-            this.playerEgo.player.sub_386(Status.shield);
+            this.playerEgo.player.setShieldHP(Status.shield);
          }
 
          if (Status.additionalArmour >= 0) {
-            this.playerEgo.player.sub_3aa(Status.additionalArmour);
+            this.playerEgo.player.setArmorHP(Status.additionalArmour);
          }
 
-         this.playerEgo.sub_127();
+         this.playerEgo.resetLastHP();
          Status.baseArmour = Status.getShip().getBaseArmour();
          Status.shield = Status.getShip().getShield();
          Status.additionalArmour = Status.getShip().getAdditionalArmour();
@@ -189,58 +189,58 @@ private boolean loadingDrawn;
             Status.lastVisitedNonVoidOrbit = Status.getStation().getId();
          }
 
-         this.var_a7d = false;
-         this.var_976 = false;
-         this.var_9d5 = false;
-         this.var_a07 = false;
-         Layout.sub_4cc(false);
+         this.interruptedByDialogue = false;
+         this.mapOpen_ = false;
+         this.touchesStream = false;
+         this.touchesStation = false;
+         Layout.setTickHighlight(false);
          System.gc();
          this.currentTimeMs = System.currentTimeMillis();
          this.lastFrameTimeMs = System.currentTimeMillis();
-         this.var_209 = 0L;
-         this.var_287 = true;
-         this.var_b21 = false;
+         this.fiveSecTick = 0L;
+         this.loaded = true;
+         this.inTurretMode = false;
          this.actionMenuOpen = false;
-         this.var_c3b = false;
-         this.var_c80 = false;
-         this.var_ce4 = false;
-         this.var_d4a = false;
-         this.var_a4e = false;
-         if (Status.getShip().isSimilarEquiped(GameStatus.var_9c3)) {
-            this.var_630.getPlayerEgo().sub_863(GameStatus.var_9c3);
+         this.shootingDisabled = false;
+         this.usingJumpDrive = false;
+         this.jumpDriveAnimStarted = false;
+         this.wingmenLeftNoticeShown = false;
+         this.jumpGateSoundStarted = false;
+         if (Status.getShip().hasEquipment(GlobalStatus.displayedSecondary)) {
+            this.level.getPlayer().setCurrentSecondaryWeaponIndex(GlobalStatus.displayedSecondary);
          }
 
          if (Status.getCurrentCampaignMission() != 0 && Status.getCurrentCampaignMission() != 1) {
-            if (GameStatus.random.nextInt(2) == 0) {
-               GameStatus.soundManager.playMusic(4);
+            if (GlobalStatus.random.nextInt(2) == 0) {
+               GlobalStatus.soundManager.playMusic(4);
             } else {
-               GameStatus.soundManager.playMusic(0);
+               GlobalStatus.soundManager.playMusic(0);
             }
          } else {
-            GameStatus.soundManager.playMusic(4);
+            GlobalStatus.soundManager.playMusic(4);
          }
       }
    }
 
    public final boolean isLoaded() {
-      return this.var_287;
+      return this.loaded;
    }
 
    public final void renderScene(int var1) {
       this.keysPressed = var1;
 
       try {
-         if (this.var_287) {
+         if (this.loaded) {
             this.currentTimeMs = System.currentTimeMillis();
             this.frameTime = this.currentTimeMs - this.lastFrameTimeMs;
             this.lastFrameTimeMs = this.currentTimeMs;
-            this.var_1c2 += this.frameTime;
-            this.var_187 += this.frameTime;
-            if (!this.var_53f) {
-               Class_7flight var10000 = this.var_689;
-               var10000.var_500 += this.frameTime;
-               if (!this.var_58b) {
-                  this.var_209 += this.frameTime;
+            this.unusedTick_ += this.frameTime;
+            this.menuListScrollTick += this.frameTime;
+            if (!this.paused) {
+               LevelScript var10000 = this.levelScript;
+               var10000.timePassed += this.frameTime;
+               if (!this.cinematicBreak_) {
+                  this.fiveSecTick += this.frameTime;
                }
 
                Status.incPlayingTime(this.frameTime);
@@ -249,242 +249,242 @@ private boolean loadingDrawn;
             }
 
             if (!this.egoDead) {
-               if (this.var_53f) {
-                  if (this.var_75e != null && !this.actionMenuOpen && !this.var_55d && !this.autopilotMenuOpen && !this.jumpgateReached && !this.var_a7d) {
-                     this.var_75e.sub_12b(var1, (int)this.frameTime);
-                     if (this.var_187 > 150L) {
-                        this.var_187 = 0L;
+               if (this.paused) {
+                  if (this.pauseMenu != null && !this.actionMenuOpen && !this.dialogueOpen_ && !this.autopilotMenuOpen && !this.jumpgateReached && !this.interruptedByDialogue) {
+                     this.pauseMenu.scrollAndTick_(var1, (int)this.frameTime);
+                     if (this.menuListScrollTick > 150L) {
+                        this.menuListScrollTick = 0L;
                         if ((var1 & 2) != 0) {
-                           this.var_75e.sub_1e5((int)this.frameTime);
+                           this.pauseMenu.scrollUp((int)this.frameTime);
                         }
 
                         if ((var1 & 64) != 0) {
-                           this.var_75e.sub_215((int)this.frameTime);
+                           this.pauseMenu.scrollDown((int)this.frameTime);
                         }
                      }
                   }
 
-                  if (!this.var_287) {
+                  if (!this.loaded) {
                      return;
                   } else {
-                     this.var_630.sub_9ff(this.frameTime);
-                     this.playerEgo.sub_11da(!this.var_58b);
-                     GameStatus.graphics3D.bindTarget(GameStatus.graphics);
-                     GameStatus.renderer.sub_95();
-                     GameStatus.graphics3D.releaseTarget();
+                     this.level.render2(this.frameTime);
+                     this.playerEgo.render(!this.cinematicBreak_);
+                     GlobalStatus.graphics3D.bindTarget(GlobalStatus.graphics);
+                     GlobalStatus.renderer.renderStillFrame();
+                     GlobalStatus.graphics3D.releaseTarget();
                      if (this.autopilotMenuOpen) {
-                        this.var_865.draw();
+                        this.autoPilotList.draw();
                         return;
                      } else if (this.jumpgateReached) {
-                        this.popup.sub_19a();
+                        this.popup.draw();
                         return;
-                     } else if (this.var_a7d) {
-                        this.var_7f9.sub_1c3(var1, (int)this.frameTime);
-                        if (this.var_976) {
-                           this.starMap.sub_101(0, (int)this.frameTime);
+                     } else if (this.interruptedByDialogue) {
+                        this.interuptDialogue.handleScrollPress_(var1, (int)this.frameTime);
+                        if (this.mapOpen_) {
+                           this.starMap.update(0, (int)this.frameTime);
                         }
 
-                        this.var_7f9.sub_364();
+                        this.interuptDialogue.drawInterupring_();
                         return;
                      } else if (this.actionMenuOpen) {
-                        this.var_611.sub_41b(this.var_53f ? 0L : this.frameTime, (long)this.var_689.var_4c9 - this.var_689.var_500, this.playerEgo, this.isIntro);
-                        this.var_611.sub_51c((int)this.frameTime);
+                        this.hud.draw(this.paused ? 0L : this.frameTime, (long)this.levelScript.timeLimit - this.levelScript.timePassed, this.playerEgo, this.isIntro);
+                        this.hud.drawMenu_((int)this.frameTime);
                         return;
-                     } else if (this.var_55d) {
+                     } else if (this.dialogueOpen_) {
                         Layout.addTicks((int)this.frameTime);
-                        this.var_7af.sub_1c3(var1, (int)this.frameTime);
-                        this.var_7af.sub_304();
+                        this.sequentialDialogue_.handleScrollPress_(var1, (int)this.frameTime);
+                        this.sequentialDialogue_.draw();
                         return;
                      } else {
-                        this.var_75e.sub_3a2();
+                        this.pauseMenu.draw();
                         return;
                      }
                   }
                }
 
-               if (this.playerEgo.sub_f9b()) {
-                  Status.sub_1e5(Galaxy.getStation(this.var_6d2.sub_12d()));
-                  Level.sub_16a();
+               if (this.playerEgo.isDockedToPlanet()) {
+                  Status.departStation(Galaxy.getStation(this.radar.getPlanetDockIndex()));
+                  Level.setInitStreamOut();
                   Status.baseArmour = this.playerEgo.player.getHitpoints();
-                  Status.shield = this.playerEgo.player.sub_49f();
-                  Status.additionalArmour = this.playerEgo.player.sub_53c();
-                  GameStatus.var_bfb.setScene(GameStatus.scenes[2]);
+                  Status.shield = this.playerEgo.player.getShieldHP();
+                  Status.additionalArmour = this.playerEgo.player.getArmorHP();
+                  GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[2]);
                   return;
                }
 
-               if (this.var_c3b && this.sub_20d()) {
+               if (this.shootingDisabled && this.updateJumpScene()) {
                   return;
                }
 
-               if (this.var_976) {
+               if (this.mapOpen_) {
                   int var4 = (int)this.frameTime;
-                  this.starMap.sub_101(var1, var4);
+                  this.starMap.update(var1, var4);
                }
 
-               if ((this.var_689.sub_123() || !this.var_689.sub_182()) && !this.jumpgateReached && (this.sub_1ce() || this.var_976)) {
+               if ((this.levelScript.startSequenceOver() || !this.levelScript.isActive()) && !this.jumpgateReached && (this.dockEvent() || this.mapOpen_)) {
                   return;
                }
 
-               if (this.var_7f9 == null && this.var_689.var_500 > 5000L) {
-                  if (!GameStatus.boosterHelpShown && Status.getShip().hasBooster()) {
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(306));
-                     this.var_a7d = true;
-                     this.var_53f = true;
-                     GameStatus.boosterHelpShown = true;
+               if (this.interuptDialogue == null && this.levelScript.timePassed > 5000L) {
+                  if (!GlobalStatus.boosterHelpShown && Status.getShip().hasBooster()) {
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(306));
+                     this.interruptedByDialogue = true;
+                     this.paused = true;
+                     GlobalStatus.boosterHelpShown = true;
                      return;
                   }
 
-                  if (!GameStatus.jumpDriveHelpShown && Status.getShip().hasJumpDrive()) {
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(304));
-                     this.var_a7d = true;
-                     this.var_53f = true;
-                     GameStatus.jumpDriveHelpShown = true;
+                  if (!GlobalStatus.jumpDriveHelpShown && Status.getShip().hasJumpDrive()) {
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(304));
+                     this.interruptedByDialogue = true;
+                     this.paused = true;
+                     GlobalStatus.jumpDriveHelpShown = true;
                      return;
                   }
 
-                  if (!GameStatus.cloakHelpShown && Status.getShip().hasCloak()) {
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(305));
-                     this.var_a7d = true;
-                     this.var_53f = true;
-                     GameStatus.cloakHelpShown = true;
+                  if (!GlobalStatus.cloakHelpShown && Status.getShip().hasCloak()) {
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(305));
+                     this.interruptedByDialogue = true;
+                     this.paused = true;
+                     GlobalStatus.cloakHelpShown = true;
                      return;
                   }
 
-                  if (!GameStatus.interplanetHelpShown && !this.playerEgo.sub_a15() && Status.getCurrentCampaignMission() > 9) {
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(300));
-                     this.var_a7d = true;
-                     this.var_53f = true;
-                     GameStatus.interplanetHelpShown = true;
+                  if (!GlobalStatus.interplanetHelpShown && !this.playerEgo.isAutoPilot() && Status.getCurrentCampaignMission() > 9) {
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(300));
+                     this.interruptedByDialogue = true;
+                     this.paused = true;
+                     GlobalStatus.interplanetHelpShown = true;
                      return;
                   }
 
                   if (Status.wingmenNames != null) {
-                     if (!GameStatus.wingmenHelpShown) {
-                        this.var_53f = true;
-                        this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(320));
-                        this.var_a7d = true;
-                        GameStatus.wingmenHelpShown = true;
+                     if (!GlobalStatus.wingmenHelpShown) {
+                        this.paused = true;
+                        this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(320));
+                        this.interruptedByDialogue = true;
+                        GlobalStatus.wingmenHelpShown = true;
                         return;
                      }
 
-                     if (!this.var_d4a && Status.wingmenTimeRemaining <= 0) {
-                        this.var_53f = true;
-                        this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(153), Status.wingmenNames[0], Status.var_8f8wingmenVar2);
-                        this.var_a7d = true;
-                        this.var_d4a = true;
+                     if (!this.wingmenLeftNoticeShown && Status.wingmenTimeRemaining <= 0) {
+                        this.paused = true;
+                        this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(153), Status.wingmenNames[0], Status.wingmanFace);
+                        this.interruptedByDialogue = true;
+                        this.wingmenLeftNoticeShown = true;
                         return;
                      }
                   }
 
-                  if (!GameStatus.reputationHelpShown && Status.getStanding().atWar()) {
-                     this.var_53f = true;
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(324));
-                     this.var_a7d = true;
-                     GameStatus.reputationHelpShown = true;
+                  if (!GlobalStatus.reputationHelpShown && Status.getStanding().atWar()) {
+                     this.paused = true;
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(324));
+                     this.interruptedByDialogue = true;
+                     GlobalStatus.reputationHelpShown = true;
                      return;
                   }
 
-                  if (!GameStatus.miningHelpShown && this.playerEgo.sub_be6() && !GameStatus.miningHelpShown) {
-                     this.var_53f = true;
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(307));
-                     this.var_a7d = true;
-                     GameStatus.miningHelpShown = true;
+                  if (!GlobalStatus.miningHelpShown && this.playerEgo.isMining() && !GlobalStatus.miningHelpShown) {
+                     this.paused = true;
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(307));
+                     this.interruptedByDialogue = true;
+                     GlobalStatus.miningHelpShown = true;
                      return;
                   }
 
-                  if (!GameStatus.asteroidHelpShown && this.playerEgo.sub_be6() && Status.getCurrentCampaignMission() > 3) {
-                     this.var_53f = true;
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(308));
-                     this.var_a7d = true;
-                     GameStatus.asteroidHelpShown = true;
+                  if (!GlobalStatus.asteroidHelpShown && this.playerEgo.isMining() && Status.getCurrentCampaignMission() > 3) {
+                     this.paused = true;
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(308));
+                     this.interruptedByDialogue = true;
+                     GlobalStatus.asteroidHelpShown = true;
                      return;
                   }
 
-                  if (!GameStatus.cargoFullHelpShown && this.var_611.sub_3fa() && Status.getCurrentCampaignMission() > 6) {
-                     this.var_53f = true;
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(319));
-                     this.var_a7d = true;
-                     GameStatus.cargoFullHelpShown = true;
+                  if (!GlobalStatus.cargoFullHelpShown && this.hud.cargoFull() && Status.getCurrentCampaignMission() > 6) {
+                     this.paused = true;
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(319));
+                     this.interruptedByDialogue = true;
+                     GlobalStatus.cargoFullHelpShown = true;
                      return;
                   }
                }
 
-               if (this.var_209 > 5000L && !this.var_55d && !Status.getMission().hasFailed() && !Status.getMission().hasWon()) {
-                  this.sub_17e();
+               if (this.fiveSecTick > 5000L && !this.dialogueOpen_ && !Status.getMission().hasFailed() && !Status.getMission().hasWon()) {
+                  this.dialogueEvent();
                }
             }
 
-            if (this.playerEgo.isBoostActive() && !this.playerEgo.sub_f55()) {
-               this.var_5ea = 750 + (int)(this.playerEgo.getCurrentBoostedSpeed() * 150.0F);
-               this.var_3c0.sub_ba(this.var_5ea);
+            if (this.playerEgo.boosting() && !this.playerEgo.isDockingToPlanet()) {
+               this.fov = 750 + (int)(this.playerEgo.getBoostPercentage() * 150.0F);
+               this.camera.setFoV(this.fov);
             }
 
-            if (Status.getMission().hasFailed() || this.egoDead || !this.sub_16c()) {
+            if (Status.getMission().hasFailed() || this.egoDead || !this.successCheck_()) {
                if (!this.egoDead) {
-                  this.sub_11d();
+                  this.gameOverCheck();
                }
 
-               this.var_58b = this.var_689.sub_50((int)this.frameTime, this.var_450);
-               if (this.var_689 != null) {
-                  this.sub_2f();
-                  this.sub_bf();
-                  if (!this.egoDead && !this.var_58b) {
-                     if (Level.var_1311 && this.var_689.var_500 > 7500L) {
-                        Level.var_1311 = false;
-                        this.var_c80 = true;
-                        this.sub_225();
+               this.cinematicBreak_ = this.levelScript.process((int)this.frameTime, this.targetFollowCamera);
+               if (this.levelScript != null) {
+                  this.OnRender3D();
+                  this.OnRender2D();
+                  if (!this.egoDead && !this.cinematicBreak_) {
+                     if (Level.driveJumping && this.levelScript.timePassed > 7500L) {
+                        Level.driveJumping = false;
+                        this.usingJumpDrive = true;
+                        this.startJumpScene();
                      }
 
                      if (this.isIntro) {
-                        this.playerEgo.sub_6c9((int)this.frameTime, 0);
+                        this.playerEgo.shoot((int)this.frameTime, 0);
                      }
 
-                     boolean var2 = this.playerEgo.sub_a15() && !this.playerEgo.isLookingBack() || this.playerEgo.sub_e45() || this.playerEgo.sub_ea4();
+                     boolean var2 = this.playerEgo.isAutoPilot() && !this.playerEgo.isLookingBack() || this.playerEgo.isDockingToAsteroid() || this.playerEgo.isDockingToStream_();
                      if ((var1 & 4) != 0) {
                         if (var2) {
-                           this.var_611.sub_30d(7, this.playerEgo);
+                           this.hud.hudEvent(7, this.playerEgo);
                         } else {
-                           this.playerEgo.sub_c3e((int)this.frameTime);
+                           this.playerEgo.turretRotateLeft((int)this.frameTime);
                         }
                      }
 
                      if ((var1 & 32) != 0) {
                         if (var2) {
-                           this.var_611.sub_30d(7, this.playerEgo);
+                           this.hud.hudEvent(7, this.playerEgo);
                         } else {
-                           this.playerEgo.sub_c71((int)this.frameTime);
+                           this.playerEgo.turretRotateRight((int)this.frameTime);
                         }
                      }
 
                      if ((var1 & 2) != 0) {
                         if (var2) {
-                           this.var_611.sub_30d(7, this.playerEgo);
-                        } else if (GameStatus.invertedControlsOn) {
-                           this.playerEgo.sub_c7e((int)this.frameTime);
+                           this.hud.hudEvent(7, this.playerEgo);
+                        } else if (GlobalStatus.invertedControlsOn) {
+                           this.playerEgo.turretPitchDown((int)this.frameTime);
                         } else {
-                           this.playerEgo.sub_cc3((int)this.frameTime);
+                           this.playerEgo.turretPitchUp((int)this.frameTime);
                         }
                      }
 
                      if ((var1 & 64) != 0) {
                         if (var2) {
-                           this.var_611.sub_30d(7, this.playerEgo);
-                        } else if (GameStatus.invertedControlsOn) {
-                           this.playerEgo.sub_cc3((int)this.frameTime);
+                           this.hud.hudEvent(7, this.playerEgo);
+                        } else if (GlobalStatus.invertedControlsOn) {
+                           this.playerEgo.turretPitchUp((int)this.frameTime);
                         } else {
-                           this.playerEgo.sub_c7e((int)this.frameTime);
+                           this.playerEgo.turretPitchDown((int)this.frameTime);
                         }
                      }
 
-                     if ((var1 & 256) != 0 && !this.var_c3b && (this.playerEgo.isLookingBack() || !this.playerEgo.sub_a15() && !this.playerEgo.sub_e45())) {
-                        this.playerEgo.sub_6c9((int)this.frameTime, 0);
+                     if ((var1 & 256) != 0 && !this.shootingDisabled && (this.playerEgo.isLookingBack() || !this.playerEgo.isAutoPilot() && !this.playerEgo.isDockingToAsteroid())) {
+                        this.playerEgo.shoot((int)this.frameTime, 0);
                      }
                   }
 
-                  if (this.playerEgo.sub_b5d()) {
+                  if (this.playerEgo.isInWormhole()) {
                      if (Status.getMission().isCampaignMission()) {
                         int var6;
-                        if ((var6 = Status.getCurrentCampaignMission()) == 29 || var6 == 41 || var6 == 40 && this.var_630.getShips()[0].player.sub_ace()) {
+                        if ((var6 = Status.getCurrentCampaignMission()) == 29 || var6 == 41 || var6 == 40 && this.level.getEnemies()[0].player.isActive()) {
                            this.playerEgo.player.setHitPoints(0);
                            return;
                         }
@@ -494,14 +494,14 @@ private boolean loadingDrawn;
                         }
 
                         if (var6 == 40) {
-                           Level.var_12b5 = this.var_630.getShips()[0].player.getHitpoints();
+                           Level.lastMissionFreighterHitpoints = this.level.getEnemies()[0].player.getHitpoints();
                         }
 
-                        this.var_630.sub_b30();
-                        Status.setMission(Mission.var_dc);
+                        this.level.removeObjectives();
+                        Status.setMission(Mission.emptyMission_);
                      }
 
-                     Status.setMission(Mission.var_dc);
+                     Status.setMission(Mission.emptyMission_);
                      if (Status.inAlienOrbit()) {
                         Status.setCurrentStation_andInitSystem_(Galaxy.getStation(Status.lastVisitedNonVoidOrbit));
                      } else {
@@ -509,13 +509,13 @@ private boolean loadingDrawn;
                      }
 
                      Status.baseArmour = this.playerEgo.player.getHitpoints();
-                     Status.shield = this.playerEgo.player.sub_49f();
-                     Status.additionalArmour = this.playerEgo.player.sub_53c();
-                     Status.sub_1e5(Status.getStation());
-                     Level.autopilotDestination = null;
-                     Level.var_1297 = true;
-                     Level.var_12a2 = true;
-                     GameStatus.var_bfb.setScene(GameStatus.scenes[2]);
+                     Status.shield = this.playerEgo.player.getShieldHP();
+                     Status.additionalArmour = this.playerEgo.player.getArmorHP();
+                     Status.departStation(Status.getStation());
+                     Level.programmedStation = null;
+                     Level.initStreamOutPosition = true;
+                     Level.comingFromAlienWorld = true;
+                     GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[2]);
                   }
 
                }
@@ -526,151 +526,151 @@ private boolean loadingDrawn;
       }
    }
 
-   private void sub_2f() {
+   private void OnRender3D() {
       try {
-         this.var_630.sub_a3b(this.frameTime);
-         this.var_630.sub_966(this.frameTime);
-         this.playerEgo.sub_bb7((int)this.frameTime, this.var_6d2, this.var_611, this.var_736, this.keysPressed);
-         this.playerEgo.sub_11da(!this.var_58b);
-         if (this.var_d04 != null) {
-            GameStatus.renderer.sub_87(this.var_d04);
+         this.level.updateOrbit_(this.frameTime);
+         this.level.render(this.frameTime);
+         this.playerEgo.update((int)this.frameTime, this.radar, this.hud, this.radio, this.keysPressed);
+         this.playerEgo.render(!this.cinematicBreak_);
+         if (this.jumpFlash != null) {
+            GlobalStatus.renderer.drawNodeInVF(this.jumpFlash);
          }
 
-         this.var_689.sub_6a();
-         GameStatus.graphics3D.bindTarget(GameStatus.graphics);
-         this.var_446.sub_109(true);
-         GameStatus.renderer.sub_cc(System.currentTimeMillis());
-         GameStatus.graphics3D.releaseTarget();
+         this.levelScript.renderProbe__();
+         GlobalStatus.graphics3D.bindTarget(GlobalStatus.graphics);
+         this.cameras_.updateTransform(true);
+         GlobalStatus.renderer.renderFrame(System.currentTimeMillis());
+         GlobalStatus.graphics3D.releaseTarget();
       } catch (Exception var2) {
-         GameStatus.graphics3D.releaseTarget();
+         GlobalStatus.graphics3D.releaseTarget();
          var2.printStackTrace();
       }
    }
 
-   private void sub_bf() {
-      this.var_630.sub_9ca();
-      if (this.var_58b) {
+   private void OnRender2D() {
+      this.level.renderRockets_();
+      if (this.cinematicBreak_) {
          if (Status.getCurrentCampaignMission() > 1) {
              if (!loadingDrawn) {
-        	 GameStatus.loadingScreen.sub_d5();
+        	 GlobalStatus.loadingScreen.draw();
         	 loadingDrawn = true;
              }
-            GameStatus.loadingScreen.drawTips();
-            this.var_611.sub_4bc();
+            GlobalStatus.loadingScreen.drawTips();
+            this.hud.drawOrbitInformation();
          }
          else {
              this.loadingDrawn = false;
          }
 
-         if (this.var_689.sub_123()) {
-            this.var_736.sub_1f5(this.var_689.var_500, this.frameTime, this.playerEgo);
+         if (this.levelScript.startSequenceOver()) {
+            this.radio.draw(this.levelScript.timePassed, this.frameTime, this.playerEgo);
             return;
          }
       } else if (this.egoDead) {
-         SymbolMapManager_.sub_161(GameStatus.langManager.getLangString(156), GameStatus.screenWidth / 2, 20, 0, 8);
-         if (this.var_209 > 3000L) {
-            this.popup.sub_19a();
+         Font.drawString(GlobalStatus.gameText.getText(156), GlobalStatus.screenWidth / 2, 20, 0, 8);
+         if (this.fiveSecTick > 3000L) {
+            this.popup.draw();
             return;
          }
       } else {
-         this.playerEgo.sub_1227(!this.var_58b, GameStatus.renderer.getCamera());
-         if (!this.playerEgo.sub_be6()) {
-            this.var_6d2.render(this.playerEgo.player, GameStatus.renderer.getCamera(), this.var_450, this.var_611, (int)this.frameTime);
+         this.playerEgo.draw(!this.cinematicBreak_, GlobalStatus.renderer.getCamera());
+         if (!this.playerEgo.isMining()) {
+            this.radar.draw(this.playerEgo.player, GlobalStatus.renderer.getCamera(), this.targetFollowCamera, this.hud, (int)this.frameTime);
          }
 
-         this.var_611.sub_41b(this.var_53f ? 0L : this.frameTime, (long)this.var_689.var_4c9 - this.var_689.var_500, this.playerEgo, this.isIntro);
-         this.var_736.sub_1f5(this.var_689.var_500, this.frameTime, this.playerEgo);
-         this.var_6d2.sub_18f(this.var_611);
+         this.hud.draw(this.paused ? 0L : this.frameTime, (long)this.levelScript.timeLimit - this.levelScript.timePassed, this.playerEgo, this.isIntro);
+         this.radio.draw(this.levelScript.timePassed, this.frameTime, this.playerEgo);
+         this.radar.drawCurrentLock(this.hud);
       }
 
    }
 
-   private void sub_11d() {
-      if (this.playerEgo.getHP() <= 0) {
+   private void gameOverCheck() {
+      if (this.playerEgo.getHitpoints() <= 0) {
          this.egoDead = true;
-         GameStatus.langManager.getLangString(156);
+         GlobalStatus.gameText.getText(156);
       }
 
-      if (this.var_630.sub_ba1((int)this.frameTime)) {
-         if (this.var_7af == null) {
-            this.var_7af = new Dialogue();
+      if (this.level.checkGameOver((int)this.frameTime)) {
+         if (this.sequentialDialogue_ == null) {
+            this.sequentialDialogue_ = new Dialogue();
          }
 
-         this.var_7af.sub_f5(Status.getMission(), 2);
-         this.var_55d = true;
-         this.var_53f = true;
+         this.sequentialDialogue_.set(Status.getMission(), 2);
+         this.dialogueOpen_ = true;
+         this.paused = true;
       }
 
-      if (this.var_209 > 5000L) {
-         this.var_209 = 0L;
-         if (this.var_689.var_4c9 > 0 && this.var_689.var_500 > (long)this.var_689.var_4c9 && (Status.getCurrentCampaignMission() == 42 || this.var_630.var_b00 != null && !this.var_630.var_b00.sub_7d())) {
-            if (this.var_7af == null) {
-               this.var_7af = new Dialogue();
+      if (this.fiveSecTick > 5000L) {
+         this.fiveSecTick = 0L;
+         if (this.levelScript.timeLimit > 0 && this.levelScript.timePassed > (long)this.levelScript.timeLimit && (Status.getCurrentCampaignMission() == 42 || this.level.successObjective != null && !this.level.successObjective.isSurvivalObjective())) {
+            if (this.sequentialDialogue_ == null) {
+               this.sequentialDialogue_ = new Dialogue();
             }
 
-            this.var_7af.sub_f5(Status.getMission(), 2);
-            this.var_55d = true;
-            this.var_53f = true;
+            this.sequentialDialogue_.set(Status.getMission(), 2);
+            this.dialogueOpen_ = true;
+            this.paused = true;
          }
       }
 
       if (this.egoDead) {
-         this.var_209 = 0L;
-         this.var_450.sub_1df();
-         GameStatus.vibrate(0);
+         this.fiveSecTick = 0L;
+         this.targetFollowCamera.lockPosition();
+         GlobalStatus.vibrate(0);
          if (this.popup == null) {
             this.popup = new Popup();
          }
 
-         this.popup.sub_8f("", false);
+         this.popup.set("", false);
       }
 
    }
 
-   private boolean sub_16c() {
-      if (this.var_209 > 5000L) {
-         Mission var1 = Status.missionCompleted_(false, this.var_689.var_500);
-         if (this.var_630.sub_a83((int)this.var_689.var_500) || var1 != null) {
+   private boolean successCheck_() {
+      if (this.fiveSecTick > 5000L) {
+         Mission var1 = Status.missionCompleted_(false, this.levelScript.timePassed);
+         if (this.level.checkObjective((int)this.levelScript.timePassed) || var1 != null) {
             if (Status.getMission().getType() != 5 && Status.getMission().getType() != 3) {
                if (Status.getMission().isCampaignMission() && Status.getCurrentCampaignMission() == 127) {
                   Status.nextCampaignMission();
-                  this.var_630.sub_b30();
-                  Status.setMission(Mission.var_dc);
+                  this.level.removeObjectives();
+                  Status.setMission(Mission.emptyMission_);
                } else {
                   if (!Status.getMission().isCampaignMission()) {
                      Status.incMissionCount();
                   }
 
-                  if (Status.getMission().isCampaignMission() && (!Status.getMission().isCampaignMission() || !Dialogue.sub_de(Status.getCurrentCampaignMission()))) {
+                  if (Status.getMission().isCampaignMission() && (!Status.getMission().isCampaignMission() || !Dialogue.hasSuccessDialogue(Status.getCurrentCampaignMission()))) {
                      return false;
                   }
 
-                  if (this.var_7af == null) {
-                     this.var_7af = new Dialogue();
+                  if (this.sequentialDialogue_ == null) {
+                     this.sequentialDialogue_ = new Dialogue();
                   }
 
-                  this.var_7af.sub_f5(var1 != null ? var1 : Status.getMission(), 1);
-                  this.var_55d = true;
-                  this.var_53f = true;
+                  this.sequentialDialogue_.set(var1 != null ? var1 : Status.getMission(), 1);
+                  this.dialogueOpen_ = true;
+                  this.paused = true;
                }
 
                return true;
             } else {
                Status.getMission().setType(11);
                Status.getMission().setTargetStation(Status.getMission().getAgent().getStationId());
-               if (this.var_7af == null) {
-                  this.var_7af = new Dialogue();
+               if (this.sequentialDialogue_ == null) {
+                  this.sequentialDialogue_ = new Dialogue();
                }
 
-               this.var_7af.sub_f5(Status.getMission(), 1);
+               this.sequentialDialogue_.set(Status.getMission(), 1);
                Status.getMission().setWon(false);
-               String var2 = Status.replaceTokens(GameStatus.langManager.getLangString(439), Status.getMission().getTargetStationName(), "#S");
+               String var2 = Status.replaceTokens(GlobalStatus.gameText.getText(439), Status.getMission().getTargetStationName(), "#S");
                Status.getMission().getAgent().setMessage(var2);
-               Status.setMission(Mission.var_dc);
-               this.var_630.var_b00 = null;
-               this.var_630.var_b24 = null;
-               this.var_55d = true;
-               this.var_53f = true;
+               Status.setMission(Mission.emptyMission_);
+               this.level.successObjective = null;
+               this.level.failObjective_ = null;
+               this.dialogueOpen_ = true;
+               this.paused = true;
                return true;
             }
          }
@@ -679,72 +679,72 @@ private boolean loadingDrawn;
       return false;
    }
 
-   private void sub_17e() {
-      if (this.var_689.sub_123() && (Dialogue.sub_84(Status.getCurrentCampaignMission()) || !Status.getMission().isCampaignMission()) && !Status.getMission().isEmpty() && Status.getMission().getType() != 8 && Status.getMission().getType() != 0 && Status.getMission().sub_12c()) {
+   private void dialogueEvent() {
+      if (this.levelScript.startSequenceOver() && (Dialogue.hasBriefingDialogue(Status.getCurrentCampaignMission()) || !Status.getMission().isCampaignMission()) && !Status.getMission().isEmpty() && Status.getMission().getType() != 8 && Status.getMission().getType() != 0 && Status.getMission().isVisible()) {
          if (!Status.getMission().isCampaignMission() && Status.getMission().getType() == 11) {
             return;
          }
 
-         if (this.var_7af == null) {
-            this.var_7af = new Dialogue(Status.getMission(), this.var_630, 0);
+         if (this.sequentialDialogue_ == null) {
+            this.sequentialDialogue_ = new Dialogue(Status.getMission(), this.level, 0);
          }
 
-         this.var_53f = true;
-         this.var_55d = true;
+         this.paused = true;
+         this.dialogueOpen_ = true;
       }
 
    }
 
-   private boolean sub_1ce() {
-      this.var_9d5 = this.var_630.sub_911(this.playerEgo.sub_8c1());
-      this.var_a07 = this.var_630.sub_92f(this.playerEgo.sub_8c1());
+   private boolean dockEvent() {
+      this.touchesStream = this.level.collideStream(this.playerEgo.getPosition());
+      this.touchesStation = this.level.collideStation(this.playerEgo.getPosition());
       if (!Status.getMission().isEmpty() && Status.getMission().getType() != 11 && Status.getMission().getType() != 0 && Status.getMission().getType() != 23) {
-         if ((this.var_a07 || this.var_9d5) && this.playerEgo.sub_a15()) {
-            this.var_611.sub_30d(21, this.playerEgo);
+         if ((this.touchesStation || this.touchesStream) && this.playerEgo.isAutoPilot()) {
+            this.hud.hudEvent(21, this.playerEgo);
          }
 
          return false;
-      } else if (this.var_9d5 && this.playerEgo.sub_a43() && !this.playerEgo.sub_ea4() && !this.playerEgo.sub_eb2()) {
-         this.playerEgo.sub_ff3(this.var_450, true);
+      } else if (this.touchesStream && this.playerEgo.goingToStream() && !this.playerEgo.isDockingToStream_() && !this.playerEgo.isDockedToStream()) {
+         this.playerEgo.dockToStream(this.targetFollowCamera, true);
          return false;
       } else {
-         if (this.var_9d5) {
+         if (this.touchesStream) {
             Status.baseArmour = this.playerEgo.player.getHitpoints();
-            Status.shield = this.playerEgo.player.sub_49f();
-            Status.additionalArmour = this.playerEgo.player.sub_53c();
-            if (this.playerEgo.sub_a15() && Level.autopilotDestination != null) {
+            Status.shield = this.playerEgo.player.getShieldHP();
+            Status.additionalArmour = this.playerEgo.player.getArmorHP();
+            if (this.playerEgo.isAutoPilot() && Level.programmedStation != null) {
                if (!this.jumpgateReached) {
                   if (this.popup == null) {
                      this.popup = new Popup();
                   }
 
-                  this.popup.sub_8f(GameStatus.langManager.getLangString(295) + ": " + Level.autopilotDestination.getName() + "\n" + GameStatus.langManager.getLangString(242), true);
-                  this.popup.sub_c6();
+                  this.popup.set(GlobalStatus.gameText.getText(295) + ": " + Level.programmedStation.getName() + "\n" + GlobalStatus.gameText.getText(242), true);
+                  this.popup.left();
                   this.jumpgateReached = true;
-                  this.var_53f = true;
-                  this.playerEgo.sub_97e((KIPlayer)null);
+                  this.paused = true;
+                  this.playerEgo.setAutoPilot((KIPlayer)null);
                }
 
                return false;
             }
 
-            if (this.var_976) {
-               this.var_187 = 0L;
+            if (this.mapOpen_) {
+               this.menuListScrollTick = 0L;
                return true;
             }
 
-            if (this.playerEgo.sub_a43()) {
-               if (Level.autopilotDestination != null) {
+            if (this.playerEgo.goingToStream()) {
+               if (Level.programmedStation != null) {
                   if (!this.jumpgateReached) {
                      if (this.popup == null) {
                         this.popup = new Popup();
                      }
 
-                     this.popup.sub_8f(GameStatus.langManager.getLangString(295) + ": " + Level.autopilotDestination.getName() + "\n" + GameStatus.langManager.getLangString(242), true);
-                     this.popup.sub_c6();
+                     this.popup.set(GlobalStatus.gameText.getText(295) + ": " + Level.programmedStation.getName() + "\n" + GlobalStatus.gameText.getText(242), true);
+                     this.popup.left();
                      this.jumpgateReached = true;
-                     this.var_53f = true;
-                     this.playerEgo.sub_97e((KIPlayer)null);
+                     this.paused = true;
+                     this.playerEgo.setAutoPilot((KIPlayer)null);
                   }
 
                   return false;
@@ -755,13 +755,13 @@ private boolean loadingDrawn;
                }
 
                this.starMap.setJumpMapMode(true, false);
-               this.playerEgo.sub_97e((KIPlayer)null);
-               this.var_976 = true;
+               this.playerEgo.setAutoPilot((KIPlayer)null);
+               this.mapOpen_ = true;
                return true;
             }
-         } else if ((this.var_a07 || this.playerEgo.sub_998() == this.var_630.sub_5b7()[0] && this.playerEgo.sub_bc1()) && this.playerEgo.sub_a80() && !Status.inAlienOrbit()) {
-            Medals.checkForNewMedal(this.playerEgo);
-            GameStatus.var_bfb.setScene(GameStatus.scenes[1]);
+         } else if ((this.touchesStation || this.playerEgo.getAutoPilotTarget() == this.level.getLandmarks()[0] && this.playerEgo.collidesWithStation()) && this.playerEgo.goingToStation() && !Status.inAlienOrbit()) {
+            Achievements.checkForNewMedal(this.playerEgo);
+            GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[1]);
             return true;
          }
 
@@ -769,48 +769,48 @@ private boolean loadingDrawn;
       }
    }
 
-   public final void sub_1da() {
-      if (!this.var_53f) {
-         if (this.var_75e == null) {
-            this.var_75e = new OptionsWindow();
+   public final void pause() {
+      if (!this.paused) {
+         if (this.pauseMenu == null) {
+            this.pauseMenu = new OptionsWindow();
          }
 
-         this.var_75e.sub_38c();
-         this.var_53f = true;
+         this.pauseMenu.resetPauseMenu();
+         this.paused = true;
       }
 
    }
 
-   private boolean sub_20d() {
+   private boolean updateJumpScene() {
       int var1;
-      if (this.var_c80) {
-         this.var_d9c = this.var_d04.sub_216(this.var_d9c);
-         this.var_3c0.sub_18f((int)this.frameTime * 3, 0, 0);
-         this.var_3c0.sub_18f(0, 0, -((int)this.frameTime) << 1);
+      if (this.usingJumpDrive) {
+         this.egoJumpPos = this.jumpFlash.getPosition(this.egoJumpPos);
+         this.camera.translate((int)this.frameTime * 3, 0, 0);
+         this.camera.translate(0, 0, -((int)this.frameTime) << 1);
          var1 = (int)this.frameTime << 2;
-         this.var_d04.sub_5c5(var1, var1, var1);
+         this.jumpFlash.rotateEuler(var1, var1, var1);
       } else {
-         this.var_d9c = ((PlayerJumpgate)this.var_630.sub_5b7()[1]).sub_52(this.var_d9c);
-         this.var_3c0.sub_18f((int)this.frameTime * 5, 0, 0);
-         this.var_3c0.sub_18f(0, 0, -((int)this.frameTime) * 3);
+         this.egoJumpPos = ((PlayerJumpgate)this.level.getLandmarks()[1]).getTargetPos_(this.egoJumpPos);
+         this.camera.translate((int)this.frameTime * 5, 0, 0);
+         this.camera.translate(0, 0, -((int)this.frameTime) * 3);
       }
 
-      if ((var1 = this.var_3c0.sub_31f()) < this.var_d9c.z - 2000) {
-         if (!this.var_c80) {
-            ((PlayerJumpgate)this.var_630.sub_5b7()[1]).sub_25();
+      if ((var1 = this.camera.getPosZ()) < this.egoJumpPos.z - 2000) {
+         if (!this.usingJumpDrive) {
+            ((PlayerJumpgate)this.level.getLandmarks()[1]).activate();
          }
 
-         if (!this.var_a4e) {
-            GameStatus.soundManager.playSfx(7);
-            this.var_a4e = true;
+         if (!this.jumpGateSoundStarted) {
+            GlobalStatus.soundManager.playSfx(7);
+            this.jumpGateSoundStarted = true;
          }
       }
 
-      if (this.var_c80 ? this.playerEgo.var_50e.sub_31f() > this.var_d9c.z - 1000 : this.var_630.sub_5b7()[1].var_25d.sub_942() > 60 && this.var_630.sub_5b7()[1].var_25d.sub_942() < 79) {
-         if (!this.var_ce4 && this.var_c80) {
-            this.var_d04.sub_9aa((byte)3);
-            this.var_d04.sub_918(50);
-            this.var_ce4 = true;
+      if (this.usingJumpDrive ? this.playerEgo.shipGrandGroup_.getPosZ() > this.egoJumpPos.z - 1000 : this.level.getLandmarks()[1].mainMesh_.getCurrentAnimFrame() > 60 && this.level.getLandmarks()[1].mainMesh_.getCurrentAnimFrame() < 79) {
+         if (!this.jumpDriveAnimStarted && this.usingJumpDrive) {
+            this.jumpFlash.setAnimationMode((byte)3);
+            this.jumpFlash.setAnimationSpeed(50);
+            this.jumpDriveAnimStarted = true;
          }
 
          if (this.playerEgo.speed < 100) {
@@ -818,87 +818,87 @@ private boolean loadingDrawn;
             var10000.speed += 5;
          }
 
-         this.var_48b.sub_120(false);
+         this.lookAtCamera.setLookAt(false);
       }
 
-      if (this.var_c80 && this.var_ce4 && this.var_d04.sub_942() >= 20) {
-         this.var_d04.sub_7af(0, 0, 0);
+      if (this.usingJumpDrive && this.jumpDriveAnimStarted && this.jumpFlash.getCurrentAnimFrame() >= 20) {
+         this.jumpFlash.setScale(0, 0, 0);
       }
 
-      if (var1 < this.var_d9c.z - 15000) {
-         Status.sub_1e5(Level.autopilotDestination);
-         Level.sub_16a();
-         if (!this.var_c80) {
+      if (var1 < this.egoJumpPos.z - 15000) {
+         Status.departStation(Level.programmedStation);
+         Level.setInitStreamOut();
+         if (!this.usingJumpDrive) {
             Status.jumpgateUsed();
          }
 
-         if (Level.autopilotDestination.equals(Status.voidStation)) {
-            Level.var_1297 = true;
-            Level.var_12a2 = true;
+         if (Level.programmedStation.equals(Status.voidStation)) {
+            Level.initStreamOutPosition = true;
+            Level.comingFromAlienWorld = true;
             Status.setCurrentStation_andInitSystem_(Status.voidStation);
          }
 
-         Level.autopilotDestination = null;
+         Level.programmedStation = null;
          Status.baseArmour = this.playerEgo.player.getHitpoints();
-         Status.shield = this.playerEgo.player.sub_49f();
-         Status.additionalArmour = this.playerEgo.player.sub_53c();
-         GameStatus.var_bfb.setScene(GameStatus.scenes[2]);
+         Status.shield = this.playerEgo.player.getShieldHP();
+         Status.additionalArmour = this.playerEgo.player.getArmorHP();
+         GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[2]);
          return true;
       } else {
          return false;
       }
    }
 
-   private void sub_225() {
-      this.var_53f = false;
-      this.var_c3b = true;
-      this.var_58b = true;
-      this.playerEgo.sub_534(false);
-      this.var_450.sub_383(false);
-      this.var_48b.sub_120(true);
-      if (this.var_c80) {
-         this.var_d04 = AEResourceManager.getGeometryResource(6783);
-         this.var_d04.setRenderLayer(2);
-         this.var_d9c = this.playerEgo.var_50e.sub_216(this.var_d9c);
-         this.var_d9c.add(this.playerEgo.var_50e.getDirection());
-         this.var_d04.sub_1f3(this.var_d9c);
-         this.var_d04.sub_9aa((byte)1);
-         this.var_d04.sub_918(150);
+   private void startJumpScene() {
+      this.paused = false;
+      this.shootingDisabled = true;
+      this.cinematicBreak_ = true;
+      this.playerEgo.setCollide(false);
+      this.targetFollowCamera.setLookAtCam(false);
+      this.lookAtCamera.setLookAt(true);
+      if (this.usingJumpDrive) {
+         this.jumpFlash = AEResourceManager.getGeometryResource(6783);
+         this.jumpFlash.setRenderLayer(2);
+         this.egoJumpPos = this.playerEgo.shipGrandGroup_.getPosition(this.egoJumpPos);
+         this.egoJumpPos.add(this.playerEgo.shipGrandGroup_.getDirection());
+         this.jumpFlash.moveTo(this.egoJumpPos);
+         this.jumpFlash.setAnimationMode((byte)1);
+         this.jumpFlash.setAnimationSpeed(150);
       } else {
-         this.var_d9c = ((PlayerJumpgate)this.var_630.sub_5b7()[1]).sub_52(this.var_d9c);
+         this.egoJumpPos = ((PlayerJumpgate)this.level.getLandmarks()[1]).getTargetPos_(this.egoJumpPos);
       }
 
-      AEVector3D var10000 = this.var_d9c;
+      AEVector3D var10000 = this.egoJumpPos;
       var10000.z -= 5000;
-      this.playerEgo.sub_b32(this.var_d9c);
-      this.playerEgo.var_50e.setRotation(0, 0, 0);
-      this.var_48b.sub_36(this.playerEgo.var_50e);
-      this.var_48b.sub_68(this.var_3c0);
-      this.var_48b.sub_bf(new AEVector3D(0, 4096, 0), 1);
-      var10000 = this.var_d9c;
+      this.playerEgo.setPosition_(this.egoJumpPos);
+      this.playerEgo.shipGrandGroup_.setRotation(0, 0, 0);
+      this.lookAtCamera.setTarget(this.playerEgo.shipGrandGroup_);
+      this.lookAtCamera.setCamera(this.camera);
+      this.lookAtCamera.setOrientationLock(new AEVector3D(0, 4096, 0), 1);
+      var10000 = this.egoJumpPos;
       var10000.x -= 2000;
-      var10000 = this.var_d9c;
+      var10000 = this.egoJumpPos;
       var10000.y += 300;
-      var10000 = this.var_d9c;
+      var10000 = this.egoJumpPos;
       var10000.z += 4000;
-      GameStatus.renderer.getCamera().sub_1f3(this.var_d9c);
+      GlobalStatus.renderer.getCamera().moveTo(this.egoJumpPos);
    }
 
    public final void handleKeystate(int var1) {
-      if (this.var_287) {
-         if (this.var_53f) {
+      if (this.loaded) {
+         if (this.paused) {
             if (this.actionMenuOpen) {
-               this.actionMenuOpen = this.var_611.sub_527(var1, this.var_630, this.var_6d2);
-               this.var_53f = this.actionMenuOpen;
-               if (!this.var_53f) {
-                  this.playerEgo.sub_de8();
-                  if (this.var_611.sub_58b()) {
+               this.actionMenuOpen = this.hud.handleActionMenuKeypress(var1, this.level, this.radar);
+               this.paused = this.actionMenuOpen;
+               if (!this.paused) {
+                  this.playerEgo.resetGunDelay();
+                  if (this.hud.getJumpDriveSelected()) {
                      if (Status.inAlienOrbit()) {
-                        Level.autopilotDestination = Galaxy.getStation(Status.lastVisitedNonVoidOrbit);
-                        this.var_c80 = true;
-                        this.sub_225();
-                        this.var_53f = false;
-                        this.var_611.sub_5df(false);
+                        Level.programmedStation = Galaxy.getStation(Status.lastVisitedNonVoidOrbit);
+                        this.usingJumpDrive = true;
+                        this.startJumpScene();
+                        this.paused = false;
+                        this.hud.setJumpDriveSelected(false);
                         return;
                      }
 
@@ -906,37 +906,37 @@ private boolean loadingDrawn;
                         this.starMap = new StarMap(false, (Mission)null, false, -1);
                      }
 
-                     this.var_c80 = true;
+                     this.usingJumpDrive = true;
                      this.starMap.setJumpMapMode(true, true);
                      if (!Status.inAlienOrbit()) {
                         this.starMap.askForJumpIntoAlienWorld();
                      }
 
-                     this.var_976 = true;
-                     this.var_53f = false;
+                     this.mapOpen_ = true;
+                     this.paused = false;
                   }
 
-                  this.var_611.sub_5df(false);
+                  this.hud.setJumpDriveSelected(false);
                   return;
                }
             }
 
-            if (this.var_a7d && var1 == 256) {
-               this.var_a7d = false;
-               this.var_53f = false;
-               this.var_7f9 = null;
-               this.playerEgo.sub_de8();
+            if (this.interruptedByDialogue && var1 == 256) {
+               this.interruptedByDialogue = false;
+               this.paused = false;
+               this.interuptDialogue = null;
+               this.playerEgo.resetGunDelay();
                return;
             }
 
-            if (this.var_55d) {
-               if (!this.var_7af.sub_178(var1)) {
-                  this.var_53f = false;
-                  this.var_55d = false;
+            if (this.dialogueOpen_) {
+               if (!this.sequentialDialogue_.OnKeyPress_(var1)) {
+                  this.paused = false;
+                  this.dialogueOpen_ = false;
                   if (Status.getMission().hasFailed()) {
                      if (Status.getMission().isCampaignMission() || Status.getCurrentCampaignMission() == 42) {
-                        GameStatus.var_bfb.setScene(GameStatus.scenes[0]);
-                        GameStatus.soundManager.playMusic(0);
+                        GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[0]);
+                        GlobalStatus.soundManager.playMusic(0);
                         Status.startNewGame();
                         return;
                      }
@@ -947,127 +947,127 @@ private boolean loadingDrawn;
                         Item[] var4;
                         if ((Status.getMission().getType() == 3 || Status.getMission().getType() == 5 || Status.getMission().getType() == 11) && (var4 = Status.getShip().getCargo()) != null) {
                            for(int var5 = 0; var5 < var4.length; ++var5) {
-                              if (var4[var5].sub_95c() && var4[var5].getIndex() == 116 || var4[var5].getIndex() == 117) {
-                                 Status.getShip().sub_755(var4[var5]);
+                              if (var4[var5].setUnsaleable() && var4[var5].getIndex() == 116 || var4[var5].getIndex() == 117) {
+                                 Status.getShip().removeCargo(var4[var5]);
                                  break;
                               }
                            }
                         }
                      }
 
-                     Status.setFreelanceMission(Mission.var_dc);
-                     this.var_630.sub_b30();
-                     this.var_689.var_4c9 = 0;
-                     Status.setMission(Mission.var_dc);
-                     this.playerEgo.sub_5f1((Class_661)null);
-                     if (this.playerEgo.sub_aa7()) {
-                        this.playerEgo.sub_97e((KIPlayer)null);
+                     Status.setFreelanceMission(Mission.emptyMission_);
+                     this.level.removeObjectives();
+                     this.levelScript.timeLimit = 0;
+                     Status.setMission(Mission.emptyMission_);
+                     this.playerEgo.setRoute((Route)null);
+                     if (this.playerEgo.gointToAsteroidField()) {
+                        this.playerEgo.setAutoPilot((KIPlayer)null);
                      }
 
-                     this.playerEgo.sub_66d();
-                     this.var_630.sub_6ce((Class_661)null);
+                     this.playerEgo.removeRoute();
+                     this.level.setPlayerRoute((Route)null);
                      if (!Status.inAlienOrbit()) {
-                        this.var_865 = new AutoPilotList(this.var_630);
+                        this.autoPilotList = new AutoPilotList(this.level);
                      }
                   } else if (!Status.getMission().hasWon() && !Status.getCampaignMission().hasWon()) {
-                     this.var_689.sub_10c();
+                     this.levelScript.startSequence();
                   } else {
                      boolean var3 = Status.getCampaignMission().hasWon() && !Status.getMission().isCampaignMission();
                      Mission var2;
                      if ((var2 = Status.getMission().hasWon() ? Status.getMission() : Status.getCampaignMission()).isInstantActionMission()) {
-                        GameStatus.var_bfb.setScene(GameStatus.scenes[0]);
-                        GameStatus.soundManager.playMusic(0);
+                        GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[0]);
+                        GlobalStatus.soundManager.playMusic(0);
                         return;
                      }
 
                      if (var2.isCampaignMission()) {
                         Status.nextCampaignMission();
                      } else {
-                        Status.setFreelanceMission(Mission.var_dc);
+                        Status.setFreelanceMission(Mission.emptyMission_);
                      }
 
                      Status.changeCredits(var2.getReward());
-                     this.var_689.var_4c9 = 0;
+                     this.levelScript.timeLimit = 0;
                      if (var2.isCampaignMission() && Status.getCurrentCampaignMission() == 15) {
                         Status.setCurrentStation_andInitSystem_((new FileRead()).loadStation(98));
-                        GameStatus.var_bfb.setScene(GameStatus.scenes[1]);
+                        GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[1]);
                         return;
                      }
 
                      if (var2.isCampaignMission() && Status.getCurrentCampaignMission() == 22) {
-                        GameStatus.var_bfb.setScene(GameStatus.scenes[1]);
+                        GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[1]);
                         return;
                      }
 
                      if (var2.isCampaignMission() && Status.getCurrentCampaignMission() == 42) {
-                        this.var_689.var_4c9 = 60000;
-                        this.var_689.var_500 = 0L;
-                        this.var_630.var_b24 = new Class_876(3, this.var_689.var_4c9, this.var_630);
-                        this.var_630.var_b00 = new Class_876(3, this.var_689.var_4c9, this.var_630);
+                        this.levelScript.timeLimit = 60000;
+                        this.levelScript.timePassed = 0L;
+                        this.level.failObjective_ = new Objective(3, this.levelScript.timeLimit, this.level);
+                        this.level.successObjective = new Objective(3, this.levelScript.timeLimit, this.level);
                      }
 
                      if (!var3) {
-                        this.var_630.sub_b30();
-                        Status.setMission(Mission.var_dc);
-                        this.playerEgo.sub_5f1((Class_661)null);
-                        if (this.playerEgo.sub_aa7()) {
-                           this.playerEgo.sub_97e((KIPlayer)null);
+                        this.level.removeObjectives();
+                        Status.setMission(Mission.emptyMission_);
+                        this.playerEgo.setRoute((Route)null);
+                        if (this.playerEgo.gointToAsteroidField()) {
+                           this.playerEgo.setAutoPilot((KIPlayer)null);
                         }
 
-                        this.playerEgo.sub_66d();
-                        this.var_630.sub_6ce((Class_661)null);
+                        this.playerEgo.removeRoute();
+                        this.level.setPlayerRoute((Route)null);
                         if (!Status.inAlienOrbit()) {
-                           this.var_865 = new AutoPilotList(this.var_630);
+                           this.autoPilotList = new AutoPilotList(this.level);
                         }
                      }
                   }
 
-                  this.var_187 = 0L;
+                  this.menuListScrollTick = 0L;
                   return;
                }
             } else {
                if (this.autopilotMenuOpen) {
                   if (var1 == 1024) {
                      this.autopilotMenuOpen = false;
-                     this.var_53f = false;
+                     this.paused = false;
                   }
 
                   if (var1 == 2 && this.autopilotMenuOpen) {
-                     this.var_865.down();
+                     this.autoPilotList.down();
                   }
 
                   if (var1 == 64 && this.autopilotMenuOpen) {
-                     this.var_865.up();
+                     this.autoPilotList.up();
                   }
 
                   if (var1 == 256) {
-                     GameStatus.soundManager.playSfx(13);
+                     GlobalStatus.soundManager.playSfx(13);
                      this.autopilotMenuOpen = false;
                      if (this.playerEgo != null) {
-                        this.playerEgo.sub_de8();
+                        this.playerEgo.resetGunDelay();
                      }
 
-                     this.var_53f = false;
-                     switch(this.var_865.getSelection()) {
+                     this.paused = false;
+                     switch(this.autoPilotList.getSelection()) {
                      case 0:
-                        this.var_689.sub_24c();
+                        this.levelScript.setAutoPilotToProgrammedStation();
                         return;
                      case 1:
-                        this.playerEgo.sub_97e(this.var_630.sub_5b7()[1]);
-                        this.var_611.sub_30d(12, this.playerEgo);
+                        this.playerEgo.setAutoPilot(this.level.getLandmarks()[1]);
+                        this.hud.hudEvent(12, this.playerEgo);
                         return;
                      case 2:
-                        this.playerEgo.sub_97e(this.var_630.sub_5b7()[0]);
-                        this.var_611.sub_30d(10, this.playerEgo);
+                        this.playerEgo.setAutoPilot(this.level.getLandmarks()[0]);
+                        this.hud.hudEvent(10, this.playerEgo);
                         return;
                      case 3:
-                        this.playerEgo.sub_97e(this.var_630.sub_617());
-                        this.var_611.sub_30d(14, this.playerEgo);
+                        this.playerEgo.setAutoPilot(this.level.getAsteroidWaypoint());
+                        this.hud.hudEvent(14, this.playerEgo);
                         return;
                      case 4:
-                        if (this.var_630.sub_6a6() != null) {
-                           this.playerEgo.sub_97e(this.var_630.sub_6a6().sub_176());
-                           this.var_611.sub_30d(13, this.playerEgo);
+                        if (this.level.getPlayerRoute() != null) {
+                           this.playerEgo.setAutoPilot(this.level.getPlayerRoute().getDockingTarget_());
+                           this.hud.hudEvent(13, this.playerEgo);
                         }
                      }
                   }
@@ -1078,13 +1078,13 @@ private boolean loadingDrawn;
                if (this.jumpgateReached) {
                   if (var1 == 256) {
                      this.jumpgateReached = false;
-                     if (this.popup.sub_9a()) {
+                     if (this.popup.getChoice()) {
                         if (this.playerEgo.isLookingBack()) {
-                           this.playerEgo.sub_2b9(false);
+                           this.playerEgo.setTurretMode(false);
                         }
 
-                        this.sub_225();
-                        this.playerEgo.sub_de8();
+                        this.startJumpScene();
+                        this.playerEgo.resetGunDelay();
                         return;
                      }
 
@@ -1093,196 +1093,196 @@ private boolean loadingDrawn;
                      }
 
                      this.starMap.setJumpMapMode(true, false);
-                     this.var_976 = true;
-                     this.var_53f = false;
+                     this.mapOpen_ = true;
+                     this.paused = false;
                   }
 
                   if (var1 == 4) {
-                     this.popup.sub_c6();
+                     this.popup.left();
                   }
 
                   if (var1 == 32) {
-                     this.popup.sub_ff();
+                     this.popup.right();
                      return;
                   }
-               } else if (this.var_75e != null && !this.actionMenuOpen) {
-                  this.var_75e.sub_401(var1);
-                  if (var1 == 256 && this.var_75e.sub_148()) {
-                     this.var_53f = false;
+               } else if (this.pauseMenu != null && !this.actionMenuOpen) {
+                  this.pauseMenu.handleKeystate(var1);
+                  if (var1 == 256 && this.pauseMenu.update()) {
+                     this.paused = false;
                      return;
                   }
 
                   if (var1 == 16384) {
-                     this.var_75e.sub_2e7();
+                     this.pauseMenu.update1_();
                   }
 
-                  if (var1 == 8192 && this.var_75e.sub_2d7()) {
-                     this.var_53f = false;
+                  if (var1 == 8192 && this.pauseMenu.goBack()) {
+                     this.paused = false;
                   }
 
                   if (var1 == 4) {
-                     this.var_75e.sub_23d();
+                     this.pauseMenu.optionsLeft();
                   }
 
                   if (var1 == 32) {
-                     this.var_75e.sub_2c1();
+                     this.pauseMenu.optionsRight();
                      return;
                   }
                }
             }
-         } else if (this.var_976) {
-            this.var_976 = this.starMap.sub_a9(var1);
-            if (!this.var_976 && this.var_9d5) {
-               this.playerEgo.sub_ff3(this.var_450, false);
-               this.playerEgo.sub_97e((KIPlayer)null);
-               this.playerEgo.var_50e.sub_85f().setOrientation(this.var_630.sub_5b7()[1].var_25d.getDirection());
-               this.playerEgo.sub_b32(this.var_630.sub_5b7()[1].var_25d.sub_237());
-               this.playerEgo.var_50e.sub_202(4096);
-            } else if (this.starMap.var_1071) {
-               this.var_976 = false;
-               this.sub_225();
+         } else if (this.mapOpen_) {
+            this.mapOpen_ = this.starMap.handleKeystate(var1);
+            if (!this.mapOpen_ && this.touchesStream) {
+               this.playerEgo.dockToStream(this.targetFollowCamera, false);
+               this.playerEgo.setAutoPilot((KIPlayer)null);
+               this.playerEgo.shipGrandGroup_.getToParentTransform().setOrientation(this.level.getLandmarks()[1].mainMesh_.getDirection());
+               this.playerEgo.setPosition_(this.level.getLandmarks()[1].mainMesh_.getPostition());
+               this.playerEgo.shipGrandGroup_.moveForward(4096);
+            } else if (this.starMap.destSelected) {
+               this.mapOpen_ = false;
+               this.startJumpScene();
             }
 
-            if (!this.var_976) {
-               this.starMap.sub_98();
+            if (!this.mapOpen_) {
+               this.starMap.OnRelease();
                this.starMap = null;
                return;
             }
          } else if (!this.egoDead) {
             if (var1 == 16384) {
-               if (this.var_75e == null) {
-                  this.var_75e = new OptionsWindow();
+               if (this.pauseMenu == null) {
+                  this.pauseMenu = new OptionsWindow();
                }
 
-               this.var_75e.sub_38c();
-               this.var_53f = !this.var_53f;
-               if (this.var_53f) {
+               this.pauseMenu.resetPauseMenu();
+               this.paused = !this.paused;
+               if (this.paused) {
                   return;
                }
             }
 
-            if (!this.var_58b && Status.getCurrentCampaignMission() > 1) {
-               if (!this.playerEgo.sub_be6()) {
-                  this.actionMenuOpen = this.var_611.sub_527(var1, this.var_630, this.var_6d2);
-                  this.var_53f = this.actionMenuOpen;
-                  if (this.actionMenuOpen && !GameStatus.var_554) {
-                     this.var_7f9 = new Dialogue(GameStatus.langManager.getLangString(321));
-                     this.var_a7d = true;
-                     GameStatus.var_554 = true;
+            if (!this.cinematicBreak_ && Status.getCurrentCampaignMission() > 1) {
+               if (!this.playerEgo.isMining()) {
+                  this.actionMenuOpen = this.hud.handleActionMenuKeypress(var1, this.level, this.radar);
+                  this.paused = this.actionMenuOpen;
+                  if (this.actionMenuOpen && !GlobalStatus.actionMenuHelpShown) {
+                     this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(321));
+                     this.interruptedByDialogue = true;
+                     GlobalStatus.actionMenuHelpShown = true;
                   }
                }
 
-               if (this.var_53f) {
+               if (this.paused) {
                   return;
                }
 
                if (var1 == 131072) {
-                  this.var_b21 = !this.var_b21;
-                  if (!this.playerEgo.sub_2b9(this.var_b21)) {
-                     if (this.var_47 != 1) {
-                        Class_7flight.sub_206(this.var_450);
-                        this.var_47 = 1;
+                  this.inTurretMode = !this.inTurretMode;
+                  if (!this.playerEgo.setTurretMode(this.inTurretMode)) {
+                     if (this.lookingBack != 1) {
+                        LevelScript.lookBehind(this.targetFollowCamera);
+                        this.lookingBack = 1;
                      } else {
-                        Class_7flight.sub_1b8(this.var_450, this.var_630);
-                        this.var_47 = 0;
+                        LevelScript.resetCamera(this.targetFollowCamera, this.level);
+                        this.lookingBack = 0;
                      }
                   }
                }
 
                if (var1 == 256) {
-                  if (this.var_6d2.targetedStation != null) {
-                     if (!this.playerEgo.sub_a15()) {
-                        this.playerEgo.sub_97e(this.var_6d2.targetedStation);
-                        if (this.var_6d2.targetedStation.equals(this.var_630.sub_5b7()[0])) {
-                           this.var_611.sub_30d(10, this.playerEgo);
-                        } else if (this.var_6d2.targetedStation.equals(this.var_630.sub_5b7()[3])) {
-                           this.var_611.sub_30d(15, this.playerEgo);
+                  if (this.radar.targetedLandmark != null) {
+                     if (!this.playerEgo.isAutoPilot()) {
+                        this.playerEgo.setAutoPilot(this.radar.targetedLandmark);
+                        if (this.radar.targetedLandmark.equals(this.level.getLandmarks()[0])) {
+                           this.hud.hudEvent(10, this.playerEgo);
+                        } else if (this.radar.targetedLandmark.equals(this.level.getLandmarks()[3])) {
+                           this.hud.hudEvent(15, this.playerEgo);
                         } else {
-                           this.var_611.sub_30d(12, this.playerEgo);
+                           this.hud.hudEvent(12, this.playerEgo);
                         }
 
-                        GameStatus.soundManager.playSfx(13);
+                        GlobalStatus.soundManager.playSfx(13);
                      } else if (!this.playerEgo.isLookingBack()) {
-                        this.var_611.sub_30d(6, this.playerEgo);
-                        this.playerEgo.sub_97e((KIPlayer)null);
-                        this.var_6d2.targetedStation = null;
-                        this.var_6d2.contextStation = null;
-                        this.playerEgo.sub_de8();
+                        this.hud.hudEvent(6, this.playerEgo);
+                        this.playerEgo.setAutoPilot((KIPlayer)null);
+                        this.radar.targetedLandmark = null;
+                        this.radar.contextLandmark = null;
+                        this.playerEgo.resetGunDelay();
                      }
                   } else {
-                     if (this.var_6d2.var_fd4 != null && !this.playerEgo.sub_f55()) {
+                     if (this.radar.targetedPlanet != null && !this.playerEgo.isDockingToPlanet()) {
                         if (Status.getCurrentCampaignMission() < 10) {
-                           this.var_611.sub_30d(21, this.playerEgo);
+                           this.hud.hudEvent(21, this.playerEgo);
                            return;
                         }
 
-                        this.playerEgo.sub_f13(this.var_450);
-                        this.playerEgo.sub_327();
-                        this.playerEgo.sub_de8();
-                        GameStatus.soundManager.playSfx(13);
+                        this.playerEgo.stopPlanetDock_(this.targetFollowCamera);
+                        this.playerEgo.silentBoost_();
+                        this.playerEgo.resetGunDelay();
+                        GlobalStatus.soundManager.playSfx(13);
                         return;
                      }
 
-                     if (this.playerEgo.sub_be6()) {
-                        if (this.playerEgo.sub_be6()) {
-                           this.playerEgo.sub_10a5();
+                     if (this.playerEgo.isMining()) {
+                        if (this.playerEgo.isMining()) {
+                           this.playerEgo.endMining();
                         }
                      } else {
-                        if (this.var_6d2.sub_1bd() != null && !this.playerEgo.sub_e45()) {
-                           this.var_611.sub_30d(11, this.playerEgo);
-                           GameStatus.soundManager.playSfx(13);
-                        } else if (this.playerEgo.sub_e45()) {
-                           this.var_611.sub_30d(6, this.playerEgo);
+                        if (this.radar.getLockedAsteroid() != null && !this.playerEgo.isDockingToAsteroid()) {
+                           this.hud.hudEvent(11, this.playerEgo);
+                           GlobalStatus.soundManager.playSfx(13);
+                        } else if (this.playerEgo.isDockingToAsteroid()) {
+                           this.hud.hudEvent(6, this.playerEgo);
                         }
 
-                        this.playerEgo.sub_113a(this.var_6d2.sub_1bd(), this.var_450, this.var_6d2);
+                        this.playerEgo.dockToAsteroid(this.radar.getLockedAsteroid(), this.targetFollowCamera, this.radar);
                      }
                   }
                }
 
-               if (var1 == 65536 && !this.playerEgo.isBoostActive()) {
-                  this.playerEgo.sub_308();
-                  this.var_611.sub_30d(3, this.playerEgo);
+               if (var1 == 65536 && !this.playerEgo.boosting()) {
+                  this.playerEgo.boost();
+                  this.hud.hudEvent(3, this.playerEgo);
                }
 
-               if (var1 == 32768 && this.playerEgo.player.sub_9e5(1)) {
-                  this.playerEgo.sub_6c9((int)this.frameTime, 1);
+               if (var1 == 32768 && this.playerEgo.player.hasGunOfType(1)) {
+                  this.playerEgo.shoot((int)this.frameTime, 1);
                }
 
                if (var1 == 512 && Status.getCurrentCampaignMission() > 0) {
-                  GameStatus.soundManager.playSfx(4);
+                  GlobalStatus.soundManager.playSfx(4);
                   this.isIntro = !this.isIntro;
-                  this.var_611.sub_30d(this.isIntro ? 1 : 2, this.playerEgo);
+                  this.hud.hudEvent(this.isIntro ? 1 : 2, this.playerEgo);
                }
 
                if (var1 == 1024) {
-                  GameStatus.soundManager.playSfx(4);
-                  if (this.playerEgo.sub_a15()) {
-                     this.playerEgo.sub_97e((KIPlayer)null);
-                     this.var_611.sub_30d(6, this.playerEgo);
+                  GlobalStatus.soundManager.playSfx(4);
+                  if (this.playerEgo.isAutoPilot()) {
+                     this.playerEgo.setAutoPilot((KIPlayer)null);
+                     this.hud.hudEvent(6, this.playerEgo);
                      return;
                   }
 
                   if (!this.autopilotMenuOpen) {
-                     if (this.playerEgo.sub_e45()) {
-                        this.playerEgo.sub_113a(this.var_6d2.sub_1bd(), this.var_450, this.var_6d2);
-                        this.var_611.sub_30d(6, this.playerEgo);
+                     if (this.playerEgo.isDockingToAsteroid()) {
+                        this.playerEgo.dockToAsteroid(this.radar.getLockedAsteroid(), this.targetFollowCamera, this.radar);
+                        this.hud.hudEvent(6, this.playerEgo);
                         return;
                      }
 
-                     if (this.playerEgo.sub_ea4()) {
-                        this.playerEgo.sub_113a(this.var_6d2.targetedStation, this.var_450, this.var_6d2);
-                        this.var_611.sub_30d(6, this.playerEgo);
+                     if (this.playerEgo.isDockingToStream_()) {
+                        this.playerEgo.dockToAsteroid(this.radar.targetedLandmark, this.targetFollowCamera, this.radar);
+                        this.hud.hudEvent(6, this.playerEgo);
                         return;
                      }
 
                      if (!Status.inAlienOrbit()) {
-                        if (this.var_865 == null || this.var_630.sub_6a6() != null && this.var_630.sub_6a6().sub_1d7().var_35b) {
-                           this.var_865 = new AutoPilotList(this.var_630);
+                        if (this.autoPilotList == null || this.level.getPlayerRoute() != null && this.level.getPlayerRoute().getLastWaypoint().reached_) {
+                           this.autoPilotList = new AutoPilotList(this.level);
                         }
 
                         this.autopilotMenuOpen = true;
-                        this.var_53f = true;
+                        this.paused = true;
                         return;
                      }
                   }
@@ -1290,24 +1290,24 @@ private boolean loadingDrawn;
             } else {
                if ((var1 == 4096 || var1 == 2048) && Status.getCurrentCampaignMission() < 2) {
                   Status.nextCampaignMission();
-                  GameStatus.var_bfb.setScene(GameStatus.scenes[1]);
+                  GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[1]);
                   return;
                }
 
-               if (var1 == 256 && this.var_689.var_500 > 3000L) {
-                  this.var_689.sub_aa();
-                  this.playerEgo.sub_de8();
+               if (var1 == 256 && this.levelScript.timePassed > 3000L) {
+                  this.levelScript.skipSequence();
+                  this.playerEgo.resetGunDelay();
                }
 
-               if (var1 == 65536 && !this.playerEgo.isBoostActive()) {
-                  this.playerEgo.sub_308();
-                  this.var_611.sub_30d(3, this.playerEgo);
+               if (var1 == 65536 && !this.playerEgo.boosting()) {
+                  this.playerEgo.boost();
+                  this.hud.hudEvent(3, this.playerEgo);
                   return;
                }
             }
-         } else if (this.var_209 > 3000L && var1 != 32 && var1 != 4 && var1 == 256) {
-            GameStatus.var_bfb.setScene(GameStatus.scenes[0]);
-            GameStatus.soundManager.playMusic(0);
+         } else if (this.fiveSecTick > 3000L && var1 != 32 && var1 != 4 && var1 == 256) {
+            GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[0]);
+            GlobalStatus.soundManager.playMusic(0);
             return;
          }
 
