@@ -17,6 +17,7 @@ public final class AEGraphics3D extends IGraphics3D {
    public static Light omni;
    public static Transform identity = new Transform();
    public static Matrix lightInv = new Matrix();
+   public static Matrix lightLocal= new Matrix();
    
    public AEGraphics3D() {
       graphics3D = Graphics3D.getInstance();
@@ -49,7 +50,7 @@ public final class AEGraphics3D extends IGraphics3D {
 		 Transform transform = new Transform();
 		 float arr[] = new float[16];
 		 camera.getLocalTransform().getInverse(matrix);
-		 
+		 lightLocal = new Matrix(lighLocalMatrix);
 		 matrix.multiply(lighLocalMatrix);
 		 lightInv = matrix;
 		 matrix.toFloatArray(arr);

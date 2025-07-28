@@ -38,6 +38,7 @@ public final class JSRMesh extends AbstractMesh {
    private static CompositingMode composMode;
    private boolean needsUvFix = false;
    private Texture2D texture = null;
+   private Texture2D envTexture = null;
    private static Transform textureTransform = new Transform();
      
    public JSRMesh(int resourceId, String path, int radius) {
@@ -192,12 +193,14 @@ public final class JSRMesh extends AbstractMesh {
 	    
 	}
 	
-	public void rotateUV(Matrix m) {
+	public void rotateUV(Matrix m, Matrix camInv) {
     	    VertexBuffer vertexBuffer;
     	    VertexArray normalArray;
     	    AEVector3D lightDir = m.getDirection();
     	    Matrix inv = new Matrix();
+    	    //Matrix unrotated = new Matrix();
     	    inv = this.globalTransform.getInverse(inv);
+    	    //unrotated.addEulerAngles(-this.globalTransform.getEulerX(), -this.globalTransform.getEulerY(), -this.globalTransform.getEulerZ());
     	    if (opaqueNodes != null) {
         	    for (int i = 0; i < opaqueNodes.length; i++) {
         		if (opaqueNodes[i] instanceof Mesh) {
@@ -213,9 +216,11 @@ public final class JSRMesh extends AbstractMesh {
                 		    int y = ((int)normals[idx + 1])<<5;
                 		    int z = ((int)normals[idx + 2])<<5;
                 		    AEVector3D normal = new AEVector3D(x,y,z);
-            			    normal = inv.transformVectorNoScale(normal);
+                		    Matrix A = new Matrix();
+                		    this.tempTransform.multiplyTo(camInv, A);
+            			    normal = A.transformVectorNoScale(normal);
                 		    normal = m.transformVectorNoScale(normal);
-                		    if (0 < normal.dot(lightDir)) {
+                		    if (0 < normal.dot(lightDir) || true) {
                 			
                 			texcoords[idx] = (short) normal.x;
                         		texcoords[idx + 1] =(short) normal.y;
@@ -230,8 +235,8 @@ public final class JSRMesh extends AbstractMesh {
                 	        }
                 	        normalArray = new VertexArray(vertexCount, 3, 2);
                 	        normalArray.set(0,vertexCount, texcoords);
-                		vertexBuffer.setTexCoords(1, normalArray, 1.0f/127.0f/2.0f/32.0f, new float[] {0.5F, 0.5F ,0.5F});
-        		}
+                		vertexBuffer.setTexCoords(1, normalArray, 1.0f/127.0f/2.0f/32.0f, null);//new float[] {0.5F, 0.5F ,0.5F});
+			}
         	    }
     	    }
 	}
@@ -307,9 +312,9 @@ public final class JSRMesh extends AbstractMesh {
             }
          }
 
-         var10000 = false;
+         var10000 = false;//test
       }
-
+      var10000 = false;
       javax.microedition.m3g.Node[] var7;
       if (var10000) {
          if (this.transparentNodes == null) {
@@ -380,7 +385,7 @@ public final class JSRMesh extends AbstractMesh {
                this.texture.setTranslation(0.0F, (float)this.animStartFrame * 0.0625F, 0.0F);
             }
          }
-
+         
          this.matrix.toFloatArray(m_matrix);
          localToWorldTransform.set(m_matrix);
          int var1;
@@ -401,8 +406,70 @@ public final class JSRMesh extends AbstractMesh {
 
             return;
          }
+         /*
+	  Transform t = new Transform();
+	  t.setIdentity();
+	  t.postTranslate(.5f,.5f,.5f);
+	  Camera cam = GlobalStatus.renderer.getCamera();
+	  AE.Math.Matrix cameraToWorldMatrix = cam.getLocalTransform();
+	  AE.Math.Matrix worldToCameraMatrix = new AE.Math.Matrix();
+	  cameraToWorldMatrix.getInverse(worldToCameraMatrix); // Calculate the inverse
 
+	  // Convert your custom matrix to a JSR 184 Transform object
+	  // I am 100% certain this conversion is necessary.
+	  float[] worldToCameraFloats = new float[16];
+	  worldToCameraMatrix.toFloatArray(worldToCameraFloats);
+	  Transform worldToCameraTransform = new Transform();
+	  worldToCameraTransform.set(worldToCameraFloats);
+
+	  // --- Step 2: Calculate the full Model-to-Camera Transformation ---
+	  // This combines the mesh's world transform with the view transform to
+	  // bring vertices from the model's local space into the camera's eye space.
+
+	  Transform modelToCameraTransform = new Transform(worldToCameraTransform);
+	  modelToCameraTransform.postMultiply(localToWorldTransform);
+
+	  // --- Step 3: Isolate the Rotational Part for Normals ---
+	  // Normals are vectors and should only be rotated, not translated. We create
+	  // a matrix with only the rotational and scaling components.
+	  // I am 90% certain this is sufficient, assuming no non-uniform scaling,
+	  // which is a common optimization for mobile graphics.
+	  float[] modelToCameraFloats = new float[16];
+	  modelToCameraTransform.get(modelToCameraFloats);
+
+	  // Zero out the translation components. [cite_start]The matrix is in row-major order[cite: 2748].
+	  // This effectively removes the translation part of the transformation.
+	  modelToCameraFloats[3] = 0.0f;
+	  modelToCameraFloats[7] = 0.0f;
+	  modelToCameraFloats[11] = 0.0f;
+
+	  Transform modelToCameraRotation = new Transform();
+	  modelToCameraRotation.set(modelToCameraFloats);
+
+	  // --- Step 4: Create the Bias and Scale Matrix for Sphere Mapping ---
+	  // This matrix maps the eye-space normal components (from [-1, 1])
+	  // to texture coordinates (in [0, 1]) using s = 0.5*x + 0.5 and t = 0.5*y + 0.5.
+	  // I am 100% certain this matrix correctly performs the mapping.
+	  Transform biasScale = new Transform();
+	  float[] bsFloats = {
+	      0.5f, 0.0f, 0.0f, 0.5f,
+	      0.0f, 0.5f, 0.0f, 0.5f,
+	      0.0f, 0.0f, 0.0f, 0.0f, // z component is ignored
+	      0.0f, 0.0f, 0.0f, 1.0f
+	  };
+	  biasScale.set(bsFloats);
+
+	  // --- Step 5: Combine into the Final Texture Transform Matrix ---
+	  // The final transform is the combination of the rotation and the scale/bias.
+	  // The rotation is applied first, then the scale/bias.
+	  // I am 100% certain this is the correct final combination.
+	  biasScale.postMultiply(modelToCameraRotation);
+	  Transform finalTextureTransform = biasScale; // biasScale now holds the final matrix
+
+	  */
          for(var1 = 0; var1 < this.opaqueNodes.length; ++var1) {
+             javax.microedition.m3g.Node n = this.opaqueNodes[var1];
+            // ((Mesh)n).getAppearance(0).getTexture(1).setTransform(finalTextureTransform);
             AEGraphics3D.graphics3D.render(this.opaqueNodes[var1], localToWorldTransform);
          }
       }

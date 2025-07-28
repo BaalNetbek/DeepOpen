@@ -12,6 +12,7 @@ import AE.CameraControllerGroup;
 import GoF2.FileRead;
 import AE.GlobalStatus;
 import AE.Group;
+import AE.ParticlesMesh;
 import GoF2.Layout;
 import GoF2.Level;
 import AE.Math.Matrix;
@@ -65,6 +66,7 @@ public final class StarMap {
    private Popup popup;
    private int selectedSystem;
    private int selectedPlanet;
+   private AbstractMesh backgroundStars;
    private AbstractMesh[] stars;
    private Group galaxyMapGroup;
    private Camera starNetCamera_;
@@ -136,22 +138,34 @@ public final class StarMap {
       this.backGroundTileY = this.fog.getHeight() << 1;
       new FileRead();
       this.systems = FileRead.loadSystemsBinary();
+      this.backgroundStars = new ParticlesMesh(256, 0, 48, 14, 62, 200, 200, (byte)2);
+      this.backgroundStars.setTexture(AEResourceManager.getTextureResource(0));
+      int[] var16 = ((ParticlesMesh)this.backgroundStars).getPositions();
+      GlobalStatus.random.setSeed(10000L);
+
+      for (int i = 0; i < var16.length; i += 3) {
+         var16[i] = 5000 - GlobalStatus.random.nextInt(20000);
+         var16[i + 1] = 5000 - GlobalStatus.random.nextInt(20000);
+         var16[i + 2] = 2000 + GlobalStatus.random.nextInt(5000);
+      }
+
+      this.backgroundStars.setRenderLayer(2);
       var5 = "/data/interface/map_sun_glow.png";
       this.sunGlow = AEFile.loadImage("/data/interface/map_sun_glow.png", true);
       this.galaxyMapGroup = new CameraControllerGroup();
       this.stars = new AbstractMesh[this.systems.length];
 
-      for(int var8 = 0; var8 < this.stars.length; ++var8) {
-         int var6 = this.systems[var8].getStarTextureIndex();
-         this.stars[var8] = AEResourceManager.getGeometryResource(6781);
-         this.stars[var8].setAnimationRangeInTime(var6, var6);
-         this.stars[var8].setAnimationMode((byte)1);
-         this.stars[var8].setRenderLayer(2);
-         this.stars[var8].setRadius(5000);
-         this.stars[var8].rotateEuler(0, 2048, 0);
-         this.stars[var8].setScale(1024, 1024, 1024);
-         this.stars[var8].moveTo(-8000 + (int)((float)(100 - this.systems[var8].getPosX()) / 100.0F * 10000.0F), -7000 + (int)((float)(100 - this.systems[var8].getPosY()) / 100.0F * 9000.0F), 2000 + (int)((float)(100 - this.systems[var8].getPosZ()) / 100.0F * 2500.0F));
-         this.galaxyMapGroup.uniqueAppend_(this.stars[var8]);
+      for(int i = 0; i < this.stars.length; ++i) {
+         int var6 = this.systems[i].getStarTextureIndex();
+         this.stars[i] = AEResourceManager.getGeometryResource(6781);
+         this.stars[i].setAnimationRangeInTime(var6, var6);
+         this.stars[i].setAnimationMode((byte)1);
+         this.stars[i].setRenderLayer(2);
+         this.stars[i].setRadius(5000);
+         this.stars[i].rotateEuler(0, 2048, 0);
+         this.stars[i].setScale(1024, 1024, 1024);
+         this.stars[i].moveTo(-8000 + (int)((float)(100 - this.systems[i].getPosX()) / 100.0F * 10000.0F), -7000 + (int)((float)(100 - this.systems[i].getPosY()) / 100.0F * 9000.0F), 2000 + (int)((float)(100 - this.systems[i].getPosZ()) / 100.0F * 2500.0F));
+         this.galaxyMapGroup.uniqueAppend_(this.stars[i]);
       }
 
       if (Status.getCurrentCampaignMission() >= 32 && Status.wormholeSystem >= 0) {
@@ -271,6 +285,10 @@ public final class StarMap {
    }
 
    public final void OnRelease() {
+       if (this.backgroundStars != null) {
+	         this.backgroundStars.OnRelease();
+	         this.backgroundStars = null;
+	      }
       this.starNetCamera_ = null;
       this.wormhole = null;
       this.arrow = null;
@@ -615,6 +633,7 @@ public final class StarMap {
 
       try {
          GlobalStatus.graphics3D.bindTarget(GlobalStatus.graphics);
+         GlobalStatus.renderer.drawNodeInVF(this.backgroundStars);
          if (var10.localSystem != null) {
             GlobalStatus.renderer.drawNodeInVF(var10.localSystem);
          } else {

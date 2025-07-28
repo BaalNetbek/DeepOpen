@@ -31,9 +31,9 @@ public abstract class AbstractMesh extends AEGeometry {
       if (this.draw && var1.isInViewFrustum(this.boundingSphere) != 0) {
          this.matrix = var1.tempTransform.getInverse(this.matrix);
          try {
-         if (this instanceof JSRMesh) {
-             ((JSRMesh) this).rotateUV(AEGraphics3D.lightInv);
-         }
+//         if (this instanceof JSRMesh) {
+//            ((JSRMesh) this).rotateUV(AEGraphics3D.lightInv, this.matrix);
+//         }
          }catch (Exception e) {
              e.printStackTrace();
          }
@@ -101,6 +101,8 @@ public abstract class AbstractMesh extends AEGeometry {
    }
 
    public abstract GraphNode clone();
+   
+   //public static AbstractMesh newParticlesMesh(int n1, int n2, int n3, int n4, int n5, int n6, int n7, byte, b1)
 
    public static AbstractMesh newPlaneStrip(int var0, int var1, byte var2) {
       return new ParticleSystemMesh(0, var1, (byte)2);

@@ -60,13 +60,14 @@ public class Group extends GraphNode {
       if (this.draw) {
          GraphNode var3;
          switch(var1.isInViewFrustum(this.boundingSphere)) {
+         case 2:
          case 1:
             for(var3 = this.head; var3 != null; var3 = var3.parent) {
                var3.appendToRender(var1, var2);
             }
 
             return;
-         case 2:
+         case 3:
             for(var3 = this.head; var3 != null; var3 = var3.parent) {
                var3.forceAppendToRender(var1, var2);
             }

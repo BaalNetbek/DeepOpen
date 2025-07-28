@@ -5,6 +5,7 @@ import AE.AbstractMesh;
 import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.Group;
+import AE.JSRMesh;
 
 public final class Globals {
    private static String PATH_MESHES = "/data/3d/";
@@ -115,10 +116,19 @@ public final class Globals {
 
    public static Group getShipGroup(int var0, int var1) {
       Group var2 = new Group();
+      if (var0 == 28) {
+	  AbstractMesh var5 = AEResourceManager.getGeometryResource(6778);
+	  var5.setScale(1024, 1024, 1024);
+	  var5.moveTo(0, 0, 500);
+	  var5.setRenderLayer(2);
+	  var5.setDraw(true);
+	  var2.uniqueAppend_(var5);
+	  return var2;
+      }
       new FileRead();
       int[] var3 = FileRead.loadShipParts(var0);
       int[] var6 = getRaceUVkeyframeId_(var1);
-
+      
       for(int var4 = 0; var4 < var3.length; var4 += 10) {
          AbstractMesh var5;
          if ((var5 = AEResourceManager.getGeometryResource(var3[var4])).getID() >= 13064 && var5.getID() <= 13071) {
@@ -142,16 +152,16 @@ public final class Globals {
       return var2;
    }
 
-   public static void buildShip(Group var0, int var1) {
+   public static void buildShip(Group g, int var1) {
       new FileRead();
-      int[] var4;
-      int var2 = (var4 = FileRead.loadShipParts(var1)).length - 10;
-
-      for(GraphNode var3 = var0.getEndNode(); var3 != null; var3 = var3.getParent()) {
-         var3.moveTo(var4[var2 + 1], var4[var2 + 2], var4[var2 + 3]);
-         var3.setRotation(var4[var2 + 4], var4[var2 + 5], var4[var2 + 6]);
-         var3.setScale(var4[var2 + 7], var4[var2 + 8], var4[var2 + 9]);
-         var2 -= 10;
+      int[] parts;
+      int i = (parts = FileRead.loadShipParts(var1)).length - 10;
+      
+      for(GraphNode node = g.getEndNode(); node != null; node = node.getParent()) {
+         node.moveTo(parts[i + 1], parts[i + 2], parts[i + 3]);
+         node.setRotation(parts[i + 4], parts[i + 5], parts[i + 6]);
+         node.setScale(parts[i + 7], parts[i + 8], parts[i + 9]);
+         i -= 10;
       }
 
    }
@@ -229,7 +239,7 @@ public final class Globals {
       AEResourceManager.addGeometryResource(13020, PATH_MESHES + "ship_19_[13020].m3g", 2000, 0);
       AEResourceManager.addGeometryResource(13021, PATH_MESHES + "ship_20_[13021].m3g", 2000, 0);
       AEResourceManager.addGeometryResource(13022, PATH_MESHES + "ship_21_[13022].m3g", 2000, 0);
-      AEResourceManager.addGeometryResource(13023, PATH_MESHES + "ship_22_[13023].m3g", 2000, 0);
+      AEResourceManager.addGeometryResource(13023, PATH_MESHES + "ship_22_[13023].m3g", 2000, 0); // veteran ship_22_[13023]
       AEResourceManager.addGeometryResource(13024, PATH_MESHES + "ship_23_[13024].m3g", 2000, 0);
       AEResourceManager.addGeometryResource(13025, PATH_MESHES + "ship_24_[13025].m3g", 2000, 0);
       AEResourceManager.addGeometryResource(13026, PATH_MESHES + "ship_25_[13026].m3g", 2000, 0);

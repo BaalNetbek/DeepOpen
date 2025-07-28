@@ -3,6 +3,7 @@ package GoF2;
 import AE.AEResourceManager;
 import AE.AbstractMesh;
 import AE.Camera;
+import AE.MeteoroidParticles;
 import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.Group;
@@ -24,7 +25,7 @@ public final class PlayerEgo {
    private AbstractMesh turretGun;
    private AEVector3D vecUp;
    private AEVector3D vecRight;
-   private DummyClass_ unused_7a2;
+   private MeteoroidParticles unused_7a2;
    private Crosshair crosshair;
    private Explosion explosion;
    public Level level;
@@ -102,7 +103,7 @@ public final class PlayerEgo {
       this.autoPilotDir = new AEVector3D();
       this.laggingPos = new AEVector3D();
       this.roll = 1;
-      this.unused_7a2 = new DummyClass_();
+      this.unused_7a2 = new MeteoroidParticles();
       this.crosshair = new Crosshair();
       this.totalHP = this.player.getCombinedHP();
       this.speed = 2;
@@ -680,6 +681,7 @@ public final class PlayerEgo {
          }
 
          this.player.update((long)var1);
+         this.unused_7a2.update((long)var1, this.player.transform);
          if (this.turretMode) {
             this.crosshair.update(this.turretGun.getLocalTransform(), GlobalStatus.renderer.getCamera());
          } else {
@@ -1109,7 +1111,11 @@ public final class PlayerEgo {
       }
 
       this.crosshair = null;
-      this.unused_7a2 = null;
+      if (this.unused_7a2 != null) {
+	         this.unused_7a2.OnRelease();
+	      }
+
+	      this.unused_7a2 = null;
       if (this.turretStand != null) {
          this.turretStand.OnRelease();
       }
@@ -1126,6 +1132,7 @@ public final class PlayerEgo {
    public final void render(boolean var1) {
       if (this.isDead()) {
          this.explosion.update(this.frameTime);
+         this.unused_7a2.render();
       } else {
          if (this.explosion.canExplode()) {
             this.explosion.update(this.frameTime);
@@ -1147,6 +1154,9 @@ public final class PlayerEgo {
             this.tractorBeam.render();
          }
 
+         if (!this.freeze && var1 && this.miningState != 1) {
+            this.unused_7a2.render();
+         }
       }
    }
 

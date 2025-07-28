@@ -1,0 +1,2072 @@
+CL: Main/Bar Main/SpaceLounge
+MD: Main/Bar/sub_107 (II)V Main/SpaceLounge/draw (II)V
+MD: Main/Bar/sub_169 ()V Main/SpaceLounge/startChat ()V
+MD: Main/Bar/sub_1b2 ()Z Main/SpaceLounge/hangarNeedsUpdate ()Z
+MD: Main/Bar/sub_1db (Z)V Main/SpaceLounge/setHangarUpdate (Z)V
+MD: Main/Bar/sub_5d ()V Main/SpaceLounge/init ()V
+MD: Main/Bar/sub_7e ()V Main/SpaceLounge/OnRelease ()V
+MD: Main/Bar/sub_c7 (I)Z Main/SpaceLounge/handleKeystate (I)Z
+FD: Main/Bar/var_1a7 Main/SpaceLounge/popup
+FD: Main/Bar/var_1c0 Main/SpaceLounge/intemInfoWindow
+FD: Main/Bar/var_1ca Main/SpaceLounge/camera
+FD: Main/Bar/var_1e0 Main/SpaceLounge/items
+FD: Main/Bar/var_22a Main/SpaceLounge/itemTypes
+FD: Main/Bar/var_2a5 Main/SpaceLounge/chatType_
+FD: Main/Bar/var_2c7 Main/SpaceLounge/newSystemWaitingToBeSeen
+FD: Main/Bar/var_325 Main/SpaceLounge/missionConfirmPopup
+FD: Main/Bar/var_351 Main/SpaceLounge/transactionConfirmPopup_
+FD: Main/Bar/var_35f Main/SpaceLounge/itemDescriptionOpen
+FD: Main/Bar/var_3d2 Main/SpaceLounge/selectedAgent
+FD: Main/Bar/var_436 Main/SpaceLounge/agents
+FD: Main/Bar/var_46f Main/SpaceLounge/answearsPosY_
+FD: Main/Bar/var_4c5 Main/SpaceLounge/answearsPosX
+FD: Main/Bar/var_4df Main/SpaceLounge/chatTextPosY
+FD: Main/Bar/var_50 Main/SpaceLounge/starMap
+FD: Main/Bar/var_53c Main/SpaceLounge/chatTextPosX
+FD: Main/Bar/var_573 Main/SpaceLounge/chatRows
+FD: Main/Bar/var_5ce Main/SpaceLounge/chatScroll
+FD: Main/Bar/var_607 Main/SpaceLounge/chatAnswear
+FD: Main/Bar/var_628 Main/SpaceLounge/starMapOpen
+FD: Main/Bar/var_637 Main/SpaceLounge/hangarUpdate
+FD: Main/Bar/var_660 Main/SpaceLounge/clientsFaces
+FD: Main/Bar/var_691 Main/SpaceLounge/scene
+FD: Main/Bar/var_6d3 Main/SpaceLounge/cameraIntegratorX_
+FD: Main/Bar/var_731 Main/SpaceLounge/cameraIntegratorZ_
+FD: Main/Bar/var_773 Main/SpaceLounge/cameraPos
+FD: Main/Bar/var_7b1 Main/SpaceLounge/mentionedOres
+MD: Main/Intro/freeResources ()V Main/Intro/OnRelease ()V
+MD: Main/Intro/loadResources ()V Main/Intro/OnInitialize ()V
+MD: Main/MGame/freeResources ()V Main/MGame/OnRelease ()V
+MD: Main/MGame/loadResources ()V Main/MGame/OnInitialize ()V
+MD: Main/MGame/sub_11d ()V Main/MGame/gameOverCheck ()V
+MD: Main/MGame/sub_16c ()Z Main/MGame/successCheck_ ()Z
+MD: Main/MGame/sub_17e ()V Main/MGame/dialogueEvent ()V
+MD: Main/MGame/sub_1ce ()Z Main/MGame/dockEvent ()Z
+MD: Main/MGame/sub_1da ()V Main/MGame/pause ()V
+MD: Main/MGame/sub_20d ()Z Main/MGame/updateJumpScene ()Z
+MD: Main/MGame/sub_225 ()V Main/MGame/startJumpScene ()V
+MD: Main/MGame/sub_2f ()V Main/MGame/OnRender3D ()V
+MD: Main/MGame/sub_bf ()V Main/MGame/OnRender2D ()V
+FD: Main/MGame/var_187 Main/MGame/menuListScrollTick
+FD: Main/MGame/var_1c2 Main/MGame/unusedTick_
+FD: Main/MGame/var_209 Main/MGame/fiveSecTick
+FD: Main/MGame/var_287 Main/MGame/loaded
+FD: Main/MGame/var_3c0 Main/MGame/camera
+FD: Main/MGame/var_446 Main/MGame/cameras_
+FD: Main/MGame/var_450 Main/MGame/targetFollowCamera
+FD: Main/MGame/var_47 Main/MGame/lookingBack
+FD: Main/MGame/var_48b Main/MGame/lookAtCamera
+FD: Main/MGame/var_53f Main/MGame/paused
+FD: Main/MGame/var_55d Main/MGame/dialogueOpen_
+FD: Main/MGame/var_58b Main/MGame/cinematicBreak_
+FD: Main/MGame/var_5ea Main/MGame/fov
+FD: Main/MGame/var_611 Main/MGame/hud
+FD: Main/MGame/var_630 Main/MGame/level
+FD: Main/MGame/var_689 Main/MGame/levelScript
+FD: Main/MGame/var_6d2 Main/MGame/radar
+FD: Main/MGame/var_736 Main/MGame/radio
+FD: Main/MGame/var_75e Main/MGame/pauseMenu
+FD: Main/MGame/var_7af Main/MGame/sequentialDialogue_
+FD: Main/MGame/var_7f9 Main/MGame/interuptDialogue
+FD: Main/MGame/var_865 Main/MGame/autoPilotList
+FD: Main/MGame/var_947 Main/MGame/unused947_
+FD: Main/MGame/var_976 Main/MGame/mapOpen_
+FD: Main/MGame/var_9d5 Main/MGame/touchesStream
+FD: Main/MGame/var_a07 Main/MGame/touchesStation
+FD: Main/MGame/var_a4e Main/MGame/jumpGateSoundStarted
+FD: Main/MGame/var_a7d Main/MGame/interruptedByDialogue
+FD: Main/MGame/var_b21 Main/MGame/inTurretMode
+FD: Main/MGame/var_c3b Main/MGame/shootingDisabled
+FD: Main/MGame/var_c80 Main/MGame/usingJumpDrive
+FD: Main/MGame/var_ce4 Main/MGame/jumpDriveAnimStarted
+FD: Main/MGame/var_d04 Main/MGame/jumpFlash
+FD: Main/MGame/var_d4a Main/MGame/wingmenLeftNoticeShown
+FD: Main/MGame/var_d9c Main/MGame/egoJumpPos
+CL: Main/Hangar Main/HangarWindow
+MD: Main/Hangar/sub_107 ()LAbyssEngine/ListEntry; Main/HangarWindow/getSelectedItem ()LGoF2/ListItem;
+MD: Main/Hangar/sub_16b (I)Z Main/HangarWindow/handleKeyPressed (I)Z
+MD: Main/Hangar/sub_1a0 (II)Z Main/HangarWindow/draw (II)Z
+MD: Main/Hangar/sub_3f ()V Main/HangarWindow/initialize ()V
+MD: Main/Hangar/sub_65 ()I Main/HangarWindow/getCurrentTab ()I
+MD: Main/Hangar/sub_be ()Z Main/HangarWindow/inRoot ()Z
+MD: Main/Hangar/sub_e ()V Main/HangarWindow/OnRelease ()V
+FD: Main/Hangar/var_1c9 Main/HangarWindow/initTab
+FD: Main/Hangar/var_28e Main/HangarWindow/timeOpen
+FD: Main/Hangar/var_29d Main/HangarWindow/frameTime
+FD: Main/Hangar/var_2c2 Main/HangarWindow/loaded
+FD: Main/Hangar/var_2fa Main/HangarWindow/list
+FD: Main/Hangar/var_33e Main/HangarWindow/selectedItem
+FD: Main/Hangar/var_35c Main/HangarWindow/itemInfo
+FD: Main/Hangar/var_3a1 Main/HangarWindow/unused__3a1_
+FD: Main/Hangar/var_3ab Main/HangarWindow/freeSlotInfoPopup
+FD: Main/Hangar/var_3fc Main/HangarWindow/freeSlotInfoPopupOpen
+FD: Main/Hangar/var_411 Main/HangarWindow/tabsWidth_unused_
+FD: Main/Hangar/var_43e Main/HangarWindow/tabWidths_unused_
+FD: Main/Hangar/var_492 Main/HangarWindow/state__
+FD: Main/Hangar/var_49d Main/HangarWindow/speedSellTick
+FD: Main/Hangar/var_4f1 Main/HangarWindow/speedBuyTick
+FD: Main/Hangar/var_54a Main/HangarWindow/openedBluePrint
+MD: Main/StarMap/sub_101 (II)V Main/StarMap/update (II)V
+MD: Main/StarMap/sub_158 ()V Main/StarMap/initStarSysMap ()V
+MD: Main/StarMap/sub_188 (FF)V Main/StarMap/navigateMap (FF)V
+MD: Main/StarMap/sub_1ae ()Z Main/StarMap/scopedOnSystem ()Z
+MD: Main/StarMap/sub_23f ()V Main/StarMap/drawKey ()V
+MD: Main/StarMap/sub_29e (IZ)V Main/StarMap/drawOnScreenInfo (IZ)V
+MD: Main/StarMap/sub_2b5 ()V Main/StarMap/draw ()V
+MD: Main/StarMap/sub_4e (ZLAbyssEngine/Mission;ZI)V Main/StarMap/init (ZLGoF2/Mission;ZI)V
+MD: Main/StarMap/sub_98 ()V Main/StarMap/OnRelease ()V
+MD: Main/StarMap/sub_a9 (I)Z Main/StarMap/handleKeystate (I)Z
+MD: Main/StarMap/sub_dd ()V Main/StarMap/updateCameraTrack ()V
+FD: Main/StarMap/jumpMapModeVar1_ Main/StarMap/fromJumpGate
+FD: Main/StarMap/jumpMapModeVar2_ Main/StarMap/fromStation
+FD: Main/StarMap/var_101a Main/StarMap/curSqrSize
+FD: Main/StarMap/var_105c Main/StarMap/galaxyMapUnlocked
+FD: Main/StarMap/var_1071 Main/StarMap/destSelected
+FD: Main/StarMap/var_10c8 Main/StarMap/wormhole
+FD: Main/StarMap/var_110d Main/StarMap/arrow
+FD: Main/StarMap/var_114f Main/StarMap/legendItemIcons
+FD: Main/StarMap/var_1168 Main/StarMap/occupiedOrbits_
+FD: Main/StarMap/var_11d9 Main/StarMap/legendOpen
+FD: Main/StarMap/var_11e9 Main/StarMap/legendWindowWidth
+FD: Main/StarMap/var_123 Main/StarMap/tmpMapInnerHeight
+FD: Main/StarMap/var_124c Main/StarMap/discoveredSystemId
+FD: Main/StarMap/var_1271 Main/StarMap/discoverSystemCutscene
+FD: Main/StarMap/var_129f Main/StarMap/newSystemAnimTime
+FD: Main/StarMap/var_1302 Main/StarMap/jumpToAlienWorldPopupOpen
+FD: Main/StarMap/var_201 Main/StarMap/windowFrameWidth
+FD: Main/StarMap/var_254 Main/StarMap/windowFrameHeight
+FD: Main/StarMap/var_292 Main/StarMap/mapInnerWidth
+FD: Main/StarMap/var_2ce Main/StarMap/mapInnerHeight
+FD: Main/StarMap/var_349 Main/StarMap/state
+FD: Main/StarMap/var_35d Main/StarMap/curScreenPosX
+FD: Main/StarMap/var_39b Main/StarMap/curScreenPosY
+FD: Main/StarMap/var_3af Main/StarMap/scrollX
+FD: Main/StarMap/var_401 Main/StarMap/scrollY
+FD: Main/StarMap/var_452 Main/StarMap/backGroundTileX
+FD: Main/StarMap/var_4b6 Main/StarMap/backGroundTileY
+FD: Main/StarMap/var_764 Main/StarMap/fog
+FD: Main/StarMap/var_776 Main/StarMap/bluePrintIcon
+FD: Main/StarMap/var_78f Main/StarMap/mainMissionIcon
+FD: Main/StarMap/var_7eb Main/StarMap/sideMissionIcon
+FD: Main/StarMap/var_81d Main/StarMap/jumpGateIcon
+FD: Main/StarMap/var_848 Main/StarMap/checkMark
+FD: Main/StarMap/var_871 Main/StarMap/raceLogoBig
+FD: Main/StarMap/var_895 Main/StarMap/cursorLine
+FD: Main/StarMap/var_8f6 Main/StarMap/systemStar
+FD: Main/StarMap/var_924 Main/StarMap/logos
+FD: Main/StarMap/var_993 Main/StarMap/selectedSystemStations
+FD: Main/StarMap/var_9e6 Main/StarMap/popup
+FD: Main/StarMap/var_a6c Main/StarMap/stars
+FD: Main/StarMap/var_aad Main/StarMap/galaxyMapGroup
+FD: Main/StarMap/var_b0a Main/StarMap/starNetCamera_
+FD: Main/StarMap/var_b3a Main/StarMap/lastCamera
+FD: Main/StarMap/var_b6f Main/StarMap/tmpStarScreenPos2
+FD: Main/StarMap/var_b93 Main/StarMap/tmpStarScreenPos1
+FD: Main/StarMap/var_bf7 Main/StarMap/matrix
+FD: Main/StarMap/var_c27 Main/StarMap/localStarAndPlanetsMeshes
+FD: Main/StarMap/var_c63 Main/StarMap/localOrbits
+FD: Main/StarMap/var_c8d Main/StarMap/planetRevolutAngs
+FD: Main/StarMap/var_cb1 Main/StarMap/distsToStar
+FD: Main/StarMap/var_ce0 Main/StarMap/localSystem
+FD: Main/StarMap/var_cfc Main/StarMap/galaxyMapView
+FD: Main/StarMap/var_d20 Main/StarMap/overviewOnly_
+FD: Main/StarMap/var_d7c Main/StarMap/destinationConfirmPopupOpen
+FD: Main/StarMap/var_df9 Main/StarMap/smoothCamTransitionX
+FD: Main/StarMap/var_e4 Main/StarMap/planetSizes
+FD: Main/StarMap/var_e4c Main/StarMap/smoothCamTransitionY
+FD: Main/StarMap/var_e9b Main/StarMap/smoothCamTransitionZ
+FD: Main/StarMap/var_ee8 Main/StarMap/scopingOut
+FD: Main/StarMap/var_f1d Main/StarMap/sunGlow
+FD: Main/StarMap/var_f2b Main/StarMap/newSysAnimTimer
+FD: Main/StarMap/var_f8b Main/StarMap/pathDisplayDelay
+FD: Main/StarMap/var_ffe Main/StarMap/highlightedPathDot
+CL: Main/Class_1e2 Main/ListWindow_
+MD: Main/Class_1e2/sub_171 ()V Main/ListWindow_/drawItems ()V
+MD: Main/Class_1e2/sub_18a ()I Main/ListWindow_/getFirstListLen_ ()I
+MD: Main/Class_1e2/sub_19 ()V Main/ListWindow_/drawBG ()V
+MD: Main/Class_1e2/sub_6b ()V Main/ListWindow_/scrollDown ()V
+MD: Main/Class_1e2/sub_6c ()V Main/ListWindow_/draw ()V
+MD: Main/Class_1e2/sub_b4 ()V Main/ListWindow_/scrollUp ()V
+MD: Main/Class_1e2/sub_e4 (Ljava/lang/Object;I)V Main/ListWindow_/drawItem (Ljava/lang/Object;I)V
+FD: Main/Class_1e2/var_37 Main/ListWindow_/unused_37
+CL: AbyssEngine/Gun GoF2/Gun
+MD: AbyssEngine/Gun/sub_141 ()I GoF2/Gun/getMagnitude ()I
+MD: AbyssEngine/Gun/sub_176 (II)V GoF2/Gun/setOffset (II)V
+MD: AbyssEngine/Gun/sub_183 ()V GoF2/Gun/OnRelease ()V
+MD: AbyssEngine/Gun/sub_1df (LAbyssEngine/Class_6fcMesh;)V GoF2/Gun/setSparks (LGoF2/Sparks;)V
+MD: AbyssEngine/Gun/sub_240 (LAbyssEngine/Level;)V GoF2/Gun/setLevel (LGoF2/Level;)V
+MD: AbyssEngine/Gun/sub_2d2 ()[LAbyssEngine/Player; GoF2/Gun/getTargets ()[LGoF2/Player;
+MD: AbyssEngine/Gun/sub_2ea (LAbyssEngine/Matrix;JZ)Z GoF2/Gun/shoot (LAE/Math/Matrix;JZ)Z
+MD: AbyssEngine/Gun/sub_30a ()V GoF2/Gun/ignite ()V
+MD: AbyssEngine/Gun/sub_318 (J)V GoF2/Gun/calcCharacterCollision (J)V
+MD: AbyssEngine/Gun/sub_341 ()V GoF2/Gun/renderSparks ()V
+MD: AbyssEngine/Gun/sub_64 (I)V GoF2/Gun/setSpread (I)V
+MD: AbyssEngine/Gun/sub_c1 (Z)V GoF2/Gun/setFriendGun (Z)V
+MD: AbyssEngine/Gun/sub_f4 (I)V GoF2/Gun/setMagnitude (I)V
+FD: AbyssEngine/Gun/positions GoF2/Gun/MUZZLE_POSITIONS
+FD: AbyssEngine/Gun/var_176 GoF2/Gun/tempPos
+FD: AbyssEngine/Gun/var_1b4 GoF2/Gun/tempDir
+FD: AbyssEngine/Gun/var_20f GoF2/Gun/tempTarget
+FD: AbyssEngine/Gun/var_2a2 GoF2/Gun/equipmentId
+FD: AbyssEngine/Gun/var_334 GoF2/Gun/ammo
+FD: AbyssEngine/Gun/var_3de GoF2/Gun/muzzleOffset
+FD: AbyssEngine/Gun/var_42d GoF2/Gun/fired
+FD: AbyssEngine/Gun/var_441 GoF2/Gun/tempVector
+FD: AbyssEngine/Gun/var_547 GoF2/Gun/unused547_
+FD: AbyssEngine/Gun/var_5b0 GoF2/Gun/magnitude
+FD: AbyssEngine/Gun/var_5bc GoF2/Gun/sparks
+FD: AbyssEngine/Gun/var_5de GoF2/Gun/unused5de_
+FD: AbyssEngine/Gun/var_627 GoF2/Gun/friendGun
+FD: AbyssEngine/Gun/var_633 GoF2/Gun/spread
+CL: AbyssEngine/Hud GoF2/Hud
+MD: AbyssEngine/Hud/appendLogEntry (LAbyssEngine/ListEntry;)V GoF2/Hud/appendHudEvent (LGoF2/ListItem;)V
+MD: AbyssEngine/Hud/isSimilarEntryInLog (Ljava/lang/String;)Z GoF2/Hud/sameHudEventAsBeforeAggregate (Ljava/lang/String;)Z
+MD: AbyssEngine/Hud/sub_192 ()V GoF2/Hud/initSecondariesSubMenu ()V
+MD: AbyssEngine/Hud/sub_1e9 ()V GoF2/Hud/OnRelease ()V
+MD: AbyssEngine/Hud/sub_264 ()V GoF2/Hud/drawEventQueue ()V
+MD: AbyssEngine/Hud/sub_30d (ILAbyssEngine/PlayerEgo;)V GoF2/Hud/hudEvent (ILGoF2/PlayerEgo;)V
+MD: AbyssEngine/Hud/sub_362 ()V GoF2/Hud/playerHit ()V
+MD: AbyssEngine/Hud/sub_3ae (IIZZZZ)V GoF2/Hud/catchCargo (IIZZZZ)V
+MD: AbyssEngine/Hud/sub_3fa ()Z GoF2/Hud/cargoFull ()Z
+MD: AbyssEngine/Hud/sub_41b (JJLAbyssEngine/PlayerEgo;Z)V GoF2/Hud/draw (JJLGoF2/PlayerEgo;Z)V
+MD: AbyssEngine/Hud/sub_47c (IIIZ)V GoF2/Hud/drawBigDigits (IIIZ)V
+MD: AbyssEngine/Hud/sub_4bc ()V GoF2/Hud/drawOrbitInformation ()V
+MD: AbyssEngine/Hud/sub_51c (I)V GoF2/Hud/drawMenu_ (I)V
+MD: AbyssEngine/Hud/sub_527 (ILAbyssEngine/Level;LAbyssEngine/MGameContext;)Z GoF2/Hud/handleActionMenuKeypress (ILGoF2/Level;LGoF2/Radar;)Z
+MD: AbyssEngine/Hud/sub_58b ()Z GoF2/Hud/getJumpDriveSelected ()Z
+MD: AbyssEngine/Hud/sub_5df (Z)V GoF2/Hud/setJumpDriveSelected (Z)V
+MD: AbyssEngine/Hud/sub_a6 ()V GoF2/Hud/init ()V
+MD: AbyssEngine/Hud/updateLogDisplay (I)V GoF2/Hud/updateQueue (I)V
+FD: AbyssEngine/Hud/indicatorIconsOffset GoF2/Hud/hudIconsHeight
+FD: AbyssEngine/Hud/specialEquipment GoF2/Hud/cloakAndDrive
+FD: AbyssEngine/Hud/var_2be GoF2/Hud/lastWingmenAction
+FD: AbyssEngine/Hud/var_341 GoF2/Hud/screenMidX
+FD: AbyssEngine/Hud/var_38f GoF2/Hud/hullAlertMSDx
+FD: AbyssEngine/Hud/var_3e2 GoF2/Hud/hullAlertLSDx
+FD: AbyssEngine/Hud/var_429 GoF2/Hud/hullAlertPercentX
+FD: AbyssEngine/Hud/var_489 GoF2/Hud/symbolShield
+FD: AbyssEngine/Hud/var_4ca GoF2/Hud/symbolHull
+FD: AbyssEngine/Hud/var_568 GoF2/Hud/hit
+FD: AbyssEngine/Hud/var_590 GoF2/Hud/hudIcons
+FD: AbyssEngine/Hud/var_5f3 GoF2/Hud/quickmenuCrosshairAnim
+FD: AbyssEngine/Hud/var_60b GoF2/Hud/quickMenu
+FD: AbyssEngine/Hud/var_655 GoF2/Hud/hullBarEmpty
+FD: AbyssEngine/Hud/var_67b GoF2/Hud/hullBarFull
+FD: AbyssEngine/Hud/var_6c4 GoF2/Hud/panelUpperLeft
+FD: AbyssEngine/Hud/var_721 GoF2/Hud/panelLowerLeft
+FD: AbyssEngine/Hud/var_72c GoF2/Hud/hullAlarmNumbers
+FD: AbyssEngine/Hud/var_786 GoF2/Hud/hullAlarm
+FD: AbyssEngine/Hud/var_7e9 GoF2/Hud/hullAlarmShipIcon
+FD: AbyssEngine/Hud/var_831 GoF2/Hud/items
+FD: AbyssEngine/Hud/var_8bd GoF2/Hud/hullDamageTick
+FD: AbyssEngine/Hud/var_986 GoF2/Hud/hasShield
+FD: AbyssEngine/Hud/var_9c7 GoF2/Hud/hasArmor
+FD: AbyssEngine/Hud/var_9f9 GoF2/Hud/hasWeapon
+FD: AbyssEngine/Hud/var_a21 GoF2/Hud/lastHullDamage
+FD: AbyssEngine/Hud/var_b01 GoF2/Hud/actionSubMenuOpen
+FD: AbyssEngine/Hud/var_bdf GoF2/Hud/playerHit
+FD: AbyssEngine/Hud/var_c34 GoF2/Hud/menuReady
+FD: AbyssEngine/Hud/var_c84 GoF2/Hud/settingSecondaryWeapon
+FD: AbyssEngine/Hud/var_ce3 GoF2/Hud/menuItemSelectTick
+FD: AbyssEngine/Hud/var_cee GoF2/Hud/menuItemsSpread
+FD: AbyssEngine/Hud/var_d45 GoF2/Hud/menuAnimStep
+FD: AbyssEngine/Hud/var_ef4 GoF2/Hud/queueScroll
+FD: AbyssEngine/Hud/var_f29 GoF2/Hud/jumpDriveSelected
+MD: Main/GOF2Canvas/sub_10d ()V Main/GOF2Canvas/OnRelease ()V
+MD: Main/GOF2Canvas/sub_125 ()V Main/GOF2Canvas/handlePausedState ()V
+MD: Main/GOF2Canvas/sub_8b ()V Main/GOF2Canvas/pause ()V
+MD: Main/GOF2Canvas/sub_ca ()V Main/GOF2Canvas/update_ ()V
+FD: Main/GOF2Canvas/lastFrameSignleKeyPress Main/GOF2Canvas/newKeysPressed
+FD: Main/GOF2Canvas/resized_ Main/GOF2Canvas/resized
+FD: Main/GOF2Canvas/var_2bf Main/GOF2Canvas/tempKeysPressed
+FD: Main/GOF2Canvas/var_2f1 Main/GOF2Canvas/applicationManager
+FD: Main/GOF2Canvas/var_355 Main/GOF2Canvas/unused355_
+FD: Main/GOF2Canvas/var_4ba Main/GOF2Canvas/pausedTime
+FD: Main/GOF2Canvas/var_4e5 Main/GOF2Canvas/sysTime
+FD: Main/GOF2MIDlet/var_619 Main/GOF2MIDlet/started
+FD: Main/GOF2MIDlet/var_626 Main/GOF2MIDlet/selfDestructing
+CL: AbyssEngine/Item GoF2/Item
+MD: AbyssEngine/Item/anyAmountCopies (I)LAbyssEngine/Item; GoF2/Item/makeItem (I)LGoF2/Item;
+MD: AbyssEngine/Item/getPrice ()I GoF2/Item/getSinglePrice ()I
+MD: AbyssEngine/Item/getSubType ()I GoF2/Item/getSort ()I
+MD: AbyssEngine/Item/merge ([LAbyssEngine/Item;[LAbyssEngine/Item;)[LAbyssEngine/Item; GoF2/Item/mixItems ([LGoF2/Item;[LGoF2/Item;)[LGoF2/Item;
+MD: AbyssEngine/Item/singleCopy ()LAbyssEngine/Item; GoF2/Item/makeItem ()LGoF2/Item;
+MD: AbyssEngine/Item/sub_18e ()Z GoF2/Item/canBeInstalledMultipleTimes ()Z
+MD: AbyssEngine/Item/sub_2ed ()I GoF2/Item/getTotalPrice ()I
+MD: AbyssEngine/Item/sub_460 (I)V GoF2/Item/setAmount (I)V
+MD: AbyssEngine/Item/sub_54b (I)V GoF2/Item/setBlueprintAmount (I)V
+MD: AbyssEngine/Item/sub_590 ()I GoF2/Item/getBlueprintAmount ()I
+MD: AbyssEngine/Item/sub_5de (I)V GoF2/Item/incBlueprintAmount (I)V
+MD: AbyssEngine/Item/sub_6b2 (Z)I GoF2/Item/transaction (Z)I
+MD: AbyssEngine/Item/sub_714 (Z)I GoF2/Item/transactionBlueprint (Z)I
+MD: AbyssEngine/Item/sub_737 (II[LAbyssEngine/Item;)Z GoF2/Item/isInList (II[LGoF2/Item;)Z
+MD: AbyssEngine/Item/sub_797 ([LAbyssEngine/Item;Z)[LAbyssEngine/Item; GoF2/Item/extractItems ([LGoF2/Item;Z)[LGoF2/Item;
+MD: AbyssEngine/Item/sub_7de ([LAbyssEngine/Item;[LAbyssEngine/Item;)[LAbyssEngine/Item; GoF2/Item/combineItems ([LGoF2/Item;[LGoF2/Item;)[LGoF2/Item;
+MD: AbyssEngine/Item/sub_848 ()Z GoF2/Item/isWeapon ()Z
+MD: AbyssEngine/Item/sub_95c ()Z GoF2/Item/setUnsaleable ()Z
+MD: AbyssEngine/Item/sub_986 (Z)V GoF2/Item/setUnsaleable (Z)V
+FD: AbyssEngine/Item/var_730 GoF2/Item/unsaleable
+FD: AbyssEngine/Item/var_ce GoF2/Item/installableMultipleTimes
+CL: AbyssEngine/Node GoF2/Node
+CL: AbyssEngine/Ship GoF2/Ship
+MD: AbyssEngine/Ship/addItem (LAbyssEngine/Item;)V GoF2/Ship/addCargo (LGoF2/Item;)V
+MD: AbyssEngine/Ship/countEquippedOfType (I)I GoF2/Ship/getUsedSlots (I)I
+MD: AbyssEngine/Ship/getBoostRegenTime ()I GoF2/Ship/getBoostDelay ()I
+MD: AbyssEngine/Ship/getEquipedOfSubType (I)LAbyssEngine/Item; GoF2/Ship/getFirstEquipmentOfSort (I)LGoF2/Item;
+MD: AbyssEngine/Ship/isSimilarEquiped (I)Z GoF2/Ship/hasEquipment (I)Z
+MD: AbyssEngine/Ship/refreshCargoSpace ([LAbyssEngine/Item;)V GoF2/Ship/setCargo ([LGoF2/Item;)V
+MD: AbyssEngine/Ship/setEquipment ([LAbyssEngine/Item;)V GoF2/Ship/replaceEquipment ([LGoF2/Item;)V
+MD: AbyssEngine/Ship/sub_6fa ()Z GoF2/Ship/hasCargoType_FIX_ME_ ()Z
+MD: AbyssEngine/Ship/sub_755 (LAbyssEngine/Item;)V GoF2/Ship/removeCargo (LGoF2/Item;)V
+MD: AbyssEngine/Ship/sub_79a ()V GoF2/Ship/removeAllCargo ()V
+MD: AbyssEngine/Ship/sub_7a6 (I)Z GoF2/Ship/removeCargo (I)Z
+MD: AbyssEngine/Ship/sub_7fc (II)Z GoF2/Ship/removeCargo (II)Z
+MD: AbyssEngine/Ship/sub_839 (I)Z GoF2/Ship/spaceAvailable (I)Z
+MD: AbyssEngine/Ship/sub_908 (LAbyssEngine/Item;)V GoF2/Ship/removeEquipment (LGoF2/Item;)V
+MD: AbyssEngine/Ship/sub_982 ()I GoF2/Ship/getMaxPassengers ()I
+MD: AbyssEngine/Ship/sub_98c (LAbyssEngine/Item;I)V GoF2/Ship/freeSlot (LGoF2/Item;I)V
+MD: AbyssEngine/Ship/sub_9be (LAbyssEngine/Item;)V GoF2/Ship/freeSlot (LGoF2/Item;)V
+MD: AbyssEngine/Ship/sub_9ca (I)I GoF2/Ship/getSlots (I)I
+MD: AbyssEngine/Ship/sub_9e3 ()I GoF2/Ship/getSlotTypes ()I
+FD: AbyssEngine/Ship/previewPivotShift GoF2/Ship/SHIP_HANGAR_OFFSETS
+FD: AbyssEngine/Ship/previewZoomOut GoF2/Ship/SHIP_PREVIEW_SCALING
+FD: AbyssEngine/Ship/var_84c GoF2/Ship/passengersCapacity
+CL: AbyssEngine/Time AE/Time
+CL: Main/ShipPreview Main/ListItemWindow
+MD: Main/ShipPreview/isShipDrawn ()Z Main/ListItemWindow/shows3DShip ()Z
+MD: Main/ShipPreview/sub_17d ()V Main/ListItemWindow/draw ()V
+MD: Main/ShipPreview/sub_1b9 (Z)V Main/ListItemWindow/updateCamera_ (Z)V
+MD: Main/ShipPreview/sub_219 ()V Main/ListItemWindow/render ()V
+MD: Main/ShipPreview/sub_5c (LAbyssEngine/ListEntry;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Z)V Main/ListItemWindow/setup (LGoF2/ListItem;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Z)V
+MD: Main/ShipPreview/sub_ae (I)V Main/ListItemWindow/scrollDown (I)V
+MD: Main/ShipPreview/sub_ef (I)V Main/ListItemWindow/scrollUp (I)V
+FD: Main/ShipPreview/drawShip Main/ListItemWindow/show3DShip
+FD: Main/ShipPreview/var_126 Main/ListItemWindow/_LISTITEMWINDOW_UNITS
+FD: Main/ShipPreview/var_17c Main/ListItemWindow/contextItem
+FD: Main/ShipPreview/var_1a0 Main/ListItemWindow/items
+FD: Main/ShipPreview/var_27f Main/ListItemWindow/itemTypes
+FD: Main/ShipPreview/var_2e1 Main/ListItemWindow/ships
+FD: Main/ShipPreview/var_362 Main/ListItemWindow/shipsColor
+FD: Main/ShipPreview/var_3d7 Main/ListItemWindow/textBox
+FD: Main/ShipPreview/var_423 Main/ListItemWindow/highlightedText
+FD: Main/ShipPreview/var_48f Main/ListItemWindow/shipPreviewCam
+FD: Main/ShipPreview/var_4c3 Main/ListItemWindow/lastCam
+FD: Main/ShipPreview/var_4ee Main/ListItemWindow/ship
+FD: Main/ShipPreview/var_646 Main/ListItemWindow/lowPriceSysRow
+FD: Main/ShipPreview/var_6d6 Main/ListItemWindow/highPriceSysRow
+FD: Main/ShipPreview/var_82 Main/ListItemWindow/descriptions
+FD: Main/ShipPreview/var_b2 Main/ListItemWindow/LISTITEMWINDOW_HIDDEN_ATTRIBUTES
+CL: Main/StatusBlock Main/StatusPanel
+MD: Main/StatusBlock/sub_37 ()V Main/StatusPanel/OnRelease ()V
+MD: Main/StatusBlock/sub_6d ()V Main/StatusPanel/init ()V
+MD: Main/StatusBlock/sub_8f (I)Z Main/StatusPanel/handleKeyPress (I)Z
+MD: Main/StatusBlock/sub_a2 (ILjava/lang/String;)V Main/StatusPanel/drawSubHeader (ILjava/lang/String;)V
+MD: Main/StatusBlock/sub_d8 (II)V Main/StatusPanel/draw (II)V
+FD: Main/StatusBlock/var_14b Main/StatusPanel/statusWindows
+FD: Main/StatusBlock/var_1d1 Main/StatusPanel/statsLeftColumn
+FD: Main/StatusBlock/var_1de Main/StatusPanel/statsRightColumn
+FD: Main/StatusBlock/var_22c Main/StatusPanel/standingBarOutter
+FD: Main/StatusBlock/var_288 Main/StatusPanel/standingBarInner
+FD: Main/StatusBlock/var_2e3 Main/StatusPanel/standingCursor
+FD: Main/StatusBlock/var_33f Main/StatusPanel/standingLogos
+FD: Main/StatusBlock/var_372 Main/StatusPanel/allMedalsAdornment
+FD: Main/StatusBlock/var_3b2 Main/StatusPanel/allGoldAdornment
+FD: Main/StatusBlock/var_51c Main/StatusPanel/face
+CL: AbyssEngine/Agent GoF2/Agent
+MD: AbyssEngine/Agent/isAccepted ()Z GoF2/Agent/hasAcceptedOffer ()Z
+MD: AbyssEngine/Agent/setAccepted (Z)V GoF2/Agent/setOfferAccepted (Z)V
+MD: AbyssEngine/Agent/setAgentsStationName (Ljava/lang/String;)V GoF2/Agent/setStationName (Ljava/lang/String;)V
+MD: AbyssEngine/Agent/setAgentsSystemName (Ljava/lang/String;)V GoF2/Agent/setSystemName (Ljava/lang/String;)V
+MD: AbyssEngine/Agent/sub_112 ()I GoF2/Agent/getMessageId ()I
+MD: AbyssEngine/Agent/sub_1b1 ()I GoF2/Agent/getType ()I
+MD: AbyssEngine/Agent/sub_302 ()Z GoF2/Agent/isMale ()Z
+MD: AbyssEngine/Agent/sub_35e ()I GoF2/Agent/getEvent ()I
+MD: AbyssEngine/Agent/sub_3c2 (I)V GoF2/Agent/setEvent (I)V
+MD: AbyssEngine/Agent/sub_3f0 ()Z GoF2/Agent/isSpecialAgent ()Z
+MD: AbyssEngine/Agent/sub_41f ()Z GoF2/Agent/isGenericAgent_ ()Z
+MD: AbyssEngine/Agent/sub_460 ([B)V GoF2/Agent/setImageParts ([B)V
+MD: AbyssEngine/Agent/sub_471 ()[B GoF2/Agent/getImageParts ()[B
+MD: AbyssEngine/Agent/sub_48a (I)V GoF2/Agent/setOffer (I)V
+MD: AbyssEngine/Agent/sub_4e1 (LAbyssEngine/Mission;)V GoF2/Agent/setMission (LGoF2/Mission;)V
+MD: AbyssEngine/Agent/sub_4f9 ()LAbyssEngine/Mission; GoF2/Agent/getMission ()LGoF2/Mission;
+MD: AbyssEngine/Agent/sub_547 ()Z GoF2/Agent/isKnown ()Z
+MD: AbyssEngine/Agent/sub_569 ()I GoF2/Agent/getSellSystemIndex ()I
+MD: AbyssEngine/Agent/sub_582 ()I GoF2/Agent/getSellBlueprintIndex ()I
+MD: AbyssEngine/Agent/sub_5c4 (I)V GoF2/Agent/setCosts (I)V
+MD: AbyssEngine/Agent/sub_5d0 ()I GoF2/Agent/getCosts ()I
+MD: AbyssEngine/Agent/sub_634 ()I GoF2/Agent/getWingmanFriendsCount_ ()I
+MD: AbyssEngine/Agent/sub_689 (I)Ljava/lang/String; GoF2/Agent/getWingmanName (I)Ljava/lang/String;
+MD: AbyssEngine/Agent/sub_6c1 ()[Ljava/lang/String; GoF2/Agent/getWingmenNames ()[Ljava/lang/String;
+MD: AbyssEngine/Agent/sub_773 ()I GoF2/Agent/getSellItemIndex ()I
+MD: AbyssEngine/Agent/sub_7ae ()I GoF2/Agent/getSellItemQuantity ()I
+MD: AbyssEngine/Agent/sub_7d5 ()I GoF2/Agent/getSellItemPrice ()I
+MD: AbyssEngine/Agent/sub_82f (III)V GoF2/Agent/setSellItemData (III)V
+MD: AbyssEngine/Agent/sub_8fc ()Z GoF2/Agent/hasReward ()Z
+MD: AbyssEngine/Agent/sub_938 (Z)V GoF2/Agent/giveRewardAtNextChat (Z)V
+FD: AbyssEngine/Agent/dialogueStage GoF2/Agent/origin_
+FD: AbyssEngine/Agent/isTouched GoF2/Agent/event
+FD: AbyssEngine/Agent/var_4b9 GoF2/Agent/male
+FD: AbyssEngine/Agent/var_5d5 GoF2/Agent/wingmanFriendsCount
+FD: AbyssEngine/Agent/var_70 GoF2/Agent/wingman1Name
+FD: AbyssEngine/Agent/var_894 GoF2/Agent/unused_0_
+FD: AbyssEngine/Agent/var_99e GoF2/Agent/wasAskedForDifficulty
+FD: AbyssEngine/Agent/var_9cd GoF2/Agent/wasAskedForLocation
+FD: AbyssEngine/Agent/var_ad GoF2/Agent/wingman2Name
+CL: AbyssEngine/Face_ AE/PaintCanvas/ImageFactory
+MD: AbyssEngine/Face_/drawFace ([Ljavax/microedition/lcdui/Image;III)V AE/PaintCanvas/ImageFactory/drawChar ([Ljavax/microedition/lcdui/Image;III)V
+MD: AbyssEngine/Face_/getRandomFace (ZI)[B AE/PaintCanvas/ImageFactory/createChar (ZI)[B
+MD: AbyssEngine/Face_/sub_128 (IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V AE/PaintCanvas/ImageFactory/drawItem (IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V
+MD: AbyssEngine/Face_/sub_158 (ILjavax/microedition/lcdui/Image;III)V AE/PaintCanvas/ImageFactory/drawItemFrameless (ILjavax/microedition/lcdui/Image;III)V
+MD: AbyssEngine/Face_/sub_1b6 (IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V AE/PaintCanvas/ImageFactory/drawShip (IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V
+FD: AbyssEngine/Face_/var_1cb AE/PaintCanvas/ImageFactory/itemFrameHeight
+FD: AbyssEngine/Face_/var_1ed AE/PaintCanvas/ImageFactory/itemWidth
+FD: AbyssEngine/Face_/var_268 AE/PaintCanvas/ImageFactory/itemHeight
+FD: AbyssEngine/Face_/var_c6 AE/PaintCanvas/ImageFactory/itemFrameWidth
+CL: AbyssEngine/Group AE/Group
+MD: AbyssEngine/Group/sub_109 (Z)V AE/Group/updateTransform (Z)V
+MD: AbyssEngine/Group/sub_25 (LAbyssEngine/GraphNode;)V AE/Group/uniqueAppend_ (LAE/GraphNode;)V
+MD: AbyssEngine/Group/sub_7f (LAbyssEngine/GraphNode;)V AE/Group/removeNode (LAE/GraphNode;)V
+MD: AbyssEngine/Group/sub_97 ()LAbyssEngine/GraphNode; AE/Group/getEndNode ()LAE/GraphNode;
+MD: AbyssEngine/Group/sub_980 (II)V AE/Group/setAnimationRangeInTime (II)V
+MD: AbyssEngine/Group/sub_9aa (B)V AE/Group/setAnimationMode (B)V
+MD: AbyssEngine/Group/sub_a04 ()V AE/Group/disableAnimation ()V
+MD: AbyssEngine/Group/sub_a37 ()Z AE/Group/hasAnimation ()Z
+FD: AbyssEngine/Group/var_3e AE/Group/head
+CL: AbyssEngine/Level GoF2/Level
+MD: AbyssEngine/Level/getPlayerEgo ()LAbyssEngine/PlayerEgo; GoF2/Level/getPlayer ()LGoF2/PlayerEgo;
+MD: AbyssEngine/Level/getShips ()[LAbyssEngine/KIPlayer; GoF2/Level/getEnemies ()[LGoF2/KIPlayer;
+MD: AbyssEngine/Level/setupExplosionFlashColors (I)V GoF2/Level/flashScreen (I)V
+MD: AbyssEngine/Level/setupMissionEnviroment_ ()V GoF2/Level/createMission ()V
+MD: AbyssEngine/Level/sub_16a ()V GoF2/Level/setInitStreamOut ()V
+MD: AbyssEngine/Level/sub_198 ()Z GoF2/Level/createSpace ()Z
+MD: AbyssEngine/Level/sub_212 ()V GoF2/Level/createAsteroids ()V
+MD: AbyssEngine/Level/sub_25a (IIIIIIII)LAbyssEngine/Gun; GoF2/Level/createGun (IIIIIIII)LGoF2/Gun;
+MD: AbyssEngine/Level/sub_2ba ()V GoF2/Level/createWingmen ()V
+MD: AbyssEngine/Level/sub_313 ()V GoF2/Level/createCampaignMission ()V
+MD: AbyssEngine/Level/sub_358 ()V GoF2/Level/createScene ()V
+MD: AbyssEngine/Level/sub_375 ()V GoF2/Level/assignGuns ()V
+MD: AbyssEngine/Level/sub_3c3 ()V GoF2/Level/connectPlayers ()V
+MD: AbyssEngine/Level/sub_3f7 (LAbyssEngine/Class_e19;I)LAbyssEngine/KIPlayer; GoF2/Level/createJunk (LGoF2/Waypoint;I)LGoF2/KIPlayer;
+MD: AbyssEngine/Level/sub_4a1 (I)LAbyssEngine/Class_661; GoF2/Level/createRoute (I)LGoF2/Route;
+MD: AbyssEngine/Level/sub_4ab (I)[LAbyssEngine/Class_85e; GoF2/Level/createRadioMessages (I)[LGoF2/RadioMessage;
+MD: AbyssEngine/Level/sub_5b7 ()[LAbyssEngine/KIPlayer; GoF2/Level/getLandmarks ()[LGoF2/KIPlayer;
+MD: AbyssEngine/Level/sub_5cf ()[LAbyssEngine/KIPlayer; GoF2/Level/getAsteroids ()[LGoF2/KIPlayer;
+MD: AbyssEngine/Level/sub_617 ()LAbyssEngine/Class_e19; GoF2/Level/getAsteroidWaypoint ()LGoF2/Waypoint;
+MD: AbyssEngine/Level/sub_6a6 ()LAbyssEngine/Class_661; GoF2/Level/getPlayerRoute ()LGoF2/Route;
+MD: AbyssEngine/Level/sub_6ce (LAbyssEngine/Class_661;)V GoF2/Level/setPlayerRoute (LGoF2/Route;)V
+MD: AbyssEngine/Level/sub_753 (Z)V GoF2/Level/enemyDied (Z)V
+MD: AbyssEngine/Level/sub_7a1 ()V GoF2/Level/junkDied ()V
+MD: AbyssEngine/Level/sub_7c2 ()V GoF2/Level/friendDied ()V
+MD: AbyssEngine/Level/sub_7cd (I)V GoF2/Level/wingmanDied (I)V
+MD: AbyssEngine/Level/sub_7df ()V GoF2/Level/asteroidDied ()V
+MD: AbyssEngine/Level/sub_7f9 ()I GoF2/Level/unknown7f9_ ()I
+MD: AbyssEngine/Level/sub_840 ()I GoF2/Level/getEnemiesLeft ()I
+MD: AbyssEngine/Level/sub_85e ()I GoF2/Level/getFriendsLeft ()I
+MD: AbyssEngine/Level/sub_872 ()[LAbyssEngine/Class_85e; GoF2/Level/getMessages ()[LGoF2/RadioMessage;
+MD: AbyssEngine/Level/sub_8aa ()I GoF2/Level/getTimeLimit ()I
+MD: AbyssEngine/Level/sub_8ce ()LAbyssEngine/Skybox; GoF2/Level/getStarSystem ()LGoF2/StarSystem;
+MD: AbyssEngine/Level/sub_8dc (LAbyssEngine/AEVector3D;)Z GoF2/Level/isInAsteroidCenterRange (LAE/Math/AEVector3D;)Z
+MD: AbyssEngine/Level/sub_911 (LAbyssEngine/AEVector3D;)Z GoF2/Level/collideStream (LAE/Math/AEVector3D;)Z
+MD: AbyssEngine/Level/sub_92f (LAbyssEngine/AEVector3D;)Z GoF2/Level/collideStation (LAE/Math/AEVector3D;)Z
+MD: AbyssEngine/Level/sub_966 (J)V GoF2/Level/render (J)V
+MD: AbyssEngine/Level/sub_9ca ()V GoF2/Level/renderRockets_ ()V
+MD: AbyssEngine/Level/sub_9ff (J)V GoF2/Level/render2 (J)V
+MD: AbyssEngine/Level/sub_a3b (J)V GoF2/Level/updateOrbit_ (J)V
+MD: AbyssEngine/Level/sub_a83 (I)Z GoF2/Level/checkObjective (I)Z
+MD: AbyssEngine/Level/sub_ac1 ()V GoF2/Level/stealFriendCargo ()V
+MD: AbyssEngine/Level/sub_ade ()Z GoF2/Level/friendCargoWasStolen ()Z
+MD: AbyssEngine/Level/sub_b30 ()V GoF2/Level/removeObjectives ()V
+MD: AbyssEngine/Level/sub_b85 ()[LAbyssEngine/AbstractMesh; GoF2/Level/getPlayerGuns_ ()[LAE/AbstractMesh;
+MD: AbyssEngine/Level/sub_ba1 (I)Z GoF2/Level/checkGameOver (I)Z
+MD: AbyssEngine/Level/sub_c61 (I)V GoF2/Level/friendTurnedEnemy (I)V
+MD: AbyssEngine/Level/sub_c8b ()V GoF2/Level/onRelease ()V
+FD: AbyssEngine/Level/autopilotDestination GoF2/Level/programmedStation
+FD: AbyssEngine/Level/firstWarning GoF2/Level/localsAlarmed
+FD: AbyssEngine/Level/playerEgo GoF2/Level/ego
+FD: AbyssEngine/Level/projectileMesh GoF2/Level/egoGuns
+FD: AbyssEngine/Level/skybox GoF2/Level/starSystem
+FD: AbyssEngine/Level/var_1005 GoF2/Level/localFightersCnt
+FD: AbyssEngine/Level/var_1045 GoF2/Level/jumperCnt
+FD: AbyssEngine/Level/var_108e GoF2/Level/bigShipsCnt
+FD: AbyssEngine/Level/var_10e2 GoF2/Level/raidersCnt
+FD: AbyssEngine/Level/var_1104 GoF2/Level/alienRespawnTick
+FD: AbyssEngine/Level/var_1149 GoF2/Level/commonRespawnTick
+FD: AbyssEngine/Level/var_1172 GoF2/Level/jumperRespawnTick
+FD: AbyssEngine/Level/var_11a5 GoF2/Level/raidRoute
+FD: AbyssEngine/Level/var_11c4 GoF2/Level/raidWavesCounter
+FD: AbyssEngine/Level/var_1219 GoF2/Level/friendlyFireAlerted
+FD: AbyssEngine/Level/var_1297 GoF2/Level/initStreamOutPosition
+FD: AbyssEngine/Level/var_12a2 GoF2/Level/comingFromAlienWorld
+FD: AbyssEngine/Level/var_12b5 GoF2/Level/lastMissionFreighterHitpoints
+FD: AbyssEngine/Level/var_1311 GoF2/Level/driveJumping
+FD: AbyssEngine/Level/var_1353 GoF2/Level/tempVec
+FD: AbyssEngine/Level/var_2de GoF2/Level/asteroidField
+FD: AbyssEngine/Level/var_2ed GoF2/Level/barFigurePositions
+FD: AbyssEngine/Level/var_387 GoF2/Level/asteroidFieldCenter
+FD: AbyssEngine/Level/var_3ad GoF2/Level/asteroidsWaypoint
+FD: AbyssEngine/Level/var_3e4 GoF2/Level/skybox
+FD: AbyssEngine/Level/var_43d GoF2/Level/gunSparks
+FD: AbyssEngine/Level/var_4fc GoF2/Level/missilesSparks
+FD: AbyssEngine/Level/var_6e9 GoF2/Level/enemyGuns
+FD: AbyssEngine/Level/var_7df GoF2/Level/missionRoute
+FD: AbyssEngine/Level/var_863 GoF2/Level/kamikazePath
+FD: AbyssEngine/Level/var_8c5 GoF2/Level/enemyRoute_
+FD: AbyssEngine/Level/var_8d0 GoF2/Level/radioMessages
+FD: AbyssEngine/Level/var_902 GoF2/Level/enemiesIntact
+FD: AbyssEngine/Level/var_977 GoF2/Level/friendsAlive
+FD: AbyssEngine/Level/var_9e4 GoF2/Level/asteroidsIntact
+FD: AbyssEngine/Level/var_9fe GoF2/Level/enemiesDestroyed
+FD: AbyssEngine/Level/var_a19 GoF2/Level/capturedCargoCount
+FD: AbyssEngine/Level/var_b00 GoF2/Level/successObjective
+FD: AbyssEngine/Level/var_b24 GoF2/Level/failObjective_
+FD: AbyssEngine/Level/var_b69 GoF2/Level/timeLimit
+FD: AbyssEngine/Level/var_b87 GoF2/Level/spaceCreationStep__
+FD: AbyssEngine/Level/var_ba8 GoF2/Level/spaceCreated_
+FD: AbyssEngine/Level/var_c04 GoF2/Level/mgameIntroCamRotY
+FD: AbyssEngine/Level/var_c13 GoF2/Level/stolenFromFriend
+FD: AbyssEngine/Level/var_dd GoF2/Level/currentMod
+FD: AbyssEngine/Level/var_f60 GoF2/Level/flashIntensity
+FD: AbyssEngine/Level/var_fa1 GoF2/Level/lastFlashDuration
+FD: AbyssEngine/Level/var_ff8 GoF2/Level/flashType
+CL: AbyssEngine/Popup GoF2/Popup
+MD: AbyssEngine/Popup/sub_19a ()V GoF2/Popup/draw ()V
+MD: AbyssEngine/Popup/sub_34 (Ljava/lang/String;)V GoF2/Popup/setAsWarning (Ljava/lang/String;)V
+MD: AbyssEngine/Popup/sub_8f (Ljava/lang/String;Z)V GoF2/Popup/set (Ljava/lang/String;Z)V
+MD: AbyssEngine/Popup/sub_9a ()Z GoF2/Popup/getChoice ()Z
+MD: AbyssEngine/Popup/sub_c6 ()V GoF2/Popup/left ()V
+MD: AbyssEngine/Popup/sub_ff ()V GoF2/Popup/right ()V
+FD: AbyssEngine/Popup/posX GoF2/Popup/posY
+FD: AbyssEngine/Popup/posY GoF2/Popup/posX
+CL: AbyssEngine/Vec3f AE/Vec3f
+MD: Main/StatusWindow/sub_6c ()V Main/StatusWindow/draw ()V
+MD: Main/StatusWindow/sub_9e ()V Main/StatusWindow/drawFrame ()V
+MD: Main/StatusWindow/sub_e4 (Ljava/lang/Object;I)V Main/StatusWindow/drawItem (Ljava/lang/Object;I)V
+CL: Main/TabbedWindow Main/TabbedWindow_
+MD: Main/TabbedWindow/sub_149 ()I Main/TabbedWindow_/getTabHeight ()I
+MD: Main/TabbedWindow/sub_16a (I[Ljava/lang/Object;)V Main/TabbedWindow_/setEntries (I[Ljava/lang/Object;)V
+MD: Main/TabbedWindow/sub_171 ()V Main/TabbedWindow_/drawItems ()V
+MD: Main/TabbedWindow/sub_19 ()V Main/TabbedWindow_/drawBG ()V
+MD: Main/TabbedWindow/sub_1a3 ()Ljava/lang/Object; Main/TabbedWindow_/getSelectedItem ()Ljava/lang/Object;
+MD: Main/TabbedWindow/sub_1e5 ()I Main/TabbedWindow_/getCurrentTab ()I
+MD: Main/TabbedWindow/sub_205 (I)V Main/TabbedWindow_/setCurrentTab (I)V
+MD: Main/TabbedWindow/sub_238 ()V Main/TabbedWindow_/updateScroll ()V
+MD: Main/TabbedWindow/sub_2eb ()V Main/TabbedWindow_/leftAction ()V
+MD: Main/TabbedWindow/sub_2f6 ()V Main/TabbedWindow_/rightAction ()V
+MD: Main/TabbedWindow/sub_307 ()V Main/TabbedWindow_/drawTabs ()V
+MD: Main/TabbedWindow/sub_312 ()V Main/TabbedWindow_/drawScroll ()V
+MD: Main/TabbedWindow/sub_324 ()I Main/TabbedWindow_/getSelectedEntry ()I
+MD: Main/TabbedWindow/sub_346 (Z)V Main/TabbedWindow_/setBackGroundDraw (Z)V
+MD: Main/TabbedWindow/sub_35 (IIII[Ljava/lang/String;Ljava/lang/String;)V Main/TabbedWindow_/init (IIII[Ljava/lang/String;Ljava/lang/String;)V
+MD: Main/TabbedWindow/sub_391 (Z)V Main/TabbedWindow_/setSelectionHighlight (Z)V
+MD: Main/TabbedWindow/sub_3ac ()V Main/TabbedWindow_/decFontIndex_ ()V
+MD: Main/TabbedWindow/sub_6b ()V Main/TabbedWindow_/scrollDown ()V
+MD: Main/TabbedWindow/sub_6c ()V Main/TabbedWindow_/draw ()V
+MD: Main/TabbedWindow/sub_8b (I)V Main/TabbedWindow_/setRowHeight (I)V
+MD: Main/TabbedWindow/sub_b4 ()V Main/TabbedWindow_/scrollUp ()V
+MD: Main/TabbedWindow/sub_e4 (Ljava/lang/Object;I)V Main/TabbedWindow_/drawItem (Ljava/lang/Object;I)V
+MD: Main/TabbedWindow/sub_get72b ()I Main/TabbedWindow_/getRowHeight ()I
+FD: Main/TabbedWindow/var_353 Main/TabbedWindow_/listsLengths
+FD: Main/TabbedWindow/var_37d Main/TabbedWindow_/scrollThumbSize
+FD: Main/TabbedWindow/var_3f8 Main/TabbedWindow_/listRightPadding
+FD: Main/TabbedWindow/var_445 Main/TabbedWindow_/scrollThumbPos
+FD: Main/TabbedWindow/var_664 Main/TabbedWindow_/displayedEntriesCount
+FD: Main/TabbedWindow/var_71b Main/TabbedWindow_/itemListPosY
+FD: Main/TabbedWindow/var_78b Main/TabbedWindow_/tabHeight
+FD: Main/TabbedWindow/var_7e0 Main/TabbedWindow_/unused2412_
+FD: Main/TabbedWindow/var_846 Main/TabbedWindow_/drawBackGround
+FD: Main/TabbedWindow/var_888 Main/TabbedWindow_/highlightSelection
+FD: Main/TabbedWindow/var_8bb Main/TabbedWindow_/fontId_
+CL: Main/ThemedWindow Main/HangarList
+MD: Main/ThemedWindow/buildCategorizedItemList_ ([LAbyssEngine/Item;)V Main/HangarList/initShopTab ([LGoF2/Item;)V
+MD: Main/ThemedWindow/sub_149 ()I Main/HangarList/getTabHeight ()I
+MD: Main/ThemedWindow/sub_16d (LAbyssEngine/ListEntry;)V Main/HangarList/initMountingWindow (LGoF2/ListItem;)V
+MD: Main/ThemedWindow/sub_171 ()V Main/HangarList/drawItems ()V
+MD: Main/ThemedWindow/sub_198 (LAbyssEngine/BluePrint;)V Main/HangarList/fillIngredientsList (LGoF2/BluePrint;)V
+MD: Main/ThemedWindow/sub_1d5 ()Z Main/HangarList/browsingInterrupted_ ()Z
+MD: Main/ThemedWindow/sub_228 ()Z Main/HangarList/isTrading ()Z
+MD: Main/ThemedWindow/sub_238 ()V Main/HangarList/updateScroll ()V
+MD: Main/ThemedWindow/sub_27b (Z)V Main/HangarList/cancelTransaction (Z)V
+MD: Main/ThemedWindow/sub_29e ()V Main/HangarList/skipSell ()V
+MD: Main/ThemedWindow/sub_2c7 ()V Main/HangarList/skipBuy ()V
+MD: Main/ThemedWindow/sub_2eb ()V Main/HangarList/leftAction ()V
+MD: Main/ThemedWindow/sub_2f6 ()V Main/HangarList/rightAction ()V
+MD: Main/ThemedWindow/sub_307 ()V Main/HangarList/drawTabs ()V
+MD: Main/ThemedWindow/sub_326 ()I Main/HangarList/selectItem ()I
+MD: Main/ThemedWindow/sub_6b ()V Main/HangarList/scrollDown ()V
+MD: Main/ThemedWindow/sub_6c ()V Main/HangarList/draw ()V
+MD: Main/ThemedWindow/sub_82 ()V Main/HangarList/OnRelease ()V
+MD: Main/ThemedWindow/sub_9e ()V Main/HangarList/drawFrame ()V
+MD: Main/ThemedWindow/sub_9e (LAbyssEngine/Ship;)V Main/HangarList/initShipTab (LGoF2/Ship;)V
+MD: Main/ThemedWindow/sub_b4 ()V Main/HangarList/scrollUp ()V
+MD: Main/ThemedWindow/sub_d4 ([LAbyssEngine/BluePrint;)V Main/HangarList/initBlueprintTab ([LGoF2/BluePrint;)V
+MD: Main/ThemedWindow/sub_e4 (Ljava/lang/Object;I)V Main/HangarList/drawItem (Ljava/lang/Object;I)V
+MD: Main/ThemedWindow/sub_get72b ()I Main/HangarList/getRowHeight ()I
+FD: Main/ThemedWindow/var_1b7 Main/HangarList/itemTypes
+FD: Main/ThemedWindow/var_21b Main/HangarList/items
+FD: Main/ThemedWindow/var_2b9 Main/HangarList/ships
+FD: Main/ThemedWindow/var_32b Main/HangarList/shipsColor
+FD: Main/ThemedWindow/var_3bf Main/HangarList/unused_2_
+FD: Main/ThemedWindow/var_451 Main/HangarList/raceLogo
+FD: Main/ThemedWindow/var_559 Main/HangarList/itemTypesSel
+FD: Main/ThemedWindow/var_5da Main/HangarList/trading_
+FD: Main/ThemedWindow/var_5eb Main/HangarList/popupOpen
+FD: Main/ThemedWindow/var_5fb Main/HangarList/popup
+FD: Main/ThemedWindow/var_634 Main/HangarList/stationItemTypeCounts
+FD: Main/ThemedWindow/var_6b2 Main/HangarList/shipLoad
+FD: Main/ThemedWindow/var_6bf Main/HangarList/stationItems
+FD: Main/ThemedWindow/var_6d4 Main/HangarList/bluePrint
+FD: Main/ThemedWindow/var_6e8 Main/HangarList/mountingSlot
+FD: Main/ThemedWindow/var_732 Main/HangarList/preMountingScrollPos
+FD: Main/ThemedWindow/var_794 Main/HangarList/isIngredientShippingPopup
+FD: Main/ThemedWindow/var_809 Main/HangarList/isShipBuyPopup
+FD: Main/ThemedWindow/var_861 Main/HangarList/amountToPutInBluePrint
+FD: Main/ThemedWindow/var_8a2 Main/HangarList/lastStationAmount
+FD: Main/ThemedWindow/var_905 Main/HangarList/lastOnShipAmount
+FD: Main/ThemedWindow/var_968 Main/HangarList/lastBluePrintAmount
+FD: Main/ThemedWindow/var_990 Main/HangarList/credits
+FD: Main/ThemedWindow/var_99d Main/HangarList/lastShipLoad
+CL: AbyssEngine/AEMath AE/Math/AEMath
+FD: AbyssEngine/AEMath/sineTable AE/Math/AEMath/SINE_QUARTER
+CL: AbyssEngine/AEMesh AE/AEMesh
+MD: AbyssEngine/AEMesh/destroy ()V AE/AEMesh/OnRelease ()V
+MD: AbyssEngine/AEMesh/sub_2b ()LAbyssEngine/GraphNode; AE/AEMesh/clone ()LAE/GraphNode;
+CL: AbyssEngine/Camera AE/Camera
+MD: AbyssEngine/Camera/sub_109 (Z)V AE/Camera/updateTransform (Z)V
+MD: AbyssEngine/Camera/sub_14a (LAbyssEngine/AEBoundingSphere;)B AE/Camera/isInViewFrustum (LAE/AEBoundingSphere;)B
+MD: AbyssEngine/Camera/sub_19c ()V AE/Camera/setActive ()V
+MD: AbyssEngine/Camera/sub_1b1 (IIIII)LAbyssEngine/Camera; AE/Camera/create (IIIII)LAE/Camera;
+MD: AbyssEngine/Camera/sub_5c (III)V AE/Camera/setPerspective (III)V
+MD: AbyssEngine/Camera/sub_ba (I)V AE/Camera/setFoV (I)V
+MD: AbyssEngine/Camera/sub_fa (LAbyssEngine/AEVector3D;)Z AE/Camera/getScreenPosition (LAE/Math/AEVector3D;)Z
+FD: AbyssEngine/Camera/var_23d AE/Camera/verticalProjectionFactor
+FD: AbyssEngine/Camera/var_25c AE/Camera/horizontalProjectionFactor
+FD: AbyssEngine/Camera/var_a1 AE/Camera/nearPlane
+FD: AbyssEngine/Camera/var_c5 AE/Camera/farPlane
+FD: AbyssEngine/Camera/vec1 AE/Camera/cameraPos
+FD: AbyssEngine/Camera/vec3_2 AE/Camera/nearPlaneCenter
+FD: AbyssEngine/Camera/vec3_3 AE/Camera/farPlaneCenter
+FD: AbyssEngine/Camera/vec3_arr1 AE/Camera/vfPlaneNormals
+FD: AbyssEngine/Camera/vec3_arr2 AE/Camera/vfPlaneNormalsLocal
+CL: AbyssEngine/Galaxy GoF2/Galaxy
+MD: AbyssEngine/Galaxy/sub_180 (LAbyssEngine/Station;)[I GoF2/Galaxy/getAsteroidProbabilities (LGoF2/Station;)[I
+FD: AbyssEngine/Galaxy/var_11 GoF2/Galaxy/tempSysPos1
+FD: AbyssEngine/Galaxy/var_141 GoF2/Galaxy/tempSysPos2
+CL: AbyssEngine/Layout GoF2/Layout
+MD: AbyssEngine/Layout/init ()V GoF2/Layout/OnInitialize ()V
+MD: AbyssEngine/Layout/scale (Ljava/lang/String;IIIZ)V GoF2/Layout/drawTextItem (Ljava/lang/String;IIIZ)V
+MD: AbyssEngine/Layout/screenFillMenuBackground ()V GoF2/Layout/drawBG ()V
+MD: AbyssEngine/Layout/sub_108 ()Z GoF2/Layout/slowClockHigh_ ()Z
+MD: AbyssEngine/Layout/sub_119 ()Z GoF2/Layout/quickClockHigh_ ()Z
+MD: AbyssEngine/Layout/sub_136 (IIII)V GoF2/Layout/drawMask (IIII)V
+MD: AbyssEngine/Layout/sub_189 ()V GoF2/Layout/fillClip ()V
+MD: AbyssEngine/Layout/sub_1df (Ljava/lang/String;IIIZZZ)V GoF2/Layout/drawTextItem (Ljava/lang/String;IIIZZZ)V
+MD: AbyssEngine/Layout/sub_241 (Ljava/lang/String;IIIZZ)V GoF2/Layout/drawTextItem (Ljava/lang/String;IIIZZ)V
+MD: AbyssEngine/Layout/sub_2c1 (Ljava/lang/String;)V GoF2/Layout/drawWindowFrame (Ljava/lang/String;)V
+MD: AbyssEngine/Layout/sub_2db (Ljava/lang/String;Z)V GoF2/Layout/drawNonFullScreenWindow (Ljava/lang/String;Z)V
+MD: AbyssEngine/Layout/sub_39a (IIZ)V GoF2/Layout/drawMenuPanelCorner (IIZ)V
+MD: AbyssEngine/Layout/sub_3a ()V GoF2/Layout/OnRelease ()V
+MD: AbyssEngine/Layout/sub_3c6 (Ljava/lang/String;Ljava/lang/String;)V GoF2/Layout/drawFooter (Ljava/lang/String;Ljava/lang/String;)V
+MD: AbyssEngine/Layout/sub_411 (Z)V GoF2/Layout/selectNavigationButton (Z)V
+MD: AbyssEngine/Layout/sub_44a ()Z GoF2/Layout/navigationDelayPassed ()Z
+MD: AbyssEngine/Layout/sub_490 ()V GoF2/Layout/navigationDelayDownTick ()V
+MD: AbyssEngine/Layout/sub_4cc (Z)V GoF2/Layout/setTickHighlight (Z)V
+MD: AbyssEngine/Layout/sub_4e1 (Ljava/lang/String;IIII)V GoF2/Layout/drawStringWidthLimited (Ljava/lang/String;IIII)V
+MD: AbyssEngine/Layout/sub_535 (Ljava/lang/String;Ljava/lang/String;Z)V GoF2/Layout/drawFooter1 (Ljava/lang/String;Ljava/lang/String;Z)V
+MD: AbyssEngine/Layout/sub_5d9 (Ljava/lang/String;Ljava/lang/String;Z)V GoF2/Layout/drawFooter (Ljava/lang/String;Ljava/lang/String;Z)V
+MD: AbyssEngine/Layout/tileFillRect (IIIILjavax/microedition/lcdui/Image;)V GoF2/Layout/drawBGPattern (IIIILjavax/microedition/lcdui/Image;)V
+FD: AbyssEngine/Layout/skip GoF2/Layout/skipArrow
+FD: AbyssEngine/Layout/var_298 GoF2/Layout/footerHeight
+FD: AbyssEngine/Layout/var_528 GoF2/Layout/backgroundDimmColors
+FD: AbyssEngine/Layout/var_575 GoF2/Layout/quickTickCounter
+FD: AbyssEngine/Layout/var_5b6 GoF2/Layout/slowTickCounter
+FD: AbyssEngine/Layout/var_612 GoF2/Layout/naviDelay
+FD: AbyssEngine/Layout/var_61d GoF2/Layout/leftButtonSelected
+FD: AbyssEngine/Layout/var_6d1 GoF2/Layout/tickHighlight
+CL: AbyssEngine/Matrix AE/Math/Matrix
+MD: AbyssEngine/Matrix/scaledToFloatArray ([F)V AE/Math/Matrix/toFloatArray ([F)V
+MD: AbyssEngine/Matrix/setRotationEuler (III)V AE/Math/Matrix/setRotation (III)V
+MD: AbyssEngine/Matrix/set_Type (S)V AE/Math/Matrix/setRotationOrder (S)V
+MD: AbyssEngine/Matrix/sub_695 (I)V AE/Math/Matrix/setEulerY (I)V
+MD: AbyssEngine/Matrix/sub_6a (LAbyssEngine/Matrix;LAbyssEngine/Matrix;)LAbyssEngine/Matrix; AE/Math/Matrix/multiplyTo (LAE/Math/Matrix;LAE/Math/Matrix;)LAE/Math/Matrix;
+MD: AbyssEngine/Matrix/sub_752 ()I AE/Math/Matrix/getEulerX ()I
+MD: AbyssEngine/Matrix/sub_7a8 ()I AE/Math/Matrix/getEulerY ()I
+MD: AbyssEngine/Matrix/sub_7f1 ()I AE/Math/Matrix/getEulerZ ()I
+MD: AbyssEngine/Matrix/sub_851 ()V AE/Math/Matrix/updateEulerAngles ()V
+MD: AbyssEngine/Matrix/sub_882 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/Math/Matrix/copyScaleTo (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_89b ()LAbyssEngine/AEVector3D; AE/Math/Matrix/getScale ()LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_8f5 (LAbyssEngine/AEVector3D;LAbyssEngine/AEVector3D;LAbyssEngine/AEVector3D;)V AE/Math/Matrix/setRows (LAE/Math/AEVector3D;LAE/Math/AEVector3D;LAE/Math/AEVector3D;)V
+MD: AbyssEngine/Matrix/sub_990 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/Math/Matrix/transformVector (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_9e9 (LAbyssEngine/AEVector3D;LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/Math/Matrix/transformVector (LAE/Math/AEVector3D;LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_a19 (LAbyssEngine/AEVector3D;LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/Math/Matrix/transformVector2 (LAE/Math/AEVector3D;LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_a67 (LAbyssEngine/AEVector3D;LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/Math/Matrix/transformVectorNoScale (LAE/Math/AEVector3D;LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_ac3 (LAbyssEngine/AEVector3D;LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/Math/Matrix/transformVectorNoScale2 (LAE/Math/AEVector3D;LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_ace ([LAbyssEngine/AEVector3D;[LAbyssEngine/AEVector3D;)[LAbyssEngine/AEVector3D; AE/Math/Matrix/transformVectorsNoScale ([LAE/Math/AEVector3D;[LAE/Math/AEVector3D;)[LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_b11 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/Math/Matrix/inverseTransformVector (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Matrix/sub_b26 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/Math/Matrix/transformVectorNoScale (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+FD: AbyssEngine/Matrix/_Type AE/Math/Matrix/rotationOrder
+CL: AbyssEngine/Medals GoF2/Achievements
+FD: AbyssEngine/Medals/hasAllGold GoF2/Achievements/ALL_GOLD_MEDALS
+FD: AbyssEngine/Medals/hasAll GoF2/Achievements/ALL_MEDALS
+FD: AbyssEngine/Medals/isDocked GoF2/Achievements/isArmed
+FD: AbyssEngine/Medals/medalTresholds GoF2/Achievements/VALUES
+CL: AbyssEngine/Player GoF2/Player
+MD: AbyssEngine/Player/getCoPlayers ()[LAbyssEngine/Player; GoF2/Player/getEnemies ()[LGoF2/Player;
+MD: AbyssEngine/Player/removeGuns ()V GoF2/Player/removeAllGuns ()V
+MD: AbyssEngine/Player/setNukeStun (F)V GoF2/Player/setBombForce (F)V
+MD: AbyssEngine/Player/sub_137 (II)V GoF2/Player/setEmpData (II)V
+MD: AbyssEngine/Player/sub_169 (Z)V GoF2/Player/setPlayShootSound (Z)V
+MD: AbyssEngine/Player/sub_20c ()V GoF2/Player/reset ()V
+MD: AbyssEngine/Player/sub_218 ([LAbyssEngine/Player;)V GoF2/Player/setEnemies ([LGoF2/Player;)V
+MD: AbyssEngine/Player/sub_266 ([LAbyssEngine/Player;)V GoF2/Player/addEnemies ([LGoF2/Player;)V
+MD: AbyssEngine/Player/sub_2f3 (I)LAbyssEngine/Player; GoF2/Player/getEnemy (I)LGoF2/Player;
+MD: AbyssEngine/Player/sub_386 (I)V GoF2/Player/setShieldHP (I)V
+MD: AbyssEngine/Player/sub_3aa (I)V GoF2/Player/setArmorHP (I)V
+MD: AbyssEngine/Player/sub_434 (I)V GoF2/Player/setMaxShieldHP (I)V
+MD: AbyssEngine/Player/sub_443 (I)V GoF2/Player/setMaxArmorHP (I)V
+MD: AbyssEngine/Player/sub_49f ()I GoF2/Player/getShieldHP ()I
+MD: AbyssEngine/Player/sub_4f2 ()I GoF2/Player/getCombinedHP ()I
+MD: AbyssEngine/Player/sub_53c ()I GoF2/Player/getArmorHP ()I
+MD: AbyssEngine/Player/sub_561 ()I GoF2/Player/getMaxArmorHP ()I
+MD: AbyssEngine/Player/sub_56c (F)V GoF2/Player/regenerateShield (F)V
+MD: AbyssEngine/Player/sub_5ce ()V GoF2/Player/regenerateArmor ()V
+MD: AbyssEngine/Player/sub_5e9 ()V GoF2/Player/regenerateHull ()V
+MD: AbyssEngine/Player/sub_66c ()I GoF2/Player/getMaxHitpoints ()I
+MD: AbyssEngine/Player/sub_6d4 ()I GoF2/Player/getDamageRate ()I
+MD: AbyssEngine/Player/sub_6f7 ()I GoF2/Player/getEmpDamageRate ()I
+MD: AbyssEngine/Player/sub_73a ()I GoF2/Player/getShieldDamageRate ()I
+MD: AbyssEngine/Player/sub_76e ()I GoF2/Player/getArmorDamageRate ()I
+MD: AbyssEngine/Player/sub_79a (Z)V GoF2/Player/setVulnerable_ (Z)V
+MD: AbyssEngine/Player/sub_7d0 (III)V GoF2/Player/setHitVector_ (III)V
+MD: AbyssEngine/Player/sub_84b (F)V GoF2/Player/setEmpForce_ (F)V
+MD: AbyssEngine/Player/sub_892 ()F GoF2/Player/getBombForce ()F
+MD: AbyssEngine/Player/sub_8c2 ()F GoF2/Player/setEmpForce_ ()F
+MD: AbyssEngine/Player/sub_8db ()LAbyssEngine/AEVector3D; GoF2/Player/getHitVector ()LAE/Math/AEVector3D;
+MD: AbyssEngine/Player/sub_96b (IZ)V GoF2/Player/damageHP (IZ)V
+MD: AbyssEngine/Player/sub_992 ()Z GoF2/Player/isAlwaysEnemy ()Z
+MD: AbyssEngine/Player/sub_9bb ()V GoF2/Player/setAlwaysEnemy ()V
+MD: AbyssEngine/Player/sub_9e5 (I)Z GoF2/Player/hasGunOfType (I)Z
+MD: AbyssEngine/Player/sub_a3c (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/Player/getPosition (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Player/sub_a98 (Z)V GoF2/Player/setActive (Z)V
+MD: AbyssEngine/Player/sub_ace ()Z GoF2/Player/isActive ()Z
+MD: AbyssEngine/Player/sub_ae3 ()Z GoF2/Player/isDead ()Z
+MD: AbyssEngine/Player/sub_b5e (I)V GoF2/Player/resetGunDelay (I)V
+MD: AbyssEngine/Player/sub_b96 (IJZLAbyssEngine/Matrix;)V GoF2/Player/playShootSound__ (IJZLAE/Math/Matrix;)V
+MD: AbyssEngine/Player/sub_bc8 (IJZ)V GoF2/Player/shoot_ (IJZ)V
+MD: AbyssEngine/Player/sub_c22 (IIJZ)Z GoF2/Player/shoot (IIJZ)Z
+MD: AbyssEngine/Player/sub_c78 (J)V GoF2/Player/update (J)V
+FD: AbyssEngine/Player/var_380 GoF2/Player/active
+FD: AbyssEngine/Player/var_3a5 GoF2/Player/vulnerable
+FD: AbyssEngine/Player/var_3df GoF2/Player/enemy
+FD: AbyssEngine/Player/var_427 GoF2/Player/friend
+FD: AbyssEngine/Player/var_46b GoF2/Player/transform
+FD: AbyssEngine/Player/var_4a2 GoF2/Player/hitVector
+FD: AbyssEngine/Player/var_518 GoF2/Player/playShootSound
+FD: AbyssEngine/Player/var_54e GoF2/Player/killedByKI
+FD: AbyssEngine/Player/var_5ec GoF2/Player/empForce
+FD: AbyssEngine/Player/var_608 GoF2/Player/egoInflictDamage
+FD: AbyssEngine/Player/var_67c GoF2/Player/empImpactForce
+FD: AbyssEngine/Player/var_72f GoF2/Player/tempEnemy_
+FD: AbyssEngine/Player/var_7ae GoF2/Player/posX
+FD: AbyssEngine/Player/var_803 GoF2/Player/posY
+FD: AbyssEngine/Player/var_83e GoF2/Player/posZ
+CL: AbyssEngine/Skybox GoF2/StarSystem
+MD: AbyssEngine/Skybox/getLocalPlanets ()[LAbyssEngine/KIPlayer; GoF2/StarSystem/getPlanetTargets ()[LGoF2/KIPlayer;
+MD: AbyssEngine/Skybox/sub_116 ()V GoF2/StarSystem/render_ ()V
+MD: AbyssEngine/Skybox/sub_126 ()V GoF2/StarSystem/render2D ()V
+MD: AbyssEngine/Skybox/sub_3d ()[LAbyssEngine/AbstractMesh; GoF2/StarSystem/getPlanets ()[LAE/AbstractMesh;
+MD: AbyssEngine/Skybox/sub_b9 ()V GoF2/StarSystem/renderSunStreak__ ()V
+FD: AbyssEngine/Skybox/var_153 GoF2/StarSystem/starAndPlanets
+FD: AbyssEngine/Skybox/var_1f8 GoF2/StarSystem/cameraControler
+FD: AbyssEngine/Skybox/var_25a GoF2/StarSystem/tempVec
+FD: AbyssEngine/Skybox/var_509 GoF2/StarSystem/occupiedNebulaPos
+FD: AbyssEngine/Skybox/var_54f GoF2/StarSystem/occupiedAstroObjPos
+FD: AbyssEngine/Skybox/var_5a9 GoF2/StarSystem/currentPlanetEnumIndex
+FD: AbyssEngine/Skybox/var_64 GoF2/StarSystem/astronomicalObjPlacings
+FD: AbyssEngine/Skybox/var_fb GoF2/StarSystem/planetSmallImages
+CL: AbyssEngine/Status GoF2/Status
+MD: AbyssEngine/Status/getCurrentCampaignMissionIndex (I)V GoF2/Status/setCurrentCampaignMission (I)V
+MD: AbyssEngine/Status/sub_1e5 (LAbyssEngine/Station;)V GoF2/Status/departStation (LGoF2/Station;)V
+MD: AbyssEngine/Status/sub_236 (I)V GoF2/Status/setPassengers (I)V
+MD: AbyssEngine/Status/sub_5c (LAbyssEngine/BluePrint;)V GoF2/Status/appendProduced (LGoF2/BluePrint;)V
+MD: AbyssEngine/Status/sub_690 (I)V GoF2/Status/getUnusedVar (I)V
+MD: AbyssEngine/Status/sub_6ac ()I GoF2/Status/setUnusedVar ()I
+MD: AbyssEngine/Status/sub_70a (LAbyssEngine/Mission;)V GoF2/Status/removeMission_ (LGoF2/Mission;)V
+MD: AbyssEngine/Status/sub_ca6 (I)V GoF2/Status/setPirateKills (I)V
+MD: AbyssEngine/Status/sub_cc1 ()I GoF2/Status/getPirateKills ()I
+MD: AbyssEngine/Status/sub_e9 (IZ)V GoF2/Status/setSystemVisibility (IZ)V
+FD: AbyssEngine/Status/SpecialAgents GoF2/Status/specialAgents
+FD: AbyssEngine/Status/drinksVar1 GoF2/Status/drinkTypesPossesed
+FD: AbyssEngine/Status/drinksVar2 GoF2/Status/systemsVisited
+FD: AbyssEngine/Status/timeSpentLoading GoF2/Status/loadingTime
+FD: AbyssEngine/Status/var_510 GoF2/Status/unused_
+FD: AbyssEngine/Status/var_8f8wingmenVar2 GoF2/Status/wingmanFace
+FD: AbyssEngine/Status/var_9a8 GoF2/Status/passengerCount
+FD: AbyssEngine/Status/var_cae GoF2/Status/wormHoleTick
+FD: AbyssEngine/Status/var_d88 GoF2/Status/missionGoodsCarried
+FD: AbyssEngine/Status/var_e59 GoF2/Status/boughtBooze
+FD: AbyssEngine/Status/var_ea8 GoF2/Status/destroyedJunk
+FD: AbyssEngine/Status/var_f13 GoF2/Status/passengersCarried
+FD: AbyssEngine/Status/wingmenRace_ GoF2/Status/wingmanRace
+CL: Main/Class_f7scene Main/ModMainMenu
+MD: Main/Class_f7scene/freeResources ()V Main/ModMainMenu/OnRelease ()V
+MD: Main/Class_f7scene/loadResources ()V Main/ModMainMenu/OnInitialize ()V
+FD: Main/Class_f7scene/var_11f Main/ModMainMenu/totalTimeRendered
+FD: Main/Class_f7scene/var_160 Main/ModMainMenu/drawUI
+FD: Main/Class_f7scene/var_1b3 Main/ModMainMenu/cutScene
+FD: Main/Class_f7scene/var_1e7 Main/ModMainMenu/optionsWindow
+FD: Main/Class_f7scene/var_230 Main/ModMainMenu/optionWindowOpen
+FD: Main/Class_f7scene/var_258 Main/ModMainMenu/stationIndex
+FD: Main/Class_f7scene/var_71 Main/ModMainMenu/frameStartTime
+FD: Main/Class_f7scene/var_b8 Main/ModMainMenu/lastFrameStartTime
+FD: Main/Class_f7scene/var_ec Main/ModMainMenu/frameTime
+CL: Main/InsideStation Main/ModStation
+MD: Main/InsideStation/freeResources ()V Main/ModStation/OnRelease ()V
+MD: Main/InsideStation/loadResources ()V Main/ModStation/OnInitialize ()V
+MD: Main/InsideStation/sub_161 ()V Main/ModStation/leaveStation ()V
+MD: Main/InsideStation/sub_4e ()LMain/Class_26fscene; Main/ModStation/getCutScene ()LMain/CutScene;
+MD: Main/InsideStation/sub_a9 ()V Main/ModStation/fromGameSave ()V
+MD: Main/InsideStation/sub_f0 ()V Main/ModStation/checkMedals_ ()V
+FD: Main/InsideStation/bribeOffer Main/ModStation/popup
+FD: Main/InsideStation/var_101 Main/ModStation/barTick
+FD: Main/InsideStation/var_139 Main/ModStation/loadingTick
+FD: Main/InsideStation/var_14a Main/ModStation/selectedMenuItem
+FD: Main/InsideStation/var_179 Main/ModStation/menuItemHighlights
+FD: Main/InsideStation/var_2bc Main/ModStation/cutScene
+FD: Main/InsideStation/var_315 Main/ModStation/optionsWindow
+FD: Main/InsideStation/var_3ba Main/ModStation/popupOpen
+FD: Main/InsideStation/var_4f0 Main/ModStation/missionMsgOpen
+FD: Main/InsideStation/var_517 Main/ModStation/medalMsgOpen
+FD: Main/InsideStation/var_523 Main/ModStation/helpMsgOpen
+FD: Main/InsideStation/var_57e Main/ModStation/bribeMsgOpen
+FD: Main/InsideStation/var_5bf Main/ModStation/spaceLounge
+FD: Main/InsideStation/var_60 Main/ModStation/currentTime
+FD: Main/InsideStation/var_643 Main/ModStation/hangarWindow
+FD: Main/InsideStation/var_6ed Main/ModStation/statusPanel
+FD: Main/InsideStation/var_78a Main/ModStation/missionsWindow
+FD: Main/InsideStation/var_7a6 Main/ModStation/dialogue
+FD: Main/InsideStation/var_82e Main/ModStation/medalPopup
+FD: Main/InsideStation/var_85d Main/ModStation/starMap
+FD: Main/InsideStation/var_899 Main/ModStation/activeMission__
+FD: Main/InsideStation/var_9bb Main/ModStation/loadedFromSave
+FD: Main/InsideStation/var_9ec Main/ModStation/autoSaved
+FD: Main/InsideStation/var_9f Main/ModStation/lastTime
+FD: Main/InsideStation/var_a94 Main/ModStation/leaveStationWarnOpen
+FD: Main/InsideStation/var_abd Main/ModStation/newMedals
+FD: Main/InsideStation/var_b11 Main/ModStation/newMedalCollected
+FD: Main/InsideStation/var_b98 Main/ModStation/unused_b98
+FD: Main/InsideStation/var_bcc Main/ModStation/boozeOwnedAtArrival
+FD: Main/InsideStation/var_be8 Main/ModStation/bribe
+FD: Main/InsideStation/var_c8c Main/ModStation/paidBribe
+FD: Main/InsideStation/var_ca1 Main/ModStation/medalsChecked
+FD: Main/InsideStation/var_ccc Main/ModStation/goodsCollected
+FD: Main/InsideStation/var_d4 Main/ModStation/frameTime
+MD: Main/NewMedalPopup/sub_006 ()V Main/NewMedalPopup/draw ()V
+MD: Main/NewMedalPopup/sub_49 (II)V Main/NewMedalPopup/set (II)V
+FD: Main/NewMedalPopup/var_32d Main/NewMedalPopup/medalImg
+MD: Main/OptionsWindow/sub_12b (II)V Main/OptionsWindow/scrollAndTick_ (II)V
+MD: Main/OptionsWindow/sub_148 ()Z Main/OptionsWindow/update ()Z
+MD: Main/OptionsWindow/sub_1e5 (I)V Main/OptionsWindow/scrollUp (I)V
+MD: Main/OptionsWindow/sub_215 (I)V Main/OptionsWindow/scrollDown (I)V
+MD: Main/OptionsWindow/sub_23 (Ljava/lang/String;)Ljava/lang/String; Main/OptionsWindow/unescape (Ljava/lang/String;)Ljava/lang/String;
+MD: Main/OptionsWindow/sub_23d ()V Main/OptionsWindow/optionsLeft ()V
+MD: Main/OptionsWindow/sub_2c1 ()V Main/OptionsWindow/optionsRight ()V
+MD: Main/OptionsWindow/sub_2d7 ()Z Main/OptionsWindow/goBack ()Z
+MD: Main/OptionsWindow/sub_2e7 ()Z Main/OptionsWindow/update1_ ()Z
+MD: Main/OptionsWindow/sub_33 ()V Main/OptionsWindow/initWapItem ()V
+MD: Main/OptionsWindow/sub_33e (I)V Main/OptionsWindow/reset_ (I)V
+MD: Main/OptionsWindow/sub_38c ()V Main/OptionsWindow/resetPauseMenu ()V
+MD: Main/OptionsWindow/sub_3a2 ()V Main/OptionsWindow/draw ()V
+MD: Main/OptionsWindow/sub_401 (I)Z Main/OptionsWindow/handleKeystate (I)Z
+MD: Main/OptionsWindow/sub_70 ([LAbyssEngine/GameRecord;)V Main/OptionsWindow/loadSavePreviews ([LGoF2/GameRecord;)V
+MD: Main/OptionsWindow/sub_e6 ()V Main/OptionsWindow/OnRelease ()V
+FD: Main/OptionsWindow/about Main/OptionsWindow/credits
+FD: Main/OptionsWindow/choiceConfirm Main/OptionsWindow/confirmPopup
+FD: Main/OptionsWindow/listEntriesCounts_ Main/OptionsWindow/menuItemCounts
+FD: Main/OptionsWindow/var_191 Main/OptionsWindow/posX
+FD: Main/OptionsWindow/var_251 Main/OptionsWindow/headerHeight
+FD: Main/OptionsWindow/var_2a3 Main/OptionsWindow/windowWidth
+FD: Main/OptionsWindow/var_34e Main/OptionsWindow/gameLogo
+FD: Main/OptionsWindow/var_373 Main/OptionsWindow/fontSpacingY
+FD: Main/OptionsWindow/var_3be Main/OptionsWindow/saveGameItemHeight
+FD: Main/OptionsWindow/var_467 Main/OptionsWindow/saveInfo
+FD: Main/OptionsWindow/var_600 Main/OptionsWindow/forcePauseMenu_
+FD: Main/OptionsWindow/var_696 Main/OptionsWindow/stationName
+FD: Main/OptionsWindow/var_6eb Main/OptionsWindow/manualWindow
+FD: Main/OptionsWindow/var_7bc Main/OptionsWindow/hidden__
+FD: Main/OptionsWindow/var_817 Main/OptionsWindow/nameInput
+FD: Main/OptionsWindow/var_911 Main/OptionsWindow/recordWindowWidth
+FD: Main/OptionsWindow/var_992 Main/OptionsWindow/operatorURL
+FD: Main/OptionsWindow/var_a15 Main/OptionsWindow/operatorsPrompt
+FD: Main/OptionsWindow/var_a9e Main/OptionsWindow/operatorMenuEntry
+FD: Main/OptionsWindow/var_ad1 Main/OptionsWindow/wapMode
+FD: Main/OptionsWindow/var_b06 Main/OptionsWindow/unused_b06
+FD: Main/OptionsWindow/var_b34 Main/OptionsWindow/unused_b34
+FD: Main/OptionsWindow/var_b51 Main/OptionsWindow/optionsListPosY
+FD: Main/OptionsWindow/webConncetionRelatedConfirm_ Main/OptionsWindow/webAccessAvailable
+CL: AbyssEngine/AEImage AE/AEFile
+MD: AbyssEngine/AEImage/loadClass (Ljava/lang/String;)Ljava/lang/Class; AE/AEFile/getClass (Ljava/lang/String;)Ljava/lang/Class;
+MD: AbyssEngine/AEImage/loadFileBytes (Ljava/lang/String;)[B AE/AEFile/readFileBytes (Ljava/lang/String;)[B
+CL: AbyssEngine/JSRMesh AE/JSRMesh
+MD: AbyssEngine/JSRMesh/destroy ()V AE/JSRMesh/OnRelease ()V
+MD: AbyssEngine/JSRMesh/getAnimationLenght (Ljavax/microedition/m3g/Node;I)I AE/JSRMesh/getAnimationLength (Ljavax/microedition/m3g/Node;I)I
+MD: AbyssEngine/JSRMesh/sub_181 (J)V AE/JSRMesh/update (J)V
+MD: AbyssEngine/JSRMesh/sub_2b ()LAbyssEngine/GraphNode; AE/JSRMesh/clone ()LAE/GraphNode;
+MD: AbyssEngine/JSRMesh/sub_918 (I)V AE/JSRMesh/setAnimationSpeed (I)V
+MD: AbyssEngine/JSRMesh/sub_942 ()I AE/JSRMesh/getCurrentAnimFrame ()I
+MD: AbyssEngine/JSRMesh/sub_980 (II)V AE/JSRMesh/setAnimationRangeInTime (II)V
+MD: AbyssEngine/JSRMesh/sub_9aa (B)V AE/JSRMesh/setAnimationMode (B)V
+MD: AbyssEngine/JSRMesh/sub_a04 ()V AE/JSRMesh/disableAnimation ()V
+MD: AbyssEngine/JSRMesh/sub_a37 ()Z AE/JSRMesh/hasAnimation ()Z
+FD: AbyssEngine/JSRMesh/animLenght AE/JSRMesh/animLength
+FD: AbyssEngine/JSRMesh/var_10e AE/JSRMesh/uvRotations
+FD: AbyssEngine/JSRMesh/var_24c AE/JSRMesh/localToWorldTransform
+FD: AbyssEngine/JSRMesh/var_3cc AE/JSRMesh/composMode
+FD: AbyssEngine/JSRMesh/var_4aa AE/JSRMesh/textureTransform
+FD: AbyssEngine/JSRMesh/var_56 AE/JSRMesh/uvOffsets
+CL: AbyssEngine/Mission GoF2/Mission
+MD: AbyssEngine/Mission/getCommodityAmount ()I GoF2/Mission/getCommodityAmount_ ()I
+MD: AbyssEngine/Mission/setCampaignMission ()I GoF2/Mission/getTargetStation ()I
+MD: AbyssEngine/Mission/setStartedStoryMission (Z)V GoF2/Mission/setCampaignMission (Z)V
+MD: AbyssEngine/Mission/sub_12c ()Z GoF2/Mission/isVisible ()Z
+MD: AbyssEngine/Mission/sub_453 ()Z GoF2/Mission/isOutsideMission ()Z
+MD: AbyssEngine/Mission/sub_50f ()I GoF2/Mission/getBonus ()I
+MD: AbyssEngine/Mission/sub_54a (I)V GoF2/Mission/setBonus (I)V
+MD: AbyssEngine/Mission/sub_91 (Z)V GoF2/Mission/setVisible (Z)V
+FD: AbyssEngine/Mission/var_dc GoF2/Mission/emptyMission_
+FD: AbyssEngine/Mission/visible_ GoF2/Mission/visibleOnMap
+CL: AbyssEngine/Station GoF2/Station
+MD: AbyssEngine/Station/sub_175 ()Z GoF2/Station/isDiscovered ()Z
+MD: AbyssEngine/Station/sub_1a2 ()V GoF2/Station/visit ()V
+MD: AbyssEngine/Station/sub_334 (LAbyssEngine/Item;)V GoF2/Station/addItem (LGoF2/Item;)V
+MD: AbyssEngine/Station/sub_fc ()Z GoF2/Station/isAttackedByAliens ()Z
+CL: AbyssEngine/TextBox GoF2/TextBox
+MD: AbyssEngine/TextBox/sub_115 ()I GoF2/TextBox/getHeight_ ()I
+MD: AbyssEngine/TextBox/sub_164 ()I GoF2/TextBox/getTextHeight_ ()I
+MD: AbyssEngine/TextBox/sub_173 ([BLjava/lang/String;Z)V GoF2/TextBox/set ([BLjava/lang/String;Z)V
+MD: AbyssEngine/TextBox/sub_e0 (Ljava/lang/String;)V GoF2/TextBox/setText (Ljava/lang/String;)V
+FD: AbyssEngine/TextBox/var_20d GoF2/TextBox/fontSpacingY__
+FD: AbyssEngine/TextBox/var_2f5 GoF2/TextBox/rawText
+FD: AbyssEngine/TextBox/var_310 GoF2/TextBox/faceIds
+FD: AbyssEngine/TextBox/var_3dd GoF2/TextBox/faceImgs
+FD: AbyssEngine/TextBox/var_438 GoF2/TextBox/heightLimit
+CL: Main/Class_26fscene Main/CutScene
+MD: Main/Class_26fscene/freeResources ()V Main/CutScene/OnRelease ()V
+MD: Main/Class_26fscene/loadResources ()V Main/CutScene/OnInitialize ()V
+MD: Main/Class_26fscene/sub_2c ()V Main/CutScene/resetCamera ()V
+MD: Main/Class_26fscene/sub_7c (II)V Main/CutScene/replacePlayerShip (II)V
+FD: Main/Class_26fscene/var_103 Main/CutScene/loaded
+FD: Main/Class_26fscene/var_19c Main/CutScene/cameraControllers_unused
+FD: Main/Class_26fscene/var_1d Main/CutScene/renderAtTime
+FD: Main/Class_26fscene/var_222 Main/CutScene/gameCam_
+FD: Main/Class_26fscene/var_313 Main/CutScene/hangarCam
+FD: Main/Class_26fscene/var_36 Main/CutScene/lastRenderAtTime
+FD: Main/Class_26fscene/var_371 Main/CutScene/cameraTrack
+FD: Main/Class_26fscene/var_3c4 Main/CutScene/followingCam_unused
+FD: Main/Class_26fscene/var_407 Main/CutScene/lookAtcam_unused
+FD: Main/Class_26fscene/var_4cb Main/CutScene/sceneId
+FD: Main/Class_26fscene/var_526 Main/CutScene/cameraGroupOfOne_
+FD: Main/Class_26fscene/var_613 Main/CutScene/forcedSpeedCCW
+FD: Main/Class_26fscene/var_629 Main/CutScene/forcedSpeedCW
+FD: Main/Class_26fscene/var_676 Main/CutScene/rotation
+FD: Main/Class_26fscene/var_682 Main/CutScene/shipPosY
+FD: Main/Class_26fscene/var_704 Main/CutScene/shipPosZ
+FD: Main/Class_26fscene/var_ed Main/CutScene/lifeTime
+MD: Main/MissionsWindow/sub_10b (ILjava/lang/String;Ljavax/microedition/lcdui/Image;)V Main/MissionsWindow/drawMissionSubsection (ILjava/lang/String;Ljavax/microedition/lcdui/Image;)V
+MD: Main/MissionsWindow/sub_162 ()Z Main/MissionsWindow/hangarNeedsUpdate ()Z
+MD: Main/MissionsWindow/sub_179 (Z)V Main/MissionsWindow/setHangarUpdate (Z)V
+MD: Main/MissionsWindow/sub_2e ()V Main/MissionsWindow/init ()V
+MD: Main/MissionsWindow/sub_5c (I)Z Main/MissionsWindow/handleKeystate (I)Z
+MD: Main/MissionsWindow/sub_bc (II)V Main/MissionsWindow/draw (II)V
+FD: Main/MissionsWindow/var_10f Main/MissionsWindow/popupOpen
+FD: Main/MissionsWindow/var_1bd Main/MissionsWindow/contentHeight
+FD: Main/MissionsWindow/var_2d Main/MissionsWindow/starMap
+FD: Main/MissionsWindow/var_4f2 Main/MissionsWindow/hangarNeedsUpdate
+FD: Main/MissionsWindow/var_51b Main/MissionsWindow/clientsFace
+FD: Main/MissionsWindow/var_539 Main/MissionsWindow/mainMission
+FD: Main/MissionsWindow/var_594 Main/MissionsWindow/sideMission
+FD: Main/MissionsWindow/var_5bb Main/MissionsWindow/campainMissionActions
+FD: Main/MissionsWindow/var_5d2 Main/MissionsWindow/alienShipMission
+FD: Main/MissionsWindow/var_77 Main/MissionsWindow/popup
+CL: AbyssEngine/Class_db AE/Renderer
+MD: AbyssEngine/Class_db/sub_120 ()V AE/Renderer/addLayer ()V
+MD: AbyssEngine/Class_db/sub_177 (ILAbyssEngine/AbstractMesh;)V AE/Renderer/drawNode (ILAE/AbstractMesh;)V
+MD: AbyssEngine/Class_db/sub_19 (LAbyssEngine/Camera;)V AE/Renderer/setActiveCamera (LAE/Camera;)V
+MD: AbyssEngine/Class_db/sub_87 (LAbyssEngine/GraphNode;)V AE/Renderer/drawNodeInVF (LAE/GraphNode;)V
+MD: AbyssEngine/Class_db/sub_95 ()V AE/Renderer/renderStillFrame ()V
+MD: AbyssEngine/Class_db/sub_cc (J)V AE/Renderer/renderFrame (J)V
+FD: AbyssEngine/Class_db/var_10d AE/Renderer/graphics3D
+FD: AbyssEngine/Class_db/var_52 AE/Renderer/camera
+FD: AbyssEngine/Class_db/var_7d AE/Renderer/cameraTopGroup
+FD: AbyssEngine/Class_db/var_ca AE/Renderer/layers
+FD: AbyssEngine/Class_db/var_d6 AE/Renderer/needGraphicsClear
+CL: AbyssEngine/Dialogue GoF2/Dialogue
+MD: AbyssEngine/Dialogue/sub_146 ()V GoF2/Dialogue/OnRelease ()V
+MD: AbyssEngine/Dialogue/sub_178 (I)Z GoF2/Dialogue/OnKeyPress_ (I)Z
+MD: AbyssEngine/Dialogue/sub_1c3 (II)Z GoF2/Dialogue/handleScrollPress_ (II)Z
+MD: AbyssEngine/Dialogue/sub_1e8 ()I GoF2/Dialogue/length ()I
+MD: AbyssEngine/Dialogue/sub_230 ()Z GoF2/Dialogue/firstPageOn ()Z
+MD: AbyssEngine/Dialogue/sub_274 ()Z GoF2/Dialogue/lastPageOn ()Z
+MD: AbyssEngine/Dialogue/sub_304 ()V GoF2/Dialogue/draw ()V
+MD: AbyssEngine/Dialogue/sub_364 ()V GoF2/Dialogue/drawInterupring_ ()V
+MD: AbyssEngine/Dialogue/sub_84 (I)Z GoF2/Dialogue/hasBriefingDialogue (I)Z
+MD: AbyssEngine/Dialogue/sub_de (I)Z GoF2/Dialogue/hasSuccessDialogue (I)Z
+MD: AbyssEngine/Dialogue/sub_f5 (LAbyssEngine/Mission;I)V GoF2/Dialogue/set (LGoF2/Mission;I)V
+FD: AbyssEngine/Dialogue/storyDialogues2 GoF2/Dialogue/CAMPAIGN_SUCCESS
+FD: AbyssEngine/Dialogue/storyDialogues GoF2/Dialogue/CAMPAIGN_BRIEFING
+FD: AbyssEngine/Dialogue/var_649 GoF2/Dialogue/level
+CL: AbyssEngine/FileRead GoF2/FileRead
+MD: AbyssEngine/FileRead/sub_229 (Ljava/lang/String;)Ljava/lang/Class; GoF2/FileRead/getClassForName (Ljava/lang/String;)Ljava/lang/Class;
+CL: AbyssEngine/JSRMesh2 AE/BackGroundMesh
+MD: AbyssEngine/JSRMesh2/destroy ()V AE/BackGroundMesh/OnRelease ()V
+MD: AbyssEngine/JSRMesh2/sub_2b ()LAbyssEngine/GraphNode; AE/BackGroundMesh/clone ()LAE/GraphNode;
+MD: AbyssEngine/JSRMesh2/sub_64 (Ljavax/microedition/m3g/Group;[Ljavax/microedition/m3g/Texture2D;)V AE/BackGroundMesh/setTexture (Ljavax/microedition/m3g/Group;[Ljavax/microedition/m3g/Texture2D;)V
+FD: AbyssEngine/JSRMesh2/var_109 AE/BackGroundMesh/mesh
+FD: AbyssEngine/JSRMesh2/var_124 AE/BackGroundMesh/compositing
+FD: AbyssEngine/JSRMesh2/var_96 AE/BackGroundMesh/tranformFloatArr
+FD: AbyssEngine/JSRMesh2/var_b AE/BackGroundMesh/transform
+CL: AbyssEngine/KIPlayer GoF2/KIPlayer
+MD: AbyssEngine/KIPlayer/destroy ()V GoF2/KIPlayer/OnRelease ()V
+MD: AbyssEngine/KIPlayer/isCrate ()Z GoF2/KIPlayer/isDying ()Z
+MD: AbyssEngine/KIPlayer/isOutOfScope ()Z GoF2/KIPlayer/isDead ()Z
+MD: AbyssEngine/KIPlayer/setWasteMesh (I)V GoF2/KIPlayer/createCrate (I)V
+MD: AbyssEngine/KIPlayer/sub_005 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/KIPlayer/getProjectionVector_ (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/KIPlayer/sub_109doSth ()V GoF2/KIPlayer/appendToRender ()V
+MD: AbyssEngine/KIPlayer/sub_1515sth (I)V GoF2/KIPlayer/setSpeed (I)V
+MD: AbyssEngine/KIPlayer/sub_162 (III)Z GoF2/KIPlayer/outerCollide (III)Z
+MD: AbyssEngine/KIPlayer/sub_16f (ILAbyssEngine/KIPlayer;)V GoF2/KIPlayer/setWingmanCommand (ILGoF2/KIPlayer;)V
+MD: AbyssEngine/KIPlayer/sub_1b8 (LAbyssEngine/AEVector3D;)Z GoF2/KIPlayer/outerCollide (LAE/Math/AEVector3D;)Z
+MD: AbyssEngine/KIPlayer/sub_279 ()Z GoF2/KIPlayer/isJumper ()Z
+MD: AbyssEngine/KIPlayer/sub_2ab (Z)V GoF2/KIPlayer/setInitActive (Z)V
+MD: AbyssEngine/KIPlayer/sub_2cb (LAbyssEngine/Hud;)V GoF2/KIPlayer/captureCrate (LGoF2/Hud;)V
+MD: AbyssEngine/KIPlayer/sub_2e5 ()V GoF2/KIPlayer/revive ()V
+MD: AbyssEngine/KIPlayer/sub_32a ()Z GoF2/KIPlayer/isWingman ()Z
+MD: AbyssEngine/KIPlayer/sub_34 (Z)V GoF2/KIPlayer/setActive (Z)V
+MD: AbyssEngine/KIPlayer/sub_366 (ZI)V GoF2/KIPlayer/setWingman (ZI)V
+MD: AbyssEngine/KIPlayer/sub_3b3 (LAbyssEngine/Level;)V GoF2/KIPlayer/setLevel (LGoF2/Level;)V
+MD: AbyssEngine/KIPlayer/sub_3c7 (LAbyssEngine/Explosion;)V GoF2/KIPlayer/setExplosion (LGoF2/Explosion;)V
+MD: AbyssEngine/KIPlayer/sub_3d9 (LAbyssEngine/Class_661;)V GoF2/KIPlayer/setRoute (LGoF2/Route;)V
+MD: AbyssEngine/KIPlayer/sub_3ea ()LAbyssEngine/Class_661; GoF2/KIPlayer/getRoute ()LGoF2/Route;
+MD: AbyssEngine/KIPlayer/sub_43a (LAbyssEngine/Gun;I)V GoF2/KIPlayer/addGun (LGoF2/Gun;I)V
+MD: AbyssEngine/KIPlayer/sub_4a3 ()I GoF2/KIPlayer/getMeshId ()I
+MD: AbyssEngine/KIPlayer/sub_52b ()V GoF2/KIPlayer/setDead ()V
+MD: AbyssEngine/KIPlayer/sub_5cc ()V GoF2/KIPlayer/setToSleep ()V
+MD: AbyssEngine/KIPlayer/sub_5fc ()V GoF2/KIPlayer/awake ()V
+MD: AbyssEngine/KIPlayer/sub_63 ()Z GoF2/KIPlayer/isVisible ()Z
+MD: AbyssEngine/KIPlayer/sub_654 (LAbyssEngine/AbstractMesh;)V GoF2/KIPlayer/setJumpMesh (LAE/AbstractMesh;)V
+MD: AbyssEngine/KIPlayer/sub_6ef ()Z GoF2/KIPlayer/cargoAvailable_ ()Z
+MD: AbyssEngine/KIPlayer/sub_73 (Z)V GoF2/KIPlayer/setVisible (Z)V
+MD: AbyssEngine/KIPlayer/sub_a9 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/KIPlayer/getPosition (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/KIPlayer/sub_ca (LAbyssEngine/Group;I)V GoF2/KIPlayer/setGroup (LAE/Group;I)V
+MD: AbyssEngine/KIPlayer/sub_ea (Z)V GoF2/KIPlayer/setJumper (Z)V
+FD: AbyssEngine/KIPlayer/positon GoF2/KIPlayer/position
+FD: AbyssEngine/KIPlayer/var_145 GoF2/KIPlayer/speed
+FD: AbyssEngine/KIPlayer/var_25d GoF2/KIPlayer/mainMesh_
+FD: AbyssEngine/KIPlayer/var_379 GoF2/KIPlayer/geometry
+FD: AbyssEngine/KIPlayer/var_3ce GoF2/KIPlayer/meshId
+FD: AbyssEngine/KIPlayer/var_3f3 GoF2/KIPlayer/shipId_
+FD: AbyssEngine/KIPlayer/var_50b GoF2/KIPlayer/activeRoute_
+FD: AbyssEngine/KIPlayer/var_727 GoF2/KIPlayer/tempVector_
+FD: AbyssEngine/KIPlayer/var_907 GoF2/KIPlayer/carriesMissionCrate
+FD: AbyssEngine/KIPlayer/var_99f GoF2/KIPlayer/junk
+FD: AbyssEngine/KIPlayer/var_9d8 GoF2/KIPlayer/hasCargo
+FD: AbyssEngine/KIPlayer/var_a3b GoF2/KIPlayer/cargo
+FD: AbyssEngine/KIPlayer/var_aa5 GoF2/KIPlayer/jumpMesh
+FD: AbyssEngine/KIPlayer/var_af6 GoF2/KIPlayer/diedWithMissionCrate
+FD: AbyssEngine/KIPlayer/var_be0 GoF2/KIPlayer/lostMissionCrateToEgo
+FD: AbyssEngine/KIPlayer/var_c3a GoF2/KIPlayer/unusedc3a_
+FD: AbyssEngine/KIPlayer/var_c61 GoF2/KIPlayer/crateLifeTime
+FD: AbyssEngine/KIPlayer/var_cc1 GoF2/KIPlayer/wingman
+FD: AbyssEngine/KIPlayer/var_cf1 GoF2/KIPlayer/wingmanId
+FD: AbyssEngine/KIPlayer/var_d43 GoF2/KIPlayer/wingmanCommand
+FD: AbyssEngine/KIPlayer/var_d6c GoF2/KIPlayer/wingmanTarget
+FD: AbyssEngine/KIPlayer/var_d9e GoF2/KIPlayer/jumper
+FD: AbyssEngine/KIPlayer/var_dbe GoF2/KIPlayer/jumpTick
+FD: AbyssEngine/KIPlayer/var_e74 GoF2/KIPlayer/stunned
+FD: AbyssEngine/KIPlayer/var_eb1 GoF2/KIPlayer/armed
+FD: AbyssEngine/KIPlayer/var_ee3 GoF2/KIPlayer/visible
+FD: AbyssEngine/KIPlayer/var_efb GoF2/KIPlayer/withinRenderDistance
+CL: AbyssEngine/LaserGun GoF2/LaserGun
+MD: AbyssEngine/LaserGun/destroy ()V GoF2/LaserGun/OnRelease ()V
+MD: AbyssEngine/LaserGun/sub_181 (J)V GoF2/LaserGun/update (J)V
+MD: AbyssEngine/LaserGun/sub_2b ()LAbyssEngine/GraphNode; GoF2/LaserGun/clone ()LAE/GraphNode;
+FD: AbyssEngine/LaserGun/var_18a GoF2/LaserGun/beamRadius
+FD: AbyssEngine/LaserGun/var_1d0 GoF2/LaserGun/beam
+FD: AbyssEngine/LaserGun/var_1e8 GoF2/LaserGun/flash
+FD: AbyssEngine/LaserGun/var_2e2 GoF2/LaserGun/vertexPositions
+FD: AbyssEngine/LaserGun/var_375 GoF2/LaserGun/vertexWorldPositions
+FD: AbyssEngine/LaserGun/var_3da GoF2/LaserGun/uvs
+FD: AbyssEngine/LaserGun/var_457 GoF2/LaserGun/muzzlePos
+FD: AbyssEngine/LaserGun/var_4a0 GoF2/LaserGun/aimPoint
+FD: AbyssEngine/LaserGun/var_4ef GoF2/LaserGun/direction
+FD: AbyssEngine/LaserGun/var_56b GoF2/LaserGun/muzzlePos2
+FD: AbyssEngine/LaserGun/var_5e5 GoF2/LaserGun/BEAM_UVs
+FD: AbyssEngine/LaserGun/var_617 GoF2/LaserGun/FLASH_KEYFRAMES
+FD: AbyssEngine/LaserGun/var_658 GoF2/LaserGun/level
+FD: AbyssEngine/LaserGun/var_695 GoF2/LaserGun/directionLocked
+FD: AbyssEngine/LaserGun/var_95 GoF2/LaserGun/gun
+CL: AbyssEngine/Standing GoF2/Standing
+MD: AbyssEngine/Standing/changeStanding (II)V GoF2/Standing/applyDelict (II)V
+MD: AbyssEngine/Standing/decStanding (I)V GoF2/Standing/increase (I)V
+MD: AbyssEngine/Standing/incStanding (I)V GoF2/Standing/applyStealCargo (I)V
+MD: AbyssEngine/Standing/incStanding2 (I)V GoF2/Standing/applyDisable (I)V
+MD: AbyssEngine/Standing/oppositeFaction (I)I GoF2/Standing/enemyRace (I)I
+MD: AbyssEngine/Standing/standingChange (II)V GoF2/Standing/subtract (II)V
+MD: AbyssEngine/Standing/sub_24a (I)V GoF2/Standing/applyKill (I)V
+MD: AbyssEngine/Standing/sub_d7 (I)V GoF2/Standing/rehabilitate (I)V
+CL: AbyssEngine/BluePrint GoF2/BluePrint
+CL: AbyssEngine/Class_198 AE/CameraControllerGroup
+MD: AbyssEngine/Class_198/sub_109 (Z)V AE/CameraControllerGroup/updateTransform (Z)V
+MD: AbyssEngine/Class_198/sub_5c (LAbyssEngine/Class_121c;)V AE/CameraControllerGroup/addController (LAE/CameraController_;)V
+FD: AbyssEngine/Class_198/var_16 AE/CameraControllerGroup/controllers
+CL: AbyssEngine/Class_23e GoF2/Radio
+MD: AbyssEngine/Class_23e/sub_133 (I)LAbyssEngine/Class_85e; GoF2/Radio/getMessageFromQueue (I)LGoF2/RadioMessage;
+MD: AbyssEngine/Class_23e/sub_193 ()V GoF2/Radio/showMessage ()V
+MD: AbyssEngine/Class_23e/sub_1f5 (JJLAbyssEngine/PlayerEgo;)V GoF2/Radio/draw (JJLGoF2/PlayerEgo;)V
+MD: AbyssEngine/Class_23e/sub_39 ()V GoF2/Radio/OnRelease ()V
+MD: AbyssEngine/Class_23e/sub_96 ([LAbyssEngine/Class_85e;)V GoF2/Radio/setMessages ([LGoF2/RadioMessage;)V
+MD: AbyssEngine/Class_23e/sub_cf (LAbyssEngine/Class_85e;)V GoF2/Radio/setCurrentMessage (LGoF2/RadioMessage;)V
+FD: AbyssEngine/Class_23e/var_128 GoF2/Radio/rows
+FD: AbyssEngine/Class_23e/var_163 GoF2/Radio/face
+FD: AbyssEngine/Class_23e/var_18f GoF2/Radio/msgStartTime
+FD: AbyssEngine/Class_23e/var_1b8 GoF2/Radio/msgTime
+FD: AbyssEngine/Class_23e/var_213 GoF2/Radio/title
+FD: AbyssEngine/Class_23e/var_2bb GoF2/Radio/msgCheckTick
+FD: AbyssEngine/Class_23e/var_2db GoF2/Radio/faceImages
+FD: AbyssEngine/Class_23e/var_30f GoF2/Radio/font
+FD: AbyssEngine/Class_23e/var_4b GoF2/Radio/messages
+FD: AbyssEngine/Class_23e/var_86 GoF2/Radio/currentMessage
+CL: AbyssEngine/Class_490 GoF2/Impact
+MD: AbyssEngine/Class_490/sub_4b ()V GoF2/Impact/explode ()V
+MD: AbyssEngine/Class_490/sub_a6 (I)V GoF2/Impact/update (I)V
+FD: AbyssEngine/Class_490/var_161 GoF2/Impact/spread
+FD: AbyssEngine/Class_490/var_180 GoF2/Impact/lifeTimeRange
+FD: AbyssEngine/Class_490/var_38 GoF2/Impact/mesh
+FD: AbyssEngine/Class_490/var_ac GoF2/Impact/particlesLifeTime
+FD: AbyssEngine/Class_490/var_ff GoF2/Impact/baseLifeTime
+CL: AbyssEngine/Class_661 GoF2/Route
+MD: AbyssEngine/Class_661/sub_11e (I)LAbyssEngine/Class_e19; GoF2/Route/getWaypoint (I)LGoF2/Waypoint;
+MD: AbyssEngine/Class_661/sub_176 ()LAbyssEngine/Class_e19; GoF2/Route/getDockingTarget_ ()LGoF2/Waypoint;
+MD: AbyssEngine/Class_661/sub_1d7 ()LAbyssEngine/Class_e19; GoF2/Route/getLastWaypoint ()LGoF2/Waypoint;
+MD: AbyssEngine/Class_661/sub_229 ()I GoF2/Route/getCurrent ()I
+MD: AbyssEngine/Class_661/sub_285 (I)V GoF2/Route/reachWaypoint_ (I)V
+MD: AbyssEngine/Class_661/sub_2c6 ()I GoF2/Route/length ()I
+MD: AbyssEngine/Class_661/sub_31e (III)V GoF2/Route/update (III)V
+MD: AbyssEngine/Class_661/sub_349 ()Z GoF2/Route/isLooped ()Z
+MD: AbyssEngine/Class_661/sub_38e ()LAbyssEngine/Class_661; GoF2/Route/getExactClone ()LGoF2/Route;
+MD: AbyssEngine/Class_661/sub_3ad ()LAbyssEngine/Class_661; GoF2/Route/clone ()LGoF2/Route;
+MD: AbyssEngine/Class_661/sub_62 ()V GoF2/Route/onRelease ()V
+MD: AbyssEngine/Class_661/sub_9f (LAbyssEngine/AEVector3D;)V GoF2/Route/setNewCoords (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/Class_661/sub_ad ()V GoF2/Route/reset ()V
+MD: AbyssEngine/Class_661/sub_e1 (Z)V GoF2/Route/setLoop (Z)V
+FD: AbyssEngine/Class_661/var_32 GoF2/Route/waypoints
+FD: AbyssEngine/Class_661/var_91 GoF2/Route/loop
+FD: AbyssEngine/Class_661/var_f7 GoF2/Route/current
+CL: AbyssEngine/Class_786 AE/AbstractGun
+MD: AbyssEngine/Class_786/sub_181 (J)V AE/AbstractGun/update (J)V
+CL: AbyssEngine/Class_85e GoF2/RadioMessage
+MD: AbyssEngine/Class_85e/sub_163 ()V GoF2/RadioMessage/finish ()V
+MD: AbyssEngine/Class_85e/sub_18e (JLAbyssEngine/PlayerEgo;)Z GoF2/RadioMessage/triggered (JLGoF2/PlayerEgo;)Z
+MD: AbyssEngine/Class_85e/sub_50 ()I GoF2/RadioMessage/getTextID ()I
+MD: AbyssEngine/Class_85e/sub_5e ()I GoF2/RadioMessage/getImageID ()I
+MD: AbyssEngine/Class_85e/sub_76 (LAbyssEngine/Class_23e;)V GoF2/RadioMessage/setRadio (LGoF2/Radio;)V
+MD: AbyssEngine/Class_85e/sub_8e ()Z GoF2/RadioMessage/isTriggered ()Z
+MD: AbyssEngine/Class_85e/sub_f2 ()Z GoF2/RadioMessage/isOver ()Z
+FD: AbyssEngine/Class_85e/var_104 GoF2/RadioMessage/triggerType
+FD: AbyssEngine/Class_85e/var_1a9 GoF2/RadioMessage/conditionsGroup
+FD: AbyssEngine/Class_85e/var_24b GoF2/RadioMessage/triggered
+FD: AbyssEngine/Class_85e/var_2a8 GoF2/RadioMessage/finished
+FD: AbyssEngine/Class_85e/var_2ca GoF2/RadioMessage/lastWaypoint_
+FD: AbyssEngine/Class_85e/var_51 GoF2/RadioMessage/textId
+FD: AbyssEngine/Class_85e/var_66 GoF2/RadioMessage/imageId
+FD: AbyssEngine/Class_85e/var_a0 GoF2/RadioMessage/triggerCondition
+FD: AbyssEngine/Class_85e/var_a GoF2/RadioMessage/radio
+CL: AbyssEngine/Class_876 GoF2/Objective
+MD: AbyssEngine/Class_876/sub_47 (I)Z GoF2/Objective/achieved (I)Z
+MD: AbyssEngine/Class_876/sub_7d ()Z GoF2/Objective/isSurvivalObjective ()Z
+FD: AbyssEngine/Class_876/enemyCount_ GoF2/Objective/indexB_
+FD: AbyssEngine/Class_876/firstEnemyOfAllShips_ GoF2/Objective/indexA_
+FD: AbyssEngine/Class_876/var_69 GoF2/Objective/type
+CL: AbyssEngine/Class_a6e GoF2/TractorBeam
+MD: AbyssEngine/Class_a6e/sub_18 ()V GoF2/TractorBeam/render ()V
+MD: AbyssEngine/Class_a6e/sub_43 (JLAbyssEngine/MGameContext;LAbyssEngine/Level;LAbyssEngine/Hud;)V GoF2/TractorBeam/update (JLGoF2/Radar;LGoF2/Level;LGoF2/Hud;)V
+FD: AbyssEngine/Class_a6e/var_150 GoF2/TractorBeam/beamSrcPos_
+FD: AbyssEngine/Class_a6e/var_1ce GoF2/TractorBeam/toTargetDir
+FD: AbyssEngine/Class_a6e/var_242 GoF2/TractorBeam/target
+FD: AbyssEngine/Class_a6e/var_2a4 GoF2/TractorBeam/typeUV
+FD: AbyssEngine/Class_a6e/var_2c1 GoF2/TractorBeam/width
+FD: AbyssEngine/Class_a6e/var_2d7 GoF2/TractorBeam/vertexPositions
+FD: AbyssEngine/Class_a6e/var_318 GoF2/TractorBeam/vertexWorldPositions
+FD: AbyssEngine/Class_a6e/var_322 GoF2/TractorBeam/uvs
+FD: AbyssEngine/Class_a6e/var_384 GoF2/TractorBeam/active
+FD: AbyssEngine/Class_a6e/var_424 GoF2/TractorBeam/beamMesh
+FD: AbyssEngine/Class_a6e/var_90 GoF2/TractorBeam/shipToTarget
+FD: AbyssEngine/Class_a6e/var_d9 GoF2/TractorBeam/wastePos_shipDir_
+CL: AbyssEngine/Class_e19 GoF2/Waypoint
+MD: AbyssEngine/Class_e19/sub_109doSth ()V GoF2/Waypoint/appendToRender ()V
+MD: AbyssEngine/Class_e19/sub_162 (III)Z GoF2/Waypoint/outerCollide (III)Z
+MD: AbyssEngine/Class_e19/sub_34 (Z)V GoF2/Waypoint/setActive (Z)V
+MD: AbyssEngine/Class_e19/sub_a9 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/Waypoint/getPosition (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/Class_e19/sub_af ()V GoF2/Waypoint/reset ()V
+FD: AbyssEngine/Class_e19/var_282 GoF2/Waypoint/y
+FD: AbyssEngine/Class_e19/var_2f9 GoF2/Waypoint/z
+FD: AbyssEngine/Class_e19/var_35b GoF2/Waypoint/reached_
+FD: AbyssEngine/Class_e19/var_c7 GoF2/Waypoint/x
+CL: AbyssEngine/Class_fd6 AE/LookAtCamera
+MD: AbyssEngine/Class_fd6/sub_120 (Z)V AE/LookAtCamera/setLookAt (Z)V
+MD: AbyssEngine/Class_fd6/sub_2aa ()V AE/LookAtCamera/update ()V
+MD: AbyssEngine/Class_fd6/sub_356 ()Z AE/LookAtCamera/isInLookAtMode ()Z
+MD: AbyssEngine/Class_fd6/sub_36 (LAbyssEngine/GraphNode;)V AE/LookAtCamera/setTarget (LAE/GraphNode;)V
+MD: AbyssEngine/Class_fd6/sub_68 (LAbyssEngine/GraphNode;)V AE/LookAtCamera/setCamera (LAE/GraphNode;)V
+MD: AbyssEngine/Class_fd6/sub_bf (LAbyssEngine/AEVector3D;I)V AE/LookAtCamera/setOrientationLock (LAE/Math/AEVector3D;I)V
+FD: AbyssEngine/Class_fd6/var_19a AE/LookAtCamera/targetRoot
+FD: AbyssEngine/Class_fd6/var_1fb AE/LookAtCamera/lockMode
+FD: AbyssEngine/Class_fd6/var_26e AE/LookAtCamera/camera
+FD: AbyssEngine/Class_fd6/var_28c AE/LookAtCamera/cameraRight
+FD: AbyssEngine/Class_fd6/var_31b AE/LookAtCamera/cameraDir
+FD: AbyssEngine/Class_fd6/var_342 AE/LookAtCamera/cameraUp
+FD: AbyssEngine/Class_fd6/var_3a2 AE/LookAtCamera/upOverride
+FD: AbyssEngine/Class_fd6/var_3c9 AE/LookAtCamera/lookAtMode
+FD: AbyssEngine/Class_fd6/var_8b AE/LookAtCamera/target
+CL: AbyssEngine/Crosshair GoF2/Crosshair
+MD: AbyssEngine/Crosshair/sub_5c (LAbyssEngine/Matrix;LAbyssEngine/Camera;)V GoF2/Crosshair/update (LAE/Math/Matrix;LAE/Camera;)V
+MD: AbyssEngine/Crosshair/updatePosition ()V GoF2/Crosshair/OnRelease ()V
+FD: AbyssEngine/Crosshair/worldPos GoF2/Crosshair/relativePos
+FD: AbyssEngine/Crosshair/worldPosition GoF2/Crosshair/localPosition
+CL: AbyssEngine/Explosion GoF2/Explosion
+MD: AbyssEngine/Explosion/sub_141 (III)V GoF2/Explosion/start (III)V
+MD: AbyssEngine/Explosion/sub_154 ()Z GoF2/Explosion/canExplode ()Z
+MD: AbyssEngine/Explosion/sub_179 (J)V GoF2/Explosion/update (J)V
+MD: AbyssEngine/Explosion/sub_185 ()Z GoF2/Explosion/isOver ()Z
+MD: AbyssEngine/Explosion/sub_36 ()V GoF2/Explosion/reset ()V
+MD: AbyssEngine/Explosion/sub_b1 ()V GoF2/Explosion/setBig ()V
+MD: AbyssEngine/Explosion/sub_fa ()V GoF2/Explosion/OnRelease ()V
+FD: AbyssEngine/Explosion/var_158 GoF2/Explosion/delays
+FD: AbyssEngine/Explosion/var_1af GoF2/Explosion/unused_1af
+FD: AbyssEngine/Explosion/var_366 GoF2/Explosion/coreExplosion
+CL: AbyssEngine/Generator GoF2/Generator
+MD: AbyssEngine/Generator/pickNextDestination ([LAbyssEngine/SolarSystem;I)I GoF2/Generator/generateStationIndex ([LGoF2/SolarSystem;I)I
+FD: AbyssEngine/Generator/itemTypeOccurance GoF2/Generator/GENERATOR_TYPE_PROBS
+FD: AbyssEngine/Generator/storySignificantStations_ GoF2/Generator/GENERATOR_CAMPAIGN_STATIONS
+CL: AbyssEngine/GraphNode AE/GraphNode
+MD: AbyssEngine/GraphNode/sub_007 ()LAbyssEngine/GraphNode; AE/GraphNode/getParent ()LAE/GraphNode;
+MD: AbyssEngine/GraphNode/sub_109 (Z)V AE/GraphNode/updateTransform (Z)V
+MD: AbyssEngine/GraphNode/sub_117 ()V AE/GraphNode/markDirty ()V
+MD: AbyssEngine/GraphNode/sub_18f (III)V AE/GraphNode/translate (III)V
+MD: AbyssEngine/GraphNode/sub_19c (LAbyssEngine/AEVector3D;)V AE/GraphNode/translate (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/GraphNode/sub_1f3 (LAbyssEngine/AEVector3D;)V AE/GraphNode/moveTo (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/GraphNode/sub_202 (I)V AE/GraphNode/moveForward (I)V
+MD: AbyssEngine/GraphNode/sub_216 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/GraphNode/getPosition (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_22a (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/GraphNode/getLocalPos (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_237 ()LAbyssEngine/AEVector3D; AE/GraphNode/getPostition ()LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_28c ()LAbyssEngine/AEVector3D; AE/GraphNode/getLocalPos ()LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_29c ()I AE/GraphNode/getPosX ()I
+MD: AbyssEngine/GraphNode/sub_2c5 ()I AE/GraphNode/getPosY ()I
+MD: AbyssEngine/GraphNode/sub_31f ()I AE/GraphNode/getPosZ ()I
+MD: AbyssEngine/GraphNode/sub_32d ()I AE/GraphNode/getLocalPosZ ()I
+MD: AbyssEngine/GraphNode/sub_36a (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/GraphNode/getDirection (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_3b2 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/GraphNode/getLocalDirection (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_462 ()LAbyssEngine/AEVector3D; AE/GraphNode/getLocalDirection ()LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_548 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/GraphNode/getRightVector (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_5a7 (S)V AE/GraphNode/setRotationOrder (S)V
+MD: AbyssEngine/GraphNode/sub_5c5 (III)V AE/GraphNode/rotateEuler (III)V
+MD: AbyssEngine/GraphNode/sub_72c ()I AE/GraphNode/getEulerX ()I
+MD: AbyssEngine/GraphNode/sub_753 ()I AE/GraphNode/getEulerY ()I
+MD: AbyssEngine/GraphNode/sub_766 ()I AE/GraphNode/getEulerZ ()I
+MD: AbyssEngine/GraphNode/sub_7af (III)V AE/GraphNode/setScale (III)V
+MD: AbyssEngine/GraphNode/sub_7ff (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/GraphNode/copyScaleTo (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_821 ()LAbyssEngine/AEVector3D; AE/GraphNode/getScale ()LAE/Math/AEVector3D;
+MD: AbyssEngine/GraphNode/sub_85f ()LAbyssEngine/Matrix; AE/GraphNode/getToParentTransform ()LAE/Math/Matrix;
+MD: AbyssEngine/GraphNode/sub_87 ()Z AE/GraphNode/isVisible ()Z
+MD: AbyssEngine/GraphNode/sub_8a0 ()LAbyssEngine/Matrix; AE/GraphNode/getLocalTransform ()LAE/Math/Matrix;
+MD: AbyssEngine/GraphNode/sub_8c9 (LAbyssEngine/Matrix;)V AE/GraphNode/setTransform (LAE/Math/Matrix;)V
+MD: AbyssEngine/GraphNode/sub_8f0 (LAbyssEngine/Matrix;)LAbyssEngine/Matrix; AE/GraphNode/getInverseTransform (LAE/Math/Matrix;)LAE/Math/Matrix;
+MD: AbyssEngine/GraphNode/sub_90e (LAbyssEngine/AEVector3D;LAbyssEngine/AEVector3D;LAbyssEngine/AEVector3D;)V AE/GraphNode/setTransform (LAE/Math/AEVector3D;LAE/Math/AEVector3D;LAE/Math/AEVector3D;)V
+MD: AbyssEngine/GraphNode/sub_918 (I)V AE/GraphNode/setAnimationSpeed (I)V
+MD: AbyssEngine/GraphNode/sub_942 ()I AE/GraphNode/getCurrentAnimFrame ()I
+MD: AbyssEngine/GraphNode/sub_980 (II)V AE/GraphNode/setAnimationRangeInTime (II)V
+MD: AbyssEngine/GraphNode/sub_9aa (B)V AE/GraphNode/setAnimationMode (B)V
+MD: AbyssEngine/GraphNode/sub_a ()I AE/GraphNode/getID ()I
+MD: AbyssEngine/GraphNode/sub_a04 ()V AE/GraphNode/disableAnimation ()V
+MD: AbyssEngine/GraphNode/sub_a37 ()Z AE/GraphNode/hasAnimation ()Z
+MD: AbyssEngine/GraphNode/sub_a4 ()LAbyssEngine/Group; AE/GraphNode/getGroup ()LAE/Group;
+FD: AbyssEngine/GraphNode/currentTransform AE/GraphNode/globalTransform
+FD: AbyssEngine/GraphNode/meshGroup AE/GraphNode/group
+FD: AbyssEngine/GraphNode/var_19f AE/GraphNode/boundingSphere
+FD: AbyssEngine/GraphNode/var_45 AE/GraphNode/animationFrameTime
+FD: AbyssEngine/GraphNode/var_c1 AE/GraphNode/transformDirty_
+FD: AbyssEngine/GraphNode/var_ee AE/GraphNode/boundsDirty_
+CL: AbyssEngine/JSRCamera AE/JSRCamera
+MD: AbyssEngine/JSRCamera/sub_19c ()V AE/JSRCamera/setActive ()V
+MD: AbyssEngine/JSRCamera/sub_5c (III)V AE/JSRCamera/setPerspective (III)V
+FD: AbyssEngine/JSRCamera/var_133 AE/JSRCamera/transform
+CL: AbyssEngine/ListEntry GoF2/ListItem
+MD: AbyssEngine/ListEntry/sub_25c ()Z GoF2/ListItem/isHeader ()Z
+MD: AbyssEngine/ListEntry/sub_272 ()Z GoF2/ListItem/isMedal__ ()Z
+MD: AbyssEngine/ListEntry/sub_2f7 ()Z GoF2/ListItem/isNonFancyHeader ()Z
+MD: AbyssEngine/ListEntry/sub_315 ()Z GoF2/ListItem/isMoveToCargoButton ()Z
+MD: AbyssEngine/ListEntry/sub_370 ()Z GoF2/ListItem/isSellButton ()Z
+MD: AbyssEngine/ListEntry/sub_3e2 ()Z GoF2/ListItem/isPendingProduct ()Z
+FD: AbyssEngine/ListEntry/displayedCountType GoF2/ListItem/showCountItemType
+FD: AbyssEngine/ListEntry/var_3d5 GoF2/ListItem/unused
+FD: AbyssEngine/ListEntry/var_470 GoF2/ListItem/unused_description__
+FD: AbyssEngine/ListEntry/var_638 GoF2/ListItem/items
+FD: AbyssEngine/ListEntry/var_68c GoF2/ListItem/nonFancyLabel
+FD: AbyssEngine/ListEntry/var_6b0 GoF2/ListItem/inTabIndex
+FD: AbyssEngine/ListEntry/var_6dc GoF2/ListItem/producedGood
+FD: AbyssEngine/ListEntry/var_fe GoF2/ListItem/unused_owner__
+CL: AbyssEngine/MeshArray AE/PaintCanvas/RenderLayer
+MD: AbyssEngine/MeshArray/append (LAbyssEngine/AbstractMesh;)V AE/PaintCanvas/RenderLayer/appendNode (LAE/AbstractMesh;)V
+MD: AbyssEngine/MeshArray/sub_4a (J)V AE/PaintCanvas/RenderLayer/update (J)V
+CL: AbyssEngine/PlayerEgo GoF2/PlayerEgo
+MD: AbyssEngine/PlayerEgo/getBoostCharge ()F GoF2/PlayerEgo/getBoostRate ()F
+MD: AbyssEngine/PlayerEgo/getCloakCharge ()F GoF2/PlayerEgo/getCloakRate ()F
+MD: AbyssEngine/PlayerEgo/getCurrentBoostedSpeed ()F GoF2/PlayerEgo/getBoostPercentage ()F
+MD: AbyssEngine/PlayerEgo/getHP ()I GoF2/PlayerEgo/getHitpoints ()I
+MD: AbyssEngine/PlayerEgo/isBoostActive ()Z GoF2/PlayerEgo/boosting ()Z
+MD: AbyssEngine/PlayerEgo/sub_1045 ()Z GoF2/PlayerEgo/isLockedOnAsteroid_ ()Z
+MD: AbyssEngine/PlayerEgo/sub_1092 (LAbyssEngine/Hud;I)Z GoF2/PlayerEgo/approachAsteroid (LGoF2/Hud;I)Z
+MD: AbyssEngine/PlayerEgo/sub_10a5 ()V GoF2/PlayerEgo/endMining ()V
+MD: AbyssEngine/PlayerEgo/sub_1102 (LAbyssEngine/AEVector3D;)V GoF2/PlayerEgo/moveTowards_ (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/PlayerEgo/sub_113a (LAbyssEngine/KIPlayer;LAbyssEngine/Class_c53cameraRelated;LAbyssEngine/MGameContext;)V GoF2/PlayerEgo/dockToAsteroid (LGoF2/KIPlayer;LAE/TargetFollowCamera;LGoF2/Radar;)V
+MD: AbyssEngine/PlayerEgo/sub_1181 ()V GoF2/PlayerEgo/OnRelease ()V
+MD: AbyssEngine/PlayerEgo/sub_11da (Z)V GoF2/PlayerEgo/render (Z)V
+MD: AbyssEngine/PlayerEgo/sub_1227 (ZLAbyssEngine/Camera;)V GoF2/PlayerEgo/draw (ZLAE/Camera;)V
+MD: AbyssEngine/PlayerEgo/sub_127 ()V GoF2/PlayerEgo/resetLastHP ()V
+MD: AbyssEngine/PlayerEgo/sub_1281 ()V GoF2/PlayerEgo/hit ()V
+MD: AbyssEngine/PlayerEgo/sub_12ab ()LAbyssEngine/Hud; GoF2/PlayerEgo/getHud ()LGoF2/Hud;
+MD: AbyssEngine/PlayerEgo/sub_295 (LAbyssEngine/Class_c53cameraRelated;LAbyssEngine/Class_fd6;)V GoF2/PlayerEgo/setCamControllers (LAE/TargetFollowCamera;LAE/LookAtCamera;)V
+MD: AbyssEngine/PlayerEgo/sub_2b9 (Z)Z GoF2/PlayerEgo/setTurretMode (Z)Z
+MD: AbyssEngine/PlayerEgo/sub_308 ()V GoF2/PlayerEgo/boost ()V
+MD: AbyssEngine/PlayerEgo/sub_327 ()V GoF2/PlayerEgo/silentBoost_ ()V
+MD: AbyssEngine/PlayerEgo/sub_3c9 ()Z GoF2/PlayerEgo/readyToBoost ()Z
+MD: AbyssEngine/PlayerEgo/sub_4d2 ()Z GoF2/PlayerEgo/isCloakReady ()Z
+MD: AbyssEngine/PlayerEgo/sub_4ed ()Z GoF2/PlayerEgo/isCloaked ()Z
+MD: AbyssEngine/PlayerEgo/sub_534 (Z)V GoF2/PlayerEgo/setCollide (Z)V
+MD: AbyssEngine/PlayerEgo/sub_54 (II)V GoF2/PlayerEgo/setShip (II)V
+MD: AbyssEngine/PlayerEgo/sub_591 (LAbyssEngine/Level;)V GoF2/PlayerEgo/setLevel (LGoF2/Level;)V
+MD: AbyssEngine/PlayerEgo/sub_5f1 (LAbyssEngine/Class_661;)V GoF2/PlayerEgo/setRoute (LGoF2/Route;)V
+MD: AbyssEngine/PlayerEgo/sub_647 ()LAbyssEngine/Class_661; GoF2/PlayerEgo/getRoute ()LGoF2/Route;
+MD: AbyssEngine/PlayerEgo/sub_66d ()V GoF2/PlayerEgo/removeRoute ()V
+MD: AbyssEngine/PlayerEgo/sub_6ae ()Z GoF2/PlayerEgo/isDead ()Z
+MD: AbyssEngine/PlayerEgo/sub_6c9 (II)V GoF2/PlayerEgo/shoot (II)V
+MD: AbyssEngine/PlayerEgo/sub_721 ([LAbyssEngine/Gun;I)V GoF2/PlayerEgo/setGuns ([LGoF2/Gun;I)V
+MD: AbyssEngine/PlayerEgo/sub_794 ()I GoF2/PlayerEgo/getHullDamageRate ()I
+MD: AbyssEngine/PlayerEgo/sub_82f ()I GoF2/PlayerEgo/getCurrentSecondaryWeaponIndex ()I
+MD: AbyssEngine/PlayerEgo/sub_863 (I)V GoF2/PlayerEgo/setCurrentSecondaryWeaponIndex (I)V
+MD: AbyssEngine/PlayerEgo/sub_8c1 ()LAbyssEngine/AEVector3D; GoF2/PlayerEgo/getPosition ()LAE/Math/AEVector3D;
+MD: AbyssEngine/PlayerEgo/sub_8f2 (Z)V GoF2/PlayerEgo/setActive (Z)V
+MD: AbyssEngine/PlayerEgo/sub_93d (Z)V GoF2/PlayerEgo/setComputerControlled (Z)V
+MD: AbyssEngine/PlayerEgo/sub_95f (Z)V GoF2/PlayerEgo/setFreeze (Z)V
+MD: AbyssEngine/PlayerEgo/sub_97e (LAbyssEngine/KIPlayer;)V GoF2/PlayerEgo/setAutoPilot (LGoF2/KIPlayer;)V
+MD: AbyssEngine/PlayerEgo/sub_998 ()LAbyssEngine/KIPlayer; GoF2/PlayerEgo/getAutoPilotTarget ()LGoF2/KIPlayer;
+MD: AbyssEngine/PlayerEgo/sub_9f7 ()Z GoF2/PlayerEgo/goingToPlanet ()Z
+MD: AbyssEngine/PlayerEgo/sub_a15 ()Z GoF2/PlayerEgo/isAutoPilot ()Z
+MD: AbyssEngine/PlayerEgo/sub_a27 ()Z GoF2/PlayerEgo/goingToWormhole ()Z
+MD: AbyssEngine/PlayerEgo/sub_a43 ()Z GoF2/PlayerEgo/goingToStream ()Z
+MD: AbyssEngine/PlayerEgo/sub_a80 ()Z GoF2/PlayerEgo/goingToStation ()Z
+MD: AbyssEngine/PlayerEgo/sub_aa7 ()Z GoF2/PlayerEgo/gointToAsteroidField ()Z
+MD: AbyssEngine/PlayerEgo/sub_ae0 (III)V GoF2/PlayerEgo/setPosition_ (III)V
+MD: AbyssEngine/PlayerEgo/sub_b32 (LAbyssEngine/AEVector3D;)V GoF2/PlayerEgo/setPosition_ (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/PlayerEgo/sub_b5d ()Z GoF2/PlayerEgo/isInWormhole ()Z
+MD: AbyssEngine/PlayerEgo/sub_bb7 (ILAbyssEngine/MGameContext;LAbyssEngine/Hud;LAbyssEngine/Class_23e;I)V GoF2/PlayerEgo/update (ILGoF2/Radar;LGoF2/Hud;LGoF2/Radio;I)V
+MD: AbyssEngine/PlayerEgo/sub_bc1 ()Z GoF2/PlayerEgo/collidesWithStation ()Z
+MD: AbyssEngine/PlayerEgo/sub_be6 ()Z GoF2/PlayerEgo/isMining ()Z
+MD: AbyssEngine/PlayerEgo/sub_c22 ([LAbyssEngine/KIPlayer;)V GoF2/PlayerEgo/calcCollision ([LGoF2/KIPlayer;)V
+MD: AbyssEngine/PlayerEgo/sub_c3e (I)V GoF2/PlayerEgo/turretRotateLeft (I)V
+MD: AbyssEngine/PlayerEgo/sub_c71 (I)V GoF2/PlayerEgo/turretRotateRight (I)V
+MD: AbyssEngine/PlayerEgo/sub_c7e (I)V GoF2/PlayerEgo/turretPitchDown (I)V
+MD: AbyssEngine/PlayerEgo/sub_cc3 (I)V GoF2/PlayerEgo/turretPitchUp (I)V
+MD: AbyssEngine/PlayerEgo/sub_d1c (I)V GoF2/PlayerEgo/alignToHorizon (I)V
+MD: AbyssEngine/PlayerEgo/sub_d47 ()V GoF2/PlayerEgo/fakeExplode ()V
+MD: AbyssEngine/PlayerEgo/sub_dab (LAbyssEngine/Explosion;)V GoF2/PlayerEgo/setExplosion (LGoF2/Explosion;)V
+MD: AbyssEngine/PlayerEgo/sub_de8 ()V GoF2/PlayerEgo/resetGunDelay ()V
+MD: AbyssEngine/PlayerEgo/sub_e45 ()Z GoF2/PlayerEgo/isDockingToAsteroid ()Z
+MD: AbyssEngine/PlayerEgo/sub_ea4 ()Z GoF2/PlayerEgo/isDockingToStream_ ()Z
+MD: AbyssEngine/PlayerEgo/sub_eb2 ()Z GoF2/PlayerEgo/isDockedToStream ()Z
+MD: AbyssEngine/PlayerEgo/sub_f13 (LAbyssEngine/Class_c53cameraRelated;)V GoF2/PlayerEgo/stopPlanetDock_ (LAE/TargetFollowCamera;)V
+MD: AbyssEngine/PlayerEgo/sub_f55 ()Z GoF2/PlayerEgo/isDockingToPlanet ()Z
+MD: AbyssEngine/PlayerEgo/sub_f9b ()Z GoF2/PlayerEgo/isDockedToPlanet ()Z
+MD: AbyssEngine/PlayerEgo/sub_ff3 (LAbyssEngine/Class_c53cameraRelated;Z)V GoF2/PlayerEgo/dockToStream (LAE/TargetFollowCamera;Z)V
+MD: AbyssEngine/PlayerEgo/turnEngines_ (Z)V GoF2/PlayerEgo/setExhaustVisible (Z)V
+FD: AbyssEngine/PlayerEgo/boostLoadingTime GoF2/PlayerEgo/boostDelay
+FD: AbyssEngine/PlayerEgo/lookBack GoF2/PlayerEgo/turretMode
+FD: AbyssEngine/PlayerEgo/var_1016 GoF2/PlayerEgo/turretHalfLift_
+FD: AbyssEngine/PlayerEgo/var_106f GoF2/PlayerEgo/turretLift_
+FD: AbyssEngine/PlayerEgo/var_1142 GoF2/PlayerEgo/tractorBeam
+FD: AbyssEngine/PlayerEgo/var_11a4 GoF2/PlayerEgo/lockedAsteroid
+FD: AbyssEngine/PlayerEgo/var_11b7 GoF2/PlayerEgo/lockedOnAsteroid
+FD: AbyssEngine/PlayerEgo/var_11d2 GoF2/PlayerEgo/miningState
+FD: AbyssEngine/PlayerEgo/var_1203 GoF2/PlayerEgo/minigUpVec
+FD: AbyssEngine/PlayerEgo/var_1256 GoF2/PlayerEgo/isMinig
+FD: AbyssEngine/PlayerEgo/var_1283 GoF2/PlayerEgo/astroidDockDistance
+FD: AbyssEngine/PlayerEgo/var_12ac GoF2/PlayerEgo/dockMiningPitch
+FD: AbyssEngine/PlayerEgo/var_12fc GoF2/PlayerEgo/cloakingTimeCoef
+FD: AbyssEngine/PlayerEgo/var_1358 GoF2/PlayerEgo/cloakingScaleX
+FD: AbyssEngine/PlayerEgo/var_1399 GoF2/PlayerEgo/unused_1399
+FD: AbyssEngine/PlayerEgo/var_13c9 GoF2/PlayerEgo/jumpGating
+FD: AbyssEngine/PlayerEgo/var_13df GoF2/PlayerEgo/jumpingToNeighbourPlanet
+FD: AbyssEngine/PlayerEgo/var_140d GoF2/PlayerEgo/disanceFromCamera_
+FD: AbyssEngine/PlayerEgo/var_141f GoF2/PlayerEgo/autoDriven
+FD: AbyssEngine/PlayerEgo/var_1475 GoF2/PlayerEgo/turretRotationSpeed
+FD: AbyssEngine/PlayerEgo/var_1562 GoF2/PlayerEgo/shieldRegenRate
+FD: AbyssEngine/PlayerEgo/var_15a9 GoF2/PlayerEgo/hud
+FD: AbyssEngine/PlayerEgo/var_15f4 GoF2/PlayerEgo/radar
+FD: AbyssEngine/PlayerEgo/var_1653 GoF2/PlayerEgo/radio
+FD: AbyssEngine/PlayerEgo/var_1686 GoF2/PlayerEgo/inWormhole
+FD: AbyssEngine/PlayerEgo/var_16c0 GoF2/PlayerEgo/enginesBoostScale_
+FD: AbyssEngine/PlayerEgo/var_16ce GoF2/PlayerEgo/turretShipId_
+FD: AbyssEngine/PlayerEgo/var_16ef GoF2/PlayerEgo/touchesStation
+FD: AbyssEngine/PlayerEgo/var_33c GoF2/PlayerEgo/turretPartsPositions
+FD: AbyssEngine/PlayerEgo/var_50e GoF2/PlayerEgo/shipGrandGroup_
+FD: AbyssEngine/PlayerEgo/var_5f8 GoF2/PlayerEgo/shipGroup
+FD: AbyssEngine/PlayerEgo/var_62e GoF2/PlayerEgo/turretStand
+FD: AbyssEngine/PlayerEgo/var_749 GoF2/PlayerEgo/turretGun
+FD: AbyssEngine/PlayerEgo/var_7a2 GoF2/PlayerEgo/unused_7a2
+FD: AbyssEngine/PlayerEgo/var_82c GoF2/PlayerEgo/explosion
+FD: AbyssEngine/PlayerEgo/var_887 GoF2/PlayerEgo/level
+FD: AbyssEngine/PlayerEgo/var_910 GoF2/PlayerEgo/route
+FD: AbyssEngine/PlayerEgo/var_b37 GoF2/PlayerEgo/shieldRegenTick
+FD: AbyssEngine/PlayerEgo/var_b53 GoF2/PlayerEgo/repairHPTick
+FD: AbyssEngine/PlayerEgo/var_b91 GoF2/PlayerEgo/repairArmorTick
+FD: AbyssEngine/PlayerEgo/var_ba3 GoF2/PlayerEgo/totalHP
+FD: AbyssEngine/PlayerEgo/var_bb6 GoF2/PlayerEgo/freeze
+FD: AbyssEngine/PlayerEgo/var_bd4 GoF2/PlayerEgo/frameTime
+FD: AbyssEngine/PlayerEgo/var_d58 GoF2/PlayerEgo/calcMatrix_
+FD: AbyssEngine/PlayerEgo/var_d98 GoF2/PlayerEgo/addHandling
+FD: AbyssEngine/PlayerEgo/var_e91 GoF2/PlayerEgo/autoPilotDir
+FD: AbyssEngine/PlayerEgo/var_eb4 GoF2/PlayerEgo/hasTurret
+FD: AbyssEngine/PlayerEgo/var_ed8 GoF2/PlayerEgo/followingCamera_
+FD: AbyssEngine/PlayerEgo/var_ef5 GoF2/PlayerEgo/camera
+FD: AbyssEngine/PlayerEgo/var_f22 GoF2/PlayerEgo/turretViewCamera__
+FD: AbyssEngine/PlayerEgo/var_f7c GoF2/PlayerEgo/turretGrandGroup_
+FD: AbyssEngine/PlayerEgo/var_fd2 GoF2/PlayerEgo/turretGroup
+CL: AbyssEngine/RocketGun GoF2/RocketGun
+MD: AbyssEngine/RocketGun/destroy ()V GoF2/RocketGun/OnRelease ()V
+MD: AbyssEngine/RocketGun/sub_181 (J)V GoF2/RocketGun/update (J)V
+MD: AbyssEngine/RocketGun/sub_30 ()V GoF2/RocketGun/renderRocket_ ()V
+MD: AbyssEngine/RocketGun/sub_8a (LAbyssEngine/MGameContext;)V GoF2/RocketGun/setRadar (LGoF2/Radar;)V
+FD: AbyssEngine/RocketGun/var_1d7 GoF2/RocketGun/tempPos
+FD: AbyssEngine/RocketGun/var_28d GoF2/RocketGun/postion
+FD: AbyssEngine/RocketGun/var_29f GoF2/RocketGun/direction
+FD: AbyssEngine/RocketGun/var_376 GoF2/RocketGun/distX
+FD: AbyssEngine/RocketGun/var_3b5 GoF2/RocketGun/distY
+FD: AbyssEngine/RocketGun/var_3f1 GoF2/RocketGun/distZ
+FD: AbyssEngine/RocketGun/var_49 GoF2/RocketGun/trail
+FD: AbyssEngine/RocketGun/var_4a9 GoF2/RocketGun/guided
+FD: AbyssEngine/RocketGun/var_511 GoF2/RocketGun/radar
+CL: AbyssEngine/SymbolMap AE/ImageFont
+MD: AbyssEngine/SymbolMap/getHeightMaxRange ()I AE/ImageFont/getSpacingY ()I
+MD: AbyssEngine/SymbolMap/getSymbolWidths (II[I)B AE/ImageFont/getSymbolWidth (II[I)B
+MD: AbyssEngine/SymbolMap/setHeightMaxRange (I)V AE/ImageFont/setSpacingY (I)V
+MD: AbyssEngine/SymbolMap/setSpacing (I)V AE/ImageFont/setSpacingX (I)V
+MD: AbyssEngine/SymbolMap/sub_162 (Ljava/lang/String;II)V AE/ImageFont/drawStringRightAlligned (Ljava/lang/String;II)V
+FD: AbyssEngine/SymbolMap/charTexture AE/ImageFont/fontTexture
+FD: AbyssEngine/SymbolMap/heightMaxRange AE/ImageFont/spacingY
+FD: AbyssEngine/SymbolMap/spacing AE/ImageFont/spacingX
+CL: AbyssEngine/AEVector3D AE/Math/AEVector3D
+MD: AbyssEngine/AEVector3D/squaredLength (LAbyssEngine/AEVector3D;)I AE/Math/AEVector3D/dot (LAE/Math/AEVector3D;)I
+MD: AbyssEngine/AEVector3D/squaredLengthPrecise (LAbyssEngine/AEVector3D;)I AE/Math/AEVector3D/dotPrecise (LAE/Math/AEVector3D;)I
+CL: AbyssEngine/BlasterGun GoF2/ObjectGun
+MD: AbyssEngine/BlasterGun/destroy ()V GoF2/ObjectGun/OnRelease ()V
+MD: AbyssEngine/BlasterGun/sub_181 (J)V GoF2/ObjectGun/update (J)V
+MD: AbyssEngine/BlasterGun/sub_2b ()LAbyssEngine/GraphNode; GoF2/ObjectGun/clone ()LAE/GraphNode;
+FD: AbyssEngine/BlasterGun/var_18b GoF2/ObjectGun/projectiles
+FD: AbyssEngine/BlasterGun/var_1c8 GoF2/ObjectGun/rocketMesh_
+FD: AbyssEngine/BlasterGun/var_211 GoF2/ObjectGun/temp
+CL: AbyssEngine/Class_1025 AE/EaseInOut
+MD: AbyssEngine/Class_1025/sub_135 ()I AE/EaseInOut/GetValue ()I
+MD: AbyssEngine/Class_1025/sub_14d (Z)Z AE/EaseInOut/IsAtMaxPhase (Z)Z
+MD: AbyssEngine/Class_1025/sub_b7 (I)V AE/EaseInOut/Increase (I)V
+MD: AbyssEngine/Class_1025/sub_fe (II)V AE/EaseInOut/SetRange (II)V
+FD: AbyssEngine/Class_1025/var_18e AE/EaseInOut/range
+FD: AbyssEngine/Class_1025/var_1b0 AE/EaseInOut/phase
+FD: AbyssEngine/Class_1025/var_1fd AE/EaseInOut/currentValue
+FD: AbyssEngine/Class_1025/var_85 AE/EaseInOut/minValue
+CL: AbyssEngine/Class_121c AE/CameraController_
+MD: AbyssEngine/Class_121c/sub_2aa ()V AE/CameraController_/update ()V
+MD: AbyssEngine/Class_121c/sub_356 ()Z AE/CameraController_/isInLookAtMode ()Z
+CL: AbyssEngine/Class_1271 GoF2/Trail
+MD: AbyssEngine/Class_1271/sub_000 (I)V GoF2/Trail/setWidth (I)V
+MD: AbyssEngine/Class_1271/sub_10a (LAbyssEngine/AEVector3D;)V GoF2/Trail/reset (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/Class_1271/sub_160 ()V GoF2/Trail/render ()V
+MD: AbyssEngine/Class_1271/sub_60 ()V GoF2/Trail/OnRelease ()V
+MD: AbyssEngine/Class_1271/sub_a6 (LAbyssEngine/AEVector3D;)V GoF2/Trail/update (LAE/Math/AEVector3D;)V
+FD: AbyssEngine/Class_1271/var_151 GoF2/Trail/UV
+FD: AbyssEngine/Class_1271/var_1f3 GoF2/Trail/width
+FD: AbyssEngine/Class_1271/var_2dd GoF2/Trail/vertices
+FD: AbyssEngine/Class_1271/var_323 GoF2/Trail/tempVerts
+FD: AbyssEngine/Class_1271/var_3f9 GoF2/Trail/uvs
+FD: AbyssEngine/Class_1271/var_54d GoF2/Trail/mesh
+FD: AbyssEngine/Class_1271/var_592 GoF2/Trail/sourcePos
+FD: AbyssEngine/Class_1271/var_5dd GoF2/Trail/stop
+CL: AbyssEngine/Class_13a3 AE/AEGeometry
+MD: AbyssEngine/Class_13a3/sub_109 (Z)V AE/AEGeometry/updateTransform (Z)V
+MD: AbyssEngine/Class_13a3/sub_48 (I)V AE/AEGeometry/setRadius (I)V
+FD: AbyssEngine/Class_13a3/vec AE/AEGeometry/tempCenter
+CL: AbyssEngine/GameRecord GoF2/GameRecord
+FD: AbyssEngine/GameRecord/var_100f GoF2/GameRecord/barHelpShown
+FD: AbyssEngine/GameRecord/var_1038 GoF2/GameRecord/galaxyMapHelpShown
+FD: AbyssEngine/GameRecord/var_1047 GoF2/GameRecord/systemMapHelpShown
+FD: AbyssEngine/GameRecord/var_108f GoF2/GameRecord/unused12121_
+FD: AbyssEngine/GameRecord/var_10ed GoF2/GameRecord/miningHelpShown
+FD: AbyssEngine/GameRecord/var_119d GoF2/GameRecord/asteroidHelpShown
+FD: AbyssEngine/GameRecord/var_11c5 GoF2/GameRecord/missionsHelpShown
+FD: AbyssEngine/GameRecord/var_11eb GoF2/GameRecord/cargoFullHelpShown
+FD: AbyssEngine/GameRecord/var_121f GoF2/GameRecord/wingmenHelpShown
+FD: AbyssEngine/GameRecord/var_1273 GoF2/GameRecord/actionMenuHelpShown
+FD: AbyssEngine/GameRecord/var_12c6 GoF2/GameRecord/boosterHelpShown
+FD: AbyssEngine/GameRecord/var_12e2 GoF2/GameRecord/statusHelpShown
+FD: AbyssEngine/GameRecord/var_132f GoF2/GameRecord/medalsHelpShown
+FD: AbyssEngine/GameRecord/var_1378 GoF2/GameRecord/fanWingmenNoticeShown
+FD: AbyssEngine/GameRecord/var_1392 GoF2/GameRecord/voidxNoticeShown
+FD: AbyssEngine/GameRecord/var_13ae GoF2/GameRecord/reputationHelpShown
+FD: AbyssEngine/GameRecord/var_13db GoF2/GameRecord/buyingHelpShown
+FD: AbyssEngine/GameRecord/var_13f8 GoF2/GameRecord/itemMountingHelpShown
+FD: AbyssEngine/GameRecord/var_1407 GoF2/GameRecord/itemMounting2HelpShown
+FD: AbyssEngine/GameRecord/var_1428 GoF2/GameRecord/interplanetHelpShown
+FD: AbyssEngine/GameRecord/var_1449 GoF2/GameRecord/jumpDriveHelpShown
+FD: AbyssEngine/GameRecord/var_1459 GoF2/GameRecord/cloakHelpShown
+FD: AbyssEngine/GameRecord/var_148e GoF2/GameRecord/loadingsCount
+FD: AbyssEngine/GameRecord/var_14c1 GoF2/GameRecord/timeSpentLoading
+FD: AbyssEngine/GameRecord/var_14f4 GoF2/GameRecord/egoShip
+FD: AbyssEngine/GameRecord/var_1521 GoF2/GameRecord/currentStation
+FD: AbyssEngine/GameRecord/var_1566 GoF2/GameRecord/standing
+FD: AbyssEngine/GameRecord/var_157c GoF2/GameRecord/blueprints
+FD: AbyssEngine/GameRecord/var_15d9 GoF2/GameRecord/waitingGoods
+FD: AbyssEngine/GameRecord/var_162f GoF2/GameRecord/specialAgents
+FD: AbyssEngine/GameRecord/var_1646 GoF2/GameRecord/wingmenNames
+FD: AbyssEngine/GameRecord/var_1685 GoF2/GameRecord/wingmanRace
+FD: AbyssEngine/GameRecord/var_16d5 GoF2/GameRecord/wingmenTimeRemaining
+FD: AbyssEngine/GameRecord/var_1721 GoF2/GameRecord/wingmanFace
+FD: AbyssEngine/GameRecord/var_175b GoF2/GameRecord/passengerCount
+FD: AbyssEngine/GameRecord/var_17bb GoF2/GameRecord/visibleSystems
+FD: AbyssEngine/GameRecord/var_17e0 GoF2/GameRecord/lowestItemPrices
+FD: AbyssEngine/GameRecord/var_1829 GoF2/GameRecord/highestItemPrices
+FD: AbyssEngine/GameRecord/var_186b GoF2/GameRecord/lowestItemPriceSystems
+FD: AbyssEngine/GameRecord/var_187b GoF2/GameRecord/highestItemPriceSystems
+FD: AbyssEngine/GameRecord/var_4b1 GoF2/GameRecord/goodsProduced
+FD: AbyssEngine/GameRecord/var_4d6 GoF2/GameRecord/pirateKills
+FD: AbyssEngine/GameRecord/var_552 GoF2/GameRecord/jumpGateUses
+FD: AbyssEngine/GameRecord/var_5ee GoF2/GameRecord/cargoSalvaged
+FD: AbyssEngine/GameRecord/var_663 GoF2/GameRecord/unused__
+FD: AbyssEngine/GameRecord/var_73b GoF2/GameRecord/currentCampaignMissionIndex
+FD: AbyssEngine/GameRecord/var_81e GoF2/GameRecord/wormholeStation
+FD: AbyssEngine/GameRecord/var_883 GoF2/GameRecord/wormholeSystem
+FD: AbyssEngine/GameRecord/var_8e6 GoF2/GameRecord/lastVisitedNonVoidOrbit
+FD: AbyssEngine/GameRecord/var_97f GoF2/GameRecord/wormHoleTick
+FD: AbyssEngine/GameRecord/var_9a3 GoF2/GameRecord/freelanceMission
+FD: AbyssEngine/GameRecord/var_a05 GoF2/GameRecord/storyMission
+FD: AbyssEngine/GameRecord/var_a51 GoF2/GameRecord/lastVisitedStations
+FD: AbyssEngine/GameRecord/var_a68 GoF2/GameRecord/achievements
+FD: AbyssEngine/GameRecord/var_a74 GoF2/GameRecord/minedOreTypes
+FD: AbyssEngine/GameRecord/var_ad5 GoF2/GameRecord/minedCoreTypes
+FD: AbyssEngine/GameRecord/var_b28 GoF2/GameRecord/missionGoodsCarried
+FD: AbyssEngine/GameRecord/var_b4b GoF2/GameRecord/minedOre
+FD: AbyssEngine/GameRecord/var_b83 GoF2/GameRecord/minedCores
+FD: AbyssEngine/GameRecord/var_bce GoF2/GameRecord/boughtBooze
+FD: AbyssEngine/GameRecord/var_c0d GoF2/GameRecord/drinkTypesPossesed
+FD: AbyssEngine/GameRecord/var_c47 GoF2/GameRecord/destroyedJunk
+FD: AbyssEngine/GameRecord/var_c81 GoF2/GameRecord/systemsVisited
+FD: AbyssEngine/GameRecord/var_cbe GoF2/GameRecord/passengersCarried
+FD: AbyssEngine/GameRecord/var_cfa GoF2/GameRecord/invisibleTime
+FD: AbyssEngine/GameRecord/var_d55 GoF2/GameRecord/bombsUsed
+FD: AbyssEngine/GameRecord/var_d83 GoF2/GameRecord/alienJunkSalvaged
+FD: AbyssEngine/GameRecord/var_dcf GoF2/GameRecord/barInteractions
+FD: AbyssEngine/GameRecord/var_de1 GoF2/GameRecord/commandedWingmen
+FD: AbyssEngine/GameRecord/var_df GoF2/GameRecord/visitedStations
+FD: AbyssEngine/GameRecord/var_e29 GoF2/GameRecord/asteroidsDestroyed
+FD: AbyssEngine/GameRecord/var_e62 GoF2/GameRecord/maxFreeCargo
+FD: AbyssEngine/GameRecord/var_e81 GoF2/GameRecord/missionsRejected
+FD: AbyssEngine/GameRecord/var_e95 GoF2/GameRecord/askedToRepeate
+FD: AbyssEngine/GameRecord/var_ea3 GoF2/GameRecord/acceptedNotAskingDifficulty
+FD: AbyssEngine/GameRecord/var_ede GoF2/GameRecord/acceptedNotAskingLocation
+FD: AbyssEngine/GameRecord/var_f30 GoF2/GameRecord/shopHelpShown
+FD: AbyssEngine/GameRecord/var_f50 GoF2/GameRecord/shipHelpShown
+FD: AbyssEngine/GameRecord/var_f5f GoF2/GameRecord/actionsHelpShown
+FD: AbyssEngine/GameRecord/var_f6c GoF2/GameRecord/bluePrintsHelpShown
+FD: AbyssEngine/GameRecord/var_fc2 GoF2/GameRecord/bluePrintInfoHelpShown
+CL: AbyssEngine/GameStatus AE/GlobalStatus
+MD: AbyssEngine/GameStatus/resetHelp ()V AE/GlobalStatus/resetHints ()V
+MD: AbyssEngine/GameStatus/sub_d1 ()V AE/GlobalStatus/checkDeviceControlSupport ()V
+FD: AbyssEngine/GameStatus/langManager AE/GlobalStatus/gameText
+FD: AbyssEngine/GameStatus/var_264 AE/GlobalStatus/shipHelpShown
+FD: AbyssEngine/GameStatus/var_2b3 AE/GlobalStatus/actionsHelpShown
+FD: AbyssEngine/GameStatus/var_2cc AE/GlobalStatus/bluePrintsHelpShown
+FD: AbyssEngine/GameStatus/var_2e8 AE/GlobalStatus/bluePrintInfoHelpShown
+FD: AbyssEngine/GameStatus/var_40c AE/GlobalStatus/somehelpShown_unused_
+FD: AbyssEngine/GameStatus/var_554 AE/GlobalStatus/actionMenuHelpShown
+FD: AbyssEngine/GameStatus/var_9c3 AE/GlobalStatus/displayedSecondary
+FD: AbyssEngine/GameStatus/var_9da AE/GlobalStatus/soundDeviceUnavailable
+FD: AbyssEngine/GameStatus/var_9fc AE/GlobalStatus/currentMusic
+FD: AbyssEngine/GameStatus/var_bd5 AE/GlobalStatus/paused
+FD: AbyssEngine/GameStatus/var_bfb AE/GlobalStatus/applicationManager
+CL: AbyssEngine/JSRTexture AE/JSRTexture
+MD: AbyssEngine/JSRTexture/destroy ()V AE/JSRTexture/OnRelease ()V
+CL: AbyssEngine/MiningGame GoF2/MiningGame
+MD: AbyssEngine/MiningGame/sub_57 ()Z GoF2/MiningGame/gameLost ()Z
+MD: AbyssEngine/MiningGame/sub_a8 ()Z GoF2/MiningGame/gotCore ()Z
+MD: AbyssEngine/MiningGame/sub_b7 (II)Z GoF2/MiningGame/update (II)Z
+MD: AbyssEngine/MiningGame/sub_e1 ()V GoF2/MiningGame/render2D ()V
+FD: AbyssEngine/MiningGame/barRanges GoF2/MiningGame/_LAYER_WITDTHS
+FD: AbyssEngine/MiningGame/var_5f5 GoF2/MiningGame/hud
+CL: AbyssEngine/PlayerJunk GoF2/PlayerJunk
+MD: AbyssEngine/PlayerJunk/sub_109doSth ()V GoF2/PlayerJunk/appendToRender ()V
+MD: AbyssEngine/PlayerJunk/sub_162 (III)Z GoF2/PlayerJunk/outerCollide (III)Z
+FD: AbyssEngine/PlayerJunk/var_1b5 GoF2/PlayerJunk/frameTime
+CL: AbyssEngine/TextInput_ AE/TextInput
+MD: AbyssEngine/TextInput_/sub_11b ()C AE/TextInput/getNextChar ()C
+MD: AbyssEngine/TextInput_/sub_13f ()Ljava/lang/String; AE/TextInput/getText ()Ljava/lang/String;
+MD: AbyssEngine/TextInput_/sub_24 (I)I AE/TextInput/getKeyIndex (I)I
+MD: AbyssEngine/TextInput_/sub_53 (I)V AE/TextInput/handleKeystate (I)V
+MD: AbyssEngine/TextInput_/sub_ed (I)I AE/TextInput/update (I)I
+FD: AbyssEngine/TextInput_/var_12e AE/TextInput/lowerCase
+FD: AbyssEngine/TextInput_/var_1f1 AE/TextInput/upperCaseKeyMap
+FD: AbyssEngine/TextInput_/var_23c AE/TextInput/lowerCaseKeyMap
+FD: AbyssEngine/TextInput_/var_25b AE/TextInput/maxLen
+FD: AbyssEngine/TextInput_/var_26d AE/TextInput/lastPressedKey
+FD: AbyssEngine/TextInput_/var_39a AE/TextInput/keyPressStrike
+FD: AbyssEngine/TextInput_/var_3c6 AE/TextInput/keyPressedIndex
+FD: AbyssEngine/TextInput_/var_414 AE/TextInput/timeSincePressed
+FD: AbyssEngine/TextInput_/var_461 AE/TextInput/nextChar
+FD: AbyssEngine/TextInput_/var_482 AE/TextInput/text
+FD: AbyssEngine/TextInput_/var_4d7 AE/TextInput/keyPressed
+FD: AbyssEngine/TextInput_/var_4f8 AE/TextInput/allowAtSymbol
+CL: AbyssEngine/BoundingBox AE/BoundingAAB
+MD: AbyssEngine/BoundingBox/sub_4f (III)Z AE/BoundingAAB/outerCollide_ (III)Z
+MD: AbyssEngine/BoundingBox/sub_a0 (III)Z AE/BoundingAAB/isPointInBounding (III)Z
+MD: AbyssEngine/BoundingBox/sub_e2 (III)V AE/BoundingAAB/setPosition (III)V
+CL: AbyssEngine/DummyClass_ GoF2/DummyClass_
+CL: AbyssEngine/LangManager GoF2/GameText
+MD: AbyssEngine/LangManager/getLangString (I)Ljava/lang/String; GoF2/GameText/getText (I)Ljava/lang/String;
+MD: AbyssEngine/LangManager/loadLangFile ([Ljava/lang/String;Ljava/lang/String;)V GoF2/GameText/readLangFile ([Ljava/lang/String;Ljava/lang/String;)V
+MD: AbyssEngine/LangManager/setup (I)V GoF2/GameText/setLanguage (I)V
+FD: AbyssEngine/LangManager/egoToughts GoF2/GameText/CAMPAIGN_MISSION_DESC
+FD: AbyssEngine/LangManager/freelanceFail GoF2/GameText/MISSION_LOST_MSG
+FD: AbyssEngine/LangManager/freelanceSuccess GoF2/GameText/MISSION_SUCCESS_MSG
+FD: AbyssEngine/LangManager/freelanceWelcomings GoF2/GameText/MISSION_START_MSG
+FD: AbyssEngine/LangManager/itemAtributes GoF2/GameText/LISTITEMWINDOW_KEY_TEXT_IDS
+FD: AbyssEngine/LangManager/var_6ef GoF2/GameText/categories_
+FD: AbyssEngine/LangManager/var_7e7 GoF2/GameText/tempId
+FD: AbyssEngine/LangManager/var_86b GoF2/GameText/categoryId_
+FD: AbyssEngine/LangManager/var_8b3 GoF2/GameText/tempId2
+FD: AbyssEngine/LangManager/var_idk_ GoF2/GameText/catrogoryLengths_
+CL: AbyssEngine/LensFlareFX AE/LensFlareFX
+FD: AbyssEngine/LensFlareFX/var_1c3 AE/LensFlareFX/mainFlare
+FD: AbyssEngine/LensFlareFX/var_74 AE/LensFlareFX/flares
+CL: AbyssEngine/SolarSystem GoF2/SolarSystem
+MD: AbyssEngine/SolarSystem/getJumpgateStationVerifiedIndex ()I GoF2/SolarSystem/getJumpGateEnumIndex ()I
+MD: AbyssEngine/SolarSystem/verifyStationInSystem (I)I GoF2/SolarSystem/getStationEnumIndex (I)I
+FD: AbyssEngine/SolarSystem/spaceShadeB GoF2/SolarSystem/starB
+FD: AbyssEngine/SolarSystem/spaceShadeG GoF2/SolarSystem/starG
+FD: AbyssEngine/SolarSystem/spaceShadeR GoF2/SolarSystem/starR
+CL: AbyssEngine/AEGraphics3D AE/PaintCanvas/AEGraphics3D
+CL: AbyssEngine/AbstractMesh AE/AbstractMesh
+MD: AbyssEngine/AbstractMesh/destroy ()V AE/AbstractMesh/OnRelease ()V
+MD: AbyssEngine/AbstractMesh/sub_181 (J)V AE/AbstractMesh/update (J)V
+MD: AbyssEngine/AbstractMesh/sub_2b ()LAbyssEngine/GraphNode; AE/AbstractMesh/clone ()LAE/GraphNode;
+MD: AbyssEngine/AbstractMesh/sub_976unk (IIB)LAbyssEngine/AbstractMesh; AE/AbstractMesh/newPlaneStrip (IIB)LAE/AbstractMesh;
+CL: AbyssEngine/Class_4cMesh AE/ParticleSystemMesh
+MD: AbyssEngine/Class_4cMesh/destroy ()V AE/ParticleSystemMesh/OnRelease ()V
+MD: AbyssEngine/Class_4cMesh/sub_176 ([I[I)V AE/ParticleSystemMesh/setMeshData_ ([I[I)V
+MD: AbyssEngine/Class_4cMesh/sub_2b ()LAbyssEngine/GraphNode; AE/ParticleSystemMesh/clone ()LAE/GraphNode;
+FD: AbyssEngine/Class_4cMesh/var_20 AE/ParticleSystemMesh/calcTransform
+FD: AbyssEngine/Class_4cMesh/var_237 AE/ParticleSystemMesh/vertices
+FD: AbyssEngine/Class_4cMesh/var_297 AE/ParticleSystemMesh/uvs
+FD: AbyssEngine/Class_4cMesh/var_2b AE/ParticleSystemMesh/transformValues
+FD: AbyssEngine/Class_4cMesh/var_308 AE/ParticleSystemMesh/textureWidth
+FD: AbyssEngine/Class_4cMesh/var_316 AE/ParticleSystemMesh/color
+FD: AbyssEngine/Class_4cMesh/var_b7 AE/ParticleSystemMesh/quadCount
+CL: AbyssEngine/IndexManager GoF2/Globals
+MD: AbyssEngine/IndexManager/buildShip_ (II)LAbyssEngine/Group; GoF2/Globals/getShipGroup (II)LAE/Group;
+MD: AbyssEngine/IndexManager/freeResources ()V GoF2/Globals/OnRelease ()V
+MD: AbyssEngine/IndexManager/pickShipId (I)I GoF2/Globals/getRandomEnemyFighter (I)I
+MD: AbyssEngine/IndexManager/sub_116 (IZ)Ljava/lang/String; GoF2/Globals/getRandomName (IZ)Ljava/lang/String;
+MD: AbyssEngine/IndexManager/sub_139 ()Ljava/lang/String; GoF2/Globals/getRandomPlanetName ()Ljava/lang/String;
+MD: AbyssEngine/IndexManager/sub_1b8 (LAbyssEngine/Group;I)V GoF2/Globals/buildShip (LAE/Group;I)V
+MD: AbyssEngine/IndexManager/sub_27 ()V GoF2/Globals/OnInitialize ()V
+MD: AbyssEngine/IndexManager/sub_c2 (I)[I GoF2/Globals/getRaceUVkeyframeId_ (I)[I
+FD: AbyssEngine/IndexManager/barFiguresMeshIDs GoF2/Globals/BAR_FIGURES
+FD: AbyssEngine/IndexManager/barMeshIDs GoF2/Globals/BAR_MESHES
+FD: AbyssEngine/IndexManager/hangarMeshIDs GoF2/Globals/HANGAR_MESHES
+FD: AbyssEngine/IndexManager/pathMeshes GoF2/Globals/PATH_MESHES
+FD: AbyssEngine/IndexManager/pathTextures GoF2/Globals/PATH_TEXTURES
+FD: AbyssEngine/IndexManager/projectilesMeshIDs GoF2/Globals/TYPE_WEAPONS
+CL: AbyssEngine/MGameContext GoF2/Radar
+MD: AbyssEngine/MGameContext/render (LAbyssEngine/Player;LAbyssEngine/Camera;LAbyssEngine/Class_c53cameraRelated;LAbyssEngine/Hud;I)V GoF2/Radar/draw (LGoF2/Player;LAE/Camera;LAE/TargetFollowCamera;LGoF2/Hud;I)V
+MD: AbyssEngine/MGameContext/sub_002 ()V GoF2/Radar/unlockAsteroid ()V
+MD: AbyssEngine/MGameContext/sub_12d ()I GoF2/Radar/getPlanetDockIndex ()I
+MD: AbyssEngine/MGameContext/sub_18f (LAbyssEngine/Hud;)V GoF2/Radar/drawCurrentLock (LGoF2/Hud;)V
+MD: AbyssEngine/MGameContext/sub_1ab (IIILAbyssEngine/Player;)Ljava/lang/String; GoF2/Radar/calcDistance (IIILGoF2/Player;)Ljava/lang/String;
+MD: AbyssEngine/MGameContext/sub_1bd ()LAbyssEngine/KIPlayer; GoF2/Radar/getLockedAsteroid ()LGoF2/KIPlayer;
+MD: AbyssEngine/MGameContext/sub_1fa ()LAbyssEngine/KIPlayer; GoF2/Radar/getLockedEnemy ()LGoF2/KIPlayer;
+MD: AbyssEngine/MGameContext/sub_42 ()V GoF2/Radar/OnRelease ()V
+MD: AbyssEngine/MGameContext/sub_85 (LAbyssEngine/Camera;LAbyssEngine/AEVector3D;)V GoF2/Radar/elipsoidIntersect (LAE/Camera;LAE/Math/AEVector3D;)V
+MD: AbyssEngine/MGameContext/sub_b8 (LAbyssEngine/Camera;LAbyssEngine/KIPlayer;)V GoF2/Radar/elipsoidIntersect (LAE/Camera;LGoF2/KIPlayer;)V
+FD: AbyssEngine/MGameContext/contextStation GoF2/Radar/contextLandmark
+FD: AbyssEngine/MGameContext/scanAtypeAsteroids GoF2/Radar/showAasteroids
+FD: AbyssEngine/MGameContext/scanCargo GoF2/Radar/showCargo
+FD: AbyssEngine/MGameContext/targetedStation GoF2/Radar/targetedLandmark
+FD: AbyssEngine/MGameContext/var_10b4 GoF2/Radar/draw
+FD: AbyssEngine/MGameContext/var_10e1 GoF2/Radar/onPlanetCourse_
+FD: AbyssEngine/MGameContext/var_115c GoF2/Radar/targetedPlanetLocalIndex
+FD: AbyssEngine/MGameContext/var_128a GoF2/Radar/tractorBeamAutomatic
+FD: AbyssEngine/MGameContext/var_1316 GoF2/Radar/tractorBeamScanTime
+FD: AbyssEngine/MGameContext/var_1381 GoF2/Radar/activeEnemyEnemiesCount
+FD: AbyssEngine/MGameContext/var_31 GoF2/Radar/asteroidsInFront
+FD: AbyssEngine/MGameContext/var_741 GoF2/Radar/sideMission
+FD: AbyssEngine/MGameContext/var_781 GoF2/Radar/mainMission
+FD: AbyssEngine/MGameContext/var_8a8 GoF2/Radar/screenProjectionX
+FD: AbyssEngine/MGameContext/var_8f0 GoF2/Radar/screenProjectionY
+FD: AbyssEngine/MGameContext/var_974 GoF2/Radar/elipsoidCenterX
+FD: AbyssEngine/MGameContext/var_99a GoF2/Radar/elipsoidCenterY
+FD: AbyssEngine/MGameContext/var_9c8 GoF2/Radar/elipsoidWidth
+FD: AbyssEngine/MGameContext/var_a1c GoF2/Radar/elipsoidHeight
+FD: AbyssEngine/MGameContext/var_a3e GoF2/Radar/inViewFrustum
+FD: AbyssEngine/MGameContext/var_a55 GoF2/Radar/enemies
+FD: AbyssEngine/MGameContext/var_a71 GoF2/Radar/landmarks
+FD: AbyssEngine/MGameContext/var_ad3 GoF2/Radar/asteroids
+FD: AbyssEngine/MGameContext/var_aeb GoF2/Radar/planets
+FD: AbyssEngine/MGameContext/var_b26 GoF2/Radar/playerRoute
+FD: AbyssEngine/MGameContext/var_b73 GoF2/Radar/level
+FD: AbyssEngine/MGameContext/var_b8e GoF2/Radar/camInvMatrix
+FD: AbyssEngine/MGameContext/var_bc4 GoF2/Radar/tempCameraSpacePos
+FD: AbyssEngine/MGameContext/var_c0c GoF2/Radar/tempPos
+FD: AbyssEngine/MGameContext/var_c50 GoF2/Radar/playerPos
+FD: AbyssEngine/MGameContext/var_cad GoF2/Radar/tempContextPosition
+FD: AbyssEngine/MGameContext/var_d13 GoF2/Radar/enemyArmorBarHeight
+FD: AbyssEngine/MGameContext/var_de6 GoF2/Radar/enemyScanPassedTime
+FD: AbyssEngine/MGameContext/var_e11 GoF2/Radar/asteroidScanPassedTime
+FD: AbyssEngine/MGameContext/var_e35 GoF2/Radar/planetScanPassedTime
+FD: AbyssEngine/MGameContext/var_e89 GoF2/Radar/landmarkScanPassedTime
+FD: AbyssEngine/MGameContext/var_f73 GoF2/Radar/targetedAsteroid
+FD: AbyssEngine/MGameContext/var_f8d GoF2/Radar/contextPlanet
+FD: AbyssEngine/MGameContext/var_fd4 GoF2/Radar/targetedPlanet
+FD: AbyssEngine/MGameContext/var_fdf GoF2/Radar/tractorBeamTarget
+CL: AbyssEngine/PlayerStatic GoF2/PlayerStatic
+MD: AbyssEngine/PlayerStatic/sub_109doSth ()V GoF2/PlayerStatic/appendToRender ()V
+MD: AbyssEngine/PlayerStatic/sub_162 (III)Z GoF2/PlayerStatic/outerCollide (III)Z
+MD: AbyssEngine/PlayerStatic/sub_a9 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerStatic/getPosition (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+FD: AbyssEngine/PlayerStatic/var_2e9 GoF2/PlayerStatic/virtDistToCam_
+CL: AbyssEngine/ProducedGood GoF2/ProducedGood
+CL: AbyssEngine/SoundManager AE/SoundManager
+MD: AbyssEngine/SoundManager/stopMusic ()V AE/SoundManager/OnRelease ()V
+MD: AbyssEngine/SoundManager/sub_260 ()V AE/SoundManager/stop ()V
+MD: AbyssEngine/SoundManager/sub_287 ()V AE/SoundManager/resume ()V
+MD: AbyssEngine/SoundManager/sub_2a5 ()V AE/SoundManager/stopMusic__ ()V
+FD: AbyssEngine/SoundManager/currentMusicIdx AE/SoundManager/lastSfxIndex
+FD: AbyssEngine/SoundManager/var_11c AE/SoundManager/sfxStartTime
+FD: AbyssEngine/SoundManager/var_21c AE/SoundManager/musicPlayer
+FD: AbyssEngine/SoundManager/var_262 AE/SoundManager/sfxPlayers
+FD: AbyssEngine/SoundManager/var_2ad AE/SoundManager/tmpVolumeController
+FD: AbyssEngine/SoundManager/var_46e AE/SoundManager/deviceAvailabe_
+FD: AbyssEngine/SoundManager/var_4a5 AE/SoundManager/tmpMusicVolume
+CL: AbyssEngine/AbstractScene AE/IApplicationModule
+MD: AbyssEngine/AbstractScene/freeResources ()V AE/IApplicationModule/OnRelease ()V
+MD: AbyssEngine/AbstractScene/loadResources ()V AE/IApplicationModule/OnInitialize ()V
+CL: AbyssEngine/AutoPilotList GoF2/AutoPilotList
+FD: AbyssEngine/AutoPilotList/var_1a3 GoF2/AutoPilotList/rowsNum
+CL: AbyssEngine/Class_6fcMesh GoF2/Sparks
+MD: AbyssEngine/Class_6fcMesh/destroy ()V GoF2/Sparks/OnRelease ()V
+MD: AbyssEngine/Class_6fcMesh/sub_16 (LAbyssEngine/AEVector3D;)V GoF2/Sparks/explode (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/Class_6fcMesh/sub_181 (J)V GoF2/Sparks/update (J)V
+MD: AbyssEngine/Class_6fcMesh/sub_2b ()LAbyssEngine/GraphNode; GoF2/Sparks/clone ()LAE/GraphNode;
+FD: AbyssEngine/Class_6fcMesh/var_14 GoF2/Sparks/impact
+FD: AbyssEngine/Class_6fcMesh/var_39 GoF2/Sparks/inactive
+FD: AbyssEngine/Class_6fcMesh/var_4a GoF2/Sparks/unused4a_
+CL: AbyssEngine/Class_7flight GoF2/LevelScript
+MD: AbyssEngine/Class_7flight/sub_10c ()V GoF2/LevelScript/startSequence ()V
+MD: AbyssEngine/Class_7flight/sub_123 ()Z GoF2/LevelScript/startSequenceOver ()Z
+MD: AbyssEngine/Class_7flight/sub_182 ()Z GoF2/LevelScript/isActive ()Z
+MD: AbyssEngine/Class_7flight/sub_1b8 (LAbyssEngine/Class_c53cameraRelated;LAbyssEngine/Level;)V GoF2/LevelScript/resetCamera (LAE/TargetFollowCamera;LGoF2/Level;)V
+MD: AbyssEngine/Class_7flight/sub_206 (LAbyssEngine/Class_c53cameraRelated;)V GoF2/LevelScript/lookBehind (LAE/TargetFollowCamera;)V
+MD: AbyssEngine/Class_7flight/sub_24c ()V GoF2/LevelScript/setAutoPilotToProgrammedStation ()V
+MD: AbyssEngine/Class_7flight/sub_50 (ILAbyssEngine/Class_c53cameraRelated;)Z GoF2/LevelScript/process (ILAE/TargetFollowCamera;)Z
+MD: AbyssEngine/Class_7flight/sub_6a ()V GoF2/LevelScript/renderProbe__ ()V
+MD: AbyssEngine/Class_7flight/sub_aa ()V GoF2/LevelScript/skipSequence ()V
+FD: AbyssEngine/Class_7flight/var_1a2 GoF2/LevelScript/cinematicBreak_
+FD: AbyssEngine/Class_7flight/var_25e GoF2/LevelScript/active
+FD: AbyssEngine/Class_7flight/var_269 GoF2/LevelScript/startSequenceIsOver
+FD: AbyssEngine/Class_7flight/var_28b GoF2/LevelScript/lookAtCam
+FD: AbyssEngine/Class_7flight/var_2e6 GoF2/LevelScript/passedTime
+FD: AbyssEngine/Class_7flight/var_2f0 GoF2/LevelScript/tempVec
+FD: AbyssEngine/Class_7flight/var_33a GoF2/LevelScript/approachStationCamPos
+FD: AbyssEngine/Class_7flight/var_39e GoF2/LevelScript/tempVec2
+FD: AbyssEngine/Class_7flight/var_428 GoF2/LevelScript/unused_428
+FD: AbyssEngine/Class_7flight/var_456 GoF2/LevelScript/hud
+FD: AbyssEngine/Class_7flight/var_473 GoF2/LevelScript/radar
+FD: AbyssEngine/Class_7flight/var_47e GoF2/LevelScript/probe
+FD: AbyssEngine/Class_7flight/var_4c9 GoF2/LevelScript/timeLimit
+FD: AbyssEngine/Class_7flight/var_500 GoF2/LevelScript/timePassed
+FD: AbyssEngine/Class_7flight/var_8c GoF2/LevelScript/level
+FD: AbyssEngine/Class_7flight/var_be GoF2/LevelScript/step
+CL: AbyssEngine/LoadingScreen GoF2/LoadingScreen
+MD: AbyssEngine/LoadingScreen/sub_4a ()Ljavax/microedition/lcdui/Image; GoF2/LoadingScreen/getGameLogo ()Ljavax/microedition/lcdui/Image;
+MD: AbyssEngine/LoadingScreen/sub_d5 ()V GoF2/LoadingScreen/draw ()V
+FD: AbyssEngine/LoadingScreen/loadingEndTime GoF2/LoadingScreen/endTime
+FD: AbyssEngine/LoadingScreen/var_129 GoF2/LoadingScreen/gameLogo
+FD: AbyssEngine/LoadingScreen/var_267 GoF2/LoadingScreen/startTime
+FD: AbyssEngine/LoadingScreen/var_7c GoF2/LoadingScreen/canvas
+FD: AbyssEngine/LoadingScreen/var_d7 GoF2/LoadingScreen/loadingThread
+CL: AbyssEngine/PlayerBigShip GoF2/PlayerFixedObject
+MD: AbyssEngine/PlayerBigShip/sub_005 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerFixedObject/getProjectionVector_ (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/PlayerBigShip/sub_109doSth ()V GoF2/PlayerFixedObject/appendToRender ()V
+MD: AbyssEngine/PlayerBigShip/sub_162 (III)Z GoF2/PlayerFixedObject/outerCollide (III)Z
+MD: AbyssEngine/PlayerBigShip/sub_1b8 (LAbyssEngine/AEVector3D;)Z GoF2/PlayerFixedObject/outerCollide (LAE/Math/AEVector3D;)Z
+MD: AbyssEngine/PlayerBigShip/sub_59 (Z)V GoF2/PlayerFixedObject/setMoving (Z)V
+MD: AbyssEngine/PlayerBigShip/sub_a9 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerFixedObject/getPosition (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/PlayerBigShip/sub_da (I)V GoF2/PlayerFixedObject/moveForward (I)V
+FD: AbyssEngine/PlayerBigShip/var_114 GoF2/PlayerFixedObject/lasSetPos
+FD: AbyssEngine/PlayerBigShip/var_177 GoF2/PlayerFixedObject/nearEnemyPos
+FD: AbyssEngine/PlayerBigShip/var_1ee GoF2/PlayerFixedObject/nearEnemyDistance
+FD: AbyssEngine/PlayerBigShip/var_263 GoF2/PlayerFixedObject/distToCamera
+FD: AbyssEngine/PlayerBigShip/var_273 GoF2/PlayerFixedObject/nearEnemy
+FD: AbyssEngine/PlayerBigShip/var_281 GoF2/PlayerFixedObject/collidingBound
+FD: AbyssEngine/PlayerBigShip/var_31d GoF2/PlayerFixedObject/unusedFloatingPartsLifeDonwCounter_
+FD: AbyssEngine/PlayerBigShip/var_34b GoF2/PlayerFixedObject/postExposionPartPos
+FD: AbyssEngine/PlayerBigShip/var_361 GoF2/PlayerFixedObject/postExplosionPartRot
+FD: AbyssEngine/PlayerBigShip/var_87 GoF2/PlayerFixedObject/moving
+FD: AbyssEngine/PlayerBigShip/var_eb GoF2/PlayerFixedObject/pos
+CL: AbyssEngine/PlayerFighter GoF2/PlayerFighter
+MD: AbyssEngine/PlayerFighter/add ()Z GoF2/PlayerFighter/unk151_ ()Z
+MD: AbyssEngine/PlayerFighter/sub_102 ()Z GoF2/PlayerFighter/lostCargo ()Z
+MD: AbyssEngine/PlayerFighter/sub_109doSth ()V GoF2/PlayerFighter/appendToRender ()V
+MD: AbyssEngine/PlayerFighter/sub_162 (III)Z GoF2/PlayerFighter/outerCollide (III)Z
+MD: AbyssEngine/PlayerFighter/sub_16f (ILAbyssEngine/KIPlayer;)V GoF2/PlayerFighter/setWingmanCommand (ILGoF2/KIPlayer;)V
+MD: AbyssEngine/PlayerFighter/sub_19 (Z)V GoF2/PlayerFighter/setMissionCrate (Z)V
+MD: AbyssEngine/PlayerFighter/sub_1e8 (I)V GoF2/PlayerFighter/setRotate (I)V
+MD: AbyssEngine/PlayerFighter/sub_227 (I)V GoF2/PlayerFighter/setBoostProb (I)V
+MD: AbyssEngine/PlayerFighter/sub_262 ()V GoF2/PlayerFighter/removeTrail ()V
+MD: AbyssEngine/PlayerFighter/sub_2b8 (Z)V GoF2/PlayerFighter/setExhaustVisible (Z)V
+MD: AbyssEngine/PlayerFighter/sub_2e5 ()V GoF2/PlayerFighter/revive ()V
+MD: AbyssEngine/PlayerFighter/sub_5f ()Z GoF2/PlayerFighter/lostMissionCrateToEgo ()Z
+MD: AbyssEngine/PlayerFighter/sub_bd ()Z GoF2/PlayerFighter/diedWithMissionCrate ()Z
+FD: AbyssEngine/PlayerFighter/var_17d GoF2/PlayerFighter/boostChance
+FD: AbyssEngine/PlayerFighter/var_26 GoF2/PlayerFighter/deathTransitionTime
+FD: AbyssEngine/PlayerFighter/var_2aa GoF2/PlayerFighter/targetPos_
+FD: AbyssEngine/PlayerFighter/var_311 GoF2/PlayerFighter/distanceToTarget
+FD: AbyssEngine/PlayerFighter/var_31e GoF2/PlayerFighter/tempTransform
+FD: AbyssEngine/PlayerFighter/var_33d GoF2/PlayerFighter/targedId_
+FD: AbyssEngine/PlayerFighter/var_358 GoF2/PlayerFighter/canBoost
+FD: AbyssEngine/PlayerFighter/var_395 GoF2/PlayerFighter/behavioutChangeTick
+FD: AbyssEngine/PlayerFighter/var_3b7 GoF2/PlayerFighter/boostTick
+FD: AbyssEngine/PlayerFighter/var_3cd GoF2/PlayerFighter/boostTimeLimit
+FD: AbyssEngine/PlayerFighter/var_3e3 GoF2/PlayerFighter/trailTick
+FD: AbyssEngine/PlayerFighter/var_3fa GoF2/PlayerFighter/target__
+FD: AbyssEngine/PlayerFighter/var_410 GoF2/PlayerFighter/folowingRoute
+FD: AbyssEngine/PlayerFighter/var_44b GoF2/PlayerFighter/frameTime
+FD: AbyssEngine/PlayerFighter/var_49f GoF2/PlayerFighter/hitpoints
+FD: AbyssEngine/PlayerFighter/var_4c GoF2/PlayerFighter/sightRange
+FD: AbyssEngine/PlayerFighter/var_4de GoF2/PlayerFighter/damageAccumulator
+FD: AbyssEngine/PlayerFighter/var_514 GoF2/PlayerFighter/damageEscape
+FD: AbyssEngine/PlayerFighter/var_561 GoF2/PlayerFighter/defaultRoute_
+FD: AbyssEngine/PlayerFighter/var_595 GoF2/PlayerFighter/stationRouteAliens
+FD: AbyssEngine/PlayerFighter/var_5b7 GoF2/PlayerFighter/activeRoute
+FD: AbyssEngine/PlayerFighter/var_5ed GoF2/PlayerFighter/initialWaypoint
+FD: AbyssEngine/PlayerFighter/var_699 GoF2/PlayerFighter/weaponActive
+FD: AbyssEngine/PlayerFighter/var_6d7 GoF2/PlayerFighter/trail
+FD: AbyssEngine/PlayerFighter/var_739 GoF2/PlayerFighter/strayFromTarget_
+FD: AbyssEngine/PlayerFighter/var_7a0 GoF2/PlayerFighter/handling
+FD: AbyssEngine/PlayerFighter/var_7a GoF2/PlayerFighter/soundRange
+FD: AbyssEngine/PlayerFighter/var_7b6 GoF2/PlayerFighter/boundings
+FD: AbyssEngine/PlayerFighter/var_7e2 GoF2/PlayerFighter/targetIsActive
+FD: AbyssEngine/PlayerFighter/var_80a GoF2/PlayerFighter/collisionEnabled
+FD: AbyssEngine/PlayerFighter/var_821 GoF2/PlayerFighter/unused821_
+FD: AbyssEngine/PlayerFighter/var_87b GoF2/PlayerFighter/crateTime_
+FD: AbyssEngine/PlayerFighter/var_a7 GoF2/PlayerFighter/defaultSpeed
+FD: AbyssEngine/PlayerFighter/var_f1 GoF2/PlayerFighter/defaultHandling
+CL: AbyssEngine/PlayerStation GoF2/PlayerStation
+MD: AbyssEngine/PlayerStation/sub_005 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerStation/getProjectionVector_ (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/PlayerStation/sub_109doSth ()V GoF2/PlayerStation/appendToRender ()V
+MD: AbyssEngine/PlayerStation/sub_162 (III)Z GoF2/PlayerStation/outerCollide (III)Z
+MD: AbyssEngine/PlayerStation/sub_1b8 (LAbyssEngine/AEVector3D;)Z GoF2/PlayerStation/outerCollide (LAE/Math/AEVector3D;)Z
+MD: AbyssEngine/PlayerStation/sub_a9 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerStation/getPosition (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+FD: AbyssEngine/PlayerStation/var_135 GoF2/PlayerStation/collidingPart
+FD: AbyssEngine/PlayerStation/var_183 GoF2/PlayerStation/maxPartDeflection
+FD: AbyssEngine/PlayerStation/var_3d GoF2/PlayerStation/partsCollisions
+FD: AbyssEngine/PlayerStation/var_a6 GoF2/PlayerStation/partPositions
+CL: AbyssEngine/RecordHandler GoF2/RecordHandler
+MD: AbyssEngine/RecordHandler/sub_106 (I)LAbyssEngine/GameRecord; GoF2/RecordHandler/recordStoreRead (I)LGoF2/GameRecord;
+MD: AbyssEngine/RecordHandler/sub_115 (I)V GoF2/RecordHandler/saveGame (I)V
+MD: AbyssEngine/RecordHandler/sub_157 ()[B GoF2/RecordHandler/recordStoreToByteArray ()[B
+CL: AbyssEngine/Class_14c5Mesh AE/ParticlesMesh
+MD: AbyssEngine/Class_14c5Mesh/destroy ()V AE/ParticlesMesh/OnRelease ()V
+MD: AbyssEngine/Class_14c5Mesh/sub_2b ()LAbyssEngine/GraphNode; AE/ParticlesMesh/clone ()LAE/GraphNode;
+MD: AbyssEngine/Class_14c5Mesh/sub_46 ()[I AE/ParticlesMesh/getPositions ()[I
+MD: AbyssEngine/Class_14c5Mesh/sub_53 ()[I AE/ParticlesMesh/getColors ()[I
+MD: AbyssEngine/Class_14c5Mesh/updateSomeArray_ ()[I AE/ParticlesMesh/getScales ()[I
+FD: AbyssEngine/Class_14c5Mesh/someArrNew_ AE/ParticlesMesh/defualtScale
+FD: AbyssEngine/Class_14c5Mesh/someArrOld_ AE/ParticlesMesh/scales
+FD: AbyssEngine/Class_14c5Mesh/var_3b4 AE/ParticlesMesh/tempPos
+FD: AbyssEngine/Class_14c5Mesh/var_3c2 AE/ParticlesMesh/appearance
+FD: AbyssEngine/Class_14c5Mesh/var_4a8 AE/ParticlesMesh/polygonMode
+FD: AbyssEngine/Class_14c5Mesh/var_52c AE/ParticlesMesh/count
+FD: AbyssEngine/Class_14c5Mesh/var_57b AE/ParticlesMesh/particle
+FD: AbyssEngine/Class_14c5Mesh/var_588 AE/ParticlesMesh/positions
+FD: AbyssEngine/Class_14c5Mesh/var_5c8 AE/ParticlesMesh/vertexColors
+FD: AbyssEngine/Class_14c5Mesh/var_63 AE/ParticlesMesh/calcTransform
+FD: AbyssEngine/Class_14c5Mesh/var_674 AE/ParticlesMesh/blending
+CL: AbyssEngine/PlayerAsteroid GoF2/PlayerAsteroid
+MD: AbyssEngine/PlayerAsteroid/sub_005 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerAsteroid/getProjectionVector_ (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/PlayerAsteroid/sub_109doSth ()V GoF2/PlayerAsteroid/appendToRender ()V
+MD: AbyssEngine/PlayerAsteroid/sub_162 (III)Z GoF2/PlayerAsteroid/outerCollide (III)Z
+MD: AbyssEngine/PlayerAsteroid/sub_1b8 (LAbyssEngine/AEVector3D;)Z GoF2/PlayerAsteroid/outerCollide (LAE/Math/AEVector3D;)Z
+MD: AbyssEngine/PlayerAsteroid/sub_1bb ()I GoF2/PlayerAsteroid/getQualityFrameIndex ()I
+MD: AbyssEngine/PlayerAsteroid/sub_20d (LAbyssEngine/AEVector3D;)V GoF2/PlayerAsteroid/setAsteroidCenter (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/PlayerAsteroid/sub_26f (Z)V GoF2/PlayerAsteroid/setRotationEnabled (Z)V
+MD: AbyssEngine/PlayerAsteroid/sub_296 ()V GoF2/PlayerAsteroid/scaleOnDistanceClamp_ ()V
+MD: AbyssEngine/PlayerAsteroid/sub_80 ()I GoF2/PlayerAsteroid/getMass_SizeCoef__ ()I
+MD: AbyssEngine/PlayerAsteroid/sub_e2 ()I GoF2/PlayerAsteroid/getQuality ()I
+FD: AbyssEngine/PlayerAsteroid/var_1c5 GoF2/PlayerAsteroid/tempVector1_
+FD: AbyssEngine/PlayerAsteroid/var_249 GoF2/PlayerAsteroid/tempVector2_
+FD: AbyssEngine/PlayerAsteroid/var_312 GoF2/PlayerAsteroid/posX
+FD: AbyssEngine/PlayerAsteroid/var_356 GoF2/PlayerAsteroid/posY
+FD: AbyssEngine/PlayerAsteroid/var_3fe GoF2/PlayerAsteroid/posZ
+FD: AbyssEngine/PlayerAsteroid/var_42f GoF2/PlayerAsteroid/clampDisabled
+FD: AbyssEngine/PlayerAsteroid/var_54b GoF2/PlayerAsteroid/baseScaleX
+FD: AbyssEngine/PlayerAsteroid/var_694 GoF2/PlayerAsteroid/baseScaleY
+FD: AbyssEngine/PlayerAsteroid/var_707 GoF2/PlayerAsteroid/baseScaleZ
+FD: AbyssEngine/PlayerAsteroid/var_793 GoF2/PlayerAsteroid/center_
+FD: AbyssEngine/PlayerAsteroid/var_7f2 GoF2/PlayerAsteroid/rotationEnabled
+FD: AbyssEngine/PlayerAsteroid/var_80b GoF2/PlayerAsteroid/playerTransform_
+FD: AbyssEngine/PlayerAsteroid/var_880 GoF2/PlayerAsteroid/sizeCoef_
+FD: AbyssEngine/PlayerAsteroid/var_8aa GoF2/PlayerAsteroid/tier
+FD: AbyssEngine/PlayerAsteroid/var_956 GoF2/PlayerAsteroid/explosionMesh
+FD: AbyssEngine/PlayerAsteroid/var_973 GoF2/PlayerAsteroid/clampedByDistance
+FD: AbyssEngine/PlayerAsteroid/var_9d3 GoF2/PlayerAsteroid/oreItemId
+CL: AbyssEngine/PlayerJumpgate GoF2/PlayerJumpgate
+MD: AbyssEngine/PlayerJumpgate/sub_25 ()V GoF2/PlayerJumpgate/activate ()V
+FD: AbyssEngine/PlayerJumpgate/var_4d GoF2/PlayerJumpgate/animationInit
+CL: AbyssEngine/PlayerWormHole GoF2/PlayerWormHole
+MD: AbyssEngine/PlayerWormHole/sub_109doSth ()V GoF2/PlayerWormHole/appendToRender ()V
+MD: AbyssEngine/PlayerWormHole/sub_55 (Z)V GoF2/PlayerWormHole/reset (Z)V
+MD: AbyssEngine/PlayerWormHole/sub_a9 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerWormHole/getPosition (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/PlayerWormHole/sub_b7 ()Z GoF2/PlayerWormHole/isShrinking ()Z
+FD: AbyssEngine/PlayerWormHole/var_6b GoF2/PlayerWormHole/lifeTime
+FD: AbyssEngine/PlayerWormHole/var_81 GoF2/PlayerWormHole/scale
+CL: AbyssEngine/AbstractTexture AE/ITexture
+MD: AbyssEngine/AbstractTexture/destroy ()V AE/ITexture/OnRelease ()V
+CL: AbyssEngine/PlayerStaticFar GoF2/PlayerStaticFar
+MD: AbyssEngine/PlayerStaticFar/sub_005 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerStaticFar/getProjectionVector_ (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/PlayerStaticFar/sub_109doSth ()V GoF2/PlayerStaticFar/appendToRender ()V
+MD: AbyssEngine/PlayerStaticFar/sub_162 (III)Z GoF2/PlayerStaticFar/outerCollide (III)Z
+MD: AbyssEngine/PlayerStaticFar/sub_1b8 (LAbyssEngine/AEVector3D;)Z GoF2/PlayerStaticFar/outerCollide (LAE/Math/AEVector3D;)Z
+MD: AbyssEngine/PlayerStaticFar/sub_52 (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; GoF2/PlayerStaticFar/getTargetPos_ (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+FD: AbyssEngine/PlayerStaticFar/var_120 GoF2/PlayerStaticFar/boundingBoxes
+CL: AbyssEngine/AEBoundingSphere AE/AEBoundingSphere
+MD: AbyssEngine/AEBoundingSphere/sub_52 (LAbyssEngine/AEBoundingSphere;)V AE/AEBoundingSphere/merge (LAE/AEBoundingSphere;)V
+MD: AbyssEngine/AEBoundingSphere/sub_7f (IIII)V AE/AEBoundingSphere/setXYZR (IIII)V
+MD: AbyssEngine/AEBoundingSphere/sub_9f (LAbyssEngine/AEVector3D;I)V AE/AEBoundingSphere/set (LAE/Math/AEVector3D;I)V
+CL: AbyssEngine/AbstractBounding AE/BoundingVolume
+MD: AbyssEngine/AbstractBounding/sub_3d (LAbyssEngine/AEVector3D;)LAbyssEngine/AEVector3D; AE/BoundingVolume/getProjectionVector (LAE/Math/AEVector3D;)LAE/Math/AEVector3D;
+MD: AbyssEngine/AbstractBounding/sub_4f (III)Z AE/BoundingVolume/outerCollide_ (III)Z
+MD: AbyssEngine/AbstractBounding/sub_a0 (III)Z AE/BoundingVolume/isPointInBounding (III)Z
+MD: AbyssEngine/AbstractBounding/sub_e2 (III)V AE/BoundingVolume/setPosition (III)V
+FD: AbyssEngine/AbstractBounding/var_147 AE/BoundingVolume/temp
+CL: AbyssEngine/SystemPathFinder GoF2/SystemPathFinder
+CL: AbyssEngine/AEResourceManager AE/AEResourceManager
+MD: AbyssEngine/AEResourceManager/destroy ()V AE/AEResourceManager/OnRelease ()V
+MD: AbyssEngine/AEResourceManager/setupSkybox_ (ILjava/lang/String;I)V AE/AEResourceManager/addSkyboxResource (ILjava/lang/String;I)V
+MD: AbyssEngine/AEResourceManager/sub_10b (I)LAbyssEngine/AbstractTexture; AE/AEResourceManager/getTextureResource (I)LAE/ITexture;
+MD: AbyssEngine/AEResourceManager/sub_18f ()V AE/AEResourceManager/initGeometryTranforms ()V
+MD: AbyssEngine/AEResourceManager/sub_53 (ILjava/lang/String;)V AE/AEResourceManager/addTextureResource (ILjava/lang/String;)V
+MD: AbyssEngine/AEResourceManager/sub_ad (ILjava/lang/String;II)V AE/AEResourceManager/addGeometryResource (ILjava/lang/String;II)V
+FD: AbyssEngine/AEResourceManager/paths AE/AEResourceManager/meshPaths
+FD: AbyssEngine/AEResourceManager/tranparent_ AE/AEResourceManager/meshsTextureIds
+FD: AbyssEngine/AEResourceManager/var_142 AE/AEResourceManager/texturePaths
+FD: AbyssEngine/AEResourceManager/var_173 AE/AEResourceManager/loadedTextures
+FD: AbyssEngine/AEResourceManager/var_c0 AE/AEResourceManager/textureIds
+FD: AbyssEngine/AEResourceManager/var_ea AE/AEResourceManager/textures
+CL: AbyssEngine/SymbolMapManager_ AE/PaintCanvas/Font
+MD: AbyssEngine/SymbolMapManager_/setPrimarySymMapHeightMaxRange (I)V AE/PaintCanvas/Font/setMainFontSpacingY (I)V
+MD: AbyssEngine/SymbolMapManager_/setSymHeightMaxRange (II)V AE/PaintCanvas/Font/setSpacingY (II)V
+MD: AbyssEngine/SymbolMapManager_/sub_102 (Ljava/lang/String;III)V AE/PaintCanvas/Font/drawString (Ljava/lang/String;III)V
+MD: AbyssEngine/SymbolMapManager_/sub_161 (Ljava/lang/String;IIII)V AE/PaintCanvas/Font/drawString (Ljava/lang/String;IIII)V
+MD: AbyssEngine/SymbolMapManager_/sub_185 ([Ljava/lang/String;III)V AE/PaintCanvas/Font/drawLines ([Ljava/lang/String;III)V
+MD: AbyssEngine/SymbolMapManager_/sub_1c7 ([Ljava/lang/String;IIIII)V AE/PaintCanvas/Font/drawLinesWithIndent ([Ljava/lang/String;IIIII)V
+MD: AbyssEngine/SymbolMapManager_/sub_22a ([Ljava/lang/String;IIII)V AE/PaintCanvas/Font/drawLinesAligned ([Ljava/lang/String;IIII)V
+MD: AbyssEngine/SymbolMapManager_/sub_250 (Ljava/lang/String;)I AE/PaintCanvas/Font/getStringWidth (Ljava/lang/String;)I
+MD: AbyssEngine/SymbolMapManager_/sub_25b (Ljava/lang/String;I)I AE/PaintCanvas/Font/getTextWidth (Ljava/lang/String;I)I
+MD: AbyssEngine/SymbolMapManager_/sub_2c2 ()I AE/PaintCanvas/Font/getFontSpacingY ()I
+MD: AbyssEngine/SymbolMapManager_/sub_31c ([Ljava/lang/String;)I AE/PaintCanvas/Font/getTotalSpacingY ([Ljava/lang/String;)I
+MD: AbyssEngine/SymbolMapManager_/sub_3a1 (Ljava/lang/String;IIII)[Ljava/lang/String; AE/PaintCanvas/Font/splitToLines (Ljava/lang/String;IIII)[Ljava/lang/String;
+MD: AbyssEngine/SymbolMapManager_/sub_3b2 (Ljava/lang/String;I)[Ljava/lang/String; AE/PaintCanvas/Font/splitToLines (Ljava/lang/String;I)[Ljava/lang/String;
+MD: AbyssEngine/SymbolMapManager_/sub_3f2 (Ljava/lang/String;IIZ)Ljava/lang/String; AE/PaintCanvas/Font/truncateStringLine (Ljava/lang/String;IIZ)Ljava/lang/String;
+MD: AbyssEngine/SymbolMapManager_/sub_58 ()V AE/PaintCanvas/Font/OnRelease ()V
+MD: AbyssEngine/SymbolMapManager_/sub_77 (Ljavax/microedition/lcdui/Graphics;)V AE/PaintCanvas/Font/setGraphics (Ljavax/microedition/lcdui/Graphics;)V
+CL: AbyssEngine/AbstractGraphics3D AE/PaintCanvas/IGraphics3D
+CL: AbyssEngine/Class_3sceneHelper GoF2/ApplicationManager
+MD: AbyssEngine/Class_3sceneHelper/renderScene_andLoad_ (I)V GoF2/ApplicationManager/renderScene (I)V
+MD: AbyssEngine/Class_3sceneHelper/setScene (LAbyssEngine/AbstractScene;)V GoF2/ApplicationManager/SetCurrentApplicationModule (LAE/IApplicationModule;)V
+MD: AbyssEngine/Class_3sceneHelper/sub_28 ()LAbyssEngine/AbstractScene; GoF2/ApplicationManager/GetCurrentApplicationModule ()LAE/IApplicationModule;
+MD: AbyssEngine/Class_3sceneHelper/sub_54 ()V GoF2/ApplicationManager/Quit ()V
+CL: AbyssEngine/Class_5bfcollision AE/BoundingSphere
+MD: AbyssEngine/Class_5bfcollision/sub_4f (III)Z AE/BoundingSphere/outerCollide_ (III)Z
+MD: AbyssEngine/Class_5bfcollision/sub_a0 (III)Z AE/BoundingSphere/isPointInBounding (III)Z
+MD: AbyssEngine/Class_5bfcollision/sub_e2 (III)V AE/BoundingSphere/setPosition (III)V
+FD: AbyssEngine/Class_5bfcollision/var_131 AE/BoundingSphere/r
+FD: AbyssEngine/Class_5bfcollision/var_15a AE/BoundingSphere/x
+FD: AbyssEngine/Class_5bfcollision/var_245 AE/BoundingSphere/y
+FD: AbyssEngine/Class_5bfcollision/var_291 AE/BoundingSphere/z
+CL: AbyssEngine/Class_c53cameraRelated AE/TargetFollowCamera
+MD: AbyssEngine/Class_c53cameraRelated/sub_13c ()LAbyssEngine/GraphNode; AE/TargetFollowCamera/getCamera ()LAE/GraphNode;
+MD: AbyssEngine/Class_c53cameraRelated/sub_188 (LAbyssEngine/AEVector3D;)V AE/TargetFollowCamera/setCameraPosition (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/Class_c53cameraRelated/sub_1df ()V AE/TargetFollowCamera/lockPosition ()V
+MD: AbyssEngine/Class_c53cameraRelated/sub_249 ()V AE/TargetFollowCamera/followTargetPosition ()V
+MD: AbyssEngine/Class_c53cameraRelated/sub_2aa ()V AE/TargetFollowCamera/update ()V
+MD: AbyssEngine/Class_c53cameraRelated/sub_2e9 (I)V AE/TargetFollowCamera/tickUpdate (I)V
+MD: AbyssEngine/Class_c53cameraRelated/sub_34a ()V AE/TargetFollowCamera/hit ()V
+MD: AbyssEngine/Class_c53cameraRelated/sub_356 ()Z AE/TargetFollowCamera/isInLookAtMode ()Z
+MD: AbyssEngine/Class_c53cameraRelated/sub_383 (Z)V AE/TargetFollowCamera/setLookAtCam (Z)V
+MD: AbyssEngine/Class_c53cameraRelated/sub_3a9 (LAbyssEngine/AEVector3D;)V AE/TargetFollowCamera/setPostition (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/Class_c53cameraRelated/sub_3dd (LAbyssEngine/AEVector3D;)V AE/TargetFollowCamera/setTargetOffset (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/Class_c53cameraRelated/sub_400 (LAbyssEngine/AEVector3D;)V AE/TargetFollowCamera/setCamOffset (LAE/Math/AEVector3D;)V
+MD: AbyssEngine/Class_c53cameraRelated/sub_43 (LAbyssEngine/GraphNode;)V AE/TargetFollowCamera/setTarget (LAE/GraphNode;)V
+MD: AbyssEngine/Class_c53cameraRelated/sub_54 (LAbyssEngine/GraphNode;)V AE/TargetFollowCamera/OnRelease (LAE/GraphNode;)V
+FD: AbyssEngine/Class_c53cameraRelated/camerLockInPlace AE/TargetFollowCamera/lockedPosition
+FD: AbyssEngine/Class_c53cameraRelated/cameraFollowPlayer AE/TargetFollowCamera/followTarget
+FD: AbyssEngine/Class_c53cameraRelated/cameraRotation2_ AE/TargetFollowCamera/cameraPositionOffset
+FD: AbyssEngine/Class_c53cameraRelated/nonFPScamera_ AE/TargetFollowCamera/flipCameraDirection
+FD: AbyssEngine/Class_c53cameraRelated/var_106 AE/TargetFollowCamera/camera
+FD: AbyssEngine/Class_c53cameraRelated/var_197 AE/TargetFollowCamera/cameraUp
+FD: AbyssEngine/Class_c53cameraRelated/var_265 AE/TargetFollowCamera/cameraDir
+FD: AbyssEngine/Class_c53cameraRelated/var_2b8 AE/TargetFollowCamera/cameraPos
+FD: AbyssEngine/Class_c53cameraRelated/var_2dc AE/TargetFollowCamera/cameraRight
+FD: AbyssEngine/Class_c53cameraRelated/var_3fb AE/TargetFollowCamera/unused3fb_
+FD: AbyssEngine/Class_c53cameraRelated/var_5e3 AE/TargetFollowCamera/lookAtCam
+FD: AbyssEngine/Class_c53cameraRelated/var_6b7 AE/TargetFollowCamera/lastCameraUp
+FD: AbyssEngine/Class_c53cameraRelated/var_6c AE/TargetFollowCamera/target
+FD: AbyssEngine/Class_c53cameraRelated/var_6ca AE/TargetFollowCamera/lastCameraRight
+FD: AbyssEngine/Class_c53cameraRelated/var_705 AE/TargetFollowCamera/lastCameraDir
+FD: AbyssEngine/Class_c53cameraRelated/var_767 AE/TargetFollowCamera/isShaking
+FD: AbyssEngine/Class_c53cameraRelated/var_7ab AE/TargetFollowCamera/shakeCounter
+FD: AbyssEngine/Class_c53cameraRelated/var_7d8 AE/TargetFollowCamera/frametime
+FD: AbyssEngine/Class_c53cameraRelated/var_82f AE/TargetFollowCamera/dirty
+FD: AbyssEngine/Class_c53cameraRelated/var_94 AE/TargetFollowCamera/targetGrandParent
+CL: AbyssEngine/Class_8e4superOrbitHelper AE/CameraTrack
+MD: AbyssEngine/Class_8e4superOrbitHelper/sub_15c ()LAbyssEngine/Camera; AE/CameraTrack/getCamera ()LAE/Camera;
+MD: AbyssEngine/Class_8e4superOrbitHelper/sub_4d (J)V AE/CameraTrack/update (J)V
+FD: AbyssEngine/Class_8e4superOrbitHelper/var_1b6 AE/CameraTrack/interpolator
+FD: AbyssEngine/Class_8e4superOrbitHelper/var_20e AE/CameraTrack/cameraTracks
+FD: AbyssEngine/Class_8e4superOrbitHelper/var_79 AE/CameraTrack/time
+FD: AbyssEngine/Class_8e4superOrbitHelper/var_ae AE/CameraTrack/frameTime
+FD: AbyssEngine/Class_8e4superOrbitHelper/var_f6 AE/CameraTrack/camera
+CL: AbyssEngine/Class_137dStationOrbitHelper AE/CameraTrackInterpolator
+MD: AbyssEngine/Class_137dStationOrbitHelper/sub_153 ()V AE/CameraTrackInterpolator/computeInterpolatedValues ()V
+MD: AbyssEngine/Class_137dStationOrbitHelper/sub_62 (J)V AE/CameraTrackInterpolator/update (J)V
+MD: AbyssEngine/Class_137dStationOrbitHelper/sub_7a (FI)V AE/CameraTrackInterpolator/interpolate (FI)V
+MD: AbyssEngine/Class_137dStationOrbitHelper/sub_f7 ()V AE/CameraTrackInterpolator/computeLengths ()V
+FD: AbyssEngine/Class_137dStationOrbitHelper/stationParams AE/CameraTrackInterpolator/interpolatedPos
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_208 AE/CameraTrackInterpolator/interpolatedRot
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_336 AE/CameraTrackInterpolator/interpolatedFoV
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_41a AE/CameraTrackInterpolator/keyframeCnt
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_486 AE/CameraTrackInterpolator/totalPathLength
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_50c AE/CameraTrackInterpolator/segmentLengths
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_53e AE/CameraTrackInterpolator/segmentLengthsNormalized
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_5b2 AE/CameraTrackInterpolator/tempPos
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_5e8 AE/CameraTrackInterpolator/currentInterpolationStartPoint
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_609 AE/CameraTrackInterpolator/currentInterpolationEndPoint
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_654 AE/CameraTrackInterpolator/currentPos
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_724 AE/CameraTrackInterpolator/currentRot
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_758 AE/CameraTrackInterpolator/currentFoV
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_7ad AE/CameraTrackInterpolator/keyFrames
+FD: AbyssEngine/Class_137dStationOrbitHelper/var_7d7 AE/CameraTrackInterpolator/totalTrackLength

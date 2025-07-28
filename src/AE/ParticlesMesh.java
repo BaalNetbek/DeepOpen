@@ -126,20 +126,20 @@ public final class ParticlesMesh extends AbstractMesh {
       if (this.blending == 0) {
          int var1 = 0;
 
-         for(int var2 = 0; var2 < this.count; var1 += 3) {
+         for(int i = 0; i < this.count; var1 += 3) {
             tempPos.set(this.positions[var1], this.positions[var1 + 1], this.positions[var1 + 2]);
             tempPos = this.matrix.transformVector(tempPos);
             calcTransform.setIdentity();
             calcTransform.postTranslate((float)tempPos.x, (float)tempPos.y, (float)tempPos.z);
             if (this.scales != null) {
-               calcTransform.postScale((float)(this.scales[var2] >> 1), (float)(this.scales[var2] >> 1), (float)(this.scales[var2] >> 1));
+               calcTransform.postScale((float)(this.scales[i] >> 1), (float)(this.scales[i] >> 1), (float)(this.scales[i] >> 1));
             } else {
                calcTransform.postScale(this.defualtScale, this.defualtScale, this.defualtScale);
             }
 
-            this.particle.getVertexBuffer().setDefaultColor(this.vertexColors[var2]);
+            this.particle.getVertexBuffer().setDefaultColor(this.vertexColors[i]);
             AEGraphics3D.graphics3D.render(this.particle, calcTransform);
-            ++var2;
+            ++i;
          }
       }
 

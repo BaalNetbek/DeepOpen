@@ -598,7 +598,117 @@ public final class Matrix {
       default:
       }
    }
+   public final void fromQuaternion(AEQuaternion var1) {
+       int var5 = var1.w;
+       int var4 = var1.z;
+       int var3 = var1.y;
+       int var2 = var1.x;
+       this.rightX = 4096 - (var3 * 2 * var3 >> 12) - (var4 * 2 * var4 >> 12);
+       this.upX = (var2 * 2 * var3 >> 12) - (var5 * 2 * var4 >> 12);
+       this.dirX = (var2 * 2 * var4 >> 12) + (var5 * 2 * var3 >> 12);
+       this.rightY = (var2 * 2 * var3 >> 12) + (var5 * 2 * var4 >> 12);
+       this.upY = 4096 - (var2 * 2 * var2 >> 12) - (var4 * 2 * var4 >> 12);
+       this.dirY = (var3 * 2 * var4 >> 12) - (var5 * 2 * var2 >> 12);
+       this.rightZ = (var2 * 2 * var4 >> 12) - (var5 * 2 * var3 >> 12);
+       this.upZ = (var5 * 2 * var2 >> 12) + (var3 * 2 * var4 >> 12);
+       this.dirZ = 4096 - (var2 * 2 * var2 >> 12) - (var3 * 2 * var3 >> 12);
+       this.isDirty = true;
+    }
 
+    private static int mod3ofIncremented(int var0) {
+       return var0 < 2 ? var0 + 1 : 0;
+    }
+
+    private final int getElement(int var1) {
+       switch (var1) {
+          case 0:
+             return this.rightX;
+          case 1:
+             return this.rightY;
+          case 2:
+             return this.rightZ;
+          case 3:
+             return this.upX;
+          case 4:
+             return this.upY;
+          case 5:
+             return this.upZ;
+          case 6:
+             return this.dirX;
+          case 7:
+             return this.dirY;
+          case 8:
+             return this.dirZ;
+          default:
+             return 0;
+       }
+    }
+
+    public final AEQuaternion toQuaterion(AEQuaternion var1) {
+       int var2;
+       if ((var2 = 4096 + this.rightX + this.upY + this.dirZ) > 0) {
+          var2 = AEMath.sqrt((long)var2);
+          var1.w = var2 >> 1;
+          var2 = 8388608 / var2;
+          var1.x = (this.upZ - this.dirY) * var2 >> 12;
+          var1.y = (this.dirX - this.rightZ) * var2 >> 12;
+          var1.z = (this.rightY - this.upX) * var2 >> 12;
+          return var1;
+       } else {
+          byte var6 = 0;
+          if (this.upY > this.rightX) {
+             var6 = 1;
+          }
+
+          if (this.dirZ > this.getElement(var6 << 2)) {
+             var6 = 2;
+          }
+
+          int var3;
+          int var4 = mod3ofIncremented(var3 = mod3ofIncremented(var6));
+          int var5 = AEMath.sqrt((long)(4096 + this.getElement(var6 << 2) - this.getElement(var3 << 2) - this.getElement(var4 << 2)));
+          switch (var6) {
+             case 0:
+                var1.x = var5 >> 1;
+                break;
+             case 1:
+                var1.y = var5 >> 1;
+                break;
+             case 2:
+             default:
+                var1.z = var5 >> 1;
+          }
+
+          if (var5 != 0) {
+             var5 = 8388608 / var5;
+          }
+
+          switch (var3) {
+             case 0:
+                var1.x = (this.getElement(var6 + var3 * 3) + this.getElement(var3 + var6 * 3)) * var5 >> 12;
+                break;
+             case 1:
+                var1.y = (this.getElement(var6 + var3 * 3) + this.getElement(var3 + var6 * 3)) * var5 >> 12;
+                break;
+             case 2:
+                var1.z = (this.getElement(var6 + var3 * 3) + this.getElement(var3 + var6 * 3)) * var5 >> 12;
+          }
+
+          switch (var4) {
+             case 0:
+                var1.x = (this.getElement(var6 + var4 * 3) + this.getElement(var4 + var6 * 3)) * var5 >> 12;
+                break;
+             case 1:
+                var1.y = (this.getElement(var6 + var4 * 3) + this.getElement(var4 + var6 * 3)) * var5 >> 12;
+                break;
+             case 2:
+                var1.z = (this.getElement(var6 + var4 * 3) + this.getElement(var4 + var6 * 3)) * var5 >> 12;
+          }
+
+          var1.w = (this.getElement(var3 + var4 * 3) - this.getElement(var4 + var3 * 3)) * var5 >> 12;
+          return var1;
+       }
+    }
    public final void setScale(int var1, int var2, int var3) {
       this.scaleX = var1;
       this.scaleY = var2;

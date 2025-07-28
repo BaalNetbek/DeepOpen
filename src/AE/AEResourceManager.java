@@ -104,7 +104,8 @@ public final class AEResourceManager {
    public static Texture2D getSpecTexture() {
        Texture2D spec = ((JSRTexture)getTextureResource(2)).getTexturesArray()[0];
        spec.setFiltering(Texture2D.FILTER_LINEAR, Texture2D.FILTER_LINEAR);
-       spec.setBlending(Texture2D.FUNC_ADD);
+       spec.setWrapping(Texture2D.WRAP_CLAMP, Texture2D.WRAP_CLAMP);
+       spec.setBlending(Texture2D.FUNC_REPLACE);
        return spec;
    }
 

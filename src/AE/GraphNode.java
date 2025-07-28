@@ -1,5 +1,6 @@
 package AE;
 
+import AE.Math.AEQuaternion;
 import AE.Math.AEVector3D;
 import AE.Math.Matrix;
 
@@ -216,6 +217,12 @@ public abstract class GraphNode {
       return this.globalTransform.getEulerZ();
    }
 
+   public final void setToParentFromQuaterion(AEQuaternion var1) {
+       this.globalTransform.fromQuaternion(var1);
+       this.transformDirty_ = true;
+       this.markDirty();
+    }
+   
    public final void setScale(int var1, int var2, int var3) {
       this.globalTransform.setScale(var1, var2, var3);
       this.transformDirty_ = true;
