@@ -27,13 +27,13 @@ public abstract class AbstractMesh extends AEGeometry {
       this.renderLayer = var1;
    }
 
-   public void appendToRender(Camera var1, Renderer var2) {
-      if (this.draw && var1.isInViewFrustum(this.boundingSphere) != 0) {
-         this.matrix = var1.tempTransform.getInverse(this.matrix);
+   public void appendToRender(Camera cam, Renderer var2) {
+      if (this.draw && cam.isInViewFrustum(this.boundingSphere) != 0) {
+         this.matrix = cam.tempTransform.getInverse(this.matrix);
          try {
-//         if (this instanceof JSRMesh) {
-//            ((JSRMesh) this).rotateUV(AEGraphics3D.lightInv, this.matrix);
-//         }
+         if (this instanceof JSRMesh) {
+            ((JSRMesh) this).rotateUV(AEGraphics3D.lightInv, this.matrix);
+         }
          }catch (Exception e) {
              e.printStackTrace();
          }
