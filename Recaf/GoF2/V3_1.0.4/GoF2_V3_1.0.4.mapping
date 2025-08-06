@@ -1,0 +1,3314 @@
+bm AE/AbstractGun
+bm.a(J)V update
+cu AE/CameraController_
+cu.c()V update
+cu.a()Z isInLookAtMode
+ag AE/AbstractMesh
+ag.a I renderLayer
+ag.a Lcm; matrix
+ag.a(I)V setRenderLayer
+ag.a(Lap;Laf;)V appendToRender
+ag.b(Lap;Laf;)V forceAppendToRender
+ag.b()V render
+ag.a()Lah; clone
+ag.a(IIIIIIB)Lag; newParticlesMesh
+ag.a(IIB)Lag; newPlaneStrip
+ag.a(Laq;)V setTexture
+ag.a()V OnRelease
+ag.a(J)V update
+ci AE/TextInput
+ci.a Z lowerCase
+ci.a [[C upperCaseKeyMap
+ci.b [[C lowerCaseKeyMap
+ci.a I maxLen
+ci.b I lastPressedKey
+ci.c I keyPressStrike
+ci.d I keyPressedIndex
+ci.e I timeSincePressed
+ci.a C nextChar
+ci.a Ljava/lang/String; text
+ci.f I keyPressed
+ci.b Z allowAtSymbol
+ci.b(I)I getKeyIndex
+ci.a(I)V handleKeystate
+ci.a(I)I update
+ci.a()C getNextChar
+ci.a()Ljava/lang/String; getText
+f GoF2/StarSystem
+f.a [I astronomicalObjPlacings
+f.b [I planetSmallImages
+f.a [Lag; starAndPlanets
+f.a Laj; cameraControler
+f.a Lcc; tempVec
+f.a Lcv; lensFlare
+f.a Ljavax/microedition/lcdui/game/Sprite; sun
+f.b Ljavax/microedition/lcdui/game/Sprite; planet
+f.a [Ljavax/microedition/lcdui/Image; localPlanetsImgs
+f.a [Lp; localPlanets
+f.b [Lag; nebulaPivots
+f.b [Ljavax/microedition/lcdui/Image; nebulaImgs
+f.a [Z occupiedNebulaPos
+f.b [Z occupiedAstroObjPos
+f.a I currentPlanetEnumIndex
+f.a Z inAlienSpace
+f.a()[Lag; getPlanets
+f.a()[Lp; getPlanetTargets
+f.a()V renderSunStreak__
+f.b()V render_
+f.c()V render2D
+g AE/Math/AEMath
+g.a [S SINE_QUARTER
+g.a(I)I sin
+g.b(I)I cos
+g.c(I)I invSin
+g.a(II)I atan2
+g.d(I)I invSqrt
+g.a(J)I sqrt
+g.b(II)I max
+g.a(FF)F max
+g.c(II)I min
+g.b(FF)F min
+g.e(I)I abs
+h GoF2/BluePrint
+h.a I productId
+h.f I tonsPerProduction
+h.a [I missingComponentsTons
+h.b I investedCredits
+h.a Z unlocked
+h.c I timesProduced
+h.d I productionStationId
+h.a Ljava/lang/String; productionStationName
+h.e I producedTons
+h.a(Lv;II)V startProduction
+h.a()Z isComplete
+h.a()I getIndex
+h.a()[I getIngredientList
+h.b()[I getQuantityList
+h.a(I)I getTotalAmount
+h.b(I)I getCurrentAmount
+h.c(I)I getRemainingAmount
+h.a()F getCompletionRate
+h.b()I getProductionStationId
+h.a()Ljava/lang/String; getProductionStationName
+h.c()I getTonsPerProduction
+h.d()I getTonsPerProduction2
+h.a()V unlock
+h.b()Z isStarted
+h.b()V finishProduction
+cl GoF2/Mission
+cl.a Lcl; emptyMission_
+cl.a Lca; client
+cl.a I missionType
+cl.a Ljava/lang/String; clientName
+cl.b Ljava/lang/String; targetName
+cl.a [B clientFace
+cl.b I clientRace
+cl.c I reward
+cl.d I bonus_
+cl.e I targetStationId
+cl.c Ljava/lang/String; targetStationName
+cl.f I difficulty
+cl.a Z startedStoryMission
+cl.b Z failed
+cl.c Z won
+cl.g I commodityId
+cl.h I commodityAmmout
+cl.i I tasksTreshold_
+cl.d Z visibleOnMap
+cl.a()Z isEmpty
+cl.a(Z)V setVisible
+cl.b()Z isVisible
+cl.b(Z)V setFailed
+cl.c()Z hasFailed
+cl.c(Z)V setWon
+cl.d()Z hasWon
+cl.a(II)V setCommodity
+cl.a()I getCommodityIndex
+cl.b()I getCommodityAmount_
+cl.a(I)V setTasksTreshold_
+cl.c()I getStatusValue_
+cl.d()I getType
+cl.e()Z isOutsideMission
+cl.a()Ljava/lang/String; getClientName
+cl.a()[B getClientImage
+cl.e()I getClientRace
+cl.f()I getReward
+cl.g()I getBonus
+cl.b(I)V setBonus
+cl.f()Z isInstantActionMission
+cl.g()Z isCampaignMission
+cl.d(Z)V setCampaignMission
+cl.h()I getTargetStation
+cl.b()Ljava/lang/String; getTargetStationName
+cl.c(I)V setTargetStation
+cl.i()I getDifficulty
+cl.a()Lca; getAgent
+cl.a(Lca;)V setAgent
+cl.c()Ljava/lang/String; getTargetName
+cl.a(Ljava/lang/String;)V setTargetName
+cl.d(I)V setType
+i GoF2/Dialogue
+i.a [[S CAMPAIGN_BRIEFING
+i.b [[S CAMPAIGN_SUCCESS
+i.a [B face
+i.a Ljava/lang/String; message
+i.b Ljava/lang/String; name
+i.a Lbu; textBox
+i.a I type
+i.b I page
+i.a Lcl; mission
+i.a Lay; popup
+i.a Z popupOpen
+i.a Ldb; level
+i.a(I)Z hasBriefingDialogue
+i.b(I)Z hasSuccessDialogue
+i.a(Lcl;I)V set
+i.a()V OnRelease
+i.c(I)Z OnKeyPress_
+i.a(II)Z handleScrollPress_
+i.a()I length
+i.a()Z firstPageOn
+i.b()Z lastPageOn
+i.d()V loadContent_
+i.b()V draw
+i.c()V drawInterupring_
+cm AE/Math/Matrix
+cm.a S rotationOrder
+cm.a I scaleX
+cm.b I scaleY
+cm.c I scaleZ
+cm.d I rightX
+cm.e I rightY
+cm.f I rightZ
+cm.g I upX
+cm.h I upY
+cm.i I upZ
+cm.j I dirX
+cm.k I dirY
+cm.l I dirZ
+cm.m I positionX
+cm.n I positionY
+cm.o I positionZ
+cm.p I eulerX
+cm.q I eulerY
+cm.r I eulerZ
+cm.a Z isDirty
+cm.a Lcc; temp
+cm.a()V identity
+cm.a(Lcm;)V set
+cm.b(Lcm;)V multiply
+cm.a(Lcm;Lcm;)Lcm; multiplyTo
+cm.a(III)V translate
+cm.a(Lcc;)V translate
+cm.b(III)V translateTo
+cm.b(Lcc;)V translateTo
+cm.a(I)V translateForward
+cm.a(Lcc;)Lcc; getPosition
+cm.a()Lcc; getPosition
+cm.a()I getPositionX
+cm.b()I getPositionY
+cm.c()I getPositionZ
+cm.d()I getDirectionX
+cm.e()I getDirectionY
+cm.f()I getDirectionZ
+cm.b(Lcc;)Lcc; getDirection
+cm.b()Lcc; getDirection
+cm.c(Lcc;)Lcc; getUp
+cm.c()Lcc; getUp
+cm.d(Lcc;)Lcc; getRight
+cm.d()Lcc; getRight
+cm.a(S)V setRotationOrder
+cm.c(III)V addEulerAngles
+cm.b(I)V rotateAroundDir
+cm.c(I)V rotateAroundUp
+cm.d(I)V rotateAroundRight
+cm.e(I)V setEulerY
+cm.d(III)V setRotation
+cm.g()I getEulerX
+cm.h()I getEulerY
+cm.i()I getEulerZ
+cm.b()V updateEulerAngles
+cm.a(Lw;)V fromQuaternion
+cm.a(I)I mod3ofIncremented
+cm.b(I)I getElement
+cm.a(Lw;)Lw; toQuaterion
+cm.e(III)V setScale
+cm.e(Lcc;)Lcc; copyScaleTo
+cm.e()Lcc; getScale
+cm.a(Lcm;)Lcm; getInverse
+cm.a(Lcc;Lcc;Lcc;)V setRows
+cm.a([I)V toQArray
+cm.a(Lcc;Lcc;)Lcc; transformVector
+cm.b(Lcc;Lcc;)Lcc; transformVector2
+cm.c(Lcc;Lcc;)Lcc; transformVectorNoScale
+cm.d(Lcc;Lcc;)Lcc; transformVectorNoScale2
+cm.a([Lcc;[Lcc;)[Lcc; transformVectorsNoScale
+cm.f(Lcc;)Lcc; inverseTransformVector
+cm.g(Lcc;)Lcc; transformVectorNoScale
+cm.c(Lcc;)V setOrientation
+co GoF2/GameText
+co.a [S LISTITEMWINDOW_KEY_TEXT_IDS
+co.b [S helpTitles
+co.c [S helpFull
+co.d [S soundLevels
+co.e [S tips
+co.f [S CAMPAIGN_MISSION_DESC
+co.g [S MISSION_START_MSG
+co.h [S MISSION_SUCCESS_MSG
+co.i [S MISSION_LOST_MSG
+co.a [I catrogoryLengths_
+co.a [Ljava/lang/String; langEntries
+co.b [Ljava/lang/String; unusedBuffer_
+co.c [Ljava/lang/String; ships
+co.d [Ljava/lang/String; items
+co.e [Ljava/lang/String; medals
+co.a [[Ljava/lang/String; categories_
+co.a I language
+co.a Ljava/lang/String; langPath
+co.b I tempId
+co.c I categoryId_
+co.d I tempId2
+co.a(I)V setLanguage
+co.a([Ljava/lang/String;Ljava/lang/String;)V readLangFile
+co.a(I)Ljava/lang/String; getText
+co.a()V init
+cp AE/LookAtCamera
+cp.a Lah; target
+cp.b Lah; targetRoot
+cp.a I lockMode
+cp.c Lah; camera
+cp.a Lcc; cameraRight
+cp.b Lcc; cameraDir
+cp.c Lcc; cameraUp
+cp.d Lcc; upOverride
+cp.a Z lookAtMode
+cp.a(Lah;)V setTarget
+cp.b(Lah;)V setCamera
+cp.a(Lcc;I)V setOrientationLock
+cp.c()V update
+cp.a()Z isInLookAtMode
+cp.a(Z)V setLookAt
+m AE/EaseInOut
+m.a I minValue
+m.b I range
+m.c I phase
+m.d I currentValue
+m.a(I)V Increase
+m.a(II)V SetRange
+m.a()I GetValue
+m.a(Z)Z IsAtMaxPhase
+r AE/BackGroundMesh
+r.a Lcom/mascotcapsule/micro3d/v3/Effect3D; effect3D
+r.a Lcom/mascotcapsule/micro3d/v3/AffineTrans; affineTrans
+r.a [I tempMatrixCoeffs
+r.a Lcom/mascotcapsule/micro3d/v3/Figure; figure
+r.a Lcom/mascotcapsule/micro3d/v3/FigureLayout; figureLayout
+r.a()Lah; clone
+r.a(Lap;Laf;)V appendToRender
+r.b(Lap;Laf;)V forceAppendToRender
+r.b()V render
+r.a(Laq;)V setTexture
+r.a()V OnRelease
+cr GoF2/PlayerEgo
+cr.b I boostSpeed
+cr.c I boostDuration
+cr.d I boostDelay
+cr.a [[I turretPartsPositions
+cr.a Laa; player
+cr.a Lar; shipGrandGroup_
+cr.b Lar; shipGroup
+cr.a Lag; turretStand
+cr.b Lag; turretGun
+cr.a Lcc; vecUp
+cr.b Lcc; vecRight
+cr.a Lbz; unused_7a2
+cr.a Lda; crosshair
+cr.a Lcf; explosion
+cr.a Ldb; level
+cr.a Lbf; route
+cr.a I speed
+cr.e I relPitchSpeed
+cr.f I relYawSpeed
+cr.g I roll
+cr.h I currentSecondaryId
+cr.a J shieldRegenTick
+cr.b J repairHPTick
+cr.c J repairArmorTick
+cr.i I totalHP
+cr.a Z freeze
+cr.d J frameTime
+cr.j I boostTime
+cr.b Z boostActive
+cr.k I shipYaw
+cr.c Z collisionsOn
+cr.d Z beingPushedAway
+cr.e Z boostingEnabled
+cr.c Lcc; laggingPos
+cr.a Lcm; calcMatrix_
+cr.a F handling
+cr.l I addHandling
+cr.f Z autopilotActive
+cr.a Lp; autopilotTarget
+cr.g Z asteroidFieldTarget_
+cr.d Lcc; autoPilotDir
+cr.h Z hasTurret
+cr.a Lb; followingCamera_
+cr.a Lap; camera
+cr.c Lar; turretViewCamera__
+cr.d Lar; turretGrandGroup_
+cr.e Lar; turretGroup
+cr.i Z turretMode
+cr.b F turretHalfLift_
+cr.c F turretLift_
+cr.j Z cloakOn
+cr.a Lv; cloak
+cr.a Lby; tractorBeam
+cr.b Lp; lockedAsteroid
+cr.k Z lockedOnAsteroid
+cr.m I miningState
+cr.e Lcc; minigUpVec
+cr.l Z isMinig
+cr.n I astroidDockDistance
+cr.o I dockMiningPitch
+cr.p I cloakingTimeCoef
+cr.q I cloakingScaleX
+cr.a Lal; miningGame
+cr.m Z unused_1399
+cr.n Z jumpGating
+cr.o Z jumpingToNeighbourPlanet
+cr.r I disanceFromCamera_
+cr.p Z autoDriven
+cr.s I turretRotationSpeed
+cr.t I cloakTime
+cr.u I cloakDuration
+cr.v I cloakLoadingTime
+cr.d F shieldRegenRate
+cr.a Lx; hud
+cr.a Lbw; radar
+cr.a Lan; radio
+cr.q Z inWormhole
+cr.b [[I enginesBoostScale_
+cr.w I turretShipId_
+cr.r Z touchesStation
+cr.a(II)V setShip
+cr.a(Z)V setExhaustVisible
+cr.a()V resetLastHP
+cr.a()Z toggleCloaking_
+cr.b()Z isCloakPresent
+cr.c()Z isLookingBack
+cr.a(Lb;Lcp;)V setCamControllers
+cr.a(Z)Z setTurretMode
+cr.b()V boost
+cr.c()V silentBoost_
+cr.a()I getMiningProgress
+cr.d()Z boosting
+cr.e()Z readyToBoost
+cr.a()F getBoostPercentage
+cr.b()F getBoostRate
+cr.c()F getCloakRate
+cr.f()Z isCloakReady
+cr.g()Z isCloaked
+cr.b(Z)V setCollide
+cr.a(Ldb;)V setLevel
+cr.a(Lbf;)V setRoute
+cr.a()Lbf; getRoute
+cr.d()V removeRoute
+cr.w()Z isDead
+cr.b(II)V shoot
+cr.a([Laz;I)V setGuns
+cr.b()I getHitpoints
+cr.c()I getHullDamageRate
+cr.d()I getCurrentSecondaryWeaponIndex
+cr.a(I)V setCurrentSecondaryWeaponIndex
+cr.a()Lcc; getPosition
+cr.c(Z)V setActive
+cr.d(Z)V setComputerControlled
+cr.e(Z)V setFreeze
+cr.a(Lp;)V setAutoPilot
+cr.a()Lp; getAutoPilotTarget
+cr.h()Z goingToPlanet
+cr.i()Z isAutoPilot
+cr.j()Z goingToWormhole
+cr.k()Z goingToStream
+cr.l()Z goingToStation
+cr.m()Z gointToAsteroidField
+cr.a(III)V setPosition_
+cr.a(Lcc;)V setPosition_
+cr.n()Z isInWormhole
+cr.a(ILbw;Lx;Lan;I)V update
+cr.o()Z collidesWithStation
+cr.p()Z isMining
+cr.a([Lp;)V calcCollision
+cr.b(I)V turretRotateLeft
+cr.c(I)V turretRotateRight
+cr.d(I)V turretPitchDown
+cr.e(I)V turretPitchUp
+cr.f(I)V alignToHorizon
+cr.e()V fakeExplode
+cr.a(Lcf;)V setExplosion
+cr.f()V resetGunDelay
+cr.q()Z isDockingToAsteroid
+cr.r()Z isDockingToStream_
+cr.s()Z isDockedToStream
+cr.a(Lb;)V stopPlanetDock_
+cr.t()Z isDockingToPlanet
+cr.u()Z isDockedToPlanet
+cr.a(Lb;Z)V dockToStream
+cr.v()Z isLockedOnAsteroid_
+cr.a(Lx;I)Z approachAsteroid
+cr.g()V endMining
+cr.b(Lcc;)V moveTowards_
+cr.a(Lp;Lb;Lbw;)V dockToAsteroid
+cr.h()V OnRelease
+cr.f(Z)V render
+cr.a(ZLap;)V draw
+cr.i()V hit
+cr.a()Lx; getHud
+cs GoF2/Standing
+cs.a [I stand
+cs.a([I)V setStanding
+cs.a()[I getStanding
+cs.a(I)I getStanding
+cs.a(I)V rehabilitate
+cs.a()Z atWar
+cs.a(I)Z isEnemy
+cs.b(I)Z isFriend
+cs.b(I)I enemyRace
+cs.a(II)V subtract
+cs.b(I)V applyKill
+cs.c(I)V applyStealCargo
+cs.d(I)V increase
+cs.e(I)V applyDisable
+cs.b(II)V applyDelict
+q AE/PaintCanvas/Font
+q.a [Lcd; symbolMaps
+q.a Ljavax/microedition/lcdui/Graphics; graphics
+q.a()V OnRelease
+q.a(Ljavax/microedition/lcdui/Graphics;)V setGraphics
+q.a(Ljava/lang/String;III)V addCharMap
+q.a(II)V setSymMapSetOffsetY
+q.b(Ljava/lang/String;III)V drawString
+q.a(Ljava/lang/String;IIII)V drawString
+q.a([Ljava/lang/String;III)V drawLines
+q.a([Ljava/lang/String;IIIII)V drawLinesWithIndent
+q.a([Ljava/lang/String;IIII)V drawLinesAligned
+q.a(Ljava/lang/String;)I getStringWidth
+q.a(Ljava/lang/String;I)I getTextWidth
+q.a(I)V setPrimarySymMapSpacing
+q.b(II)V setSymMapSpacing
+q.a()I getFontSpacingY
+q.a([Ljava/lang/String;)I getTotalSpacingY
+q.b(I)V setMainFontSpacingY
+q.c(II)V setSpacingY
+q.a(Ljava/lang/String;IIII)[Ljava/lang/String; splitToLines
+q.a(Ljava/lang/String;I)[Ljava/lang/String; splitToLines
+q.a(Ljava/lang/String;IIZ)Ljava/lang/String; truncateStringLine
+cv AE/LensFlareFX
+cv.a [Ljavax/microedition/lcdui/Image; flares
+cv.a Ljavax/microedition/lcdui/Image; mainFlare
+cv.a(Lcc;)V render2D
+cw GoF2/SolarSystem
+cw.a Ljava/lang/String; name
+cw.d I id
+cw.e I safety
+cw.f I race
+cw.g I posX
+cw.h I posY
+cw.i I posZ
+cw.j I jumpgateStationId
+cw.k I starTextureId
+cw.a [I stationIDs
+cw.b [I neighbourSystems
+cw.a Z visibleByDeafult
+cw.a I starR
+cw.b I starG
+cw.c I starB
+cw.a()I getId
+cw.a()Ljava/lang/String; getName
+cw.b()I getSafety
+cw.c()I getRace
+cw.d()I getPosX
+cw.e()I getPosY
+cw.f()I getPosZ
+cw.g()I getStarTextureIndex
+cw.h()I getJumpgateStationIndex
+cw.i()I getJumpGateEnumIndex
+cw.a(I)I getStationEnumIndex
+cw.a()Z currentOrbitHasJumpgate
+cw.a(I)Z stationIsInSystem
+cw.b()Z isFullyDiscovered
+cw.a()[I getStations
+cw.b()[I getNeighbourSystems
+cw.b(I)Z inJumpageRange
+cw.c()Z isVisibleByDeafult
+t GoF2/Trail
+t.a [I UV
+t.a I width
+t.b [I vertices
+t.c [I tempVerts
+t.d [I uvs
+t.a Lag; mesh
+t.a Lcc; sourcePos
+t.a Z stop
+t.a()V OnRelease
+t.a(I)V setWidth
+t.a(Lcc;)V update
+t.b(Lcc;)V reset
+t.b()V render
+cx AE/CameraTrackInterpolator
+cx.a [F interpolatedPos
+cx.b [F interpolatedRot
+cx.c [F interpolatedFoV
+cx.b I keyframeCnt
+cx.a F totalPathLength
+cx.d [F segmentLengths
+cx.e [F segmentLengthsNormalized
+cx.f [F tempPos
+cx.a [I currentInterpolationStartPoint
+cx.b [I currentInterpolationEndPoint
+cx.a Lcc; currentPos
+cx.b Lcc; currentRot
+cx.a I currentFoV
+cx.a [[I keyFrames
+cx.a J totalTrackLength
+cx.a(J)V update
+cx.a(FI)V interpolate
+cx.a()V computeLengths
+cx.b()V computeInterpolatedValues
+v GoF2/Item
+v.a [Z installableMultipleTimes
+v.a I id
+v.b I type
+v.c I subType
+v.d I tecLevel
+v.e I lowestPriceSystemId
+v.f I highestPriceSystemId
+v.g I price
+v.h I occurance
+v.i I minPrice
+v.j I maxPrice
+v.a [I blueprintComponentsIds
+v.b [I blueprintComponentsQuantities
+v.c [I atributesIndexed
+v.k I amount
+v.l I stationAmount
+v.m I blueprintAmount
+v.a Z unsaleable
+v.a()Z canBeInstalledMultipleTimes
+v.a()I getIndex
+v.b()I getType
+v.c()I getTecLevel
+v.d()I getSort
+v.e()I getSinglePrice
+v.f()I getTotalPrice
+v.g()I getMaxPrice
+v.h()I getMinPrice
+v.i()I getHighestPriceSystemId
+v.j()I getLowestPriceSystemId
+v.a(I)V setPrice
+v.b(I)V setAmount
+v.k()I getOccurance
+v.l()I getAmount
+v.c(I)V changeAmount
+v.d(I)V setStationAmount
+v.m()I getStationAmount
+v.f(I)V changeStationAmount
+v.e(I)V setBlueprintAmount
+v.n()I getBlueprintAmount
+v.g(I)V incBlueprintAmount
+v.a()[I getBluePrintComponentsIds
+v.b()[I getBlueprintComponentsQuantities
+v.a(I)I getAttribute
+v.a(Z)I transaction
+v.b(Z)I transactionBlueprint
+v.a(II[Lv;)Z isInList
+v.a([Lv;Z)[Lv; extractItems
+v.a([Lv;[Lv;)[Lv; combineItems
+v.b([Lv;[Lv;)[Lv; mixItems
+v.b()Z isWeapon
+v.a(I)Lv; makeItem
+v.a(II)Lv; getCopyInAmmount
+v.a()Lv; makeItem
+v.a(Lv;)Z equals
+v.c()Z setUnsaleable
+v.a(Z)V setUnsaleable
+cz AE/PaintCanvas/RenderLayer
+cz.a [Lag; meshes
+cz.a I size
+cz.a(Lag;)V appendNode
+cz.a()V reset
+cz.a(J)V update
+cz.b()V render
+w AE/Math/AEQuaternion
+w.a I x
+w.b I y
+w.c I z
+w.d I w
+o GoF2/LaserGun
+o.a Laz; gun
+o.d I beamRadius
+o.a Lag; beam
+o.b Lag; flash
+o.a [I vertexPositions
+o.b [I vertexWorldPositions
+o.c [I uvs
+o.a Lcc; muzzlePos
+o.b Lcc; aimPoint
+o.c Lcc; direction
+o.d Lcc; muzzlePos2
+o.a [[I BEAM_UVs
+o.d [I FLASH_KEYFRAMES
+o.a Ldb; level
+o.d Z directionLocked
+o.a()V OnRelease
+o.b()V render
+o.a(J)V update
+o.a()Lah; clone
+o.a(Laq;)V setTexture
+x GoF2/Hud
+x.a [[Ljava/lang/String; actionmenuLabels
+x.a [[B actionmenuButtonsState
+x.a I lastWingmenAction
+x.b I drawSecondaryIcon
+x.c I screenMidX
+x.d I hullAlertMSDx
+x.e I hullAlertLSDx
+x.f I hullAlertPercentX
+x.b Ljavax/microedition/lcdui/Image; symbolShield
+x.c Ljavax/microedition/lcdui/Image; symbolHull
+x.d Ljavax/microedition/lcdui/Image; hit
+x.a Ljavax/microedition/lcdui/game/Sprite; hudIcons
+x.b Ljavax/microedition/lcdui/game/Sprite; quickmenuCrosshairAnim
+x.c Ljavax/microedition/lcdui/game/Sprite; quickMenu
+x.e Ljavax/microedition/lcdui/Image; hullBarEmpty
+x.f Ljavax/microedition/lcdui/Image; hullBarFull
+x.d Ljavax/microedition/lcdui/game/Sprite; panelUpperLeft
+x.e Ljavax/microedition/lcdui/game/Sprite; panelLowerLeft
+x.f Ljavax/microedition/lcdui/game/Sprite; hullAlarmNumbers
+x.g Ljavax/microedition/lcdui/Image; hullAlarm
+x.h Ljavax/microedition/lcdui/Image; hullAlarmShipIcon
+x.a Ljavax/microedition/lcdui/Image; items
+x.i Ljavax/microedition/lcdui/Image; factionLogo
+x.g I hullDamageTick
+x.a Ljava/lang/String; tempLogMsg
+x.b Ljava/lang/String; logMsg
+x.b Z drawBoostIcon
+x.c Z hasShield
+x.d Z hasArmor
+x.e Z hasWeapon
+x.h I lastHullDamage
+x.a Z drawUI
+x.f Z cargoFull
+x.g Z actionmenuOpen
+x.i I actionSubMenuOpen
+x.j I actionmenuSelectDir
+x.k I hudIconsHeight
+x.h Z playerHit
+x.i Z actionmenuConverging
+x.j Z menuReady
+x.k Z settingSecondaryWeapon
+x.l I menuItemSelectTick
+x.m I menuItemsSpread
+x.n I menuAnimStep
+x.a [Lv; secondaries
+x.b [Lv; cloakAndDrive
+x.a [Lce; logMessages
+x.o I firstLogEntryLifeTime
+x.l Z displayLog_
+x.p I queueScroll
+x.m Z jumpDriveSelected
+x.d()V init
+x.e()V initSecondariesSubMenu
+x.a()V OnRelease
+x.f()V drawEventQueue
+x.a(Lce;)V appendHudEvent
+x.b(I)V updateQueue
+x.a(ILcr;)V hudEvent
+x.a(Ljava/lang/String;)Z sameHudEventAsBeforeAggregate
+x.b()V playerHit
+x.a(IIZZZZ)V catchCargo
+x.a()Z cargoFull
+x.a(JJLcr;Z)V draw
+x.a(IIIZ)V drawBigDigits
+x.c()V drawOrbitInformation
+x.a(I)V drawMenu_
+x.a(ILdb;Lbw;)Z handleActionMenuKeypress
+x.b()Z getJumpDriveSelected
+x.a(Z)V setJumpDriveSelected
+z GoF2/GameRecord
+z.a [Z visitedStations
+z.a I credits
+z.b I rating
+z.a J playTime
+z.c I kills
+z.d I missionCount
+z.e I level
+z.f I lastWorth
+z.g I goodsProduced
+z.h I pirateKills
+z.i I jumpGateUses
+z.j I cargoSalvaged
+z.k I unused__
+z.l I stationsVisited
+z.m I currentCampaignMissionIndex
+z.n I wormholeStation
+z.o I wormholeSystem
+z.p I lastVisitedNonVoidOrbit
+z.q I wormHoleTick
+z.a Lcl; freelanceMission
+z.b Lcl; storyMission
+z.a [Lbd; lastVisitedStations
+z.a [I achievements
+z.b [Z minedOreTypes
+z.c [Z minedCoreTypes
+z.r I missionGoodsCarried
+z.s I minedOre
+z.t I minedCores
+z.u I boughtBooze
+z.d [Z drinkTypesPossesed
+z.v I destroyedJunk
+z.e [Z systemsVisited
+z.w I passengersCarried
+z.b J invisibleTime
+z.x I bombsUsed
+z.y I alienJunkSalvaged
+z.z I barInteractions
+z.A I commandedWingmen
+z.B I asteroidsDestroyed
+z.C I maxFreeCargo
+z.D I missionsRejected
+z.E I askedToRepeate
+z.F I acceptedNotAskingDifficulty
+z.G I acceptedNotAskingLocation
+z.a Z shopHelpShown
+z.b Z shipHelpShown
+z.c Z actionsHelpShown
+z.d Z bluePrintsHelpShown
+z.e Z bluePrintInfoHelpShown
+z.f Z barHelpShown
+z.g Z galaxyMapHelpShown
+z.h Z systemMapHelpShown
+z.i Z unused12121_
+z.j Z miningHelpShown
+z.k Z asteroidHelpShown
+z.l Z missionsHelpShown
+z.m Z cargoFullHelpShown
+z.n Z wingmenHelpShown
+z.o Z actionMenuHelpShown
+z.p Z boosterHelpShown
+z.q Z statusHelpShown
+z.r Z medalsHelpShown
+z.s Z fanWingmenNoticeShown
+z.t Z voidxNoticeShown
+z.u Z reputationHelpShown
+z.v Z buyingHelpShown
+z.w Z itemMountingHelpShown
+z.x Z itemMounting2HelpShown
+z.y Z interplanetHelpShown
+z.z Z jumpDriveHelpShown
+z.A Z cloakHelpShown
+z.c J loadingsCount
+z.d J timeSpentLoading
+z.a Lch; egoShip
+z.a Lbd; currentStation
+z.a Lcs; standing
+z.a [Lh; blueprints
+z.a [Lbp; waitingGoods
+z.a [Lca; specialAgents
+z.a [Ljava/lang/String; wingmenNames
+z.H I wingmanRace
+z.I I wingmenTimeRemaining
+z.a [B wingmanFace
+z.J I passengerCount
+z.f [Z visibleSystems
+z.b [I lowestItemPrices
+z.c [I highestItemPrices
+z.b [B lowestItemPriceSystems
+z.c [B highestItemPriceSystems
+z.a Ljava/lang/String; stationName
+da GoF2/Crosshair
+da.a [I localPosition
+da.a Ljavax/microedition/lcdui/Image; image
+da.a Lcc; relativePos
+da.b Lcc; screenPos
+da.a(Lcm;Lap;)V update
+da.a()V OnRelease
+da.b()V draw
+db GoF2/Level
+db.k I currentMod
+db.a Ly; asteroidField
+db.a [I barFigurePositions
+db.a Lcc; asteroidFieldCenter
+db.a Lck; asteroidsWaypoint
+db.a Lag; skybox
+db.a Lbk; gunSparks
+db.b Lbk; missilesSparks
+db.a [Lag; egoGuns
+db.b [Lag; enemyGuns
+db.a Lf; starSystem
+db.a Lcr; ego
+db.a [Lp; ships
+db.b [Lp; asteroids
+db.c [Lp; stationaries
+db.a Lbf; missionRoute
+db.b Lbf; kamikazePath
+db.c Lbf; enemyRoute_
+db.a [Lbq; radioMessages
+db.l I enemiesIntact
+db.m I friendsAlive
+db.n I asteroidsIntact
+db.o I enemiesDestroyed
+db.a I capturedCargoCount
+db.b I challengerScore
+db.c I egoScore
+db.a Lbr; successObjective
+db.b Lbr; failObjective_
+db.p I timeLimit
+db.q I spaceCreationStep__
+db.d Z spaceCreated_
+db.r I mgameIntroCamRotY
+db.e Z stolenFromFriend
+db.a F starR
+db.b F starG
+db.c F starB
+db.d I spaceR
+db.e I spaceG
+db.f I spaceB
+db.g I bgR
+db.h I bgG
+db.i I bgB
+db.d F explosionR
+db.e F explosionG
+db.f F explosionB
+db.s I flashIntensity
+db.t I lastFlashDuration
+db.f Z exploding_
+db.u I flashType
+db.v I localFightersCnt
+db.w I jumperCnt
+db.x I bigShipsCnt
+db.y I raidersCnt
+db.z I alienRespawnTick
+db.A I commonRespawnTick
+db.B I jumperRespawnTick
+db.d Lbf; raidRoute
+db.C I raidWavesCounter
+db.g Z friendlyFireAlerted
+db.h Z localsAlarmed
+db.a Z initStreamOutPosition
+db.b Z comingFromAlienWorld
+db.j I lastMissionFreighterHitpoints
+db.a Lbd; programmedStation
+db.c Z driveJumping
+db.b Lcc; tempVec
+db.a()V setInitStreamOut
+db.a()Z createSpace
+db.i()V createAsteroids
+db.a(IIIIIIII)Laz; createGun
+db.j()V createWingmen
+db.k()V createMission
+db.l()V createCampaignMission
+db.m()V createScene
+db.n()V assignGuns
+db.o()V connectPlayers
+db.a(Lck;I)Lp; createJunk
+db.a(IIILck;)Lp; createShip
+db.a(I)Lbf; createRoute
+db.a(I)[Lbq; createRadioMessages
+db.a()Lcr; getPlayer
+db.a()[Lp; getEnemies
+db.b()[Lp; getLandmarks
+db.c()[Lp; getAsteroids
+db.a()Lck; getAsteroidWaypoint
+db.a()Lbf; getPlayerRoute
+db.a(Lbf;)V setPlayerRoute
+db.a(I)V flashScreen
+db.a(Z)V enemyDied
+db.b()V junkDied
+db.c()V friendDied
+db.b(I)V wingmanDied
+db.d()V asteroidDied
+db.a()I unknown7f9_
+db.b()I getEnemiesLeft
+db.c()I getFriendsLeft
+db.a()[Lbq; getMessages
+db.d()I getTimeLimit
+db.a()Lf; getStarSystem
+db.a(Lcc;)Z isInAsteroidCenterRange
+db.b(Lcc;)Z collideStream
+db.c(Lcc;)Z collideStation
+db.a(J)V render
+db.e()V renderRockets_
+db.b(J)V render2
+db.c(J)V updateOrbit_
+db.a(I)Z checkObjective
+db.f()V stealFriendCargo
+db.b()Z friendCargoWasStolen
+db.g()V removeObjectives
+db.a()[Lag; getPlayerGuns_
+db.b(I)Z checkGameOver
+db.a(ZI)V createRadioMessage
+db.a(IZ)V alarmAllFriends
+db.c(I)V friendTurnedEnemy
+db.h()V onRelease
+n GoF2/ObjectGun
+n.a Laz; gun
+n.a [Lag; projectiles
+n.a Lag; rocketMesh_
+n.a Lcc; temp
+n.a()V OnRelease
+n.b()V render
+n.a(J)V update
+n.a()Lah; clone
+n.a(Laq;)V setTexture
+l GoF2/RocketGun
+l.a Lt; trail
+l.b Lcc; tempPos
+l.c Lcc; postion
+l.d Lcc; direction
+l.d I distX
+l.f I distY
+l.g I distZ
+l.d Z guided
+l.a Lbw; radar
+l.a()V OnRelease
+l.b()V render
+l.c()V renderRocket_
+l.a(Lbw;)V setRadar
+l.a(J)V update
+k AE/ParticleSystemMesh
+k.a Lcom/mascotcapsule/micro3d/v3/FigureLayout; v3layout
+k.a Lcom/mascotcapsule/micro3d/v3/Effect3D; effect3D
+k.a Lcom/mascotcapsule/micro3d/v3/AffineTrans; affineTrans
+k.a [I tempMatrixValues
+k.a Lcom/mascotcapsule/micro3d/v3/Texture; texture
+k.b [I vertices
+k.c [I uvs
+k.d [I normals
+k.d I quadCount
+k.f I blending
+k.a()Lah; clone
+k.a()V OnRelease
+k.a(Lap;Laf;)V appendToRender
+k.b(Lap;Laf;)V forceAppendToRender
+k.b()V render
+k.a(Laq;)V setTexture
+k.a([I[I)V setMeshData_
+bk GoF2/Sparks
+bk.a Lax; impact
+bk.d Z inactive
+bk.e Z unused4a_
+bk.c(III)V moveTo
+bk.c(Lcc;)V explode
+bk.a(J)V update
+bk.b()V render
+bk.a()Lah; clone
+bk.a(Laq;)V setTexture
+bk.a()V OnRelease
+bg AE/V3Mesh
+bg.a Lcom/mascotcapsule/micro3d/v3/Texture; specTexture
+bg.a Lcom/mascotcapsule/micro3d/v3/Light; light
+bg.a Lcom/mascotcapsule/micro3d/v3/Effect3D; globalEffect3D
+bg.b Lcom/mascotcapsule/micro3d/v3/Effect3D; localEffect3D
+bg.a Lcom/mascotcapsule/micro3d/v3/AffineTrans; toCameraTransform
+bg.a [I tempMatrixFlat
+bg.a Lcom/mascotcapsule/micro3d/v3/Figure; mesh
+bg.a Lcom/mascotcapsule/micro3d/v3/ActionTable; act
+bg.d I animLength
+bg.f I animStartFrame
+bg.g I animEndFrame
+bg.h I animCurrentFrame
+bg.a J sysTime
+bg.d Z hasAnimation
+bg.a B animationMode
+bg.a Lcom/mascotcapsule/micro3d/v3/FigureLayout; v3layout
+bg.a(Ljava/lang/String;)V loadAnimation
+bg.a()Lah; clone
+bg.a(Lap;Laf;)V appendToRender
+bg.b(Lap;Laf;)V forceAppendToRender
+bg.b()V render
+bg.a(J)V update
+bg.f(I)V setAnimationSpeed
+bg.i()I getCurrentAnimFrame
+bg.a(II)V setAnimationRangeInTime
+bg.a(B)V setAnimationMode
+bg.e()V disableAnimation
+bg.b()Z hasAnimation
+bg.a(Laq;)V setTexture
+bg.a()V OnRelease
+ac AE/ParticlesMesh
+ac.a Lcom/mascotcapsule/micro3d/v3/FigureLayout; v3layout
+ac.a Lcom/mascotcapsule/micro3d/v3/Effect3D; effect3D
+ac.a Lcom/mascotcapsule/micro3d/v3/AffineTrans; tempLayoutTranform
+ac.a [I tempMatrixFlat
+ac.a Lcom/mascotcapsule/micro3d/v3/Texture; texture
+ac.b [I positions
+ac.c [I uvs
+ac.d [I dummyArray
+ac.d I count
+ac.e [I scales
+ac.f I blending
+ac.a()Lah; clone
+ac.a()V OnRelease
+ac.a(Lap;Laf;)V appendToRender
+ac.b(Lap;Laf;)V forceAppendToRender
+ac.b()V render
+ac.a(Laq;)V setTexture
+ac.a()[I getPositions
+ac.b()[I getScales
+ad GoF2/Globals
+ad.a Ljava/lang/String; PATH_MESHES
+ad.b Ljava/lang/String; PATH_TEXTURES
+ad.a [[S BAR_MESHES
+ad.a [S BAR_FIGURES
+ad.b [[S HANGAR_MESHES
+ad.b [S TYPE_WEAPONS
+ad.a [B CHAR_KEITH
+ad.c [B CHAR_BRENT
+ad.d [B CHAR_GUNANT
+ad.e [B CHAR_NORRIS
+ad.f [B CHAR_MKKT_BKKT
+ad.g [B CHAR_TOMMY
+ad.h [B CHAR_CARLA
+ad.i [B CHAR_ERRKT
+ad.j [B CHAR_JEAN
+ad.k [B CHAR_PIRATE_CHIEF
+ad.l [B CHAR_PIRATE_1
+ad.m [B CHAR_PIRATE_2
+ad.n [B CHAR_SECURITY_GUY
+ad.o [B CHAR_SECURITY_GIRL
+ad.p [B CHAR_KIDNAPPER
+ad.q [B CHAR_STORY
+ad.b [B CHAR_COMPUTER
+ad.r [B CHAR_INFO_PIC
+ad.s [B CHAR_TERRAN_OFFICER
+ad.t [B CHAR_VOID
+ad.u [B CHAR_KHADOR
+ad.v [B CHAR_NIVELIAN_SECURITY
+ad.a [[B CHAR_IMAGES
+ad.a [Lch; ships
+ad.a [Lv; items
+ad.a()V OnInitialize
+ad.a()[Lch; getShips
+ad.a()[Lv; getItems
+ad.a(I)Ljava/lang/String; getItemName
+ad.a(I)[I getRaceUVkeyframeId_
+ad.a(IZ)Ljava/lang/String; getRandomName
+ad.a()Ljava/lang/String; getRandomPlanetName
+ad.a(I)I getRandomEnemyFighter
+ad.a(II)Lar; getShipGroup
+ad.a(Lar;I)V buildShip
+ad.b()V buildResourceList
+ad.c()V OnRelease
+aa GoF2/Player
+aa.a [[Laz; guns
+aa.a [Laa; coPlayers
+aa.a F radius
+aa.d I empPoints
+aa.e I maxEmpPoints
+aa.f I hp
+aa.g I maxHp
+aa.b F shield
+aa.h I maxShield
+aa.i I armorPoints
+aa.j I maxArmorPoints
+aa.k I percentHP
+aa.l I percentShield
+aa.m I percentArmor
+aa.n I percentEMP
+aa.o I threeSecTick
+aa.f Z active
+aa.g Z vulnerable
+aa.a Z enemy
+aa.b Z friend
+aa.c Z hidden
+aa.a Lcm; transform
+aa.a Lcc; hitVector
+aa.a Lp; kiPlayer
+aa.h Z playShootSound
+aa.d Z killedByKI
+aa.c F reamingNukeStun
+aa.d F empForce
+aa.p I egoInflictDamage
+aa.q I dealtEmpDamage
+aa.i Z permanentEnemy
+aa.r I empImpactForce
+aa.s I elapsedEMPstun
+aa.j Z stunnedEMP
+aa.k Z tempEnemy_
+aa.l Z permanentFriend
+aa.e Z invincible_
+aa.a I posX
+aa.b I posY
+aa.c I posZ
+aa.a()Z isAsteroid
+aa.a(Z)V setAlwaysEnemy
+aa.b(Z)V setAlwaysFriend
+aa.b()Z isAlwaysFriend
+aa.a(II)V setEmpData
+aa.c(Z)V setPlayShootSound
+aa.a(I)V setRadius
+aa.a(Lp;)V setKIPlayer
+aa.a()Lp; getKIPlayer
+aa.a()V reset
+aa.a([Laa;)V setEnemies
+aa.b([Laa;)V addEnemies
+aa.a()[Laa; getEnemies
+aa.a(I)Laa; getEnemy
+aa.b(I)V setHitPoints
+aa.c(I)V setShieldHP
+aa.d(I)V setArmorHP
+aa.e(I)V setMaxHP
+aa.f(I)V setMaxShieldHP
+aa.g(I)V setMaxArmorHP
+aa.a()I getShieldHP
+aa.b()I getCombinedHP
+aa.c()I getArmorHP
+aa.d()I getMaxArmorHP
+aa.a(F)V regenerateShield
+aa.b()V regenerateArmor
+aa.c()V regenerateHull
+aa.e()I getHitpoints
+aa.f()I getMaxHitpoints
+aa.f()V updateDamageRate
+aa.g()I getDamageRate
+aa.h()I getEmpDamageRate
+aa.i()I getShieldDamageRate
+aa.j()I getArmorDamageRate
+aa.d(Z)V setVulnerable_
+aa.a(III)V setHitVector_
+aa.b(F)V setBombForce
+aa.c(F)V setEmpForce_
+aa.a()F getBombForce
+aa.b()F setEmpForce_
+aa.a()Lcc; getHitVector
+aa.a(IZ)V damageEmp
+aa.b(IZ)V damageHP
+aa.c()Z isAlwaysEnemy
+aa.d()V setAlwaysEnemy
+aa.a(I)Z hasGunOfType
+aa.a(Lcc;)Lcc; getPosition
+aa.e(Z)V setActive
+aa.d()Z isActive
+aa.e()Z isDead
+aa.e()V removeAllGuns
+aa.h(I)V resetGunDelay
+aa.a(IJZLcm;)V playShootSound__
+aa.a(IJZ)V shoot_
+aa.a(IIJZ)Z shoot
+aa.a(J)V update
+ae GoF2/SystemPathFinder
+ae.a([Lcw;II)[I getSystemPath
+ae.a(Ld;)Ljava/util/Vector; constructPath
+af AE/Renderer
+af.a Lap; camera
+af.a Lah; cameraTopGroup
+af.a [Lcz; layers
+af.a [Z needGraphicsClear
+af.a Ls; graphics3D
+af.a(Lap;)V setActiveCamera
+af.a()Lap; getCamera
+af.a(Lah;)V drawNodeInVF
+af.a()V renderStillFrame
+af.a(J)V renderFrame
+af.b()V addLayer
+af.a(ILag;)V drawNode
+ai AE/AEFile
+ai.a Ljava/lang/Class; clazs
+ai.a(Ljavax/microedition/lcdui/Image;II)Ljavax/microedition/lcdui/Image; resizeImage
+ai.a(Ljava/lang/String;Z)Ljavax/microedition/lcdui/Image; loadImage
+ai.a(Ljava/lang/String;)Ljavax/microedition/lcdui/Image; loadCryptedImage
+ai.a(Ljava/lang/String;)Ljava/lang/Class; getClass
+p GoF2/KIPlayer
+p.a S state
+p.a I speed
+p.a Laa; player
+p.a Lag; mainMesh_
+p.a Lar; geometry
+p.b I meshId
+p.c I shipId_
+p.d I race
+p.a Ldb; level
+p.a Lbf; activeRoute_
+p.a Lcf; explosion
+p.a Lcc; tempVector_
+p.b Lcc; position
+p.e I targetX
+p.f I targetY
+p.g I targetZ
+p.a Z carriesMissionCrate
+p.b Z isAsteroid
+p.c Z junk
+p.d Z hasCargo
+p.a [I cargo
+p.b Lag; waste
+p.c Lag; jumpMesh
+p.e Z diedWithMissionCrate
+p.f Z lostMissionCrateToEgo
+p.g Z unusedc3a_
+p.h I crateLifeTime
+p.h Z wingman
+p.i I wingmanId
+p.j I wingmanCommand
+p.a Lp; wingmanTarget
+p.i Z jumper
+p.k I jumpTick
+p.a Ljava/lang/String; name
+p.j Z stunned
+p.k Z armed
+p.l Z visible
+p.b()Z isVisible
+p.b(Z)V setVisible
+p.a(Lar;I)V setGroup
+p.c(Z)V setJumper
+p.c()Z isJumper
+p.b()V OnRelease
+p.d(Z)V setActive
+p.e(Z)V setInitActive
+p.a(Lx;)V captureCrate
+p.d()Z isWingman
+p.a(ZI)V setWingman
+p.a(ILp;)V setWingmanCommand
+p.a(I)V setSpeed
+p.a(Ldb;)V setLevel
+p.a(Lcf;)V setExplosion
+p.a(Lbf;)V setRoute
+p.a()Lbf; getRoute
+p.a(Laz;I)V addGun
+p.a()I getMeshId
+p.a(Lcc;)Lcc; getPosition
+p.e()Z isDead
+p.f()Z isDying
+p.c()V setDead
+p.d()V setToSleep
+p.e()V awake
+p.a(Lag;)V setJumpMesh
+p.b(I)V createCrate
+p.g()Z cargoAvailable_
+p.a(J)V update
+p.a(III)Z outerCollide
+p.a(Lcc;)Z outerCollide
+p.b(Lcc;)Lcc; getProjectionVector_
+p.f()V revive
+p.a(III)V setPosition
+p.a()V appendToRender
+cq GoF2/PlayerJunk
+cq.a J frameTime
+cq.a(J)V update
+cq.a()V appendToRender
+cq.a(III)Z outerCollide
+cn GoF2/PlayerAsteroid
+cn.c Lcc; tempVector1_
+cn.d Lcc; tempVector2_
+cn.m I frametime
+cn.n I posX
+cn.o I posY
+cn.p I posZ
+cn.n Z clampDisabled
+cn.q I baseScaleX
+cn.r I baseScaleY
+cn.s I baseScaleZ
+cn.t I passedTime
+cn.e Lcc; center_
+cn.o Z rotationEnabled
+cn.a Lcm; playerTransform_
+cn.u I sizeCoef_
+cn.v I tier
+cn.d Lag; explosionMesh
+cn.m Z clampedByDistance
+cn.l I oreItemId
+cn.b()V OnRelease
+cn.b()I getMass_SizeCoef__
+cn.c()I getQuality
+cn.d()I getQualityFrameIndex
+cn.a(Lcc;)V setAsteroidCenter
+cn.a(Z)V setRotationEnabled
+cn.a(J)V update
+cn.g()V scaleOnDistanceClamp_
+cn.a()V appendToRender
+cn.a(Lcc;)Z outerCollide
+cn.b(Lcc;)Lcc; getProjectionVector_
+cn.a(III)Z outerCollide
+ck GoF2/Waypoint
+ck.l I x
+ck.m I y
+ck.n I z
+ck.m Z reached_
+ck.a(Lcc;)Lcc; getPosition
+ck.d(Z)V setActive
+ck.g()V reset
+ck.a(J)V update
+ck.a()V appendToRender
+ck.a(III)Z outerCollide
+u GoF2/PlayerStatic
+u.c Lcc; virtDistToCam_
+u.l I posX
+u.m I posY
+u.n I posZ
+u.a(J)V update
+u.a(Lcc;)Lcc; getPosition
+u.a()V appendToRender
+u.a(III)Z outerCollide
+bx GoF2/PlayerStaticFar
+bx.a [Ly; boundingBoxes
+bx.a()V appendToRender
+bx.a(J)V update
+bx.a(III)Z outerCollide
+bx.c(Lcc;)Lcc; getTargetPos_
+bx.a(Lcc;)Z outerCollide
+bx.b(Lcc;)Lcc; getProjectionVector_
+c GoF2/PlayerWormHole
+c.o I lifeTime
+c.p I scale
+c.a(Z)V reset
+c.a()Z isShrinking
+c.a(III)V setPosition
+c.a()V appendToRender
+c.a(J)V update
+c.a(Lcc;)Lcc; getPosition
+ab GoF2/RecordHandler
+ab.a Ljavax/microedition/rms/RecordStore; recordStore
+ab.a Lcl; mission
+ab.a Lca; agent
+ab.a()[Lz; readAllPreviews
+ab.a()V readOptions
+ab.b()V writeOptions
+ab.a([B)Lz; readRecordFromByteArray
+ab.a(I)Lz; recordStoreRead
+ab.a(I)V saveGame
+ab.a()[B recordStoreToByteArray
+ab.a(Ljava/io/DataOutputStream;Lca;)V writeAgent
+ab.a(Ljava/io/DataInputStream;)Lca; readAgent
+ab.a(Ljava/io/DataOutputStream;Lcl;)V writeMission
+ab.a(Ljava/io/DataInputStream;)Lcl; readMission
+ab.b(I)Lz; readPreview
+cb GoF2/PlayerStation
+cb.b [I partsCollisions
+cb.a [Lag; stationParts
+cb.c [I partPositions
+cb.o I collidingPart
+cb.p I maxPartDeflection
+cb.a(J)V update
+cb.a()V appendToRender
+cb.a(Lcc;)Lcc; getPosition
+cb.a(III)Z outerCollide
+cb.a(Lcc;)Z outerCollide
+cb.b(Lcc;)Lcc; getProjectionVector_
+cb.b()V OnRelease
+bi GoF2/PlayerJumpgate
+bi.m Z animationInit
+bi.g()V activate
+bi.a(III)V setPosition
+bi.a(J)V update
+bh GoF2/PlayerFighter
+bh.l I deathTransitionTime
+bh.m I sightRange
+bh.n I soundRange
+bh.a F defaultSpeed
+bh.b F defaultHandling
+bh.o I boostChance
+bh.c Lcc; pos
+bh.d Lcc; initPos
+bh.e Lcc; targetPos_
+bh.f Lcc; distanceToTarget
+bh.a Lcm; tempTransform
+bh.p I targedId_
+bh.m Z canBoost
+bh.q I behavioutChangeTick
+bh.r I tearingSpeed
+bh.s I boostTick
+bh.t I boostTimeLimit
+bh.u I trailTick
+bh.b Laa; target__
+bh.n Z folowingRoute
+bh.a J frameTime
+bh.v I hitpoints
+bh.w I damageAccumulator
+bh.o Z damageEscape
+bh.b Lbf; defaultRoute_
+bh.c Lbf; stationRouteAliens
+bh.d Lbf; activeRoute
+bh.x I initialWaypoint
+bh.y I weaponActive
+bh.a Lt; trail
+bh.p Z strayFromTarget_
+bh.c F tearingSpeed
+bh.d F handling
+bh.a [Ly; boundings
+bh.q Z targetIsActive
+bh.r Z collisionEnabled
+bh.s Z unused821_
+bh.z I crateTime_
+bh.b()V OnRelease
+bh.a(Z)V setMissionCrate
+bh.a()Z lostMissionCrateToEgo
+bh.h()Z diedWithMissionCrate
+bh.i()Z lostCargo
+bh.j()Z unk151_
+bh.a(III)V setPosition
+bh.a(ILp;)V setWingmanCommand
+bh.a(I)V setSpeed
+bh.c(I)V setRotate
+bh.d(I)V setBoostProb
+bh.g()V removeTrail
+bh.f(Z)V setExhaustVisible
+bh.a(J)V update
+bh.a()V appendToRender
+bh.a(III)Z outerCollide
+bh.f()V revive
+ak GoF2/PlayerFixedObject
+ak.a [Ly; bounds
+ak.a J frametime
+ak.m Z moving
+ak.c Lcc; pos
+ak.d Lcc; lasSetPos
+ak.e Lcc; nearEnemyPos
+ak.f Lcc; nearEnemyDistance
+ak.g Lcc; distToCamera
+ak.b Laa; nearEnemy
+ak.l I collidingBound
+ak.n Z destroyed
+ak.m I unusedFloatingPartsLifeDonwCounter_
+ak.a [Lcc; postExposionPartPos
+ak.b [Lcc; postExplosionPartRot
+ak.n I posX
+ak.o I posY
+ak.p I posZ
+ak.b()V OnRelease
+ak.a(Z)V setMoving
+ak.a(III)V setPosition
+ak.a([Ly;)V setBounds
+ak.a(Lcc;)Lcc; getPosition
+ak.c(I)V moveForward
+ak.a(J)V update
+ak.a()V appendToRender
+ak.a(III)Z outerCollide
+ak.b(Lcc;)Lcc; getProjectionVector_
+ak.a(Lcc;)Z outerCollide
+al GoF2/MiningGame
+al.a I nextLevelTreshold
+al.b I levels
+al.c I curLevel
+al.d I levelProgress
+al.e I nextMinedProgress
+al.f I nextMinedThreshold
+al.a F cursorAcceleration
+al.b F driftSpeed
+al.c F driftSuppress
+al.d F pressCumulativeAcceleration
+al.e F cursorPos
+al.f F failProgress
+al.g F miningProgress
+al.h F minedTons
+al.g I minedIndicatorHighlightCounter
+al.h I frameTime
+al.i F minigSpeed
+al.j F controlability
+al.a Ljavax/microedition/lcdui/Image; background
+al.b Ljavax/microedition/lcdui/Image; cursor
+al.c Ljavax/microedition/lcdui/Image; greenComplete
+al.d Ljavax/microedition/lcdui/Image; greenEmpty
+al.e Ljavax/microedition/lcdui/Image; redArea
+al.f Ljavax/microedition/lcdui/Image; items
+al.a Lx; hud
+al.i I minedItemId
+al.j I boardPosX
+al.k I boardPosY
+al.l I failedBarPosX
+al.m I barsPadding
+al.a Z succeed
+al.a [I _LAYER_WITDTHS
+al.a()Z gameLost
+al.a()I getMiningProgressRounded
+al.b()Z gotCore
+al.a(II)Z update
+al.a()V render2D
+am AE/AEBoundingSphere
+am.a Lcc; center
+am.a I radius
+am.a(Lam;)V merge
+am.b(Lam;)V set
+am.a(IIII)V setXYZR
+am.a(Lcc;I)V set
+an GoF2/Radio
+an.a [Lbq; messages
+an.a Lbq; currentMessage
+an.a [Ljava/lang/String; rows
+an.a [B face
+an.a J msgStartTime
+an.a I msgTime
+an.a Ljava/lang/String; title
+an.b J msgCheckTick
+an.a [Ljavax/microedition/lcdui/Image; faceImages
+an.b I font
+an.a()V OnRelease
+an.a([Lbq;)V setMessages
+an.a(Lbq;)V setCurrentMessage
+an.a(I)Lbq; getMessageFromQueue
+an.b()V showMessage
+an.a(JJLcr;)V draw
+ao GoF2/LoadingScreen
+ao.a Z stillLoading
+ao.a Ljavax/microedition/lcdui/game/GameCanvas; canvas
+ao.a Ljava/lang/Thread; loadingThread
+ao.a Ljavax/microedition/lcdui/Image; gameLogo
+ao.a [Ljava/lang/String; tipsRows
+ao.a Ljava/lang/String; stateIndicator
+ao.b Ljava/lang/String; textOverStateIndicator
+ao.a J endTime
+ao.b J startTime
+ao.a()Ljavax/microedition/lcdui/Image; getGameLogo
+ao.a(Ljavax/microedition/lcdui/game/GameCanvas;)V setGameCanvas
+ao.a()V draw
+ao.b()V close
+ao.a(Z)V startLoading_
+aq AE/ITexture
+aq.a()V OnRelease
+cj AE/V3Texture
+cj.a [Lcom/mascotcapsule/micro3d/v3/Texture; textures
+cj.a()V OnRelease
+ah AE/GraphNode
+ah.b I animationFrameTime
+ah.a Lar; group
+ah.a Lah; parent
+ah.a Z draw
+ah.b Z transformDirty_
+ah.c Z boundsDirty_
+ah.b Lcm; globalTransform
+ah.c Lcm; tempTransform
+ah.a Lam; boundingSphere
+ah.c I resourceId
+ah.a()I getID
+ah.a(Z)V setDraw
+ah.a()Z isVisible
+ah.a()Lar; getGroup
+ah.b()Lah; getParent
+ah.a(Lap;Laf;)V appendToRender
+ah.b(Lap;Laf;)V forceAppendToRender
+ah.b(Z)V updateTransform
+ah.d()V markDirty
+ah.a(Ljava/lang/String;I)Ljava/lang/String; getString
+ah.b(III)V translate
+ah.a(Lcc;)V translate
+ah.c(III)V moveTo
+ah.b(Lcc;)V moveTo
+ah.b(I)V moveForward
+ah.a(Lcc;)Lcc; getPosition
+ah.b(Lcc;)Lcc; getLocalPos
+ah.a()Lcc; getPostition
+ah.b()Lcc; getLocalPos
+ah.b()I getPosX
+ah.c()I getPosY
+ah.d()I getPosZ
+ah.e()I getLocalPosZ
+ah.c(Lcc;)Lcc; getDirection
+ah.d(Lcc;)Lcc; getLocalDirection
+ah.c()Lcc; getDirection
+ah.d()Lcc; getLocalDirection
+ah.e(Lcc;)Lcc; getUp
+ah.e()Lcc; getUp
+ah.f(Lcc;)Lcc; getRightVector
+ah.f()Lcc; getRight
+ah.a(S)V setRotationOrder
+ah.d(III)V rotateEuler
+ah.c(I)V roll
+ah.d(I)V pitch
+ah.e(I)V yaw
+ah.e(III)V setRotation
+ah.f()I getEulerX
+ah.g()I getEulerY
+ah.h()I getEulerZ
+ah.a(Lw;)V setToParentFromQuaterion
+ah.f(III)V setScale
+ah.g(Lcc;)Lcc; copyScaleTo
+ah.g()Lcc; getScale
+ah.a()Lcm; getToParentTransform
+ah.b()Lcm; getLocalTransform
+ah.a(Lcm;)V setTransform
+ah.a(Lcm;)Lcm; getInverseTransform
+ah.a(Lcc;Lcc;Lcc;)V setTransform
+ah.f(I)V setAnimationSpeed
+ah.i()I getCurrentAnimFrame
+ah.a(II)V setAnimationRangeInTime
+ah.a(B)V setAnimationMode
+ah.e()V disableAnimation
+ah.b()Z hasAnimation
+as AE/IApplicationModule
+as.a(I)V renderScene
+as.b(I)V handleKeystate
+as.b()V OnInitialize
+as.a()V OnRelease
+as.a()Z isLoaded
+at AE/GlobalStatus
+at.a Z musicOn
+at.b Z sfxOn
+at.c Z vibrationOn
+at.d Z invertedControlsOn
+at.a I musicVolume
+at.b I sfxVolume
+at.c I language
+at.e Z shopHelpShown
+at.f Z shipHelpShown
+at.g Z actionsHelpShown
+at.h Z bluePrintsHelpShown
+at.i Z bluePrintInfoHelpShown
+at.j Z barHelpShown
+at.k Z galaxyMapHelpShown
+at.l Z systemMapHelpShown
+at.m Z somehelpShown_unused_
+at.n Z miningHelpShown
+at.o Z asteroidHelpShown
+at.p Z missionsHelpShown
+at.q Z cargoFullHelpShown
+at.r Z wingmenHelpShown
+at.s Z actionMenuHelpShown
+at.t Z boosterHelpShown
+at.u Z statusHelpShown
+at.v Z medalsHelpShown
+at.w Z fanWingmenNoticeShown
+at.x Z voidxNoticeShown
+at.y Z reputationHelpShown
+at.z Z buyingHelpShown
+at.A Z itemMountingHelpShown
+at.B Z itemMounting2HelpShown
+at.C Z interplanetHelpShown
+at.D Z jumpDriveHelpShown
+at.E Z cloakHelpShown
+at.a Laf; renderer
+at.a Ls; graphics3D
+at.a Ljavax/microedition/lcdui/Display; display
+at.a Lao; loadingScreen
+at.d I displayedSecondary
+at.F Z soundDeviceUnavailable
+at.e I currentMusic
+at.a Lco; gameText
+at.a Ljavax/microedition/lcdui/Graphics; graphics
+at.a Ljavax/microedition/midlet/MIDlet; midlet
+at.f I screenWidth
+at.g I screenHeight
+at.a Lbs; soundManager
+at.a Ljava/util/Random; random
+at.a Ljava/lang/String; gameVersion
+at.G Z paused
+at.a Lau; applicationManager
+at.a [Las; scenes
+at.a(I)V vibrate
+at.a()V resetHints
+at.b()V checkDeviceControlSupport
+au GoF2/ApplicationManager
+au.a Las; scene
+au.a LMain/GOF2MIDlet; midlet
+au.a Lao; loadingScreen
+au.a(Las;)V SetCurrentApplicationModule
+au.a()Las; GetCurrentApplicationModule
+au.a()V Quit
+au.a(I)V handleKeystate
+au.b(I)V renderScene
+av GoF2/FileRead
+av.a Ljava/lang/Class; varClass
+av.a(I)Lbd; loadStation
+av.a([S)[Lbd; loadStationsBinary
+av.a(I)[I loadShipParts
+av.a(II)[I loadStationParts
+av.a(Lcw;)[Lbd; loadStationsBinary
+av.a()[Lca; loadAgents
+av.a()[Lcw; loadSystemsBinary
+av.a()[Lv; loadItemsBinary
+av.a()[Lch; loadShipsBinary
+av.a(IZZ)[Ljava/lang/String; loadNamesBinary
+av.a(Ljava/lang/String;)Ljava/lang/Class; getClassForName
+aw GoF2/AutoPilotList
+aw.a I selection
+aw.b I posX
+aw.c I posY
+aw.d I width
+aw.a [Ljava/lang/String; rows
+aw.e I rowsNum
+aw.a()I getSelection
+aw.a()V down
+aw.b()V up
+aw.c()V draw
+ar AE/Group
+ar.b Lah; head
+ar.a(Lah;)V uniqueAppend_
+ar.b(Lah;)V removeNode
+ar.a()Lah; getEndNode
+ar.a(Lap;Laf;)V appendToRender
+ar.b(Lap;Laf;)V forceAppendToRender
+ar.b(Z)V updateTransform
+ar.a(Ljava/lang/String;I)Ljava/lang/String; getString
+ar.a(II)V setAnimationRangeInTime
+ar.a(B)V setAnimationMode
+ar.e()V disableAnimation
+ar.b()Z hasAnimation
+ax GoF2/Impact
+ax.a Lag; mesh
+ax.a [I particlesLifeTime
+ax.a I baseLifeTime
+ax.b I spread
+ax.c I lifeTimeRange
+ax.a()V explode
+ax.a(I)V update
+ay GoF2/Popup
+ay.a I posX
+ay.b I posY
+ay.c I width
+ay.d I height
+ay.a [Ljava/lang/String; rows
+ay.e I choicePosY
+ay.a Z currentChoice
+ay.b Z isChoice
+ay.a(Ljava/lang/String;)V setAsWarning
+ay.a(Ljava/lang/String;Z)V set
+ay.a()Z getChoice
+ay.a()V left
+ay.b()V right
+ay.c()V draw
+az GoF2/Gun
+az.a [[[S MUZZLE_POSITIONS
+az.a Ldb; level
+az.a [Laa; targets
+az.a [Lcc; projectilesPos
+az.b [Lcc; projectilesDir
+az.b Lcc; tempPos
+az.c Lcc; tempDir
+az.a Laa; tempTarget
+az.a [I projectilesTimeLeft
+az.g I equipmentId
+az.h I damage
+az.a I ammo
+az.a F projectileSpeed
+az.b I range
+az.a Lcc; muzzleOffset
+az.a Z fired
+az.d Lcc; tempVector
+az.c I timeSinceLastShot
+az.d I reloadTimeMilis
+az.b Z inAir
+az.c Z unused547_
+az.e I index
+az.f I subType
+az.i I magnitude
+az.a Lbk; sparks
+az.d Z unused5de_
+az.e Z friendGun
+az.j I spread
+az.a(I)V setSpread
+az.a(Z)V setFriendGun
+az.b(I)V setMagnitude
+az.a()I getMagnitude
+az.a(II)V setOffset
+az.a()V OnRelease
+az.a(Lbk;)V setSparks
+az.a(Ldb;)V setLevel
+az.a([Laa;)V setTargets
+az.a()[Laa; getTargets
+az.a(Lcm;JZ)Z shoot
+az.b()V ignite
+az.a(J)V calcCharacterCollision
+az.c()V renderSparks
+ba GoF2/Achievements
+ba.a [[I VALUES
+ba.a [I medals
+ba.b [I newMedals
+ba.a I killStreak
+ba.b I pirateKillStreak
+ba.c I weaponsEquipped
+ba.a Z isArmed
+ba.d I maxCredits
+ba.b Z ALL_MEDALS
+ba.c Z ALL_GOLD_MEDALS
+ba.e I goldMedalsCount
+ba.f I unlockedMedalsCount
+ba.a(Lcr;)V checkForNewMedal
+ba.f()V countMedals
+ba.a()Z gotAllMedals
+ba.b()Z gotAllGoldMedals
+ba.a()[I getMedals
+ba.b()[I getNewMedals
+ba.a()V incKills
+ba.b()V incPirateKills
+ba.a(I)V updateMaxCredits
+ba.a([I)V setMedals
+ba.c()V init
+ba.d()V applyNewMedals
+ba.e()V resetNewMedals
+y AE/BoundingVolume
+y.a Lcc; temp
+y.a I posX
+y.b I posY
+y.c I posZ
+y.d I offsetX
+y.e I offsetY
+y.f I offsetZ
+y.a(Lcc;)Lcc; getProjectionVector
+y.a(III)V setPosition
+y.a(III)Z outerCollide_
+y.b(III)Z isPointInBounding
+ct AE/BoundingAAB
+ct.g I halfSizeX
+ct.h I halfSizeY
+ct.i I halfSizeZ
+ct.a(III)Z outerCollide_
+ct.b(III)Z isPointInBounding
+ct.a(III)V setPosition
+bb AE/BoundingSphere
+bb.g I r
+bb.h I x
+bb.i I y
+bb.j I z
+bb.a(III)Z outerCollide_
+bb.b(III)Z isPointInBounding
+bb.a(III)V setPosition
+bc AE/Time
+bc.a Ljava/lang/String; seconds
+bc.b Ljava/lang/String; minutes
+bc.c Ljava/lang/String; hours
+bc.a(J)Ljava/lang/String; timeToHMS
+bc.b(J)Ljava/lang/String; timeToHM
+aj AE/CameraControllerGroup
+aj.a [Lcu; controllers
+aj.a(Lcu;)V addController
+aj.b(Z)V updateTransform
+bd GoF2/Station
+bd.a Ljava/lang/String; name
+bd.a I id
+bd.b I systemId
+bd.c I planetTextureId
+bd.d I tecLevel
+bd.a [Lv; hangarItems
+bd.a [Lch; hangarShips
+bd.a [Lca; barAgents
+bd.a()I getSystemIndex
+bd.a()Ljava/lang/String; getName
+bd.b()I getId
+bd.a()Z isAttackedByAliens
+bd.c()I getPlanetTextureId
+bd.b()Z isDiscovered
+bd.a()V visit
+bd.d()I getTecLevel
+bd.a()[Lch; getShopShips
+bd.a()[Lv; getShopItems
+bd.a([Lv;)V setShopItems
+bd.a([Lch;)V setShopShips
+bd.a([Lca;)V setBarAgents
+bd.a(Lv;)V addItem
+bd.a()[Lca; getBarAgents
+bd.a(Lbd;)Z equals
+be GoF2/Generator
+be.a [I GENERATOR_CAMPAIGN_STATIONS
+be.b [I GENERATOR_TYPE_PROBS
+be.a(Lbd;)[Lch; getShipBuyList
+be.a()[I getLootList
+be.a([Lcw;I)I generateStationIndex
+be.a(Lbd;)[Lca; createAgents
+be.a(Lca;)Lcl; createFreelanceMission
+bf GoF2/Route
+bf.a [Lck; waypoints
+bf.a Z loop
+bf.a I current
+bf.a()V onRelease
+bf.a(Lcc;)V setNewCoords
+bf.b()V reset
+bf.a(Z)V setLoop
+bf.a(I)Lck; getWaypoint
+bf.a()Lck; getDockingTarget_
+bf.b()Lck; getLastWaypoint
+bf.a()I getCurrent
+bf.a(I)V reachWaypoint_
+bf.b()I length
+bf.a(III)V update
+bf.a()Z isLooped
+bf.a()Lbf; getExactClone
+bf.b()Lbf; clone
+bj AE/Vec3f
+bj.a F x
+bj.b F y
+bj.c F z
+bl GoF2/Status
+bl.A I credits
+bl.B I rating
+bl.e J playTime
+bl.C I kills
+bl.D I missionsCount
+bl.E I level
+bl.F I lastXP
+bl.G I stationsVisited
+bl.H I bluePrintsProduced
+bl.I I pirateKills
+bl.J I jumpgatesUsed
+bl.K I cargoSalvaged
+bl.L I unused_
+bl.M I currentCampaignMissionIndex
+bl.a Lcs; standing
+bl.a Lch; playersShip
+bl.a Lcl; mission
+bl.a [Lcl; currentMissions
+bl.b Lbd; currentStation
+bl.a [Lbd; lastVisitedStations
+bl.a [Lh; blueprints
+bl.a Lcw; currentSolarSystem
+bl.b [Ljava/lang/String; currSysPlanetNames
+bl.c [I currSysPlanetTextures
+bl.a [Lbp; waitingGoods
+bl.a [Lca; specialAgents
+bl.a [Ljava/lang/String; wingmenNames
+bl.a [B wingmanFace
+bl.a I wingmanRace
+bl.b I wingmenTimeRemaining
+bl.c I passengerCount
+bl.a [Z visibleSystems
+bl.a [I lowestItemPrices
+bl.b [I highestItemPrices
+bl.b [B lowestItemPriceSystems
+bl.c [B highestItemPriceSystems
+bl.d I shield
+bl.e I additionalArmour
+bl.f I baseArmour
+bl.a J lastLoadingTime
+bl.a Lbd; voidStation
+bl.g I wormholeSystem
+bl.h I wormholeStation
+bl.i I lastVisitedNonVoidOrbit
+bl.j I wormHoleTick
+bl.b J loadingTime
+bl.c J loadingsCount
+bl.b [Z minedOreTypes
+bl.c [Z minedCoreTypes
+bl.k I missionGoodsCarried
+bl.l I minedOre
+bl.m I minedCores
+bl.n I boughtBooze
+bl.d [Z drinkTypesPossesed
+bl.o I destroyedJunk
+bl.e [Z systemsVisited
+bl.p I passengersCarried
+bl.d J invisibleTime
+bl.q I bombsUsed
+bl.r I alienJunkSalvaged
+bl.s I barInteractions
+bl.t I commandedWingmen
+bl.u I asteroidsDestroyed
+bl.v I maxFreeCargo
+bl.w I missionsRejected
+bl.x I askedToRepeate
+bl.y I acceptedNotAskingDifficulty
+bl.z I acceptedNotAskingLocation
+bl.a(Lh;)V appendProduced
+bl.a()[Lbp; getWaitingGoods
+bl.a()[Z getVisibleSystems
+bl.a(IZ)V setSystemVisibility
+bl.a()[Lbd; getLastVisitedStations
+bl.a([Lbd;)V setLastVisitedStations
+bl.a(Lbd;)Lbd; inLastVisitedStations
+bl.a(Lbd;)V departStation
+bl.a(I)V setPassengers
+bl.a()Lcl; getMission
+bl.a(Lcl;)V setMission
+bl.b()Lcl; getFreelanceMission
+bl.b(Lcl;)V setFreelanceMission
+bl.c()Lcl; getCampaignMission
+bl.c(Lcl;)V startStoryMission
+bl.a()V incMissionCount
+bl.b(I)V setCurrentCampaignMission
+bl.a()I getCurrentCampaignMission
+bl.b()V nextCampaignMission
+bl.a()Z gameWon
+bl.b()Z inEmptyOrbit
+bl.c()Z inAlienOrbit
+bl.a(ZJ)Lcl; missionCompleted_
+bl.c(I)V setJumpgateUsed
+bl.c()V jumpgateUsed
+bl.b()I getJumpgateUsed
+bl.d(I)V incCargoSalvaged
+bl.e(I)V setCargoSalvaged
+bl.c()I getCargoSalvaged
+bl.f(I)V getUnusedVar
+bl.d()I setUnusedVar
+bl.d(Lcl;)V removeMission_
+bl.d()V incStationsVisited
+bl.e()I getStationsVisited
+bl.a()Lch; getShip
+bl.a(Lch;)V setShip
+bl.a()Lbd; getStation
+bl.b(Lbd;)V setCurrentStation_andInitSystem_
+bl.a()[Ljava/lang/String; getPlanetNames
+bl.a()[I getPlanetTextures
+bl.a()Lcw; getSystem
+bl.f()I getCredits
+bl.g(I)V setRating
+bl.a(J)V setPlayingTime
+bl.h(I)V setKills
+bl.i(I)V setMissionCount
+bl.j(I)V setLevel
+bl.k(I)V setLastXP
+bl.l(I)V setGoodsProduced
+bl.g()I getGoodsProduced
+bl.m(I)V incGoodsProduced
+bl.n(I)V setStationsVisited
+bl.o(I)V changeCredits
+bl.p(I)V setCredits
+bl.e()V checkForLevelUp
+bl.h()I getRating
+bl.i()I getLastXP
+bl.j()I getKills
+bl.f()V incKills
+bl.q(I)V setPirateKills
+bl.k()I getPirateKills
+bl.g()V incPirateKills
+bl.l()I getMissionCount
+bl.m()I getLevel
+bl.a()Lcs; getStanding
+bl.a()[Lh; getBluePrints
+bl.a()[Lca; getSpecialAgents
+bl.b(J)V incPlayingTime
+bl.a()J getPlayingTime
+bl.b()[Ljava/lang/String; getWingmenNames
+bl.a([Ljava/lang/String;)V setWingmenNames
+bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceToken
+bl.a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceTokens
+bl.h()V calcCargoPrices
+bl.i()V startNewGame
+cy AE/AEGeometry
+cy.a Lcc; tempCenter
+cy.e I radius
+cy.b(Z)V updateTransform
+cy.g(I)V setRadius
+cy.a(Ljava/lang/String;I)Ljava/lang/String; getString
+bn GoF2/LevelScript
+bn.a Ldb; level
+bn.b I step
+bn.b Z cinematicBreak_
+bn.c Z active
+bn.d Z startSequenceIsOver
+bn.a Lcp; lookAtCam
+bn.c I passedTime
+bn.a Lcc; tempVec
+bn.b Lcc; approachStationCamPos
+bn.c Lcc; tempVec2
+bn.a Z unused_428
+bn.a Lx; hud
+bn.a Lbw; radar
+bn.a Lag; probe
+bn.a I timeLimit
+bn.a J timePassed
+bn.a(ILb;)Z process
+bn.a()V renderProbe__
+bn.b()V skipSequence
+bn.c()V startSequence
+bn.a()Z startSequenceOver
+bn.b()Z isActive
+bn.a(Lb;Ldb;)V resetCamera
+bn.a(Lb;)V lookBehind
+bn.d()V setAutoPilotToProgrammedStation
+bo AE/AEResourceManager
+bo.a [I textureIds
+bo.a [Laq; textures
+bo.a [Ljava/lang/String; texturePaths
+bo.a [Z loadedTextures
+bo.b [I meshIds
+bo.a [Lag; meshes
+bo.c [I radii_
+bo.b [Ljava/lang/String; meshPaths
+bo.b [Z loadedMeshes
+bo.d [I meshsTextureIds
+bo.a(ILjava/lang/String;)V addTextureResource
+bo.a(ILjava/lang/String;II)V addGeometryResource
+bo.a(ILjava/lang/String;I)V addSkyboxResource
+bo.a(I)Laq; getTextureResource
+bo.a(I)Lag; getGeometryResource
+bo.a()V releaseTextures
+bo.b()V releaseGeometry
+bo.c()V initGeometryTranforms
+bp GoF2/ProducedGood
+bp.a Ljava/lang/String; stationName
+bp.a I stationId
+bp.b I producedQuantity
+bp.c I index
+bq GoF2/RadioMessage
+bq.a Lan; radio
+bq.a I textId
+bq.b I imageId
+bq.c I triggerCondition
+bq.d I triggerType
+bq.a [I conditionsGroup
+bq.a Z triggered
+bq.b Z finished
+bq.e I lastWaypoint_
+bq.a()I getTextID
+bq.b()I getImageID
+bq.a(Lan;)V setRadio
+bq.a()Z isTriggered
+bq.b()Z isOver
+bq.a()V finish
+bq.a(JLcr;)Z triggered
+br GoF2/Objective
+br.a I type
+br.b I indexA_
+br.c I indexB_
+br.a Ldb; level
+br.a(I)Z achieved
+br.a()Z isSurvivalObjective
+bs AE/SoundManager
+bs.a [Ljava/lang/String; MUSIC_FILES_PATHS
+bs.b [Ljava/lang/String; SFX_FILES_PATHS
+bs.a I lastSfxIndex
+bs.a J sfxStartTime
+bs.a [J SFX_DURATIONS
+bs.a [S SFX_VOLUMES
+bs.a Ljavax/microedition/media/Player; musicPlayer
+bs.a [Ljavax/microedition/media/Player; sfxPlayers
+bs.a Ljavax/microedition/media/control/VolumeControl; tmpVolumeController
+bs.b I musicVolume
+bs.c I sfxVolume
+bs.a Z deviceAvailabe_
+bs.d I tmpMusicVolume
+bs.a(I)V setMusicVolume
+bs.b(I)V setSfxVolume
+bs.a()I getMusicVolume
+bs.a()V OnRelease
+bs.a()Z isMusicPlaying
+bs.c(I)V playMusic
+bs.a(II)V playSfx
+bs.d(I)V playSfx
+bs.b()V stop
+bs.c()V resume
+bs.d()V stopMusic__
+bt AE/CameraTrack
+bt.a I time
+bt.a J frameTime
+bt.a Lap; camera
+bt.a Lcx; interpolator
+bt.a [[I cameraTracks
+bt.a(J)V update
+bt.a()Lap; getCamera
+bu GoF2/TextBox
+bu.c I posX
+bu.d I posY
+bu.e I width
+bu.f I height
+bu.a I topPadding
+bu.a [Ljava/lang/String; rows
+bu.g I fontSpacingY__
+bu.a Z verticalBar
+bu.h I vBarPercent
+bu.a Ljava/lang/String; rawText
+bu.a [B faceIds
+bu.i I topPadding2
+bu.b Z hide
+bu.b I font
+bu.a [Ljavax/microedition/lcdui/Image; faceImgs
+bu.j I heightLimit
+bu.a()V zeroTopPadding
+bu.a(Z)V setHide
+bu.a(I)V setFont
+bu.a(Ljava/lang/String;)V setText
+bu.a()I getHeight_
+bu.b()I getTextHeight_
+bu.a([BLjava/lang/String;Z)V set
+bu.b(I)V scrollUp
+bu.c(I)V scrollDown
+bu.b()V draw
+bv GoF2/Galaxy
+bv.a Lcc; tempSysPos1
+bv.b Lcc; tempSysPos2
+bv.a [Z visitedStations
+bv.a(I)Lcw; loadSystem_
+bv.a(I)Lbd; getStation
+bv.a([Z)V setVisitedStations
+bv.a()[Z getVisitedStations
+bv.a(I)V visitStation
+bv.a(IIII)I invDistancePercent
+bv.b(IIII)I distancePercent
+bv.a(Lcw;Lcw;)F distance
+bv.a(Lbd;)[I getAsteroidProbabilities
+ap AE/Camera
+ap.f I nearPlane
+ap.g I farPlane
+ap.a [Lcc; vfPlaneNormals
+ap.b [Lcc; vfPlaneNormalsLocal
+ap.a [I lengths
+ap.a Lcc; cameraPos
+ap.b Lcc; nearPlaneCenter
+ap.c Lcc; farPlaneCenter
+ap.a I screenWidth
+ap.d I screenHeight
+ap.h I verticalProjectionFactor
+ap.i I horizontalProjectionFactor
+ap.b(Z)V updateTransform
+ap.a(III)V setPerspective
+ap.a(I)V setFoV
+ap.a(Lcc;)Z getScreenPosition
+ap.a(Lam;)B isInViewFrustum
+ap.a(Lap;Laf;)V appendToRender
+ap.b(Lap;Laf;)V forceAppendToRender
+ap.a(IIIII)Lap; create
+bw GoF2/Radar
+bw.a [I asteroidsInFront
+bw.a Ljavax/microedition/lcdui/Image; lockonEnemy
+bw.b Ljavax/microedition/lcdui/Image; radarIconEnemy
+bw.c Ljavax/microedition/lcdui/Image; hudLockOnFriend
+bw.d Ljavax/microedition/lcdui/Image; hudRadarIconFriend
+bw.e Ljavax/microedition/lcdui/Image; lockonWaypoint
+bw.f Ljavax/microedition/lcdui/Image; lockonNeutral
+bw.g Ljavax/microedition/lcdui/Image; radarIconNeutral2
+bw.h Ljavax/microedition/lcdui/Image; bracketEnemyFar
+bw.i Ljavax/microedition/lcdui/Image; bracketFriendFar
+bw.j Ljavax/microedition/lcdui/Image; lockonWaypoint2
+bw.k Ljavax/microedition/lcdui/Image; radarIconNeutral
+bw.l Ljavax/microedition/lcdui/Image; radarIconEnemyLock
+bw.m Ljavax/microedition/lcdui/Image; radarIconFriendLock
+bw.n Ljavax/microedition/lcdui/Image; radarIconNeutralLock
+bw.o Ljavax/microedition/lcdui/Image; bracketBox
+bw.p Ljavax/microedition/lcdui/Image; crate
+bw.q Ljavax/microedition/lcdui/Image; asteroid
+bw.r Ljavax/microedition/lcdui/Image; spacejunk
+bw.s Ljavax/microedition/lcdui/Image; crateVoid
+bw.t Ljavax/microedition/lcdui/Image; vortex
+bw.u Ljavax/microedition/lcdui/Image; waypoint
+bw.v Ljavax/microedition/lcdui/Image; mapJumpgate
+bw.w Ljavax/microedition/lcdui/Image; sideMission
+bw.x Ljavax/microedition/lcdui/Image; mainMission
+bw.a Ljavax/microedition/lcdui/game/Sprite; logosSmall
+bw.b Ljavax/microedition/lcdui/game/Sprite; scanProcessAnim
+bw.c Ljavax/microedition/lcdui/game/Sprite; meteorClass
+bw.d Ljavax/microedition/lcdui/game/Sprite; bars
+bw.a I screenProjectionX
+bw.b I screenProjectionY
+bw.c I elipsoidCenterX
+bw.d I elipsoidCenterY
+bw.e I elipsoidWidth
+bw.f I elipsoidHeight
+bw.b Z inViewFrustum
+bw.a [Lp; enemies
+bw.b [Lp; landmarks
+bw.c [Lp; asteroids
+bw.a [Lag; planets
+bw.a Lbf; playerRoute
+bw.a Ldb; level
+bw.a Lcm; camInvMatrix
+bw.a Lcc; tempCameraSpacePos
+bw.b Lcc; tempPos
+bw.c Lcc; playerPos
+bw.d Lcc; tempContextPosition
+bw.a Lbj; floatVector
+bw.g I enemyArmorBarHeight
+bw.a [Ljava/lang/String; stationaryPlayersNames
+bw.a Ljava/lang/String; closestStatPlayerDistanceVisible
+bw.h I enemyScanPassedTime
+bw.i I asteroidScanPassedTime
+bw.j I planetScanPassedTime
+bw.k I landmarkScanPassedTime
+bw.a Lp; contextShip
+bw.e Lp; targetedPlayer
+bw.f Lp; contextAsteroid
+bw.g Lp; targetedAsteroid
+bw.b Lag; contextPlanet
+bw.a Lag; targetedPlanet
+bw.b Lp; tractorBeamTarget
+bw.c Lp; contextLandmark
+bw.d Lp; targetedLandmark
+bw.a Z draw
+bw.c Z onPlanetCourse_
+bw.l I targetedPlanetLocalIndex
+bw.d Z showCargo
+bw.e Z showAasteroids
+bw.f Z scanerPresent
+bw.g Z drillPresent
+bw.h Z tractorBeamPresent
+bw.i Z tractorBeamAutomatic
+bw.j Z pastIntro
+bw.m I tractorBeamScanTime
+bw.n I scanTime
+bw.o I activeEnemyEnemiesCount
+bw.a()V OnRelease
+bw.a(Lap;Lcc;)V elipsoidIntersect
+bw.a(Lap;Lp;)V elipsoidIntersect
+bw.a(Laa;Lap;Lb;Lx;I)V draw
+bw.a()I getPlanetDockIndex
+bw.a(Lx;)V drawCurrentLock
+bw.a(IIILaa;)Ljava/lang/String; calcDistance
+bw.a()Lp; getLockedAsteroid
+bw.b()V unlockAsteroid
+bw.b()Lp; getLockedEnemy
+by GoF2/TractorBeam
+by.a Lcc; shipToTarget
+by.b Lcc; wastePos_shipDir_
+by.c Lcc; beamSrcPos_
+by.d Lcc; toTargetDir
+by.a Lp; target
+by.a [[I typeUV
+by.a I width
+by.a [I vertexPositions
+by.b [I vertexWorldPositions
+by.c [I uvs
+by.a Z active
+by.b Z captured
+by.a Lag; beamMesh
+by.a()V render
+by.a(JLbw;Ldb;Lx;)V update
+bz GoF2/MeteoroidParticles
+bz.a [I vertexCoords
+bz.b [I lifeTimes
+bz.c [I offsets
+bz.d [I uvs
+bz.a Lcc; tempVec2
+bz.b Lcc; tempVec
+bz.a Lw; tempQuat
+bz.a [Lag; particles
+bz.a I particleSpawnTick
+bz.a()V OnRelease
+bz.a(JLcm;)V update
+bz.b()V render
+ca GoF2/Agent
+ca.a Ljava/lang/String; fullName
+ca.b Ljava/lang/String; wingman1Name
+ca.c Ljava/lang/String; wingman2Name
+ca.b I itemId
+ca.c I itemQuantity
+ca.d I sellingPrice
+ca.e I messageId
+ca.f I stationId
+ca.g I systemId
+ca.h I race
+ca.c Z male
+ca.i I event
+ca.j I origin_
+ca.k I type
+ca.a I wingmanFriendsCount
+ca.l I diplomacyPrice
+ca.m I secretSystemId
+ca.n I blueprintItemId
+ca.e Ljava/lang/String; message
+ca.f Ljava/lang/String; stationName
+ca.d Ljava/lang/String; systemName
+ca.d Z accepted
+ca.e Z unused_0_
+ca.a [B face
+ca.a Lcl; mission
+ca.a Z wasAskedForDifficulty
+ca.b Z wasAskedForLocation
+ca.a()I getMessageId
+ca.a()Ljava/lang/String; getFullName
+ca.b()I getType
+ca.c()I getRace
+ca.d()I getSystemId
+ca.e()I getStationId
+ca.a()Z isMale
+ca.f()I getEvent
+ca.a(I)V setEvent
+ca.b()Z isSpecialAgent
+ca.c()Z isGenericAgent_
+ca.a([B)V setImageParts
+ca.a()[B getImageParts
+ca.b(I)V setOffer
+ca.a(Lcl;)V setMission
+ca.a()Lcl; getMission
+ca.d()Z isKnown
+ca.g()I getSellSystemIndex
+ca.h()I getSellBlueprintIndex
+ca.c(I)V setCosts
+ca.i()I getCosts
+ca.j()I getWingmanFriendsCount_
+ca.a(I)Ljava/lang/String; getWingmanName
+ca.a()[Ljava/lang/String; getWingmenNames
+ca.b()Ljava/lang/String; getMessage
+ca.a(Ljava/lang/String;)V setMessage
+ca.k()I getSellItemIndex
+ca.l()I getSellItemQuantity
+ca.m()I getSellItemPrice
+ca.a(III)V setSellItemData
+ca.e()Z hasAcceptedOffer
+ca.a(Z)V setOfferAccepted
+ca.f()Z hasReward
+ca.b(Z)V giveRewardAtNextChat
+ca.c()Ljava/lang/String; getStationName
+ca.b(Ljava/lang/String;)V setStationName
+ca.c(Ljava/lang/String;)V setSystemName
+cc AE/Math/AEVector3D
+cc.a I x
+cc.b I y
+cc.c I z
+cc.a(Lcc;)V set
+cc.a(III)V set
+cc.a(Lcc;)I dot
+cc.b(Lcc;)I dotPrecise
+cc.a(Lcc;Lcc;)Lcc; crossProduct
+cc.b(Lcc;Lcc;)Lcc; add
+cc.b(Lcc;)V add
+cc.c(Lcc;Lcc;)Lcc; subtract
+cc.c(Lcc;)V subtract
+cc.a(I)V scale
+cc.a()V normalize
+cc.a()I getLength
+j AE/V3Camera
+j.a Lcom/mascotcapsule/micro3d/v3/FigureLayout; v3layout
+j.a(III)V setPerspective
+j.a()Lcom/mascotcapsule/micro3d/v3/FigureLayout; getFigureLayout
+a GoF2/Layout
+a.a I uiInnerOutlineColor
+a.b I uiOuterTopRightOutlineColor
+a.c I uiOuterDownLeftOutlineInnerLabalBgColor
+a.d I uiInactiveInnerLabelColor
+a.e I footerHeight
+a.a Ljavax/microedition/lcdui/Image; skipArrow
+a.b Ljavax/microedition/lcdui/Image; lock
+a.c Ljavax/microedition/lcdui/Image; menuBackground
+a.d Ljavax/microedition/lcdui/Image; menuHeaderPattern
+a.e Ljavax/microedition/lcdui/Image; mainMenuCorener
+a.f Ljavax/microedition/lcdui/Image; menuPanelCorInactive
+a.g Ljavax/microedition/lcdui/Image; menuPanelCorActive
+a.a [I backgroundDimmColors
+a.a J quickTickCounter
+a.b J slowTickCounter
+a.f I naviDelay
+a.a Z leftButtonSelected
+a.b Z tickHighlight
+a.a()V OnRelease
+a.b()V OnInitialize
+a.a(I)V addTicks
+a.a()Z slowClockHigh_
+a.b()Z quickClockHigh_
+a.a(IIII)V drawMask
+a.c()V fillClip
+a.a(Ljava/lang/String;IIIZ)V drawTextItem
+a.a(Ljava/lang/String;IIIZZZ)V drawTextItem
+a.a(Ljava/lang/String;IIIZZ)V drawTextItem
+a.d()V drawBG
+a.a(IIIILjavax/microedition/lcdui/Image;)V drawBGPattern
+a.a(Ljava/lang/String;)V drawWindowFrame
+a.a(Ljava/lang/String;Z)V drawNonFullScreenWindow
+a.a(I)Ljava/lang/String; formatCredits
+a.a(Ljava/lang/String;IIII)V drawFilledTitleBarWindow
+a.a(Ljava/lang/String;IIIIZ)V drawTitleBarWindow
+a.a(IIZ)V drawMenuPanelCorner
+a.a(Ljava/lang/String;Ljava/lang/String;)V drawFooter
+a.a(Z)V selectNavigationButton
+a.c()Z navigationDelayPassed
+a.e()V navigationDelayDownTick
+a.b(Z)V setTickHighlight
+a.b(Ljava/lang/String;IIII)V drawStringWidthLimited
+a.a(Ljava/lang/String;Ljava/lang/String;Z)V drawFooter1
+a.b(IIII)V drawRect
+a.b(Ljava/lang/String;Ljava/lang/String;Z)V drawFooter
+cd AE/ImageFont
+cd.a Ljavax/microedition/lcdui/Image; fontTexture
+cd.a [S posX
+cd.b [S posY
+cd.a [B widths
+cd.a B spacingY
+cd.b B tileHeight
+cd.c B tileWidth
+cd.a Ljavax/microedition/lcdui/Graphics; graphics
+cd.d B spacingX
+cd.e B offsetY
+cd.a(Ljavax/microedition/lcdui/Graphics;)V setGraphics
+cd.a(I)V setSpacingX
+cd.a(II[I)B getSymbolWidth
+cd.a(Ljava/lang/String;)I stringWidth
+cd.a(Ljava/lang/String;II)I subStringWidth
+cd.a(C)I charToSymbolIdx
+cd.b(I)V setOffsetY
+cd.a(Ljava/lang/String;II)V drawString
+cd.b(Ljava/lang/String;II)V drawStringRightAlligned
+cd.a()I getSpacingY
+cd.b()I getTileHeight
+cd.c(I)V setSpacingY
+b AE/TargetFollowCamera
+b.a Lah; target
+b.b Lah; targetGrandParent
+b.c Lah; camera
+b.a Lcc; cameraUp
+b.b Lcc; cameraDir
+b.c Lcc; cameraPos
+b.d Lcc; cameraRight
+b.e Lcc; unused3fb_
+b.a Z followTarget
+b.f Lcc; cameraRotation_
+b.g Lcc; cameraPositionOffset
+b.a Lcp; lookAtCam
+b.b Z lockedPosition
+b.c Z flipCameraDirection
+b.h Lcc; lastCameraUp
+b.i Lcc; lastCameraRight
+b.j Lcc; lastCameraDir
+b.d Z isShaking
+b.a I shakeCounter
+b.b I frametime
+b.e Z dirty
+b.a(Lah;)V setTarget
+b.b(Lah;)V OnRelease
+b.a()Lah; getCamera
+b.a(Lcc;)V setCameraPosition
+b.a()V lockPosition
+b.b()V followTargetPosition
+b.c()V update
+b.a(I)V tickUpdate
+b.d()V hit
+b.a()Z isInLookAtMode
+b.a(Z)V setLookAtCam
+b.b(Lcc;)V setPostition
+b.c(Lcc;)V setTargetOffset
+b.d(Lcc;)V setCamOffset
+ce GoF2/ListItem
+ce.a Lca; unused_owner__
+ce.a Lh; bluePrint
+ce.a Lch; ship
+ce.a Lv; item
+ce.a Lcl; unused
+ce.a Z isSelectable
+ce.a Ljava/lang/String; label
+ce.b Ljava/lang/String; unused_description__
+ce.a I medalTier
+ce.b I itemId
+ce.c I showCountItemType
+ce.a Ljavax/microedition/lcdui/Image; items
+ce.b Z nonFancyLabel
+ce.d I inTabIndex
+ce.a Lbp; producedGood
+ce.a()Z isShip
+ce.b()Z isItem
+ce.j()Z hasItem
+ce.c()Z isHeader
+ce.d()Z isMedal__
+ce.e()Z isNonFancyHeader
+ce.f()Z isMoveToCargoButton
+ce.g()Z isSellButton
+ce.h()Z isBluePrint
+ce.i()Z isPendingProduct
+ce.a()I getPrice
+ce.b()I getIndex
+cf GoF2/Explosion
+cf.a [I delays
+cf.b [I unused_1af
+cf.a I animationPlayTime
+cf.a [Lag; explosions
+cf.a Lag; coreExplosion
+cf.a()V reset
+cf.b()V setBig
+cf.c()V OnRelease
+cf.a(III)V start
+cf.a()Z canExplode
+cf.a(J)V update
+cf.b()Z isOver
+s AE/PaintCanvas/IGraphics3D
+s.a(Ljavax/microedition/lcdui/Graphics;)V bindTarget
+s.b(Ljavax/microedition/lcdui/Graphics;)V releaseTarget
+s.a()V clear
+cg AE/PaintCanvas/AEGraphics3D
+cg.a Lcom/mascotcapsule/micro3d/v3/Graphics3D; graphics3D
+cg.a(Ljavax/microedition/lcdui/Graphics;)V bindTarget
+cg.a()V clear
+cg.b(Ljavax/microedition/lcdui/Graphics;)V releaseTarget
+d GoF2/Node
+d.a Ljava/util/Vector; neighbors
+d.a Ld; parentNode
+d.a I systemIndex
+ch GoF2/Ship
+ch.a [S SHIP_PREVIEW_SCALING
+ch.b [S SHIP_HANGAR_OFFSETS
+ch.a I id
+ch.b I baseHP
+ch.c I basePrice
+ch.d I baseCargo
+ch.e I cargo
+ch.f I price
+ch.a [I itemTypeSlots
+ch.a F handling
+ch.g I shield
+ch.h I additionalArmour
+ch.i I shieldRegenTime
+ch.j I extendedCargo
+ch.k I boostPercent
+ch.l I boostRegenTime
+ch.m I boostDuration
+ch.n I extendedHandlingPercent
+ch.o I passengersCapacity
+ch.p I firePower
+ch.a Z repairBot
+ch.b Z jumpDrive
+ch.c Z cloak
+ch.q I race
+ch.a [Lv; equipped
+ch.b [Lv; cargoHold
+ch.a(I)V setRace
+ch.a()I getRace
+ch.b()I getIndex
+ch.c()I getPrice
+ch.a()F getHandling
+ch.d()I getBaseHP
+ch.e()I getCombinedHP
+ch.f()I getAdditionalArmour
+ch.g()I getBaseArmour
+ch.h()I getShield
+ch.i()I getShieldRegenTime
+ch.j()I getBoostPercent
+ch.k()I getBoostDuration
+ch.l()I getBoostDelay
+ch.m()I getAddHandlingPercent
+ch.a()Z hasBooster
+ch.b()Z hasJumpDrive
+ch.c()Z hasCloak
+ch.d()Z hasRepairBot
+ch.n()I getFirePower
+ch.o()I getBaseLoad
+ch.p()I getCargoPlus
+ch.q()I getCurrentLoad
+ch.a()[Lv; getEquipment
+ch.b()[Lv; getCargo
+ch.a([Lv;)V refreshCargoSpaceUnsafe
+ch.a(I)Lv; getFirstEquipmentOfSort
+ch.a(I)Z hasEquipment
+ch.e()Z hasCargoType_FIX_ME_
+ch.a(Lv;)V removeCargo
+ch.a()V removeAllCargo
+ch.b(I)Z removeCargo
+ch.a(II)Z removeCargo
+ch.b([Lv;)V setCargo
+ch.c(I)Z spaceAvailable
+ch.r()I getFreeCargo
+ch.b(Lv;)V addCargo
+ch.c([Lv;)V replaceEquipment
+ch.c(Lv;)V removeEquipment
+ch.a(I)[Lv; getEquipment
+ch.a(Lv;I)V setEquipment
+ch.d()V refreshValue
+ch.s()I getMaxPassengers
+ch.b(Lv;I)V freeSlot
+ch.d(Lv;)V freeSlot
+ch.a(I)I getSlots
+ch.t()I getSlotTypes
+ch.b(I)I getUsedSlots
+ch.a()Lch; cloneBase
+ch.b()V setSellingPrice
+ch.c()V adjustPrice
+e AE/PaintCanvas/ImageFactory
+e.a I itemFrameWidth
+e.e I itemFrameHeight
+e.f I itemWidth
+e.b I itemHeight
+e.c I faceWidth
+e.d I faceHeight
+e.a [[B faces
+e.a(ZI)[B createChar
+e.a([B)[Ljavax/microedition/lcdui/Image; faceFromByteArray
+e.a([Ljavax/microedition/lcdui/Image;III)V drawChar
+e.a(IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V drawItem
+e.a(ILjavax/microedition/lcdui/Image;III)V drawItemFrameless
+e.b(IILjavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;III)V drawShip
+Main/f Main/Intro
+Main/f.a Ljavax/microedition/lcdui/Image; logoFL
+Main/f.b Ljavax/microedition/lcdui/Image; logoAbyss
+Main/f.a Z loaded
+Main/f.a J timeResourceLoaded
+Main/f.a I introState
+Main/f.b I soundSwitchCurrent
+Main/f.b()V OnInitialize
+Main/f.a()V OnRelease
+Main/f.a()Z isLoaded
+Main/f.b(I)V handleKeystate
+Main/f.a(I)V renderScene
+Main/k Main/CutScene
+Main/k.a J renderAtTime
+Main/k.b J lastRenderAtTime
+Main/k.c J frameTimeMs
+Main/k.d J lifeTime
+Main/k.a Z loaded
+Main/k.a Laj; cameraControllers_unused
+Main/k.a Lap; gameCam_
+Main/k.b Lap; hangarCam
+Main/k.a Lbt; cameraTrack
+Main/k.a Lb; followingCam_unused
+Main/k.a Lcp; lookAtcam_unused
+Main/k.a Lcr; egoPlayer
+Main/k.a Ldb; level
+Main/k.a I sceneId
+Main/k.a Lar; cameraGroupOfOne_
+Main/k.a F forcedSpeedCCW
+Main/k.b F forcedSpeedCW
+Main/k.c F rotation
+Main/k.b I shipPosY
+Main/k.c I shipPosZ
+Main/k.a()V OnRelease
+Main/k.c()V resetCamera
+Main/k.b()V OnInitialize
+Main/k.a()Z isLoaded
+Main/k.a(II)V replacePlayerShip
+Main/k.a(I)V renderScene
+Main/k.b(I)V handleKeystate
+Main/p Main/ModStation
+Main/p.a J currentTime
+Main/p.b J lastTime
+Main/p.c J frameTime
+Main/p.d J barTick
+Main/p.e J loadingTick
+Main/p.a I selectedMenuItem
+Main/p.a [I menuItemHighlights
+Main/p.a Ljavax/microedition/lcdui/Image; factionLogo
+Main/p.a LMain/k; cutScene
+Main/p.a LMain/l; optionsWindow
+Main/p.a Z menuOpen
+Main/p.b Z optionsOpen
+Main/p.c Z popupOpen
+Main/p.d Z missionsOpen
+Main/p.e Z barOpen
+Main/p.f Z hangarOpen
+Main/p.g Z mapOpen
+Main/p.h Z statusOpen
+Main/p.i Z missionMsgOpen
+Main/p.j Z medalMsgOpen
+Main/p.k Z helpMsgOpen
+Main/p.l Z bribeMsgOpen
+Main/p.a Lay; popup
+Main/p.a LMain/d; spaceLounge
+Main/p.a LMain/m; hangarWindow
+Main/p.a LMain/g; statusPanel
+Main/p.a LMain/c; missionsWindow
+Main/p.a Li; dialogue
+Main/p.b Li; help
+Main/p.a LMain/j; medalPopup
+Main/p.a LMain/r; starMap
+Main/p.a Lcl; activeMission__
+Main/p.b I menuPosX
+Main/p.c I menuPosY
+Main/p.d I menuWidth
+Main/p.m Z loadedFromSave
+Main/p.n Z autoSaved
+Main/p.o Z leaveStationWarnOpen
+Main/p.a [[I newMedals
+Main/p.e I newMedalCollected
+Main/p.f I unused_b98
+Main/p.g I boozeOwnedAtArrival
+Main/p.h I bribe
+Main/p.p Z paidBribe
+Main/p.q Z medalsChecked
+Main/p.r Z goodsCollected
+Main/p.s Z loaded
+Main/p.a()LMain/k; getCutScene
+Main/p.a()V OnRelease
+Main/p.c()V fromGameSave
+Main/p.b()V OnInitialize
+Main/p.d()V checkMedals_
+Main/p.a()Z isLoaded
+Main/p.a(I)V renderScene
+Main/p.b(I)V handleKeystate
+Main/p.e()V leaveStation
+Main/o Main/MGame
+Main/o.a I lookingBack
+Main/o.a J currentTimeMs
+Main/o.b J lastFrameTimeMs
+Main/o.c J frameTime
+Main/o.d J menuListScrollTick
+Main/o.e J unusedTick_
+Main/o.f J fiveSecTick
+Main/o.a Z loaded
+Main/o.a Lcr; playerEgo
+Main/o.a Lap; camera
+Main/o.a Laj; cameras_
+Main/o.a Lb; targetFollowCamera
+Main/o.a Lcp; lookAtCamera
+Main/o.b Z isIntro
+Main/o.c Z paused
+Main/o.d Z dialogueOpen_
+Main/o.e Z cinematicBreak_
+Main/o.f Z egoDead
+Main/o.b I fov
+Main/o.a Lx; hud
+Main/o.a Ldb; level
+Main/o.a Lbn; levelScript
+Main/o.a Lbw; radar
+Main/o.a Lan; radio
+Main/o.a LMain/l; pauseMenu
+Main/o.a Li; sequentialDialogue_
+Main/o.b Li; interuptDialogue
+Main/o.a LMain/r; starMap
+Main/o.a Law; autoPilotList
+Main/o.a Lay; popup
+Main/o.g Z jumpgateReached
+Main/o.h Z unused947_
+Main/o.i Z mapOpen_
+Main/o.j Z autopilotMenuOpen
+Main/o.k Z touchesStream
+Main/o.l Z touchesStation
+Main/o.m Z jumpGateSoundStarted
+Main/o.n Z interruptedByDialogue
+Main/o.o Z inTurretMode
+Main/o.p Z actionMenuOpen
+Main/o.c I keysPressed
+Main/o.q Z shootingDisabled
+Main/o.r Z usingJumpDrive
+Main/o.s Z jumpDriveAnimStarted
+Main/o.a Lag; jumpFlash
+Main/o.t Z wingmenLeftNoticeShown
+Main/o.a Lcc; egoJumpPos
+Main/o.a()V OnRelease
+Main/o.b()V OnInitialize
+Main/o.a()Z isLoaded
+Main/o.a(I)V renderScene
+Main/o.d()V OnRender3D
+Main/o.e()V OnRender2D
+Main/o.f()V gameOverCheck
+Main/o.b()Z successCheck_
+Main/o.g()V dialogueEvent
+Main/o.c()Z dockEvent
+Main/o.c()V pause
+Main/o.d()Z updateJumpScene
+Main/o.h()V startJumpScene
+Main/o.b(I)V handleKeystate
+Main/a Main/ModMainMenu
+Main/a.a J frameStartTime
+Main/a.b J lastFrameStartTime
+Main/a.c J frameTime
+Main/a.d J totalTimeRendered
+Main/a.a Z drawUI
+Main/a.a LMain/k; cutScene
+Main/a.a LMain/l; optionsWindow
+Main/a.b Z optionWindowOpen
+Main/a.a I stationIndex
+Main/a.a()V OnRelease
+Main/a.b()V OnInitialize
+Main/a.a()Z isLoaded
+Main/a.a(I)V renderScene
+Main/a.b(I)V handleKeystate
+Main/c Main/MissionsWindow
+Main/c.a LMain/r; starMap
+Main/c.a Lay; popup
+Main/c.a Z popupOpen
+Main/c.a I innerWindowOffsetX
+Main/c.b I innerWindowOffsetY
+Main/c.c I scrollPos
+Main/c.d I contentHeight
+Main/c.e I innerWindowsHeight
+Main/c.f I innerWindowWidth
+Main/c.g I scrollThumbSize
+Main/c.b Z actionsOpen
+Main/c.c Z mapOpen
+Main/c.h I actionsPosY
+Main/c.a [I highlightedActions
+Main/c.i I actionChoice
+Main/c.j I actionsWidth
+Main/c.a [Ljava/lang/String; storyMissionRows
+Main/c.b [Ljava/lang/String; freelanceRows
+Main/c.d Z hangarNeedsUpdate
+Main/c.a [Ljavax/microedition/lcdui/Image; clientsFace
+Main/c.a Ljavax/microedition/lcdui/Image; mainMission
+Main/c.b Ljavax/microedition/lcdui/Image; sideMission
+Main/c.k I campainMissionActions
+Main/c.e Z alienShipMission
+Main/c.a()V init
+Main/c.a(I)Z handleKeystate
+Main/c.a(II)V draw
+Main/c.a(ILjava/lang/String;Ljavax/microedition/lcdui/Image;)V drawMissionSubsection
+Main/c.a()Z hangarNeedsUpdate
+Main/c.a(Z)V setHangarUpdate
+Main/b Main/ListItemWindow
+Main/b.a [S descriptions
+Main/b.b [S LISTITEMWINDOW_HIDDEN_ATTRIBUTES
+Main/b.a [Ljava/lang/String; _LISTITEMWINDOW_UNITS
+Main/b.a Lce; contextItem
+Main/b.a Ljavax/microedition/lcdui/Image; items
+Main/b.b Ljavax/microedition/lcdui/Image; itemTypes
+Main/b.c Ljavax/microedition/lcdui/Image; ships
+Main/b.d Ljavax/microedition/lcdui/Image; shipsColor
+Main/b.a Lbu; textBox
+Main/b.b Lbu; highlightedText
+Main/b.a Z show3DShip
+Main/b.a Lap; shipPreviewCam
+Main/b.b Lap; lastCam
+Main/b.a Lar; ship
+Main/b.a F yaw
+Main/b.b F pitch
+Main/b.c F speedPitchDown
+Main/b.d F speedPitchUp
+Main/b.e F speedYawCCW
+Main/b.f F speedYawCW
+Main/b.a Ljava/lang/String; lowPriceSysRow
+Main/b.b Ljava/lang/String; highPriceSysRow
+Main/b.a(Lce;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Ljavax/microedition/lcdui/Image;Z)V setup
+Main/b.a(I)V scrollDown
+Main/b.b(I)V scrollUp
+Main/b.a()Z shows3DShip
+Main/b.a()V draw
+Main/b.a(II)V updateRotation
+Main/b.a(Z)V updateCamera_
+Main/b.b()V render
+Main/i Main/TabbedWindow_
+Main/i.a I posX
+Main/i.b I posY
+Main/i.c I width
+Main/i.d I height
+Main/i.a [Ljava/lang/String; tabNames
+Main/i.a [[Ljava/lang/Object; perTabEntries
+Main/i.a [I listsLengths
+Main/i.e I scrollThumbSize
+Main/i.f I listRightPadding
+Main/i.p I scrollThumbPos
+Main/i.b Z showTabs
+Main/i.g I selectedTab
+Main/i.h I selectedEntry
+Main/i.i I scrollPos
+Main/i.j I displayedEntriesCount
+Main/i.k I innerLeftMargin
+Main/i.l I itemListPosY
+Main/i.m I rowHeight
+Main/i.n I tabHeight
+Main/i.o I unused2412_
+Main/i.a Z drawBackGround
+Main/i.c Z highlightSelection
+Main/i.q I fontId_
+Main/i.b Ljava/lang/String; titleBarText
+Main/i.a(IIII[Ljava/lang/String;Ljava/lang/String;)V init
+Main/i.a(I)V setRowHeight
+Main/i.b()I getRowHeight
+Main/i.c()I getTabHeight
+Main/i.a(I[Ljava/lang/Object;)V setEntries
+Main/i.a()Ljava/lang/Object; getSelectedItem
+Main/i.d()I getCurrentTab
+Main/i.b(I)V setCurrentTab
+Main/i.j()V updateScroll
+Main/i.h()V scrollUp
+Main/i.i()V scrollDown
+Main/i.d()V leftAction
+Main/i.e()V rightAction
+Main/i.a()V draw
+Main/i.l()V drawItems
+Main/i.k()V drawTabs
+Main/i.m()V drawScroll
+Main/i.n()V drawBG
+Main/i.a(Ljava/lang/Object;I)V drawItem
+Main/i.e()I getSelectedEntry
+Main/i.b(Z)V setBackGroundDraw
+Main/i.c(Z)V setSelectionHighlight
+Main/i.o()V decFontIndex_
+Main/q Main/ListWindow_
+Main/q.a Z unused_37
+Main/q.a()V draw
+Main/q.n()V drawBG
+Main/q.i()V scrollDown
+Main/q.h()V scrollUp
+Main/q.l()V drawItems
+Main/q.a(Ljava/lang/Object;I)V drawItem
+Main/q.a()I getFirstListLen_
+Main/h Main/HangarList
+Main/h.a Ljavax/microedition/lcdui/Image; itemTypes
+Main/h.b Ljavax/microedition/lcdui/Image; items
+Main/h.c Ljavax/microedition/lcdui/Image; ships
+Main/h.d Ljavax/microedition/lcdui/Image; shipsColor
+Main/h.a Ljava/lang/String; unused_2_
+Main/h.e Ljavax/microedition/lcdui/Image; raceLogo
+Main/h.f Ljavax/microedition/lcdui/Image; itemTypesSel
+Main/h.d Z trading_
+Main/h.a Z popupOpen
+Main/h.a Lay; popup
+Main/h.b [I stationItemTypeCounts
+Main/h.p I shipLoad
+Main/h.a [Lv; stationItems
+Main/h.a Lh; bluePrint
+Main/h.q I mountingSlot
+Main/h.r I preMountingScrollPos
+Main/h.e Z isIngredientShippingPopup
+Main/h.f Z isShipBuyPopup
+Main/h.s I amountToPutInBluePrint
+Main/h.t I lastStationAmount
+Main/h.u I lastOnShipAmount
+Main/h.v I lastBluePrintAmount
+Main/h.w I credits
+Main/h.x I lastShipLoad
+Main/h.c()V OnRelease
+Main/h.a(Lch;)V initShipTab
+Main/h.a([Lh;)V initBlueprintTab
+Main/h.a([Lv;)V initShopTab
+Main/h.a(Lce;)V initMountingWindow
+Main/h.a(Lh;)V fillIngredientsList
+Main/h.a()Z browsingInterrupted_
+Main/h.b()Z isTrading
+Main/h.a(Z)V cancelTransaction
+Main/h.d()V leftAction
+Main/h.e()V rightAction
+Main/h.f()V skipSell
+Main/h.g()V skipBuy
+Main/h.h()V scrollUp
+Main/h.i()V scrollDown
+Main/h.a()I selectItem
+Main/h.j()V updateScroll
+Main/h.a()V draw
+Main/h.b()V drawFrame
+Main/h.k()V drawTabs
+Main/h.l()V drawItems
+Main/h.a(Ljava/lang/Object;I)V drawItem
+Main/h.b()I getRowHeight
+Main/h.c()I getTabHeight
+Main/e Main/StatusWindow
+Main/e.a Ljavax/microedition/lcdui/game/Sprite; sprite
+Main/e.a()V draw
+Main/e.b()V drawFrame
+Main/e.a(Ljava/lang/Object;I)V drawItem
+Main/d Main/SpaceLounge
+Main/d.a LMain/r; starMap
+Main/d.a Lay; popup
+Main/d.a LMain/b; intemInfoWindow
+Main/d.a Lap; camera
+Main/d.a Ljavax/microedition/lcdui/Image; items
+Main/d.b Ljavax/microedition/lcdui/Image; itemTypes
+Main/d.a I chatType_
+Main/d.a Z newSystemWaitingToBeSeen
+Main/d.b Z missionConfirmPopup
+Main/d.c Z transactionConfirmPopup_
+Main/d.d Z itemDescriptionOpen
+Main/d.b I selectedAgent
+Main/d.a [Lca; agents
+Main/d.c I answearsPosY_
+Main/d.d I answearsPosX
+Main/d.e I chatTextPosY
+Main/d.f I chatTextPosX
+Main/d.a [Ljava/lang/String; chatRows
+Main/d.g I chatScroll
+Main/d.h I chatAnswear
+Main/d.e Z starMapOpen
+Main/d.f Z hangarUpdate
+Main/d.a [[Ljavax/microedition/lcdui/Image; clientsFaces
+Main/d.a LMain/k; scene
+Main/d.a Lm; cameraIntegratorX_
+Main/d.b Lm; cameraIntegratorZ_
+Main/d.a Lcc; cameraPos
+Main/d.a Lcom/mascotcapsule/micro3d/v3/Effect3D; agentHighlight
+Main/d.a [Z mentionedOres
+Main/d.a()V init
+Main/d.b()V OnRelease
+Main/d.a(I)Z handleKeystate
+Main/d.a(II)V draw
+Main/d.c()V startChat
+Main/d.a()Z hangarNeedsUpdate
+Main/d.a(Z)V setHangarUpdate
+Main/r Main/StarMap
+Main/r.a [I planetSizes
+Main/r.a I tmpMapInnerHeight
+Main/r.b I windowFrameWidth
+Main/r.c I windowFrameHeight
+Main/r.d I mapInnerWidth
+Main/r.e I mapInnerHeight
+Main/r.f I state
+Main/r.a F curScreenPosX
+Main/r.b F curScreenPosY
+Main/r.c F scrollX
+Main/r.d F scrollY
+Main/r.g I backGroundTileX
+Main/r.h I backGroundTileY
+Main/r.i I frameTime
+Main/r.b Z curPushLeft
+Main/r.c Z curPushRight
+Main/r.d Z curPushUp
+Main/r.e Z curPushDown
+Main/r.e F curSpeedX
+Main/r.f F curSpeedY
+Main/r.g F curDirX
+Main/r.h F curDirY
+Main/r.a Ljavax/microedition/lcdui/Image; fog
+Main/r.b Ljavax/microedition/lcdui/Image; bluePrintIcon
+Main/r.c Ljavax/microedition/lcdui/Image; mainMissionIcon
+Main/r.d Ljavax/microedition/lcdui/Image; sideMissionIcon
+Main/r.e Ljavax/microedition/lcdui/Image; jumpGateIcon
+Main/r.f Ljavax/microedition/lcdui/Image; checkMark
+Main/r.g Ljavax/microedition/lcdui/Image; raceLogoBig
+Main/r.a Ljavax/microedition/lcdui/game/Sprite; cursorLine
+Main/r.b Ljavax/microedition/lcdui/game/Sprite; systemStar
+Main/r.c Ljavax/microedition/lcdui/game/Sprite; logos
+Main/r.a [Lcw; systems
+Main/r.a [Lbd; selectedSystemStations
+Main/r.a Lay; popup
+Main/r.j I selectedSystem
+Main/r.k I selectedPlanet
+Main/r.a Lag; backgroundStars
+Main/r.a [Lag; stars
+Main/r.a Laj; galaxyMapGroup
+Main/r.a Lap; starNetCamera_
+Main/r.b Lap; lastCamera
+Main/r.a Lcc; tmpStarScreenPos2
+Main/r.b Lcc; tmpStarScreenPos1
+Main/r.a Lcm; matrix
+Main/r.b [Lag; localStarAndPlanetsMeshes
+Main/r.c [Lag; localOrbits
+Main/r.b [I planetRevolutAngs
+Main/r.c [I distsToStar
+Main/r.d [I pathToDestination_
+Main/r.a Lar; localSystem
+Main/r.f Z galaxyMapView
+Main/r.g Z overviewOnly_
+Main/r.h Z destinationConfirmPopupOpen
+Main/r.i Z fromJumpGate
+Main/r.j Z fromStation
+Main/r.a Lm; smoothCamTransitionX
+Main/r.b Lm; smoothCamTransitionY
+Main/r.c Lm; smoothCamTransitionZ
+Main/r.k Z scopingOut
+Main/r.h Ljavax/microedition/lcdui/Image; sunGlow
+Main/r.l I newSysAnimTimer
+Main/r.m I pathDisplayDelay
+Main/r.n I highlightedPathDot
+Main/r.i F curSqrSize
+Main/r.l Z galaxyMapUnlocked
+Main/r.a Z destSelected
+Main/r.b Lag; wormhole
+Main/r.c Lag; arrow
+Main/r.a [Ljavax/microedition/lcdui/Image; legendItemIcons
+Main/r.a [Z occupiedOrbits_
+Main/r.o I destinationOrMissionSystem_
+Main/r.m Z legendOpen
+Main/r.p I legendWindowWidth
+Main/r.q I discoveredSystemId
+Main/r.n Z discoverSystemCutscene
+Main/r.r I newSystemAnimTime
+Main/r.o Z jumpToAlienWorldPopupOpen
+Main/r.a(ZLcl;ZI)V init
+Main/r.a()V OnRelease
+Main/r.a(I)Z handleKeystate
+Main/r.c()V updateCameraTrack
+Main/r.a(II)V update
+Main/r.d()V initStarSysMap
+Main/r.a(FF)V navigateMap
+Main/r.a()Z scopedOnSystem
+Main/r.a(ZZ)V setJumpMapMode
+Main/r.e()V render
+Main/r.f()V drawKey
+Main/r.a(IZ)V drawOnScreenInfo
+Main/r.g()V draw
+Main/r.b()V askForJumpIntoAlienWorld
+Main/n Main/GOF2Canvas
+Main/n.a LMain/GOF2MIDlet; midlet
+Main/n.a I keyStates
+Main/n.b I keysState
+Main/n.c I lastKeyStates
+Main/n.d I lastFrameSignleKeyRelease
+Main/n.e I newKeysPressed
+Main/n.f I tempKeysPressed
+Main/n.a Lau; applicationManager
+Main/n.a Lao; loadingScreen
+Main/n.a Z unused355_
+Main/n.b Z resized
+Main/n.c Z initialized
+Main/n.a J pausedTime
+Main/n.b J sysTime
+Main/n.a()V pause
+Main/n.b()V update_
+Main/n.c()V OnRelease
+Main/n.d()V handlePausedState
+Main/n.e()V synchronizeKeyState
+Main/j Main/NewMedalPopup
+Main/j.a I posX
+Main/j.b I posY
+Main/j.c I width
+Main/j.d I height
+Main/j.a [Ljava/lang/String; name
+Main/j.b [Ljava/lang/String; description
+Main/j.e I okPosY
+Main/j.f I tier
+Main/j.a Ljavax/microedition/lcdui/game/Sprite; medalImg
+Main/j.a(II)V set
+Main/j.a()V draw
+Main/m Main/HangarWindow
+Main/m.a I initTab
+Main/m.a J timeOpen
+Main/m.b I frameTime
+Main/m.a Z loaded
+Main/m.a LMain/h; list
+Main/m.a Lce; selectedItem
+Main/m.a LMain/b; itemInfo
+Main/m.a Lay; unused__3a1_
+Main/m.b Lay; freeSlotInfoPopup
+Main/m.b Z freeSlotInfoPopupOpen
+Main/m.c I tabsWidth_unused_
+Main/m.a [I tabWidths_unused_
+Main/m.d I state__
+Main/m.e I speedSellTick
+Main/m.f I speedBuyTick
+Main/m.g I openedBluePrint
+Main/m.a()V OnRelease
+Main/m.b()V initialize
+Main/m.a()I getCurrentTab
+Main/m.a()Z inRoot
+Main/m.a()Lce; getSelectedItem
+Main/m.a(I)Z handleKeyPressed
+Main/m.a(II)Z draw
+Main/l Main/OptionsWindow
+Main/l.a I posX
+Main/l.b I headerHeight
+Main/l.c I windowWidth
+Main/l.a [I menuItemCounts
+Main/l.a Ljavax/microedition/lcdui/Image; gameLogo
+Main/l.d I fontSpacingY
+Main/l.e I saveGameItemHeight
+Main/l.f I selectedRow
+Main/l.g I subMenu
+Main/l.a Ljava/lang/String; saveInfo
+Main/l.a Lay; confirmPopup
+Main/l.a Z confirmPopupOpen
+Main/l.b Z forcePauseMenu_
+Main/l.a [Lz; saves
+Main/l.b Ljava/lang/String; stationName
+Main/l.a LMain/q; manualWindow
+Main/l.a Lbu; credits
+Main/l.b Lbu; instructions
+Main/l.c Lbu; controls
+Main/l.d Lbu; hidden__
+Main/l.a Lci; nameInput
+Main/l.h I frameTime
+Main/l.i I musicLevel
+Main/l.j I soundLevel
+Main/l.k I recordWindowWidth
+Main/l.c Z webAccessAvailable
+Main/l.c Ljava/lang/String; operatorURL
+Main/l.d Ljava/lang/String; operatorsPrompt
+Main/l.e Ljava/lang/String; operatorMenuEntry
+Main/l.l I wapMode
+Main/l.d Z unused_b06
+Main/l.b Ljavax/microedition/lcdui/Image; unused_b34
+Main/l.m I optionsListPosY
+Main/l.a(Ljava/lang/String;)Ljava/lang/String; unescape
+Main/l.f()V initWapItem
+Main/l.a([Lz;)V loadSavePreviews
+Main/l.a()V OnRelease
+Main/l.a(II)V scrollAndTick_
+Main/l.a()Z update
+Main/l.g()V loadGameRecord
+Main/l.a(I)V scrollUp
+Main/l.b(I)V scrollDown
+Main/l.b()V optionsLeft
+Main/l.h()V updateSoundLevel
+Main/l.i()V updateMusicLevel
+Main/l.c()V optionsRight
+Main/l.b()Z goBack
+Main/l.c()Z update1_
+Main/l.c(I)V reset_
+Main/l.d()V resetPauseMenu
+Main/l.e()V draw
+Main/l.a(I)Z handleKeystate
+Main/g Main/StatusPanel
+Main/g.a Z infoOpen
+Main/g.a Lay; infoMedal
+Main/g.a LMain/e; statusWindows
+Main/g.a [Ljava/lang/String; statsLeftColumn
+Main/g.b [Ljava/lang/String; statsRightColumn
+Main/g.a Ljavax/microedition/lcdui/game/Sprite; standingBarOutter
+Main/g.b Ljavax/microedition/lcdui/game/Sprite; standingBarInner
+Main/g.c Ljavax/microedition/lcdui/game/Sprite; standingCursor
+Main/g.d Ljavax/microedition/lcdui/game/Sprite; standingLogos
+Main/g.a Ljavax/microedition/lcdui/Image; allMedalsAdornment
+Main/g.b Ljavax/microedition/lcdui/Image; allGoldAdornment
+Main/g.a I posY
+Main/g.b I scrollRows
+Main/g.c I posX
+Main/g.d I width
+Main/g.e I height
+Main/g.f I scrollThumbSize
+Main/g.g I scrollPos
+Main/g.a [Ljavax/microedition/lcdui/Image; face
+Main/g.a()V OnRelease
+Main/g.b()V init
+Main/g.a(I)Z handleKeyPress
+Main/g.a(ILjava/lang/String;)V drawSubHeader
+Main/g.a(II)V draw
+Main/GOF2MIDlet.a LMain/n; canvas
+Main/GOF2MIDlet.a Ljavax/microedition/lcdui/Display; display
+Main/GOF2MIDlet.a Z started
+Main/GOF2MIDlet.b Z selfDestructing
+Main/GOF2MIDlet.a Ljava/lang/Thread; thread

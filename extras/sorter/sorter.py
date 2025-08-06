@@ -1,4 +1,4 @@
-def custom_order_sort(order_file, mapping_file, output_file):
+def custom_order_sort(order_file, mapping_file, output_file, dont_duplicate=False):
     # Load the files
     with open(order_file, 'r') as f:
         order_lines = [line.strip() for line in f.readlines()]
@@ -30,14 +30,38 @@ def custom_order_sort(order_file, mapping_file, output_file):
             key = parts[0]
             if key not in matched_keys:
                 sorted_lines.append(line)
-    
+
+    write_data = '\n'.join(sorted_lines)            
+    if dont_duplicate:
+        with open(mapping_file, 'r') as f:
+            read_data = f.read()
+        if write_data == read_data:
+            
+            return "no_changes"
     with open(output_file, 'w') as f:
         f.write('\n'.join(sorted_lines))
 
 if __name__ == "__main__":
     from os.path import dirname
-    order_file = dirname(__file__) + r'/GoF2_JSR_1.0.4_order.txt'
-    mapping_file = dirname(dirname(dirname(__file__))) + r'/Recaf/GoF2/GoF2_JSR_1.0.4_unordered.mapping'
-    output_file = dirname(dirname(dirname(__file__))) + r'/Recaf/GoF2/GoF2_JSR_1.0.4.mapping'
-    custom_order_sort(order_file, mapping_file, output_file)
-    print(f"Mapping sorted and saved to '{output_file}'.")
+    import os
+    def sort_for_do(name):
+        try:
+            game, version = name.split('_', 1)
+            order_file = dirname(__file__) + f'/{name}_order.txt'
+            mapping_file = dirname(dirname(dirname(__file__))) + f'/Recaf/{game}/{version}/{name}_unordered.mapping'
+            output_file = dirname(dirname(dirname(__file__))) + f'/Recaf/{game}/{version}/{name}.mapping'
+            no_unordered = False
+            if not os.path.exists(mapping_file):
+                no_unordered = True
+                mapping_file = output_file
+                output_file = dirname(dirname(dirname(__file__))) + f'/Recaf/{game}/{version}/{name}_sorted.mapping'
+            result = custom_order_sort(order_file, mapping_file, output_file, no_unordered)
+            if result == "no_changes":
+                print(f"{name}: is already sorted. No write performed. ({mapping_file})")
+            else:
+                print(f"{name} mapping sorted and saved to '{output_file}'.")
+        except FileNotFoundError as e:
+            print(f"Error in sorting {name}: {e}")
+    
+    sort_for_do('GoF2_JSR_1.0.4')
+    sort_for_do('GoF2_V3_1.0.4')

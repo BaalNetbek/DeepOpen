@@ -37,7 +37,7 @@ def find_duplicate_groups(filename):
             print(f"{line[0]}\t{line[1]}")
         removed_indices = [line[0] for line in removed_lines]
         
-        print(f"Backed up unsorted before automatic cleanup: {copy_name}}")
+        print(f"Backed up unsorted before automatic cleanup: {copy_name}")
         
         with open(filename+".test", 'w') as file:
             for i, line in enumerate(lines):
@@ -47,6 +47,6 @@ def find_duplicate_groups(filename):
 if __name__ == "__main__":
     from os.path import dirname
     from sys import exit
-    mapping = dirname(dirname(dirname(__file__))) + r'\Recaf\GoF2\GoF2_JSR_1.0.4_unordered.mapping'
+    mapping = dirname(dirname(dirname(__file__))) + r'\Recaf\GoF2\V3_1.0.4\GoF2_V3_1.0.4.mapping'
     find_duplicate_groups(mapping)
 
