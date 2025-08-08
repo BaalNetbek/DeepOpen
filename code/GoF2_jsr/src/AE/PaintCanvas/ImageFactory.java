@@ -89,16 +89,16 @@ public final class ImageFactory {
 
 	}
 
-	public static void drawItem(final int var0, final int var1, final Image var2, final Image var3, final int var4, final int var5, final int var6) {
-		GlobalStatus.graphics.drawRegion(var3, var1 * itemFrameWidth, 0, itemFrameWidth, itemFrameHeight, 0, var4, var5, 6);
-		GlobalStatus.graphics.drawRegion(var2, var0 * itemWidth, 0, itemWidth, itemHeight, 0, var4, var5, 6);
+	public static void drawItem(final int idx, final int type, final Image items, final Image frames, final int x, final int y, final int anchor) {
+		GlobalStatus.graphics.drawRegion(frames, type * itemFrameWidth, 0, itemFrameWidth, itemFrameHeight, 0, x, y, anchor);
+		GlobalStatus.graphics.drawRegion(items, idx * itemWidth, 0, itemWidth, itemHeight, 0, x, y, anchor);
 	}
 
-	public static void drawItemFrameless(final int var0, final Image var1, final int var2, final int var3, final int var4) {
-		GlobalStatus.graphics.drawRegion(var1, var0 * itemWidth, 0, itemWidth, itemHeight, 0, var2, var3, var4);
+	public static void drawItemFrameless(final int idx, final Image items, final int x, final int y, final int anchor) {
+		GlobalStatus.graphics.drawRegion(items, idx * itemWidth, 0, itemWidth, itemHeight, 0, x, y, anchor);
 	}
 
-	public static void drawShip(final int var0, int var1, final Image var2, final Image var3, final int var4, final int var5, final int var6) {
+	public static void drawShip(final int var0, int var1, final Image var2, final Image var3, final int var4, final int var5, final int anchor) {
 		var1 = var1 == 0 ? 0 : var1 == 2 ? 1 : var1 == 8 ? 3 : 2;
 		GlobalStatus.graphics.drawRegion(var3, var1 * itemFrameWidth, 0, itemFrameWidth, itemFrameHeight, 0, var4, var5, 6);
 		GlobalStatus.graphics.drawRegion(var2, var0 * itemWidth, 0, itemWidth, itemHeight, 0, var4, var5, 6);

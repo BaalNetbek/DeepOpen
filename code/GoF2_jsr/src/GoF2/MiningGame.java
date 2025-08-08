@@ -1,5 +1,6 @@
 package GoF2;
 
+import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 import AE.AEFile;
@@ -176,7 +177,7 @@ public final class MiningGame {
         GlobalStatus.graphics.drawImage(this.cursor, var1, var2 + 2, 33);
         var1 = this.boardPosY - this.background.getHeight();
         if (this.levels == 7) {
-            ImageFactory.drawItemFrameless(this.minedItemId - 154 + 165, this.items, (GlobalStatus.screenWidth >> 1) - 1, var1 + 10, 3);
+            ImageFactory.drawItemFrameless(this.minedItemId - 154 + 165, this.items, (GlobalStatus.screenWidth >> 1) - 1, var1 + 10, Graphics.HCENTER | Graphics.VCENTER);
         }
 
         if ((int)this.miningProgress > (int)this.minedTons) {

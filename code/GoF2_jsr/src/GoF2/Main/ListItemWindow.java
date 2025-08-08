@@ -1,5 +1,6 @@
 package GoF2.Main;
 
+import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 import AE.AECamera;
@@ -100,8 +101,10 @@ public final class ListItemWindow {
             }
 
         } else {
-            final Item var11 = var1.isItem() ? var1.item : var1.isBluePrint() ? Globals.getItems()[var1.bluePrint.getIndex()] : Globals.getItems()[var1.producedGood.index];
-
+				final Item var11 = 
+						var1.isItem() 		 ? var1.item :
+						var1.isBluePrint() ? Globals.getItems()[var1.bluePrint.getIndex()]
+			      							 : Globals.getItems()[var1.producedGood.index];
 
             int var14;
             for(int i = 0; i < 37; ++i) {
@@ -225,12 +228,20 @@ public final class ListItemWindow {
 
         if (!this.contextItem.isItem() && !this.contextItem.isBluePrint() && !this.contextItem.isPendingProduct()) {
             if (this.contextItem.isShip()) {
-                ImageFactory.drawShip(this.contextItem.ship.getIndex(), this.contextItem.ship.getRace(), this.ships, this.shipsColor, 5, 27, 6);
+                ImageFactory.drawShip(this.contextItem.ship.getIndex(), this.contextItem.ship.getRace(), this.ships, this.shipsColor, 5, 27, Graphics.LEFT | Graphics.VCENTER);
                 Font.drawString(GlobalStatus.gameText.getText(532 + this.contextItem.ship.getIndex()), 5 + ImageFactory.faceWidth + 5, 21, 1);
             }
         } else {
             Item var1;
-            ImageFactory.drawItem((var1 = this.contextItem.isItem() ? this.contextItem.item : this.contextItem.isBluePrint() ? Globals.getItems()[this.contextItem.bluePrint.getIndex()] : Globals.getItems()[this.contextItem.producedGood.index]).getIndex(), var1.getType(), this.items, this.itemTypes, 5, 27, 6);
+				ImageFactory.drawItem(
+				      (var1 = this.contextItem.isItem() ? this.contextItem.item
+				            : this.contextItem.isBluePrint() ? Globals.getItems()[this.contextItem.bluePrint.getIndex()]
+				            							            : Globals.getItems()[this.contextItem.producedGood.index]).getIndex(),
+				      var1.getType(),
+				      this.items,
+				      this.itemTypes, 5, 27,
+				      Graphics.LEFT | Graphics.VCENTER
+		      );
             Font.drawString(GlobalStatus.gameText.getText(569 + var1.getIndex()), 5 + ImageFactory.itemFrameWidth + 5, 18, 1);
         }
 

@@ -1,5 +1,6 @@
 package GoF2;
 
+import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
 
@@ -217,7 +218,7 @@ public final class Hud {
 			if (var4 != null) {
 				boolean var5;
 				if (var5 = var4.items != null) {
-					ImageFactory.drawItemFrameless(var4.itemId, var4.items, (GlobalStatus.screenWidth >> 1) + ImageFactory.faceWidth / 2 - (Font.getTextWidth(var4.label, 0) >> 1) - 5, var1 + i * var2 - 2, 24);
+					ImageFactory.drawItemFrameless(var4.itemId, var4.items, (GlobalStatus.screenWidth >> 1) + ImageFactory.faceWidth / 2 - (Font.getTextWidth(var4.label, 0) >> 1) - 5, var1 + i * var2 - 2, Graphics.TOP | Graphics.RIGHT);
 				}
 
 				Font.drawString(var4.label, (GlobalStatus.screenWidth >> 1) + (var5 ? ImageFactory.faceWidth / 2 - 5 : 0), var1 + i * var2, i != 1 && (i != 2 || this.queueScroll != var2) ? 1 : var4.showCountItemType == 1 ? 2 : 0, 24);
@@ -450,7 +451,7 @@ public final class Hud {
 			}
 
 			if (!this.settingSecondaryWeapon && drawSecondaryIcon > 0 && (var7 = var5.getCurrentSecondaryWeaponIndex()) >= 0 && this.secondaries[drawSecondaryIcon - 1] != null) {
-				ImageFactory.drawItemFrameless(var7, this.items, 0, GlobalStatus.screenHeight - Font.getFontSpacingY(), 36);
+				ImageFactory.drawItemFrameless(var7, this.items, 0, GlobalStatus.screenHeight - Font.getFontSpacingY(), Graphics.BOTTOM | Graphics.LEFT);
 				Font.drawString("x" + this.secondaries[drawSecondaryIcon - 1].getAmount(), 4, GlobalStatus.screenHeight - 2, 1, 33);
 			}
 
@@ -692,7 +693,7 @@ public final class Hud {
 					break;
 				case 1:
 					if (var4 < var7.length && var7[var4] != null && var7[var4].getAmount() > 0) {
-						ImageFactory.drawItemFrameless(var7[var4].getIndex(), this.items, var5, var6, 3);
+						ImageFactory.drawItemFrameless(var7[var4].getIndex(), this.items, var5, var6, Graphics.HCENTER | Graphics.VCENTER);
 						Font.drawString("x" + var7[var4].getAmount(), var5, var6 + (ImageFactory.itemHeight >> 1), 1, 24);
 					}
 					break;

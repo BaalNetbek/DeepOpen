@@ -1788,8 +1788,7 @@ public final class Level {
 		return 0;
 	}
 	/**
-	 * not just enemies but actually every ai player
-	 * @return
+	 * @return not just enemies but actually every ai player
 	 */
 	public final int getEnemiesLeft() {
 		return this.enemiesIntact;

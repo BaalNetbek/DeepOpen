@@ -809,7 +809,7 @@ public final class Radar {
                     final boolean var4 = var2.equals(this.targetedLandmark);
                     final String var5 = this.targetedLandmark == this.landmarks[0] ? this.stationaryPlayersNames[0] : this.targetedLandmark == this.landmarks[3] ? this.stationaryPlayersNames[3] : this.stationaryPlayersNames[1];
                     if (var3) {
-                        ImageFactory.drawItemFrameless(((PlayerAsteroid)var2).oreItemId, var1.items, GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, 40);
+                        ImageFactory.drawItemFrameless(((PlayerAsteroid)var2).oreItemId, var1.items, GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, Graphics.BOTTOM | Graphics.RIGHT);
                         this.meteorClass.setFrame(((PlayerAsteroid)var2).getQualityFrameIndex());
                         this.meteorClass.setRefPixelPosition(GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - 2);
                         this.meteorClass.paint(GlobalStatus.graphics);
