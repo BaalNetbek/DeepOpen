@@ -16,7 +16,7 @@ import GoF2.Layout;
 import GoF2.Level;
 import GoF2.Mission;
 import GoF2.Popup;
-import GoF2.ProducedGood;
+import GoF2.PendingProduct;
 import GoF2.RecordHandler;
 import GoF2.Standing;
 import GoF2.Status;
@@ -209,7 +209,7 @@ public final class ModStation extends IApplicationModule {
 					this.popupOpen = true;
 				}
 
-				if (Status.getCurrentCampaignMission() == 20 && Status.getCampaignMission().getTargetStation() == Status.getStation().getId()) {
+				if (Status.getCurrentCampaignMission() == 20 && Status.getCampaignMission().getTargetStation() == Status.getStation().getIndex()) {
 					var2 = Status.getStation().getShopItems();
 
 					for(var3 = 0; var3 < var2.length; ++var3) {
@@ -221,7 +221,7 @@ public final class ModStation extends IApplicationModule {
 					Status.getStation().addItem(Globals.getItems()[41].getCopyInAmmount(10, 0));
 				}
 
-				if (Status.getCurrentCampaignMission() == 27 && Status.getCampaignMission().getTargetStation() == Status.getStation().getId()) {
+				if (Status.getCurrentCampaignMission() == 27 && Status.getCampaignMission().getTargetStation() == Status.getStation().getIndex()) {
 					Status.getShip().removeCargo(131);
 				}
 			}
@@ -321,11 +321,11 @@ public final class ModStation extends IApplicationModule {
 				if (!this.popupOpen && !this.missionMsgOpen) {
 					if (!this.goodsCollected) {
 						String var3 = GlobalStatus.gameText.getText(92) + "\n";
-						ProducedGood[] var4 = Status.getWaitingGoods();
+						PendingProduct[] var4 = Status.getPendingProducts();
 						if (var4 != null) {
 							for(int var5 = 0; var5 < var4.length; ++var5) {
-								ProducedGood var6;
-								if ((var6 = var4[var5]) != null && var6.stationId == Status.getStation().getId()) {
+								PendingProduct var6;
+								if ((var6 = var4[var5]) != null && var6.stationId == Status.getStation().getIndex()) {
 									final Item var9 = Globals.getItems()[var6.index].makeItem(var6.producedQuantity);
 									Status.getShip().addCargo(var9);
 									var3 = var3 + "\n" + var9.getAmount() + "x " + GlobalStatus.gameText.getText(569 + var9.getIndex());
@@ -887,10 +887,10 @@ public final class ModStation extends IApplicationModule {
 			}
 
 			this.helpMsgOpen = true;
-		} else if (Status.getCurrentCampaignMission() == 20 && Status.getStation().getId() == Status.getCampaignMission().getTargetStation()) {
+		} else if (Status.getCurrentCampaignMission() == 20 && Status.getStation().getIndex() == Status.getCampaignMission().getTargetStation()) {
 			this.help = new Dialogue(GlobalStatus.gameText.getText(260));
 			this.helpMsgOpen = true;
-		} else if (Status.getCurrentCampaignMission() == 21 && Status.getStation().getId() == Status.getCampaignMission().getTargetStation()) {
+		} else if (Status.getCurrentCampaignMission() == 21 && Status.getStation().getIndex() == Status.getCampaignMission().getTargetStation()) {
 			Status.getShip().getEquipment(Item.SECONDARY);
 			if (Status.getShip().hasEquipment(41)) {
 				if (!this.popupOpen && !this.missionMsgOpen && !this.medalMsgOpen) {

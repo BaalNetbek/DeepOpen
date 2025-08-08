@@ -39,7 +39,7 @@ public final class LaserGun extends AbstractMesh implements AbstractGun {
 		this.flash.setRenderLayer(2);
 		this.flash.setAnimationRangeInTime(FLASH_KEYFRAMES[var2], FLASH_KEYFRAMES[var2]);
 		this.flash.setAnimationMode((byte)1);
-		this.flash.setScale(600, 600, 600);
+		this.flash.setScale(600, 600, 600); // 11.38%
 		this.beam = AbstractMesh.newPlaneStrip(0, 10, (byte)2);
 		this.beam.setTexture(AEResourceManager.getTextureResource(1));
 		this.beam.setRenderLayer(2);

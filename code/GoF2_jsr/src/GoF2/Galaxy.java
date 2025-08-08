@@ -15,7 +15,7 @@ public final class Galaxy {
 		//new FileRead();
 		final SolarSystem[] var1 = FileRead.loadSystemsBinary();
 		if (Status.getPlayingTime() == 0L) {
-			final boolean[] var2 = Status.getVisibleSystems();
+			final boolean[] var2 = Status.getSystemVisibilities();
 
 			for(int var3 = 0; var3 < var2.length; ++var3) {
 				var2[var3] = var1[var3].isVisibleByDeafult();

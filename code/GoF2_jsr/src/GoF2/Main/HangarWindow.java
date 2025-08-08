@@ -54,12 +54,12 @@ public final class HangarWindow {
 				final int var5 = var3.getIndex();
 				if (var4 > Status.highestItemPrices[var5] || Status.highestItemPrices[var5] == 0) {
 					Status.highestItemPrices[var5] = var4;
-					Status.highestItemPriceSystems[var5] = (byte)Status.getSystem().getId();
+					Status.highestItemPriceSystems[var5] = (byte)Status.getSystem().getIndex();
 				}
 
 				if (var4 < Status.lowestItemPrices[var5] || Status.lowestItemPrices[var5] == 0) {
 					Status.lowestItemPrices[var5] = var4;
-					Status.lowestItemPriceSystems[var5] = (byte)Status.getSystem().getId();
+					Status.lowestItemPriceSystems[var5] = (byte)Status.getSystem().getIndex();
 				}
 			}
 		}

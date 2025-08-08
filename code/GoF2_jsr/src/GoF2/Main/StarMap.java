@@ -21,7 +21,7 @@ import GoF2.Layout;
 import GoF2.Level;
 import GoF2.Mission;
 import GoF2.Popup;
-import GoF2.ProducedGood;
+import GoF2.PendingProduct;
 import GoF2.SolarSystem;
 import GoF2.Station;
 import GoF2.Status;
@@ -143,8 +143,8 @@ public final class StarMap {
 			this.stars[var8].setAnimationMode((byte)1);
 			this.stars[var8].setRenderLayer(2);
 			this.stars[var8].setRadius(5000);
-			this.stars[var8].rotateEuler(0, 2048, 0);
-			this.stars[var8].setScale(1024, 1024, 1024);
+			this.stars[var8].rotateEuler(0, AEMath.Q_PI_HALF, 0);
+			this.stars[var8].setScale(AEMath.Q_QUARTER, AEMath.Q_QUARTER, AEMath.Q_QUARTER);
 			this.stars[var8].moveTo(-8000 + (int)((100 - this.systems[var8].getPosX()) / 100.0F * 10000.0F), -7000 + (int)((100 - this.systems[var8].getPosY()) / 100.0F * 9000.0F), 2000 + (int)((100 - this.systems[var8].getPosZ()) / 100.0F * 2500.0F));
 			this.galaxyMapGroup.uniqueAppend_(this.stars[var8]);
 		}
@@ -153,7 +153,7 @@ public final class StarMap {
 			this.wormhole = AEResourceManager.getGeometryResource(6805);
 			this.wormhole.setDraw(true);
 			this.wormhole.setAnimationSpeed(30);
-			this.wormhole.setScale(512, 512, 512);
+			this.wormhole.setScale(AEMath.Q_EIGHTH, AEMath.Q_EIGHTH, AEMath.Q_EIGHTH);
 			this.wormhole.setAnimationMode((byte)2);
 			this.wormhole.moveTo(this.stars[Status.wormholeSystem].getPostition());
 			this.galaxyMapGroup.uniqueAppend_(this.wormhole);
@@ -188,14 +188,14 @@ public final class StarMap {
 		GlobalStatus.renderer.setActiveCamera(this.starNetCamera_);
 		this.galaxyMapUnlocked = Status.getCurrentCampaignMission() >= 16;
 		this.state = this.galaxyMapUnlocked ? 0 : 3;
-		this.selectedSystem = Status.getSystem().getId();
+		this.selectedSystem = Status.getSystem().getIndex();
 		if (this.state == 3) {
 			initStarSysMap();
 			this.starNetCamera_.setFoV(500);
 			this.galaxyMapView = false;
 			this.selectedPlanet = 0;
 
-			while(this.selectedSystemStations[this.selectedPlanet].getId() != Status.getStation().getId()) {
+			while(this.selectedSystemStations[this.selectedPlanet].getIndex() != Status.getStation().getIndex()) {
 				handleKeystate(32);
 			}
 
@@ -205,7 +205,7 @@ public final class StarMap {
 			if (var3) {
 				this.tmpStarScreenPos2.set(this.stars[var4].getPostition());
 			} else {
-				this.tmpStarScreenPos2.set(this.stars[Status.getSystem().getId()].getPostition());
+				this.tmpStarScreenPos2.set(this.stars[Status.getSystem().getIndex()].getPostition());
 			}
 
 			this.starNetCamera_.moveTo(this.tmpStarScreenPos2.x, this.tmpStarScreenPos2.y, 0);
@@ -224,7 +224,7 @@ public final class StarMap {
 		this.destSelected = false;
 
 		for(int var8 = 0; var8 < this.stars.length; ++var8) {
-			this.stars[var8].setDraw(Status.getVisibleSystems()[var8]);
+			this.stars[var8].setDraw(Status.getSystemVisibilities()[var8]);
 		}
 
 		this.pathToDestination_ = null;
@@ -247,7 +247,7 @@ public final class StarMap {
 
 				if (this.destinationOrMissionSystem_ >= 0) {
 					final SystemPathFinder var6 = new SystemPathFinder();
-					this.pathToDestination_ = var6.getSystemPath(this.systems, Status.getSystem().getId(), this.destinationOrMissionSystem_);
+					this.pathToDestination_ = var6.getSystemPath(this.systems, Status.getSystem().getIndex(), this.destinationOrMissionSystem_);
 				}
 			}
 		}
@@ -287,7 +287,7 @@ public final class StarMap {
 					return true;
 				}
 
-				if (!this.fromStation && !Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getId())) {
+				if (!this.fromStation && !Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getIndex())) {
 					if (this.popup == null) {
 						this.popup = new Popup();
 					}
@@ -339,7 +339,7 @@ public final class StarMap {
 					return true;
 				}
 
-				if (!this.overviewOnly_ && this.selectedSystemStations[this.selectedPlanet].getId() != Status.getStation().getId()) {
+				if (!this.overviewOnly_ && this.selectedSystemStations[this.selectedPlanet].getIndex() != Status.getStation().getIndex()) {
 					if (this.popup == null) {
 						this.popup = new Popup();
 					}
@@ -472,7 +472,7 @@ public final class StarMap {
 			navigateMap(var8, var3);
 			this.curSqrSize = -1.0F;
 			for(var1 = 0; var1 < this.systems.length; ++var1) {
-				if (Status.getVisibleSystems()[var1]) {
+				if (Status.getSystemVisibilities()[var1]) {
 					this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
 					if (this.tmpStarScreenPos2.z < 0 && this.curScreenPosX > this.tmpStarScreenPos2.x - 20 && this.curScreenPosX < this.tmpStarScreenPos2.x + 20 && this.curScreenPosY > this.tmpStarScreenPos2.y - 20 && this.curScreenPosY < this.tmpStarScreenPos2.y + 20) {
 						final float var9 = (this.tmpStarScreenPos2.x - this.curScreenPosX) / 4.0F;
@@ -510,7 +510,7 @@ public final class StarMap {
 			this.tmpStarScreenPos2 = this.starNetCamera_.getLocalPos(this.tmpStarScreenPos2);
 			if (this.tmpStarScreenPos2.z < this.stars[this.selectedSystem].getLocalPosZ() - 150) {
 				this.tmpStarScreenPos2.subtract(this.stars[this.selectedSystem].getLocalPos());
-				this.tmpStarScreenPos2.scale(-1024);
+				this.tmpStarScreenPos2.scale(-AEMath.Q_QUARTER);
 				this.starNetCamera_.translate(this.tmpStarScreenPos2);
 			} else {
 				if (this.galaxyMapView) {
@@ -534,12 +534,12 @@ public final class StarMap {
 
 					this.localOrbits = null;
 					this.starNetCamera_.setFoV(1000);
-					this.starNetCamera_.setRotation(0, 2048, 0);
+					this.starNetCamera_.setRotation(0, AEMath.Q_PI_HALF, 0);
 					this.starNetCamera_.moveTo((int)this.scrollX * 20, (int)this.scrollY * 20, this.starNetCamera_.getPosZ());
 					if (this.wormhole != null && this.galaxyMapGroup != null) {
 						this.galaxyMapGroup.uniqueAppend_(this.wormhole);
 						this.wormhole.getToParentTransform().identity();
-						this.wormhole.setScale(512, 512, 512);
+						this.wormhole.setScale(AEMath.Q_EIGHTH, AEMath.Q_EIGHTH, AEMath.Q_EIGHTH);
 						this.wormhole.moveTo(this.stars[Status.wormholeSystem].getPostition());
 					}
 				}
@@ -646,7 +646,7 @@ public final class StarMap {
 		this.selectedSystemStations = FileRead.loadStationsBinary(this.systems[this.selectedSystem]);
 		this.planetRevolutAngs = new int[var1];
 		this.distsToStar = new int[var1];
-		GlobalStatus.random.setSeed(this.systems[this.selectedSystem].getId() * 1000);
+		GlobalStatus.random.setSeed(this.systems[this.selectedSystem].getIndex() * 1000);
 		this.localStarAndPlanetsMeshes = new AbstractMesh[var1 + 2];
 		this.localSystem = new Group();
 
@@ -741,8 +741,8 @@ public final class StarMap {
 			this.arrow = AEResourceManager.getGeometryResource(13999);
 		}
 
-		if (this.systems[this.selectedSystem].getId() == Status.getSystem().getId()) {
-			this.arrow.setTransform(this.localStarAndPlanetsMeshes[this.systems[this.selectedSystem].getStationEnumIndex(Status.getStation().getId()) + 2].getToParentTransform());
+		if (this.systems[this.selectedSystem].getIndex() == Status.getSystem().getIndex()) {
+			this.arrow.setTransform(this.localStarAndPlanetsMeshes[this.systems[this.selectedSystem].getStationEnumIndex(Status.getStation().getIndex()) + 2].getToParentTransform());
 			this.arrow.setRotation(512, 0, -1024);
 			this.localSystem.uniqueAppend_(this.arrow);
 		}
@@ -827,7 +827,7 @@ public final class StarMap {
 		switch(this.state) {
 		case 0:
 			GlobalStatus.graphics.setColor(Layout.uiOuterTopRightOutlineColor);
-			this.starNetCamera_.getScreenPosition(this.stars[Status.getSystem().getId()].getLocalPos(this.tmpStarScreenPos1));
+			this.starNetCamera_.getScreenPosition(this.stars[Status.getSystem().getIndex()].getLocalPos(this.tmpStarScreenPos1));
 			var1 = this.selectedSystem;
 			this.selectedSystem = -1;
 			final int[] var2 = Status.getSystem().getNeighbourSystems();
@@ -836,7 +836,7 @@ public final class StarMap {
 			float var7;
 			float var12;
 			for(var3 = 0; var3 < this.systems.length; ++var3) {
-				if (Status.getVisibleSystems()[var3]) {
+				if (Status.getSystemVisibilities()[var3]) {
 					this.starNetCamera_.getScreenPosition(this.stars[var3].getLocalPos(this.tmpStarScreenPos2));
 					if (this.tmpStarScreenPos2.z < 0) {
 						if (this.curScreenPosX > this.tmpStarScreenPos2.x - 10 && this.curScreenPosX < this.tmpStarScreenPos2.x + 10 && this.curScreenPosY > this.tmpStarScreenPos2.y - 10 && this.curScreenPosY < this.tmpStarScreenPos2.y + 10) {
@@ -950,7 +950,7 @@ public final class StarMap {
 		if (this.state == 3) {
 			Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(72) + ": " + this.systems[this.selectedSystem].getName() + " " + GlobalStatus.gameText.getText(41), false);
 			Layout.drawFooter(GlobalStatus.gameText.getText(223), GlobalStatus.gameText.getText(65));
-			Font.drawString(!this.overviewOnly_ && Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getId()) && this.selectedSystemStations[this.selectedPlanet].getId() != Status.getStation().getId() ? GlobalStatus.gameText.getText(222) : "", GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - 4, 1, 40);
+			Font.drawString(!this.overviewOnly_ && Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getIndex()) && this.selectedSystemStations[this.selectedPlanet].getIndex() != Status.getStation().getIndex() ? GlobalStatus.gameText.getText(222) : "", GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - 4, 1, 40);
 		} else {
 			Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(72), false);
 			if (this.discoverSystemCutscene) {
@@ -998,24 +998,24 @@ public final class StarMap {
 
 		final Mission var7 = Status.getCampaignMission();
 		final Mission var4 = Status.getFreelanceMission();
-		if (var7 != null && !var7.isEmpty() && (var2 && this.selectedSystemStations[var1].getId() == var7.getTargetStation() || !var2 && this.systems[var1].getStationEnumIndex(var7.getTargetStation()) >= 0 || Status.getCurrentCampaignMission() > 32 && (var2 && this.selectedSystemStations[var1].getId() == Status.wormholeStation && var7.getTargetStation() == -1 || !var2 && this.systems[var1].getStationEnumIndex(Status.wormholeStation) >= 0 && var7.getTargetStation() == -1))) {
+		if (var7 != null && !var7.isEmpty() && (var2 && this.selectedSystemStations[var1].getIndex() == var7.getTargetStation() || !var2 && this.systems[var1].getStationEnumIndex(var7.getTargetStation()) >= 0 || Status.getCurrentCampaignMission() > 32 && (var2 && this.selectedSystemStations[var1].getIndex() == Status.wormholeStation && var7.getTargetStation() == -1 || !var2 && this.systems[var1].getStationEnumIndex(Status.wormholeStation) >= 0 && var7.getTargetStation() == -1))) {
 			this.legendItemIcons[1] = this.mainMissionIcon;
 		}
 
-		if (var4 != null && !var4.isEmpty() && (var2 && this.selectedSystemStations[var1].getId() == var4.getTargetStation() || !var2 && this.systems[var1].getStationEnumIndex(var4.getTargetStation()) >= 0)) {
+		if (var4 != null && !var4.isEmpty() && (var2 && this.selectedSystemStations[var1].getIndex() == var4.getTargetStation() || !var2 && this.systems[var1].getStationEnumIndex(var4.getTargetStation()) >= 0)) {
 			this.legendItemIcons[2] = this.sideMissionIcon;
 		}
 
-		if (var2 && this.systems[this.selectedSystem].getJumpgateStationIndex() == this.selectedSystemStations[var1].getId()) {
+		if (var2 && this.systems[this.selectedSystem].getJumpgateStationIndex() == this.selectedSystemStations[var1].getIndex()) {
 			this.legendItemIcons[3] = this.jumpGateIcon;
 		}
 
-		ProducedGood[] var8;
+		PendingProduct[] var8;
 		int var9;
-		var8 = Status.getWaitingGoods();
+		var8 = Status.getPendingProducts();
 		if (var8 != null) {
 			for(var9 = 0; var9 < var8.length; ++var9) {
-				if (var8[var9] != null && (var2 && var8[var9].stationId == this.selectedSystemStations[var1].getId() || !var2 && this.systems[var1].getStationEnumIndex(var8[var9].stationId) >= 0)) {
+				if (var8[var9] != null && (var2 && var8[var9].stationId == this.selectedSystemStations[var1].getIndex() || !var2 && this.systems[var1].getStationEnumIndex(var8[var9].stationId) >= 0)) {
 					this.legendItemIcons[4] = this.bluePrintIcon;
 					break;
 				}
@@ -1047,12 +1047,12 @@ public final class StarMap {
 
 			var3 = this.tmpStarScreenPos2.x + var5 + Font.getTextWidth(this.systems[var1].getName(), 0) + 7;
 			boolean var6 = true;
-			if (this.overviewOnly_ && !var2 && this.destinationOrMissionSystem_ == this.systems[var1].getId()) {
+			if (this.overviewOnly_ && !var2 && this.destinationOrMissionSystem_ == this.systems[var1].getIndex()) {
 				var6 = Layout.quickClockHigh_();
 			}
 
 			if (var6) {
-				Font.drawString(this.systems[var1].getName(), this.tmpStarScreenPos2.x + var5, var9 - 2, this.selectedSystem != var1 && this.selectedSystem != Status.getSystem().getId() ? 1 : 2, 17);
+				Font.drawString(this.systems[var1].getName(), this.tmpStarScreenPos2.x + var5, var9 - 2, this.selectedSystem != var1 && this.selectedSystem != Status.getSystem().getIndex() ? 1 : 2, 17);
 			}
 
 			if (var1 == this.selectedSystem) {

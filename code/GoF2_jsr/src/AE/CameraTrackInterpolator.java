@@ -19,14 +19,14 @@ public final class CameraTrackInterpolator {
 	private int[][] keyFrames;
 	private final long totalTrackLength;
 
-	public CameraTrackInterpolator(final int[][] var1, final int var2, final long var3) {
+	public CameraTrackInterpolator(final int[][] tracks, final int trackIdx, final long var3) {
 		this.totalTrackLength = var3;
-		if (var1 != null && var1[var2] != null) {
-			this.keyFrames = new int[var1[var2].length / 8][];
+		if (tracks != null && tracks[trackIdx] != null) {
+			this.keyFrames = new int[tracks[trackIdx].length / 8][];
 
-			for(int i = 0; i < var1[var2].length / 8; ++i) {
+			for(int i = 0; i < tracks[trackIdx].length / 8; ++i) {
 				this.keyFrames[i] = new int[8];
-				System.arraycopy(var1[var2], i << 3, this.keyFrames[i], 0, 8);
+				System.arraycopy(tracks[trackIdx], i << 3, this.keyFrames[i], 0, 8);
 			}
 
 			if (this.keyFrames != null) {

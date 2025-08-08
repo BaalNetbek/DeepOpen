@@ -15,11 +15,11 @@ public final class CameraControllerGroup extends Group {
 		}
 	}
 
-	public final void updateTransform(final boolean var1) {
-		GraphNode var2;
+	public final void updateTransform(final boolean forced) {
+		GraphNode node;
 		if (this.controllers != null) {
-			if (this.boundsDirty_ || var1) {
-				if (this.transformDirty_ || var1) {
+			if (this.boundsDirty_ || forced) {
+				if (this.transformDirty_ || forced) {
 					if (this.group != null) {
 						this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
 					} else {
@@ -27,14 +27,14 @@ public final class CameraControllerGroup extends Group {
 					}
 				}
 
-				var2 = this.head;
+				node = this.head;
 
 				while(true) {
-					if (var2 == null) {
+					if (node == null) {
 						this.boundingSphere.setXYZR(this.localTransformation.getPositionX(), this.localTransformation.getPositionY(), this.localTransformation.getPositionZ(), 0);
 
-						for(var2 = this.head; var2 != null; var2 = var2.parent) {
-							this.boundingSphere.merge(var2.boundingSphere);
+						for(node = this.head; node != null; node = node.parent) {
+							this.boundingSphere.merge(node.boundingSphere);
 						}
 
 						this.boundsDirty_ = false;
@@ -42,8 +42,8 @@ public final class CameraControllerGroup extends Group {
 						break;
 					}
 
-					var2.updateTransform(this.transformDirty_ || var1);
-					var2 = var2.parent;
+					node.updateTransform(this.transformDirty_ || forced);
+					node = node.parent;
 				}
 			}
 
@@ -54,8 +54,8 @@ public final class CameraControllerGroup extends Group {
 			}
 		}
 
-		if (this.boundsDirty_ || var1) {
-			if (this.transformDirty_ || var1) {
+		if (this.boundsDirty_ || forced) {
+			if (this.transformDirty_ || forced) {
 				if (this.group != null) {
 					this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
 				} else {
@@ -63,14 +63,14 @@ public final class CameraControllerGroup extends Group {
 				}
 			}
 
-			for(var2 = this.head; var2 != null; var2 = var2.parent) {
-				var2.updateTransform(this.transformDirty_ || var1);
+			for(node = this.head; node != null; node = node.parent) {
+				node.updateTransform(this.transformDirty_ || forced);
 			}
 
 			this.boundingSphere.setXYZR(this.localTransformation.getPositionX(), this.localTransformation.getPositionY(), this.localTransformation.getPositionZ(), 0);
 
-			for(var2 = this.head; var2 != null; var2 = var2.parent) {
-				this.boundingSphere.merge(var2.boundingSphere);
+			for(node = this.head; node != null; node = node.parent) {
+				this.boundingSphere.merge(node.boundingSphere);
 			}
 
 			this.boundsDirty_ = false;

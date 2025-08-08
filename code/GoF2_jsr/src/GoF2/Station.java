@@ -33,7 +33,7 @@ public final class Station {
         return this.name;
     }
 
-    public final int getId() {
+    public final int getIndex() {
         return this.id;
     }
 

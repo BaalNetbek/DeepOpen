@@ -72,7 +72,7 @@ public final class CutScene extends IApplicationModule {
 
 			GlobalStatus.renderer.setActiveCamera(this.gameCam_);
 			this.gameCam_.moveTo(920, 500, -1240);
-			this.gameCam_.setRotation(-160, 2048, 0);
+			this.gameCam_.setRotation(-160, AEMath.Q_PI_HALF, 0);
 			return;
 		case 23:
 			GlobalStatus.renderer.setActiveCamera(this.hangarCam);
@@ -120,17 +120,17 @@ public final class CutScene extends IApplicationModule {
 			case 23:
 				this.hangarCam = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 900, 10, 31768);
 				this.hangarCam.moveTo(0, 1700, 1500);
-				this.hangarCam.setRotation(-256, 0, 0);
+				this.hangarCam.setRotation(-AEMath.Q_SIXTEENTH, 0, 0);
 				GlobalStatus.renderer.setActiveCamera(this.hangarCam);
 				this.cameraGroupOfOne_ = new Group();
 				this.cameraGroupOfOne_.uniqueAppend_(this.hangarCam);
 				this.cameraGroupOfOne_.translate(0, 0, 10240);
-				this.rotation = 1536.0F;
+				this.rotation = AEMath.Q_THREE_EIGHTHS;
 				this.cameraGroupOfOne_.updateTransform(true);
-				KIPlayer[] var1;
-				if ((var1 = this.level.getEnemies())[0].getMeshId() >= 0) {
-					this.shipPosY = var1[0].geometry.getPosY();
-					this.shipPosZ = var1[0].geometry.getPosZ();
+				KIPlayer var1 = this.level.getEnemies()[0];
+				if (var1.getMeshId() >= 0) {
+					this.shipPosY = var1.geometry.getPosY();
+					this.shipPosZ = var1.geometry.getPosZ();
 				}
 			}
 		} catch (final Exception var2) {

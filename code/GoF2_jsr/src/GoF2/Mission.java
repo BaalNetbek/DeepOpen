@@ -22,15 +22,15 @@ public final class Mission {
 	private int tasksTreshold_;
 	private boolean visibleOnMap;
 
-	public Mission(final int var1, final String var2, final byte[] var3, final int var4, final int var5, final int var6, final int var7) {
-		this.missionType = var1;
-		this.clientName = var2;
-		this.clientFace = var3;
-		this.clientRace = var4;
-		this.reward = var5;
-		this.targetStationId = var6;
-		this.targetStationName = Galaxy.getStation(var6).getName();
-		this.difficulty = var7;
+	public Mission(final int type, final String clientName, final byte[] clientFace, final int clientRace, final int reward, final int targetStation, final int difficulty) {
+		this.missionType = type;
+		this.clientName = clientName;
+		this.clientFace = clientFace;
+		this.clientRace = clientRace;
+		this.reward = reward;
+		this.targetStationId = targetStation;
+		this.targetStationName = Galaxy.getStation(targetStation).getName();
+		this.difficulty = difficulty;
 		this.startedStoryMission = false;
 		this.visibleOnMap = true;
 	}
@@ -77,21 +77,21 @@ public final class Mission {
 	public final boolean hasWon() {
 		return this.won;
 	}
-
-	public final void setCommodity(final int var1, final int var2) {
-		this.commodityId = var1;
-		this.commodityAmmout = var2;
+	/* setProductionGood */
+	public final void setCommodity(final int itemId, final int ammount) {
+		this.commodityId = itemId;
+		this.commodityAmmout = ammount;
 	}
-
+	/* getProductionGoodIndex */
 	public final int getCommodityIndex() {
 		return this.commodityId;
 	}
-
+	/* getProductionGoodAmount */
 	public final int getCommodityAmount_() {
 		return this.commodityAmmout;
 	}
 
-	public final void setTasksTreshold_(final int var1) {
+	public final void setStatusValue(final int var1) {
 		this.tasksTreshold_ = var1;
 	}
 

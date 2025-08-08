@@ -37,7 +37,7 @@ public final class Status {
     private static SolarSystem currentSolarSystem;
     private static String[] currSysPlanetNames;
     private static int[] currSysPlanetTextures;
-    public static ProducedGood[] waitingGoods;
+    public static PendingProduct[] waitingGoods;
     public static Agent[] specialAgents;
     public static String[] wingmenNames;
     public static byte[] wingmanFace;
@@ -82,31 +82,31 @@ public final class Status {
     public static int acceptedNotAskingDifficulty;
     public static int acceptedNotAskingLocation;
 
-    public static void appendProduced(final BluePrint var0) {
+    public static void addPendingProduct(final BluePrint bp) {
         int var1 = 0;
         if (waitingGoods == null) {
-            waitingGoods = new ProducedGood[1];
+            waitingGoods = new PendingProduct[1];
         } else {
-            int var2;
-            for(var2 = 0; var2 < waitingGoods.length; ++var2) {
-                if (waitingGoods[var2] != null && waitingGoods[var2].index == var0.getIndex() && waitingGoods[var2].stationId == var0.productionStationId) {
-                    final ProducedGood var10000 = waitingGoods[var2];
-                    var10000.producedQuantity += var0.getTonsPerProduction2();
+            for(int i = 0; i < waitingGoods.length; ++i) {
+                if (waitingGoods[i] != null 
+               		 && waitingGoods[i].index == bp.getIndex() 
+               		 && waitingGoods[i].stationId == bp.productionStationId) {
+                    waitingGoods[i].producedQuantity += bp.getTonsPerProduction2();
                     return;
                 }
             }
 
-            for(var2 = 0; var2 < waitingGoods.length; ++var2) {
-                if (waitingGoods[var2] == null) {
-                    waitingGoods[var2] = new ProducedGood(var0);
+            for(int i = 0; i < waitingGoods.length; ++i) {
+                if (waitingGoods[i] == null) {
+                    waitingGoods[i] = new PendingProduct(bp);
                     return;
                 }
             }
 
-            final ProducedGood[] var4 = new ProducedGood[waitingGoods.length + 1];
+            final PendingProduct[] var4 = new PendingProduct[waitingGoods.length + 1];
 
-            for(int var3 = 0; var3 < waitingGoods.length; ++var3) {
-                var4[var1] = waitingGoods[var3];
+            for(int i = 0; i < waitingGoods.length; ++i) {
+                var4[var1] = waitingGoods[i];
                 var1++;
             }
 
@@ -114,14 +114,14 @@ public final class Status {
             waitingGoods = var4;
         }
 
-        waitingGoods[var1] = new ProducedGood(var0);
+        waitingGoods[var1] = new PendingProduct(bp);
     }
 
-    public static ProducedGood[] getWaitingGoods() {
+    public static PendingProduct[] getPendingProducts() {
         return waitingGoods;
     }
 
-    public static boolean[] getVisibleSystems() {
+    public static boolean[] getSystemVisibilities() {
         return visibleSystems;
     }
 
@@ -129,15 +129,15 @@ public final class Status {
         visibleSystems[var0] = true;
     }
 
-    public static Station[] getLastVisitedStations() {
+    public static Station[] getStationStack() {
         return lastVisitedStations;
     }
 
-    public static void setLastVisitedStations(final Station[] var0) {
+    public static void setStationStack(final Station[] var0) {
         lastVisitedStations = var0;
     }
 
-    private static Station inLastVisitedStations(final Station var0) {
+    private static Station isOnStack(final Station var0) {
         for(int var1 = 0; var1 < 3; ++var1) {
             if (lastVisitedStations[var1] != null && lastVisitedStations[var1].equals(var0)) {
                 return lastVisitedStations[var1];
@@ -146,111 +146,105 @@ public final class Status {
 
         return null;
     }
-    /*
-     *  #TODO refactoring
-     */
-    public static void departStation(final Station var0) {
-        if (var0 != voidStation) {
-            Station var1;
-            label240: {
-                var1 = inLastVisitedStations(var0);
-                Station var4;
-                var4 = inLastVisitedStations(var0);
-                if (var4 != null) {
-                    setCurrentStation_andInitSystem_(var4);
+    /** More like departOrbit and init next Station **/
+    public static void departStation(final Station destination) {
+        if (destination != voidStation) {
+      	  	// addStationToStack
+            final Station alreadyStacked = isOnStack(destination);
+	         if (alreadyStacked != null) {
+	             setStation(alreadyStacked);
+	         } 
+	         else {                 
+	             if (lastVisitedStations[0] != null) {
+	                  for(int i = 2; i > 0; --i) {
+	                      lastVisitedStations[i] = lastVisitedStations[i - 1];
+	                  }
+	                  lastVisitedStations[0] = destination;
+	                  setStation(destination);
+	             } 
+	             else {
+	                 for(int i = 2; i >= 0; --i) {
+	                     if (lastVisitedStations[i] == null) {
+	                         lastVisitedStations[i] = destination;
+	                         setStation(destination);
+	                         break;
+	                     }
+	                 }
+	             }
+	         }
+
+
+            if (alreadyStacked == null) {
+                final Generator gen = new Generator();
+                Item[] shopItems;
+                if (destination.getIndex() == 78 && currentCampaignMissionIndex < 7) {
+                    Item[] gunantsScrap = new Item[3];
+                    gunantsScrap[0] = Globals.getItems()[0].getCopyInAmmount(1, 0);
+                    gunantsScrap[1] = Globals.getItems()[22].getCopyInAmmount(1, 0);
+                    gunantsScrap[2] = Globals.getItems()[55].getCopyInAmmount(1, 0);
+                    shopItems = gunantsScrap;
                 } else {
-                    int var5;
-                    if (lastVisitedStations[0] != null) {
-                        for(var5 = 2; var5 > 0; --var5) {
-                            lastVisitedStations[var5] = lastVisitedStations[var5 - 1];
-                        }
-
-                        lastVisitedStations[0] = var0;
-                        setCurrentStation_andInitSystem_(var0);
-                        break label240;
-                    }
-
-                    for(var5 = 2; var5 >= 0; --var5) {
-                        if (lastVisitedStations[var5] == null) {
-                            lastVisitedStations[var5] = var0;
-                            setCurrentStation_andInitSystem_(var0);
-                            break label240;
-                        }
-                    }
-                }
-            }
-
-            if (var1 == null) {
-                final Generator var2 = new Generator();
-                final Station var3 = var0;
-                Item[] var10001;
-                if (var0.getId() == 78 && currentCampaignMissionIndex < 7) {
-                    Item[] var19;
-                    (var19 = new Item[3])[0] = Globals.getItems()[0].getCopyInAmmount(1, 0);
-                    var19[1] = Globals.getItems()[22].getCopyInAmmount(1, 0);
-                    var19[2] = Globals.getItems()[55].getCopyInAmmount(1, 0);
-                    var10001 = var19;
-                } else {
-                    final Vector var18 = new Vector();
-                    final Item[] var20 = Globals.getItems();
+                    final Vector shopItemsVec = new Vector();
+                    final Item[] items = Globals.getItems();
                     //new FileRead();
                     final SolarSystem[] var14 = FileRead.loadSystemsBinary();
-                    int var6;
-                    final int var7 = (var6 = var0.getTecLevel()) < 4 ? 1 : var6 / 2;
-                    if (currentCampaignMissionIndex > 16 && currentCampaignMissionIndex < 25 && GlobalStatus.random.nextInt(100) < 40) {
-                        final Item var8 = var20[68].makeItem();
-                        var18.addElement(var8);
+                    int stationLvl = destination.getTecLevel();
+                    final int halfStationLvl = stationLvl < 4 ? 1 : stationLvl / 2;
+                    if (currentCampaignMissionIndex > 16 
+                  		  && currentCampaignMissionIndex < 25 
+                  		  && GlobalStatus.random.nextInt(100) < 40) {
+                        shopItemsVec.addElement(items[68].makeItem());
                     }
 
                     GlobalStatus.random.setSeed(System.currentTimeMillis());
 
-                    int i;
-                    int var23;
-                    for(i = 0; i < var20.length; ++i) {
-                        final Item var9 = var20[i];
-                        boolean var10 = false;
-                        if (var3.getId() == var9.getAttribute(Item.GUARANTEED_TO_HAVE_SYSTEM)) {
-                            var10 = true;
+                    for(int i = 0; i < items.length; ++i) {
+                        final Item item = items[i];
+                        boolean guaranteed = false;
+                        if (destination.getIndex() == item.getAttribute(Item.GUARANTEED_TO_HAVE_SYSTEM)) {
+                            guaranteed = true;
                         }
 
-                        int var11 = var9.getTecLevel();
-                        final boolean var12 = var9.getIndex() >= 132 && var9.getIndex() < 154;
-								if (var10 || var9.getBluePrintComponentsIds() == null
-										&& i != 175 && i != 164
-								      && var11 <= var3.getTecLevel()
-								      && var9.getOccurance() != 0
-								      && var9.getSinglePrice() != 0
-								      && (var9.getAttribute(Item.RACE) != Globals.VOSSK || var14[var3.getSystemIndex()].getRace() == Globals.VOSSK)
-								      && (!var12 || var9.getIndex() == 132 + var3.getSystemIndex())) {
-								    final int var13 = var9.getOccurance();
-                            if (var10 || (var12 || var11 <= var6 && var11 >= var7) && GlobalStatus.random.nextInt(100) < var13) {
-                                var23 = var14[var9.getLowestPriceSystemId()].getPosX();
-                                var11 = var14[var9.getLowestPriceSystemId()].getPosY();
-                                var23 = Galaxy.invDistancePercent(var14[var3.getSystemIndex()].getPosX(), var14[var3.getSystemIndex()].getPosY(), var23, var11);
-                                var11 = 5 + GlobalStatus.random.nextInt(15);
-                                if (var9.getType() != 4 && var9.getType() != 1) {
-                                    var11 = AEMath.max(1, var11 / 5);
-                                } else if (var9.getType() == 4 && var23 > 50) {
-                                    var11 *= AEMath.max(1, (int)((var23 - 50) / 50.0F * 20.0F));
+                        int itemLvl = item.getTecLevel();
+                        final boolean booze = item.getIndex() >= 132 && item.getIndex() < 154;
+								if (guaranteed || item.getBluePrintComponentsIds() == null
+										&& i != 175 && i != 164 // void crystals
+								      && item.getTecLevel() <= destination.getTecLevel()
+								      && item.getOccurance() != 0
+								      && item.getSinglePrice() != 0
+								      && (item.getAttribute(Item.RACE) != Globals.VOSSK || var14[destination.getSystemIndex()].getRace() == Globals.VOSSK)
+								      && (!booze || item.getIndex() == 132 + destination.getSystemIndex())) {
+								    int lowToHere, ammount;
+									 if (guaranteed || (booze || itemLvl <= stationLvl && itemLvl >= halfStationLvl)
+											 && GlobalStatus.random.nextInt(100) < item.getOccurance()) {
+                                lowToHere = Galaxy.invDistancePercent(
+                              		  var14[destination.getSystemIndex()].getPosX(),
+                              		  var14[destination.getSystemIndex()].getPosY(),
+                              		  var14[item.getLowestPriceSystemId()].getPosX(),
+                              		  var14[item.getLowestPriceSystemId()].getPosY());
+                                ammount = 5 + GlobalStatus.random.nextInt(15);
+                                if (item.getType() != Item.COMMODITY && item.getType() != Item.SECONDARY) {
+                                    ammount = AEMath.max(1, ammount / 5);
+                                } else if (item.getType() == 4 && lowToHere > 50) {
+                                    ammount *= AEMath.max(1, (int)((lowToHere - 50) / 50.0F * 20.0F));
                                 }
 
-                                var18.addElement(var9.makeItem(var11));
+                                shopItemsVec.addElement(item.makeItem(ammount));
                             }
                         }
                     }
 
-                    final Item[] var22 = new Item[i = var18.size()];
-
-                    for(var23 = 0; var23 < i; ++var23) {
-                        var22[var23] = (Item)var18.elementAt(var23);
+                    final Item[] newShopItems = new Item[shopItemsVec.size()];
+                    for(int i = 0; i < shopItemsVec.size(); ++i) {
+                        newShopItems[i] = (Item)shopItemsVec.elementAt(i);
                     }
 
-                    var10001 = var22;
+                    shopItems = newShopItems;
                 }
 
-                var0.setShopItems(var10001);
-                var0.setShopShips(Generator.getShipBuyList(var0));
-                var0.setBarAgents(var2.createAgents(var0));
+                destination.setShopItems(shopItems);
+                destination.setShopShips(Generator.getShipBuyList(destination));
+                destination.setBarAgents(gen.createAgents(destination));
             }
 
             lastLoadingTime = playTime;
@@ -260,48 +254,47 @@ public final class Status {
 
         for(int i = 0; i < currentMissions.length; ++i) {
             if (currentMissions[i] != null) {
-                if (currentMissions[i].isCampaignMission() && currentMissions[i].getType() == 25 && var0.getId() == wormholeStation) {
+                if (currentMissions[i].isCampaignMission() && currentMissions[i].getType() == 25 && destination.getIndex() == wormholeStation) {
                     mission = currentMissions[i];
                     break;
                 }
 
-                if (currentMissions[i].getTargetStation() == var0.getId() && currentMissions[i].getType() != 8 && currentMissions[i].getType() != 19 && currentMissions[i].getType() != 16 && currentMissions[i].getType() != 14 && currentMissions[i].getType() != 13) {
-                    if (currentMissions[i].isCampaignMission() || currentMissions[i].getType() != 11) {
-                        mission = currentMissions[i];
-                    }
-                    break;
-                }
+						if (currentMissions[i].getTargetStation() == destination.getIndex()
+							&& currentMissions[i].getType() != 8
+					      && currentMissions[i].getType() != 19
+					      && currentMissions[i].getType() != 16
+					      && currentMissions[i].getType() != 14
+					      && currentMissions[i].getType() != 13) {
+							if (currentMissions[i].isCampaignMission() || currentMissions[i].getType() != 11) {
+								mission = currentMissions[i];
+							}
+							break;
+						}
             }
         }
 
-        if (!gameWon() && currentCampaignMissionIndex >= 32 && var0.getId() != currentMissions[0].getTargetStation()) {
-            if (++wormHoleTick > 10) {
-                wormHoleTick = 0;
-                boolean var16 = false;
+        if (!gameWon() && currentCampaignMissionIndex >= 32 && destination.getIndex() != currentMissions[0].getTargetStation()) {
+           if (++wormHoleTick > 10) {
+              wormHoleTick = 0;
+              boolean var19 = false;
 
-                while(true) {
-                    do {
-                        do {
-                            do {
-                                do {
-                                    if (var16) {
-                                        return;
-                                    }
+              while (!var19) {
+                 wormholeSystem = GlobalStatus.random.nextInt(22);
+                 if (visibleSystems[wormholeSystem]
+                    && wormholeSystem != 10
+                    && wormholeSystem != 15
+                    && (!mission.isCampaignMission() || mission.getTargetStation() != wormholeStation)) {
+                    var19 = true;
+                    SolarSystem var20 = Galaxy.loadSystem_(wormholeSystem);
+                    wormholeStation = var20.getStations()[GlobalStatus.random.nextInt(var20.getStations().length)];
+                 }
+              }
 
-                                    wormholeSystem = GlobalStatus.random.nextInt(22);
-                                } while(!visibleSystems[wormholeSystem]);
-                            } while(wormholeSystem == 10);
-                        } while(wormholeSystem == 15);
-                    } while(mission.isCampaignMission() && mission.getTargetStation() == wormholeStation);
-
-                    var16 = true;
-                    SolarSystem var17;
-                    wormholeStation = (var17 = Galaxy.loadSystem_(wormholeSystem)).getStations()[GlobalStatus.random.nextInt(var17.getStations().length)];
-                }
-            }
+              return;
+           }
         } else if (gameWon()) {
-            wormholeStation = -10;
-            wormholeSystem = -10;
+           wormholeStation = -10;
+           wormholeSystem = -10;
         }
 
     }
@@ -330,9 +323,9 @@ public final class Status {
         return currentMissions[0];
     }
 
-    public static void startStoryMission(final Mission var0) {
-        var0.setCampaignMission(true);
-        currentMissions[0] = var0;
+    public static void setCampaignMission(final Mission mission) {
+        mission.setCampaignMission(true);
+        currentMissions[0] = mission;
     }
 
     public static void incMissionCount() {
@@ -348,207 +341,206 @@ public final class Status {
     }
 
     public static void nextCampaignMission() {
-        int var1;
-        Item[] var2;
+        Item[] eq, cargo;
         switch(++currentCampaignMissionIndex) {
         case 1:
-            startStoryMission(new Mission(11, 0, 78));
+            setCampaignMission(new Mission(11, 0, 78));
             return;
         case 2:
-            startStoryMission(new Mission(18, 0, 78));
-            currentMissions[0].setTasksTreshold_(10);
+            setCampaignMission(new Mission(18, 0, 78));
+            currentMissions[0].setStatusValue(10);
             return;
         case 3:
-            startStoryMission(new Mission(11, 0, 78));
+            setCampaignMission(new Mission(11, 0, 78));
             return;
         case 4:
             playersShip.setCargo((Item[])null);
-            startStoryMission(new Mission(18, 0, 78));
-            currentMissions[0].setTasksTreshold_(25);
+            setCampaignMission(new Mission(18, 0, 78));
+            currentMissions[0].setStatusValue(25);
             return;
         case 5:
-            startStoryMission(new Mission(11, 0, 78));
+            setCampaignMission(new Mission(11, 0, 78));
             return;
         case 6:
             playersShip.removeAllCargo();
-            startStoryMission(new Mission(22, 0, 78));
+            setCampaignMission(new Mission(22, 0, 78));
             return;
         case 7:
-            startStoryMission(new Mission(4, 0, 78));
+            setCampaignMission(new Mission(4, 0, 78));
             return;
         case 8:
-            var2 = playersShip.getEquipment();
-            if (var2 != null) {
-                for(var1 = 0; var1 < var2.length; ++var1) {
-                    if (var2[var1] != null) {
-                        var2[var1].setUnsaleable(false);
-                        var2[var1].setPrice(Globals.getItems()[var1].getSinglePrice());
+            eq = playersShip.getEquipment();
+            if (eq != null) {
+                for(int i = 0; i < eq.length; ++i) {
+                    if (eq[i] != null) {
+                        eq[i].setUnsaleable(false);
+                        eq[i].setPrice(Globals.getItems()[i].getSinglePrice());
                     }
                 }
             }
 
-            Item[] var6;
-            if ((var6 = playersShip.getCargo()) != null) {
-                for(int var5 = 0; var5 < var6.length; ++var5) {
-                    if (var6[var5] != null) {
-                        var6[var5].setUnsaleable(false);
-                        var6[var5].setPrice(Globals.getItems()[var5].getSinglePrice());
+            cargo = playersShip.getCargo();
+            if (cargo != null) {
+                for(int i = 0; i < cargo.length; ++i) {
+                    if (cargo[i] != null) {
+                        cargo[i].setUnsaleable(false);
+                        cargo[i].setPrice(Globals.getItems()[i].getSinglePrice());
                     }
                 }
             }
 
-            startStoryMission(new Mission(11, 0, 78));
+            setCampaignMission(new Mission(11, 0, 78));
             return;
         case 9:
-            startStoryMission(new Mission(11, 0, 78));
+            setCampaignMission(new Mission(11, 0, 78));
             return;
         case 10:
             final Item var4 = playersShip.getFirstEquipmentOfSort(Item.MINING_LASER);
             playersShip.removeEquipment(var4);
-            startStoryMission(new Mission(11, 0, 79));
+            setCampaignMission(new Mission(11, 0, 79));
             return;
         case 11:
-            startStoryMission(new Mission(11, 0, 76));
+            setCampaignMission(new Mission(11, 0, 76));
             return;
         case 12:
-            startStoryMission(new Mission(11, 0, 79));
+            setCampaignMission(new Mission(11, 0, 79));
             return;
         case 13:
-            startStoryMission(new Mission(13, 0, 0));
-            currentMissions[0].setTasksTreshold_(missionsCount + 2);
+            setCampaignMission(new Mission(13, 0, 0));
+            currentMissions[0].setStatusValue(missionsCount + 2);
             currentMissions[0].setVisible(false);
             return;
         case 14:
-            startStoryMission(new Mission(4, 0, 79));
+            setCampaignMission(new Mission(4, 0, 79));
             return;
         case 15:
-            startStoryMission(new Mission(11, 0, 98));
+            setCampaignMission(new Mission(11, 0, 98));
             return;
         case 16:
-            startStoryMission(new Mission(4, 0, 98));
+            setCampaignMission(new Mission(4, 0, 98));
             return;
         case 17:
-            startStoryMission(new Mission(11, 0, 98));
+            setCampaignMission(new Mission(11, 0, 98));
             return;
         case 18:
             playersShip.setRace(0);
-            startStoryMission(new Mission(20, 0, 56));
+            setCampaignMission(new Mission(20, 0, 56));
             return;
         case 19:
-            startStoryMission(new Mission(20, 0, 55));
+            setCampaignMission(new Mission(20, 0, 55));
             return;
         case 20:
-            startStoryMission(new Mission(23, 0, 55));
-            currentMissions[0].setTasksTreshold_(6);
+            setCampaignMission(new Mission(23, 0, 55));
+            currentMissions[0].setStatusValue(6);
             return;
         case 21:
-            startStoryMission(new Mission(4, 0, 55));
+            setCampaignMission(new Mission(4, 0, 55));
             return;
         case 22:
-            startStoryMission(new Mission(11, 0, 55));
+            setCampaignMission(new Mission(11, 0, 55));
             return;
         case 23:
             final byte var3 = 6;
             visibleSystems[var3] = true;
-            startStoryMission(new Mission(11, 20000, 10));
+            setCampaignMission(new Mission(11, 20000, 10));
             return;
         case 24:
             wormholeStation = 48;
             wormholeSystem = 9;
-            startStoryMission(new Mission(4, 0, 48));
+            setCampaignMission(new Mission(4, 0, 48));
             return;
         case 25:
-            if ((var2 = playersShip.getCargo()) != null) {
-                for(var1 = 0; var1 < var2.length; ++var1) {
-                    if (var2[var1].getIndex() == 131) {
-                        var2[var1].setUnsaleable(true);
+      	  	cargo = playersShip.getCargo();
+            if ((cargo = playersShip.getCargo()) != null) {
+                for(int i = 0; i < cargo.length; ++i) {
+                    if (cargo[i].getIndex() == 131) {
+                  	   cargo[i].setUnsaleable(true);
                         break;
                     }
                 }
             }
 
-            startStoryMission(new Mission(20, 0, -1));
+            setCampaignMission(new Mission(20, 0, -1));
             return;
         case 26:
             wormholeStation = -1;
             wormholeSystem = -1;
-            startStoryMission(new Mission(4, 0, 48));
+            setCampaignMission(new Mission(4, 0, 48));
             return;
         case 27:
-            startStoryMission(new Mission(11, 0, 10));
+            setCampaignMission(new Mission(11, 0, 10));
             return;
         case 28:
             wormholeStation = 91;
             wormholeSystem = 18;
-            startStoryMission(new Mission(4, 0, 91));
+            setCampaignMission(new Mission(4, 0, 91));
             return;
         case 29:
-            startStoryMission(new Mission(4, 0, -1));
+            setCampaignMission(new Mission(4, 0, -1));
             return;
         case 30:
-            startStoryMission(new Mission(20, 0, 91));
+            setCampaignMission(new Mission(20, 0, 91));
             return;
         case 31:
-            startStoryMission(new Mission(11, 30000, 98));
+            setCampaignMission(new Mission(11, 30000, 98));
             return;
         case 32:
-            startStoryMission(new Mission(11, 0, 10));
+            setCampaignMission(new Mission(11, 0, 10));
             return;
         case 33:
-            startStoryMission(new Mission(8, 0, 10));
+            setCampaignMission(new Mission(8, 0, 10));
             currentMissions[0].setCommodity(164, 50);
             return;
         case 34:
             playersShip.removeCargo(164, 50);
 
-            for(var1 = 0; var1 < blueprints.length; ++var1) {
-                if (blueprints[var1].getIndex() == 85) {
-                    blueprints[var1].unlocked = true;
-                    blueprints[var1].startProduction(Globals.getItems()[164].makeItem(), 50, -1);
-                    final BluePrint var10000 = blueprints[var1];
-                    var10000.investedCredits = 0;
+            for(int i = 0; i < blueprints.length; ++i) {
+                if (blueprints[i].getIndex() == 85) {
+                    blueprints[i].unlocked = true;
+                    blueprints[i].startProduction(Globals.getItems()[164].makeItem(), 50, -1);
+                    blueprints[i].investedCredits = 0;
                 }
             }
 
-            startStoryMission(new Mission(11, 0, 30));
+            setCampaignMission(new Mission(11, 0, 30));
             return;
         case 35:
-            startStoryMission(new Mission(11, 0, 29));
+            setCampaignMission(new Mission(11, 0, 29));
             return;
         case 36:
-            startStoryMission(new Mission(12, 0, 27));
+            setCampaignMission(new Mission(12, 0, 27));
             return;
         case 37:
-            startStoryMission(new Mission(24, 0, 27));
+            setCampaignMission(new Mission(24, 0, 27));
             currentMissions[0].setVisible(false);
             return;
         case 38:
-            startStoryMission(new Mission(4, 0, 22));
+            setCampaignMission(new Mission(4, 0, 22));
             return;
         case 39:
-            startStoryMission(new Mission(11, 0, 30));
+            setCampaignMission(new Mission(11, 0, 30));
             return;
         case 40:
-            startStoryMission(new Mission(25, 0, -1));
+            setCampaignMission(new Mission(25, 0, -1));
             return;
         case 41:
-            startStoryMission(new Mission(4, 0, -1));
+            setCampaignMission(new Mission(4, 0, -1));
             return;
         case 42:
             wormholeStation = -10;
             wormholeSystem = -10;
-            startStoryMission(new Mission(24, 0, -1));
+            setCampaignMission(new Mission(24, 0, -1));
             return;
         case 43:
-            startStoryMission(new Mission(11, 0, 98));
+            setCampaignMission(new Mission(11, 0, 98));
             return;
         case 44:
-            startStoryMission(new Mission(11, 0, 98));
+            setCampaignMission(new Mission(11, 0, 98));
             return;
         case 45:
             wormholeStation = -10;
             wormholeSystem = -10;
-            startStoryMission(Mission.emptyMission_);
+            setCampaignMission(Mission.emptyMission_);
             currentMissions[0].setVisible(false);
             changeCredits(40000);
         default:
@@ -560,7 +552,7 @@ public final class Status {
     }
 
     public static boolean inEmptyOrbit() {
-        return currentCampaignMissionIndex < 2 && currentStation.getId() == 78 || inAlienOrbit() && currentCampaignMissionIndex > 42;
+        return currentCampaignMissionIndex < 2 && currentStation.getIndex() == 78 || inAlienOrbit() && currentCampaignMissionIndex > 42;
     }
 
     public static boolean inAlienOrbit() {
@@ -569,20 +561,20 @@ public final class Status {
 
     public static Mission missionCompleted_(final boolean var0, final long var1) {
        // label140:
-            for(int var3 = 0; var3 < currentMissions.length; ++var3) {
-                Mission var4;
-                if ((var4 = currentMissions[var3]).hasWon()) {
+            for(int i = 0; i < currentMissions.length; ++i) {
+                Mission mission = currentMissions[i];
+                if (mission.hasWon()) {
                     return null;
                 }
 
-                if (var4 != null) {
-                    Item[] var5;
-                    int var6;
-                    switch(var4.getType()) {
+                if (mission != null) {
+                    Item[] eq;
+
+                    switch(mission.getType()) {
                     case 0:
                     case 11:
-                        if (var0 && currentStation.getId() == var4.getTargetStation()) {
-                            return var4;
+                        if (var0 && currentStation.getIndex() == mission.getTargetStation()) {
+                            return mission;
                         }
                     case 1:
                     case 2:
@@ -598,28 +590,28 @@ public final class Status {
                     default:
                         break;
                     case 8:
-                        if (var0 && currentStation.getId() == var4.getTargetStation() && Item.isInList(var4.getCommodityIndex(), var4.getCommodityAmount_(), playersShip.getCargo())) {
-                            return var4;
+                        if (var0 && currentStation.getIndex() == mission.getTargetStation() && Item.isInList(mission.getCommodityIndex(), mission.getCommodityAmount_(), playersShip.getCargo())) {
+                            return mission;
                         }
                         break;
                     case 13:
-                        if (missionsCount >= var4.getStatusValue_()) {
-                            var4.setWon(true);
-                            return var4;
+                        if (missionsCount >= mission.getStatusValue_()) {
+                            mission.setWon(true);
+                            return mission;
                         }
                         break;
                     case 14:
-                        if (kills >= var4.getStatusValue_()) {
-                            var4.setWon(true);
-                            return var4;
+                        if (kills >= mission.getStatusValue_()) {
+                            mission.setWon(true);
+                            return mission;
                         }
                         break;
                     case 15:
-                        var5 = playersShip.getEquipment();
-                        var6 = 0;
-                        for (var6 = 0; var6 < var5.length; var6++) {
-                        	if (var5[var6] != null && var5[var6].getIndex() == var4.getStatusValue_()) {
-                              return var4;
+                        eq = playersShip.getEquipment();
+                        //j = 0;
+                        for (int j = 0; j < eq.length; j++) {
+                        	if (eq[j] != null && eq[j].getIndex() == mission.getStatusValue_()) {
+                              return mission;
                           }
                         }
                         break;
@@ -635,35 +627,35 @@ public final class Status {
 //                            ++var6;
 //                        }
                     case 16:
-                        if (stationsVisited >= var4.getStatusValue_()) {
-                            var4.setWon(true);
-                            return var4;
+                        if (stationsVisited >= mission.getStatusValue_()) {
+                            mission.setWon(true);
+                            return mission;
                         }
                         break;
                     case 18:
-                        if (playersShip.getCurrentLoad() >= var4.getStatusValue_()) {
-                            var4.setWon(true);
-                            return var4;
+                        if (playersShip.getCurrentLoad() >= mission.getStatusValue_()) {
+                            mission.setWon(true);
+                            return mission;
                         }
                         break;
                     case 19:
-                        if (bluePrintsProduced >= var4.getStatusValue_()) {
-                            var4.setWon(true);
-                            return var4;
+                        if (bluePrintsProduced >= mission.getStatusValue_()) {
+                            mission.setWon(true);
+                            return mission;
                         }
                         break;
                     case 20:
-                        if (!var0 && currentStation.getId() == var4.getTargetStation() && var1 > 10000L) {
-                            return var4;
+                        if (!var0 && currentStation.getIndex() == mission.getTargetStation() && var1 > 10000L) {
+                            return mission;
                         }
                         break;
                     case 21:
-                        var5 = playersShip.getEquipment();
-                        var6 = 0;
+                        eq = playersShip.getEquipment();
+                        //j = 0;
                         
-                        for (var6 = 0; var6 < var5.length; var6++) {
-	                     	if (var5[var6] != null && var5[var6].getType() == var4.getStatusValue_()) {
-	                           return var4;
+                        for (int j = 0; j < eq.length; j++) {
+	                     	if (eq[j] != null && eq[j].getType() == mission.getStatusValue_()) {
+	                           return mission;
 	                       }
                         }
                         break;
@@ -679,36 +671,36 @@ public final class Status {
 //                            ++var6;
 //                        }
                     case 22:
-                        var5 = playersShip.getEquipment();
+                        eq = playersShip.getEquipment();
                         boolean var9 = false;
                         boolean var7 = false;
 
-                        for(int var8 = 0; var8 < var5.length; ++var8) {
-                            if (var5[var8] != null && var5[var8].getType() == 0) {
+                        for(int j = 0; j < eq.length; ++j) {
+                            if (eq[j] != null && eq[j].getType() == 0) {
                                 var9 = true;
-                            } else if (var5[var8] != null && var5[var8].getSort() == 10) {
+                            } else if (eq[j] != null && eq[j].getSort() == 10) {
                                 var7 = true;
                             }
                         }
 
                         if (var9 && var7) {
-                            return var4;
+                            return mission;
                         }
                         break;
                     case 23:
                         if (var0) {
-                            var5 = playersShip.getEquipment();
+                            eq = playersShip.getEquipment();
 
-                            for(var6 = 0; var6 < var5.length; ++var6) {
-                                if (var5[var6] != null && var5[var6].getSort() == var4.getStatusValue_()) {
-                                    return var4;
+                            for(int j = 0; j < eq.length; ++j) {
+                                if (eq[j] != null && eq[j].getSort() == mission.getStatusValue_()) {
+                                    return mission;
                                 }
                             }
                         }
                         break;
                     case 24:
-                        if (var0 || !var0 && currentStation.getId() != var4.getTargetStation() && var1 > 10000L) {
-                            return var4;
+                        if (var0 || !var0 && currentStation.getIndex() != mission.getTargetStation() && var1 > 10000L) {
+                            return mission;
                         }
                     }
                 }
@@ -717,8 +709,8 @@ public final class Status {
         return null;
     }
 
-    public static void setJumpgateUsed(final int var0) {
-        jumpgatesUsed = var0;
+    public static void setJumpgateUsed(final int n) {
+        jumpgatesUsed = n;
     }
 
     public static void jumpgateUsed() {
@@ -729,12 +721,12 @@ public final class Status {
         return jumpgatesUsed;
     }
 
-    public static void incCargoSalvaged(final int var0) {
-        cargoSalvaged += var0;
+    public static void incCargoSalvaged(final int n) {
+        cargoSalvaged += n;
     }
 
-    public static void setCargoSalvaged(final int var0) {
-        cargoSalvaged = var0;
+    public static void setCargoSalvaged(final int n) {
+        cargoSalvaged = n;
     }
 
     public static int getCargoSalvaged() {
@@ -749,14 +741,14 @@ public final class Status {
         return unused_;
     }
 
-    public static void removeMission_(final Mission var0) {
-        for(int var1 = 0; var1 < currentMissions.length; ++var1) {
-            if (currentMissions[var1] == var0) {
-                currentMissions[var1] = Mission.emptyMission_;
+    public static void removeMission_(final Mission mis) {
+        for(int i = 0; i < currentMissions.length; ++i) {
+            if (currentMissions[i] == mis) {
+                currentMissions[i] = Mission.emptyMission_;
             }
         }
 
-        if (mission == var0) {
+        if (mission == mis) {
             mission = null;
         }
 
@@ -774,35 +766,35 @@ public final class Status {
         return playersShip;
     }
 
-    public static void setShip(final Ship var0) {
-        playersShip = var0;
+    public static void setShip(final Ship ship) {
+        playersShip = ship;
     }
 
     public static Station getStation() {
         return currentStation;
     }
-
-    public static void setCurrentStation_andInitSystem_(final Station var0) {
-        currentStation = var0;
-        currentSolarSystem = Galaxy.loadSystem_(var0.getSystemIndex());
+    /** Sets current station and inits SolarSystem. **/
+    public static void setStation(final Station currentOrbit) {
+        currentStation = currentOrbit;
+        currentSolarSystem = Galaxy.loadSystem_(currentOrbit.getSystemIndex());
         if (currentSolarSystem != null) {
             systemsVisited[currentStation.getSystemIndex()] = true;
             //new FileRead();
-            final Station[] var3 = FileRead.loadStationsBinary(currentSolarSystem);
+            final Station[] localStations = FileRead.loadStationsBinary(currentSolarSystem);
             currSysPlanetNames = null;
-            currSysPlanetNames = new String[var3.length];
-            currSysPlanetTextures = new int[var3.length];
+            currSysPlanetNames = new String[localStations.length];
+            currSysPlanetTextures = new int[localStations.length];
 
-            for(int var1 = 0; var1 < currentSolarSystem.getStations().length; ++var1) {
-                for(int var2 = 0; var2 < var3.length; ++var2) {
-                    if (currentSolarSystem.getStations()[var1] == var3[var2].getId()) {
+            for(int i = 0; i < currentSolarSystem.getStations().length; ++i) {
+                for(int j = 0; j < localStations.length; ++j) {
+                    if (currentSolarSystem.getStations()[i] == localStations[j].getIndex()) {
                         if (currentCampaignMissionIndex == 0) {
-                            currSysPlanetNames[var1] = "";
+                            currSysPlanetNames[i] = "";
                         } else {
-                            currSysPlanetNames[var1] = var3[var2].getName();
+                            currSysPlanetNames[i] = localStations[j].getName();
                         }
 
-                        currSysPlanetTextures[var1] = var3[var2].getPlanetTextureId();
+                        currSysPlanetTextures[i] = localStations[j].getPlanetTextureId();
                         break;
                     }
                 }
@@ -956,28 +948,28 @@ public final class Status {
     }
 
     public static String replaceTokens(final String var0, final String var1, final String var2) {
-        int var3;
-        return (var3 = var0.indexOf(var2)) >= 0 ? var0.substring(0, var3) + var1 + var0.substring(var3 + var2.length()) : var0;
+        int var3 = var0.indexOf(var2);
+        return var3 >= 0 ? var0.substring(0, var3) + var1 + var0.substring(var3 + var2.length()) : var0;
     }
 
     public static void calcCargoPrices() {
         //new FileRead();
-        final SolarSystem[] var0 = FileRead.loadSystemsBinary();
+        final SolarSystem[] systems = FileRead.loadSystemsBinary();
 
-        for(int var1 = 0; var1 < 3; ++var1) {
-            Item[] var2 = var1 == 0 ? playersShip.getCargo() : var1 == 1 ? playersShip.getEquipment() : currentStation.getShopItems();
-            if (var2 != null) {
-                for(int var5 = 0; var5 < var2.length; ++var5) {
-                    Item var6;
-                    if ((var6 = var2[var5]) != null) {
-                        int var4 = Galaxy.distancePercent(var0[var6.getLowestPriceSystemId()].getPosX(), var0[var6.getLowestPriceSystemId()].getPosY(), var0[var6.getHighestPriceSystemId()].getPosX(), var0[var6.getHighestPriceSystemId()].getPosY());
-                        int var3 = Galaxy.distancePercent(var0[var2[var5].getLowestPriceSystemId()].getPosX(), var0[var2[var5].getLowestPriceSystemId()].getPosY(), var0[currentStation.getSystemIndex()].getPosX(), var0[currentStation.getSystemIndex()].getPosY());
-                        var3 = var6.getMinPrice() + (int)(AEMath.min(1.0F, 100.0F / var4 * var3 / 100.0F) * (var6.getMaxPrice() - var6.getMinPrice()));
-                        if (var6.getSinglePrice() > 0) {
-                            GlobalStatus.random.setSeed(currentStation.getId());
-                            var4 = AEMath.max(1, (int)(var3 * 0.05F));
-                            var3 += -var4 + GlobalStatus.random.nextInt((var4 << 1) + 1);
-                            var6.setPrice(var3);
+        for(int i = 0; i < 3; ++i) {
+            Item[] itemSet = i == 0 ? playersShip.getCargo() : i == 1 ? playersShip.getEquipment() : currentStation.getShopItems();
+            if (itemSet != null) {
+                for(int j = 0; j < itemSet.length; ++j) {
+                    Item jtem = itemSet[j];
+                    if (jtem != null) {
+                        int lowToHigh = Galaxy.distancePercent(systems[jtem.getLowestPriceSystemId()].getPosX(), systems[jtem.getLowestPriceSystemId()].getPosY(), systems[jtem.getHighestPriceSystemId()].getPosX(), systems[jtem.getHighestPriceSystemId()].getPosY());
+                        int lowToHere = Galaxy.distancePercent(systems[jtem.getLowestPriceSystemId()].getPosX(), systems[jtem.getLowestPriceSystemId()].getPosY(), systems[currentStation.getSystemIndex()].getPosX(), systems[currentStation.getSystemIndex()].getPosY());
+                        lowToHere = jtem.getMinPrice() + (int)(AEMath.min(1.0F, 100.0F / lowToHigh * lowToHere / 100.0F) * (jtem.getMaxPrice() - jtem.getMinPrice()));
+                        if (jtem.getSinglePrice() > 0) {
+                            GlobalStatus.random.setSeed(currentStation.getIndex());
+                            lowToHigh = AEMath.max(1, (int)(lowToHere * 0.05F));
+                            lowToHere += -lowToHigh + GlobalStatus.random.nextInt((lowToHigh << 1) + 1);
+                            jtem.setPrice(lowToHere);
                         }
                     }
                 }
@@ -1005,31 +997,23 @@ public final class Status {
         wingmanFace = null;
         wingmenNames = null;
         wingmenTimeRemaining = 0;
-
-        int var0;
-        for(var0 = 0; var0 < minedOreTypes.length; ++var0) {
-            minedOreTypes[var0] = false;
+        for(int i = 0; i < minedOreTypes.length; ++i) {
+            minedOreTypes[i] = false;
         }
-
-        for(var0 = 0; var0 < minedCoreTypes.length; ++var0) {
-            minedCoreTypes[var0] = false;
+        for(int i = 0; i < minedCoreTypes.length; ++i) {
+            minedCoreTypes[i] = false;
         }
-
         missionGoodsCarried = 0;
         minedOre = 0;
         minedCores = 0;
         boughtBooze = 0;
-
-        for(var0 = 0; var0 < drinkTypesPossesed.length; ++var0) {
-            drinkTypesPossesed[var0] = false;
+        for(int i = 0; i < drinkTypesPossesed.length; ++i) {
+            drinkTypesPossesed[i] = false;
         }
-
         destroyedJunk = 0;
-
-        for(var0 = 0; var0 < systemsVisited.length; ++var0) {
-            systemsVisited[var0] = false;
+        for(int i = 0; i < systemsVisited.length; ++i) {
+            systemsVisited[i] = false;
         }
-
         passengersCarried = 0;
         invisibleTime = 0L;
         bombsUsed = 0;
@@ -1047,32 +1031,30 @@ public final class Status {
         lowestItemPrices = new int[176];
         highestItemPriceSystems = new byte[176];
         lowestItemPriceSystems = new byte[176];
-        final boolean[] var3 = Galaxy.getVisitedStations();
+        final boolean[] visitedStations = Galaxy.getVisitedStations();
 
-        int var1;
-        for(var1 = 0; var1 < var3.length; ++var1) {
-            var3[var1] = false;
+
+        for(int i = 0; i < visitedStations.length; ++i) {
+            visitedStations[i] = false;
         }
 
-        Galaxy.setVisitedStations(var3);
-        var1 = 0;
-        final Item[] var4 = Globals.getItems();
-
-        int var2;
-        for(var2 = 0; var2 < var4.length; ++var2) {
-            if (var4[var2].getBluePrintComponentsIds() != null) {
-                ++var1;
+        Galaxy.setVisitedStations(visitedStations);
+        
+        final Item[] items = Globals.getItems();
+        int bluePrintsCnt = 0;
+        for(int i = 0; i < items.length; ++i) {
+            if (items[i].getBluePrintComponentsIds() != null) {
+                ++bluePrintsCnt;
             }
         }
 
-        if (var1 > 0) {
-            blueprints = new BluePrint[var1];
-            var2 = 0;
-
-            for(var1 = 0; var1 < var4.length; ++var1) {
-                if (var4[var1].getBluePrintComponentsIds() != null) {
-                    blueprints[var2] = new BluePrint(var1);
-                    var2++;
+        if (bluePrintsCnt > 0) {
+            blueprints = new BluePrint[bluePrintsCnt];
+            int j = 0;
+            for(int i = 0; i < items.length; ++i) {
+                if (items[i].getBluePrintComponentsIds() != null) {
+                    blueprints[j] = new BluePrint(i);
+                    j++;
                 }
             }
         }
@@ -1085,25 +1067,20 @@ public final class Status {
         wormholeSystem = -1;
         lastVisitedNonVoidOrbit = 0;
         GlobalStatus.resetHints();
-        final Mission var6 = Mission.emptyMission_;
-        currentMissions[1] = var6;
+        currentMissions[1] = Mission.emptyMission_;
         currentCampaignMissionIndex = 0;
-        startStoryMission(new Mission(4, 0, 78));
+        setCampaignMission(new Mission(4, 0, 78));
         mission = currentMissions[0];
-        (playersShip = Globals.getShips()[10].cloneBase()).setRace(0);
+        playersShip = Globals.getShips()[10].cloneBase();
+        playersShip.setRace(0);
         playersShip.setSellingPrice();
-        setCurrentStation_andInitSystem_(Galaxy.getStation(78));
+        setStation(Galaxy.getStation(78));
         playersShip.setCargo((Item[])null);
-        final Item var7 = Globals.getItems()[3].makeItem();
-        playersShip.setEquipment(var7, 0);
-        final Item var5 = Globals.getItems()[3].makeItem();
-        playersShip.setEquipment(var5, 1);
-        Item var9 = Globals.getItems()[54].makeItem();
-        playersShip.setEquipment(var9, 0);
-        var9 = Globals.getItems()[59].makeItem();
-        playersShip.setEquipment(var9, 0);
-        var9 = Globals.getItems()[82].makeItem();
-        playersShip.setEquipment(var9, 0);
+        playersShip.setEquipment(Globals.getItems()[3].makeItem(), 0);
+        playersShip.setEquipment(Globals.getItems()[3].makeItem(), 1);
+        playersShip.setEquipment(Globals.getItems()[54].makeItem(), 0);
+        playersShip.setEquipment(Globals.getItems()[59].makeItem(), 0);
+        playersShip.setEquipment(Globals.getItems()[82].makeItem(), 0);
         baseArmour = playersShip.getBaseArmour();
         shield = playersShip.getShield();
         additionalArmour = playersShip.getAdditionalArmour();

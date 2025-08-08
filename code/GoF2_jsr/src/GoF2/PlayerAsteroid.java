@@ -134,7 +134,7 @@ public final class PlayerAsteroid extends KIPlayer {
 				float var3 = this.player.getBombForce();
 				if (var3 > 0.0F) {
 					this.tempVector_.set(this.player.getHitVector());
-					this.tempVector_.scale((int)(1024.0F * var3 * (1.0F - AEMath.min(60, this.sizeCoef_) / 100.0F)));
+					this.tempVector_.scale((int)(AEMath.Q_QUARTER * var3 * (1.0F - AEMath.min(60, this.sizeCoef_) / 100.0F)));
 					this.mainMesh_.translate(this.tempVector_);
 					this.posX += this.tempVector_.x;
 					this.posY += this.tempVector_.y;
@@ -205,13 +205,13 @@ public final class PlayerAsteroid extends KIPlayer {
 		final int var2 = (int)(this.baseScaleX * var1);
 		final int var3 = (int)(this.baseScaleY * var1);
 		final int var4 = (int)(this.baseScaleZ * var1);
-		if (var2 + var3 + var4 < 256) {
+		if (var2 + var3 + var4 < AEMath.Q_SIXTEENTH) {
 			this.sizeCoef_ = 0;
 			this.tier = 0;
 			setActive(false);
 		} else {
 			this.mainMesh_.setScale(var2, var3, var4);
-			this.sizeCoef_ = (int)((var2 + var3 + var4) / 3 / 3072.0F * 100.0F);
+			this.sizeCoef_ = (int)((var2 + var3 + var4) / 3 / (float)AEMath.Q_THREE_QUARTERS * 100.0F);
 			this.tier = AEMath.min(7, 2 + (int)((this.sizeCoef_ + 15) / 100.0F * 5.0F));
 		}
 	}

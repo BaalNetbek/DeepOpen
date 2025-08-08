@@ -68,7 +68,7 @@ public final class PlayerStation extends PlayerStaticFar {
         //new FileRead();
         int[] var2 = null;
         if (!Status.inAlienOrbit()) {
-            var2 = FileRead.loadStationParts(var1.getId(), Status.getSystem().getRace());
+            var2 = FileRead.loadStationParts(var1.getIndex(), Status.getSystem().getRace());
         }
 
         int var3;
@@ -151,10 +151,10 @@ public final class PlayerStation extends PlayerStaticFar {
                     virtDistToCam_.scale(20000);
                     virtDistToCam_.add(this.tempVector_);
                     this.stationParts[var3].moveTo(virtDistToCam_);
-                    var2 = (int)(20000.0F / var2 * 4096.0F);
+                    var2 = (int)(20000.0F / var2 * AEMath.Q_1);
                     this.stationParts[var3].setScale(var2, var2, var2);
                 } else {
-                    this.stationParts[var3].setScale(4096, 4096, 4096);
+                    this.stationParts[var3].setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);
                     this.stationParts[var3].moveTo(this.partPositions[var3 * 3], this.partPositions[var3 * 3 + 1], this.partPositions[var3 * 3 + 2]);
                 }
             }

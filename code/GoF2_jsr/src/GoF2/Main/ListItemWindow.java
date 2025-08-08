@@ -150,7 +150,7 @@ public final class ListItemWindow {
                 var5 = null;
                 final SolarSystem[] var15 = FileRead.loadSystemsBinary();
                 if (Status.lowestItemPrices[var1.getIndex()] > 0) {
-                    if (Status.lowestItemPriceSystems[var1.getIndex()] == Status.getSystem().getId()) {
+                    if (Status.lowestItemPriceSystems[var1.getIndex()] == Status.getSystem().getIndex()) {
                         this.lowPriceSysRow = GlobalStatus.gameText.getText(95);
                     } else {
                         this.lowPriceSysRow = GlobalStatus.gameText.getText(93);
@@ -163,7 +163,7 @@ public final class ListItemWindow {
                 }
 
                 if (Status.highestItemPrices[var1.getIndex()] > 0) {
-                    if (Status.highestItemPriceSystems[var1.getIndex()] == Status.getSystem().getId()) {
+                    if (Status.highestItemPriceSystems[var1.getIndex()] == Status.getSystem().getIndex()) {
                         this.highPriceSysRow = GlobalStatus.gameText.getText(96);
                     } else {
                         this.highPriceSysRow = GlobalStatus.gameText.getText(94);

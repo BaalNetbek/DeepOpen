@@ -660,7 +660,7 @@ public final class PlayerEgo {
 					this.followingCamera_.update();
 					this.turretGrandGroup_.moveTo(this.laggingPos);
 					this.vecUp = this.shipGrandGroup_.getUp(this.vecUp);
-					this.vecUp.scale(512);
+					this.vecUp.scale(AEMath.Q_EIGHTH);
 					this.turretGrandGroup_.translate(this.vecUp);
 					this.relPitchSpeed = this.relYawSpeed = 0;
 					alignToHorizon((int)this.frameTime);
@@ -967,7 +967,7 @@ public final class PlayerEgo {
 		} else {
 			this.speed = 2;
 			this.vecRight = this.shipGrandGroup_.getDirection(this.vecRight);
-			this.vecRight.scale(8192);
+			this.vecRight.scale(AEMath.Q_2);
 			this.vecUp.add(this.vecRight);
 			this.setPosition_(this.vecUp);
 			this.beingPushedAway = false;

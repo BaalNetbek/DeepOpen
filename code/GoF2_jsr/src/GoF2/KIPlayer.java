@@ -291,20 +291,20 @@ public abstract class KIPlayer {
 		switch (type) {
 		case 0:
 			this.waste = AEResourceManager.getGeometryResource(17);
-			this.waste.setScale(16384, 16384, 16384);
+			this.waste.setScale(AEMath.Q_4, AEMath.Q_4, AEMath.Q_4);
 			break;
 		case 1:
 		default:
 			this.waste = AEResourceManager.getGeometryResource(6769);
-			this.waste.setScale(512, 512, 512);
+			this.waste.setScale(AEMath.Q_EIGHTH, AEMath.Q_EIGHTH, AEMath.Q_EIGHTH);
 			break;
 		case 2:
 			this.waste = AEResourceManager.getGeometryResource(9996);
-			this.waste.setScale(2048, 2048, 2048);
+			this.waste.setScale(AEMath.Q_HALF, AEMath.Q_HALF, AEMath.Q_HALF);
 			break;
 		case 3:
 			this.waste = AEResourceManager.getGeometryResource(6767);
-			this.waste.setScale(2048, 2048, 2048);
+			this.waste.setScale(AEMath.Q_HALF, AEMath.Q_HALF, AEMath.Q_HALF);
 			break;
 		}
 

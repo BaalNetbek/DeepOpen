@@ -115,13 +115,11 @@ public final class Level {
 				this.skybox = AEResourceManager.getGeometryResource(9991);
 			}
 
-			int var4;
-			int i;
-			// ModStation, SpaceLounge
+			// not ModStation, SpaceLounge
 			if (this.currentMod != 23 && this.currentMod != 4) {
-				boolean var2 = comingFromAlienWorld || Status.getStation().isAttackedByAliens() || Status.inAlienOrbit();
+				boolean wormholeActive = comingFromAlienWorld || Status.getStation().isAttackedByAliens() || Status.inAlienOrbit();
 				if (Status.getCurrentCampaignMission() > 42) {
-					var2 = false;
+					wormholeActive = false;
 				}
 
 				this.stationaries = new KIPlayer[4];
@@ -133,45 +131,13 @@ public final class Level {
 
 				AEVector3D var3 = new AEVector3D(this.tempVec);
 				this.mgameIntroCamRotY = 0;
-				GlobalStatus.random.setSeed(Status.getStation() != null ? (long)(Status.getStation().getId() << 1) : -1L);
-				var4 = 1;
-
-				while(true) {
-					if (var4 >= 3) {
-						GlobalStatus.random.setSeed(System.currentTimeMillis());
-						if (Status.inAlienOrbit()) {
-							final int x,y,z;
-							x = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
-							y = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
-							z = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
-							this.stationaries[2].setPosition(x, y, z);
-							this.stationaries[2].mainMesh_.setRotation(
-									-4096 + GlobalStatus.random.nextInt(8192),
-									-4096 + GlobalStatus.random.nextInt(8192),
-									-4096 + GlobalStatus.random.nextInt(8192));
-						}
-
-						if (!Status.gameWon()) {
-							this.stationaries[3] = new PlayerWormHole(
-								 6805, AEResourceManager.getGeometryResource(6805),
-						      -40000 + GlobalStatus.random.nextInt(80000),
-						      -20000 + GlobalStatus.random.nextInt(40000),
-						       40000 + GlobalStatus.random.nextInt(40000), var2);
-							this.stationaries[3].setLevel(this);
-						}
-
-						this.mgameIntroCamRotY += 2048;
-						if (!initStreamOutPosition) {
-							this.mgameIntroCamRotY = 0;
-						}
-						break;
-					}
-
-					if (var4 == 1 && (Status.getSystem() == null || !Status.getSystem().currentOrbitHasJumpgate())) {
-						this.stationaries[var4] = null;
+				GlobalStatus.random.setSeed(Status.getStation() != null ? (long)(Status.getStation().getIndex() << 1) : -1L);
+				for(int i = 1; i < 3; i++) {
+					if (i == 1 && (Status.getSystem() == null || !Status.getSystem().currentOrbitHasJumpgate())) {
+						this.stationaries[i] = null;
 					} else {
 						if (Status.getStation() != null) {
-							if (var4 == 0) {
+							if (i == 0) {
 								this.mgameIntroCamRotY = Status.getStation().getName().length() + Status.getStation().getTecLevel() * 3;
 								this.mgameIntroCamRotY = this.mgameIntroCamRotY % 16 << 8;
 							} else {
@@ -180,20 +146,45 @@ public final class Level {
 																 250 + GlobalStatus.random.nextInt(500);
 							}
 
-							this.tempVec.z = var4 == 1 ? 90000 : 120000;
+							this.tempVec.z = i == 1 ? 90000 : 120000;
 							final AEVector3D var10000 = this.tempVec;
 							var10000.z += this.mgameIntroCamRotY * 3;
-							Matrix var5;
-							(var5 = new Matrix()).setEulerY(this.mgameIntroCamRotY);
-							(var3 = var5.transformVectorNoScale(this.tempVec, var3)).y = 0;
+							Matrix var5 = new Matrix();
+							var5.setEulerY(this.mgameIntroCamRotY);
+							var3 = var5.transformVectorNoScale(this.tempVec, var3);
+							var3.y = 0;
 						}
 
-						this.stationaries[var4] = new PlayerJumpgate(
+						this.stationaries[i] = new PlayerJumpgate(
 								15, AEResourceManager.getGeometryResource(15),
-								var3.x,  var3.y, var3.z, var4 != 2);
+								var3.x,  var3.y, var3.z, i != 2);
 					}
+				}
+				GlobalStatus.random.setSeed(System.currentTimeMillis());
+				if (Status.inAlienOrbit()) {
+					final int x,y,z;
+					x = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
+					y = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
+					z = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
+					this.stationaries[2].setPosition(x, y, z);
+					this.stationaries[2].mainMesh_.setRotation(
+							-4096 + GlobalStatus.random.nextInt(8192),
+							-4096 + GlobalStatus.random.nextInt(8192),
+							-4096 + GlobalStatus.random.nextInt(8192));
+				}
 
-					++var4;
+				if (!Status.gameWon()) {
+					this.stationaries[3] = new PlayerWormHole(
+						 6805, AEResourceManager.getGeometryResource(6805),
+				      -40000 + GlobalStatus.random.nextInt(80000),
+				      -20000 + GlobalStatus.random.nextInt(40000),
+				       40000 + GlobalStatus.random.nextInt(40000), wormholeActive);
+					this.stationaries[3].setLevel(this);
+				}
+
+				this.mgameIntroCamRotY += 2048;
+				if (!initStreamOutPosition) {
+					this.mgameIntroCamRotY = 0;
 				}
 			}
 
@@ -232,14 +223,14 @@ public final class Level {
 					this.ego.setExplosion(explosion);
 					final Gun[][] eqdGuns = new Gun[3][];
 
-					for(i = 0; i < 3; ++i) {
+					for(int i = 0; i < 3; ++i) {
 						if (eqdGunsCounts[i] > 0) {
 							eqdGuns[i] = new Gun[eqdGunsCounts[i]];
 						}
 					}
 
 					if (eqdItems != null) {
-						for(i = 0; i < eqdItems.length; ++i) {
+						for(int i = 0; i < eqdItems.length; ++i) {
 							if (eqdItems[i] != null) {
 								Gun gun = null;
 								if (eqdItems[i].isWeapon()) {
@@ -268,7 +259,7 @@ public final class Level {
 						}
 					}
 
-					for(i = 0; i < eqdGuns.length; ++i) {
+					for(int i = 0; i < eqdGuns.length; ++i) {
 						if (eqdGuns[i] != null) {
 							this.ego.setGuns(eqdGuns[i], i);
 						}
@@ -279,20 +270,20 @@ public final class Level {
 
 				if (initStreamOutPosition && this.ego.shipGrandGroup_ != null) {
 					Station[] lastVisited;
-					if ((lastVisited = Status.getLastVisitedStations()) != null && lastVisited[1] != null
+					if ((lastVisited = Status.getStationStack()) != null && lastVisited[1] != null
 					      && Status.getSystem() != null && !Status.getSystem().currentOrbitHasJumpgate()) {
 						final int[] var12 = Status.getSystem().getStations();
 						int var14 = 0;
 
-						for(var4 = 0; var4 < var12.length; ++var4) {
-							if (var12[var4] == lastVisited[1].getId()) {
-								var14 = var4;
+						for(int i = 0; i < var12.length; ++i) {
+							if (var12[i] == lastVisited[1].getIndex()) {
+								var14 = i;
 								break;
 							}
 						}
 
 						AEVector3D var19 = new AEVector3D(this.starSystem.getPlanets()[var14 + 1].getLocalPos());
-						var19.scale(16384);
+						var19.scale(AEMath.Q_4);
 						this.ego.setPosition_(var19);
 						var19.x = -var19.x;
 						var19.y = -var19.y;
@@ -369,7 +360,7 @@ public final class Level {
 		boolean oreGood = false;
 		this.asteroids = new KIPlayer[50];
 		final int[] orePropabilites = Galaxy.getAsteroidProbabilities(Status.getStation());
-		GlobalStatus.random.setSeed(Status.getStation().getId());
+		GlobalStatus.random.setSeed(Status.getStation().getIndex());
 		final int field_x = -50000 + GlobalStatus.random.nextInt(100000);
 		final int field_y = -50000 + GlobalStatus.random.nextInt(100000);
 		final int field_z = 10000 + GlobalStatus.random.nextInt(100000);
@@ -489,7 +480,7 @@ public final class Level {
 			gunObject = new RocketGun(gun, var12, false);
 			sparks = this.missilesSparks;
 			break;
-		case Item.TURRET_SUB:
+		case Item.TURRET_SORT:
 			gun = new Gun(equipmentIdx, dmg, 15, ammo, range, reload, velocity, new AEVector3D(0, 0, 0), new AEVector3D());
 			gunObject = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[itemIdx]));
 		}
@@ -579,8 +570,8 @@ public final class Level {
 					this.currentMod = 0;
 					createScene();
 					this.currentMod = 3;
-					final boolean introOrThynome = Status.getSystem().getId() == 15 && Status.getCurrentCampaignMission() < 16;
-					final boolean varHastra = Status.getStation().getId() == 78;
+					final boolean introOrThynome = Status.getSystem().getIndex() == 15 && Status.getCurrentCampaignMission() < 16;
+					final boolean varHastra = Status.getStation().getIndex() == 78;
 					pirateCnt = 0;
 					Mission freelance;
 					if ((freelance = Status.getFreelanceMission()) != null &&
@@ -606,7 +597,7 @@ public final class Level {
 					this.jumperCnt = varHastra ? 0 : 0 + GlobalStatus.random.nextInt(2);
 					this.bigShipsCnt = !varHastra && !introOrThynome ? 0 + GlobalStatus.random.nextInt(5) : 0;
 					this.localFightersCnt = (varHastra ? 0 : GlobalStatus.random.nextInt(2)) + (introOrThynome ? 0 : safety) + this.bigShipsCnt / 4;
-					if (Status.getStation().getId() == 10 
+					if (Status.getStation().getIndex() == 10 
 							|| this.localFightersCnt + this.jumperCnt + this.bigShipsCnt + this.raidersCnt + pirateCnt == 0) {
 						this.localFightersCnt = 4;
 					}
@@ -1066,7 +1057,7 @@ public final class Level {
 			for(var5 = 0; var5 < this.ships.length; ++var5) {
 				this.ships[var5].setToSleep();
 				this.ships[var5].setRoute(this.enemyRoute_.clone());
-				this.ships[var5].geometry.setRotation(0, 2048, 0);
+				this.ships[var5].geometry.setRotation(0, AEMath.Q_PI_HALF, 0);
 			}
 
 			this.successObjective = new Objective(22, 0, this);
@@ -1277,14 +1268,14 @@ public final class Level {
 				return;
 			}
 
-			GlobalStatus.random.setSeed(Status.getStation().getId() + 1000);
-			var6 = 4096 / var1;
+			GlobalStatus.random.setSeed(Status.getStation().getIndex() + 1000);
+			var6 = AEMath.Q_PI / var1;
 
-			for(int var12 = var3; var12 < this.ships.length; var12++) {
+			for(int i = var3; i < this.ships.length; i++) {
 				final short var14 = Globals.BAR_MESHES[var11][GlobalStatus.random.nextInt(Globals.BAR_MESHES[var11].length)];
-				this.ships[var12] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var14), 0, 0, 0);
-				this.ships[var12].mainMesh_.setRenderLayer(2);
-				this.ships[var12].mainMesh_.setRotation(0, var12 * var6, 0);
+				this.ships[i] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var14), 0, 0, 0);
+				this.ships[i].mainMesh_.setRenderLayer(2);
+				this.ships[i].mainMesh_.setRotation(0, i * var6, 0);
 			}
 			break;
 			// int var12 = var3; //original decomp
@@ -1311,7 +1302,7 @@ public final class Level {
 			((PlayerFighter)this.ships[0]).setExhaustVisible(false);
 			this.ships[0].setToSleep();
 			this.ships[0].player.setAlwaysFriend(true);
-			GlobalStatus.random.setSeed(Status.getStation().getId());
+			GlobalStatus.random.setSeed(Status.getStation().getIndex());
 			int var2 = 0;
 
 			for(var3 = 1; var3 < 6; ++var3) {

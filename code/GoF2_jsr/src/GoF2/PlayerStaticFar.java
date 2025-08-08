@@ -4,6 +4,7 @@ import AE.AbstractMesh;
 import AE.BoundingVolume;
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
+import AE.Math.AEMath;
 
 public class PlayerStaticFar extends PlayerStatic {
     protected BoundingVolume[] boundingBoxes;
@@ -35,10 +36,10 @@ public class PlayerStaticFar extends PlayerStatic {
                 virtDistToCam_.scale(28000);
                 virtDistToCam_.add(this.tempVector_);
                 this.mainMesh_.moveTo(virtDistToCam_);
-                var3 = (int)(28000.0F / var3 * 4096.0F);
+                var3 = (int)(28000.0F / var3 * AEMath.Q_1);
                 this.mainMesh_.setScale(var3, var3, var3);
             } else {
-                this.mainMesh_.setScale(4096, 4096, 4096);
+                this.mainMesh_.setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);
                 this.mainMesh_.moveTo(this.posX, this.posY, this.posZ);
             }
         }

@@ -16,7 +16,7 @@ public final class SystemPathFinder {
             int[] var7 = var1[var5].getNeighbourSystems();
             if (var7 != null) {
                 for(var6 = 0; var6 < var7.length; ++var6) {
-                    if (Status.getVisibleSystems()[var1[var7[var6]].getId()]) {
+                    if (Status.getSystemVisibilities()[var1[var7[var6]].getIndex()]) {
                         var4[var5].neighbors.addElement(var4[var7[var6]]);
                     }
                 }

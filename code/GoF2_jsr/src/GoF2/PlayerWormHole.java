@@ -5,6 +5,7 @@ import AE.AbstractMesh;
 import AE.GlobalStatus;
 import AE.Group;
 import AE.Math.AEVector3D;
+import AE.Math.AEMath;
 
 public final class PlayerWormHole extends PlayerStaticFar {
     private int lifeTime;
@@ -17,7 +18,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
         this.geometry = new Group();
         if (var6) {
             this.mainMesh_.setAnimationSpeed(30);
-            this.mainMesh_.setRotation(-128, -128, 0);
+            this.mainMesh_.setRotation(-AEMath.Q_THIRTYSECOND, -AEMath.Q_THIRTYSECOND, 0);
             this.mainMesh_.setAnimationMode((byte)2);
         }
 
@@ -40,7 +41,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
 
     public final void reset(final boolean var1) {
         this.lifeTime = var1 ? 39000 : 0;
-        this.scale = 4096;
+        this.scale = AEMath.Q_1;
     }
 
     public final boolean isShrinking() {
@@ -67,16 +68,16 @@ public final class PlayerWormHole extends PlayerStaticFar {
             int var2;
             int var5;
             if (this.lifeTime < 0) {
-                this.scale = 4096 - (int)(-this.lifeTime / 3000.0F * 4096.0F);
+                this.scale = AEMath.Q_1 - (int)(-this.lifeTime / 3000.0F * AEMath.Q_1);
                 if (this.lifeTime >= 0) {
-                    this.scale = 4096;
+                    this.scale = AEMath.Q_1;
                 }
             } else if (this.lifeTime > 40000) {
                 if ((var5 = Status.getCurrentCampaignMission()) == 40 || var5 == 42) {
                     this.lifeTime = 40000;
                 }
 
-                this.scale = 4096 - (int)((this.lifeTime - 40000) / 3000.0F * 4096.0F);
+                this.scale = AEMath.Q_1 - (int)((this.lifeTime - 40000) / 3000.0F * AEMath.Q_1);
                 if (this.lifeTime > 43000) {
                     if (!Status.inAlienOrbit() && !Status.getStation().isAttackedByAliens()) {
                         this.visible = false;
@@ -121,7 +122,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
             virtDistToCam_ = this.geometry.getPostition();
             this.tempVector_.subtract(virtDistToCam_);
             this.tempVector_.normalize();
-            virtDistToCam_.set(0, 4096, 0);
+            virtDistToCam_.set(0, AEMath.Q_1, 0);
             this.position = virtDistToCam_.crossProduct(this.tempVector_, this.position);
             this.position.normalize();
             (virtDistToCam_ = this.position.crossProduct(this.tempVector_, virtDistToCam_)).normalize();

@@ -80,7 +80,7 @@ public final class GameRecord {
 	public Station currentStation;
 	public Standing standing;
 	public BluePrint[] blueprints;
-	public ProducedGood[] waitingGoods;
+	public PendingProduct[] waitingGoods;
 	public Agent[] specialAgents;
 	public String[] wingmenNames;
 	public int wingmanRace;

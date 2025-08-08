@@ -125,7 +125,7 @@ cl.d()Z hasWon
 cl.a(II)V setCommodity
 cl.a()I getCommodityIndex
 cl.b()I getCommodityAmount_
-cl.a(I)V setTasksTreshold_
+cl.a(I)V setStatusValue
 cl.c()I getStatusValue_
 cl.d()I getType
 cl.e()Z isOutsideMission
@@ -1881,7 +1881,7 @@ bd.a [Lch; hangarShips
 bd.a [Lca; barAgents
 bd.a()I getSystemIndex
 bd.a()Ljava/lang/String; getName
-bd.b()I getId
+bd.b()I getIndex
 bd.a()Z isAttackedByAliens
 bd.c()I getPlanetTextureId
 bd.b()Z isDiscovered
@@ -1994,9 +1994,9 @@ bl.w I missionsRejected
 bl.x I askedToRepeate
 bl.y I acceptedNotAskingDifficulty
 bl.z I acceptedNotAskingLocation
-bl.a(Lh;)V appendProduced
-bl.a()[Lbp; getWaitingGoods
-bl.a()[Z getVisibleSystems
+bl.a(Lh;)V addPendingProduct
+bl.a()[Lbp; getPendingProducts
+bl.a()[Z getSystemVisibilities
 bl.a(IZ)V setSystemVisibility
 bl.a()[Lbd; getLastVisitedStations
 bl.a([Lbd;)V setLastVisitedStations
@@ -2008,7 +2008,7 @@ bl.a(Lcl;)V setMission
 bl.b()Lcl; getFreelanceMission
 bl.b(Lcl;)V setFreelanceMission
 bl.c()Lcl; getCampaignMission
-bl.c(Lcl;)V startStoryMission
+bl.c(Lcl;)V setCampaignMission
 bl.a()V incMissionCount
 bl.b(I)V setCurrentCampaignMission
 bl.a()I getCurrentCampaignMission
@@ -2031,7 +2031,7 @@ bl.e()I getStationsVisited
 bl.a()Lch; getShip
 bl.a(Lch;)V setShip
 bl.a()Lbd; getStation
-bl.b(Lbd;)V setCurrentStation_andInitSystem_
+bl.b(Lbd;)V setStation
 bl.a()[Ljava/lang/String; getPlanetNames
 bl.a()[I getPlanetTextures
 bl.a()Lcw; getSystem
@@ -2120,7 +2120,7 @@ bo.a(I)Lag; getGeometryResource
 bo.a()V releaseTextures
 bo.b()V releaseGeometry
 bo.c()V initGeometryTranforms
-bp GoF2/ProducedGood
+bp GoF2/PendingProduct
 bp.a Ljava/lang/String; stationName
 bp.a I stationId
 bp.b I producedQuantity

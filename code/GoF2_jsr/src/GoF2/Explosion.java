@@ -3,6 +3,7 @@ package GoF2;
 import AE.AEResourceManager;
 import AE.AbstractMesh;
 import AE.GlobalStatus;
+import AE.Math.AEMath;
 
 public final class Explosion {
 	// SMALL < MEDIUM < BIG
@@ -26,7 +27,7 @@ public final class Explosion {
 				this.explosions[i] = AEResourceManager.getGeometryResource(9992);
 				this.explosions[i].setAnimationSpeed(100);
 				this.explosions[i].setAnimationRangeInTime(1, 20);
-				this.explosions[i].setScale(8192, 8192, 8192);
+				this.explosions[i].setScale(AEMath.Q_2, AEMath.Q_2, AEMath.Q_2);
 				this.explosions[i].setRenderLayer(2);
 				this.explosions[i].disableAnimation();
 				if (i == 0) {
@@ -40,7 +41,7 @@ public final class Explosion {
 		this.coreExplosion = AEResourceManager.getGeometryResource(9992);
 		this.coreExplosion.setAnimationSpeed(100);
 		this.coreExplosion.setAnimationRangeInTime(1, 20);
-		this.coreExplosion.setScale(8192, 8192, 8192);
+		this.coreExplosion.setScale(AEMath.Q_2, AEMath.Q_2, AEMath.Q_2);
 		this.coreExplosion.setRenderLayer(2);
 		this.coreExplosion.disableAnimation();
 	}
@@ -51,7 +52,7 @@ public final class Explosion {
 
 	public final void setBig() {
 		if (this.coreExplosion != null) {
-			this.coreExplosion.setScale(32768, 32768, 32768);
+			this.coreExplosion.setScale(AEMath.Q_8, AEMath.Q_8, AEMath.Q_8);
 			this.coreExplosion.setAnimationSpeed(200);
 		}
 
@@ -95,7 +96,7 @@ public final class Explosion {
 			for(int var3 = 0; var3 < this.explosions.length; ++var3) {
 				if (this.animationPlayTime > this.delays[var3]) {
 					if (var3 == this.explosions.length - 1) {
-						this.coreExplosion.setScale(16384, 16384, 16384);
+						this.coreExplosion.setScale(AEMath.Q_4, AEMath.Q_4, AEMath.Q_4);
 						this.coreExplosion.setAnimationMode((byte)1);
 					}
 

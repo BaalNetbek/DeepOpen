@@ -3,6 +3,7 @@ package GoF2;
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
 import AE.Math.Matrix;
+import AE.Math.AEMath;
 
 public final class Gun {
 	private static final short[][][] MUZZLE_POSITIONS = {
@@ -214,10 +215,10 @@ public final class Gun {
 				}
 
 				this.projectilesDir[i].normalize();
-				this.projectilesDir[i].scale((int)(this.projectileSpeed * var2) << 12);
-				this.projectilesDir[i].x >>= 12;
-				this.projectilesDir[i].y >>= 12;
-				this.projectilesDir[i].z >>= 12;
+				this.projectilesDir[i].scale((int)(this.projectileSpeed * var2) << AEMath.Q);
+				this.projectilesDir[i].x >>= AEMath.Q;
+				this.projectilesDir[i].y >>= AEMath.Q;
+				this.projectilesDir[i].z >>= AEMath.Q;
 				this.projectilesTimeLeft[i] = this.range;
 				if (!this.friendGun && this.ammo > 0 && gunItem != null && gunItem.getType() == 1) {
 					--this.ammo;

@@ -11,32 +11,32 @@ public abstract class BoundingVolume {
 	protected int offsetY;
 	protected int offsetZ;
 
-	public BoundingVolume(final int var1, final int var2, final int var3, final int var4, final int var5, final int var6) {
-		this.posX = var1;
-		this.posY = var2;
-		this.posZ = var3;
-		this.offsetX = var4;
-		this.offsetY = var5;
-		this.offsetZ = var6;
+	public BoundingVolume(final int x, final int y, final int z, final int off_x, final int off_y, final int off_z) {
+		this.posX = x;
+		this.posY = y;
+		this.posZ = z;
+		this.offsetX = off_x;
+		this.offsetY = off_y;
+		this.offsetZ = off_z;
 	}
 
-	public final AEVector3D getProjectionVector(final AEVector3D var1) {
-		temp.set(var1.x - this.posX, var1.y - this.posY, var1.z - this.posZ);
+	public final AEVector3D getProjectionVector(final AEVector3D vec) {
+		temp.set(vec.x - this.posX, vec.y - this.posY, vec.z - this.posZ);
 		temp.normalize();
 		return temp;
 	}
 
-	public void setPosition(final int var1, final int var2, final int var3) {
-		this.posX = var1;
-		this.posY = var2;
-		this.posZ = var3;
+	public void setPosition(final int x, final int y, final int z) {
+		this.posX = x;
+		this.posY = y;
+		this.posZ = z;
 	}
 
-	public boolean outerCollide_(final int var1, final int var2, final int var3) {
+	public boolean outerCollide_(final int x, final int y, final int z) {
 		return false;
 	}
 
-	public boolean isPointInBounding(final int var1, final int var2, final int var3) {
+	public boolean isPointInBounding(final int x, final int y, final int z) {
 		return false;
 	}
 }

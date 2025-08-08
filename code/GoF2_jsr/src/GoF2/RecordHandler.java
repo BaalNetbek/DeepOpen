@@ -307,7 +307,7 @@ public final class RecordHandler {
             if (var9 <= 0) {
                 record.waitingGoods = null;
             } else {
-                final ProducedGood[] var28 = new ProducedGood[var9];
+                final PendingProduct[] var28 = new PendingProduct[var9];
 
                 for(var7 = 0; var7 < var28.length; ++var7) {
                     var9 = dis.readInt();
@@ -318,7 +318,7 @@ public final class RecordHandler {
                         var33 = null;
                     }
 
-                    var28[var7] = new ProducedGood(var9, var33, var12, var11);
+                    var28[var7] = new PendingProduct(var9, var33, var12, var11);
                 }
 
                 record.waitingGoods = var28;
@@ -619,18 +619,18 @@ public final class RecordHandler {
             int var6;
             int var7;
             Agent[] var19;
-            for(var9 = 0; var9 < Status.getLastVisitedStations().length + 1; ++var9) {
+            for(var9 = 0; var9 < Status.getStationStack().length + 1; ++var9) {
                 Station var5 = null;
-                if (var9 == Status.getLastVisitedStations().length) {
+                if (var9 == Status.getStationStack().length) {
                     var5 = Status.getStation();
                 } else {
-                    var5 = Status.getLastVisitedStations()[var9];
+                    var5 = Status.getStationStack()[var9];
                 }
 
                 if (var5 == null) {
                     dos.writeShort(-1);
                 } else {
-                    dos.writeShort(var5.getId());
+                    dos.writeShort(var5.getIndex());
                     if ((var18 = var5.getShopItems()) == null) {
                         dos.writeInt(0);
                     } else {
@@ -697,8 +697,8 @@ public final class RecordHandler {
                 }
             }
 
-            ProducedGood[] var17;
-            if ((var17 = Status.getWaitingGoods()) == null) {
+            PendingProduct[] var17;
+            if ((var17 = Status.getPendingProducts()) == null) {
                 dos.writeInt(-1);
             } else {
                 var4 = 0;
@@ -1059,7 +1059,7 @@ public final class RecordHandler {
 
         var18.setBonus(var7);
         var18.setCommodity(var12, var13);
-        var18.setTasksTreshold_(var14);
+        var18.setStatusValue(var14);
         var18.setVisible(var15);
         var18.setAgent(var17);
         var18.setTargetName(var4);

@@ -98,7 +98,7 @@ public final class LevelScript {
 			if (Status.inAlienOrbit() || Level.comingFromAlienWorld) {
 				if (Status.getCurrentCampaignMission() < 43) {
 					this.tempVec2 = level.getPlayer().shipGrandGroup_.getDirection(this.tempVec2);
-					this.tempVec2.scale(8192);
+					this.tempVec2.scale(AEMath.Q_2);
 					this.tempVec.subtract(this.tempVec2);
 					((PlayerWormHole)level.getLandmarks()[3]).reset(true);
 					level.getLandmarks()[3].setPosition(this.tempVec.x, this.tempVec.y, this.tempVec.z);
@@ -142,7 +142,7 @@ public final class LevelScript {
 			} else if (this.step == 0) {
 				this.lookAtCam.setLookAt(true);
 				playerEgo.setFreeze(false);
-				playerEgo.shipGrandGroup_.setRotation(0, 2048, 0);
+				playerEgo.shipGrandGroup_.setRotation(0, AEMath.Q_PI_HALF, 0);
 				camera.moveTo(-1000, -500, 110000);
 				this.step = 1;
 			} else {
@@ -352,7 +352,7 @@ public final class LevelScript {
 					camera.translate(30500, 700, 1000);
 					this.tempVec = playerEgo.shipGrandGroup_.getPosition(this.tempVec);
 					this.tempVec2 = playerEgo.shipGrandGroup_.getDirection(this.tempVec2);
-					this.tempVec2.scale(40960);
+					this.tempVec2.scale(10 * AEMath.Q_1);
 					this.tempVec.add(this.tempVec2);
 					this.level.getLandmarks()[3].setPosition(this.tempVec.x, this.tempVec.y, this.tempVec.z);
 
@@ -379,15 +379,15 @@ public final class LevelScript {
 					this.lookAtCam.setTarget(playerEgo.shipGrandGroup_);
 					camera.moveTo(playerEgo.shipGrandGroup_.getPosition(this.tempVec));
 					this.tempVec = playerEgo.shipGrandGroup_.getDirection();
-					this.tempVec.scale(16384);
+					this.tempVec.scale(AEMath.Q_4);
 					new AEVector3D();
-					AEVector3D var9 = null;
-					(var9 = playerEgo.shipGrandGroup_.getRight()).scale(1024);
+					AEVector3D var9 = playerEgo.shipGrandGroup_.getRight();
+					var9.scale(AEMath.Q_HALF);
 					this.tempVec.add(var9);
 					camera.translate(this.tempVec);
 					this.probe = AEResourceManager.getGeometryResource(18);
 					this.probe.setTransform(playerEgo.shipGrandGroup_.getToParentTransform());
-					this.probe.setScale(768, 768, 768);
+					this.probe.setScale(AEMath.Q_THREE_SIXTEENTH, AEMath.Q_THREE_SIXTEENTH, AEMath.Q_THREE_SIXTEENTH);
 				} else if (rMessages[2].isOver() && this.step == 1) {
 					this.step = 2;
 					this.hud.drawUI = true;
@@ -485,8 +485,8 @@ public final class LevelScript {
 
 			final SolarSystem currentSystem = Status.getSystem();
 			final Station autoPilotStation = Level.programmedStation;
-			if (currentSystem.stationIsInSystem(autoPilotStation.getId())) {
-				this.level.getPlayer().setAutoPilot(this.level.getStarSystem().getPlanetTargets()[Status.getSystem().getStationEnumIndex(Level.programmedStation.getId())]);
+			if (currentSystem.stationIsInSystem(autoPilotStation.getIndex())) {
+				this.level.getPlayer().setAutoPilot(this.level.getStarSystem().getPlanetTargets()[Status.getSystem().getStationEnumIndex(Level.programmedStation.getIndex())]);
 				return;
 			}
 

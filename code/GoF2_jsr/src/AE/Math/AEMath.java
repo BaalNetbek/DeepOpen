@@ -11,7 +11,11 @@ public final class AEMath {
 	public static final int Q = 12;
 	
 	public static final int Q_1 = 1 << Q;
+	public static final int Q_SIXTYFORTH = Q_1 / 64;
+	public static final int Q_THIRTYSECOND = Q_1 / 32;
+	public static final int Q_SIXTEENTH = Q_1 / 16;
 	public static final int Q_EIGHTH = Q_1 / 8;
+	public static final int Q_THREE_SIXTEENTH = Q_1 * 3/16;
 	public static final int Q_QUARTER = Q_1 / 4;
 	public static final int Q_THREE_EIGHTHS = Q_1 * 3/8;
 	public static final int Q_HALF = Q_1 / 2;
@@ -25,11 +29,13 @@ public final class AEMath {
 	public static final float TO_FLOAT_SQR = TO_FLOAT / (float)Q_1;
 	public static final float TO_Q = (float)Q_1;
 	public static final int Q_PI = Q_1;
+	public static final int Q_PI_FIVE_QUARTERS = Q_PI * 5/4;
 	public static final int Q_PI_HALF = Q_HALF;
 	public static final int Q_PI_THREE_QUARTERS = Q_PI * 3/4;
 	public static final int Q_PI_QUARTER = Q_QUARTER;
 	public static final int Q_PI_THIRD = (Q_1) / 3;
 	public static final int Q_PI_SIXTH = (Q_1) / 6;
+	public static final int Q_225d = Q_PI_FIVE_QUARTERS;
 	public static final int Q_180d = Q_PI;
 	public static final int Q_135d = Q_PI_THREE_QUARTERS;
 	public static final int Q_90d = Q_PI_HALF;

@@ -371,7 +371,7 @@ public final class Radar {
                     this.elipsoidIntersect(var2, this.planets[i].getLocalPos(this.tempPos));
                     if (this.inViewFrustum) {
                         int[] var30;
-                        final boolean var8 = (var30 = Status.getSystem().getStations())[i - 1] == Status.getStation().getId();
+                        final boolean var8 = (var30 = Status.getSystem().getStations())[i - 1] == Status.getStation().getIndex();
                         var14 = false;
                         if (Status.getSystem().getJumpGateEnumIndex() == i - 1 && !var8) {
                             GlobalStatus.graphics.drawImage(this.mapJumpgate, this.screenProjectionX + 10, this.screenProjectionY - 10, 0);
@@ -502,7 +502,7 @@ public final class Radar {
                                             this.tempContextPosition.x <<= 12;
                                             this.tempContextPosition.y <<= 12;
                                             this.tempContextPosition.normalize();
-                                            this.tempContextPosition.scale(16);
+                                            this.tempContextPosition.scale(16); //scale down 256 times
                                             this.playerPos.add(this.tempContextPosition);
                                             GlobalStatus.graphics.drawLine(this.screenProjectionX, this.screenProjectionY, this.playerPos.x, this.playerPos.y);
                                         }

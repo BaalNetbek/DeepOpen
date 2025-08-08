@@ -337,14 +337,14 @@ public final class Ship {
         return typeEq;
     }
 
-    public final void setEquipment(final Item var1, int var2) {
+    public final void setEquipment(final Item item, int slot) {
 
-        for(int var3 = 0; var3 < var1.getType(); ++var3) {
-            var2 += this.itemTypeSlots[var3];
+        for(int i = 0; i < item.getType(); ++i) {
+            slot += this.itemTypeSlots[i];
         }
 
-        if (var2 < this.equipped.length) {
-            this.equipped[var2] = var1;
+        if (slot < this.equipped.length) {
+            this.equipped[slot] = item;
             refreshValue();
         } else {
             System.out.println("Ship.setEquipment() Array Index out of bounds");
@@ -374,7 +374,7 @@ public final class Ship {
                 case Item.BLASTER:
                 case Item.AUTOCANNON:
                 case Item.THERMO:
-                case Item.TURRET_SUB:
+                case Item.TURRET_SORT:
                     this.firePower += this.equipped[i].getAttribute(Item.DAMAGE);
                     break;
                 case Item.SHIELD:

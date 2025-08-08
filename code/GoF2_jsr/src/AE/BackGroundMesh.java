@@ -18,23 +18,22 @@ public final class BackGroundMesh extends AbstractMesh {
 	private Node mesh;
 	private static CompositingMode compositing;
 
-	public BackGroundMesh(final String var1) {
-		final String var2 = var1;
+	public BackGroundMesh(final String path) {
 		try {
-			Object3D[] var3 = null;
-			if (!var2.endsWith(".m3g")) {
-				var3 = Loader.load(AEFile.readFileBytes(var2 + ".m3g"), 0);
+			Object3D[] mesh = null;
+			if (!path.endsWith(".m3g")) {
+				mesh = Loader.load(AEFile.readFileBytes(path + ".m3g"), 0);
 			} else {
-				var3 = Loader.load(AEFile.readFileBytes(var2), 0);
+				mesh = Loader.load(AEFile.readFileBytes(path), 0);
 			}
 
-			for(int var6 = 0; var6 < var3.length; ++var6) {
-				if (var3[var6] instanceof javax.microedition.m3g.Group) {
-					this.mesh = (Node)var3[var6];
+			for(int i = 0; i < mesh.length; ++i) {
+				if (mesh[i] instanceof javax.microedition.m3g.Group) {
+					this.mesh = (Node)mesh[i];
 					break;
 				}
 			}
-		} catch (final Exception var4) {
+		} catch (final Exception e) {
 			this.mesh = null;
 		}
 
@@ -78,30 +77,30 @@ public final class BackGroundMesh extends AbstractMesh {
 		this.setTexture((javax.microedition.m3g.Group)this.mesh, ((JSRTexture)var1).getTexturesArray());
 	}
 
-	private void setTexture(final javax.microedition.m3g.Group var1, final Texture2D[] var2) {
-		for(int var3 = 0; var3 < var1.getChildCount(); ++var3) {
-			Node var4;
-			if ((var4 = var1.getChild(var3)) instanceof Mesh) {
-				final int var5 = ((Mesh)var4).getUserID();
+	private void setTexture(final javax.microedition.m3g.Group var1, final Texture2D[] textures) {
+		for(int i = 0; i < var1.getChildCount(); ++i) {
+			Node node;
+			if ((node = var1.getChild(i)) instanceof Mesh) {
+				final int uid = ((Mesh)node).getUserID();
 
-				for(int var6 = 0; var6 < ((Mesh)var4).getSubmeshCount(); ++var6) {
-					Appearance var7;
-					(var7 = ((Mesh)var4).getAppearance(var6)).setMaterial((Material)null);
-					var7.setCompositingMode(compositing);
-					if (var7.getTexture(0) != null) {
-						if (var2 != null) {
-							if (var5 < var2.length) {
-								var7.setTexture(0, var2[var5]);
+				for(int j = 0; j < ((Mesh)node).getSubmeshCount(); ++j) {
+					Appearance appearance;
+					(appearance = ((Mesh)node).getAppearance(j)).setMaterial((Material)null);
+					appearance.setCompositingMode(compositing);
+					if (appearance.getTexture(0) != null) {
+						if (textures != null) {
+							if (uid < textures.length) {
+								appearance.setTexture(0, textures[uid]);
 							} else {
-								var7.setTexture(0, var2[0]);
+								appearance.setTexture(0, textures[0]);
 							}
 						} else {
-							var7.setTexture(0, (Texture2D)null);
+							appearance.setTexture(0, (Texture2D)null);
 						}
 					}
 				}
-			} else if (var4 instanceof javax.microedition.m3g.Group) {
-				this.setTexture((javax.microedition.m3g.Group)var4, var2);
+			} else if (node instanceof javax.microedition.m3g.Group) {
+				this.setTexture((javax.microedition.m3g.Group)node, textures);
 			}
 		}
 

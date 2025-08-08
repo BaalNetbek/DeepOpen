@@ -537,8 +537,8 @@ public final class OptionsWindow {
 		Status.wormHoleTick = var4.wormHoleTick;
 		Status.setCurrentCampaignMission(var4.currentCampaignMissionIndex);
 		Status.setFreelanceMission(var4.freelanceMission);
-		Status.startStoryMission(var4.storyMission);
-		Status.setLastVisitedStations(var4.lastVisitedStations);
+		Status.setCampaignMission(var4.storyMission);
+		Status.setStationStack(var4.lastVisitedStations);
 		Status.minedOreTypes = var4.minedOreTypes;
 		Status.minedCoreTypes = var4.minedCoreTypes;
 		Status.missionGoodsCarried = var4.missionGoodsCarried;
@@ -566,7 +566,7 @@ public final class OptionsWindow {
 		}
 
 		Status.setShip(var4.egoShip);
-		Status.setCurrentStation_andInitSystem_(var4.currentStation);
+		Status.setStation(var4.currentStation);
 		Status.setMission(Mission.emptyMission_);
 		Status.standing = var4.standing;
 		Status.blueprints = var4.blueprints;

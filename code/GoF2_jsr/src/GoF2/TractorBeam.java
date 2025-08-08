@@ -5,6 +5,7 @@ import AE.AbstractMesh;
 import AE.GlobalStatus;
 import AE.Group;
 import AE.ParticleSystemMesh;
+import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 
 public final class TractorBeam {
@@ -82,7 +83,7 @@ public final class TractorBeam {
             this.shipToTarget = this.wastePos_shipDir_.subtract(this.beamSrcPos_, this.shipToTarget);
             this.toTargetDir.set(this.shipToTarget);
             this.wastePos_shipDir_ = var4.getPlayer().shipGrandGroup_.getDirection(this.wastePos_shipDir_);
-            this.wastePos_shipDir_.scale(1024);
+            this.wastePos_shipDir_.scale(AEMath.Q_QUARTER);
             this.beamSrcPos_.add(this.wastePos_shipDir_);
             AEVector3D var10000 = this.toTargetDir;
             var10000.x /= 10;

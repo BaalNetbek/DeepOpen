@@ -11,19 +11,19 @@ public final class EaseInOut {
 	public EaseInOut(final int var1, final int var2) {
 		this.minValue = var1;
 		this.range = var2 - var1;
-		this.phase = 3072;
+		this.phase = AEMath.Q_PI_THREE_QUARTERS;
 	}
 
 	public final void Increase(final int var1) {
 		this.phase += var1;
-		this.phase = this.phase > 5120 ? 5120 : this.phase;
-		this.currentValue = (((AEMath.sin(this.phase) >> 1) + AEMath.Q_HALF) * this.range >> 12) + this.minValue;
+		this.phase = this.phase > AEMath.Q_PI_FIVE_QUARTERS ? AEMath.Q_PI_FIVE_QUARTERS : this.phase;
+		this.currentValue = (((AEMath.sin(this.phase) >> 1) + AEMath.Q_PI_HALF) * this.range >> AEMath.Q) + this.minValue;
 	}
 
 	public final void SetRange(final int var1, final int var2) {
 		this.minValue = var1;
 		this.range = var2 - var1;
-		this.phase = AEMath.Q_THREE_QUARTERS;
+		this.phase = AEMath.Q_PI_THREE_QUARTERS;
 	}
 
 	public final int GetValue() {
@@ -31,6 +31,6 @@ public final class EaseInOut {
 	}
 
 	public final boolean IsAtMaxPhase(final boolean var1) {
-		return this.phase == 5120;
+		return this.phase == AEMath.Q_PI_FIVE_QUARTERS;
 	}
 }

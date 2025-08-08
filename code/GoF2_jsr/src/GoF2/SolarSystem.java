@@ -35,7 +35,7 @@ public final class SolarSystem {
         this.neighbourSystems = var13;
     }
 
-    public final int getId() {
+    public final int getIndex() {
         return this.id;
     }
 
@@ -86,7 +86,7 @@ public final class SolarSystem {
     }
 
     public final boolean currentOrbitHasJumpgate() {
-        return this.jumpgateStationId == Status.getStation().getId();
+        return this.jumpgateStationId == Status.getStation().getIndex();
     }
 
     public final boolean stationIsInSystem(final int var1) {

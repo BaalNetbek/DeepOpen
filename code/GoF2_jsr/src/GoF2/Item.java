@@ -11,6 +11,7 @@ public final class Item {
 	public static final int SECONDARY = 1;
 	public static final int TURRET = 2;
 	public static final int EQUIPMENT = 3;
+	public static final int COMMODITY = 4;
 	// sorts (sub types)
 	public static final int LASER = 0;
 	public static final int BLASTER = 1;
@@ -20,7 +21,7 @@ public final class Item {
 	public static final int TORPEDO = 5;
 	public static final int EMP_BOMB = 6;
 	public static final int NUKE = 7;
-	public static final int TURRET_SUB = 8;
+	public static final int TURRET_SORT = 8;
 	public static final int SHIELD = 9;
 	public static final int ARMOR = 10;
 	public static final int EMP_PROTECTION = 11;
@@ -34,7 +35,7 @@ public final class Item {
 	public static final int MINING_LASER = 19;
 	public static final int CABIN = 20;
 	public static final int CLOAK = 21;
-	public static final int COMMODITY = 22;
+	public static final int COMMODITY_SORT = 22;
 	public static final int ORE = 23;
 	public static final int ORE_CORE = 24;
 	
@@ -127,7 +128,7 @@ public final class Item {
 	public final int getIndex() {
 		return this.id;
 	}
-
+	/** PRIMARY = 0; SECONDARY = 1; TURRET = 2; EQUIPMENT = 3;**/
 	public final int getType() {
 		return this.type;
 	}
@@ -433,20 +434,17 @@ public final class Item {
 		return this.type == 0 || this.type == 1 || this.type == 2;
 	}
 
-	public final Item makeItem(final int var1) {
-		return getCopyInAmmount(var1, this.price);
+	public final Item makeItem(final int amount) {
+		return getCopyInAmmount(amount, this.price);
 	}
 
-	public final Item getCopyInAmmount(final int var1, final int var2) {
-		Item var4;
-		final Item var10000 = var4 = new Item(this.blueprintComponentsIds, this.blueprintComponentsQuantities, this.atributesIndexed);
-		final int var6 = this.price;
-		var10000.price = var6;
-		final boolean var7 = this.unsaleable;
-		var4.unsaleable = var7;
-		var4.price = var2;
-		var4.amount = var1;
-		return var4;
+	public final Item getCopyInAmmount(final int amount, final int price) {
+		Item copy = new Item(this.blueprintComponentsIds, this.blueprintComponentsQuantities, this.atributesIndexed);
+		copy.price = this.price;
+		copy.unsaleable = this.unsaleable;
+		copy.price = price;
+		copy.amount = amount;
+		return copy;
 	}
 
 	public final Item makeItem() {

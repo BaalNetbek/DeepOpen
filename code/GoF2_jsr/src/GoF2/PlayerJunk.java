@@ -2,6 +2,7 @@ package GoF2;
 
 import AE.AbstractMesh;
 import AE.GlobalStatus;
+import AE.Math.AEMath;
 
 public final class PlayerJunk extends KIPlayer {
     private long frameTime;
@@ -9,8 +10,8 @@ public final class PlayerJunk extends KIPlayer {
     public PlayerJunk(int meshId, final Player player, final AbstractMesh mesh, final int x, final int y, final int z) {
         super(9996, -1, player, mesh, x, y, z);
         this.player.transform = mesh.getToParentTransform();
-        meshId = 4096 + GlobalStatus.random.nextInt(8096);
-        mesh.setScale(meshId, meshId, meshId);
+        int scale = AEMath.Q_1 + GlobalStatus.random.nextInt(AEMath.Q_2);
+        mesh.setScale(scale, scale, scale);
         this.junk = true;
     }
 

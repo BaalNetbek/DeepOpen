@@ -70,7 +70,7 @@ public final class StarSystem {
         this.inAlienSpace = Status.getSystem() == null;
         Image var2;
         int var4;
-        int var13;
+        
         if (!this.inAlienSpace) {
             final int[] var8 = Status.getSystem().getStations();
             this.starAndPlanets = new AbstractMesh[var8.length + 1];
@@ -78,74 +78,77 @@ public final class StarSystem {
             var2 = AEFile.loadImage("/data/interface/planet_" + Status.getStation().getPlanetTextureId() + ".png", true);
             this.planet = new Sprite(var2);
             this.planet.defineReferencePixel(this.planet.getWidth() / 2, this.planet.getHeight() / 2);
-            GlobalStatus.random.setSeed(Status.getStation().getId() * 300);
+            GlobalStatus.random.setSeed(Status.getStation().getIndex() * 300);
             final boolean[] var10 = new boolean[24];
             int var3 = 0;
             var4 = 0;
-            for(var13 = 0; var13 < this.starAndPlanets.length; ++var13) {
-                this.starAndPlanets[var13] = AEResourceManager.getGeometryResource(6781);
-                this.starAndPlanets[var13].setRenderLayer(1);
-                if (var13 == 0) {
-                    this.starAndPlanets[var13].setAnimationMode((byte)1);
-                    this.starAndPlanets[var13].setScale(64, 64, 64);
+            for(int i = 0; i < this.starAndPlanets.length; ++i) {
+                this.starAndPlanets[i] = AEResourceManager.getGeometryResource(6781);
+                this.starAndPlanets[i].setRenderLayer(1);
+                if (i == 0) {
+                    this.starAndPlanets[i].setAnimationMode((byte)1);
+                    this.starAndPlanets[i].setScale(AEMath.Q_SIXTYFORTH, AEMath.Q_SIXTYFORTH, AEMath.Q_SIXTYFORTH);
                     var4 = var3 = GlobalStatus.random.nextInt(24);
                 } else {
-                    boolean var6;
-                    if (var8[var13 - 1] == Status.getStation().getId()) {
-                        this.starAndPlanets[var13].setDraw(false);
-                        var6 = false;
+                    
+                    if (var8[i - 1] == Status.getStation().getIndex()) {
+                        this.starAndPlanets[i].setDraw(false);
+                        boolean var69 = false;
                         int var7;
                         if ((var7 = Status.getStation().getPlanetTextureId()) != 17 && var7 != 18) {
                             while(true) {
-                                if (var6) {
+                                if (var69) {
                                     if (AEMath.abs(var3 - var4) < 12) {
                                         this.planet.setTransform(2);
                                     }
                                     break;
                                 }
-
-                                var6 = AEMath.abs((var3 = GlobalStatus.random.nextInt(24)) - var4) > 3 && !var10[var3];
+                                var3 = GlobalStatus.random.nextInt(24);
+                                var69 = AEMath.abs(var3 - var4) > 3 && !var10[var3];
                             }
                         } else {
                             var3 = var4;
                         }
 
-                        currentPlanetEnumIndex = var13;
+                        currentPlanetEnumIndex = i;
                     } else {
-                        this.localPlanets[var13 - 1] = new PlayerStatic(0, this.starAndPlanets[var13], 0, 0, 0);
-                        this.starAndPlanets[var13].setDraw(false);
-
-                        for(var6 = false; !var6; var6 = AEMath.abs((var3 = 7 + GlobalStatus.random.nextInt(11)) - var4) > 2 && !var10[var3]) {
+                        this.localPlanets[i - 1] = new PlayerStatic(0, this.starAndPlanets[i], 0, 0, 0);
+                        this.starAndPlanets[i].setDraw(false);
+                        
+                        boolean var6 = false;
+                        while (!var6) {
+                        	var3 = 7 + GlobalStatus.random.nextInt(11);
+                           var6 = AEMath.abs(var3 - var4) > 2 && !var10[var3];
                         }
                     }
                 }
 
                 var10[var3] = true;
-                if (var3 == var4 && var13 != 0) {
-                    this.starAndPlanets[var13].setRotation(0, var3 * 170 + 128, 0);
-                } else if (var13 > 0 && var8[var13 - 1] == Status.getStation().getId()) {
-                    this.starAndPlanets[var13].setRotation(0, var3 * 170, 0);
+                if (var3 == var4 && i != 0) {
+                    this.starAndPlanets[i].setRotation(0, var3 * 170 + AEMath.Q_THIRTYSECOND, 0);
+                } else if (i > 0 && var8[i - 1] == Status.getStation().getIndex()) {
+                    this.starAndPlanets[i].setRotation(0, var3 * 170, 0);
                 } else {
-                    this.starAndPlanets[var13].setRotation(-128 + GlobalStatus.random.nextInt(256), var3 * 170, 0);
+                    this.starAndPlanets[i].setRotation(-128 + GlobalStatus.random.nextInt(256), var3 * 170, 0);
                 }
 
-                this.starAndPlanets[var13].moveForward(-20000);
-                this.starAndPlanets[var13].updateTransform(true);
-                this.starAndPlanets[var13].update(1L);
-                this.cameraControler.uniqueAppend_(this.starAndPlanets[var13]);
+                this.starAndPlanets[i].moveForward(-20000);
+                this.starAndPlanets[i].updateTransform(true);
+                this.starAndPlanets[i].update(1L);
+                this.cameraControler.uniqueAppend_(this.starAndPlanets[i]);
             }
 
-            var13 = GlobalStatus.random.nextInt(8);
-            if (var13 > 0) {
-                this.nebulaPivots = new AbstractMesh[var13];
+            int numNebulas = GlobalStatus.random.nextInt(8);
+            if (numNebulas > 0) {
+                this.nebulaPivots = new AbstractMesh[numNebulas];
                 this.occupiedNebulaPos = new boolean[8];
                 this.occupiedAstroObjPos = new boolean[this.astronomicalObjPlacings.length / 3];
                 this.nebulaImgs = new Image[this.nebulaPivots.length];
 
-                for(int var14 = 0; var14 < this.nebulaPivots.length; ++var14) {
-                    this.nebulaPivots[var14] = AEResourceManager.getGeometryResource(6781);
-                    this.nebulaPivots[var14].setRenderLayer(1);
-                    this.nebulaPivots[var14].setDraw(false);
+                for(int i = 0; i < this.nebulaPivots.length; ++i) {
+                    this.nebulaPivots[i] = AEResourceManager.getGeometryResource(6781);
+                    this.nebulaPivots[i].setRenderLayer(1);
+                    this.nebulaPivots[i].setDraw(false);
                     boolean var15 = false;
                     int var9 = 0;
 
@@ -156,7 +159,7 @@ public final class StarSystem {
                         }
                     }
 
-                    this.nebulaPivots[var14].moveTo(this.astronomicalObjPlacings[var9], this.astronomicalObjPlacings[var9 + 1], this.astronomicalObjPlacings[var9 + 2]);
+                    this.nebulaPivots[i].moveTo(this.astronomicalObjPlacings[var9], this.astronomicalObjPlacings[var9 + 1], this.astronomicalObjPlacings[var9 + 2]);
                     var15 = false;
                     var9 = 0;
 
@@ -167,8 +170,8 @@ public final class StarSystem {
                         }
                     }
 
-                    this.nebulaImgs[var14] = AEFile.loadImage("/data/interface/nebula" + var9 + ".png", true);
-                    this.cameraControler.uniqueAppend_(this.nebulaPivots[var14]);
+                    this.nebulaImgs[i] = AEFile.loadImage("/data/interface/nebula" + var9 + ".png", true);
+                    this.cameraControler.uniqueAppend_(this.nebulaPivots[i]);
                 }
             }
         }
@@ -183,14 +186,14 @@ public final class StarSystem {
             final Image[] var11 = new Image[6];
             final int[] var12 = Status.getPlanetTextures();
             this.localPlanetsImgs = new Image[var12.length];
-
+            int imgIdx;
             for(var4 = 0; var4 < var12.length; ++var4) {
-                var13 = this.planetSmallImages[var12[var4]];
-                if (var11[var13] == null) {
-                    var11[var13] = AEFile.loadImage("/data/interface/star_" + var13 + ".png", true);
+                imgIdx = this.planetSmallImages[var12[var4]];
+                if (var11[imgIdx] == null) {
+                    var11[imgIdx] = AEFile.loadImage("/data/interface/star_" + imgIdx + ".png", true);
                 }
 
-                this.localPlanetsImgs[var4] = var11[var13];
+                this.localPlanetsImgs[var4] = var11[imgIdx];
             }
         }
 

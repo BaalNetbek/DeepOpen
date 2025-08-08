@@ -29,7 +29,7 @@ public final class ModMainMenu extends IApplicationModule {
 	public final void OnInitialize() {
 		if (this.cutScene == null) {
 			stationIndex = GlobalStatus.random.nextInt(100);
-			Status.setCurrentStation_andInitSystem_(new FileRead().loadStation(stationIndex));
+			Status.setStation(new FileRead().loadStation(stationIndex));
 			this.cutScene = new CutScene(2);
 		}
 

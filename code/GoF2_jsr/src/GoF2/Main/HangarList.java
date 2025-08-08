@@ -12,7 +12,7 @@ import GoF2.Item;
 import GoF2.Layout;
 import GoF2.ListItem;
 import GoF2.Popup;
-import GoF2.ProducedGood;
+import GoF2.PendingProduct;
 import GoF2.Ship;
 import GoF2.Status;
 
@@ -127,7 +127,7 @@ public class HangarList extends TabbedWindow_ {
 
 			int temp = listLen;
 			boolean goodsReady = false;
-			ProducedGood[] waitingGoods = Status.getWaitingGoods();
+			PendingProduct[] waitingGoods = Status.getPendingProducts();
 			if (waitingGoods != null) {
 				for(int i = 0; i < waitingGoods.length; ++i) {
 					if (waitingGoods[i] != null) {
@@ -607,7 +607,7 @@ public class HangarList extends TabbedWindow_ {
 			return 0;
 		}
 		var1 = (ListItem)this.perTabEntries[this.selectedTab][this.selectedEntry];
-		if (this.selectedTab == 4 && this.trading_ && this.amountToPutInBluePrint > 0 && !this.popupOpen && !this.bluePrint.isStarted() && this.bluePrint.getProductionStationId() != Status.getStation().getId()) {
+		if (this.selectedTab == 4 && this.trading_ && this.amountToPutInBluePrint > 0 && !this.popupOpen && !this.bluePrint.isStarted() && this.bluePrint.getProductionStationId() != Status.getStation().getIndex()) {
 			final String var11 = Status.replaceTokens(Status.replaceTokens(new String(GlobalStatus.gameText.getText(142)), this.bluePrint.getProductionStationName(), "#S"), Layout.formatCredits(var1.item.getBlueprintAmount() * 10), "#C");
 			this.popup.set(var11, true);
 			this.popupOpen = true;
@@ -814,12 +814,12 @@ public class HangarList extends TabbedWindow_ {
 						if (this.trading_) {
 							boolean var8 = false;
 							var10 = false;
-							this.bluePrint.startProduction(var1.item, var1.item.getBlueprintAmount(), Status.getStation().getId());
+							this.bluePrint.startProduction(var1.item, var1.item.getBlueprintAmount(), Status.getStation().getIndex());
 							if (this.bluePrint.isComplete()) {
-								if (this.bluePrint.getProductionStationId() != Status.getStation().getId()) {
+								if (this.bluePrint.getProductionStationId() != Status.getStation().getIndex()) {
 									var4 = Status.replaceTokens(Status.replaceTokens(new String(GlobalStatus.gameText.getText(89)), GlobalStatus.gameText.getText(569 + this.bluePrint.getIndex()), "#N"), this.bluePrint.getProductionStationName(), "#S");
 									this.popup.setAsWarning(var4);
-									Status.appendProduced(this.bluePrint);
+									Status.addPendingProduct(this.bluePrint);
 									setCurrentTab(2);
 								} else {
 									var4 = Status.replaceTokens(new String(GlobalStatus.gameText.getText(90)), GlobalStatus.gameText.getText(569 + this.bluePrint.getIndex()), "#N");

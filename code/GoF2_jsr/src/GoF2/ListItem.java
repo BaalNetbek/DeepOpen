@@ -20,7 +20,7 @@ public final class ListItem {
 	public Image items;
 	private boolean nonFancyLabel;
 	public int inTabIndex;
-	public ProducedGood producedGood;
+	public PendingProduct producedGood;
 
 	public ListItem(final ListItem var1) {
 		this.unused_owner__ = var1.unused_owner__;
@@ -55,7 +55,7 @@ public final class ListItem {
 		this.isSelectable = true;
 	}
 
-	public ListItem(final ProducedGood var1) {
+	public ListItem(final PendingProduct var1) {
 		this.producedGood = var1;
 		this.isSelectable = true;
 	}

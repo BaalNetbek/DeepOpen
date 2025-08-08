@@ -4,20 +4,20 @@ package GoF2;
  * @author fishlabs
  *
  */
-public final class ProducedGood {
+public final class PendingProduct {
     public String stationName;
     public int stationId;
     public int producedQuantity;
     public int index;
 
-    public ProducedGood(final BluePrint var1) {
+    public PendingProduct(final BluePrint var1) {
         this.index = var1.productId;
         this.stationName = var1.productionStationName;
         this.stationId = var1.productionStationId;
         this.producedQuantity = var1.producedTons;
     }
 
-    public ProducedGood(final int var1, final String var2, final int var3, final int var4) {
+    public PendingProduct(final int var1, final String var2, final int var3, final int var4) {
         this.index = var1;
         this.stationName = var2;
         this.stationId = var3;

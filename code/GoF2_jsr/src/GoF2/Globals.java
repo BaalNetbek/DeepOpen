@@ -151,24 +151,26 @@ public final class Globals {
         final int[] var3 = FileRead.loadShipParts(var0);
         final int[] var6 = getRaceUVkeyframeId_(var1);
 
-        for(int var4 = 0; var4 < var3.length; var4 += 10) {
-            AbstractMesh var5;
-            if ((var5 = AEResourceManager.getGeometryResource(var3[var4])).getID() >= 13064 && var5.getID() <= 13071) {
-                var5.setAnimationMode((byte)2);
+        for(int i = 0; i < var3.length; i += 10) {
+            AbstractMesh mesh;
+            if ((mesh = AEResourceManager.getGeometryResource(var3[i])).getID() >= 13064 && mesh.getID() <= 13071) {
+                mesh.setAnimationMode((byte)2);
             } else {
-                var5.setAnimationRangeInTime(var6[0], var6[1]);
-                var5.disableAnimation();
+                mesh.setAnimationRangeInTime(var6[0], var6[1]);
+                mesh.disableAnimation();
             }
 
-            if (var5.getID() == 13067 || var5.getID() == 13068 || var5.getID() == 13070 || var5.getID() == 13064 || var5.getID() == 13065 || var5.getID() == 13071 || var5.getID() == 13061 || var5.getID() == 13063 || var5.getID() == 13062 || var0 == 14 || var0 == 13 || var0 == 15) {
-                var5.moveTo(var3[var4 + 1], var3[var4 + 2], var3[var4 + 3]);
-                var5.setRotation(var3[var4 + 4], var3[var4 + 5], var3[var4 + 6]);
-                var5.setScale(var3[var4 + 7], var3[var4 + 8], var3[var4 + 9]);
+				if (mesh.getID() == 13067 || mesh.getID() == 13068 || mesh.getID() == 13070 || mesh.getID() == 13064
+				      || mesh.getID() == 13065 || mesh.getID() == 13071 || mesh.getID() == 13061 || mesh.getID() == 13063
+				      || mesh.getID() == 13062 || var0 == 14 || var0 == 13 || var0 == 15) {
+			       mesh.moveTo	  (var3[i + 1], var3[i + 2], var3[i + 3]);
+                mesh.setRotation(var3[i + 4], var3[i + 5], var3[i + 6]);
+                mesh.setScale	  (var3[i + 7], var3[i + 8], var3[i + 9]);
             }
 
-            var5.setRenderLayer(2);
-            var5.setDraw(true);
-            var2.uniqueAppend_(var5);
+            mesh.setRenderLayer(2);
+            mesh.setDraw(true);
+            var2.uniqueAppend_(mesh);
         }
 
         return var2;
@@ -176,14 +178,14 @@ public final class Globals {
 
     public static void buildShip(final Group var0, final int var1) {
         //new FileRead();
-        int[] var4;
-        int var2 = (var4 = FileRead.loadShipParts(var1)).length - 10;
+        int[] parts = FileRead.loadShipParts(var1);
+        int i = parts.length - 10;
 
-        for(GraphNode var3 = var0.getEndNode(); var3 != null; var3 = var3.getParent()) {
-            var3.moveTo(var4[var2 + 1], var4[var2 + 2], var4[var2 + 3]);
-            var3.setRotation(var4[var2 + 4], var4[var2 + 5], var4[var2 + 6]);
-            var3.setScale(var4[var2 + 7], var4[var2 + 8], var4[var2 + 9]);
-            var2 -= 10;
+        for(GraphNode node = var0.getEndNode(); node != null; node = node.getParent()) {
+            node.moveTo		 (parts[i + 1], parts[i + 2], parts[i + 3]);
+            node.setRotation(parts[i + 4], parts[i + 5], parts[i + 6]);
+            node.setScale	 (parts[i + 7], parts[i + 8], parts[i + 9]);
+            i -= 10;
         }
 
     }

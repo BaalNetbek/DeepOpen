@@ -185,7 +185,7 @@ public final class MGame extends IApplicationModule {
 			Status.shield = Status.getShip().getShield();
 			Status.additionalArmour = Status.getShip().getAdditionalArmour();
 			if (!Status.inAlienOrbit()) {
-				Status.lastVisitedNonVoidOrbit = Status.getStation().getId();
+				Status.lastVisitedNonVoidOrbit = Status.getStation().getIndex();
 			}
 
 			this.interruptedByDialogue = false;
@@ -492,9 +492,9 @@ public final class MGame extends IApplicationModule {
 
 							Status.setMission(Mission.emptyMission_);
 							if (Status.inAlienOrbit()) {
-								Status.setCurrentStation_andInitSystem_(Galaxy.getStation(Status.lastVisitedNonVoidOrbit));
+								Status.setStation(Galaxy.getStation(Status.lastVisitedNonVoidOrbit));
 							} else {
-								Status.setCurrentStation_andInitSystem_(Status.voidStation);
+								Status.setStation(Status.voidStation);
 							}
 
 							Status.baseArmour = this.playerEgo.player.getHitpoints();
@@ -822,7 +822,7 @@ public final class MGame extends IApplicationModule {
 		if (Level.programmedStation.equals(Status.voidStation)) {
 			Level.initStreamOutPosition = true;
 			Level.comingFromAlienWorld = true;
-			Status.setCurrentStation_andInitSystem_(Status.voidStation);
+			Status.setStation(Status.voidStation);
 		}
 
 		Level.programmedStation = null;
@@ -973,7 +973,7 @@ public final class MGame extends IApplicationModule {
 							Status.changeCredits(var2.getReward());
 							this.levelScript.timeLimit = 0;
 							if (var2.isCampaignMission() && Status.getCurrentCampaignMission() == 15) {
-								Status.setCurrentStation_andInitSystem_(new FileRead().loadStation(98));
+								Status.setStation(new FileRead().loadStation(98));
 								GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[1]);
 								return;
 							}

@@ -36,8 +36,8 @@ public abstract class AEGeometry extends GraphNode {
 		this.radius = 5000;
 	}
 
-	protected final String getString(String var1, final int var2) {
-		for(int var3 = 0; var3 < var2; ++var3) {
+	protected final String getString(String var1, final int len) {
+		for(int i = 0; i < len; ++i) {
 			var1 = var1 + "  ";
 		}
 

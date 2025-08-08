@@ -3,6 +3,7 @@ package GoF2;
 import AE.AbstractMesh;
 import AE.BoundingSphere;
 import AE.BoundingVolume;
+import AE.Math.AEMath;
 
 public final class PlayerJumpgate extends PlayerStaticFar {
     private boolean animationInit;
@@ -18,7 +19,7 @@ public final class PlayerJumpgate extends PlayerStaticFar {
             this.mainMesh_.setAnimationMode((byte)2);
         }
 
-        var2.setRotation(-1024, 0, 0);
+        var2.setRotation(-AEMath.Q_PI_QUARTER, 0, 0);
         this.animationInit = false;
     }
 

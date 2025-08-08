@@ -49,26 +49,26 @@ public final class Renderer {
 	}
 
 	public final void renderStillFrame() {
-		for(int var1 = 0; var1 < this.layers.length; ++var1) {
-			this.layers[var1].render();
-			if (this.needGraphicsClear[var1]) {
+		for(int i = 0; i < this.layers.length; ++i) {
+			this.layers[i].render();
+			if (this.needGraphicsClear[i]) {
 				this.graphics3D.clear();
 			}
 
-			this.layers[var1].reset();
+			this.layers[i].reset();
 		}
 
 	}
 
 	public final void renderFrame(final long var1) {
-		for(int var3 = 0; var3 < this.layers.length; ++var3) {
-			this.layers[var3].update(var1);
-			this.layers[var3].render();
-			if (this.needGraphicsClear[var3]) {
+		for(int i = 0; i < this.layers.length; ++i) {
+			this.layers[i].update(var1);
+			this.layers[i].render();
+			if (this.needGraphicsClear[i]) {
 				this.graphics3D.clear();
 			}
 
-			this.layers[var3].reset();
+			this.layers[i].reset();
 		}
 
 	}

@@ -17,21 +17,21 @@ public abstract class Camera extends AEGeometry {
 	private int verticalProjectionFactor;
 	private int horizontalProjectionFactor;
 
-	protected Camera(final int var1, final int var2, final int var3, final int var4, final int var5) {
-		for(int var6 = this.vfPlaneNormalsLocal.length - 1; var6 >= 0; --var6) {
-			this.vfPlaneNormalsLocal[var6] = new AEVector3D();
+	protected Camera(final int w, final int h, final int fov, final int near, final int far) {
+		for(int i = this.vfPlaneNormalsLocal.length - 1; i >= 0; --i) {
+			this.vfPlaneNormalsLocal[i] = new AEVector3D();
 		}
 
 		this.lengths = new int[6];
-		this.vfPlaneNormals[0] = new AEVector3D(0, 0, -4096);
-		this.vfPlaneNormals[1] = new AEVector3D(0, 0, 4096);
+		this.vfPlaneNormals[0] = new AEVector3D(0, 0, -AEMath.Q_1);
+		this.vfPlaneNormals[1] = new AEVector3D(0, 0, AEMath.Q_1);
 		this.vfPlaneNormals[2] = new AEVector3D();
 		this.vfPlaneNormals[3] = new AEVector3D();
 		this.vfPlaneNormals[4] = new AEVector3D();
 		this.vfPlaneNormals[5] = new AEVector3D();
-		this.screenWidth = var1;
-		this.screenHeight = var2;
-		setPerspective(var3, var4, var5);
+		this.screenWidth = w;
+		this.screenHeight = h;
+		setPerspective(fov, near, far);
 	}
 
 	public final void updateTransform(final boolean var1) {
@@ -62,46 +62,46 @@ public abstract class Camera extends AEGeometry {
 
 	}
 
-	public void setPerspective(int var1, int var2, final int var3) {
-		this.nearPlane = var2;
-		this.farPlane = var3;
-		var2 = AEMath.sin(var1 >> 1);
-		var1 = AEMath.cos(var1 >> 1);
-		this.vfPlaneNormals[2].set(var1, 0, -var2);
-		this.vfPlaneNormals[3].set(-var1, 0, -var2);
-		this.vfPlaneNormals[4].set(0, -var1, -var2);
-		this.vfPlaneNormals[5].set(0, var1, -var2);
-		this.verticalProjectionFactor = (var2 << 12) / var1;
-		this.horizontalProjectionFactor = this.verticalProjectionFactor * ((this.screenWidth << 12) / this.screenHeight) >> 12;
+	public void setPerspective(int fov, int near, final int far) {
+		this.nearPlane = near;
+		this.farPlane = far;
+		int sin = AEMath.sin(fov >> 1);
+		int cos = AEMath.cos(fov >> 1);
+		this.vfPlaneNormals[2].set(cos, 0, -sin);
+		this.vfPlaneNormals[3].set(-cos, 0, -sin);
+		this.vfPlaneNormals[4].set(0, -cos, -sin);
+		this.vfPlaneNormals[5].set(0, cos, -sin);
+		this.verticalProjectionFactor = (sin << AEMath.Q) / cos;
+		this.horizontalProjectionFactor = this.verticalProjectionFactor * ((this.screenWidth << AEMath.Q) / this.screenHeight) >> AEMath.Q;
 	}
 
 	public final void setFoV(final int var1) {
 		setPerspective(var1, this.nearPlane, this.farPlane);
 	}
 
-	public final boolean getScreenPosition(AEVector3D var1) {
-		if ((var1 = this.localTransformation.inverseTransformVector(var1)).z > this.nearPlane) {
+	public final boolean getScreenPosition(AEVector3D worldPos) {
+		if ((worldPos = this.localTransformation.inverseTransformVector(worldPos)).z > this.nearPlane) {
 			return false;
 		}
-		final int var2 = this.horizontalProjectionFactor * var1.z >> 12;
-		final int var3 = this.verticalProjectionFactor * var1.z >> 12;
+		final int var2 = this.horizontalProjectionFactor * worldPos.z >> AEMath.Q;
+		final int var3 = this.verticalProjectionFactor * worldPos.z >> AEMath.Q;
 		if (var2 != 0 && var3 != 0) {
-			var1.x = -((var1.x << 11) / var2 * this.screenWidth >> 12) + (this.screenWidth >> 1);
-			var1.y = ((var1.y << 11) / var3 * this.screenHeight >> 12) + (this.screenHeight >> 1);
-			return var1.x >= 0 && var1.y >= 0 && var1.x < this.screenWidth && var1.y < this.screenHeight;
+			worldPos.x = -((worldPos.x << (AEMath.Q-1)) / var2 * this.screenWidth >> AEMath.Q) + (this.screenWidth >> 1);
+			worldPos.y = ((worldPos.y << (AEMath.Q-1)) / var3 * this.screenHeight >> AEMath.Q) + (this.screenHeight >> 1);
+			return worldPos.x >= 0 && worldPos.y >= 0 && worldPos.x < this.screenWidth && worldPos.y < this.screenHeight;
 		} else {
 			return false;
 		}
 	}
 
-	public final byte isInViewFrustum(final AEBoundingSphere var1) {
-		for(int var3 = 5; var3 >= 0; --var3) {
-			int var2 = var1.center.dot(this.vfPlaneNormalsLocal[var3]) - this.lengths[var3];
-			if (var2 < -var1.radius) {
+	public final byte isInViewFrustum(final AEBoundingSphere bsphere) {
+		for(int i = 5; i >= 0; --i) {
+			int var2 = bsphere.center.dot(this.vfPlaneNormalsLocal[i]) - this.lengths[i];
+			if (var2 < -bsphere.radius) {
 				return 0;
 			}
 
-			if (AEMath.abs(var2) < var1.radius) {
+			if (AEMath.abs(var2) < bsphere.radius) {
 				return 1;
 			}
 		}
