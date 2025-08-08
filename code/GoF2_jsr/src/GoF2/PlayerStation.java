@@ -146,12 +146,12 @@ public final class PlayerStation extends PlayerStaticFar {
                 this.position.set(this.partPositions[var3 * 3], this.partPositions[var3 * 3 + 1], this.partPositions[var3 * 3 + 2]);
                 this.position.subtract(this.tempVector_, virtDistToCam_);
                 int var2 = virtDistToCam_.getLength();
-                if (var2 > 20000) {
+                if (var2 > AEGraphics3D.CLAMP_TOP) {
                     virtDistToCam_.normalize();
-                    virtDistToCam_.scale(20000);
+                    virtDistToCam_.scale(AEGraphics3D.CLAMP_TOP);
                     virtDistToCam_.add(this.tempVector_);
                     this.stationParts[var3].moveTo(virtDistToCam_);
-                    var2 = (int)(20000.0F / var2 * AEMath.TO_Q);
+                    var2 = (int)((float)AEGraphics3D.CLAMP_TOP / var2 * AEMath.TO_Q);
                     this.stationParts[var3].setScale(var2, var2, var2);
                 } else {
                     this.stationParts[var3].setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);

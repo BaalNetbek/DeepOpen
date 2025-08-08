@@ -6,7 +6,13 @@ import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.Math.AEVector3D;
 import AE.Math.AEMath;
+import AE.PaintCanvas.AEGraphics3D;
 
+/**  
+ * Represents big ships
+ * 
+ * @author Fishlabs 2009
+ */
 public final class PlayerFixedObject extends KIPlayer {
     private BoundingVolume[] bounds;
     private long frametime;
@@ -154,13 +160,13 @@ public final class PlayerFixedObject extends KIPlayer {
         int var6;
         int var9;
         var6 = this.distToCamera.getLength();
-        if (var6 > 28000) { // 6.836
+        if (var6 > AEGraphics3D.CLAMP_MID) {
             this.geometry.setTransform(this.geometry.getToParentTransform());
             this.distToCamera.normalize();
-            this.distToCamera.scale(28000);
+            this.distToCamera.scale(AEGraphics3D.CLAMP_MID);
             this.distToCamera.add(this.tempVector_);
             this.geometry.moveTo(this.distToCamera);
-            var9 = (int)(28000.0F / var6 * AEMath.TO_Q);
+            var9 = (int)((float)AEGraphics3D.CLAMP_MID / var6 * AEMath.TO_Q);
             this.geometry.setScale(var9, var9, var9);
         } else {
             this.geometry.setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);

@@ -14,6 +14,7 @@ import AE.Group;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 import AE.Math.AEMatrix;
+import AE.PaintCanvas.AEGraphics3D;
 import AE.PaintCanvas.Font;
 import GoF2.Achievements;
 import GoF2.FileRead;
@@ -178,7 +179,7 @@ public final class StarMap {
 		this.scrollY = 0.0F;
 		this.lastCamera = GlobalStatus.renderer.getCamera();
 		if (this.starNetCamera_ == null) {
-			this.starNetCamera_ = AECamera.create(this.mapInnerWidth, this.mapInnerHeight + 20, 1000, 10, 31768);
+			this.starNetCamera_ = AECamera.create(this.mapInnerWidth, this.mapInnerHeight + 20, 1000, 10, AEGraphics3D.CAMERA_FAR);
 			this.starNetCamera_.translate(0, 0, -2500);
 			this.starNetCamera_.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 			this.starNetCamera_.moveTo((int)this.scrollX * 20, (int)this.scrollY * 20, 0);

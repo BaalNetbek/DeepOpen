@@ -248,7 +248,7 @@ public final class PlayerEgo {
 		this.turretMode = var1;
 		if (var1) {
 			if (this.camera == null) {
-				this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 700, 100, 31768);
+				this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 700, 100, AEGraphics3D.CAMERA_FAR);
 				this.camera.translate(0, 500, -1400);
 				this.camera.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 				this.turretViewCamera__ = new Group();

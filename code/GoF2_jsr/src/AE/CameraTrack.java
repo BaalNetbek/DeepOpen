@@ -17,7 +17,7 @@ public final class CameraTrack {
 	      };
 
 	public CameraTrack(final int var1) {
-		this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 800, 100, 31768);
+		this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 800, 100, AEGraphics3D.CAMERA_FAR);
 		this.camera.setRotationOrder((short)2);
 		this.time = 0;
 		this.interpolator = new CameraTrackInterpolator(this.cameraTracks, var1, this.cameraTracks[var1][this.cameraTracks[var1].length - 8]);

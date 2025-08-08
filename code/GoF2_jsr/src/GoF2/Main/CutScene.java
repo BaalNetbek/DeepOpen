@@ -10,6 +10,7 @@ import AE.LookAtCamera;
 import AE.TargetFollowCamera;
 import AE.Math.AEMath;
 import AE.Math.AEMatrix;
+import AE.PaintCanvas.AEGraphics3D;
 import GoF2.Globals;
 import GoF2.KIPlayer;
 import GoF2.Level;
@@ -66,7 +67,7 @@ public final class CutScene extends IApplicationModule {
 		switch(this.sceneId) {
 		case 4:
 			if (this.gameCam_ == null) {
-				this.gameCam_ = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1024, 200, 28000);
+				this.gameCam_ = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1024, 200, AEGraphics3D.CLAMP_MID);
 				this.gameCam_.setRotationOrder((short)2);
 			}
 
@@ -118,7 +119,7 @@ public final class CutScene extends IApplicationModule {
 				resetCamera();
 				break;
 			case 23:
-				this.hangarCam = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 900, 10, 31768);
+				this.hangarCam = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 900, 10, AEGraphics3D.CAMERA_FAR);
 				this.hangarCam.moveTo(0, 1700, 1500);
 				this.hangarCam.setRotation(-AEMath.Q_SIXTEENTH, 0, 0);
 				GlobalStatus.renderer.setActiveCamera(this.hangarCam);

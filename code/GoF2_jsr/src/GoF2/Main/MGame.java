@@ -11,6 +11,7 @@ import AE.LookAtCamera;
 import AE.TargetFollowCamera;
 import AE.Math.AEVector3D;
 import AE.Math.AEMath;
+import AE.PaintCanvas.AEGraphics3D;
 import AE.PaintCanvas.Font;
 import GoF2.Achievements;
 import GoF2.AutoPilotList;
@@ -145,7 +146,7 @@ public final class MGame extends IApplicationModule {
 			this.hud = new Hud();
 			this.radio = new Radio();
 			this.radio.setMessages(this.level.getMessages());
-			this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 750, 500, 32000);
+			this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 750, 500, AEGraphics3D.CAMERA_FAR);
 			this.cameras_ = new CameraControllerGroup();
 			this.cameras_.uniqueAppend_(this.camera);
 			GlobalStatus.renderer.setActiveCamera(this.camera);

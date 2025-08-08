@@ -6,6 +6,7 @@ import AE.GlobalStatus;
 import AE.Group;
 import AE.Math.AEVector3D;
 import AE.Math.AEMath;
+import AE.PaintCanvas.AEGraphics3D;
 
 public final class PlayerWormHole extends PlayerStaticFar {
     private int lifeTime;
@@ -107,12 +108,12 @@ public final class PlayerWormHole extends PlayerStaticFar {
             this.position.set(this.posX, this.posY, this.posZ);
             this.position.subtract(this.tempVector_, virtDistToCam_);
             var5 = virtDistToCam_.getLength();
-            if (var5 > 28000) {
+            if (var5 > AEGraphics3D.CLAMP_MID) {
                 virtDistToCam_.normalize();
-                virtDistToCam_.scale(28000);
+                virtDistToCam_.scale(AEGraphics3D.CLAMP_MID);
                 virtDistToCam_.add(this.tempVector_);
                 this.geometry.moveTo(virtDistToCam_);
-                var2 = (int)(28000.0F / var5 * this.scale);
+                var2 = (int)((float)AEGraphics3D.CLAMP_MID / var5 * this.scale);
                 this.geometry.setScale(var2, var2, var2);
             } else {
                 this.geometry.setScale(this.scale, this.scale, this.scale);

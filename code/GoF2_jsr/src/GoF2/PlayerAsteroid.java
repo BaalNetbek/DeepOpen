@@ -5,6 +5,7 @@ import AE.AbstractMesh;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
+import AE.PaintCanvas.AEGraphics3D;
 import AE.Math.AEMatrix;
 
 public final class PlayerAsteroid extends KIPlayer {
@@ -152,13 +153,13 @@ public final class PlayerAsteroid extends KIPlayer {
 				this.position.subtract(this.tempVector_, tempVector1_);
 				int var4 = tempVector1_.getLength();
 				if (!this.clampDisabled) {
-					if (var4 > 30000) {
+					if (var4 > AEGraphics3D.CLAMP_BOT) {
 						tempVector1_.normalize();
-						tempVector1_.scale(30000);
+						tempVector1_.scale(AEGraphics3D.CLAMP_BOT);
 						tempVector1_.add(this.tempVector_);
 						this.mainMesh_.moveTo(tempVector1_);
-						float var2;
-						var4 = (int)((var2 = 30000.0F / var4) * this.baseScaleX);
+						float var2 = AEGraphics3D.CLAMP_BOT;
+						var4 = (int)((var2 / var4) * this.baseScaleX);
 						var7 = (int)(var2 * this.baseScaleY);
 						var6 = (int)(var2 * this.baseScaleZ);
 						this.mainMesh_.setScale(var4, var7, var6);
