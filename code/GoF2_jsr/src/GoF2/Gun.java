@@ -2,7 +2,7 @@ package GoF2;
 
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 import AE.Math.AEMath;
 
 public final class Gun {
@@ -189,7 +189,7 @@ public final class Gun {
 		return this.targets;
 	}
 
-	public final boolean shoot(Matrix var1, final long var2, final boolean var4) {
+	public final boolean shoot(AEMatrix var1, final long var2, final boolean var4) {
 		this.timeSinceLastShot = 0;
 		this.fired = true;
 		this.inAir = true;

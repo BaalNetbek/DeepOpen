@@ -2,7 +2,7 @@ package GoF2;
 
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class Player {
 	public Gun[][] guns;
@@ -26,7 +26,7 @@ public final class Player {
 	public boolean enemy;
 	public boolean friend;
 	public boolean hidden;
-	public Matrix transform;
+	public AEMatrix transform;
 	private final AEVector3D hitVector = new AEVector3D();
 	private KIPlayer kiPlayer;
 	private boolean playShootSound;
@@ -75,7 +75,7 @@ public final class Player {
 			this.guns[2] = new Gun[var5];
 		}
 
-		this.transform = new Matrix();
+		this.transform = new AEMatrix();
 		this.active = true;
 		this.vulnerable = true;
 		this.kiPlayer = null;
@@ -458,7 +458,7 @@ public final class Player {
 
 	}
 
-	public final void playShootSound__(final int var1, final long var2, final boolean var4, final Matrix var5) {
+	public final void playShootSound__(final int var1, final long var2, final boolean var4, final AEMatrix var5) {
 		if (this.guns != null && var1 < this.guns.length && var1 >= 0 && this.guns[var1] != null) {
 			for(int var6 = 0; var6 < this.guns[var1].length; ++var6) {
 				if (this.guns[var1][var6].timeSinceLastShot > this.guns[var1][var6].reloadTimeMilis && this.guns[var1][var6].shoot(var5, var2, var4)) {

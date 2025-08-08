@@ -1,7 +1,7 @@
 package AE;
 
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public abstract class GraphNode {
 	protected int animationFrameTime = 32;
@@ -16,15 +16,15 @@ public abstract class GraphNode {
 	 * The composite transformation is defined to be such that it transforms a point in the local coordinate system of this node to the coordinate system of the given node.
 	 * ^ from JSR-184 documentation (javax.microedition.m3g.Node.getTransformTo)
 	 */
-	protected Matrix compositeTransformation;
-	protected Matrix localTransformation;
+	protected AEMatrix compositeTransformation;
+	protected AEMatrix localTransformation;
 	protected AEBoundingSphere boundingSphere;
 	protected int resourceId;
 
 	GraphNode() {
 		this.draw = true;
-		this.compositeTransformation = new Matrix();
-		this.localTransformation = new Matrix();
+		this.compositeTransformation = new AEMatrix();
+		this.localTransformation = new AEMatrix();
 		this.boundingSphere = new AEBoundingSphere();
 		this.transformDirty_ = true;
 		this.boundsDirty_ = true;
@@ -33,8 +33,8 @@ public abstract class GraphNode {
 
 	GraphNode(final GraphNode var1) {
 		this.draw = var1.draw;
-		this.compositeTransformation = new Matrix(var1.compositeTransformation);
-		this.localTransformation = new Matrix(var1.localTransformation);
+		this.compositeTransformation = new AEMatrix(var1.compositeTransformation);
+		this.localTransformation = new AEMatrix(var1.localTransformation);
 		this.boundingSphere = new AEBoundingSphere(var1.boundingSphere);
 		this.transformDirty_ = true;
 		this.boundsDirty_ = true;
@@ -61,9 +61,9 @@ public abstract class GraphNode {
 		return this.parent;
 	}
 
-	abstract void appendToRender(Camera var1, Renderer var2);
+	abstract void appendToRender(AECamera var1, Renderer var2);
 
-	abstract void forceAppendToRender(Camera var1, Renderer var2);
+	abstract void forceAppendToRender(AECamera var1, Renderer var2);
 
 	public abstract void updateTransform(boolean var1);
 
@@ -236,21 +236,21 @@ public abstract class GraphNode {
 		return this.compositeTransformation.getScale();
 	}
 
-	public final Matrix getToParentTransform() {
+	public final AEMatrix getToParentTransform() {
 		return this.compositeTransformation;
 	}
 
-	public final Matrix getLocalTransform() {
+	public final AEMatrix getLocalTransform() {
 		return this.localTransformation;
 	}
 
-	public final void setTransform(final Matrix var1) {
+	public final void setTransform(final AEMatrix var1) {
 		this.compositeTransformation.set(var1);
 		this.transformDirty_ = true;
 		markDirty();
 	}
 
-	public final Matrix getInverseTransform(final Matrix var1) {
+	public final AEMatrix getInverseTransform(final AEMatrix var1) {
 		return this.compositeTransformation.getInverse(var1);
 	}
 

@@ -6,13 +6,13 @@ import javax.microedition.lcdui.game.Sprite;
 
 import AE.AEFile;
 import AE.AbstractMesh;
-import AE.Camera;
+import AE.AECamera;
 import AE.GlobalStatus;
 import AE.TargetFollowCamera;
 import AE.Vec3f;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
 
@@ -59,7 +59,7 @@ public final class Radar {
     private AbstractMesh[] planets;
     private Route playerRoute;
     private Level level;
-    private final Matrix camInvMatrix = new Matrix();
+    private final AEMatrix camInvMatrix = new AEMatrix();
     private AEVector3D tempCameraSpacePos = new AEVector3D();
     private AEVector3D tempPos = new AEVector3D();
     private AEVector3D playerPos = new AEVector3D();
@@ -198,7 +198,7 @@ public final class Radar {
         this.tempCameraSpacePos = null;
     }
 
-    private void elipsoidIntersect(final Camera var1, final AEVector3D var2) {
+    private void elipsoidIntersect(final AECamera var1, final AEVector3D var2) {
         this.tempPos.set(var2);
         this.tempCameraSpacePos = var1.getInverseTransform(this.camInvMatrix).transformVector2(this.tempPos, this.tempCameraSpacePos);
         this.tempCameraSpacePos.y = -this.tempCameraSpacePos.y;
@@ -230,7 +230,7 @@ public final class Radar {
 
     }
 
-    private void elipsoidIntersect(final Camera var1, final KIPlayer var2) {
+    private void elipsoidIntersect(final AECamera var1, final KIPlayer var2) {
         this.elipsoidIntersect(var1, var2.getPosition(this.tempPos));
     }
     /** Thats a big function
@@ -241,7 +241,7 @@ public final class Radar {
      * @param var4
      * @param var5
      */
-    public final void draw(final Player var1, final Camera var2, final TargetFollowCamera var3, final Hud var4, final int var5) {
+    public final void draw(final Player var1, final AECamera var2, final TargetFollowCamera var3, final Hud var4, final int var5) {
         if (!this.draw) {
             KIPlayer[] var23 = this.level.getEnemies();
             if (var23 != null) {

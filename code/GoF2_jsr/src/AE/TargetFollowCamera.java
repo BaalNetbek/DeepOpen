@@ -71,7 +71,7 @@ public final class TargetFollowCamera implements CameraController_ {
 				this.targetGrandParent = null;
 			}
 
-			this.flipCameraDirection = var2 instanceof Camera;
+			this.flipCameraDirection = var2 instanceof AECamera;
 			this.cameraPositionOffset = var2.getPostition().subtract(var1.getPostition(), new AEVector3D());
 			this.dirty = true;
 		}
@@ -95,7 +95,7 @@ public final class TargetFollowCamera implements CameraController_ {
 			this.lookAtCam.setCamera((GraphNode)null);
 		}
 
-		this.flipCameraDirection = null instanceof Camera;
+		this.flipCameraDirection = null instanceof AECamera;
 	}
 
 	public final GraphNode getCamera() {

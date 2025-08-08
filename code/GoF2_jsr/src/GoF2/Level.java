@@ -9,7 +9,7 @@ import AE.BoundingVolume;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class Level {
 	private int currentMod;
@@ -149,7 +149,7 @@ public final class Level {
 							this.tempVec.z = i == 1 ? 90000 : 120000;
 							final AEVector3D var10000 = this.tempVec;
 							var10000.z += this.mgameIntroCamRotY * 3;
-							Matrix var5 = new Matrix();
+							AEMatrix var5 = new AEMatrix();
 							var5.setEulerY(this.mgameIntroCamRotY);
 							var3 = var5.transformVectorNoScale(this.tempVec, var3);
 							var3.y = 0;

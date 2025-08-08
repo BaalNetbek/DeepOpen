@@ -3,10 +3,10 @@ package GoF2;
 import javax.microedition.lcdui.Image;
 
 import AE.AEFile;
-import AE.Camera;
+import AE.AECamera;
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class Crosshair {
 	private int[] localPosition;
@@ -27,7 +27,7 @@ public final class Crosshair {
 		this.localPosition = new int[3];
 	}
 
-	public final void update(final Matrix var1, final Camera var2) {
+	public final void update(final AEMatrix var1, final AECamera var2) {
 		this.localPosition[0] = var1.getPositionX() + 5 * var1.getDirectionX();
 		this.localPosition[1] = var1.getPositionY() + 5 * var1.getDirectionY();
 		this.localPosition[2] = var1.getPositionZ() + 5 * var1.getDirectionZ();

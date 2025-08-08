@@ -9,14 +9,13 @@ import AE.Math.AEMath;
 public class PlayerStaticFar extends PlayerStatic {
     protected BoundingVolume[] boundingBoxes;
 
-    public PlayerStaticFar(final int id, final AbstractMesh var2, final int var3, final int var4, final int var5) {
-        super(id, var2, var3, var4, var5);
-        this.targetX = var3;
-        this.targetY = var4;
-        this.targetZ = var5;
-        if (var2 != null) {
-            final short var6 = 7500;
-            this.player.radius = var6;
+    public PlayerStaticFar(final int id, final AbstractMesh mesh, final int x, final int y, final int z) {
+        super(id, mesh, x, y, z);
+        this.targetX = x;
+        this.targetY = y;
+        this.targetZ = z;
+        if (mesh != null) {
+            this.player.radius = 7500;
             this.mainMesh_.setRenderLayer(2);
         }
     }

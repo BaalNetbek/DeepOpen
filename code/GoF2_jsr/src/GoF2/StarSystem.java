@@ -12,7 +12,7 @@ import AE.GlobalStatus;
 import AE.LensFlareFX;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 /**
  * Manages skybox elements (star, planets, nebulas).
@@ -64,8 +64,8 @@ public final class StarSystem {
 
     public StarSystem() {
         new Transform();
-        new Matrix();
-        new Matrix();
+        new AEMatrix();
+        new AEMatrix();
         this.cameraControler = new CameraControllerGroup();
         this.inAlienSpace = Status.getSystem() == null;
         Image var2;

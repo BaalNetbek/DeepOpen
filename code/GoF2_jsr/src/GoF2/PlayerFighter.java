@@ -6,7 +6,7 @@ import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class PlayerFighter extends KIPlayer {
     private final int deathTransitionTime = 5000;
@@ -19,7 +19,7 @@ public final class PlayerFighter extends KIPlayer {
     private final AEVector3D initPos = new AEVector3D();
     private final AEVector3D targetPos_ = new AEVector3D();
     private AEVector3D distanceToTarget = new AEVector3D();
-    private static Matrix tempTransform = new Matrix();
+    private static AEMatrix tempTransform = new AEMatrix();
     private int targedId_;
     private boolean canBoost;
     private int behavioutChangeTick;

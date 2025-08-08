@@ -5,7 +5,7 @@ import AE.AbstractMesh;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class PlayerAsteroid extends KIPlayer {
 	private static AEVector3D tempVector1_ = new AEVector3D();
@@ -21,7 +21,7 @@ public final class PlayerAsteroid extends KIPlayer {
 	private int passedTime;
 	private static AEVector3D center_;
 	private boolean rotationEnabled;
-	private Matrix playerTransform_ = new Matrix();
+	private AEMatrix playerTransform_ = new AEMatrix();
 	private int sizeCoef_;
 	private int tier;
 	private AbstractMesh explosionMesh;

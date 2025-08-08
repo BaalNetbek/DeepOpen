@@ -2,7 +2,7 @@ package GoF2;
 
 import AE.AEResourceManager;
 import AE.AbstractMesh;
-import AE.Camera;
+import AE.AECamera;
 import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.Group;
@@ -10,7 +10,7 @@ import AE.LookAtCamera;
 import AE.TargetFollowCamera;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 /**
  * The player's ship. Represent the user
@@ -66,7 +66,7 @@ public final class PlayerEgo {
 	private boolean beingPushedAway;
 	private final boolean boostingEnabled;
 	private AEVector3D laggingPos;
-	private final Matrix calcMatrix_ = new Matrix();
+	private final AEMatrix calcMatrix_ = new AEMatrix();
 	private float handling;
 	private final int addHandling;
 	private boolean autopilotActive;
@@ -75,7 +75,7 @@ public final class PlayerEgo {
 	private AEVector3D autoPilotDir;
 	private boolean hasTurret;
 	private TargetFollowCamera followingCamera_;
-	private Camera camera;
+	private AECamera camera;
 	private Group turretViewCamera__;
 	private Group turretGrandGroup_;
 	private Group turretGroup;
@@ -248,7 +248,7 @@ public final class PlayerEgo {
 		this.turretMode = var1;
 		if (var1) {
 			if (this.camera == null) {
-				this.camera = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 700, 100, 31768);
+				this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 700, 100, 31768);
 				this.camera.translate(0, 500, -1400);
 				this.camera.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 				this.turretViewCamera__ = new Group();
@@ -264,7 +264,7 @@ public final class PlayerEgo {
 			this.turretGrandGroup_.setTransform(this.shipGrandGroup_.getToParentTransform());
 			GlobalStatus.renderer.setActiveCamera(this.camera);
 		} else {
-			GlobalStatus.renderer.setActiveCamera((Camera)this.followingCamera_.getCamera());
+			GlobalStatus.renderer.setActiveCamera((AECamera)this.followingCamera_.getCamera());
 			LevelScript.resetCamera(this.followingCamera_, this.level);
 		}
 
@@ -656,7 +656,7 @@ public final class PlayerEgo {
 				}
 			} else if (!this.beingPushedAway) {
 				if (this.turretMode) {
-					((Camera)this.followingCamera_.getCamera()).updateTransform(true);
+					((AECamera)this.followingCamera_.getCamera()).updateTransform(true);
 					this.followingCamera_.update();
 					this.turretGrandGroup_.moveTo(this.laggingPos);
 					this.vecUp = this.shipGrandGroup_.getUp(this.vecUp);
@@ -1121,7 +1121,7 @@ public final class PlayerEgo {
 			this.lockedAsteroid = null;
 			this.minigUpVec = null;
 			var2.setLookAtCam(true);
-			GlobalStatus.renderer.setActiveCamera((Camera)var2.getCamera());
+			GlobalStatus.renderer.setActiveCamera((AECamera)var2.getCamera());
 			LevelScript.resetCamera(var2, this.level);
 			this.player.resetGunDelay(0);
 			this.miningGame = null;
@@ -1191,7 +1191,7 @@ public final class PlayerEgo {
 		}
 	}
 
-	public final void draw(final boolean var1, final Camera var2) {
+	public final void draw(final boolean var1, final AECamera var2) {
 		if (this.miningGame != null) {
 			this.miningGame.render2D();
 		} else if (!this.autoDriven && !isDead() && !this.freeze && var1 && !this.lockedOnAsteroid && !this.jumpingToNeighbourPlanet && !this.jumpGating && !this.autopilotActive) {

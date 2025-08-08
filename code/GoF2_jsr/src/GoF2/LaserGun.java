@@ -8,7 +8,7 @@ import AE.GraphNode;
 import AE.ITexture;
 import AE.ParticleSystemMesh;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class LaserGun extends AbstractMesh implements AbstractGun {
 	private Gun gun;
@@ -80,7 +80,7 @@ public final class LaserGun extends AbstractMesh implements AbstractGun {
 				this.directionLocked = true;
 			}
 
-			final Matrix var1 = this.level.getPlayer().shipGrandGroup_.getToParentTransform();
+			final AEMatrix var1 = this.level.getPlayer().shipGrandGroup_.getToParentTransform();
 			this.muzzlePos2.set(var1.getPosition(muzzlePos));
 			if (this.gun.muzzleOffset != null) {
 				muzzlePos.set(this.gun.muzzleOffset);

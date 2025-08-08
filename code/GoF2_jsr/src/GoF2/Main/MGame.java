@@ -2,7 +2,7 @@ package GoF2.Main;
 
 import AE.AEResourceManager;
 import AE.AbstractMesh;
-import AE.Camera;
+import AE.AECamera;
 import AE.CameraControllerGroup;
 import AE.GlobalStatus;
 import AE.GraphNode;
@@ -43,7 +43,7 @@ public final class MGame extends IApplicationModule {
 	private long fiveSecTick;
 	private boolean loaded;
 	private PlayerEgo playerEgo;
-	private Camera camera;
+	private AECamera camera;
 	private CameraControllerGroup cameras_;
 	private TargetFollowCamera targetFollowCamera;
 	private LookAtCamera lookAtCamera;
@@ -145,7 +145,7 @@ public final class MGame extends IApplicationModule {
 			this.hud = new Hud();
 			this.radio = new Radio();
 			this.radio.setMessages(this.level.getMessages());
-			this.camera = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 750, 500, 32000);
+			this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 750, 500, 32000);
 			this.cameras_ = new CameraControllerGroup();
 			this.cameras_.uniqueAppend_(this.camera);
 			GlobalStatus.renderer.setActiveCamera(this.camera);

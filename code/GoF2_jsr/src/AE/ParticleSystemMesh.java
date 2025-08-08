@@ -124,7 +124,7 @@ public final class ParticleSystemMesh extends AbstractMesh {
 		AEGraphics3D.graphics3D.render(this.mesh, calcTransform);
 	}
 
-	public final void appendToRender(final Camera var1, final Renderer var2) {
+	public final void appendToRender(final AECamera var1, final Renderer var2) {
 		if (this.draw) {
 			this.matrix = var1.localTransformation.getInverse(this.matrix);
 			this.matrix.multiply(this.localTransformation);

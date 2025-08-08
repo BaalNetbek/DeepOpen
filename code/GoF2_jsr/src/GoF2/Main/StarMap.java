@@ -6,14 +6,14 @@ import javax.microedition.lcdui.game.Sprite;
 import AE.AEFile;
 import AE.AEResourceManager;
 import AE.AbstractMesh;
-import AE.Camera;
+import AE.AECamera;
 import AE.CameraControllerGroup;
 import AE.EaseInOut;
 import AE.GlobalStatus;
 import AE.Group;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 import AE.PaintCanvas.Font;
 import GoF2.Achievements;
 import GoF2.FileRead;
@@ -71,11 +71,11 @@ public final class StarMap {
 	private int selectedPlanet;
 	private final AbstractMesh[] stars;
 	private final CameraControllerGroup galaxyMapGroup;
-	private Camera starNetCamera_;
-	private Camera lastCamera;
+	private AECamera starNetCamera_;
+	private AECamera lastCamera;
 	private AEVector3D tmpStarScreenPos2;
 	private AEVector3D tmpStarScreenPos1;
-	private final Matrix matrix;
+	private final AEMatrix matrix;
 	private AbstractMesh[] localStarAndPlanetsMeshes;
 	private AbstractMesh[] localOrbits;
 	private int[] planetRevolutAngs;
@@ -163,7 +163,7 @@ public final class StarMap {
 		this.tmpStarScreenPos2 = new AEVector3D();
 		this.tmpStarScreenPos1 = new AEVector3D();
 		new AEVector3D();
-		this.matrix = new Matrix();
+		this.matrix = new AEMatrix();
 		GlobalStatus.random.setSeed(System.currentTimeMillis());
 		init(var1, var2, var3, var4);
 	}
@@ -178,7 +178,7 @@ public final class StarMap {
 		this.scrollY = 0.0F;
 		this.lastCamera = GlobalStatus.renderer.getCamera();
 		if (this.starNetCamera_ == null) {
-			this.starNetCamera_ = Camera.create(this.mapInnerWidth, this.mapInnerHeight + 20, 1000, 10, 31768);
+			this.starNetCamera_ = AECamera.create(this.mapInnerWidth, this.mapInnerHeight + 20, 1000, 10, 31768);
 			this.starNetCamera_.translate(0, 0, -2500);
 			this.starNetCamera_.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 			this.starNetCamera_.moveTo((int)this.scrollX * 20, (int)this.scrollY * 20, 0);
@@ -668,7 +668,7 @@ public final class StarMap {
 			this.localStarAndPlanetsMeshes[var2].setAnimationMode((byte)1);
 			this.localStarAndPlanetsMeshes[var2].setRadius(5000);
 			if (var2 > 1) {
-				final Matrix var7 = new Matrix();
+				final AEMatrix var7 = new AEMatrix();
 				int var4 = 0;
 				boolean var5 = false;
 

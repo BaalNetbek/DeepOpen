@@ -3,7 +3,7 @@ package AE;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 
-public abstract class Camera extends AEGeometry {
+public abstract class AECamera extends AEGeometry {
 	private int nearPlane;
 	private int farPlane;
 	private final AEVector3D[] vfPlaneNormals = new AEVector3D[6];
@@ -17,7 +17,7 @@ public abstract class Camera extends AEGeometry {
 	private int verticalProjectionFactor;
 	private int horizontalProjectionFactor;
 
-	protected Camera(final int w, final int h, final int fov, final int near, final int far) {
+	protected AECamera(final int w, final int h, final int fov, final int near, final int far) {
 		for(int i = this.vfPlaneNormalsLocal.length - 1; i >= 0; --i) {
 			this.vfPlaneNormalsLocal[i] = new AEVector3D();
 		}
@@ -111,10 +111,10 @@ public abstract class Camera extends AEGeometry {
 		return 2;
 	}
 
-	public final void appendToRender(final Camera var1, final Renderer var2) {
+	public final void appendToRender(final AECamera var1, final Renderer var2) {
 	}
 
-	public final void forceAppendToRender(final Camera var1, final Renderer var2) {
+	public final void forceAppendToRender(final AECamera var1, final Renderer var2) {
 	}
 
 	public abstract void setActive();
@@ -127,7 +127,7 @@ public abstract class Camera extends AEGeometry {
 	 * @param far [plane]
 	 * @return new implementation Camera
 	 */
-	public static Camera create(final int w, final int h, final int fov, final int near, final int far) {
+	public static AECamera create(final int w, final int h, final int fov, final int near, final int far) {
 		return new JSRCamera(w, h, fov, near, far);
 	}
 }

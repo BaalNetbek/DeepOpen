@@ -172,7 +172,7 @@ i.b()Z lastPageOn
 i.d()V loadContent_
 i.b()V draw
 i.c()V drawInterupring_
-cm AE/Math/Matrix
+cm AE/Math/AEMatrix
 cm.a S rotationOrder
 cm.a I scaleX
 cm.b I scaleY
@@ -2222,7 +2222,7 @@ bv.a(IIII)I invDistancePercent
 bv.b(IIII)I distancePercent
 bv.a(Lcw;Lcw;)F distance
 bv.a(Lbd;)[I getAsteroidProbabilities
-ap AE/Camera
+ap AE/AECamera
 ap.f I nearPlane
 ap.g I farPlane
 ap.a [Lcc; vfPlaneNormals

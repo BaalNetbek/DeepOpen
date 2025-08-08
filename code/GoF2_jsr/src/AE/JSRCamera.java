@@ -4,7 +4,7 @@ import javax.microedition.m3g.Transform;
 
 import AE.PaintCanvas.AEGraphics3D;
 
-public final class JSRCamera extends Camera {
+public final class JSRCamera extends AECamera {
 	private javax.microedition.m3g.Camera camera;
 	private static Transform transform = new Transform();
 

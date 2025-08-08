@@ -2,7 +2,7 @@ package GoF2.Main;
 
 import javax.microedition.lcdui.Image;
 
-import AE.Camera;
+import AE.AECamera;
 import AE.GlobalStatus;
 import AE.Group;
 import AE.PaintCanvas.Font;
@@ -42,8 +42,8 @@ public final class ListItemWindow {
     private final TextBox textBox;
     private final TextBox highlightedText;
     private boolean show3DShip;
-    private Camera shipPreviewCam;
-    private Camera lastCam;
+    private AECamera shipPreviewCam;
+    private AECamera lastCam;
     private Group ship;
     private float yaw;
     private float pitch;
@@ -279,7 +279,7 @@ public final class ListItemWindow {
         this.show3DShip = var1;
         if (var1) {
             this.lastCam = GlobalStatus.renderer.getCamera();
-            this.shipPreviewCam = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1000, 10, 31768);
+            this.shipPreviewCam = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1000, 10, 31768);
             this.shipPreviewCam.translate(0, 400, -Ship.SHIP_PREVIEW_SCALING[this.contextItem.getIndex()]);
             this.shipPreviewCam.rotateEuler(AEMath.Q_PI_SIXTEENTH, AEMath.Q_PI_HALF, 0);
             Group var2 = Globals.getShipGroup(this.contextItem.getIndex(), this.contextItem.ship.getRace());

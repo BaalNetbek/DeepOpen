@@ -2,13 +2,13 @@ package GoF2;
 
 import AE.AEResourceManager;
 import AE.AbstractMesh;
-import AE.Camera;
+import AE.AECamera;
 import AE.GlobalStatus;
 import AE.LookAtCamera;
 import AE.TargetFollowCamera;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class LevelScript {
 	private final Level level;
@@ -88,7 +88,7 @@ public final class LevelScript {
 				this.tempVec.y = -this.tempVec.y;
 			}
 
-			Matrix var6 = new Matrix();
+			AEMatrix var6 = new AEMatrix();
 			var6.setEulerY(level.getPlayer().shipGrandGroup_.getEulerY());
 			this.approachStationCamPos = var6.transformVectorNoScale(this.tempVec, this.approachStationCamPos);
 			this.approachStationCamPos.add(level.getPlayer().shipGrandGroup_.getPosition(this.tempVec));
@@ -115,7 +115,7 @@ public final class LevelScript {
 	public final boolean process(final int dt, final TargetFollowCamera followCamera) {
 		final RadioMessage[] rMessages = this.level.getMessages();
 		final PlayerEgo playerEgo = this.level.getPlayer();
-		final Camera camera = GlobalStatus.renderer.getCamera();
+		final AECamera camera = GlobalStatus.renderer.getCamera();
 		final KIPlayer[] enemies = this.level.getEnemies();
 		int i;
 		if (this.active) {
@@ -352,7 +352,7 @@ public final class LevelScript {
 					camera.translate(30500, 700, 1000);
 					this.tempVec = playerEgo.shipGrandGroup_.getPosition(this.tempVec);
 					this.tempVec2 = playerEgo.shipGrandGroup_.getDirection(this.tempVec2);
-					this.tempVec2.scale(10 * AEMath.TO_Q);
+					this.tempVec2.scale(10 * AEMath.Q_1);
 					this.tempVec.add(this.tempVec2);
 					this.level.getLandmarks()[3].setPosition(this.tempVec.x, this.tempVec.y, this.tempVec.z);
 

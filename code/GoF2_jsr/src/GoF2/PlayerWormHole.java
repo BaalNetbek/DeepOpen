@@ -11,8 +11,8 @@ public final class PlayerWormHole extends PlayerStaticFar {
     private int lifeTime;
     private int scale;
 
-    public PlayerWormHole(int var1, AbstractMesh mesh, final int x, final int y, final int z, final boolean active) {
-        super(6805, mesh, x, y, z);
+    public PlayerWormHole(int id, AbstractMesh mesh, final int x, final int y, final int z, final boolean active) {
+        super(id, mesh, x, y, z);
         this.name = GlobalStatus.gameText.getText(269);
         setVisible(active);
         this.geometry = new Group();

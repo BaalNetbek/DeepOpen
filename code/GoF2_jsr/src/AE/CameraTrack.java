@@ -3,7 +3,7 @@ package AE;
 public final class CameraTrack {
 	private int time;
 	private long frameTime;
-	private final Camera camera;
+	private final AECamera camera;
 	private final CameraTrackInterpolator interpolator;
 	private final int[][] cameraTracks = {
 	      {
@@ -17,7 +17,7 @@ public final class CameraTrack {
 	      };
 
 	public CameraTrack(final int var1) {
-		this.camera = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 800, 100, 31768);
+		this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 800, 100, 31768);
 		this.camera.setRotationOrder((short)2);
 		this.time = 0;
 		this.interpolator = new CameraTrackInterpolator(this.cameraTracks, var1, this.cameraTracks[var1][this.cameraTracks[var1].length - 8]);
@@ -38,7 +38,7 @@ public final class CameraTrack {
 		}
 	}
 
-	public final Camera getCamera() {
+	public final AECamera getCamera() {
 		return this.camera;
 	}
 }

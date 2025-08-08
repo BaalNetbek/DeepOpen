@@ -1,6 +1,6 @@
 package AE;
 
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class AEResourceManager {
 	private static int[] textureIds;
@@ -165,7 +165,7 @@ public final class AEResourceManager {
 	public static void initGeometryTranforms() {
 		for(int var0 = 0; var0 < meshes.length; ++var0) {
 			if (meshes[var0] != null) {
-				meshes[var0].setTransform(new Matrix());
+				meshes[var0].setTransform(new AEMatrix());
 			}
 		}
 

@@ -1,10 +1,10 @@
 package AE;
 
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public abstract class AbstractMesh extends AEGeometry {
 	protected int renderLayer;
-	protected Matrix matrix = new Matrix();
+	protected AEMatrix matrix = new AEMatrix();
 
 	public AbstractMesh(final AbstractMesh mesh) {
 		super(mesh);
@@ -19,7 +19,7 @@ public abstract class AbstractMesh extends AEGeometry {
 		this.renderLayer = idx;
 	}
 
-	public void appendToRender(final Camera camera, final Renderer renderer) {
+	public void appendToRender(final AECamera camera, final Renderer renderer) {
 		if (this.draw && camera.isInViewFrustum(this.boundingSphere) != 0) {
 			this.matrix = camera.localTransformation.getInverse(this.matrix);
 			this.matrix.multiply(this.localTransformation);
@@ -28,7 +28,7 @@ public abstract class AbstractMesh extends AEGeometry {
 
 	}
 
-	public void forceAppendToRender(final Camera camera, final Renderer renderer) {
+	public void forceAppendToRender(final AECamera camera, final Renderer renderer) {
 		if (this.draw) {
 			this.matrix = camera.localTransformation.getInverse(this.matrix);
 			this.matrix.multiply(this.localTransformation);

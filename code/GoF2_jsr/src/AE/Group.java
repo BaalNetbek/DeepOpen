@@ -55,7 +55,7 @@ public class Group extends GraphNode {
 		return this.head;
 	}
 
-	public final void appendToRender(final Camera var1, final Renderer var2) {
+	public final void appendToRender(final AECamera var1, final Renderer var2) {
 		if (this.draw) {
 			GraphNode var3;
 			switch(var1.isInViewFrustum(this.boundingSphere)) {
@@ -74,7 +74,7 @@ public class Group extends GraphNode {
 
 	}
 
-	public final void forceAppendToRender(final Camera var1, final Renderer var2) {
+	public final void forceAppendToRender(final AECamera var1, final Renderer var2) {
 		if (this.draw) {
 			for(GraphNode var3 = this.head; var3 != null; var3 = var3.parent) {
 				var3.forceAppendToRender(var1, var2);

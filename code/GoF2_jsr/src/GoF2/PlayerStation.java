@@ -7,7 +7,7 @@ import AE.BoundingVolume;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 
 public final class PlayerStation extends PlayerStaticFar {
 	private final int[] partsCollisions = {
@@ -95,7 +95,7 @@ public final class PlayerStation extends PlayerStaticFar {
 
         this.maxPartDeflection = 0;
         this.boundingBoxes = new BoundingVolume[this.stationParts.length];
-        final Matrix var8 = new Matrix();
+        final AEMatrix var8 = new AEMatrix();
 
         for(var3 = 0; var3 < this.stationParts.length; ++var3) {
             final int var9 = (this.stationParts[var3].getID() - 3301) * 6;

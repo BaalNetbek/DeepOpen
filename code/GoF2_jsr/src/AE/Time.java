@@ -8,28 +8,28 @@ public final class Time {
 	private Time() {
 	}
 
-	public static String timeToHMS(final long var0) {
-		final int var2 = (int)(var0 / 1000L % 60L);
-		final int var3 = (int)(var0 / 60000L % 60L);
-		int var4 = (int)(var0 / 3600000L % 24L);
-		seconds = (var2 < 10 ? "0" : "") + var2;
-		minutes = (var3 < 10 ? "0" : "") + var3;
-		if (var4 == 0) {
+	public static String timeToHMS(final long time) {
+		final int s = (int)(time / 1000L % 60L);
+		final int m = (int)(time / 60000L % 60L);
+		int h = (int)(time / 3600000L % 24L);
+		seconds = (s < 10 ? "0" : "") + s;
+		minutes = (m < 10 ? "0" : "") + m;
+		if (h == 0) {
 			return (minutes + ":" + seconds);
 		}
-		final int var5 = (int)(var0 / 3600000L / 24L);
-		var4 += var5 * 24;
-		hours = (var4 < 10 ? "0" : "") + var4;
+		final int days = (int)(time / 3600000L / 24L);
+		h += days * 24;
+		hours = (h < 10 ? "0" : "") + h;
 		return (hours + ":" + minutes + ":" + seconds);
 	}
 
-	public static String timeToHM(final long var0) {
-		final int var2 = (int)(var0 / 60000L % 60L);
-		int var3 = (int)(var0 / 3600000L % 24L);
-		minutes = (var2 < 10 ? "0" : "") + var2;
-		final int var4 = (int)(var0 / 3600000L / 24L);
-		var3 += var4 * 24;
-		hours = (var3 < 10 ? "0" : "") + var3;
+	public static String timeToHM(final long time) {
+		final int m = (int)(time / 60000L % 60L);
+		int h = (int)(time / 3600000L % 24L);
+		minutes = (m < 10 ? "0" : "") + m;
+		final int days = (int)(time / 3600000L / 24L);
+		h += days * 24;
+		hours = (h < 10 ? "0" : "") + h;
 		return (hours + ":" + minutes);
 	}
 }

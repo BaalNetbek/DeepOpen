@@ -1,6 +1,6 @@
 package GoF2.Main;
 
-import AE.Camera;
+import AE.AECamera;
 import AE.CameraControllerGroup;
 import AE.CameraTrack;
 import AE.GlobalStatus;
@@ -9,7 +9,7 @@ import AE.IApplicationModule;
 import AE.LookAtCamera;
 import AE.TargetFollowCamera;
 import AE.Math.AEMath;
-import AE.Math.Matrix;
+import AE.Math.AEMatrix;
 import GoF2.Globals;
 import GoF2.KIPlayer;
 import GoF2.Level;
@@ -24,8 +24,8 @@ public final class CutScene extends IApplicationModule {
 	private long lifeTime;
 	private boolean loaded;
 	private CameraControllerGroup cameraControllers_unused;
-	private Camera gameCam_;
-	private Camera hangarCam;
+	private AECamera gameCam_;
+	private AECamera hangarCam;
 	private CameraTrack cameraTrack;
 	private TargetFollowCamera followingCam_unused;
 	private LookAtCamera lookAtcam_unused;
@@ -66,7 +66,7 @@ public final class CutScene extends IApplicationModule {
 		switch(this.sceneId) {
 		case 4:
 			if (this.gameCam_ == null) {
-				this.gameCam_ = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1024, 200, 28000);
+				this.gameCam_ = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1024, 200, 28000);
 				this.gameCam_.setRotationOrder((short)2);
 			}
 
@@ -118,7 +118,7 @@ public final class CutScene extends IApplicationModule {
 				resetCamera();
 				break;
 			case 23:
-				this.hangarCam = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 900, 10, 31768);
+				this.hangarCam = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 900, 10, 31768);
 				this.hangarCam.moveTo(0, 1700, 1500);
 				this.hangarCam.setRotation(-AEMath.Q_SIXTEENTH, 0, 0);
 				GlobalStatus.renderer.setActiveCamera(this.hangarCam);
@@ -150,7 +150,7 @@ public final class CutScene extends IApplicationModule {
 
 	public final void replacePlayerShip(final int var1, final int var2) {
 		if (this.level.getEnemies() != null && this.level.getEnemies()[0] != null && this.level.getEnemies()[0].geometry != null) {
-			final Matrix var3 = this.level.getEnemies()[0].geometry.getToParentTransform();
+			final AEMatrix var3 = this.level.getEnemies()[0].geometry.getToParentTransform();
 			this.level.getEnemies()[0].setGroup(Globals.getShipGroup(var1, var2), var1);
 			this.level.getEnemies()[0].geometry.setTransform(var3);
 		}

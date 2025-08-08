@@ -103,7 +103,7 @@ h.a(FF)F max
 h.c(II)I min
 h.b(FF)F min
 h.e(I)I abs
-cl AE/Math/Matrix
+cl AE/Math/AEMatrix
 cl.a S rotationOrder
 cl.a I scaleX
 cl.b I scaleY
@@ -2221,7 +2221,7 @@ bu.a([BLjava/lang/String;Z)V set
 bu.b(I)V scrollUp
 bu.c(I)V scrollDown
 bu.b()V draw
-ap AE/Camera
+ap AE/AECamera
 ap.f I nearPlane
 ap.g I farPlane
 ap.a [Lcd; vfPlaneNormals

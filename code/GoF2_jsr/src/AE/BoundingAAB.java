@@ -7,32 +7,37 @@ public final class BoundingAAB extends BoundingVolume {
 
 	/**
 	 *
-	 * @param var1 position x coordinate
-	 * @param var2 position y coordinate
-	 * @param var3 position z coordinate
-	 * @param var4 center offset x
-	 * @param var5 center offset y
-	 * @param var6 center offset z
-	 * @param var7 x dimension length
-	 * @param var8 y dimension length
-	 * @param var9 z dimension length
+	 * @param x position x coordinate
+	 * @param y position y coordinate
+	 * @param z position z coordinate
+	 * @param off_x center offset x
+	 * @param off_y center offset y
+	 * @param off_z center offset z
+	 * @param dim_x x dimension length
+	 * @param dim_y y dimension length
+	 * @param dim_z z dimension length
 	 */
-	public BoundingAAB(final int var1, final int var2, final int var3, final int var4, final int var5, final int var6, final int var7, final int var8, final int var9) {
-		super(var1, var2, var3, var4, var5, var6);
-		this.halfSizeX = var7 >> 1;
-		this.halfSizeY = var8 >> 1;
-		this.halfSizeZ = var9 >> 1;
+	public BoundingAAB(final int x, final int y, final int z, final int off_x, final int off_y, final int off_z, final int dim_x, final int dim_y, final int dim_z) {
+		super(x, y, z, off_x, off_y, off_z);
+		this.halfSizeX = dim_x >> 1;
+		this.halfSizeY = dim_y >> 1;
+		this.halfSizeZ = dim_z >> 1;
 	}
 
-	public final boolean outerCollide_(final int var1, final int var2, final int var3) {
-		return isPointInBounding(var1, var2, var3) ? super.outerCollide_(var1, var2, var3) : false;
+	public final boolean outerCollide_(final int x, final int y, final int z) {
+		return isPointInBounding(x, y, z) ? super.outerCollide_(x, y, z) : false;
 	}
 
-	public final boolean isPointInBounding(final int var1, final int var2, final int var3) {
-		return var1 > this.posX + this.offsetX - (this.halfSizeX < 0 ? -this.halfSizeX : this.halfSizeX) && var1 < this.posX + this.offsetX + (this.halfSizeX < 0 ? -this.halfSizeX : this.halfSizeX) && var2 > this.posY + this.offsetY - (this.halfSizeY < 0 ? -this.halfSizeY : this.halfSizeY) && var2 < this.posY + this.offsetY + (this.halfSizeY < 0 ? -this.halfSizeY : this.halfSizeY) && var3 > this.posZ + this.offsetZ - (this.halfSizeZ < 0 ? -this.halfSizeZ : this.halfSizeZ) && var3 < this.posZ + this.offsetZ + (this.halfSizeZ < 0 ? -this.halfSizeZ : this.halfSizeZ);
+	public final boolean isPointInBounding(final int x, final int y, final int z) {
+		return x > this.posX + this.offsetX - (this.halfSizeX < 0 ? -this.halfSizeX : this.halfSizeX)
+		      && x < this.posX + this.offsetX + (this.halfSizeX < 0 ? -this.halfSizeX : this.halfSizeX)
+		      && y > this.posY + this.offsetY - (this.halfSizeY < 0 ? -this.halfSizeY : this.halfSizeY)
+		      && y < this.posY + this.offsetY + (this.halfSizeY < 0 ? -this.halfSizeY : this.halfSizeY)
+		      && z > this.posZ + this.offsetZ - (this.halfSizeZ < 0 ? -this.halfSizeZ : this.halfSizeZ)
+		      && z < this.posZ + this.offsetZ + (this.halfSizeZ < 0 ? -this.halfSizeZ : this.halfSizeZ);
 	}
 
-	public final void setPosition(final int var1, final int var2, final int var3) {
-		super.setPosition(var1, var2, var3);
+	public final void setPosition(final int x, final int y, final int z) {
+		super.setPosition(x, y, z);
 	}
 }

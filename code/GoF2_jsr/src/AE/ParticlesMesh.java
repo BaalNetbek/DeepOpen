@@ -139,7 +139,7 @@ public final class ParticlesMesh extends AbstractMesh {
 	public final void OnRelease() {
 	}
 
-	public final void appendToRender(final Camera var1, final Renderer var2) {
+	public final void appendToRender(final AECamera var1, final Renderer var2) {
 		if (this.draw) {
 			this.matrix = var1.localTransformation.getInverse(this.matrix);
 			this.matrix.multiply(this.localTransformation);
@@ -148,7 +148,7 @@ public final class ParticlesMesh extends AbstractMesh {
 
 	}
 
-	public final void forceAppendToRender(final Camera var1, final Renderer var2) {
+	public final void forceAppendToRender(final AECamera var1, final Renderer var2) {
 		appendToRender(var1, var2);
 	}
 

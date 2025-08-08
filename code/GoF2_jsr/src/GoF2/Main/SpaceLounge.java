@@ -4,7 +4,7 @@ import javax.microedition.lcdui.Image;
 
 import AE.AEFile;
 import AE.AbstractMesh;
-import AE.Camera;
+import AE.AECamera;
 import AE.EaseInOut;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
@@ -28,7 +28,7 @@ public final class SpaceLounge {
 	private StarMap starMap;
 	private Popup popup;
 	private ListItemWindow intemInfoWindow;
-	private Camera camera;
+	private AECamera camera;
 	private Image items;
 	private Image itemTypes;
 	private int chatType_;

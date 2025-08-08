@@ -1,6 +1,6 @@
 package AE.Math;
 
-public final class Matrix {
+public final class AEMatrix {
     private short rotationOrder;
     private int scaleX;
     private int scaleY;
@@ -23,12 +23,12 @@ public final class Matrix {
     private boolean isDirty;
     private static AEVector3D temp = new AEVector3D();
 
-    public Matrix() {
+    public AEMatrix() {
         identity();
         this.rotationOrder = 0;
     }
 
-    public Matrix(final Matrix var1) {
+    public AEMatrix(final AEMatrix var1) {
         this.scaleX = var1.scaleX;
         this.scaleY = var1.scaleY;
         this.scaleZ = var1.scaleZ;
@@ -66,7 +66,7 @@ public final class Matrix {
         this.isDirty = false;
     }
 
-    public final void set(final Matrix m) {
+    public final void set(final AEMatrix m) {
         this.scaleX = m.scaleX;
         this.scaleY = m.scaleY;
         this.scaleZ = m.scaleZ;
@@ -88,7 +88,7 @@ public final class Matrix {
         this.isDirty = m.isDirty;
     }
 
-    public final void multiply(final Matrix m) {
+    public final void multiply(final AEMatrix m) {
         final int orx = this.rightX;
         final int oux = this.upX;
         final int ory = this.rightY;
@@ -113,7 +113,7 @@ public final class Matrix {
         this.isDirty = true;
     }
 
-    public final Matrix multiplyTo(final Matrix m, final Matrix result) {
+    public final AEMatrix multiplyTo(final AEMatrix m, final AEMatrix result) {
         result.positionX = this.positionX + (this.scaleX * ((this.rightX * m.positionX >> AEMath.Q) + (this.upX * m.positionY >> AEMath.Q) + (this.dirX * m.positionZ >> AEMath.Q)) >> AEMath.Q);
         result.positionY = this.positionY + (this.scaleY * ((this.rightY * m.positionX >> AEMath.Q) + (this.upY * m.positionY >> AEMath.Q) + (this.dirY * m.positionZ >> AEMath.Q)) >> AEMath.Q);
         result.positionZ = this.positionZ + (this.scaleZ * ((this.rightZ * m.positionX >> AEMath.Q) + (this.upZ * m.positionY >> AEMath.Q) + (this.dirZ * m.positionZ >> AEMath.Q)) >> AEMath.Q);
@@ -619,7 +619,7 @@ public final class Matrix {
         return copyScaleTo(new AEVector3D());
     }
 
-    public final Matrix getInverse(final Matrix var1) {
+    public final AEMatrix getInverse(final AEMatrix var1) {
         var1.scaleX = (AEMath.Q_1 << AEMath.Q) / this.scaleX;
         var1.scaleY = (AEMath.Q_1 << AEMath.Q) / this.scaleY;
         var1.scaleZ = (AEMath.Q_1 << AEMath.Q) / this.scaleZ;

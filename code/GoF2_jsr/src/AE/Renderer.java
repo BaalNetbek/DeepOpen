@@ -4,7 +4,7 @@ import AE.PaintCanvas.IGraphics3D;
 import AE.PaintCanvas.RenderLayer;
 
 public final class Renderer {
-	private Camera camera = null;
+	private AECamera camera = null;
 	private GraphNode cameraTopGroup;
 	private RenderLayer[] layers = new RenderLayer[1];
 	private boolean[] needGraphicsClear;
@@ -17,7 +17,7 @@ public final class Renderer {
 		this.graphics3D = var1;
 	}
 
-	public final void setActiveCamera(final Camera var1) {
+	public final void setActiveCamera(final AECamera var1) {
 		this.camera = var1;
 		this.camera.setActive();
 
@@ -26,7 +26,7 @@ public final class Renderer {
 
 	}
 
-	public final Camera getCamera() {
+	public final AECamera getCamera() {
 		return this.camera;
 	}
 
