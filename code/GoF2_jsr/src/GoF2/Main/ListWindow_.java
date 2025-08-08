@@ -56,8 +56,10 @@ public final class ListWindow_ extends TabbedWindow_ {
 	}
 
 	public final void drawItems() {
-		for(int var1 = this.scrollPos; var1 < this.perTabEntries[this.selectedTab].length && this.perTabEntries[this.selectedTab][var1] != null && var1 < this.scrollPos + this.displayedEntriesCount + 1; ++var1) {
-			drawItem(this.perTabEntries[this.selectedTab][var1], var1);
+		for (int i = this.scrollPos; i < this.perTabEntries[this.selectedTab].length
+		      && this.perTabEntries[this.selectedTab][i] != null
+		      && i < this.scrollPos + this.displayedEntriesCount + 1; ++i) {
+			drawItem(this.perTabEntries[this.selectedTab][i], i);
 		}
 
 	}

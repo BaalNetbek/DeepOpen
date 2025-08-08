@@ -63,9 +63,9 @@ public final class SoundManager implements PlayerListener {
 
 	public final void setSfxVolume(final int var1) {
 		if (this.sfxPlayers != null) {
-			for(int var2 = 0; var2 < this.sfxPlayers.length; ++var2) {
-				if (this.sfxPlayers[var2] != null && this.sfxPlayers[var2].getState() != 0) {
-					this.tmpVolumeController = (VolumeControl)this.sfxPlayers[var2].getControl("VolumeControl");
+			for(int i = 0; i < this.sfxPlayers.length; ++i) {
+				if (this.sfxPlayers[i] != null && this.sfxPlayers[i].getState() != 0) {
+					this.tmpVolumeController = (VolumeControl)this.sfxPlayers[i].getControl("VolumeControl");
 					this.tmpVolumeController.setLevel(var1);
 				}
 			}
@@ -169,9 +169,9 @@ public final class SoundManager implements PlayerListener {
 
 			musicPlayer.stop();
 
-			for(int var4 = 0; var4 < this.sfxPlayers.length; ++var4) {
-				if (this.sfxPlayers[var4] != null) {
-					this.sfxPlayers[var4].stop();
+			for(int i = 0; i < this.sfxPlayers.length; ++i) {
+				if (this.sfxPlayers[i] != null) {
+					this.sfxPlayers[i].stop();
 				}
 			}
 

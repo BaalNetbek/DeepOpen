@@ -62,9 +62,9 @@ public final class Explosion {
 		this.delays = null;
 		//this.unused_1af = null;
 		if (this.explosions != null) {
-			for(int var1 = 0; var1 < this.explosions.length; ++var1) {
-				if (this.explosions[var1] != null) {
-					this.explosions[var1].OnRelease();
+			for(int i = 0; i < this.explosions.length; ++i) {
+				if (this.explosions[i] != null) {
+					this.explosions[i].OnRelease();
 				}
 			}
 		}
@@ -78,8 +78,8 @@ public final class Explosion {
 			this.coreExplosion.setAnimationMode((byte)1);
 			this.animationPlayTime = 0;
 		} else {
-			for(int var4 = 0; var4 < this.explosions.length; ++var4) {
-				this.explosions[var4].moveTo(var1, var2, var3);
+			for(int i = 0; i < this.explosions.length; ++i) {
+				this.explosions[i].moveTo(var1, var2, var3);
 			}
 
 			this.coreExplosion.moveTo(var1, var2, var3);
@@ -93,14 +93,14 @@ public final class Explosion {
 	public final void update(final long var1) {
 		this.animationPlayTime = (int)(this.animationPlayTime + var1);
 		if (this.explosions != null) {
-			for(int var3 = 0; var3 < this.explosions.length; ++var3) {
-				if (this.animationPlayTime > this.delays[var3]) {
-					if (var3 == this.explosions.length - 1) {
+			for(int i = 0; i < this.explosions.length; ++i) {
+				if (this.animationPlayTime > this.delays[i]) {
+					if (i == this.explosions.length - 1) {
 						this.coreExplosion.setScale(AEMath.Q_4, AEMath.Q_4, AEMath.Q_4);
 						this.coreExplosion.setAnimationMode((byte)1);
 					}
 
-					this.explosions[var3].setAnimationMode((byte)1);
+					this.explosions[i].setAnimationMode((byte)1);
 				}
 			}
 

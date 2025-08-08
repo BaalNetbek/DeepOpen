@@ -1,5 +1,7 @@
 package AE;
 
+import AE.PaintCanvas.AEGraphics3D;
+
 public final class CameraTrack {
 	private int time;
 	private long frameTime;

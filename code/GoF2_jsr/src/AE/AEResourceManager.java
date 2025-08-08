@@ -79,21 +79,21 @@ public final class AEResourceManager {
 	}
 
 	public static ITexture getTextureResource(final int var0) {
-		for(int var1 = 0; var1 < textureIds.length; ++var1) {
-			if (var0 == textureIds[var1]) {
-				loadedTextures[var1] = true;
-				if (textures[var1] == null) {
-					final String[] var2 = {texturePaths[var1]};
+		for(int i = 0; i < textureIds.length; ++i) {
+			if (var0 == textureIds[i]) {
+				loadedTextures[i] = true;
+				if (textures[i] == null) {
+					final String[] var2 = {texturePaths[i]};
 					if (var0 == 1) {
 						final ITexture[] var10000 = textures;
 						final ITexture var3 = getTextureResource(0);
-						return var10000[var1] = new JSRTexture((JSRTexture)var3);
+						return var10000[i] = new JSRTexture((JSRTexture)var3);
 					}
 
-					return textures[var1] = new JSRTexture(var2);
+					return textures[i] = new JSRTexture(var2);
 				}
 
-				return textures[var1];
+				return textures[i];
 			}
 		}
 
@@ -101,24 +101,24 @@ public final class AEResourceManager {
 	}
 
 	public static AbstractMesh getGeometryResource(int var0) {
-		for(int var1 = 0; var1 < meshIds.length; ++var1) {
-			if (var0 == meshIds[var1]) {
-				loadedMeshes[var1] = true;
-				if (meshes[var1] == null) {
+		for(int i = 0; i < meshIds.length; ++i) {
+			if (var0 == meshIds[i]) {
+				loadedMeshes[i] = true;
+				if (meshes[i] == null) {
 					AbstractMesh[] var10000;
 					int var10001;
 					Object var10002;
-					if (radii_[var1] == -1) {
+					if (radii_[i] == -1) {
 						var10000 = meshes;
-						var10001 = var1;
-						final String var4 = meshPaths[var1];
+						var10001 = i;
+						final String var4 = meshPaths[i];
 						var10002 = new BackGroundMesh(var4);
 					} else {
 						var10000 = meshes;
-						var10001 = var1;
-						final int var5 = meshIds[var1];
-						final String var10003 = meshPaths[var1];
-						final int var3 = radii_[var1];
+						var10001 = i;
+						final int var5 = meshIds[i];
+						final String var10003 = meshPaths[i];
+						final int var3 = radii_[i];
 						final String var2 = var10003;
 						var0 = var5;
 						if (var2.endsWith(".m3g")) {
@@ -129,14 +129,14 @@ public final class AEResourceManager {
 					}
 
 					var10000[var10001] = (AbstractMesh)var10002;
-					if (meshes[var1] != null && meshsTextureIds[var1] != Integer.MIN_VALUE) {
-						meshes[var1].setTexture(getTextureResource(meshsTextureIds[var1]));
+					if (meshes[i] != null && meshsTextureIds[i] != Integer.MIN_VALUE) {
+						meshes[i].setTexture(getTextureResource(meshsTextureIds[i]));
 					}
 
-					return meshes[var1];
+					return meshes[i];
 				}
 
-				return (AbstractMesh)meshes[var1].clone();
+				return (AbstractMesh)meshes[i].clone();
 			}
 		}
 
@@ -145,27 +145,27 @@ public final class AEResourceManager {
 	}
 
 	public static void OnRelease() {
-		int var0;
-		for(var0 = 0; var0 < meshes.length; ++var0) {
-			if (meshes[var0] != null) {
-				meshes[var0].OnRelease();
-				meshes[var0] = null;
+		int i;
+		for(i = 0; i < meshes.length; ++i) {
+			if (meshes[i] != null) {
+				meshes[i].OnRelease();
+				meshes[i] = null;
 			}
 		}
 
-		for(var0 = 0; var0 < textures.length; ++var0) {
-			if (textures[var0] != null) {
-				textures[var0].OnRelease();
-				textures[var0] = null;
+		for(i = 0; i < textures.length; ++i) {
+			if (textures[i] != null) {
+				textures[i].OnRelease();
+				textures[i] = null;
 			}
 		}
 
 	}
 
 	public static void initGeometryTranforms() {
-		for(int var0 = 0; var0 < meshes.length; ++var0) {
-			if (meshes[var0] != null) {
-				meshes[var0].setTransform(new AEMatrix());
+		for(int i = 0; i < meshes.length; ++i) {
+			if (meshes[i] != null) {
+				meshes[i].setTransform(new AEMatrix());
 			}
 		}
 

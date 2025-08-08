@@ -69,8 +69,8 @@ public final class SystemPathFinder {
         if (var11 != null && var11.size() > 0) {
             (var12 = new int[var11.size() + 1])[0] = var2;
 
-            for(int var14 = 1; var14 < var12.length; ++var14) {
-                var12[var14] = ((Node)var11.elementAt(var14 - 1)).systemIndex;
+            for(int i = 1; i < var12.length; ++i) {
+                var12[i] = ((Node)var11.elementAt(i - 1)).systemIndex;
             }
         }
 

@@ -76,9 +76,9 @@ public final class SolarSystem {
     }
 
     public final int getStationEnumIndex(final int var1) {
-        for(int var2 = 0; var2 < this.stationIDs.length; ++var2) {
-            if (this.stationIDs[var2] == var1) {
-                return var2;
+        for(int i = 0; i < this.stationIDs.length; ++i) {
+            if (this.stationIDs[i] == var1) {
+                return i;
             }
         }
 
@@ -90,8 +90,8 @@ public final class SolarSystem {
     }
 
     public final boolean stationIsInSystem(final int var1) {
-        for(int var2 = 0; var2 < this.stationIDs.length; ++var2) {
-            if (this.stationIDs[var2] == var1) {
+        for(int i = 0; i < this.stationIDs.length; ++i) {
+            if (this.stationIDs[i] == var1) {
                 return true;
             }
         }
@@ -100,8 +100,8 @@ public final class SolarSystem {
     }
 
     public final boolean isFullyDiscovered() {
-        for(int var1 = 0; var1 < this.stationIDs.length; ++var1) {
-            if (!Galaxy.getVisitedStations()[this.stationIDs[var1]]) {
+        for(int i = 0; i < this.stationIDs.length; ++i) {
+            if (!Galaxy.getVisitedStations()[this.stationIDs[i]]) {
                 return false;
             }
         }
@@ -122,8 +122,8 @@ public final class SolarSystem {
             return true;
         }
         if (this.neighbourSystems != null) {
-            for(int var2 = 0; var2 < this.neighbourSystems.length; ++var2) {
-                if (this.neighbourSystems[var2] == var1) {
+            for(int i = 0; i < this.neighbourSystems.length; ++i) {
+                if (this.neighbourSystems[i] == var1) {
                     return true;
                 }
             }

@@ -95,7 +95,7 @@ public final class FileRead {
             final InputStream var8 = (varClass == null ? (varClass = getClassForName("java.lang.Class")) : varClass).getResourceAsStream("/data/txt/stationparts.bin");
             final DataInputStream var9 = new DataInputStream(var8);
 
-            for(int var3 = 0; var3 < 101; ++var3) {
+            for(int i = 0; i < 101; ++i) {
                 if (var9.available() == 0) {
                     return null;
                 }
@@ -111,14 +111,14 @@ public final class FileRead {
                 parts[5] = 2048;
                 parts[6] = 0;
 
-                for(int var10 = 7; var10 < parts.length; var10 += 7) {
-                    parts[var10] = var9.readShort();
-                    parts[var10 + 1] = var9.readInt();
-                    parts[var10 + 2] = var9.readInt();
-                    parts[var10 + 3] = var9.readInt();
-                    parts[var10 + 4] = var9.readShort();
-                    parts[var10 + 5] = var9.readShort();
-                    parts[var10 + 6] = var9.readShort();
+                for(int j = 7; j < parts.length; j += 7) {
+                    parts[j] = var9.readShort();
+                    parts[j + 1] = var9.readInt();
+                    parts[j + 2] = var9.readInt();
+                    parts[j + 3] = var9.readInt();
+                    parts[j + 4] = var9.readShort();
+                    parts[j + 5] = var9.readShort();
+                    parts[j + 6] = var9.readShort();
                 }
 
                 if (var4 == id + 1) {
@@ -144,15 +144,15 @@ public final class FileRead {
             var1 = new Station[var12.length];
             int var8 = 0;
 
-            for(int var9 = 0; var9 < 100; ++var9) {
+            for(int i = 0; i < 100; ++i) {
                 final String var3 = var13.readUTF();
                 final int var4 = var13.readInt();
                 final int var5 = var13.readInt();
                 final int var6 = var13.readInt();
                 final int var7 = var13.readInt();
 
-                for(int var10 = 0; var10 < var12.length; ++var10) {
-                    if (var12[var10] == var9) {
+                for(int j = 0; j < var12.length; ++j) {
+                    if (var12[j] == i) {
                         var1[var8] = new Station(var3, var4, var5, var6, var7);
                         var8++;
                     }
@@ -180,9 +180,9 @@ public final class FileRead {
             var0 = new Agent[16];
             int var11 = 0;
 
-            for(int var12 = 0; var12 < var0.length; ++var12) {
+            for(int i = 0; i < var0.length; ++i) {
                 final String var2 = var14.readUTF();
-                int var3 = var14.readInt();
+                final int var3 = var14.readInt();
                 final int var4 = var14.readInt();
                 final int var5 = var14.readInt();
                 final int var6 = var14.readInt();
@@ -196,8 +196,8 @@ public final class FileRead {
                 if (var15 > 0) {
                     final byte[] var16 = new byte[var15];
 
-                    for(var3 = 0; var3 < var16.length; ++var3) {
-                        var16[var3] = var14.readByte();
+                    for(int j = 0; j < var16.length; ++j) {
+                        var16[j] = var14.readByte();
                     }
 
                     var0[var11 - 1].setImageParts(var16);
@@ -334,8 +334,8 @@ public final class FileRead {
             final DataInputStream var4 = new DataInputStream(var1);
             var0 = new Ship[37];
 
-            for(int var2 = 0; var2 < 37; ++var2) {
-                var0[var2] = new Ship(var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt());
+            for(int i = 0; i < 37; ++i) {
+                var0[i] = new Ship(var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt(), var4.readInt());
             }
 
             var4.close();

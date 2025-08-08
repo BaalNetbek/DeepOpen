@@ -10,8 +10,8 @@ public final class Font {
 
 	public static void OnRelease() {
 		if (symbolMaps != null) {
-			for(int var0 = 0; var0 < symbolMaps.length; ++var0) {
-				symbolMaps[var0] = null;
+			for(int i = 0; i < symbolMaps.length; ++i) {
+				symbolMaps[i] = null;
 			}
 
 			symbolMaps = null;
@@ -23,7 +23,7 @@ public final class Font {
 	public static void setGraphics(final Graphics var0) {
 		graphics = var0;
 		if (symbolMaps != null) {
-			for(int var1 = 0; var1 < symbolMaps.length; ++var1) {
+			for(int i = 0; i < symbolMaps.length; ++i) {
 				ImageFont.setGraphics(graphics);
 			}
 		}
@@ -77,8 +77,8 @@ public final class Font {
 
 	public static void drawLines(final String[] var0, final int var1, final int var2, final int var3) {
 		if (var3 >= 0 && var3 < symbolMaps.length) {
-			for(int var4 = 0; var4 < var0.length; ++var4) {
-				symbolMaps[var3].drawString(var0[var4], var1, var2 + var4 * getFontSpacingY());
+			for(int i = 0; i < var0.length; ++i) {
+				symbolMaps[var3].drawString(var0[i], var1, var2 + i * getFontSpacingY());
 			}
 
 		}
@@ -88,9 +88,9 @@ public final class Font {
 		if (var3 >= 0 && var3 < symbolMaps.length) {
 			var5 = var5 > 0 ? var5 / getFontSpacingY() + 1 : 0;
 
-			for(int var6 = 0; var6 < var0.length; ++var6) {
-				final int var7 = var6 < var5 ? var1 + var4 : var1;
-				symbolMaps[var3].drawString(var0[var6], var7, var2 + var6 * getFontSpacingY());
+			for(int i = 0; i < var0.length; ++i) {
+				final int var7 = i < var5 ? var1 + var4 : var1;
+				symbolMaps[var3].drawString(var0[i], var7, var2 + i * getFontSpacingY());
 			}
 
 		}
@@ -101,15 +101,15 @@ public final class Font {
 		if (var3 >= 0 && var3 < symbolMaps.length) {
 			int var6 = 0;
 
-			for(int var7 = 0; var7 < var0.length; ++var7) {
+			for(int i = 0; i < var0.length; ++i) {
 				if ((var4 & 8) != 0) {
-					var6 = -(symbolMaps[var3].stringWidth(var0[var7]) >> 1);
+					var6 = -(symbolMaps[var3].stringWidth(var0[i]) >> 1);
 				}
 
 				if ((var4 & 2) != 0) {
-					symbolMaps[var3].drawStringRightAlligned(var0[var7], var1, var2 + var7 * var5);
+					symbolMaps[var3].drawStringRightAlligned(var0[i], var1, var2 + i * var5);
 				} else {
-					symbolMaps[var3].drawString(var0[var7], var1 + var6, var2 + var7 * var5);
+					symbolMaps[var3].drawString(var0[i], var1 + var6, var2 + i * var5);
 				}
 			}
 
@@ -167,11 +167,11 @@ public final class Font {
 		final String[] var13 = new String[var5];
 		var6 = 0;
 
-		for(int var8 = 0; var8 < var5; ++var8) {
-			final int var9 = var8 < var4 ? var1 - var3 : var1;
-			var13[var8] = truncateStringLine(var0.substring(var6, var0.length()), var9, var2, false);
-			var6 += var13[var8].length();
-			var13[var8].trim();
+		for(int i = 0; i < var5; ++i) {
+			final int var9 = i < var4 ? var1 - var3 : var1;
+			var13[i] = truncateStringLine(var0.substring(var6, var0.length()), var9, var2, false);
+			var6 += var13[i].length();
+			var13[i].trim();
 		}
 
 		return var13;
@@ -191,10 +191,10 @@ public final class Font {
 		final String[] var10 = new String[var3];
 		var4 = 0;
 
-		for(int var6 = 0; var6 < var3; ++var6) {
-			var10[var6] = truncateStringLine(var0.substring(var4, var0.length()), var1, var2, false);
-			var4 += var10[var6].length();
-			var10[var6].trim();
+		for(int i = 0; i < var3; ++i) {
+			var10[i] = truncateStringLine(var0.substring(var4, var0.length()), var1, var2, false);
+			var4 += var10[i].length();
+			var10[i].trim();
 		}
 
 		return var10;
@@ -204,23 +204,23 @@ public final class Font {
 		int var4 = 0;
 		int var5 = (var2 >= 0 && var2 < symbolMaps.length ? symbolMaps[var2].getTileHeight() : 0) >> 1;
 
-		for(int var6 = 0; var6 < var0.length(); ++var6) {
-			if (var3 || var0.charAt(var6) == ' ' || var0.charAt(var6) == '\n' || var0.charAt(var6) == '\r') {
-				var4 = var6;
+		for(int i = 0; i < var0.length(); ++i) {
+			if (var3 || var0.charAt(i) == ' ' || var0.charAt(i) == '\n' || var0.charAt(i) == '\r') {
+				var4 = i;
 			}
 
-			final int var8 = var6 + 1;
-			var5 += symbolMaps[var2].subStringWidth(var0, var6, var8);
+			final int var8 = i + 1;
+			var5 += symbolMaps[var2].subStringWidth(var0, i, var8);
 			if (var5 >= var1) {
 				if (0 < var4) {
 					return var0.substring(0, var4 + 1);
 				}
 
-				return var0.substring(0, var6 + 1);
+				return var0.substring(0, i + 1);
 			}
 
-			if (var0.charAt(var6) == '\n' || var0.charAt(var6) == '\r') {
-				return var0.charAt(var6) == '\n' ? var0.substring(0, var6 + 1).replace('\n', ' ') : var0.substring(0, var6 + 1).replace('\r', ' ');
+			if (var0.charAt(i) == '\n' || var0.charAt(i) == '\r') {
+				return var0.charAt(i) == '\n' ? var0.substring(0, i + 1).replace('\n', ' ') : var0.substring(0, i + 1).replace('\r', ' ');
 			}
 		}
 

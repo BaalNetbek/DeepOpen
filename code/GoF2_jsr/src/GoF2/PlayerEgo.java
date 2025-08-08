@@ -10,6 +10,7 @@ import AE.LookAtCamera;
 import AE.TargetFollowCamera;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
+import AE.PaintCanvas.AEGraphics3D;
 import AE.Math.AEMatrix;
 
 /**
@@ -774,8 +775,8 @@ public final class PlayerEgo {
 
 	private void calcCollision(final KIPlayer[] var1) {
 		if (var1 != null) {
-			for(int var2 = 0; var2 < var1.length; ++var2) {
-				KIPlayer var3 = var1[var2];
+			for(int i = 0; i < var1.length; ++i) {
+				KIPlayer var3 = var1[i];
 				if (var3 != null && var3.outerCollide(this.shipGrandGroup_.getPosition(this.vecRight))) {
 					int var8;
 					if (var3.getMeshId() == 6805 && var3.isVisible()) {
@@ -821,7 +822,7 @@ public final class PlayerEgo {
 							this.shipGrandGroup_.moveForward((int)this.frameTime * this.speed);
 							alignToHorizon((int)this.frameTime);
 							this.beingPushedAway = true;
-							if (var2 == 0) {
+							if (i == 0) {
 								this.touchesStation = true;
 								return;
 							}

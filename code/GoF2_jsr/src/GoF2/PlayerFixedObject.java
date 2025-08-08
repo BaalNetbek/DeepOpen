@@ -334,8 +334,8 @@ public final class PlayerFixedObject extends KIPlayer {
         if ((this.state == 4) || (this.state == 4)) {
             return false;
         }
-        for(int var4 = 0; var4 < this.bounds.length; ++var4) {
-            if (this.bounds[var4].outerCollide_(var1, var2, var3)) {
+        for(int i = 0; i < this.bounds.length; ++i) {
+            if (this.bounds[i].outerCollide_(var1, var2, var3)) {
                 return true;
             }
         }

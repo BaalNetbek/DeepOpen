@@ -103,8 +103,8 @@ public class TabbedWindow_ {
 		} else {
 			this.perTabEntries[var1] = new Object[200];
 
-			for(int var3 = 0; var3 < var2.length; ++var3) {
-				this.perTabEntries[var1][var3] = var2[var3];
+			for(int i = 0; i < var2.length; ++i) {
+				this.perTabEntries[var1][i] = var2[i];
 			}
 
 			updateScroll();
@@ -220,13 +220,13 @@ public class TabbedWindow_ {
 	}
 
 	public void drawItems() {
-		for(int var1 = this.scrollPos; var1 < this.perTabEntries[this.selectedTab].length && this.perTabEntries[this.selectedTab][var1] != null && var1 < this.scrollPos + this.displayedEntriesCount + 1; ++var1) {
+		for(int i = this.scrollPos; i < this.perTabEntries[this.selectedTab].length && this.perTabEntries[this.selectedTab][i] != null && i < this.scrollPos + this.displayedEntriesCount + 1; ++i) {
 			GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
-			if (var1 == this.selectedEntry && this.highlightSelection) {
-				GlobalStatus.graphics.fillRect(this.posX + 1, this.itemListPosY + (var1 - this.scrollPos) * this.rowHeight + 1, this.width - 5, this.rowHeight + 1);
+			if (i == this.selectedEntry && this.highlightSelection) {
+				GlobalStatus.graphics.fillRect(this.posX + 1, this.itemListPosY + (i - this.scrollPos) * this.rowHeight + 1, this.width - 5, this.rowHeight + 1);
 			}
 
-			drawItem(this.perTabEntries[this.selectedTab][var1], var1);
+			drawItem(this.perTabEntries[this.selectedTab][i], i);
 		}
 
 	}

@@ -723,10 +723,10 @@ public final class AEMatrix {
     }
 
     public final AEVector3D[] transformVectorsNoScale(final AEVector3D[] var1, final AEVector3D[] var2) {
-        for(int var3 = var2.length - 1; var3 >= 0; --var3) {
-            var2[var3].x = (this.rightX * var1[var3].x >> AEMath.Q) + (this.upX * var1[var3].y >> AEMath.Q) + (this.dirX * var1[var3].z >> AEMath.Q);
-            var2[var3].y = (this.rightY * var1[var3].x >> AEMath.Q) + (this.upY * var1[var3].y >> AEMath.Q) + (this.dirY * var1[var3].z >> AEMath.Q);
-            var2[var3].z = (this.rightZ * var1[var3].x >> AEMath.Q) + (this.upZ * var1[var3].y >> AEMath.Q) + (this.dirZ * var1[var3].z >> AEMath.Q);
+        for(int i = var2.length - 1; i >= 0; --i) {
+            var2[i].x = (this.rightX * var1[i].x >> AEMath.Q) + (this.upX * var1[i].y >> AEMath.Q) + (this.dirX * var1[i].z >> AEMath.Q);
+            var2[i].y = (this.rightY * var1[i].x >> AEMath.Q) + (this.upY * var1[i].y >> AEMath.Q) + (this.dirY * var1[i].z >> AEMath.Q);
+            var2[i].z = (this.rightZ * var1[i].x >> AEMath.Q) + (this.upZ * var1[i].y >> AEMath.Q) + (this.dirZ * var1[i].z >> AEMath.Q);
         }
 
         return var2;

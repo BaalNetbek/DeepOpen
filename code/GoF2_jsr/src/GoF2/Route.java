@@ -10,8 +10,8 @@ public final class Route {
     public Route(final int[] var1) {
         this.waypoints = new Waypoint[var1.length / 3];
 
-        for(int var2 = 0; var2 < var1.length; var2 += 3) {
-            this.waypoints[var2 / 3] = new Waypoint(var1[var2], var1[var2 + 1], var1[var2 + 2], this);
+        for(int i = 0; i < var1.length; i += 3) {
+            this.waypoints[i / 3] = new Waypoint(var1[i], var1[i + 1], var1[i + 2], this);
         }
 
     }
@@ -27,8 +27,8 @@ public final class Route {
     }
 
     public final void reset() {
-        for(int var1 = 0; var1 < this.waypoints.length; ++var1) {
-            this.waypoints[var1].reset();
+        for(int i = 0; i < this.waypoints.length; ++i) {
+            this.waypoints[i].reset();
         }
 
         this.current = 0;
@@ -94,9 +94,9 @@ public final class Route {
     public final Route getExactClone() {
         final Route var1 = clone();
 
-        for(int var2 = 0; var2 < var1.waypoints.length; ++var2) {
-            if (this.waypoints[var2].reached_) {
-                var1.waypoints[var2].reached_ = true;
+        for(int i = 0; i < var1.waypoints.length; ++i) {
+            if (this.waypoints[i].reached_) {
+                var1.waypoints[i].reached_ = true;
             }
         }
 
@@ -107,10 +107,10 @@ public final class Route {
     public final Route clone() {
         final int[] var1 = new int[this.waypoints.length * 3];
 
-        for(int var2 = 0; var2 < this.waypoints.length; ++var2) {
-            var1[var2 * 3] = this.waypoints[var2].x;
-            var1[var2 * 3 + 1] = this.waypoints[var2].y;
-            var1[var2 * 3 + 2] = this.waypoints[var2].z;
+        for(int i = 0; i < this.waypoints.length; ++i) {
+            var1[i * 3] = this.waypoints[i].x;
+            var1[i * 3 + 1] = this.waypoints[i].y;
+            var1[i * 3 + 2] = this.waypoints[i].z;
         }
 
         Route var4;

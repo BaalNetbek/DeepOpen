@@ -928,9 +928,9 @@ public final class MGame extends IApplicationModule {
 							} else {
 								Item[] var4;
 								if ((Status.getMission().getType() == 3 || Status.getMission().getType() == 5 || Status.getMission().getType() == 11) && (var4 = Status.getShip().getCargo()) != null) {
-									for(int var5 = 0; var5 < var4.length; ++var5) {
-										if (var4[var5].setUnsaleable() && var4[var5].getIndex() == 116 || var4[var5].getIndex() == 117) {
-											Status.getShip().removeCargo(var4[var5]);
+									for(int i = 0; i < var4.length; ++i) {
+										if (var4[i].setUnsaleable() && var4[i].getIndex() == 116 || var4[i].getIndex() == 117) {
+											Status.getShip().removeCargo(var4[i]);
 											break;
 										}
 									}

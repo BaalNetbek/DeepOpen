@@ -10,8 +10,8 @@ public final class LensFlareFX {
 	private final Image mainFlare;
 
 	public LensFlareFX() {
-		for(int var1 = 0; var1 < this.flares.length; ++var1) {
-			this.flares[var1] = AEFile.loadImage("/data/interface/lens" + var1 + ".png", true);
+		for(int i = 0; i < this.flares.length; ++i) {
+			this.flares[i] = AEFile.loadImage("/data/interface/lens" + i + ".png", true);
 		}
 
 		final Image var5 = AEFile.loadImage("/data/interface/lens1.png", true);
@@ -38,11 +38,11 @@ public final class LensFlareFX {
 			}
 
 			if (this.flares != null) {
-				for(int var6 = 0; var6 < this.flares.length; ++var6) {
-					switch(var6) {
+				for(int i = 0; i < this.flares.length; ++i) {
+					switch(i) {
 					case 0:
 						if (var5 > 2000) {
-							GlobalStatus.graphics.drawImage(this.flares[var6], var7 + (var2 * var5 / 2 >> AEMath.Q), var4 + (var3 * var5 / 2 >> AEMath.Q), 3);
+							GlobalStatus.graphics.drawImage(this.flares[i], var7 + (var2 * var5 / 2 >> AEMath.Q), var4 + (var3 * var5 / 2 >> AEMath.Q), 3);
 							if (this.mainFlare != null) {
 								GlobalStatus.graphics.drawImage(this.mainFlare, var7 + (var2 * var5 / 3 >> AEMath.Q), var4 + (var3 * var5 / 3 >> AEMath.Q), 3);
 							}
@@ -50,7 +50,7 @@ public final class LensFlareFX {
 						break;
 					case 1:
 						if (var5 > 3000) {
-							GlobalStatus.graphics.drawImage(this.flares[var6], var7 + (var2 * var5 / 8 >> AEMath.Q), var4 + (var3 * var5 / 8 >> AEMath.Q), 3);
+							GlobalStatus.graphics.drawImage(this.flares[i], var7 + (var2 * var5 / 8 >> AEMath.Q), var4 + (var3 * var5 / 8 >> AEMath.Q), 3);
 							if (this.mainFlare != null) {
 								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 2 >> AEMath.Q), var4 - (var3 * var5 / 2 >> AEMath.Q), 3);
 							}
@@ -58,7 +58,7 @@ public final class LensFlareFX {
 						break;
 					case 2:
 						if (var5 > 4000) {
-							GlobalStatus.graphics.drawImage(this.flares[var6], var7 - (var2 * var5 / 4 >> AEMath.Q), var4 - (var3 * var5 / 4 >> AEMath.Q), 3);
+							GlobalStatus.graphics.drawImage(this.flares[i], var7 - (var2 * var5 / 4 >> AEMath.Q), var4 - (var3 * var5 / 4 >> AEMath.Q), 3);
 							if (this.mainFlare != null) {
 								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 6 >> AEMath.Q), var4 - (var3 * var5 / 6 >> AEMath.Q), 3);
 							}
@@ -66,7 +66,7 @@ public final class LensFlareFX {
 						break;
 					case 3:
 						if (var5 > 5000) {
-							GlobalStatus.graphics.drawImage(this.flares[var6], var7 - (var2 * var5 / 7 >> AEMath.Q), var4 - (var3 * var5 / 7 >> AEMath.Q), 3);
+							GlobalStatus.graphics.drawImage(this.flares[i], var7 - (var2 * var5 / 7 >> AEMath.Q), var4 - (var3 * var5 / 7 >> AEMath.Q), 3);
 							if (this.mainFlare != null) {
 								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 10 >> AEMath.Q), var4 - (var3 * var5 / 10 >> AEMath.Q), 3);
 							}

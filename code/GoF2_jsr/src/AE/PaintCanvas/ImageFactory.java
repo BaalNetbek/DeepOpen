@@ -81,9 +81,9 @@ public final class ImageFactory {
 		GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
 		GlobalStatus.graphics.drawRect(var1, var2, faceWidth - 1, faceHeight - 1);
 
-		for(int var4 = 0; var4 < var0.length; ++var4) {
-			if (var0[var4] != null) {
-				GlobalStatus.graphics.drawImage(var0[var4], var1 + 1, var2 + 1, var3);
+		for(int i = 0; i < var0.length; ++i) {
+			if (var0[i] != null) {
+				GlobalStatus.graphics.drawImage(var0[i], var1 + 1, var2 + 1, var3);
 			}
 		}
 

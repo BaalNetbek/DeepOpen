@@ -20,8 +20,8 @@ public final class BluePrint {
 		if (var2.getBluePrintComponentsIds() != null) {
 			this.missingComponentsTons = new int[var2.getBluePrintComponentsIds().length];
 
-			for(int var4 = 0; var4 < this.missingComponentsTons.length; ++var4) {
-				this.missingComponentsTons[var4] = var3[var4];
+			for(int i = 0; i < this.missingComponentsTons.length; ++i) {
+				this.missingComponentsTons[i] = var3[i];
 			}
 		}
 
@@ -39,9 +39,9 @@ public final class BluePrint {
 		var1.setBlueprintAmount(0);
 		int[] var5 = getIngredientList();
 		if (var5 != null) {
-			for(int var4 = 0; var4 < var5.length; ++var4) {
-				if (var5[var4] == var1.getIndex()) {
-					this.missingComponentsTons[var4] -= var2;
+			for(int i = 0; i < var5.length; ++i) {
+				if (var5[i] == var1.getIndex()) {
+					this.missingComponentsTons[i] -= var2;
 					this.investedCredits += var1.getSinglePrice() * var2;
 					return;
 				}
@@ -51,8 +51,8 @@ public final class BluePrint {
 	}
 
 	public final boolean isComplete() {
-		for(int var1 = 0; var1 < this.missingComponentsTons.length; ++var1) {
-			if (this.missingComponentsTons[var1] > 0) {
+		for(int i = 0; i < this.missingComponentsTons.length; ++i) {
+			if (this.missingComponentsTons[i] > 0) {
 				return false;
 			}
 		}
@@ -76,9 +76,9 @@ public final class BluePrint {
 		final int[] var2 = getIngredientList();
 		final int[] var3 = getQuantityList();
 
-		for(int var4 = 0; var4 < var3.length; ++var4) {
-			if (var2[var4] == var1) {
-				return var3[var4];
+		for(int i = 0; i < var3.length; ++i) {
+			if (var2[i] == var1) {
+				return var3[i];
 			}
 		}
 
@@ -92,9 +92,9 @@ public final class BluePrint {
 	public final int getRemainingAmount(final int var1) {
 		final int[] var2 = getIngredientList();
 
-		for(int var3 = 0; var3 < this.missingComponentsTons.length; ++var3) {
-			if (var2[var3] == var1) {
-				return this.missingComponentsTons[var3];
+		for(int i = 0; i < this.missingComponentsTons.length; ++i) {
+			if (var2[i] == var1) {
+				return this.missingComponentsTons[i];
 			}
 		}
 
@@ -105,8 +105,8 @@ public final class BluePrint {
 		float var1 = 0.0F;
 		final int[] var2 = getQuantityList();
 
-		for(int var3 = 0; var3 < var2.length; ++var3) {
-			var1 += (float)(var2[var3] - this.missingComponentsTons[var3]) / (float)var2[var3] / this.missingComponentsTons.length;
+		for(int i = 0; i < var2.length; ++i) {
+			var1 += (float)(var2[i] - this.missingComponentsTons[i]) / (float)var2[i] / this.missingComponentsTons.length;
 		}
 
 		return var1;
@@ -141,8 +141,8 @@ public final class BluePrint {
 		Status.incGoodsProduced(1);
 		final int[] var1 = getQuantityList();
 
-		for(int var2 = 0; var2 < this.missingComponentsTons.length; ++var2) {
-			this.missingComponentsTons[var2] = var1[var2];
+		for(int i = 0; i < this.missingComponentsTons.length; ++i) {
+			this.missingComponentsTons[i] = var1[i];
 		}
 
 		this.investedCredits = 0;

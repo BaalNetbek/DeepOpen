@@ -90,9 +90,9 @@ public class HangarList extends TabbedWindow_ {
 				listItems[listStep++] = new ListItem(sectionName, i);
 				final Item[] var5 = ship.getEquipment(i);
 
-				for(int var6 = 0; var6 < var5.length; listItems[listStep - 1].inTabIndex = var6++) {
-					if (var5[var6] != null) {
-						listItems[listStep++] = new ListItem(var5[var6]);
+				for(int j = 0; j < var5.length; listItems[listStep - 1].inTabIndex = j++) {
+					if (var5[j] != null) {
+						listItems[listStep++] = new ListItem(var5[j]);
 					} else {
 						listItems[listStep++] = new ListItem(i);
 					}
@@ -304,14 +304,14 @@ public class HangarList extends TabbedWindow_ {
 		final ListItem[] var10 = new ListItem[(var9 = var1.getIngredientList()).length + 1];
 		int var5 = 0;
 
-		for(int var6 = 0; var6 < var9.length; ++var6) {
+		for(int i = 0; i < var9.length; ++i) {
 			boolean var7 = false;
 			if (var3 != null) {
-				for(int var8 = 0; var8 < var3.length; ++var8) {
-					if (var3[var8].getIndex() == var9[var6]) {
-						var10[var5] = new ListItem(var3[var8]);
+				for(int j = 0; j < var3.length; ++j) {
+					if (var3[j].getIndex() == var9[i]) {
+						var10[var5] = new ListItem(var3[j]);
 						var5++;
-						var3[var8].setBlueprintAmount(0);
+						var3[j].setBlueprintAmount(0);
 						var7 = true;
 						break;
 					}
@@ -319,9 +319,9 @@ public class HangarList extends TabbedWindow_ {
 			}
 
 			if (!var7) {
-				var10[var5] = new ListItem(var4[var9[var6]]);
+				var10[var5] = new ListItem(var4[var9[i]]);
 				var5++;
-				var4[var9[var6]].setBlueprintAmount(0);
+				var4[var9[i]].setBlueprintAmount(0);
 			}
 		}
 
@@ -376,10 +376,10 @@ public class HangarList extends TabbedWindow_ {
 
 				Item[] var5;
 				if ((var5 = Status.getShip().getCargo()) != null) {
-					for(int var3 = 0; var3 < var5.length; ++var3) {
-						if (var5[var3].getIndex() == var4.getIndex()) {
-							var5[var3].setAmount(var4.getAmount());
-							var5[var3].setBlueprintAmount(var4.getBlueprintAmount());
+					for(int i = 0; i < var5.length; ++i) {
+						if (var5[i].getIndex() == var4.getIndex()) {
+							var5[i].setAmount(var4.getAmount());
+							var5[i].setBlueprintAmount(var4.getBlueprintAmount());
 						}
 					}
 				}
@@ -415,10 +415,10 @@ public class HangarList extends TabbedWindow_ {
 
 				Item[] var5 = Status.getShip().getCargo();
 				if (var5 != null) {
-					for(int var3 = 0; var3 < var5.length; ++var3) {
-						if (var5[var3].getIndex() == var4.getIndex()) {
-							var5[var3].setAmount(var4.getAmount());
-							var5[var3].setBlueprintAmount(var4.getBlueprintAmount());
+					for(int i = 0; i < var5.length; ++i) {
+						if (var5[i].getIndex() == var4.getIndex()) {
+							var5[i].setAmount(var4.getAmount());
+							var5[i].setBlueprintAmount(var4.getBlueprintAmount());
 						}
 					}
 				}
@@ -436,7 +436,7 @@ public class HangarList extends TabbedWindow_ {
 
 	public final void skipSell() {
 		if (this.trading_) {
-			for(int var1 = 0; var1 < 10; ++var1) {
+			for(int i = 0; i < 10; ++i) {
 				leftAction();
 			}
 		}
@@ -445,7 +445,7 @@ public class HangarList extends TabbedWindow_ {
 
 	public final void skipBuy() {
 		if (this.trading_) {
-			for(int var1 = 0; var1 < 10; ++var1) {
+			for(int i = 0; i < 10; ++i) {
 				rightAction();
 			}
 		}
@@ -457,8 +457,8 @@ public class HangarList extends TabbedWindow_ {
 			boolean var1 = false;
 			int var2 = this.selectedEntry;
 
-			for(int var3 = this.selectedEntry; var3 > 0; --var3) {
-				if (((ListItem)this.perTabEntries[this.selectedTab][var3 - 1]).isSelectable) {
+			for(int i = this.selectedEntry; i > 0; --i) {
+				if (((ListItem)this.perTabEntries[this.selectedTab][i - 1]).isSelectable) {
 					var1 = true;
 					break;
 				}
@@ -490,8 +490,8 @@ public class HangarList extends TabbedWindow_ {
 			boolean var1 = false;
 			int var2 = this.selectedEntry;
 
-			for(int var3 = this.selectedEntry; var3 < this.listsLengths[this.selectedTab] - 1; ++var3) {
-				if (((ListItem)this.perTabEntries[this.selectedTab][var3 + 1]).isSelectable) {
+			for(int i = this.selectedEntry; i < this.listsLengths[this.selectedTab] - 1; ++i) {
+				if (((ListItem)this.perTabEntries[this.selectedTab][i + 1]).isSelectable) {
 					var1 = true;
 					break;
 				}
@@ -521,7 +521,6 @@ public class HangarList extends TabbedWindow_ {
 	public final int selectItem() {
 		ListItem var1;
 		int var3;
-		int var18;
 		String var22;
 		if (this.popupOpen) {
 			this.popupOpen = false;
@@ -551,19 +550,19 @@ public class HangarList extends TabbedWindow_ {
 					Status.getShip().adjustPrice();
 					Status.getShip().setCargo(var21);
 					if (var16 != null) {
-						for(int var19 = 0; var19 < var16.length; ++var19) {
-							if (var16[var19] != null) {
-								Status.getShip().addCargo(var16[var19]);
+						for(int i = 0; i < var16.length; ++i) {
+							if (var16[i] != null) {
+								Status.getShip().addCargo(var16[i]);
 							}
 						}
 					}
 
 					final Ship[] var23 = Status.getStation().getShopShips();
 
-					for(var18 = 0; var18 < var23.length; ++var18) {
-						if (var23[var18].getIndex() == var1.ship.getIndex()) {
-							var23[var18] = Globals.getShips()[var13.getIndex()].cloneBase();
-							var23[var18].setRace(var13.getRace());
+					for(int i = 0; i < var23.length; ++i) {
+						if (var23[i].getIndex() == var1.ship.getIndex()) {
+							var23[i] = Globals.getShips()[var13.getIndex()].cloneBase();
+							var23[i].setRace(var13.getRace());
 							break;
 						}
 					}
@@ -671,9 +670,9 @@ public class HangarList extends TabbedWindow_ {
 									if (var20 != null && var20.getIndex() == var1.item.getIndex()) {
 										var5 = var1.item.makeItem(var1.item.getAmount() + var20.getAmount());
 										if (this.stationItems != null) {
-											for(var18 = 0; var18 < this.stationItems.length; ++var18) {
-												if (this.stationItems[var18].getIndex() == var5.getIndex()) {
-													this.stationItems[var18].setAmount(0);
+											for(int i = 0; i < this.stationItems.length; ++i) {
+												if (this.stationItems[i].getIndex() == var5.getIndex()) {
+													this.stationItems[i].setAmount(0);
 												}
 											}
 										}
@@ -840,7 +839,7 @@ public class HangarList extends TabbedWindow_ {
 							initBlueprintTab(Status.getBluePrints());
 							updateScroll();
 							if (var8) {
-								for(int var17 = 0; var17 < this.perTabEntries[this.selectedTab].length; ++var17) {
+								for(int i = 0; i < this.perTabEntries[this.selectedTab].length; ++i) {
 									scrollDown();
 									if (!((ListItem)this.perTabEntries[this.selectedTab][this.selectedEntry]).isBluePrint() && ((ListItem)this.perTabEntries[this.selectedTab][this.selectedEntry]).getIndex() == this.bluePrint.getIndex()) {
 										break;
@@ -1072,22 +1071,22 @@ public class HangarList extends TabbedWindow_ {
 				this.scrollPos = 0;
 			}
 
-			for(int var5 = this.scrollPos; var5 < this.perTabEntries[this.selectedTab].length && this.perTabEntries[this.selectedTab][var5] != null && var5 < this.scrollPos + this.displayedEntriesCount + 1; ++var5) {
-				if (((ListItem)this.perTabEntries[this.selectedTab][var5]).isHeader()) {
-					if (this.selectedEntry > var5) {
-						var4 = var5;
+			for(int i = this.scrollPos; i < this.perTabEntries[this.selectedTab].length && this.perTabEntries[this.selectedTab][i] != null && i < this.scrollPos + this.displayedEntriesCount + 1; ++i) {
+				if (((ListItem)this.perTabEntries[this.selectedTab][i]).isHeader()) {
+					if (this.selectedEntry > i) {
+						var4 = i;
 					}
 
 					GlobalStatus.graphics.setColor(Layout.uiOuterDownLeftOutlineInnerLabalBgColor);
-					GlobalStatus.graphics.fillRect(this.posX + 7, this.itemListPosY + (var5 - this.scrollPos) * this.rowHeight + 3, this.width - 7 - this.listRightPadding - 7, this.rowHeight - 4);
+					GlobalStatus.graphics.fillRect(this.posX + 7, this.itemListPosY + (i - this.scrollPos) * this.rowHeight + 3, this.width - 7 - this.listRightPadding - 7, this.rowHeight - 4);
 					GlobalStatus.graphics.setColor(0);
-					GlobalStatus.graphics.drawRect(this.posX + 7, this.itemListPosY + (var5 - this.scrollPos) * this.rowHeight + 3, this.width - 7 - this.listRightPadding - 7, this.rowHeight - 4);
+					GlobalStatus.graphics.drawRect(this.posX + 7, this.itemListPosY + (i - this.scrollPos) * this.rowHeight + 3, this.width - 7 - this.listRightPadding - 7, this.rowHeight - 4);
 					GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
-					GlobalStatus.graphics.drawRect(this.posX + 6, this.itemListPosY + (var5 - this.scrollPos) * this.rowHeight + 2, this.width - 7 - this.listRightPadding - 5, this.rowHeight - 2);
-					Layout.drawMenuPanelCorner(this.posX + 6, this.itemListPosY + (var5 - this.scrollPos) * this.rowHeight + 2, false);
+					GlobalStatus.graphics.drawRect(this.posX + 6, this.itemListPosY + (i - this.scrollPos) * this.rowHeight + 2, this.width - 7 - this.listRightPadding - 5, this.rowHeight - 2);
+					Layout.drawMenuPanelCorner(this.posX + 6, this.itemListPosY + (i - this.scrollPos) * this.rowHeight + 2, false);
 				}
 
-				drawItem(this.perTabEntries[this.selectedTab][var5], var5);
+				drawItem(this.perTabEntries[this.selectedTab][i], i);
 			}
 
 			if (var4 >= 0) {
@@ -1133,8 +1132,8 @@ public class HangarList extends TabbedWindow_ {
 						if (var11 != null) {
 							for(int i = 0; i < var5.length && !var10; ++i) {
 								if (var6[i] > 0) {
-									for(int var8 = 0; var8 < var11.length; ++var8) {
-										if (var11[var8].getIndex() == var5[i]) {
+									for(int j = 0; j < var11.length; ++j) {
+										if (var11[j].getIndex() == var5[i]) {
 											var10 = true;
 											break;
 										}

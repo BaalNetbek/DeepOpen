@@ -19,8 +19,8 @@ public final class CameraTrackInterpolator {
 	private int[][] keyFrames;
 	private final long totalTrackLength;
 
-	public CameraTrackInterpolator(final int[][] tracks, final int trackIdx, final long var3) {
-		this.totalTrackLength = var3;
+	public CameraTrackInterpolator(final int[][] tracks, final int trackIdx, final long totalLength) {
+		this.totalTrackLength = totalLength;
 		if (tracks != null && tracks[trackIdx] != null) {
 			this.keyFrames = new int[tracks[trackIdx].length / 8][];
 
@@ -53,16 +53,16 @@ public final class CameraTrackInterpolator {
 			if (this.keyframeCnt == 2) {
 				interpolate((float)var1 / (float)this.keyFrames[1][0], 0);
 			} else {
-				for(int var3 = this.keyframeCnt - 1; var3 >= 0; --var3) {
-					if (this.keyFrames[var3][0] < var1) {
+				for(int i = this.keyframeCnt - 1; i >= 0; --i) {
+					if (this.keyFrames[i][0] < var1) {
 						float var4;
-						if (var3 != 0 && var3 == this.keyframeCnt - 1) {
-							var4 = (float)(var1 - this.keyFrames[var3][0]) / (float)(this.totalTrackLength - this.keyFrames[var3][0]);
+						if (i != 0 && i == this.keyframeCnt - 1) {
+							var4 = (float)(var1 - this.keyFrames[i][0]) / (float)(this.totalTrackLength - this.keyFrames[i][0]);
 						} else {
-							var4 = (float)(var1 - this.keyFrames[var3][0]) / (float)(this.keyFrames[var3 + 1][0] - this.keyFrames[var3][0]);
+							var4 = (float)(var1 - this.keyFrames[i][0]) / (float)(this.keyFrames[i + 1][0] - this.keyFrames[i][0]);
 						}
 
-						interpolate(var4, var3);
+						interpolate(var4, i);
 						return;
 					}
 				}
@@ -91,9 +91,21 @@ public final class CameraTrackInterpolator {
 			this.currentInterpolationEndPoint[2] = this.keyFrames[var2 + 1][3];
 		}
 
-		this.currentPos.x = (int)(var5 * this.currentInterpolationStartPoint[0] + var1 * this.interpolatedPos[var2 * 3] + var6 * this.currentInterpolationEndPoint[0] + var3 * this.interpolatedPos[(var2 + 1) * 3]);
-		this.currentPos.y = (int)(var5 * this.currentInterpolationStartPoint[1] + var1 * this.interpolatedPos[var2 * 3 + 1] + var6 * this.currentInterpolationEndPoint[1] + var3 * this.interpolatedPos[(var2 + 1) * 3 + 1]);
-		this.currentPos.z = (int)(var5 * this.currentInterpolationStartPoint[2] + var1 * this.interpolatedPos[var2 * 3 + 2] + var6 * this.currentInterpolationEndPoint[2] + var3 * this.interpolatedPos[(var2 + 1) * 3 + 2]);
+		this.currentPos.x = (int) 
+				(var5 * this.currentInterpolationStartPoint[0] 
+				+ var1 * this.interpolatedPos[var2 * 3]
+		      + var6 * this.currentInterpolationEndPoint[0]
+      		+ var3 * this.interpolatedPos[(var2 + 1) * 3]);
+		this.currentPos.y = (int) 
+				(var5 * this.currentInterpolationStartPoint[1]
+		      + var1 * this.interpolatedPos[var2 * 3 + 1] 
+      		+ var6 * this.currentInterpolationEndPoint[1]
+		      + var3 * this.interpolatedPos[(var2 + 1) * 3 + 1]);
+		this.currentPos.z = (int) 
+				(var5 * this.currentInterpolationStartPoint[2]
+		      + var1 * this.interpolatedPos[var2 * 3 + 2] 
+      		+ var6 * this.currentInterpolationEndPoint[2]
+		      + var3 * this.interpolatedPos[(var2 + 1) * 3 + 2]);
 		this.currentInterpolationStartPoint[0] = this.keyFrames[var2][4];
 		this.currentInterpolationStartPoint[1] = this.keyFrames[var2][5];
 		this.currentInterpolationStartPoint[2] = this.keyFrames[var2][6];
@@ -107,9 +119,21 @@ public final class CameraTrackInterpolator {
 			this.currentInterpolationEndPoint[2] = this.keyFrames[var2 + 1][6];
 		}
 
-		this.currentRot.x = (int)(var5 * this.currentInterpolationStartPoint[0] + var1 * this.interpolatedRot[var2 * 3] + var6 * this.currentInterpolationEndPoint[0] + var3 * this.interpolatedRot[(var2 + 1) * 3]);
-		this.currentRot.y = (int)(var5 * this.currentInterpolationStartPoint[1] + var1 * this.interpolatedRot[var2 * 3 + 1] + var6 * this.currentInterpolationEndPoint[1] + var3 * this.interpolatedRot[(var2 + 1) * 3 + 1]);
-		this.currentRot.z = (int)(var5 * this.currentInterpolationStartPoint[2] + var1 * this.interpolatedRot[var2 * 3 + 2] + var6 * this.currentInterpolationEndPoint[2] + var3 * this.interpolatedRot[(var2 + 1) * 3 + 2]);
+		this.currentRot.x = (int)
+				(var5 * this.currentInterpolationStartPoint[0] 
+				+ var1 * this.interpolatedRot[var2 * 3] 
+				+ var6 * this.currentInterpolationEndPoint[0] 
+				+ var3 * this.interpolatedRot[(var2 + 1) * 3]);
+		this.currentRot.y = (int)
+				(var5 * this.currentInterpolationStartPoint[1] 
+				+ var1 * this.interpolatedRot[var2 * 3 + 1] 
+				+ var6 * this.currentInterpolationEndPoint[1] 
+				+ var3 * this.interpolatedRot[(var2 + 1) * 3 + 1]);
+		this.currentRot.z = (int)
+				(var5 * this.currentInterpolationStartPoint[2] 
+				+ var1 * this.interpolatedRot[var2 * 3 + 2] 
+				+ var6 * this.currentInterpolationEndPoint[2] 
+				+ var3 * this.interpolatedRot[(var2 + 1) * 3 + 2]);
 		this.currentInterpolationStartPoint[0] = this.keyFrames[var2][7];
 		if (var2 == this.keyFrames.length - 1) {
 			this.currentInterpolationEndPoint[0] = this.keyFrames[0][7];
@@ -117,7 +141,11 @@ public final class CameraTrackInterpolator {
 			this.currentInterpolationEndPoint[0] = this.keyFrames[var2 + 1][7];
 		}
 
-		this.currentFoV = (int)(var5 * this.currentInterpolationStartPoint[0] + var1 * this.interpolatedFoV[var2] + var6 * this.currentInterpolationEndPoint[0] + var3 * this.interpolatedFoV[var2 + 1]);
+		this.currentFoV = (int)
+				(var5 * this.currentInterpolationStartPoint[0] 
+				+ var1 * this.interpolatedFoV[var2] 
+				+ var6 * this.currentInterpolationEndPoint[0] 
+				+ var3 * this.interpolatedFoV[var2 + 1]);
 	}
 
 	private void computeLengths() {
@@ -139,7 +167,10 @@ public final class CameraTrackInterpolator {
 					for(int j = 1; j <= var2; ++j) {
 						final float var6 = j * var3;
 						interpolate(var6, i);
-						this.segmentLengths[i] = (float)(this.segmentLengths[i] + Math.sqrt((this.currentPos.x - this.tempPos[0]) * (this.currentPos.x - this.tempPos[0]) + (this.currentPos.y - this.tempPos[1]) * (this.currentPos.y - this.tempPos[1]) + (this.currentPos.z - this.tempPos[2]) * (this.currentPos.z - this.tempPos[2])));
+						this.segmentLengths[i] = (float) (this.segmentLengths[i] + Math.sqrt(
+										(this.currentPos.x - this.tempPos[0]) * (this.currentPos.x - this.tempPos[0]) 
+										+ (this.currentPos.y - this.tempPos[1]) * (this.currentPos.y - this.tempPos[1]) 
+										+ (this.currentPos.z - this.tempPos[2]) * (this.currentPos.z - this.tempPos[2])));
 						this.tempPos[0] = this.currentPos.x;
 						this.tempPos[1] = this.currentPos.y;
 						this.tempPos[2] = this.currentPos.z;

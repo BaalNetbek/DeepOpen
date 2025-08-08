@@ -15,67 +15,63 @@ public final class CameraControllerGroup extends Group {
 		}
 	}
 
-	public final void updateTransform(final boolean forced) {
-		GraphNode node;
-		if (this.controllers != null) {
-			if (this.boundsDirty_ || forced) {
-				if (this.transformDirty_ || forced) {
-					if (this.group != null) {
-						this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
-					} else {
-						this.localTransformation.set(this.compositeTransformation);
-					}
-				}
+   public final void updateTransform(boolean forced) {
+      if (this.controllers != null) {
+         if (this.boundsDirty_ || forced) {
+            if (this.transformDirty_ || forced) {
+               if (this.group != null) {
+                  this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
+               } else {
+                  this.localTransformation.set(this.compositeTransformation);
+               }
+            }
 
-				node = this.head;
+            for (GraphNode node = this.head; node != null; node = node.parent) {
+               node.updateTransform(this.transformDirty_ || forced);
+            }
 
-				while(true) {
-					if (node == null) {
-						this.boundingSphere.setXYZR(this.localTransformation.getPositionX(), this.localTransformation.getPositionY(), this.localTransformation.getPositionZ(), 0);
+            this.boundingSphere
+               .setXYZR(this.localTransformation.getPositionX(), this.localTransformation.getPositionY(), this.localTransformation.getPositionZ(), 0);
 
-						for(node = this.head; node != null; node = node.parent) {
-							this.boundingSphere.merge(node.boundingSphere);
-						}
+            for (GraphNode node = this.head; node != null; node = node.parent) {
+               this.boundingSphere.merge(node.boundingSphere);
+            }
 
-						this.boundsDirty_ = false;
-						this.transformDirty_ = false;
-						break;
-					}
+            this.boundsDirty_ = false;
+            this.transformDirty_ = false;
+         }
 
-					node.updateTransform(this.transformDirty_ || forced);
-					node = node.parent;
-				}
-			}
+         for (int i = this.controllers.length - 1; i >= 0; i--) {
+            if (this.controllers[i].isInLookAtMode()) {
+               this.controllers[i].update();
+            }
+         }
+      }
 
-			for(int var3 = this.controllers.length - 1; var3 >= 0; --var3) {
-				if (this.controllers[var3].isInLookAtMode()) {
-					this.controllers[var3].update();
-				}
-			}
-		}
+      if (this.boundsDirty_ || forced) {
+         if (this.transformDirty_ || forced) {
+            if (this.group != null) {
+               this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
+            } else {
+               this.localTransformation.set(this.compositeTransformation);
+            }
+         }
 
-		if (this.boundsDirty_ || forced) {
-			if (this.transformDirty_ || forced) {
-				if (this.group != null) {
-					this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
-				} else {
-					this.localTransformation.set(this.compositeTransformation);
-				}
-			}
+         for (GraphNode node = this.head; node != null; node = node.parent) {
+            node.updateTransform(this.transformDirty_ || forced);
+         }
 
-			for(node = this.head; node != null; node = node.parent) {
-				node.updateTransform(this.transformDirty_ || forced);
-			}
+			this.boundingSphere.setXYZR(
+					this.localTransformation.getPositionX(),
+					this.localTransformation.getPositionY(),
+			      this.localTransformation.getPositionZ(), 0);
 
-			this.boundingSphere.setXYZR(this.localTransformation.getPositionX(), this.localTransformation.getPositionY(), this.localTransformation.getPositionZ(), 0);
+         for (GraphNode node = this.head; node != null; node = node.parent) {
+            this.boundingSphere.merge(node.boundingSphere);
+         }
 
-			for(node = this.head; node != null; node = node.parent) {
-				this.boundingSphere.merge(node.boundingSphere);
-			}
-
-			this.boundsDirty_ = false;
-			this.transformDirty_ = false;
-		}
-
-	}
+         this.boundsDirty_ = false;
+         this.transformDirty_ = false;
+      }
+   }
 }

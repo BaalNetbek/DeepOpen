@@ -29,15 +29,15 @@ public final class TractorBeam {
         this.vertexPositions = new int[120];
         this.uvs = new int[80];
 
-        for(int var3 = 0; var3 < this.uvs.length; var3 += 8) {
-            this.uvs[var3] = typeUV[var2][0];
-            this.uvs[var3 + 1] = typeUV[var2][1];
-            this.uvs[var3 + 2] = typeUV[var2][2];
-            this.uvs[var3 + 3] = typeUV[var2][1];
-            this.uvs[var3 + 4] = typeUV[var2][2];
-            this.uvs[var3 + 5] = typeUV[var2][3];
-            this.uvs[var3 + 6] = typeUV[var2][0];
-            this.uvs[var3 + 7] = typeUV[var2][3];
+        for(int i = 0; i < this.uvs.length; i += 8) {
+            this.uvs[i] = typeUV[var2][0];
+            this.uvs[i + 1] = typeUV[var2][1];
+            this.uvs[i + 2] = typeUV[var2][2];
+            this.uvs[i + 3] = typeUV[var2][1];
+            this.uvs[i + 4] = typeUV[var2][2];
+            this.uvs[i + 5] = typeUV[var2][3];
+            this.uvs[i + 6] = typeUV[var2][0];
+            this.uvs[i + 7] = typeUV[var2][3];
         }
 
     }

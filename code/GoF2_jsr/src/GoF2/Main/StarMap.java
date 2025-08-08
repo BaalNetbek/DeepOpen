@@ -137,17 +137,17 @@ public final class StarMap {
 		this.galaxyMapGroup = new CameraControllerGroup();
 		this.stars = new AbstractMesh[this.systems.length];
 
-		for(int var8 = 0; var8 < this.stars.length; ++var8) {
-			final int var6 = this.systems[var8].getStarTextureIndex();
-			this.stars[var8] = AEResourceManager.getGeometryResource(6781);
-			this.stars[var8].setAnimationRangeInTime(var6, var6);
-			this.stars[var8].setAnimationMode((byte)1);
-			this.stars[var8].setRenderLayer(2);
-			this.stars[var8].setRadius(5000);
-			this.stars[var8].rotateEuler(0, AEMath.Q_PI_HALF, 0);
-			this.stars[var8].setScale(AEMath.Q_QUARTER, AEMath.Q_QUARTER, AEMath.Q_QUARTER);
-			this.stars[var8].moveTo(-8000 + (int)((100 - this.systems[var8].getPosX()) / 100.0F * 10000.0F), -7000 + (int)((100 - this.systems[var8].getPosY()) / 100.0F * 9000.0F), 2000 + (int)((100 - this.systems[var8].getPosZ()) / 100.0F * 2500.0F));
-			this.galaxyMapGroup.uniqueAppend_(this.stars[var8]);
+		for(int i = 0; i < this.stars.length; ++i) {
+			final int var6 = this.systems[i].getStarTextureIndex();
+			this.stars[i] = AEResourceManager.getGeometryResource(6781);
+			this.stars[i].setAnimationRangeInTime(var6, var6);
+			this.stars[i].setAnimationMode((byte)1);
+			this.stars[i].setRenderLayer(2);
+			this.stars[i].setRadius(5000);
+			this.stars[i].rotateEuler(0, AEMath.Q_PI_HALF, 0);
+			this.stars[i].setScale(AEMath.Q_QUARTER, AEMath.Q_QUARTER, AEMath.Q_QUARTER);
+			this.stars[i].moveTo(-8000 + (int)((100 - this.systems[i].getPosX()) / 100.0F * 10000.0F), -7000 + (int)((100 - this.systems[i].getPosY()) / 100.0F * 9000.0F), 2000 + (int)((100 - this.systems[i].getPosZ()) / 100.0F * 2500.0F));
+			this.galaxyMapGroup.uniqueAppend_(this.stars[i]);
 		}
 
 		if (Status.getCurrentCampaignMission() >= 32 && Status.wormholeSystem >= 0) {
@@ -224,8 +224,8 @@ public final class StarMap {
 		this.fromStation = false;
 		this.destSelected = false;
 
-		for(int var8 = 0; var8 < this.stars.length; ++var8) {
-			this.stars[var8].setDraw(Status.getSystemVisibilities()[var8]);
+		for(int i = 0; i < this.stars.length; ++i) {
+			this.stars[i].setDraw(Status.getSystemVisibilities()[i]);
 		}
 
 		this.pathToDestination_ = null;
@@ -847,8 +847,8 @@ public final class StarMap {
 						if (var2 != null && !this.fromStation) {
 							boolean var4 = false;
 
-							for(int var5 = 0; var5 < var2.length; ++var5) {
-								if (var2[var5] == var3) {
+							for(int i = 0; i < var2.length; ++i) {
+								if (var2[i] == var3) {
 									var4 = true;
 									break;
 								}
@@ -860,8 +860,8 @@ public final class StarMap {
 								var7 = var12 * 2.0F;
 								float var8 = var6 * 2.0F;
 
-								for(int var10 = 0; var10 < 8; ++var10) {
-									GlobalStatus.graphics.setColor(var10 == this.highlightedPathDot ? 0xFFC0D8E9 : 0xFF3A6286);
+								for(int j = 0; j < 8; ++j) {
+									GlobalStatus.graphics.setColor(j == this.highlightedPathDot ? 0xFFC0D8E9 : 0xFF3A6286);
 									GlobalStatus.graphics.fillArc((int)(this.tmpStarScreenPos1.x + var7) - 2, (int)(this.tmpStarScreenPos1.y + var8) - 2, 4, 4, 0, 360);
 									var7 += var12;
 									var8 += var6;
@@ -885,8 +885,8 @@ public final class StarMap {
 					var6 = var11 * 2.0F;
 					var7 = var12 * 2.0F;
 
-					for(int var13 = 0; var13 < 8; ++var13) {
-						GlobalStatus.graphics.setColor((var3 << 3) + var13 == this.highlightedPathDot ? -1 : -4740812);
+					for(int i = 0; i < 8; ++i) {
+						GlobalStatus.graphics.setColor((var3 << 3) + i == this.highlightedPathDot ? -1 : -4740812);
 						GlobalStatus.graphics.fillArc((int)(this.tmpStarScreenPos1.x + var6) - 2, (int)(this.tmpStarScreenPos1.y + var7) - 2, 4, 4, 0, 360);
 						var6 += var11;
 						var7 += var12;
@@ -1064,10 +1064,10 @@ public final class StarMap {
 			}
 		}
 
-		for(int var12 = 0; var12 < this.legendItemIcons.length; ++var12) {
-			if (this.legendItemIcons[var12] != null) {
-				GlobalStatus.graphics.drawImage(this.legendItemIcons[var12], var3, var9 - 1, 20);
-				var3 += this.legendItemIcons[var12].getWidth() + 2;
+		for(int i = 0; i < this.legendItemIcons.length; ++i) {
+			if (this.legendItemIcons[i] != null) {
+				GlobalStatus.graphics.drawImage(this.legendItemIcons[i], var3, var9 - 1, 20);
+				var3 += this.legendItemIcons[i].getWidth() + 2;
 			}
 		}
 
@@ -1109,11 +1109,11 @@ public final class StarMap {
 			GlobalStatus.graphics.drawImage(this.fog, (int)(this.windowFrameWidth + this.scrollX), (int)(this.windowFrameHeight + this.scrollY) + (this.backGroundTileY >> 1), 0);
 			GlobalStatus.graphics.drawImage(this.fog, (int)(this.windowFrameWidth + this.scrollX) + (this.backGroundTileX >> 1), (int)(this.windowFrameHeight + this.scrollY) + (this.backGroundTileY >> 1), 0);
 
-			for(int var1 = 0; var1 < this.stars.length; ++var1) {
-				if (this.stars[var1].isVisible() && (!this.discoverSystemCutscene || this.discoveredSystemId != var1 || this.newSystemAnimTime >= 4000)) {
-					int[] var2 = this.systems[var1].getNeighbourSystems();
+			for(int i = 0; i < this.stars.length; ++i) {
+				if (this.stars[i].isVisible() && (!this.discoverSystemCutscene || this.discoveredSystemId != i || this.newSystemAnimTime >= 4000)) {
+					int[] var2 = this.systems[i].getNeighbourSystems();
 					if (var2 != null) {
-						this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
+						this.starNetCamera_.getScreenPosition(this.stars[i].getLocalPos(this.tmpStarScreenPos2));
 						GlobalStatus.graphics.setColor(Layout.uiOuterTopRightOutlineColor);
 
 						for(var3 = 0; var3 < var2.length; ++var3) {
@@ -1124,7 +1124,7 @@ public final class StarMap {
 						}
 					}
 
-					GlobalStatus.renderer.getCamera().getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
+					GlobalStatus.renderer.getCamera().getScreenPosition(this.stars[i].getLocalPos(this.tmpStarScreenPos2));
 					if (this.tmpStarScreenPos2.z < 0) {
 						GlobalStatus.graphics.drawImage(this.sunGlow, this.tmpStarScreenPos2.x, this.tmpStarScreenPos2.y, 3);
 					}

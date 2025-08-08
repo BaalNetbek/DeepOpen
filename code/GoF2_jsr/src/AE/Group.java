@@ -111,7 +111,7 @@ public class Group extends GraphNode {
 	}
 
 	protected final String getString(String var1, int var2) {
-		for(int var3 = 0; var3 < var2; ++var3) {
+		for(int i = 0; i < var2; ++i) {
 			var1 = var1 + "  ";
 		}
 

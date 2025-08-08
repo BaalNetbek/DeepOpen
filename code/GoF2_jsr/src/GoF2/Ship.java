@@ -177,8 +177,8 @@ public final class Ship {
         this.cargoHold = var1;
         this.cargo = 0;
 
-        for(int var2 = 0; var2 < this.cargoHold.length; ++var2) {
-            this.cargo += this.cargoHold[var2].getAmount();
+        for(int i = 0; i < this.cargoHold.length; ++i) {
+            this.cargo += this.cargoHold[i].getAmount();
         }
 
         refreshValue();
@@ -189,9 +189,9 @@ public final class Ship {
     }
 
     public final Item getFirstEquipmentOfSort(final int var1) {
-        for(int var2 = 0; var2 < this.equipped.length; ++var2) {
-            if (this.equipped[var2] != null && this.equipped[var2].getSort() == var1) {
-                return this.equipped[var2];
+        for(int i = 0; i < this.equipped.length; ++i) {
+            if (this.equipped[i] != null && this.equipped[i].getSort() == var1) {
+                return this.equipped[i];
             }
         }
 
@@ -244,10 +244,10 @@ public final class Ship {
         }
         boolean var3 = false;
 
-        for(int var4 = 0; var4 < this.cargoHold.length; ++var4) {
-            if (this.cargoHold[var4].getIndex() == var1) {
-                this.cargoHold[var4].changeAmount(-var2);
-                if (this.cargoHold[var4].getAmount() <= 0) {
+        for(int i = 0; i < this.cargoHold.length; ++i) {
+            if (this.cargoHold[i].getIndex() == var1) {
+                this.cargoHold[i].changeAmount(-var2);
+                if (this.cargoHold[i].getAmount() <= 0) {
                     var3 = true;
                 }
                 break;
@@ -267,8 +267,8 @@ public final class Ship {
         this.cargoHold = var1;
         this.cargo = 0;
         if (var1 != null) {
-            for(int var2 = 0; var2 < this.cargoHold.length; ++var2) {
-                this.cargo += this.cargoHold[var2].getAmount();
+            for(int i = 0; i < this.cargoHold.length; ++i) {
+                this.cargo += this.cargoHold[i].getAmount();
             }
         }
 
@@ -299,9 +299,9 @@ public final class Ship {
 
     public final void removeEquipment(final Item var1) {
         if (this.equipped != null) {
-            for(int var2 = 0; var2 < this.equipped.length; ++var2) {
-                if (this.equipped[var2] != null && this.equipped[var2].equals(var1)) {
-                    this.equipped[var2] = null;
+            for(int i = 0; i < this.equipped.length; ++i) {
+                if (this.equipped[i] != null && this.equipped[i].equals(var1)) {
+                    this.equipped[i] = null;
                     return;
                 }
             }

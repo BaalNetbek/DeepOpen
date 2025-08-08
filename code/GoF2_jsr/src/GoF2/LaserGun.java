@@ -47,15 +47,15 @@ public final class LaserGun extends AbstractMesh implements AbstractGun {
 		this.vertexPositions = new int[120];
 		this.uvs = new int[80];
 
-		for(int var4 = 0; var4 < this.uvs.length; var4 += 8) {
-			this.uvs[var4] = BEAM_UVs[var2][0];
-			this.uvs[var4 + 1] = BEAM_UVs[var2][1];
-			this.uvs[var4 + 2] = BEAM_UVs[var2][2];
-			this.uvs[var4 + 3] = BEAM_UVs[var2][1];
-			this.uvs[var4 + 4] = BEAM_UVs[var2][2];
-			this.uvs[var4 + 5] = BEAM_UVs[var2][3];
-			this.uvs[var4 + 6] = BEAM_UVs[var2][0];
-			this.uvs[var4 + 7] = BEAM_UVs[var2][3];
+		for(int i = 0; i < this.uvs.length; i += 8) {
+			this.uvs[i] = BEAM_UVs[var2][0];
+			this.uvs[i + 1] = BEAM_UVs[var2][1];
+			this.uvs[i + 2] = BEAM_UVs[var2][2];
+			this.uvs[i + 3] = BEAM_UVs[var2][1];
+			this.uvs[i + 4] = BEAM_UVs[var2][2];
+			this.uvs[i + 5] = BEAM_UVs[var2][3];
+			this.uvs[i + 6] = BEAM_UVs[var2][0];
+			this.uvs[i + 7] = BEAM_UVs[var2][3];
 		}
 
 		this.directionLocked = false;

@@ -218,9 +218,9 @@ public final class Item {
 	}
 
 	public final int getAttribute(final int var1) {
-		for(int var2 = 0; var2 < this.atributesIndexed.length; var2 += 2) {
-			if (this.atributesIndexed[var2] == var1) {
-				return this.atributesIndexed[var2 + 1];
+		for(int i = 0; i < this.atributesIndexed.length; i += 2) {
+			if (this.atributesIndexed[i] == var1) {
+				return this.atributesIndexed[i + 1];
 			}
 		}
 
@@ -265,8 +265,8 @@ public final class Item {
 		if (var2 == null) {
 			return false;
 		}
-		for(int var3 = 0; var3 < var2.length; ++var3) {
-			if (var2[var3].id == var0 && var2[var3].amount >= var1) {
+		for(int i = 0; i < var2.length; ++i) {
+			if (var2[i].id == var0 && var2[i].amount >= var1) {
 				return true;
 			}
 		}
@@ -283,12 +283,12 @@ public final class Item {
 		System.arraycopy(var0, 0, var3, 0, var0.length);
 		int var6 = 0;
 
-		for(int var4 = 0; var4 < var3.length; ++var4) {
-			if (var1 && var3[var4].amount > 0) {
-				var2[var6] = var3[var4].makeItem(var3[var4].amount);
+		for(int i = 0; i < var3.length; ++i) {
+			if (var1 && var3[i].amount > 0) {
+				var2[var6] = var3[i].makeItem(var3[i].amount);
 				++var6;
-			} else if (!var1 && var3[var4].stationAmount > 0) {
-				var2[var6] = var3[var4].makeItem(var3[var4].stationAmount);
+			} else if (!var1 && var3[i].stationAmount > 0) {
+				var2[var6] = var3[i].makeItem(var3[i].stationAmount);
 				++var6;
 			}
 		}
@@ -332,21 +332,21 @@ public final class Item {
 
 			var3 = var2;
 
-			for(int var6 = 0; var6 < var1.length; ++var6) {
+			for(int i = 0; i < var1.length; ++i) {
 				for(var2 = 0; var2 < var4.length; ++var2) {
 					if (var4[var2] == null) {
-						var4[var2] = var1[var6].makeItem(0);
+						var4[var2] = var1[i].makeItem(0);
 						var10000 = var4[var2];
-						var2 = var1[var6].amount;
+						var2 = var1[i].amount;
 						var10000.stationAmount = var2;
 						++var3;
 						break;
 					}
 
-					if (var1[var6].equals(var4[var2])) {
-						var4[var2] = var1[var6].makeItem(var4[var2].amount);
+					if (var1[i].equals(var4[var2])) {
+						var4[var2] = var1[i].makeItem(var4[var2].amount);
 						var10000 = var4[var2];
-						var2 = var1[var6].amount;
+						var2 = var1[i].amount;
 						var10000.stationAmount = var2;
 						break;
 					}
@@ -360,11 +360,11 @@ public final class Item {
 			do {
 				var8 = true;
 
-				for(int var7 = 1; var7 < var0.length; ++var7) {
-					if (var0[var7 - 1].id > var0[var7].id) {
-						final Item var9 = var0[var7 - 1];
-						var0[var7 - 1] = var0[var7];
-						var0[var7] = var9;
+				for(int i = 1; i < var0.length; ++i) {
+					if (var0[i - 1].id > var0[i].id) {
+						final Item var9 = var0[i - 1];
+						var0[i - 1] = var0[i];
+						var0[i] = var9;
 						var8 = false;
 					}
 				}
@@ -383,8 +383,8 @@ public final class Item {
 		} else {
 			final Item[] var2 = new Item[var1.length];
 
-			for(int var3 = 0; var3 < var1.length; ++var3) {
-				var2[var3] = var1[var3];
+			for(int i = 0; i < var1.length; ++i) {
+				var2[i] = var1[i];
 			}
 
 			Item[] var7 = null;

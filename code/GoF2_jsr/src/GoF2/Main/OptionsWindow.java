@@ -78,8 +78,8 @@ public final class OptionsWindow {
 		this.hidden__ = new TextBox(posX + 8, this.optionsListPosY, windowWidth - 16, GlobalStatus.screenHeight - headerHeight - 48, "");
 		final String[] var1 = new String[GameText.helpFull.length];
 
-		for(int var2 = 0; var2 < var1.length; ++var2) {
-			var1[var2] = GlobalStatus.gameText.getText(GameText.helpTitles[var2]);
+		for(int i = 0; i < var1.length; ++i) {
+			var1[i] = GlobalStatus.gameText.getText(GameText.helpTitles[i]);
 		}
 
 		this.manualWindow = new ListWindow_(posX, headerHeight + 2, windowWidth, GlobalStatus.screenHeight - headerHeight - 16 - 10, (String[])null);
@@ -186,8 +186,8 @@ public final class OptionsWindow {
 			}
 			final char[] var2 = {'1', '2'};
 
-			for(int var3 = 0; var3 < var2.length; ++var3) {
-				int var4 = var1.indexOf(String.valueOf(var2[var3]));
+			for(int i = 0; i < var2.length; ++i) {
+				int var4 = var1.indexOf(String.valueOf(var2[i]));
 				if (var4 >= 0) {
 					this.wapMode = Integer.valueOf(String.valueOf(var1.charAt(var4))).intValue();
 				}
@@ -207,8 +207,8 @@ public final class OptionsWindow {
 	private void loadSavePreviews(final GameRecord[] var1) {
 		this.recordWindowWidth = 0;
 		if (var1 != null) {
-			for(int var2 = 0; var2 < var1.length; ++var2) {
-				this.saveInfo = var2 + 1 + ".  " + (var1[var2] == null ? GlobalStatus.gameText.getText(26) : Time.timeToHM(var1[var2].playTime) + (var2 == 3 ? " AUTOSAVE" : " " + var1[var2].stationName));
+			for(int i = 0; i < var1.length; ++i) {
+				this.saveInfo = i + 1 + ".  " + (var1[i] == null ? GlobalStatus.gameText.getText(26) : Time.timeToHM(var1[i].playTime) + (i == 3 ? " AUTOSAVE" : " " + var1[i].stationName));
 				int var3 = Font.getTextWidth(this.saveInfo, 1);
 				if (var3 > this.recordWindowWidth) {
 					this.recordWindowWidth = var3;

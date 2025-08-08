@@ -138,9 +138,9 @@ public final class Status {
     }
 
     private static Station isOnStack(final Station var0) {
-        for(int var1 = 0; var1 < 3; ++var1) {
-            if (lastVisitedStations[var1] != null && lastVisitedStations[var1].equals(var0)) {
-                return lastVisitedStations[var1];
+        for(int i = 0; i < 3; ++i) {
+            if (lastVisitedStations[i] != null && lastVisitedStations[i].equals(var0)) {
+                return lastVisitedStations[i];
             }
         }
 

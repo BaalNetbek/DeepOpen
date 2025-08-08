@@ -179,8 +179,8 @@ public final class ModStation extends IApplicationModule {
 			var5[4] = GlobalStatus.gameText.getText(64);
 			var5[5] = GlobalStatus.gameText.getText(66);
 
-			for(int var7 = 0; var7 < var5.length; ++var7) {
-				var3 = Font.getTextWidth(var5[var7], 1);
+			for(int i = 0; i < var5.length; ++i) {
+				var3 = Font.getTextWidth(var5[i], 1);
 				if (var3 > this.menuWidth) {
 					this.menuWidth = var3 + 20;
 				}
@@ -323,13 +323,13 @@ public final class ModStation extends IApplicationModule {
 						String var3 = GlobalStatus.gameText.getText(92) + "\n";
 						PendingProduct[] var4 = Status.getPendingProducts();
 						if (var4 != null) {
-							for(int var5 = 0; var5 < var4.length; ++var5) {
+							for(int i = 0; i < var4.length; ++i) {
 								PendingProduct var6;
-								if ((var6 = var4[var5]) != null && var6.stationId == Status.getStation().getIndex()) {
+								if ((var6 = var4[i]) != null && var6.stationId == Status.getStation().getIndex()) {
 									final Item var9 = Globals.getItems()[var6.index].makeItem(var6.producedQuantity);
 									Status.getShip().addCargo(var9);
 									var3 = var3 + "\n" + var9.getAmount() + "x " + GlobalStatus.gameText.getText(569 + var9.getIndex());
-									var4[var5] = null;
+									var4[i] = null;
 									this.popupOpen = true;
 								}
 							}
@@ -562,9 +562,9 @@ public final class ModStation extends IApplicationModule {
 						var1 = 0;
 						Item[] var6 = Status.getShip().getCargo();
 						if (var6 != null) {
-							for(int var3 = 0; var3 < var6.length; ++var3) {
-								if (var6[var3].getIndex() >= 132 && var6[var3].getIndex() < 154) {
-									var1 += var6[var3].getAmount();
+							for(int i = 0; i < var6.length; ++i) {
+								if (var6[i].getIndex() >= 132 && var6[i].getIndex() < 154) {
+									var1 += var6[i].getAmount();
 								}
 							}
 						}

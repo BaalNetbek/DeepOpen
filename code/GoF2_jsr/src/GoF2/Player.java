@@ -149,11 +149,11 @@ public final class Player {
 	public final void setEnemies(final Player[] var1) {
 		this.coPlayers = var1;
 		if (this.guns != null) {
-			for(int var3 = 0; var3 < this.guns.length; ++var3) {
-				if (this.guns[var3] != null) {
-					for(int var2 = 0; var2 < this.guns[var3].length; ++var2) {
-						if (this.guns[var3][var2] != null) {
-							this.guns[var3][var2].setTargets(this.coPlayers);
+			for(int i = 0; i < this.guns.length; ++i) {
+				if (this.guns[i] != null) {
+					for(int j = 0; j < this.guns[i].length; ++j) {
+						if (this.guns[i][j] != null) {
+							this.guns[i][j].setTargets(this.coPlayers);
 						}
 					}
 				}
@@ -168,13 +168,13 @@ public final class Player {
 		} else {
 			final Player[] var2 = new Player[this.coPlayers.length + var1.length];
 
-			int var3;
-			for(var3 = 0; var3 < this.coPlayers.length; ++var3) {
-				var2[var3] = this.coPlayers[var3];
+			int i;
+			for(i = 0; i < this.coPlayers.length; ++i) {
+				var2[i] = this.coPlayers[i];
 			}
 
-			for(var3 = 0; var3 < var1.length; ++var3) {
-				var2[this.coPlayers.length + var3] = var1[var3];
+			for(i = 0; i < var1.length; ++i) {
+				var2[this.coPlayers.length + i] = var1[i];
 			}
 
 			setEnemies(var2);
@@ -460,11 +460,11 @@ public final class Player {
 
 	public final void playShootSound__(final int var1, final long var2, final boolean var4, final AEMatrix var5) {
 		if (this.guns != null && var1 < this.guns.length && var1 >= 0 && this.guns[var1] != null) {
-			for(int var6 = 0; var6 < this.guns[var1].length; ++var6) {
-				if (this.guns[var1][var6].timeSinceLastShot > this.guns[var1][var6].reloadTimeMilis && this.guns[var1][var6].shoot(var5, var2, var4)) {
-					this.guns[var1][var6].timeSinceLastShot = 0;
+			for(int i = 0; i < this.guns[var1].length; ++i) {
+				if (this.guns[var1][i].timeSinceLastShot > this.guns[var1][i].reloadTimeMilis && this.guns[var1][i].shoot(var5, var2, var4)) {
+					this.guns[var1][i].timeSinceLastShot = 0;
 					if (this.playShootSound) {
-						switch(this.guns[var1][var6].subType) {
+						switch(this.guns[var1][i].subType) {
 						case Item.ROCKET:
 							GlobalStatus.soundManager.playSfx(8);
 							break;

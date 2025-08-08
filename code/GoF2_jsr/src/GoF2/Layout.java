@@ -47,8 +47,8 @@ public final class Layout {
 		if (backgroundDimmColors == null) {
 			backgroundDimmColors = new int[1024];
 
-			for(int var1 = 0; var1 < backgroundDimmColors.length; ++var1) {
-				backgroundDimmColors[var1] = -2013265920;
+			for(int i = 0; i < backgroundDimmColors.length; ++i) {
+				backgroundDimmColors[i] = 0x88000000;
 			}
 		}
 
@@ -88,9 +88,9 @@ public final class Layout {
 	}
 
 	public static void fillClip() {
-		for(int var0 = 0; var0 < GlobalStatus.screenWidth / 32 + 1; ++var0) {
-			for(int var1 = 0; var1 < GlobalStatus.screenHeight / 32 + 1; ++var1) {
-				GlobalStatus.graphics.drawRGB(backgroundDimmColors, 0, 32, var0 << 5, var1 << 5, 32, 32, true);
+		for(int i = 0; i < GlobalStatus.screenWidth / 32 + 1; ++i) {
+			for(int j = 0; j < GlobalStatus.screenHeight / 32 + 1; ++j) {
+				GlobalStatus.graphics.drawRGB(backgroundDimmColors, 0, 32, i << 5, j << 5, 32, 32, true);
 			}
 		}
 
@@ -127,9 +127,9 @@ public final class Layout {
 		final int var6 = var4.getHeight();
 		GlobalStatus.graphics.setClip(var0, var1, var2, var3);
 
-		for(int var7 = 0; var7 < var2 / var5 + 1; ++var7) {
-			for(int var8 = 0; var8 < var3 / var6 + 1; ++var8) {
-				GlobalStatus.graphics.drawImage(var4, var0 + var7 * var5, var1 + var8 * var6, 20);
+		for(int i = 0; i < var2 / var5 + 1; ++i) {
+			for(int j = 0; j < var3 / var6 + 1; ++j) {
+				GlobalStatus.graphics.drawImage(var4, var0 + i * var5, var1 + j * var6, 20);
 			}
 		}
 
@@ -152,10 +152,10 @@ public final class Layout {
 		int var1 = 0;
 		String var2 = "";
 
-		for(int var3 = var4.length() - 1; var3 >= 0; --var3) {
+		for(int i = var4.length() - 1; i >= 0; --i) {
 			++var1;
-			var2 = var4.charAt(var3) + var2;
-			if (var1 == 3 && var3 > 0) {
+			var2 = var4.charAt(i) + var2;
+			if (var1 == 3 && i > 0) {
 				var1 = 0;
 				var2 = "." + var2;
 			}

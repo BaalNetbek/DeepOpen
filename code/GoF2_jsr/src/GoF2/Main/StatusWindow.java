@@ -18,25 +18,25 @@ public final class StatusWindow extends HangarList {
 		final Image var6 = AEFile.loadImage("/data/interface/medals.png", true);
 		this.sprite = new Sprite(var6, 31, 15);
 		setRowHeight(17);
-		final int[] var7 = Achievements.getMedals();
-		int var8 = 0;
-		if (var7 != null) {
-			for(int var3 = 0; var3 < var7.length; ++var3) {
-				if (var7[var3] > 0) {
-					++var8;
+		final int[] medals = Achievements.getMedals();
+		int achievedCnt = 0;
+		if (medals != null) {
+			for(int i = 0; i < medals.length; ++i) {
+				if (medals[i] > 0) {
+					++achievedCnt;
 				}
 			}
 
-			final ListItem[] var9 = new ListItem[var7.length];
+			final ListItem[] var9 = new ListItem[medals.length];
 
-			for(int var4 = 0; var4 < var7.length; ++var4) {
-				var9[var4] = new ListItem(var4, var7[var4]);
+			for(int i = 0; i < medals.length; ++i) {
+				var9[i] = new ListItem(i, medals[i]);
 			}
 
 			super.setEntries(1, var9);
 		}
 
-		this.unused_2_ = GlobalStatus.gameText.getText(63) + ": " + var8 + "/" + Achievements.VALUES.length;
+		this.unused_2_ = GlobalStatus.gameText.getText(63) + ": " + achievedCnt + "/" + Achievements.VALUES.length;
 	}
 
 	public final void draw() {

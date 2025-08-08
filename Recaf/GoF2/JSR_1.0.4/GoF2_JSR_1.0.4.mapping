@@ -1584,8 +1584,8 @@ ah.a Lah; parent
 ah.a Z draw
 ah.b Z transformDirty_
 ah.c Z boundsDirty_
-ah.b Lcl; globalTransform
-ah.c Lcl; tempTransform
+ah.b Lcl; compositeTransformation
+ah.c Lcl; localTransformation
 ah.a Lam; boundingSphere
 ah.c I resourceId
 ah.a()I getID

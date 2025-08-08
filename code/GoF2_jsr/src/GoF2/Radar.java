@@ -179,8 +179,8 @@ public final class Radar {
             this.draw = true;
             this.asteroidsInFront = new int[5];
 
-            for(int var11 = 0; var11 < this.asteroidsInFront.length; ++var11) {
-                this.asteroidsInFront[var11] = -1;
+            for(int i = 0; i < this.asteroidsInFront.length; ++i) {
+                this.asteroidsInFront[i] = -1;
             }
 
         } catch (final Exception var4) {

@@ -157,12 +157,12 @@ public abstract class KIPlayer {
 		this.waste = null;
 		Item var2 = null;
 
-		for(int var3 = 0; var3 < this.cargo.length; var3 += 2) {
-			if (this.cargo[var3 + 1] > 0) {
-				final int var4 = AEMath.max(1, GlobalStatus.random.nextInt(this.cargo[var3 + 1]));
-				var2 = Globals.getItems()[this.cargo[var3]].makeItem(var4);
+		for(int i = 0; i < this.cargo.length; i += 2) {
+			if (this.cargo[i + 1] > 0) {
+				final int var4 = AEMath.max(1, GlobalStatus.random.nextInt(this.cargo[i + 1]));
+				var2 = Globals.getItems()[this.cargo[i]].makeItem(var4);
 				final int[] var10000 = this.cargo;
-				var10000[var3 + 1] -= var4;
+				var10000[i + 1] -= var4;
 				break;
 			}
 		}

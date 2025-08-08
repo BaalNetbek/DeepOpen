@@ -17,8 +17,8 @@ public final class Galaxy {
 		if (Status.getPlayingTime() == 0L) {
 			final boolean[] var2 = Status.getSystemVisibilities();
 
-			for(int var3 = 0; var3 < var2.length; ++var3) {
-				var2[var3] = var1[var3].isVisibleByDeafult();
+			for(int i = 0; i < var2.length; ++i) {
+				var2[i] = var1[i].isVisibleByDeafult();
 			}
 		}
 

@@ -212,15 +212,15 @@ public final class Hud {
 
 		GlobalStatus.graphics.setClip(0, var2 + 25, GlobalStatus.screenWidth, var2 * 2);
 
-		for(int var3 = 0; var3 < 4; ++var3) {
-			ListItem var4 = this.logMessages[var3];
+		for(int i = 0; i < 4; ++i) {
+			ListItem var4 = this.logMessages[i];
 			if (var4 != null) {
 				boolean var5;
 				if (var5 = var4.items != null) {
-					ImageFactory.drawItemFrameless(var4.itemId, var4.items, (GlobalStatus.screenWidth >> 1) + ImageFactory.faceWidth / 2 - (Font.getTextWidth(var4.label, 0) >> 1) - 5, var1 + var3 * var2 - 2, 24);
+					ImageFactory.drawItemFrameless(var4.itemId, var4.items, (GlobalStatus.screenWidth >> 1) + ImageFactory.faceWidth / 2 - (Font.getTextWidth(var4.label, 0) >> 1) - 5, var1 + i * var2 - 2, 24);
 				}
 
-				Font.drawString(var4.label, (GlobalStatus.screenWidth >> 1) + (var5 ? ImageFactory.faceWidth / 2 - 5 : 0), var1 + var3 * var2, var3 != 1 && (var3 != 2 || this.queueScroll != var2) ? 1 : var4.showCountItemType == 1 ? 2 : 0, 24);
+				Font.drawString(var4.label, (GlobalStatus.screenWidth >> 1) + (var5 ? ImageFactory.faceWidth / 2 - 5 : 0), var1 + i * var2, i != 1 && (i != 2 || this.queueScroll != var2) ? 1 : var4.showCountItemType == 1 ? 2 : 0, 24);
 			}
 		}
 

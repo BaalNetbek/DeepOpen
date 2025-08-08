@@ -141,8 +141,8 @@ public final class GameText {
 	}
 
 	public static void init() {
-		for(int var0 = 0; var0 < categories_.length; ++var0) {
-			categories_[var0] = new String[catrogoryLengths_[var0]];
+		for(int i = 0; i < categories_.length; ++i) {
+			categories_[i] = new String[catrogoryLengths_[i]];
 		}
 
 		ships = new String[22];

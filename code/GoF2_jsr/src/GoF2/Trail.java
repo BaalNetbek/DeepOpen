@@ -33,15 +33,15 @@ public final class Trail {
         int var5 = UV[var3 + 3];
         this.uvs = new int[var2 * 8];
 
-        for(var2 = 0; var2 < this.uvs.length; var2 += 8) {
-            this.uvs[var2] = UV[var3];
-            this.uvs[var2 + 1] = var4;
-            this.uvs[var2 + 2] = UV[var3 + 2];
-            this.uvs[var2 + 3] = var4;
-            this.uvs[var2 + 4] = UV[var3 + 2];
-            this.uvs[var2 + 5] = var5;
-            this.uvs[var2 + 6] = UV[var3];
-            this.uvs[var2 + 7] = var5;
+        for(int i = 0; i < this.uvs.length; i += 8) {
+            this.uvs[i] = UV[var3];
+            this.uvs[i + 1] = var4;
+            this.uvs[i + 2] = UV[var3 + 2];
+            this.uvs[i + 3] = var4;
+            this.uvs[i + 4] = UV[var3 + 2];
+            this.uvs[i + 5] = var5;
+            this.uvs[i + 6] = UV[var3];
+            this.uvs[i + 7] = var5;
             if (var1 == 1) {
                 --var4;
                 --var5;
@@ -108,10 +108,10 @@ public final class Trail {
     }
 
     public final void reset(final AEVector3D var1) {
-        for(int var2 = 0; var2 < this.tempVerts.length; var2 += 3) {
-            this.tempVerts[var2] = var1.x;
-            this.tempVerts[var2 + 1] = var1.y;
-            this.tempVerts[var2 + 2] = var1.z;
+        for(int i = 0; i < this.tempVerts.length; i += 3) {
+            this.tempVerts[i] = var1.x;
+            this.tempVerts[i + 1] = var1.y;
+            this.tempVerts[i + 2] = var1.z;
         }
 
         this.sourcePos.set(var1);

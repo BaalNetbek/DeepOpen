@@ -27,13 +27,13 @@ public final class JSRTexture extends ITexture {
 		if (var1 != null) {
 			this.textures = new Texture2D[var1.length];
 
-			for(int var2 = 0; var2 < var1.length; ++var2) {
+			for(int i = 0; i < var1.length; ++i) {
 				try {
-					final Image var3 = AEFile.loadImage(var1[var2] + ".png", false);
+					final Image var3 = AEFile.loadImage(var1[i] + ".png", false);
 					final Image2D var5 = new Image2D(100, var3);
-					this.textures[var2] = new Texture2D(var5);
-					this.textures[var2].setBlending(227);
-					this.textures[var2].setWrapping(241, 241);
+					this.textures[i] = new Texture2D(var5);
+					this.textures[i].setBlending(227);
+					this.textures[i].setWrapping(241, 241);
 				} catch (final Exception var4) {
 					this.textures = null;
 				}
@@ -48,8 +48,8 @@ public final class JSRTexture extends ITexture {
 
 	public final void OnRelease() {
 		if (this.textures != null) {
-			for(int var1 = 0; var1 < this.textures.length; ++var1) {
-				this.textures[var1] = null;
+			for(int i = 0; i < this.textures.length; ++i) {
+				this.textures[i] = null;
 			}
 
 			this.textures = null;

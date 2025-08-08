@@ -7,6 +7,7 @@ import AE.BoundingVolume;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
+import AE.PaintCanvas.AEGraphics3D;
 import AE.Math.AEMatrix;
 
 public final class PlayerStation extends PlayerStaticFar {
@@ -141,21 +142,21 @@ public final class PlayerStation extends PlayerStaticFar {
 
     public final void update(final long var1) {
         if (this.stationParts != null) {
-            for(int var3 = 0; var3 < this.stationParts.length; ++var3) {
+            for(int i = 0; i < this.stationParts.length; ++i) {
                 this.tempVector_ = GlobalStatus.renderer.getCamera().getLocalPos(this.tempVector_);
-                this.position.set(this.partPositions[var3 * 3], this.partPositions[var3 * 3 + 1], this.partPositions[var3 * 3 + 2]);
+                this.position.set(this.partPositions[i * 3], this.partPositions[i * 3 + 1], this.partPositions[i * 3 + 2]);
                 this.position.subtract(this.tempVector_, virtDistToCam_);
                 int var2 = virtDistToCam_.getLength();
                 if (var2 > AEGraphics3D.CLAMP_TOP) {
                     virtDistToCam_.normalize();
                     virtDistToCam_.scale(AEGraphics3D.CLAMP_TOP);
                     virtDistToCam_.add(this.tempVector_);
-                    this.stationParts[var3].moveTo(virtDistToCam_);
+                    this.stationParts[i].moveTo(virtDistToCam_);
                     var2 = (int)((float)AEGraphics3D.CLAMP_TOP / var2 * AEMath.TO_Q);
-                    this.stationParts[var3].setScale(var2, var2, var2);
+                    this.stationParts[i].setScale(var2, var2, var2);
                 } else {
-                    this.stationParts[var3].setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);
-                    this.stationParts[var3].moveTo(this.partPositions[var3 * 3], this.partPositions[var3 * 3 + 1], this.partPositions[var3 * 3 + 2]);
+                    this.stationParts[i].setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);
+                    this.stationParts[i].moveTo(this.partPositions[i * 3], this.partPositions[i * 3 + 1], this.partPositions[i * 3 + 2]);
                 }
             }
 
@@ -164,8 +165,8 @@ public final class PlayerStation extends PlayerStaticFar {
 
     public final void appendToRender() {
         if (this.stationParts != null) {
-            for(int var1 = 0; var1 < this.stationParts.length; ++var1) {
-                GlobalStatus.renderer.drawNodeInVF(this.stationParts[var1]);
+            for(int i = 0; i < this.stationParts.length; ++i) {
+                GlobalStatus.renderer.drawNodeInVF(this.stationParts[i]);
             }
 
         }
@@ -185,9 +186,9 @@ public final class PlayerStation extends PlayerStaticFar {
         final int var3 = var1.y;
         final int var2 = var1.x;
         if (var2 < this.maxPartDeflection && var2 > -this.maxPartDeflection && var3 < this.maxPartDeflection && var3 > -this.maxPartDeflection && var4 < this.maxPartDeflection && var4 > -this.maxPartDeflection && this.boundingBoxes != null) {
-            for(int var5 = 0; var5 < this.boundingBoxes.length; ++var5) {
-                if (this.boundingBoxes[var5].isPointInBounding(var2, var3, var4)) {
-                    this.collidingPart = var5;
+            for(int i = 0; i < this.boundingBoxes.length; ++i) {
+                if (this.boundingBoxes[i].isPointInBounding(var2, var3, var4)) {
+                    this.collidingPart = i;
                     return true;
                 }
             }
@@ -202,10 +203,10 @@ public final class PlayerStation extends PlayerStaticFar {
 
     public final void OnRelease() {
         if (this.stationParts != null) {
-            for(int var1 = 0; var1 < this.stationParts.length; ++var1) {
-                if (this.stationParts[var1] != null) {
-                    this.stationParts[var1].OnRelease();
-                    this.stationParts[var1] = null;
+            for(int i = 0; i < this.stationParts.length; ++i) {
+                if (this.stationParts[i] != null) {
+                    this.stationParts[i].OnRelease();
+                    this.stationParts[i] = null;
                 }
             }
         }

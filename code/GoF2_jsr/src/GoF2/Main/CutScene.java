@@ -214,9 +214,9 @@ public final class CutScene extends IApplicationModule {
 					this.lifeTime = 0L;
 					final KIPlayer[] var5 = this.level.getEnemies();
 
-					for(int var3 = 0; var3 < Status.getStation().getBarAgents().length; ++var3) {
-						if (GlobalStatus.random.nextInt(100) < 10 && !var5[var3].mainMesh_.hasAnimation()) {
-							var5[var3].mainMesh_.setAnimationMode((byte)1);
+					for(int i = 0; i < Status.getStation().getBarAgents().length; ++i) {
+						if (GlobalStatus.random.nextInt(100) < 10 && !var5[i].mainMesh_.hasAnimation()) {
+							var5[i].mainMesh_.setAnimationMode((byte)1);
 						}
 					}
 				}

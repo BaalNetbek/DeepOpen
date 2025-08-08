@@ -33,9 +33,9 @@ public final class AutoPilotList {
 
 		this.width = 0;
 
-		for(int var3 = 0; var3 < this.rows.length; ++var3) {
+		for(int i = 0; i < this.rows.length; ++i) {
 			int var2;
-			if (this.rows[var3] != null && (var2 = Font.getTextWidth(this.rows[var3], 0)) + 19 > this.width) {
+			if (this.rows[i] != null && (var2 = Font.getTextWidth(this.rows[i], 0)) + 19 > this.width) {
 				this.width = var2 + 19;
 			}
 		}
@@ -83,9 +83,9 @@ public final class AutoPilotList {
 		Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(293), this.posX, this.posY, this.width, 12 + (this.rowsNum + 1) * 12 - 5);
 		int var1 = 0;
 
-		for(int var2 = 0; var2 < this.rows.length; ++var2) {
-			if (this.rows[var2] != null) {
-				Layout.drawTextItem(this.rows[var2], this.posX, this.posY + 14 + var1 * 12, this.width, this.selection == var2);
+		for(int i = 0; i < this.rows.length; ++i) {
+			if (this.rows[i] != null) {
+				Layout.drawTextItem(this.rows[i], this.posX, this.posY + 14 + var1 * 12, this.width, this.selection == i);
 				var1++;
 			}
 		}

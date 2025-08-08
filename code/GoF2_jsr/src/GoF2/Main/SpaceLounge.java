@@ -58,10 +58,10 @@ public final class SpaceLounge {
 		init();
 		int var1 = -1;
 
-		for(int var2 = 0; var2 < this.agents.length; ++var2) {
+		for(int i = 0; i < this.agents.length; ++i) {
 			Agent var3;
-			if (((var3 = this.agents[var2]).getType() == 6 || var3.getType() == 0 && var3.getMission() != null && var3.getMission().getType() == 12) && var3.hasAcceptedOffer()) {
-				var1 = var2;
+			if (((var3 = this.agents[i]).getType() == 6 || var3.getType() == 0 && var3.getMission() != null && var3.getMission().getType() == 12) && var3.hasAcceptedOffer()) {
+				var1 = i;
 				break;
 			}
 		}
@@ -270,9 +270,9 @@ public final class SpaceLounge {
 								} else {
 									Item[] var12 = Status.getShip().getCargo();
 									if (var12 != null) {
-										for(int var14 = 0; var14 < var12.length; ++var14) {
-											if (var12[var14].setUnsaleable() && var12[var14].getIndex() == 116) {
-												Status.getShip().removeCargo(var12[var14]);
+										for(int i = 0; i < var12.length; ++i) {
+											if (var12[i].setUnsaleable() && var12[i].getIndex() == 116) {
+												Status.getShip().removeCargo(var12[i]);
 												this.hangarUpdate = true;
 												break;
 											}

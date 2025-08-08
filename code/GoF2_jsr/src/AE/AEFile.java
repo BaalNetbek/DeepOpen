@@ -27,9 +27,9 @@ public final class AEFile {
 			final int var9 = var5.length / var3;
 			final int var10 = var6.length / var8;
 
-			for(int var11 = 0; var11 < var8; ++var11) {
-				for(int var12 = 0; var12 < var10; ++var12) {
-					float var13 = (float)var11 * (float)(var7 - 1) / (var8 - 1);
+			for(int i = 0; i < var8; ++i) {
+				for(int j = 0; j < var10; ++j) {
+					float var13 = (float)i * (float)(var7 - 1) / (var8 - 1);
 					int var19;
 					if (var13 - Math.floor(var13) > 0.5D) {
 						var19 = (int)Math.ceil(var13);
@@ -37,7 +37,7 @@ public final class AEFile {
 						var19 = (int)Math.floor(var13);
 					}
 
-					var13 = (float)var12 * (float)(var9 - 1) / (var10 - 1);
+					var13 = (float)j * (float)(var9 - 1) / (var10 - 1);
 					int var20;
 					if (var13 - Math.floor(var13) > 0.5D) {
 						var20 = (int)Math.ceil(var13);
@@ -45,7 +45,7 @@ public final class AEFile {
 						var20 = (int)Math.floor(var13);
 					}
 
-					var6[var11 + var12 * var8] = var5[var19 + var20 * var7];
+					var6[i + j * var8] = var5[var19 + var20 * var7];
 				}
 			}
 
@@ -79,10 +79,10 @@ public final class AEFile {
 					var10 = 100 + var11 % 50;
 				}
 
-				for(int var4 = 0; var4 < var10; ++var4) {
-					final byte var5 = var3[var4];
-					var3[var4] = var3[var11 - var4 - 1];
-					var3[var11 - var4 - 1] = var5;
+				for(int i = 0; i < var10; ++i) {
+					final byte var5 = var3[i];
+					var3[i] = var3[var11 - i - 1];
+					var3[var11 - i - 1] = var5;
 				}
 
 				var2 = Image.createImage(var3, 0, var11);

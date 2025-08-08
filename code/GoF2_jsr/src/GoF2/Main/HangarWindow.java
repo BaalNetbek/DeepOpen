@@ -48,9 +48,9 @@ public final class HangarWindow {
 		this.list.initShopTab(var1);
 		this.list.initBlueprintTab(Status.getBluePrints());
 		if (var1 != null) {
-			for(int var2 = 0; var2 < var1.length; ++var2) {
+			for(int i = 0; i < var1.length; ++i) {
 				Item var3;
-				final int var4 = (var3 = var1[var2]).getSinglePrice();
+				final int var4 = (var3 = var1[i]).getSinglePrice();
 				final int var5 = var3.getIndex();
 				if (var4 > Status.highestItemPrices[var5] || Status.highestItemPrices[var5] == 0) {
 					Status.highestItemPrices[var5] = var4;

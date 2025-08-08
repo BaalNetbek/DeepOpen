@@ -91,7 +91,7 @@ public final class ImageFont {
 			if (sym == -1) {
 				sym = charToSymbolIdx('.');
 
-				for(int var5 = 0; var5 < 3; ++var5) {
+				for(int j = 0; j < 3; ++j) {
 					width += this.widths[sym] + this.spacingX;
 				}
 			} else {

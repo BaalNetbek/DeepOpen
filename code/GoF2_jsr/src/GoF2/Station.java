@@ -85,9 +85,9 @@ public final class Station {
         if (this.hangarItems == null) {
             this.hangarItems = new Item[]{var1};
         } else {
-            for(int var2 = 0; var2 < this.hangarItems.length; ++var2) {
-                if (this.hangarItems[var2].equals(var1)) {
-                    this.hangarItems[var2].changeAmount(var1.getAmount());
+            for(int i = 0; i < this.hangarItems.length; ++i) {
+                if (this.hangarItems[i].equals(var1)) {
+                    this.hangarItems[i].changeAmount(var1.getAmount());
                     return;
                 }
             }

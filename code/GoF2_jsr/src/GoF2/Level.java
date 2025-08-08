@@ -1417,13 +1417,13 @@ public final class Level {
 			}
 
 			if (this.ships != null) {
-				for(int var7 = 0; var7 < this.ships.length; ++var7) {
-					var2 = this.ships[var7].race;
-					final boolean var3 = this.ships[var7].isWingman();
+				for(int i = 0; i < this.ships.length; ++i) {
+					var2 = this.ships[i].race;
+					final boolean var3 = this.ships[i].isWingman();
 					int var4 = 0;
 
-					for(int var5 = 0; var5 < this.ships.length; ++var5) {
-						if (this.ships[var5] != this.ships[var7] && (this.ships[var5].race != var2 || var3)) {
+					for(int j = 0; j < this.ships.length; ++j) {
+						if (this.ships[j] != this.ships[i] && (this.ships[j].race != var2 || var3)) {
 							++var4;
 						}
 					}
@@ -1431,7 +1431,7 @@ public final class Level {
 					Player[] var9 = new Player[(this.ego == null ? 0 : 1) + var4];
 					int var6;
 					Mission var8;
-					if (((var8 = Status.getMission()).getType() != 12 || var7 % 2 != 1) && var8.getType() != 2
+					if (((var8 = Status.getMission()).getType() != 12 || i % 2 != 1) && var8.getType() != 2
 					      && var8.getType() != 9 && (!var8.isCampaignMission() || Status.getCurrentCampaignMission() != 40)
 					      && (!var8.isCampaignMission() || Status.getCurrentCampaignMission() != 41)) {
 						var4 = 0;
@@ -1441,19 +1441,19 @@ public final class Level {
 						}
 
 						for(var6 = 0; var6 < this.ships.length; ++var6) {
-							if (this.ships[var6] != this.ships[var7] && (this.ships[var6].race != var2 || var3)) {
+							if (this.ships[var6] != this.ships[i] && (this.ships[var6].race != var2 || var3)) {
 								var9[var4] = this.ships[var6].player;
 								var4++;
 							}
 						}
 					} else {
-						if (this.ships[var7].player.isAlwaysFriend()) {
+						if (this.ships[i].player.isAlwaysFriend()) {
 							var9 = new Player[1];
 						} else {
 							var4 = 0;
 
 							for(var6 = 0; var6 < this.ships.length; ++var6) {
-								if (this.ships[var6] != this.ships[var7] && (this.ships[var6].race != var2 || var3)) {
+								if (this.ships[var6] != this.ships[i] && (this.ships[var6].race != var2 || var3)) {
 									var9[var4] = this.ships[var6].player;
 									var4++;
 								}
@@ -1463,7 +1463,7 @@ public final class Level {
 						var9[var9.length - 1] = this.ego.player;
 					}
 
-					this.ships[var7].player.addEnemies(var9);
+					this.ships[i].player.addEnemies(var9);
 				}
 			}
 
@@ -1766,9 +1766,9 @@ public final class Level {
 			final String[] var3 = new String[Status.wingmenNames.length - 1];
 			int var1 = 0;
 
-			for(int var2 = 0; var2 < Status.wingmenNames.length; ++var2) {
-				if (Status.wingmenNames[var2] != null) {
-					var3[var1] = Status.wingmenNames[var2];
+			for(int i = 0; i < Status.wingmenNames.length; ++i) {
+				if (Status.wingmenNames[i] != null) {
+					var3[var1] = Status.wingmenNames[i];
 					var1++;
 				}
 			}
@@ -1877,9 +1877,9 @@ public final class Level {
 	public final void renderRockets_() {
 		this.starSystem.render2D();
 		if (this.egoGuns != null) {
-			for(int var1 = 0; var1 < this.egoGuns.length; ++var1) {
-				if (this.egoGuns[var1] instanceof RocketGun) {
-					((RocketGun)this.egoGuns[var1]).renderRocket_();
+			for(int i = 0; i < this.egoGuns.length; ++i) {
+				if (this.egoGuns[i] instanceof RocketGun) {
+					((RocketGun)this.egoGuns[i]).renderRocket_();
 				}
 			}
 		}
@@ -2096,9 +2096,9 @@ public final class Level {
 
 	public final void alarmAllFriends(final int race, final boolean bigDamage) {
 		if (this.ships != null) {
-			for(int var3 = 0; var3 < this.ships.length; ++var3) {
-				if (this.ships[var3].race == race) {
-					this.ships[var3].player.setAlwaysEnemy(true);
+			for(int i = 0; i < this.ships.length; ++i) {
+				if (this.ships[i].race == race) {
+					this.ships[i].player.setAlwaysEnemy(true);
 				}
 			}
 		}

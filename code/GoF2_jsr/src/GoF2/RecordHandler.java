@@ -254,8 +254,8 @@ public final class RecordHandler {
                     if (var11 > 0) {
                         var31 = new Agent[var11];
 
-                        for(int var32 = 0; var32 < var11; ++var32) {
-                            var31[var32] = readAgent(dis);
+                        for(int i = 0; i < var11; ++i) {
+                            var31[i] = readAgent(dis);
                         }
 
                         var18.setBarAgents(var31);
@@ -671,8 +671,8 @@ public final class RecordHandler {
 
             final int[] var11 = Status.getStanding().getStanding();
 
-            for(int var13 = 0; var13 < var11.length; ++var13) {
-                dos.writeInt(var11[var13]);
+            for(int i = 0; i < var11.length; ++i) {
+                dos.writeInt(var11[i]);
             }
 
             dos.writeInt(1);
@@ -835,8 +835,8 @@ public final class RecordHandler {
         if (var2.getImageParts() != null) {
             var1.writeInt(var2.getImageParts().length);
 
-            for(int var3 = 0; var3 < var2.getImageParts().length; ++var3) {
-                var1.writeByte(var2.getImageParts()[var3]);
+            for(int i = 0; i < var2.getImageParts().length; ++i) {
+                var1.writeByte(var2.getImageParts()[i]);
             }
         } else {
             var1.writeInt(-1);
@@ -980,8 +980,8 @@ public final class RecordHandler {
             if (mission.getClientImage() != null) {
                 dos.writeInt(mission.getClientImage().length);
 
-                for(int var3 = 0; var3 < mission.getClientImage().length; ++var3) {
-                    dos.writeByte(mission.getClientImage()[var3]);
+                for(int i = 0; i < mission.getClientImage().length; ++i) {
+                    dos.writeByte(mission.getClientImage()[i]);
                 }
             } else {
                 dos.writeInt(-1);
