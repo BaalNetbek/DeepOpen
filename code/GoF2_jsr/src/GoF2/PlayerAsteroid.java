@@ -158,8 +158,8 @@ public final class PlayerAsteroid extends KIPlayer {
 						tempVector1_.scale(AEGraphics3D.CLAMP_BOT);
 						tempVector1_.add(this.tempVector_);
 						this.mainMesh_.moveTo(tempVector1_);
-						float var2 = AEGraphics3D.CLAMP_BOT;
-						var4 = (int)((var2 / var4) * this.baseScaleX);
+						float var2 = AEGraphics3D.CLAMP_BOT / var4;
+						var4 = (int)(var2 * this.baseScaleX);
 						var7 = (int)(var2 * this.baseScaleY);
 						var6 = (int)(var2 * this.baseScaleZ);
 						this.mainMesh_.setScale(var4, var7, var6);
