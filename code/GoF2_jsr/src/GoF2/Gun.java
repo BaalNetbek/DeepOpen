@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;

@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 /**
  * Stores data of BluePrint product.
  * @author fishlabs

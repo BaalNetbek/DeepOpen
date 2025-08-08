@@ -1,11 +1,11 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import AE.GlobalStatus;
-import GoF2.Item;
-import GoF2.Layout;
-import GoF2.ListItem;
-import GoF2.Popup;
-import GoF2.Status;
+import GOF2.Item;
+import GOF2.Layout;
+import GOF2.ListItem;
+import GOF2.Popup;
+import GOF2.Status;
 
 public final class HangarWindow {
 	private static int initTab = 1;

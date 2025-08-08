@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 
 public final class RadioMessage {
     private Radio radio;

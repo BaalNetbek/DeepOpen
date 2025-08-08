@@ -1,9 +1,9 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import AE.GlobalStatus;
 import AE.IApplicationModule;
-import GoF2.FileRead;
-import GoF2.Status;
+import GOF2.FileRead;
+import GOF2.Status;
 
 public final class ModMainMenu extends IApplicationModule {
 	private long frameStartTime;

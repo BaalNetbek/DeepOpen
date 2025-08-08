@@ -4,8 +4,8 @@ import javax.microedition.lcdui.Image;
 
 import AE.AEFile;
 import AE.GlobalStatus;
-import GoF2.Globals;
-import GoF2.Layout;
+import GOF2.Globals;
+import GOF2.Layout;
 
 public final class ImageFactory {
 	public static int itemFrameWidth = 31;

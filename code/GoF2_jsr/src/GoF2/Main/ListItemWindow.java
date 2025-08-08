@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -9,17 +9,17 @@ import AE.Group;
 import AE.PaintCanvas.AEGraphics3D;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
+import GOF2.FileRead;
+import GOF2.GameText;
+import GOF2.Globals;
+import GOF2.Item;
+import GOF2.Layout;
+import GOF2.ListItem;
+import GOF2.Ship;
+import GOF2.SolarSystem;
+import GOF2.Status;
+import GOF2.TextBox;
 import AE.Math.AEMath;
-import GoF2.FileRead;
-import GoF2.GameText;
-import GoF2.Globals;
-import GoF2.Item;
-import GoF2.Layout;
-import GoF2.ListItem;
-import GoF2.Ship;
-import GoF2.SolarSystem;
-import GoF2.Status;
-import GoF2.TextBox;
 
 public final class ListItemWindow {
 	private final short[] descriptions = {

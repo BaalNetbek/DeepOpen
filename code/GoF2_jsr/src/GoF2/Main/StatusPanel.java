@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
@@ -8,13 +8,13 @@ import AE.GlobalStatus;
 import AE.Time;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
-import GoF2.Achievements;
-import GoF2.Globals;
-import GoF2.Layout;
-import GoF2.ListItem;
-import GoF2.Popup;
-import GoF2.Standing;
-import GoF2.Status;
+import GOF2.Achievements;
+import GOF2.Globals;
+import GOF2.Layout;
+import GOF2.ListItem;
+import GOF2.Popup;
+import GOF2.Standing;
+import GOF2.Status;
 
 public final class StatusPanel {
 	private boolean infoOpen;

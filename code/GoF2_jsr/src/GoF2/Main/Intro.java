@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Image;
 
@@ -6,8 +6,8 @@ import AE.AEFile;
 import AE.GlobalStatus;
 import AE.IApplicationModule;
 import AE.PaintCanvas.Font;
-import GoF2.Layout;
-import GoF2.LoadingScreen;
+import GOF2.Layout;
+import GOF2.LoadingScreen;
 
 public final class Intro extends IApplicationModule {
 	private Image logoFL;

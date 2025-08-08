@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 
 /**
  * Standing stands for 'reputation'. 

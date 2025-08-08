@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
@@ -6,9 +6,9 @@ import javax.microedition.lcdui.game.Sprite;
 import AE.AEFile;
 import AE.GlobalStatus;
 import AE.PaintCanvas.Font;
-import GoF2.Achievements;
-import GoF2.Layout;
-import GoF2.ListItem;
+import GOF2.Achievements;
+import GOF2.Layout;
+import GOF2.ListItem;
 
 public final class StatusWindow extends HangarList {
 	private final Sprite sprite;

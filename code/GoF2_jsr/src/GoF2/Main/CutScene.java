@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import AE.AECamera;
 import AE.CameraControllerGroup;
@@ -11,12 +11,12 @@ import AE.TargetFollowCamera;
 import AE.Math.AEMath;
 import AE.Math.AEMatrix;
 import AE.PaintCanvas.AEGraphics3D;
-import GoF2.Globals;
-import GoF2.KIPlayer;
-import GoF2.Level;
-import GoF2.PlayerEgo;
-import GoF2.PlayerFighter;
-import GoF2.Status;
+import GOF2.Globals;
+import GOF2.KIPlayer;
+import GOF2.Level;
+import GOF2.PlayerEgo;
+import GOF2.PlayerFighter;
+import GOF2.Status;
 
 public final class CutScene extends IApplicationModule {
 	private long renderAtTime;

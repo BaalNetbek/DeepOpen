@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Image;
 
@@ -7,13 +7,13 @@ import AE.GlobalStatus;
 import AE.Math.AEMath;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
-import GoF2.Achievements;
-import GoF2.GameText;
-import GoF2.Item;
-import GoF2.Layout;
-import GoF2.Mission;
-import GoF2.Popup;
-import GoF2.Status;
+import GOF2.Achievements;
+import GOF2.GameText;
+import GOF2.Item;
+import GOF2.Layout;
+import GOF2.Mission;
+import GOF2.Popup;
+import GOF2.Status;
 
 public final class MissionsWindow {
 	private StarMap starMap;

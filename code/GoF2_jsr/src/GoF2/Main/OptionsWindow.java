@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Image;
 
@@ -8,17 +8,17 @@ import AE.TextInput;
 import AE.Time;
 import AE.Math.AEMath;
 import AE.PaintCanvas.Font;
-import GoF2.Achievements;
-import GoF2.Galaxy;
-import GoF2.GameRecord;
-import GoF2.GameText;
-import GoF2.Layout;
-import GoF2.LoadingScreen;
-import GoF2.Mission;
-import GoF2.Popup;
-import GoF2.RecordHandler;
-import GoF2.Status;
-import GoF2.TextBox;
+import GOF2.Achievements;
+import GOF2.Galaxy;
+import GOF2.GameRecord;
+import GOF2.GameText;
+import GOF2.Layout;
+import GOF2.LoadingScreen;
+import GOF2.Mission;
+import GOF2.Popup;
+import GOF2.RecordHandler;
+import GOF2.Status;
+import GOF2.TextBox;
 
 public final class OptionsWindow {
 	private static int posX;

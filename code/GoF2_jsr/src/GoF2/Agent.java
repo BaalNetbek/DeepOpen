@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 /**
  * This class represents SpaceLounge characters when they are inside or outside the bar.
  * @author fishlabs 2009

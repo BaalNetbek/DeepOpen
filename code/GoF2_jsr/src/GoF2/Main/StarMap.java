@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
@@ -16,17 +16,17 @@ import AE.Math.AEVector3D;
 import AE.Math.AEMatrix;
 import AE.PaintCanvas.AEGraphics3D;
 import AE.PaintCanvas.Font;
-import GoF2.Achievements;
-import GoF2.FileRead;
-import GoF2.Layout;
-import GoF2.Level;
-import GoF2.Mission;
-import GoF2.Popup;
-import GoF2.PendingProduct;
-import GoF2.SolarSystem;
-import GoF2.Station;
-import GoF2.Status;
-import GoF2.SystemPathFinder;
+import GOF2.Achievements;
+import GOF2.FileRead;
+import GOF2.Layout;
+import GOF2.Level;
+import GOF2.Mission;
+import GOF2.PendingProduct;
+import GOF2.Popup;
+import GOF2.SolarSystem;
+import GOF2.Station;
+import GOF2.Status;
+import GOF2.SystemPathFinder;
 
 public final class StarMap {
 	private final int[] planetSizes = {

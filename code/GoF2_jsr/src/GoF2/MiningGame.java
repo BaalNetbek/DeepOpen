@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;

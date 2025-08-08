@@ -34,7 +34,7 @@ ci.a(I)V handleKeystate
 ci.a(I)I update
 ci.a()C getNextChar
 ci.a()Ljava/lang/String; getText
-f GoF2/StarSystem
+f GOF2/StarSystem
 f.a [I astronomicalObjPlacings
 f.b [I planetSmallImages
 f.a [Lag; starAndPlanets
@@ -69,7 +69,7 @@ g.a(FF)F max
 g.c(II)I min
 g.b(FF)F min
 g.e(I)I abs
-h GoF2/BluePrint
+h GOF2/BluePrint
 h.a I productId
 h.f I tonsPerProduction
 h.a [I missingComponentsTons
@@ -95,7 +95,7 @@ h.d()I getTonsPerProduction2
 h.a()V unlock
 h.b()Z isStarted
 h.b()V finishProduction
-cl GoF2/Mission
+cl GOF2/Mission
 cl.a Lcl; emptyMission_
 cl.a Lca; client
 cl.a I missionType
@@ -147,7 +147,7 @@ cl.a(Lca;)V setAgent
 cl.c()Ljava/lang/String; getTargetName
 cl.a(Ljava/lang/String;)V setTargetName
 cl.d(I)V setType
-i GoF2/Dialogue
+i GOF2/Dialogue
 i.a [[S CAMPAIGN_BRIEFING
 i.b [[S CAMPAIGN_SUCCESS
 i.a [B face
@@ -246,7 +246,7 @@ cm.a([Lcc;[Lcc;)[Lcc; transformVectorsNoScale
 cm.f(Lcc;)Lcc; inverseTransformVector
 cm.g(Lcc;)Lcc; transformVectorNoScale
 cm.c(Lcc;)V setOrientation
-co GoF2/GameText
+co GOF2/GameText
 co.a [S LISTITEMWINDOW_KEY_TEXT_IDS
 co.b [S helpTitles
 co.c [S helpFull
@@ -309,7 +309,7 @@ r.b(Lap;Laf;)V forceAppendToRender
 r.b()V render
 r.a(Laq;)V setTexture
 r.a()V OnRelease
-cr GoF2/PlayerEgo
+cr GOF2/PlayerEgo
 cr.b I boostSpeed
 cr.c I boostDuration
 cr.d I boostDelay
@@ -464,7 +464,7 @@ cr.f(Z)V render
 cr.a(ZLap;)V draw
 cr.i()V hit
 cr.a()Lx; getHud
-cs GoF2/Standing
+cs GOF2/Standing
 cs.a [I stand
 cs.a([I)V setStanding
 cs.a()[I getStanding
@@ -507,7 +507,7 @@ cv AE/LensFlareFX
 cv.a [Ljavax/microedition/lcdui/Image; flares
 cv.a Ljavax/microedition/lcdui/Image; mainFlare
 cv.a(Lcc;)V render2D
-cw GoF2/SolarSystem
+cw GOF2/SolarSystem
 cw.a Ljava/lang/String; name
 cw.d I id
 cw.e I safety
@@ -541,7 +541,7 @@ cw.a()[I getStations
 cw.b()[I getNeighbourSystems
 cw.b(I)Z inJumpageRange
 cw.c()Z isVisibleByDeafult
-t GoF2/Trail
+t GOF2/Trail
 t.a [I UV
 t.a I width
 t.b [I vertices
@@ -575,7 +575,7 @@ cx.a(J)V update
 cx.a(FI)V interpolate
 cx.a()V computeLengths
 cx.b()V computeInterpolatedValues
-v GoF2/Item
+v GOF2/Item
 v.a [Z installableMultipleTimes
 v.a I id
 v.b I type
@@ -644,7 +644,7 @@ w.a I x
 w.b I y
 w.c I z
 w.d I w
-o GoF2/LaserGun
+o GOF2/LaserGun
 o.a Laz; gun
 o.d I beamRadius
 o.a Lag; beam
@@ -665,7 +665,7 @@ o.b()V render
 o.a(J)V update
 o.a()Lah; clone
 o.a(Laq;)V setTexture
-x GoF2/Hud
+x GOF2/Hud
 x.a [[Ljava/lang/String; actionmenuLabels
 x.a [[B actionmenuButtonsState
 x.a I lastWingmenAction
@@ -735,7 +735,7 @@ x.a(I)V drawMenu_
 x.a(ILdb;Lbw;)Z handleActionMenuKeypress
 x.b()Z getJumpDriveSelected
 x.a(Z)V setJumpDriveSelected
-z GoF2/GameRecord
+z GOF2/GameRecord
 z.a [Z visitedStations
 z.a I credits
 z.b I rating
@@ -826,7 +826,7 @@ z.c [I highestItemPrices
 z.b [B lowestItemPriceSystems
 z.c [B highestItemPriceSystems
 z.a Ljava/lang/String; stationName
-da GoF2/Crosshair
+da GOF2/Crosshair
 da.a [I localPosition
 da.a Ljavax/microedition/lcdui/Image; image
 da.a Lcc; relativePos
@@ -834,7 +834,7 @@ da.b Lcc; screenPos
 da.a(Lcm;Lap;)V update
 da.a()V OnRelease
 da.b()V draw
-db GoF2/Level
+db GOF2/Level
 db.k I currentMod
 db.a Ly; asteroidField
 db.a [I barFigurePositions
@@ -951,7 +951,7 @@ db.a(ZI)V createRadioMessage
 db.a(IZ)V alarmAllFriends
 db.c(I)V friendTurnedEnemy
 db.h()V onRelease
-n GoF2/ObjectGun
+n GOF2/ObjectGun
 n.a Laz; gun
 n.a [Lag; projectiles
 n.a Lag; rocketMesh_
@@ -961,7 +961,7 @@ n.b()V render
 n.a(J)V update
 n.a()Lah; clone
 n.a(Laq;)V setTexture
-l GoF2/RocketGun
+l GOF2/RocketGun
 l.a Lt; trail
 l.b Lcc; tempPos
 l.c Lcc; postion
@@ -994,7 +994,7 @@ k.b(Lap;Laf;)V forceAppendToRender
 k.b()V render
 k.a(Laq;)V setTexture
 k.a([I[I)V setMeshData_
-bk GoF2/Sparks
+bk GOF2/Sparks
 bk.a Lax; impact
 bk.d Z inactive
 bk.e Z unused4a_
@@ -1056,7 +1056,7 @@ ac.b()V render
 ac.a(Laq;)V setTexture
 ac.a()[I getPositions
 ac.b()[I getScales
-ad GoF2/Globals
+ad GOF2/Globals
 ad.a Ljava/lang/String; PATH_MESHES
 ad.b Ljava/lang/String; PATH_TEXTURES
 ad.a [[S BAR_MESHES
@@ -1100,7 +1100,7 @@ ad.a(II)Lar; getShipGroup
 ad.a(Lar;I)V buildShip
 ad.b()V buildResourceList
 ad.c()V OnRelease
-aa GoF2/Player
+aa GOF2/Player
 aa.a [[Laz; guns
 aa.a [Laa; coPlayers
 aa.a F radius
@@ -1197,7 +1197,7 @@ aa.a(IJZLcm;)V playShootSound__
 aa.a(IJZ)V shoot_
 aa.a(IIJZ)Z shoot
 aa.a(J)V update
-ae GoF2/SystemPathFinder
+ae GOF2/SystemPathFinder
 ae.a([Lcw;II)[I getSystemPath
 ae.a(Ld;)Ljava/util/Vector; constructPath
 af AE/Renderer
@@ -1219,7 +1219,7 @@ ai.a(Ljavax/microedition/lcdui/Image;II)Ljavax/microedition/lcdui/Image; resizeI
 ai.a(Ljava/lang/String;Z)Ljavax/microedition/lcdui/Image; loadImage
 ai.a(Ljava/lang/String;)Ljavax/microedition/lcdui/Image; loadCryptedImage
 ai.a(Ljava/lang/String;)Ljava/lang/Class; getClass
-p GoF2/KIPlayer
+p GOF2/KIPlayer
 p.a S state
 p.a I speed
 p.a Laa; player
@@ -1292,12 +1292,12 @@ p.b(Lcc;)Lcc; getProjectionVector_
 p.f()V revive
 p.a(III)V setPosition
 p.a()V appendToRender
-cq GoF2/PlayerJunk
+cq GOF2/PlayerJunk
 cq.a J frameTime
 cq.a(J)V update
 cq.a()V appendToRender
 cq.a(III)Z outerCollide
-cn GoF2/PlayerAsteroid
+cn GOF2/PlayerAsteroid
 cn.c Lcc; tempVector1_
 cn.d Lcc; tempVector2_
 cn.m I frametime
@@ -1329,7 +1329,7 @@ cn.a()V appendToRender
 cn.a(Lcc;)Z outerCollide
 cn.b(Lcc;)Lcc; getProjectionVector_
 cn.a(III)Z outerCollide
-ck GoF2/Waypoint
+ck GOF2/Waypoint
 ck.l I x
 ck.m I y
 ck.n I z
@@ -1340,7 +1340,7 @@ ck.g()V reset
 ck.a(J)V update
 ck.a()V appendToRender
 ck.a(III)Z outerCollide
-u GoF2/PlayerStatic
+u GOF2/PlayerStatic
 u.c Lcc; virtDistToCam_
 u.l I posX
 u.m I posY
@@ -1349,7 +1349,7 @@ u.a(J)V update
 u.a(Lcc;)Lcc; getPosition
 u.a()V appendToRender
 u.a(III)Z outerCollide
-bx GoF2/PlayerStaticFar
+bx GOF2/PlayerStaticFar
 bx.a [Ly; boundingBoxes
 bx.a()V appendToRender
 bx.a(J)V update
@@ -1357,7 +1357,7 @@ bx.a(III)Z outerCollide
 bx.c(Lcc;)Lcc; getTargetPos_
 bx.a(Lcc;)Z outerCollide
 bx.b(Lcc;)Lcc; getProjectionVector_
-c GoF2/PlayerWormHole
+c GOF2/PlayerWormHole
 c.o I lifeTime
 c.p I scale
 c.a(Z)V reset
@@ -1366,7 +1366,7 @@ c.a(III)V setPosition
 c.a()V appendToRender
 c.a(J)V update
 c.a(Lcc;)Lcc; getPosition
-ab GoF2/RecordHandler
+ab GOF2/RecordHandler
 ab.a Ljavax/microedition/rms/RecordStore; recordStore
 ab.a Lcl; mission
 ab.a Lca; agent
@@ -1382,7 +1382,7 @@ ab.a(Ljava/io/DataInputStream;)Lca; readAgent
 ab.a(Ljava/io/DataOutputStream;Lcl;)V writeMission
 ab.a(Ljava/io/DataInputStream;)Lcl; readMission
 ab.b(I)Lz; readPreview
-cb GoF2/PlayerStation
+cb GOF2/PlayerStation
 cb.b [I partsCollisions
 cb.a [Lag; stationParts
 cb.c [I partPositions
@@ -1395,12 +1395,12 @@ cb.a(III)Z outerCollide
 cb.a(Lcc;)Z outerCollide
 cb.b(Lcc;)Lcc; getProjectionVector_
 cb.b()V OnRelease
-bi GoF2/PlayerJumpgate
+bi GOF2/PlayerJumpgate
 bi.m Z animationInit
 bi.g()V activate
 bi.a(III)V setPosition
 bi.a(J)V update
-bh GoF2/PlayerFighter
+bh GOF2/PlayerFighter
 bh.l I deathTransitionTime
 bh.m I sightRange
 bh.n I soundRange
@@ -1456,7 +1456,7 @@ bh.a(J)V update
 bh.a()V appendToRender
 bh.a(III)Z outerCollide
 bh.f()V revive
-ak GoF2/PlayerFixedObject
+ak GOF2/PlayerFixedObject
 ak.a [Ly; bounds
 ak.a J frametime
 ak.m Z moving
@@ -1485,7 +1485,7 @@ ak.a()V appendToRender
 ak.a(III)Z outerCollide
 ak.b(Lcc;)Lcc; getProjectionVector_
 ak.a(Lcc;)Z outerCollide
-al GoF2/MiningGame
+al GOF2/MiningGame
 al.a I nextLevelTreshold
 al.b I levels
 al.c I curLevel
@@ -1530,7 +1530,7 @@ am.a(Lam;)V merge
 am.b(Lam;)V set
 am.a(IIII)V setXYZR
 am.a(Lcc;I)V set
-an GoF2/Radio
+an GOF2/Radio
 an.a [Lbq; messages
 an.a Lbq; currentMessage
 an.a [Ljava/lang/String; rows
@@ -1547,7 +1547,7 @@ an.a(Lbq;)V setCurrentMessage
 an.a(I)Lbq; getMessageFromQueue
 an.b()V showMessage
 an.a(JJLcr;)V draw
-ao GoF2/LoadingScreen
+ao GOF2/LoadingScreen
 ao.a Z stillLoading
 ao.a Ljavax/microedition/lcdui/game/GameCanvas; canvas
 ao.a Ljava/lang/Thread; loadingThread
@@ -1695,7 +1695,7 @@ at.a [Las; scenes
 at.a(I)V vibrate
 at.a()V resetHints
 at.b()V checkDeviceControlSupport
-au GoF2/ApplicationManager
+au GOF2/ApplicationManager
 au.a Las; scene
 au.a LMain/GOF2MIDlet; midlet
 au.a Lao; loadingScreen
@@ -1704,7 +1704,7 @@ au.a()Las; GetCurrentApplicationModule
 au.a()V Quit
 au.a(I)V handleKeystate
 au.b(I)V renderScene
-av GoF2/FileRead
+av GOF2/FileRead
 av.a Ljava/lang/Class; varClass
 av.a(I)Lbd; loadStation
 av.a([S)[Lbd; loadStationsBinary
@@ -1717,7 +1717,7 @@ av.a()[Lv; loadItemsBinary
 av.a()[Lch; loadShipsBinary
 av.a(IZZ)[Ljava/lang/String; loadNamesBinary
 av.a(Ljava/lang/String;)Ljava/lang/Class; getClassForName
-aw GoF2/AutoPilotList
+aw GOF2/AutoPilotList
 aw.a I selection
 aw.b I posX
 aw.c I posY
@@ -1741,7 +1741,7 @@ ar.a(II)V setAnimationRangeInTime
 ar.a(B)V setAnimationMode
 ar.e()V disableAnimation
 ar.b()Z hasAnimation
-ax GoF2/Impact
+ax GOF2/Impact
 ax.a Lag; mesh
 ax.a [I particlesLifeTime
 ax.a I baseLifeTime
@@ -1749,7 +1749,7 @@ ax.b I spread
 ax.c I lifeTimeRange
 ax.a()V explode
 ax.a(I)V update
-ay GoF2/Popup
+ay GOF2/Popup
 ay.a I posX
 ay.b I posY
 ay.c I width
@@ -1764,7 +1764,7 @@ ay.a()Z getChoice
 ay.a()V left
 ay.b()V right
 ay.c()V draw
-az GoF2/Gun
+az GOF2/Gun
 az.a [[[S MUZZLE_POSITIONS
 az.a Ldb; level
 az.a [Laa; targets
@@ -1807,7 +1807,7 @@ az.a(Lcm;JZ)Z shoot
 az.b()V ignite
 az.a(J)V calcCharacterCollision
 az.c()V renderSparks
-ba GoF2/Achievements
+ba GOF2/Achievements
 ba.a [[I VALUES
 ba.a [I medals
 ba.b [I newMedals
@@ -1870,7 +1870,7 @@ aj AE/CameraControllerGroup
 aj.a [Lcu; controllers
 aj.a(Lcu;)V addController
 aj.b(Z)V updateTransform
-bd GoF2/Station
+bd GOF2/Station
 bd.a Ljava/lang/String; name
 bd.a I id
 bd.b I systemId
@@ -1895,7 +1895,7 @@ bd.a([Lca;)V setBarAgents
 bd.a(Lv;)V addItem
 bd.a()[Lca; getBarAgents
 bd.a(Lbd;)Z equals
-be GoF2/Generator
+be GOF2/Generator
 be.a [I GENERATOR_CAMPAIGN_STATIONS
 be.b [I GENERATOR_TYPE_PROBS
 be.a(Lbd;)[Lch; getShipBuyList
@@ -1903,7 +1903,7 @@ be.a()[I getLootList
 be.a([Lcw;I)I generateStationIndex
 be.a(Lbd;)[Lca; createAgents
 be.a(Lca;)Lcl; createFreelanceMission
-bf GoF2/Route
+bf GOF2/Route
 bf.a [Lck; waypoints
 bf.a Z loop
 bf.a I current
@@ -1925,7 +1925,7 @@ bj AE/Vec3f
 bj.a F x
 bj.b F y
 bj.c F z
-bl GoF2/Status
+bl GOF2/Status
 bl.A I credits
 bl.B I rating
 bl.e J playTime
@@ -2075,7 +2075,7 @@ cy.e I radius
 cy.b(Z)V updateTransform
 cy.g(I)V setRadius
 cy.a(Ljava/lang/String;I)Ljava/lang/String; getString
-bn GoF2/LevelScript
+bn GOF2/LevelScript
 bn.a Ldb; level
 bn.b I step
 bn.b Z cinematicBreak_
@@ -2120,12 +2120,12 @@ bo.a(I)Lag; getGeometryResource
 bo.a()V releaseTextures
 bo.b()V releaseGeometry
 bo.c()V initGeometryTranforms
-bp GoF2/PendingProduct
+bp GOF2/PendingProduct
 bp.a Ljava/lang/String; stationName
 bp.a I stationId
 bp.b I producedQuantity
 bp.c I index
-bq GoF2/RadioMessage
+bq GOF2/RadioMessage
 bq.a Lan; radio
 bq.a I textId
 bq.b I imageId
@@ -2142,7 +2142,7 @@ bq.a()Z isTriggered
 bq.b()Z isOver
 bq.a()V finish
 bq.a(JLcr;)Z triggered
-br GoF2/Objective
+br GOF2/Objective
 br.a I type
 br.b I indexA_
 br.c I indexB_
@@ -2182,7 +2182,7 @@ bt.a Lcx; interpolator
 bt.a [[I cameraTracks
 bt.a(J)V update
 bt.a()Lap; getCamera
-bu GoF2/TextBox
+bu GOF2/TextBox
 bu.c I posX
 bu.d I posY
 bu.e I width
@@ -2209,7 +2209,7 @@ bu.a([BLjava/lang/String;Z)V set
 bu.b(I)V scrollUp
 bu.c(I)V scrollDown
 bu.b()V draw
-bv GoF2/Galaxy
+bv GOF2/Galaxy
 bv.a Lcc; tempSysPos1
 bv.b Lcc; tempSysPos2
 bv.a [Z visitedStations
@@ -2243,7 +2243,7 @@ ap.a(Lam;)B isInViewFrustum
 ap.a(Lap;Laf;)V appendToRender
 ap.b(Lap;Laf;)V forceAppendToRender
 ap.a(IIIII)Lap; create
-bw GoF2/Radar
+bw GOF2/Radar
 bw.a [I asteroidsInFront
 bw.a Ljavax/microedition/lcdui/Image; lockonEnemy
 bw.b Ljavax/microedition/lcdui/Image; radarIconEnemy
@@ -2331,7 +2331,7 @@ bw.a(IIILaa;)Ljava/lang/String; calcDistance
 bw.a()Lp; getLockedAsteroid
 bw.b()V unlockAsteroid
 bw.b()Lp; getLockedEnemy
-by GoF2/TractorBeam
+by GOF2/TractorBeam
 by.a Lcc; shipToTarget
 by.b Lcc; wastePos_shipDir_
 by.c Lcc; beamSrcPos_
@@ -2347,7 +2347,7 @@ by.b Z captured
 by.a Lag; beamMesh
 by.a()V render
 by.a(JLbw;Ldb;Lx;)V update
-bz GoF2/MeteoroidParticles
+bz GOF2/MeteoroidParticles
 bz.a [I vertexCoords
 bz.b [I lifeTimes
 bz.c [I offsets
@@ -2360,7 +2360,7 @@ bz.a I particleSpawnTick
 bz.a()V OnRelease
 bz.a(JLcm;)V update
 bz.b()V render
-ca GoF2/Agent
+ca GOF2/Agent
 ca.a Ljava/lang/String; fullName
 ca.b Ljava/lang/String; wingman1Name
 ca.c Ljava/lang/String; wingman2Name
@@ -2445,7 +2445,7 @@ j AE/V3Camera
 j.a Lcom/mascotcapsule/micro3d/v3/FigureLayout; v3layout
 j.a(III)V setPerspective
 j.a()Lcom/mascotcapsule/micro3d/v3/FigureLayout; getFigureLayout
-a GoF2/Layout
+a GOF2/Layout
 a.a I uiInnerOutlineColor
 a.b I uiOuterTopRightOutlineColor
 a.c I uiOuterDownLeftOutlineInnerLabalBgColor
@@ -2550,7 +2550,7 @@ b.a(Z)V setLookAtCam
 b.b(Lcc;)V setPostition
 b.c(Lcc;)V setTargetOffset
 b.d(Lcc;)V setCamOffset
-ce GoF2/ListItem
+ce GOF2/ListItem
 ce.a Lca; unused_owner__
 ce.a Lh; bluePrint
 ce.a Lch; ship
@@ -2578,7 +2578,7 @@ ce.h()Z isBluePrint
 ce.i()Z isPendingProduct
 ce.a()I getPrice
 ce.b()I getIndex
-cf GoF2/Explosion
+cf GOF2/Explosion
 cf.a [I delays
 cf.b [I unused_1af
 cf.a I animationPlayTime
@@ -2600,11 +2600,11 @@ cg.a Lcom/mascotcapsule/micro3d/v3/Graphics3D; graphics3D
 cg.a(Ljavax/microedition/lcdui/Graphics;)V bindTarget
 cg.a()V clear
 cg.b(Ljavax/microedition/lcdui/Graphics;)V releaseTarget
-d GoF2/Node
+d GOF2/Node
 d.a Ljava/util/Vector; neighbors
 d.a Ld; parentNode
 d.a I systemIndex
-ch GoF2/Ship
+ch GOF2/Ship
 ch.a [S SHIP_PREVIEW_SCALING
 ch.b [S SHIP_HANGAR_OFFSETS
 ch.a I id

@@ -1,8 +1,8 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import AE.GlobalStatus;
 import AE.PaintCanvas.Font;
-import GoF2.Layout;
+import GOF2.Layout;
 
 public class TabbedWindow_ {
 	protected static final int ITEM_HEIGHT = 14;

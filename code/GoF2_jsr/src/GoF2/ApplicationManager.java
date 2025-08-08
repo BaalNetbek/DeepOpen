@@ -1,7 +1,7 @@
-package GoF2;
+package GOF2;
 
 import AE.IApplicationModule;
-import GoF2.Main.GOF2MIDlet;
+import GOF2.Main.GOF2MIDlet;
 
 public final class ApplicationManager {
 	private IApplicationModule scene = null;

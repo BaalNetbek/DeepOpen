@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 
 /**
  * Contains ship parameters and items equipped and in cargo. Doesnt't contain 3D model or anything visual. 

@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 
 public final class SolarSystem {
     private final String name;

@@ -1,6 +1,6 @@
-package GoF2.Main;
+package GOF2.Main;
 
-import GoF2.Layout;
+import GOF2.Layout;
 
 public final class ListWindow_ extends TabbedWindow_ {
 	private final boolean unused_37;

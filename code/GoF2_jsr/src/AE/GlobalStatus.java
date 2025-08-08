@@ -7,9 +7,9 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.midlet.MIDlet;
 
 import AE.PaintCanvas.IGraphics3D;
-import GoF2.ApplicationManager;
-import GoF2.GameText;
-import GoF2.LoadingScreen;
+import GOF2.ApplicationManager;
+import GOF2.GameText;
+import GOF2.LoadingScreen;
 
 public final class GlobalStatus {
 	public static boolean musicOn = true;

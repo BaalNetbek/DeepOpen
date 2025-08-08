@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Image;
 
@@ -7,19 +7,19 @@ import AE.GlobalStatus;
 import AE.IApplicationModule;
 import AE.Math.AEMath;
 import AE.PaintCanvas.Font;
-import GoF2.Achievements;
-import GoF2.Dialogue;
-import GoF2.Generator;
-import GoF2.Globals;
-import GoF2.Item;
-import GoF2.Layout;
-import GoF2.Level;
-import GoF2.Mission;
-import GoF2.Popup;
-import GoF2.PendingProduct;
-import GoF2.RecordHandler;
-import GoF2.Standing;
-import GoF2.Status;
+import GOF2.Achievements;
+import GOF2.Dialogue;
+import GOF2.Generator;
+import GOF2.Globals;
+import GOF2.Item;
+import GOF2.Layout;
+import GOF2.Level;
+import GOF2.Mission;
+import GOF2.PendingProduct;
+import GOF2.Popup;
+import GOF2.RecordHandler;
+import GOF2.Standing;
+import GOF2.Status;
 
 public final class ModStation extends IApplicationModule {
 	private long currentTime;

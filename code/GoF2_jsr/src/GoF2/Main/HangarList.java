@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -7,15 +7,15 @@ import AE.AEFile;
 import AE.GlobalStatus;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
-import GoF2.BluePrint;
-import GoF2.Globals;
-import GoF2.Item;
-import GoF2.Layout;
-import GoF2.ListItem;
-import GoF2.Popup;
-import GoF2.PendingProduct;
-import GoF2.Ship;
-import GoF2.Status;
+import GOF2.BluePrint;
+import GOF2.Globals;
+import GOF2.Item;
+import GOF2.Layout;
+import GOF2.ListItem;
+import GOF2.PendingProduct;
+import GOF2.Popup;
+import GOF2.Ship;
+import GOF2.Status;
 
 public class HangarList extends TabbedWindow_ {
 	public Image itemTypes;
@@ -765,11 +765,10 @@ public class HangarList extends TabbedWindow_ {
 
 							if (var1.isShip()) {
 								if (var1.ship.getPrice() > Status.getCredits() + Status.getShip().getPrice()) {
-									this.popup
-									      .setAsWarning(Status.replaceTokens(GlobalStatus.gameText.getText(83),
-									            Layout.formatCredits(
-									                  var1.getPrice() - Status.getCredits() - Status.getShip().getPrice()),
-									            "#C"));
+									this.popup .setAsWarning(
+											Status.replaceTokens(GlobalStatus.gameText.getText(83),
+							            Layout.formatCredits(var1.getPrice() - Status.getCredits() - Status.getShip().getPrice()),"#C")
+									);
 									this.popupOpen = true;
 									return 0;
 								}
@@ -1046,10 +1045,12 @@ public class HangarList extends TabbedWindow_ {
 														this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
 			switch(this.selectedTab) {
 			case 0:
-				GlobalStatus.graphics.drawLine(this.posX + this.width / 3 - 1,
-															this.posY + ITEM_HEIGHT + ITEM_HEIGHT,
-															this.posX + this.width - 3,
-															this.posY + ITEM_HEIGHT + ITEM_HEIGHT);
+				GlobalStatus.graphics.drawLine(
+						this.posX + this.width / 3 - 1,
+						this.posY + ITEM_HEIGHT + ITEM_HEIGHT,
+						this.posX + this.width - 3,
+						this.posY + ITEM_HEIGHT + ITEM_HEIGHT
+				);
 				break;
 			case 1:
 				GlobalStatus.graphics.drawLine(this.posX + 3,
@@ -1107,29 +1108,42 @@ public class HangarList extends TabbedWindow_ {
 															this.posY + ITEM_HEIGHT - 3);
 			}
 
-			Layout.drawMenuPanelCorner(this.posX + 2,
-												this.posY + ITEM_HEIGHT,
-												this.selectedTab == 0);
-			Layout.drawMenuPanelCorner(this.posX + this.width / 3 + 1,
-												this.posY + ITEM_HEIGHT,
-												this.selectedTab == 1);
-			Layout.drawMenuPanelCorner(this.posX + this.width - this.width / 3,
-												this.posY + ITEM_HEIGHT,
-												this.selectedTab == 2);
-			Font.drawString(this.tabNames[0],
-									this.posX + this.width / 6,
-									this.posY + ITEM_HEIGHT + 1,
-									this.selectedTab == 0 ? 2 : 1,
-									24);
-			Font.drawString(this.tabNames[1],
-									this.posX + this.width / 2,
-									this.posY + ITEM_HEIGHT + 1,
-									this.selectedTab == 1 ? 2 : 1,
-									24);
-			Font.drawString(this.tabNames[2],
-									this.posX + this.width - this.width / 6,
-									this.posY + ITEM_HEIGHT + 1,
-									this.selectedTab == 2 ? 2 : 1, 24);
+			Layout.drawMenuPanelCorner(
+					this.posX + 2,
+					this.posY + ITEM_HEIGHT,
+					this.selectedTab == 0
+			);
+			Layout.drawMenuPanelCorner(
+					this.posX + this.width / 3 + 1,
+					this.posY + ITEM_HEIGHT,
+					this.selectedTab == 1
+			);
+			Layout.drawMenuPanelCorner(
+					this.posX + this.width - this.width / 3,
+					this.posY + ITEM_HEIGHT,
+					this.selectedTab == 2
+			);
+			Font.drawString(
+					this.tabNames[0],
+					this.posX + this.width / 6,
+					this.posY + ITEM_HEIGHT + 1,
+					this.selectedTab == 0 ? 2 : 1,
+					24
+			);
+			Font.drawString(
+					this.tabNames[1],
+					this.posX + this.width / 2,
+					this.posY + ITEM_HEIGHT + 1,
+					this.selectedTab == 1 ? 2 : 1,
+					24
+			);
+			Font.drawString(
+					this.tabNames[2],
+					this.posX + this.width - this.width / 6,
+					this.posY + ITEM_HEIGHT + 1,
+					this.selectedTab == 2 ? 2 : 1,
+					24
+			);
 		}
 	}
 

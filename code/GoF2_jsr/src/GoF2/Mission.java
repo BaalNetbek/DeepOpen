@@ -1,4 +1,4 @@
-package GoF2;
+package GOF2;
 
 public final class Mission {
 	public static final Mission emptyMission_ = new Mission();

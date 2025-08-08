@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import java.util.Random;
 
@@ -11,13 +11,13 @@ import AE.Renderer;
 import AE.SoundManager;
 import AE.PaintCanvas.AEGraphics3D;
 import AE.PaintCanvas.Font;
-import GoF2.ApplicationManager;
-import GoF2.GameText;
-import GoF2.Globals;
-import GoF2.Layout;
-import GoF2.LoadingScreen;
-import GoF2.RecordHandler;
-import GoF2.Status;
+import GOF2.ApplicationManager;
+import GOF2.GameText;
+import GOF2.Globals;
+import GOF2.Layout;
+import GOF2.LoadingScreen;
+import GOF2.RecordHandler;
+import GOF2.Status;
 
 public final class GOF2Canvas extends GameCanvas {
 	private final GOF2MIDlet midlet;

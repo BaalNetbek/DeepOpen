@@ -1,4 +1,4 @@
-package GoF2.Main;
+package GOF2.Main;
 
 import javax.microedition.lcdui.Image;
 
@@ -11,18 +11,18 @@ import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
-import GoF2.Achievements;
-import GoF2.Agent;
-import GoF2.FileRead;
-import GoF2.Generator;
-import GoF2.Globals;
-import GoF2.Item;
-import GoF2.Layout;
-import GoF2.ListItem;
-import GoF2.Mission;
-import GoF2.Popup;
-import GoF2.SolarSystem;
-import GoF2.Status;
+import GOF2.Achievements;
+import GOF2.Agent;
+import GOF2.FileRead;
+import GOF2.Generator;
+import GOF2.Globals;
+import GOF2.Item;
+import GOF2.Layout;
+import GOF2.ListItem;
+import GOF2.Mission;
+import GOF2.Popup;
+import GOF2.SolarSystem;
+import GOF2.Status;
 
 public final class SpaceLounge {
 	private StarMap starMap;
