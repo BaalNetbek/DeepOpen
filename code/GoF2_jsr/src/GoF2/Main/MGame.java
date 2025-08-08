@@ -10,6 +10,7 @@ import AE.IApplicationModule;
 import AE.LookAtCamera;
 import AE.TargetFollowCamera;
 import AE.Math.AEVector3D;
+import AE.Math.AEMath;
 import AE.PaintCanvas.Font;
 import GoF2.Achievements;
 import GoF2.AutoPilotList;
@@ -852,19 +853,15 @@ public final class MGame extends IApplicationModule {
 			this.egoJumpPos = ((PlayerJumpgate)this.level.getLandmarks()[1]).getTargetPos_(this.egoJumpPos);
 		}
 
-		AEVector3D var10000 = this.egoJumpPos;
-		var10000.z -= 5000;
+		this.egoJumpPos.z -= 5000;
 		this.playerEgo.setPosition_(this.egoJumpPos);
 		this.playerEgo.shipGrandGroup_.setRotation(0, 0, 0);
 		this.lookAtCamera.setTarget(this.playerEgo.shipGrandGroup_);
 		this.lookAtCamera.setCamera(this.camera);
-		this.lookAtCamera.setOrientationLock(new AEVector3D(0, 4096, 0), 1);
-		var10000 = this.egoJumpPos;
-		var10000.x -= 2000;
-		var10000 = this.egoJumpPos;
-		var10000.y += 300;
-		var10000 = this.egoJumpPos;
-		var10000.z += 4000;
+		this.lookAtCamera.setOrientationLock(new AEVector3D(0, AEMath.Q_PI, 0), 1);
+		this.egoJumpPos.x -= 2000;
+		this.egoJumpPos.y += 300;
+		this.egoJumpPos.z += 4000;
 		GlobalStatus.renderer.getCamera().moveTo(this.egoJumpPos);
 	}
 

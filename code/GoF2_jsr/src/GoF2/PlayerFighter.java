@@ -586,7 +586,7 @@ public final class PlayerFighter extends KIPlayer {
                     } else {
                         if (var9 > 0.0F) {
                             this.tempVector_.set(this.player.getHitVector());
-                            this.tempVector_.scale((int)(512.0F * var9));
+                            this.tempVector_.scale((int)(AEMath.Q_EIGHTH * var9));
                             this.geometry.translate(this.tempVector_);
                             var7 = (int)var1;
                             this.geometry.rotateEuler(var7, var7, var7);

@@ -216,7 +216,7 @@ public final class LevelScript {
 					followCamera.setLookAtCam(false);
 					this.lookAtCam.setLookAt(true);
 					this.lookAtCam.setTarget(playerEgo.shipGrandGroup_);
-					playerEgo.shipGrandGroup_.setRotation(0, 2048, 0);
+					playerEgo.shipGrandGroup_.setRotation(0, AEMath.Q_PI_HALF, 0);
 					camera.moveTo(playerEgo.shipGrandGroup_.getPostition());
 					camera.translate(1000, -200, -60000);
 					this.step = 8;
@@ -284,7 +284,7 @@ public final class LevelScript {
 		if (Status.getCurrentCampaignMission() == 5 && this.step == 0) {
 			this.tempVec = playerEgo.getPosition();
 			enemies[0].setPosition(this.tempVec.x + 5000, this.tempVec.y, this.tempVec.z + 30000);
-			enemies[0].geometry.rotateEuler(0, 2048, 0);
+			enemies[0].geometry.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 			enemies[0].awake();
 			this.step = 1;
 		}
@@ -352,7 +352,7 @@ public final class LevelScript {
 					camera.translate(30500, 700, 1000);
 					this.tempVec = playerEgo.shipGrandGroup_.getPosition(this.tempVec);
 					this.tempVec2 = playerEgo.shipGrandGroup_.getDirection(this.tempVec2);
-					this.tempVec2.scale(10 * AEMath.Q_1);
+					this.tempVec2.scale(10 * AEMath.TO_Q);
 					this.tempVec.add(this.tempVec2);
 					this.level.getLandmarks()[3].setPosition(this.tempVec.x, this.tempVec.y, this.tempVec.z);
 

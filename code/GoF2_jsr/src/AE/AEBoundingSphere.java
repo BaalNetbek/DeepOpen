@@ -40,13 +40,13 @@ public final class AEBoundingSphere {
 					this.set(this.center, this.radius);
 				}
 			} else {
-				var8 = AEMath.sqrt((long)var9 << 12);
-				var7 = (int)(((long)((var7 << 12) + var8) << 12) / (var8 * 2));
+				var8 = AEMath.sqrt((long)var9 << AEMath.Q);
+				var7 = (int)(((long)((var7 << AEMath.Q) + var8) << AEMath.Q) / (var8 * 2));
 				setXYZR(
-						this.center.x + (int)(var7 * ((long)var4 << 12) >> 24),
-						this.center.y + (int)(var7 * ((long)var5 << 12) >> 24),
-						this.center.z + (int)(var7 * ((long)var6 << 12) >> 24),
-						(var8 >> 12) + var1.radius + this.radius >> 1
+						this.center.x + (int)(var7 * ((long)var4 << AEMath.Q) >> (AEMath.Q + AEMath.Q)),
+						this.center.y + (int)(var7 * ((long)var5 << AEMath.Q) >> (AEMath.Q + AEMath.Q)),
+						this.center.z + (int)(var7 * ((long)var6 << AEMath.Q) >> (AEMath.Q + AEMath.Q)),
+						(var8 >> AEMath.Q) + var1.radius + this.radius >> 1
 						);
 			}
 		}

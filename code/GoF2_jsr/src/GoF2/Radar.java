@@ -215,7 +215,7 @@ public final class Radar {
             final float var6 = this.elipsoidCenterY + -10 - var3;
             float var8 = var5 * var5 / this.elipsoidWidth + var6 * var6 / this.elipsoidHeight;
             if (var8 >= 0.0F) {
-                final float var7 = AEMath.sqrt((long)(var8 * 4096.0F)) / 4096.0F;
+                final float var7 = AEMath.sqrt((long)(var8 * AEMath.TO_Q)) * AEMath.TO_FLOAT;
                 var8 = (var8 - var7) / var8;
                 if (0.0F <= var8 && var8 <= 1.0F) {
                     var4.x = (int)(var9 + var5 * var8);
@@ -499,10 +499,10 @@ public final class Radar {
                                             this.tempContextPosition.z = 0;
                                             this.tempContextPosition.subtract(this.playerPos);
                                             this.tempContextPosition.z = 0;
-                                            this.tempContextPosition.x <<= 12;
-                                            this.tempContextPosition.y <<= 12;
+                                            this.tempContextPosition.x <<= AEMath.Q;
+                                            this.tempContextPosition.y <<= AEMath.Q;
                                             this.tempContextPosition.normalize();
-                                            this.tempContextPosition.scale(16); //scale down 256 times
+                                            this.tempContextPosition.scale(AEMath.Q_512th);
                                             this.playerPos.add(this.tempContextPosition);
                                             GlobalStatus.graphics.drawLine(this.screenProjectionX, this.screenProjectionY, this.playerPos.x, this.playerPos.y);
                                         }
@@ -663,11 +663,11 @@ public final class Radar {
                     var14 = this.level.isInAsteroidCenterRange(this.level.getPlayer().getPosition());
                 }
 
-                int var34;
+                //int var34;
                 boolean var39;
-                for(var34 = 0; var34 < this.asteroids.length; ++var34) {
+                for(int i = 0; i < this.asteroids.length; ++i) {
                     KIPlayer var38;
-                    if ((var38 = this.asteroids[var34]).hasCargo && (var38.isDead() || var38.isDying()) || !var38.isDead() && !var38.isDying()) {
+                    if ((var38 = this.asteroids[i]).hasCargo && (var38.isDead() || var38.isDying()) || !var38.isDead() && !var38.isDying()) {
                         this.elipsoidIntersect(var2, var38);
                         var39 = var38.hasCargo && (var38.isDead() || var38.isDying());
                         if (!this.inViewFrustum) {
@@ -688,7 +688,7 @@ public final class Radar {
 												      && this.screenProjectionY > var19 && this.screenProjectionY < var19 + 40
 												      && !((PlayerAsteroid) var38).clampedByDistance && this.pastIntro
 												      && k < 4) {
-													this.asteroidsInFront[k] = var34;
+													this.asteroidsInFront[k] = i;
 													++k;
 												}
                                 }
@@ -707,7 +707,7 @@ public final class Radar {
                     }
                 }
 
-                var34 = 999999;
+                int var34 = 999999;
                 int var36 = -1;
 
                 for(int i = 0; i < 5; ++i) {
@@ -858,12 +858,14 @@ public final class Radar {
         x >>= 1;
         y >>= 1;
         z >>= 1;
-        final float distSqr = ((this.floatVector.x - x) * (this.floatVector.x - x) + (this.floatVector.y - y) * (this.floatVector.y - y) + (this.floatVector.z - z) * (this.floatVector.z - z)) / 4096.0F;
-        float a = 65536.0F;
-        float b = 65536.0F;
-        
+        final float distSqr = (
+      		  (this.floatVector.x - x) * (this.floatVector.x - x) 
+      		  + (this.floatVector.y - y) * (this.floatVector.y - y)
+      		  + (this.floatVector.z - z) * (this.floatVector.z - z)) / AEMath.Q_1;
         // square root approximation
         // b = sqrt(distSqr)
+        float a = 65536.0F;
+        float b = 65536.0F;
         for(int i = 0; i < 20; ++i) {
             a *= 0.5F;
             float var10 = distSqr - b * b;

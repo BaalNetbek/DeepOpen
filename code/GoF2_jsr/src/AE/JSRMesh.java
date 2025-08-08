@@ -347,17 +347,17 @@ public final class JSRMesh extends AbstractMesh {
 
 	}
 
-	public final void update(final long var1) {
+	public final void update(final long currentTime) {
 		if (this.hasAnimation) {
 			if (this.sysTime == -1L) {
-				this.sysTime = var1;
+				this.sysTime = currentTime;
 			}
 
-			this.animCurrentFrame = this.animStartFrame + (int)((var1 - this.sysTime) / this.animationFrameTime);
+			this.animCurrentFrame = this.animStartFrame + (int)((currentTime - this.sysTime) / this.animationFrameTime);
 			if (this.animCurrentFrame > this.animEndFrame) {
 				if (this.animationMode == 2) {
 					this.animCurrentFrame = this.animStartFrame;
-					this.sysTime = var1 - (this.animCurrentFrame - this.animStartFrame) * this.animationFrameTime;
+					this.sysTime = currentTime - (this.animCurrentFrame - this.animStartFrame) * this.animationFrameTime;
 					return;
 				}
 
@@ -377,16 +377,16 @@ public final class JSRMesh extends AbstractMesh {
 		this.animationFrameTime = var1 > 0 ? var1 : 1;
 	}
 
-	public final void setAnimationRangeInTime(final int var1, final int var2) {
-		this.animStartFrame = (var1 < 0 || var1 > this.animLength) && !this.needsUvFix ? 0 : var1;
-		this.animEndFrame = (var2 < 0 || var2 > this.animLength) && !this.needsUvFix ? this.animLength : var2;
-		this.animCurrentFrame = this.animCurrentFrame >= var1 && !this.needsUvFix ? this.animCurrentFrame > var2 ? var2 : this.animCurrentFrame : var1;
+	public final void setAnimationRangeInTime(final int start, final int end) {
+		this.animStartFrame = (start < 0 || start > this.animLength) && !this.needsUvFix ? 0 : start;
+		this.animEndFrame = (end < 0 || end > this.animLength) && !this.needsUvFix ? this.animLength : end;
+		this.animCurrentFrame = this.animCurrentFrame >= start && !this.needsUvFix ? this.animCurrentFrame > end ? end : this.animCurrentFrame : start;
 		this.sysTime = -1L;
 	}
 
-	public final void setAnimationMode(final byte var1) {
+	public final void setAnimationMode(final byte mode) {
 		if (!this.needsUvFix) {
-			this.animationMode = var1;
+			this.animationMode = mode;
 			this.sysTime = -1L;
 			this.hasAnimation = this.animLength > 0;
 		}
@@ -420,60 +420,60 @@ public final class JSRMesh extends AbstractMesh {
 
 	}
 
-	private void setupMaterial(final Node var1, final Texture2D[] var2, final boolean var3) {
-		int var4;
-		if (var1 instanceof Mesh) {
-			var4 = ((Mesh)var1).getUserID();
+	private void setupMaterial(final Node node, final Texture2D[] textures, final boolean glowing) {
+		if (node instanceof Mesh) {
+			int textureIdx;
+			textureIdx = ((Mesh)node).getUserID();
 
-			for(int var9 = 0; var9 < ((Mesh)var1).getSubmeshCount(); ++var9) {
-				final Appearance var6 = ((Mesh)var1).getAppearance(var9);
-				if (var3) {
-					var6.setCompositingMode(composMode);
-					var6.setPolygonMode(transparentPmode);
+			for(int i = 0; i < ((Mesh)node).getSubmeshCount(); ++i) {
+				final Appearance appearance = ((Mesh)node).getAppearance(i);
+				if (glowing) {
+					appearance.setCompositingMode(composMode);
+					appearance.setPolygonMode(transparentPmode);
 				} else {
-					var6.setCompositingMode((CompositingMode)null);
-					var6.setPolygonMode(opaquePmode);
+					appearance.setCompositingMode((CompositingMode)null);
+					appearance.setPolygonMode(opaquePmode);
 				}
 
-				boolean var7 = false;
-				if (var6.getMaterial() != null) {
-					var7 = var6.getMaterial().getColor(Material.SPECULAR) == 0xff0000 || var6.getMaterial().getColor(Material.SPECULAR) == 0x0000ff;
+				boolean modifiesTexture = false;
+				if (appearance.getMaterial() != null) {
+					modifiesTexture = appearance.getMaterial().getColor(Material.SPECULAR) == 0xff0000 || appearance.getMaterial().getColor(Material.SPECULAR) == 0x0000ff;
 				}
 
-				var6.setMaterial((Material)null);
-				Material var8;
-				(var8 = new Material()).setShininess(50.0F);
-				if (var3) {
-					var8.setColor(4096, -1);
+				appearance.setMaterial((Material)null);
+				Material material = new Material();
+				material.setShininess(50.0F);
+				if (glowing) {
+					material.setColor(Material.EMISSIVE, 0xFFFFFFFF);
 				}
 
-				var6.setMaterial(var8);
-				if (var6.getTexture(0) != null && var2 != null) {
-					if (var4 < var2.length) {
-						if (var7) {
-							this.texture = (Texture2D)var2[var4].duplicate();
-							var6.setTexture(0, this.texture);
+				appearance.setMaterial(material);
+				if (appearance.getTexture(0) != null && textures != null) {
+					if (textureIdx < textures.length) {
+						if (modifiesTexture) {
+							this.texture = (Texture2D)textures[textureIdx].duplicate();
+							appearance.setTexture(0, this.texture);
 						} else {
-							var6.setTexture(0, var2[var4]);
+							appearance.setTexture(0, textures[textureIdx]);
 						}
-					} else if (var7) {
-						this.texture = (Texture2D)var2[0].duplicate();
-						var6.setTexture(0, this.texture);
+					} else if (modifiesTexture) {
+						this.texture = (Texture2D)textures[0].duplicate();
+						appearance.setTexture(0, this.texture);
 					} else {
-						var6.setTexture(0, var2[0]);
+						appearance.setTexture(0, textures[0]);
 					}
 				}
 
-				((Mesh)var1).setAppearance(var9, var6);
-				if (var7) {
+				((Mesh)node).setAppearance(i, appearance);
+				if (modifiesTexture) {
 					this.needsUvFix = true;
 				}
 			}
 
-		} else if (var1 instanceof Group) {
-			for(var4 = 0; var4 < ((Group)var1).getChildCount(); ++var4) {
-				final Node var5 = ((Group)var1).getChild(var4);
-				setupMaterial(var5, var2, var3);
+		} else if (node instanceof Group) {
+			for(int i = 0; i < ((Group)node).getChildCount(); ++i) {
+				final Node child = ((Group)node).getChild(i);
+				setupMaterial(child, textures, glowing);
 			}
 		}
 	}

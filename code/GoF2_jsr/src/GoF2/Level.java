@@ -168,9 +168,9 @@ public final class Level {
 					z = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (50000 + GlobalStatus.random.nextInt(50000));
 					this.stationaries[2].setPosition(x, y, z);
 					this.stationaries[2].mainMesh_.setRotation(
-							-4096 + GlobalStatus.random.nextInt(8192),
-							-4096 + GlobalStatus.random.nextInt(8192),
-							-4096 + GlobalStatus.random.nextInt(8192));
+							-AEMath.Q_PI + GlobalStatus.random.nextInt(AEMath.Q_PI_2),
+							-AEMath.Q_PI + GlobalStatus.random.nextInt(AEMath.Q_PI_2),
+							-AEMath.Q_PI + GlobalStatus.random.nextInt(AEMath.Q_PI_2));
 				}
 
 				if (!Status.gameWon()) {
@@ -182,7 +182,7 @@ public final class Level {
 					this.stationaries[3].setLevel(this);
 				}
 
-				this.mgameIntroCamRotY += 2048;
+				this.mgameIntroCamRotY += AEMath.Q_PI_HALF;
 				if (!initStreamOutPosition) {
 					this.mgameIntroCamRotY = 0;
 				}
@@ -1296,7 +1296,7 @@ public final class Level {
 			this.ships = new KIPlayer[7];
 			this.ships[0] = createShip(Status.getShip().getRace(), 0, Status.getShip().getIndex(), (Waypoint)null);
 			this.ships[0].setPosition(0, 1200, 10240 - Ship.SHIP_HANGAR_OFFSETS[Status.getShip().getIndex()] + 100);
-			this.ships[0].geometry.setRotation(0, 2048, 0);
+			this.ships[0].geometry.setRotation(0, AEMath.Q_PI_HALF, 0);
 			this.ships[0].setRoute(new Route(new int[]{0, 500, -100000}));
 			((PlayerFighter)this.ships[0]).removeTrail();
 			((PlayerFighter)this.ships[0]).setExhaustVisible(false);
@@ -1313,16 +1313,16 @@ public final class Level {
 					var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 1];
 				}
 
-				this.ships[var3] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var4), 0, 0, var2 << 12);
+				this.ships[var3] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var4), 0, 0, var2 << AEMath.Q);
 				this.ships[var3].mainMesh_.setRenderLayer(1);
-				this.ships[var3].mainMesh_.setRotation(0, 2048, 0);
+				this.ships[var3].mainMesh_.setRotation(0, AEMath.Q_PI_HALF, 0);
 				++var2;
 			}
 
 			final short var10 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 3];
 			this.ships[this.ships.length - 1] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var10), 0, 0, 8192);
 			this.ships[this.ships.length - 1].mainMesh_.setRenderLayer(2);
-			this.ships[this.ships.length - 1].mainMesh_.setRotation(0, 2048, 0);
+			this.ships[this.ships.length - 1].mainMesh_.setRotation(0, AEMath.Q_PI_HALF, 0);
 			break;
 		default:
 			return;

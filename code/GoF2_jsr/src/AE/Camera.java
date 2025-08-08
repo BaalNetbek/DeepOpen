@@ -34,8 +34,8 @@ public abstract class Camera extends AEGeometry {
 		setPerspective(fov, near, far);
 	}
 
-	public final void updateTransform(final boolean var1) {
-		if (this.transformDirty_ || var1) {
+	public final void updateTransform(final boolean force) {
+		if (this.transformDirty_ || force) {
 			if (this.group != null) {
 				this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
 			} else {
@@ -86,8 +86,10 @@ public abstract class Camera extends AEGeometry {
 		final int var2 = this.horizontalProjectionFactor * worldPos.z >> AEMath.Q;
 		final int var3 = this.verticalProjectionFactor * worldPos.z >> AEMath.Q;
 		if (var2 != 0 && var3 != 0) {
-			worldPos.x = -((worldPos.x << (AEMath.Q-1)) / var2 * this.screenWidth >> AEMath.Q) + (this.screenWidth >> 1);
-			worldPos.y = ((worldPos.y << (AEMath.Q-1)) / var3 * this.screenHeight >> AEMath.Q) + (this.screenHeight >> 1);
+			// here stays 11 isntead of AEMath.Q-1 for now atleast as idk whats happening here
+			// and in fixes projectn for higher Qs
+			worldPos.x = -((worldPos.x << 11) / var2 * this.screenWidth >> AEMath.Q) + (this.screenWidth >> 1);
+			worldPos.y = ((worldPos.y << 11) / var3 * this.screenHeight >> AEMath.Q) + (this.screenHeight >> 1);
 			return worldPos.x >= 0 && worldPos.y >= 0 && worldPos.x < this.screenWidth && worldPos.y < this.screenHeight;
 		} else {
 			return false;
@@ -116,8 +118,16 @@ public abstract class Camera extends AEGeometry {
 	}
 
 	public abstract void setActive();
-
-	public static Camera create(final int var0, final int var1, final int var2, final int var3, final int var4) {
-		return new JSRCamera(var0, var1, var2, var3, var4);
+	
+	/**
+	 * @param w - screen width
+	 * @param h - screen height
+	 * @param fov - in arbirtary -> 90/1024 degrees or just Q11 radians ffs
+	 * @param near [plane]
+	 * @param far [plane]
+	 * @return new implementation Camera
+	 */
+	public static Camera create(final int w, final int h, final int fov, final int near, final int far) {
+		return new JSRCamera(w, h, fov, near, far);
 	}
 }

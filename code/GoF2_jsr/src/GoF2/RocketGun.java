@@ -3,6 +3,7 @@ package GoF2;
 import AE.AbstractMesh;
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
+import AE.Math.AEMath;
 
 public final class RocketGun extends ObjectGun {
     private Trail trail = new Trail(1);
@@ -106,10 +107,10 @@ public final class RocketGun extends ObjectGun {
                         temp.scale((int)dt);
                         this.gun.projectilesDir[0] = direction.add(temp, this.gun.projectilesDir[0]);
                         this.gun.projectilesDir[0].normalize();
-                        this.gun.projectilesDir[0].scale((int)(this.gun.projectileSpeed * (int)dt) << 12);
-                        this.gun.projectilesDir[0].x >>= 12;
-                        this.gun.projectilesDir[0].y >>= 12;
-                        this.gun.projectilesDir[0].z >>= 12;
+                        this.gun.projectilesDir[0].scale((int)(this.gun.projectileSpeed * (int)dt) << AEMath.Q);
+                        this.gun.projectilesDir[0].x >>= AEMath.Q;
+                        this.gun.projectilesDir[0].y >>= AEMath.Q;
+                        this.gun.projectilesDir[0].z >>= AEMath.Q;
                     }
                 }
             }

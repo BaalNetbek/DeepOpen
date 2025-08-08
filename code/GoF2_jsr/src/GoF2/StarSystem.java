@@ -87,7 +87,7 @@ public final class StarSystem {
                 this.starAndPlanets[i].setRenderLayer(1);
                 if (i == 0) {
                     this.starAndPlanets[i].setAnimationMode((byte)1);
-                    this.starAndPlanets[i].setScale(AEMath.Q_SIXTYFORTH, AEMath.Q_SIXTYFORTH, AEMath.Q_SIXTYFORTH);
+                    this.starAndPlanets[i].setScale(AEMath.Q_64th, AEMath.Q_64th, AEMath.Q_64th);
                     var4 = var3 = GlobalStatus.random.nextInt(24);
                 } else {
                     
@@ -125,11 +125,11 @@ public final class StarSystem {
 
                 var10[var3] = true;
                 if (var3 == var4 && i != 0) {
-                    this.starAndPlanets[i].setRotation(0, var3 * 170 + AEMath.Q_THIRTYSECOND, 0);
+                    this.starAndPlanets[i].setRotation(0, var3 * 170 + AEMath.Q_32nd, 0);
                 } else if (i > 0 && var8[i - 1] == Status.getStation().getIndex()) {
                     this.starAndPlanets[i].setRotation(0, var3 * 170, 0);
                 } else {
-                    this.starAndPlanets[i].setRotation(-128 + GlobalStatus.random.nextInt(256), var3 * 170, 0);
+                    this.starAndPlanets[i].setRotation(-AEMath.Q_PI_THIRTYSECOND + GlobalStatus.random.nextInt(256), var3 * 170, 0);
                 }
 
                 this.starAndPlanets[i].moveForward(-20000);
@@ -211,7 +211,7 @@ public final class StarSystem {
         if (this.inAlienSpace) {
             this.tempVec.x = 0;
             this.tempVec.y = 0;
-            this.tempVec.z = -4096;
+            this.tempVec.z = -AEMath.Q_1;
         } else {
             this.tempVec = this.starAndPlanets[0].getLocalDirection(this.tempVec);
         }

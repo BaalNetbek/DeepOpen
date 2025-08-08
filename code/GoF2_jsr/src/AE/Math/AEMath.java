@@ -11,30 +11,64 @@ public final class AEMath {
 	public static final int Q = 12;
 	
 	public static final int Q_1 = 1 << Q;
-	public static final int Q_SIXTYFORTH = Q_1 / 64;
-	public static final int Q_THIRTYSECOND = Q_1 / 32;
+	
+	public static final float TO_FLOAT = 1.0f / (float)Q_1;
+	public static final float TO_FLOAT_SQR = TO_FLOAT / (float)Q_1;
+	public static final float TO_Q = (float)Q_1;
+	
+	/** 1/512 = 0.001953125 **/
+	public static final int Q_512th = Q_1 / 512; 
+	/** 1/256 = 0.00390625 **/
+	public static final int Q_256th = Q_1 / 256; 
+	/** 1/64 = 0.015625 **/
+	public static final int Q_64th = Q_1 / 64; 
+	/** 1/32 = 0.03125 **/
+	public static final int Q_32nd = Q_1 / 32;
+	/** 1/16 = 0.0625 **/
 	public static final int Q_SIXTEENTH = Q_1 / 16;
+	/** 1/8 = 0.125 **/
 	public static final int Q_EIGHTH = Q_1 / 8;
+	/** 3/16 = 0.1875 **/
 	public static final int Q_THREE_SIXTEENTH = Q_1 * 3/16;
+	/** 1/4 = 0.25 **/
 	public static final int Q_QUARTER = Q_1 / 4;
+	/** 3/8 = 0.375 **/
 	public static final int Q_THREE_EIGHTHS = Q_1 * 3/8;
+	/** 1/2 = 0.5 **/
 	public static final int Q_HALF = Q_1 / 2;
+	/** 3/4 = 0.75 **/
 	public static final int Q_THREE_QUARTERS = Q_1 * 3/4;
+	/** 3/2 = 1.5  **/
 	public static final int Q_THREE_HALFS = Q_1 * 3/2;
+	
 	public static final int Q_2 = Q_1 * 2;
 	public static final int Q_4 = Q_1 * 4;
 	public static final int Q_6 = Q_1 * 6;
 	public static final int Q_8 = Q_1 * 8;
-	public static final float TO_FLOAT = 1.0f / (float)Q_1;
-	public static final float TO_FLOAT_SQR = TO_FLOAT / (float)Q_1;
-	public static final float TO_Q = (float)Q_1;
+	
+	/** 180 degrees **/
 	public static final int Q_PI = Q_1;
+	/** 360 degrees **/
+	public static final int Q_PI_2 = Q_1 * 2;
+	/** 225 degrees **/
 	public static final int Q_PI_FIVE_QUARTERS = Q_PI * 5/4;
-	public static final int Q_PI_HALF = Q_HALF;
+	/** 135 degrees **/
 	public static final int Q_PI_THREE_QUARTERS = Q_PI * 3/4;
-	public static final int Q_PI_QUARTER = Q_QUARTER;
+	/** 90 degrees **/
+	public static final int Q_PI_HALF = Q_HALF;
+	/** 60 degrees **/
 	public static final int Q_PI_THIRD = (Q_1) / 3;
+	/** 45 degrees **/
+	public static final int Q_PI_QUARTER = Q_QUARTER;
+	/** 30 degrees **/
 	public static final int Q_PI_SIXTH = (Q_1) / 6;
+	/** 22.5 degrees **/
+	public static final int Q_PI_EIGHTH = Q_EIGHTH;
+	/** 11.25 degrees **/
+	public static final int Q_PI_SIXTEENTH = Q_SIXTEENTH;
+	/** 5.625 degrees **/
+	public static final int Q_PI_THIRTYSECOND = Q_32nd;
+	
 	public static final int Q_225d = Q_PI_FIVE_QUARTERS;
 	public static final int Q_180d = Q_PI;
 	public static final int Q_135d = Q_PI_THREE_QUARTERS;
@@ -42,6 +76,7 @@ public final class AEMath {
 	public static final int Q_45d = Q_PI_QUARTER;
 	public static final int Q_60d = Q_PI_THIRD;
 	public static final int Q_30d = Q_PI_SIXTH;
+	
 	public static final int Q_DIV (int a, int b) { return (a<<Q)/b; }
 	public static final int Q_MUL (int a, int b) { return a*b>>Q; }
 	public static final int Q_SQR (int a) { return a*a>>Q; }

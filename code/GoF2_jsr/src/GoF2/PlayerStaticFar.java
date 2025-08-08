@@ -9,8 +9,8 @@ import AE.Math.AEMath;
 public class PlayerStaticFar extends PlayerStatic {
     protected BoundingVolume[] boundingBoxes;
 
-    public PlayerStaticFar(final int var1, final AbstractMesh var2, final int var3, final int var4, final int var5) {
-        super(var1, var2, var3, var4, var5);
+    public PlayerStaticFar(final int id, final AbstractMesh var2, final int var3, final int var4, final int var5) {
+        super(id, var2, var3, var4, var5);
         this.targetX = var3;
         this.targetY = var4;
         this.targetZ = var5;
@@ -36,7 +36,7 @@ public class PlayerStaticFar extends PlayerStatic {
                 virtDistToCam_.scale(28000);
                 virtDistToCam_.add(this.tempVector_);
                 this.mainMesh_.moveTo(virtDistToCam_);
-                var3 = (int)(28000.0F / var3 * AEMath.Q_1);
+                var3 = (int)(28000.0F / var3 * AEMath.TO_Q);
                 this.mainMesh_.setScale(var3, var3, var3);
             } else {
                 this.mainMesh_.setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);

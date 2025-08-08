@@ -38,13 +38,13 @@ public final class PlayerAsteroid extends KIPlayer {
 		tempVector2_.set(var5, var6, var7);
 		this.clampDisabled = var4;
 		this.clampedByDistance = false;
-		this.baseScaleX = 1024 + GlobalStatus.random.nextInt(2448);
-		this.baseScaleY = 1024 + GlobalStatus.random.nextInt(2448);
-		this.baseScaleZ = 1024 + GlobalStatus.random.nextInt(2448);
-		this.sizeCoef_ = (int)((this.baseScaleX + this.baseScaleY + this.baseScaleZ) / 3 / 3072.0F * 100.0F);
+		this.baseScaleX = AEMath.Q_QUARTER + GlobalStatus.random.nextInt(2448);
+		this.baseScaleY = AEMath.Q_QUARTER + GlobalStatus.random.nextInt(2448);
+		this.baseScaleZ = AEMath.Q_QUARTER + GlobalStatus.random.nextInt(2448);
+		this.sizeCoef_ = (int)((this.baseScaleX + this.baseScaleY + this.baseScaleZ) / 3.0f / AEMath.Q_THREE_QUARTERS * 100.0F);
 		this.player.setMaxHP(30 + (int)(this.sizeCoef_ / 100.0F * 100.0F));
 		this.tier = AEMath.min(7, 2 + (int)((this.sizeCoef_ + 15) / 100.0F * 5.0F));
-		this.tempVector_.set(-4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192), -4096 + GlobalStatus.random.nextInt(8192));
+		this.tempVector_.set(-AEMath.Q_PI + GlobalStatus.random.nextInt(AEMath.Q_PI_2), -AEMath.Q_PI + GlobalStatus.random.nextInt(AEMath.Q_PI_2), -AEMath.Q_PI + GlobalStatus.random.nextInt(8192));
 		this.tempVector_.normalize();
 		this.mainMesh_.getToParentTransform().setOrientation(this.tempVector_);
 		this.mainMesh_.moveTo(tempVector2_);

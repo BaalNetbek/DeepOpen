@@ -11,29 +11,29 @@ public final class PlayerWormHole extends PlayerStaticFar {
     private int lifeTime;
     private int scale;
 
-    public PlayerWormHole(int var1, AbstractMesh var2, final int var3, final int var4, final int var5, final boolean var6) {
-        super(6805, var2, var3, var4, var5);
+    public PlayerWormHole(int var1, AbstractMesh mesh, final int x, final int y, final int z, final boolean active) {
+        super(6805, mesh, x, y, z);
         this.name = GlobalStatus.gameText.getText(269);
-        setVisible(var6);
+        setVisible(active);
         this.geometry = new Group();
-        if (var6) {
+        if (active) {
             this.mainMesh_.setAnimationSpeed(30);
-            this.mainMesh_.setRotation(-AEMath.Q_THIRTYSECOND, -AEMath.Q_THIRTYSECOND, 0);
+            this.mainMesh_.setRotation(-AEMath.Q_32nd, -AEMath.Q_32nd, 0);
             this.mainMesh_.setAnimationMode((byte)2);
         }
 
         this.geometry.uniqueAppend_(this.mainMesh_);
         this.mainMesh_.moveTo(0, 0, 0);
-        this.geometry.moveTo(var3, var4, var5);
+        this.geometry.moveTo(x, y, z);
         final char var7 = 40000;
         this.player.radius = var7;
 
-        for(var1 = 0; var1 < 10; ++var1) {
-            (var2 = AEResourceManager.getGeometryResource(6806)).setTransform(this.mainMesh_.getToParentTransform());
-            var2.roll((var1 + 1) * GlobalStatus.random.nextInt(400));
-            var2.setAnimationMode((byte)2);
-            var2.setAnimationSpeed(20 + GlobalStatus.random.nextInt(50));
-            this.geometry.uniqueAppend_(var2);
+        for(int i = 0; i < 10; ++i) {
+            (mesh = AEResourceManager.getGeometryResource(6806)).setTransform(this.mainMesh_.getToParentTransform());
+            mesh.roll((i + 1) * GlobalStatus.random.nextInt(400));
+            mesh.setAnimationMode((byte)2);
+            mesh.setAnimationSpeed(20 + GlobalStatus.random.nextInt(50));
+            this.geometry.uniqueAppend_(mesh);
         }
 
         reset(false);
@@ -68,7 +68,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
             int var2;
             int var5;
             if (this.lifeTime < 0) {
-                this.scale = AEMath.Q_1 - (int)(-this.lifeTime / 3000.0F * AEMath.Q_1);
+                this.scale = AEMath.Q_1 - (int)(-this.lifeTime / 3000.0F * AEMath.TO_Q);
                 if (this.lifeTime >= 0) {
                     this.scale = AEMath.Q_1;
                 }
@@ -77,7 +77,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
                     this.lifeTime = 40000;
                 }
 
-                this.scale = AEMath.Q_1 - (int)((this.lifeTime - 40000) / 3000.0F * AEMath.Q_1);
+                this.scale = AEMath.Q_1 - (int)((this.lifeTime - 40000) / 3000.0F * AEMath.TO_Q);
                 if (this.lifeTime > 43000) {
                     if (!Status.inAlienOrbit() && !Status.getStation().isAttackedByAliens()) {
                         this.visible = false;

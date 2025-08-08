@@ -30,8 +30,8 @@ public final class LensFlareFX {
 			var2 = var7 - var2;
 			var3 = var4 - var3;
 			final int var5 = AEMath.sqrt(var2 * var2 + var3 * var3);
-			var2 = -(var2 << 12);
-			var3 = -(var3 << 12);
+			var2 = -(var2 << AEMath.Q);
+			var3 = -(var3 << AEMath.Q);
 			if (var5 > 0) {
 				var2 /= var5;
 				var3 /= var5;
@@ -42,33 +42,33 @@ public final class LensFlareFX {
 					switch(var6) {
 					case 0:
 						if (var5 > 2000) {
-							GlobalStatus.graphics.drawImage(this.flares[var6], var7 + (var2 * var5 / 2 >> 12), var4 + (var3 * var5 / 2 >> 12), 3);
+							GlobalStatus.graphics.drawImage(this.flares[var6], var7 + (var2 * var5 / 2 >> AEMath.Q), var4 + (var3 * var5 / 2 >> AEMath.Q), 3);
 							if (this.mainFlare != null) {
-								GlobalStatus.graphics.drawImage(this.mainFlare, var7 + (var2 * var5 / 3 >> 12), var4 + (var3 * var5 / 3 >> 12), 3);
+								GlobalStatus.graphics.drawImage(this.mainFlare, var7 + (var2 * var5 / 3 >> AEMath.Q), var4 + (var3 * var5 / 3 >> AEMath.Q), 3);
 							}
 						}
 						break;
 					case 1:
 						if (var5 > 3000) {
-							GlobalStatus.graphics.drawImage(this.flares[var6], var7 + (var2 * var5 / 8 >> 12), var4 + (var3 * var5 / 8 >> 12), 3);
+							GlobalStatus.graphics.drawImage(this.flares[var6], var7 + (var2 * var5 / 8 >> AEMath.Q), var4 + (var3 * var5 / 8 >> AEMath.Q), 3);
 							if (this.mainFlare != null) {
-								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 2 >> 12), var4 - (var3 * var5 / 2 >> 12), 3);
+								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 2 >> AEMath.Q), var4 - (var3 * var5 / 2 >> AEMath.Q), 3);
 							}
 						}
 						break;
 					case 2:
 						if (var5 > 4000) {
-							GlobalStatus.graphics.drawImage(this.flares[var6], var7 - (var2 * var5 / 4 >> 12), var4 - (var3 * var5 / 4 >> 12), 3);
+							GlobalStatus.graphics.drawImage(this.flares[var6], var7 - (var2 * var5 / 4 >> AEMath.Q), var4 - (var3 * var5 / 4 >> AEMath.Q), 3);
 							if (this.mainFlare != null) {
-								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 6 >> 12), var4 - (var3 * var5 / 6 >> 12), 3);
+								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 6 >> AEMath.Q), var4 - (var3 * var5 / 6 >> AEMath.Q), 3);
 							}
 						}
 						break;
 					case 3:
 						if (var5 > 5000) {
-							GlobalStatus.graphics.drawImage(this.flares[var6], var7 - (var2 * var5 / 7 >> 12), var4 - (var3 * var5 / 7 >> 12), 3);
+							GlobalStatus.graphics.drawImage(this.flares[var6], var7 - (var2 * var5 / 7 >> AEMath.Q), var4 - (var3 * var5 / 7 >> AEMath.Q), 3);
 							if (this.mainFlare != null) {
-								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 10 >> 12), var4 - (var3 * var5 / 10 >> 12), 3);
+								GlobalStatus.graphics.drawImage(this.mainFlare, var7 - (var2 * var5 / 10 >> AEMath.Q), var4 - (var3 * var5 / 10 >> AEMath.Q), 3);
 							}
 						}
 					}

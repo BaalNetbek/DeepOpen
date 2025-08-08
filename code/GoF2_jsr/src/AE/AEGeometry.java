@@ -23,7 +23,7 @@ public abstract class AEGeometry extends GraphNode {
 				this.localTransformation.set(this.compositeTransformation);
 			}
 
-			final int var2 = AEMath.max(AEMath.max(AEMath.abs((tempCenter = this.localTransformation.copyScaleTo(tempCenter)).x), AEMath.abs(tempCenter.y)), AEMath.abs(tempCenter.z)) * this.radius >> 12;
+			final int var2 = AEMath.max(AEMath.max(AEMath.abs((tempCenter = this.localTransformation.copyScaleTo(tempCenter)).x), AEMath.abs(tempCenter.y)), AEMath.abs(tempCenter.z)) * this.radius >> AEMath.Q;
 			tempCenter = this.localTransformation.getPosition(tempCenter);
 			this.boundingSphere.setXYZR(tempCenter.x, tempCenter.y, tempCenter.z, var2);
 			this.transformDirty_ = false;

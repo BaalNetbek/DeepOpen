@@ -34,9 +34,9 @@ public final class RenderLayer {
 		this.size = 0;
 	}
 
-	public final void update(final long var1) {
-		for(int var3 = 0; var3 < this.size; ++var3) {
-			this.meshes[var3].update(var1);
+	public final void update(final long currentTime) {
+		for(int i = 0; i < this.size; ++i) {
+			this.meshes[i].update(currentTime);
 		}
 
 	}

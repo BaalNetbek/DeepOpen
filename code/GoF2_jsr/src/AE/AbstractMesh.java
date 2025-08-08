@@ -52,6 +52,6 @@ public abstract class AbstractMesh extends AEGeometry {
 
 	public abstract void OnRelease();
 
-	public void update(final long dt) {
+	public void update(final long currentTime) {
 	}
 }

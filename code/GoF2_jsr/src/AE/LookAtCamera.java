@@ -79,12 +79,12 @@ public final class LookAtCamera implements CameraController_ {
 			if (this.upOverride != null) {
 				cameraUp.set(this.upOverride);
 			} else {
-				cameraUp.set(0, 4096, 0);
+				cameraUp.set(0, AEMath.Q_1, 0);
 			}
 
 			(cameraRight = cameraUp.crossProduct(cameraDir, cameraRight)).normalize();
 			if (AEMath.abs(cameraRight.x + cameraRight.y + cameraRight.z) < 4) {
-				cameraUp.set(4096, 0, 0);
+				cameraUp.set(AEMath.Q_1, 0, 0);
 				(cameraRight = cameraUp.crossProduct(cameraDir, cameraRight)).normalize();
 			}
 

@@ -180,7 +180,7 @@ public final class StarMap {
 		if (this.starNetCamera_ == null) {
 			this.starNetCamera_ = Camera.create(this.mapInnerWidth, this.mapInnerHeight + 20, 1000, 10, 31768);
 			this.starNetCamera_.translate(0, 0, -2500);
-			this.starNetCamera_.rotateEuler(0, 2048, 0);
+			this.starNetCamera_.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 			this.starNetCamera_.moveTo((int)this.scrollX * 20, (int)this.scrollY * 20, 0);
 			this.starNetCamera_.updateTransform(true);
 		}
@@ -555,7 +555,7 @@ public final class StarMap {
 					final AEVector3D var10000 = this.tmpStarScreenPos1;
 					var10000.z -= 6000;
 					this.tmpStarScreenPos2.subtract(this.tmpStarScreenPos1);
-					this.tmpStarScreenPos2.scale(-1024);
+					this.tmpStarScreenPos2.scale(-AEMath.Q_QUARTER);
 					this.starNetCamera_.translate(this.tmpStarScreenPos2);
 				} else {
 					this.galaxyMapView = false;
@@ -566,7 +566,7 @@ public final class StarMap {
 				this.tmpStarScreenPos1.set(this.stars[this.selectedSystem].getPosition(this.tmpStarScreenPos1));
 				this.tmpStarScreenPos1.z = 0;
 				this.tmpStarScreenPos2.subtract(this.tmpStarScreenPos1);
-				this.tmpStarScreenPos2.scale(-1024);
+				this.tmpStarScreenPos2.scale(-AEMath.Q_QUARTER);
 				this.starNetCamera_.translate(0, 0, this.tmpStarScreenPos2.z);
 			} else {
 				this.galaxyMapView = true;
@@ -618,9 +618,9 @@ public final class StarMap {
 					}
 
 					if (var2 == this.selectedSystem && this.discoverSystemCutscene && this.newSystemAnimTime < 4000) {
-						var11 = (int)(this.newSystemAnimTime / 4000.0F * (1024 + (AEMath.sin(this.newSysAnimTimer + (var2 << 8)) >> 5)));
+						var11 = (int)(this.newSystemAnimTime / 4000.0F * (AEMath.Q_QUARTER + (AEMath.sin(this.newSysAnimTimer + (var2 << 8)) >> 5)));
 					} else {
-						var11 = 1024 + (AEMath.sin(this.newSysAnimTimer + (var2 << 8)) >> 5);
+						var11 = AEMath.Q_QUARTER + (AEMath.sin(this.newSysAnimTimer + (var2 << 8)) >> 5);
 					}
 
 					this.stars[var2].setScale(var11, var11, var11);
@@ -677,15 +677,15 @@ public final class StarMap {
 					var6 = GlobalStatus.random.nextInt(this.occupiedOrbits_.length);
 					if (!this.occupiedOrbits_[var6]) {
 						this.occupiedOrbits_[var6] = true;
-						var4 = 4096 / this.occupiedOrbits_.length * var6;
+						var4 = AEMath.Q_1 / this.occupiedOrbits_.length * var6;
 						var5 = true;
 					}
 				}
 
 				this.planetRevolutAngs[var2 - 2] = var4;
 				var7.addEulerAngles(0, var4, 0);
-				var6 = var2 == 2 ? 512 : this.distsToStar[var2 - 3];
-				this.distsToStar[var2 - 2] = var6 + 128 + GlobalStatus.random.nextInt(376);
+				var6 = var2 == 2 ? AEMath.Q_EIGHTH : this.distsToStar[var2 - 3];
+				this.distsToStar[var2 - 2] = var6 + AEMath.Q_32nd + GlobalStatus.random.nextInt(376);
 				final AEVector3D var9 = new AEVector3D(0, 0, this.distsToStar[var2 - 2]);
 				AEVector3D var10 = new AEVector3D();
 				var10 = var7.transformVector(var9, var10);
@@ -697,7 +697,7 @@ public final class StarMap {
 				this.localStarAndPlanetsMeshes[var2].setAnimationRangeInTime(var3, var3);
 			} else {
 				this.localStarAndPlanetsMeshes[var2].translate(0, 0, var2 * 32);
-				this.localStarAndPlanetsMeshes[var2].rotateEuler(0, 2048, 256);
+				this.localStarAndPlanetsMeshes[var2].rotateEuler(0, AEMath.Q_PI_HALF, AEMath.Q_PI_SIXTEENTH);
 				this.localStarAndPlanetsMeshes[var2].setScale(256, 256, 256);
 			}
 
@@ -712,7 +712,7 @@ public final class StarMap {
 		for(var2 = 0; var2 < this.localOrbits.length; ++var2) {
 			this.localOrbits[var2] = AEResourceManager.getGeometryResource(6779);
 			this.localOrbits[var2].setRenderLayer(2);
-			this.localOrbits[var2].rotateEuler(-1024, 0, 0);
+			this.localOrbits[var2].rotateEuler(-AEMath.Q_PI_QUARTER, 0, 0);
 			this.localSystem.uniqueAppend_(this.localOrbits[var2]);
 			var3 = this.distsToStar[var2];
 			this.localOrbits[var2].setScale(var3 << 1, var3 << 1, var3 << 1);
@@ -743,7 +743,7 @@ public final class StarMap {
 
 		if (this.systems[this.selectedSystem].getIndex() == Status.getSystem().getIndex()) {
 			this.arrow.setTransform(this.localStarAndPlanetsMeshes[this.systems[this.selectedSystem].getStationEnumIndex(Status.getStation().getIndex()) + 2].getToParentTransform());
-			this.arrow.setRotation(512, 0, -1024);
+			this.arrow.setRotation(AEMath.Q_PI_EIGHTH, 0, -AEMath.Q_PI_QUARTER);
 			this.localSystem.uniqueAppend_(this.arrow);
 		}
 

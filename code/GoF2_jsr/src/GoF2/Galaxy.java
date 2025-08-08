@@ -42,11 +42,11 @@ public final class Galaxy {
 	}
 
 	public static int invDistancePercent(final int x1, final int y1, final int x2, final int y2) {
-		return 100 - (AEMath.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) << 12) >> 12);
+		return 100 - (AEMath.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) << AEMath.Q) >> AEMath.Q);
 	}
 
 	public static int distancePercent(final int var0, final int var1, final int var2, final int var3) {
-		return AEMath.sqrt((var2 - var0) * (var2 - var0) + (var3 - var1) * (var3 - var1) << 12) >> 12;
+		return AEMath.sqrt((var2 - var0) * (var2 - var0) + (var3 - var1) * (var3 - var1) << AEMath.Q) >> AEMath.Q;
 	}
 
 	public static float distance(final SolarSystem var0, final SolarSystem var1) {
@@ -56,7 +56,7 @@ public final class Galaxy {
 		tempSysPos1.set(var0.getPosX(), var0.getPosY(), var0.getPosZ() / 10);
 		tempSysPos2.set(var1.getPosX(), var1.getPosY(), var1.getPosZ() / 10);
 		tempSysPos1.subtract(tempSysPos2);
-		return (AEMath.sqrt(tempSysPos1.x * tempSysPos1.x + tempSysPos1.y * tempSysPos1.y + tempSysPos1.z * tempSysPos1.z << 12) >> 12) * 18.85F;
+		return (AEMath.sqrt(tempSysPos1.x * tempSysPos1.x + tempSysPos1.y * tempSysPos1.y + tempSysPos1.z * tempSysPos1.z << AEMath.Q) >> AEMath.Q) * 18.85F;
 	}
 
 	public static int[] getAsteroidProbabilities(final Station var0) {

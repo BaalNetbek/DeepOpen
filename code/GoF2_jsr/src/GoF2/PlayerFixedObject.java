@@ -160,7 +160,7 @@ public final class PlayerFixedObject extends KIPlayer {
             this.distToCamera.scale(28000);
             this.distToCamera.add(this.tempVector_);
             this.geometry.moveTo(this.distToCamera);
-            var9 = (int)(28000.0F / var6 * AEMath.Q_1);
+            var9 = (int)(28000.0F / var6 * AEMath.TO_Q);
             this.geometry.setScale(var9, var9, var9);
         } else {
             this.geometry.setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);
@@ -291,7 +291,7 @@ public final class PlayerFixedObject extends KIPlayer {
             var10 = 1;
 
             for(var8 = this.geometry.getEndNode(); var8 != null; var8 = var8.getParent()) {
-                this.postExposionPartPos[var10 - 1].scale(4096 - (int)var1);
+                this.postExposionPartPos[var10 - 1].scale(AEMath.Q_1 - (int)var1);
                 var8.translate(this.postExposionPartPos[var10 - 1]);
                 var8.rotateEuler(this.postExplosionPartRot[var10 - 1].x, this.postExplosionPartRot[var10 - 1].y, this.postExplosionPartRot[var10 - 1].z);
                 ++var10;

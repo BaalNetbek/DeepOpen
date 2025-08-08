@@ -23,7 +23,7 @@ public final class JSRCamera extends Camera {
 			aspectRatio = (float)this.screenWidth / (float)this.screenHeight;
 		}
 
-		this.camera.setPerspective(fov * 0.087890625F, aspectRatio, near, far);
+		this.camera.setPerspective(fov * 90.0f/1024.0f, aspectRatio, near, far);
 	}
 
 	public final void setActive() {

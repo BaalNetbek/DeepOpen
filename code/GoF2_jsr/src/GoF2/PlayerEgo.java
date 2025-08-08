@@ -250,12 +250,12 @@ public final class PlayerEgo {
 			if (this.camera == null) {
 				this.camera = Camera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 700, 100, 31768);
 				this.camera.translate(0, 500, -1400);
-				this.camera.rotateEuler(0, 2048, 0);
+				this.camera.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 				this.turretViewCamera__ = new Group();
 				this.turretViewCamera__.uniqueAppend_(this.camera);
 				this.turretViewCamera__.setRotationOrder((short)2);
 				this.turretViewCamera__.translate(turretPartsPositions[this.turretShipId_][1], turretPartsPositions[this.turretShipId_][2], turretPartsPositions[this.turretShipId_][3]);
-				this.turretViewCamera__.rotateEuler(0, 2048, 0);
+				this.turretViewCamera__.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 				this.turretGrandGroup_ = new Group();
 				this.turretGrandGroup_.uniqueAppend_(this.turretViewCamera__);
 			}
@@ -418,8 +418,8 @@ public final class PlayerEgo {
 				}
 
 				this.turretGun.translate(0, var5, 0);
-				this.turretStand.rotateEuler(0, 2048, 0);
-				this.turretGun.rotateEuler(0, 2048, 0);
+				this.turretStand.rotateEuler(0, AEMath.Q_PI_HALF, 0);
+				this.turretGun.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 				this.turretGroup.uniqueAppend_(this.turretStand);
 				this.turretGroup.uniqueAppend_(this.turretGun);
 			}
@@ -534,7 +534,7 @@ public final class PlayerEgo {
 			int var9;
 			if (this.boostActive) {
 				var9 = 0;
-				final int var6 = (int)(getBoostPercentage() * 2048.0F);
+				final int var6 = (int)(getBoostPercentage() * AEMath.Q_HALF);
 
 				GraphNode var7;
 				int[] var8;
@@ -580,10 +580,10 @@ public final class PlayerEgo {
 			if (this.cloakOn) {
 				if (this.cloakingScaleX >= 0) {
 					this.cloakingTimeCoef = (int)(this.cloakingTimeCoef + (this.frameTime << 3));
-					this.cloakingScaleX = (int)(-4.8828125E-4F * ((this.cloakingTimeCoef - 4096) * (this.cloakingTimeCoef - 4096)) + 8192.0F + 4096.0F);
-					this.shipGrandGroup_.setScale(this.cloakingScaleX, 4096, 4096);
+					this.cloakingScaleX = (int)(-2.0F * AEMath.TO_FLOAT * ((this.cloakingTimeCoef - AEMath.Q_1) * (this.cloakingTimeCoef - AEMath.Q_1)) + AEMath.Q_2 + AEMath.Q_1);
+					this.shipGrandGroup_.setScale(this.cloakingScaleX, AEMath.Q_1, AEMath.Q_1);
 				} else {
-					this.shipGrandGroup_.setScale(4096, 4096, 4096);
+					this.shipGrandGroup_.setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);
 				}
 
 				this.cloakTime = (int)(this.cloakTime + this.frameTime);
@@ -596,11 +596,11 @@ public final class PlayerEgo {
 			} else {
 				if (this.cloakingTimeCoef > 0) {
 					this.cloakingTimeCoef = (int)(this.cloakingTimeCoef - (this.frameTime << 3));
-					this.cloakingScaleX = (int)(-4.8828125E-4F * ((this.cloakingTimeCoef - 4096) * (this.cloakingTimeCoef - 4096)) + 8192.0F + 4096.0F);
-					this.shipGrandGroup_.setScale(this.cloakingScaleX, 4096, 4096);
+					this.cloakingScaleX = (int)(-2.0F * AEMath.TO_FLOAT * ((this.cloakingTimeCoef - AEMath.Q_1) * (this.cloakingTimeCoef - AEMath.Q_1)) + AEMath.Q_2 + AEMath.Q_1);
+					this.shipGrandGroup_.setScale(this.cloakingScaleX, AEMath.Q_1, AEMath.Q_1);
 				} else {
 					this.cloakingTimeCoef = 0;
-					this.shipGrandGroup_.setScale(4096, 4096, 4096);
+					this.shipGrandGroup_.setScale(AEMath.Q_1, AEMath.Q_1, AEMath.Q_1);
 				}
 
 				if (this.cloakTime >= 0) {
@@ -792,7 +792,7 @@ public final class PlayerEgo {
 							this.vecUp.set(this.vecRight);
 							this.vecUp.scale(var8);
 							this.shipGrandGroup_.translate(this.vecUp);
-							if (var9 < 4096) {
+							if (var9 < AEMath.Q_1) {
 								this.inWormhole = true;
 							}
 						}

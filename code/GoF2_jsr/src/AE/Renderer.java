@@ -60,9 +60,9 @@ public final class Renderer {
 
 	}
 
-	public final void renderFrame(final long var1) {
+	public final void renderFrame(final long currentTime) {
 		for(int i = 0; i < this.layers.length; ++i) {
-			this.layers[i].update(var1);
+			this.layers[i].update(currentTime);
 			this.layers[i].render();
 			if (this.needGraphicsClear[i]) {
 				this.graphics3D.clear();
