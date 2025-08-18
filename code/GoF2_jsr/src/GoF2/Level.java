@@ -1727,7 +1727,7 @@ public final class Level {
 				this.explosionG = 0.0F;
 				this.explosionB = 255.0F;
 				break;
-			default: { //big explosion - 0, bigger - 1
+			default: { // Explosion.MEDIUM, Explosion.BIG
 				final float var2 = var1 == 1 ? 8.0F : 5.0F;
 				this.explosionR = AEMath.max(10, AEMath.min(255, (int)(bgR * var2)));
 				this.explosionG = AEMath.max(10, AEMath.min(255, (int)(bgG * var2)));

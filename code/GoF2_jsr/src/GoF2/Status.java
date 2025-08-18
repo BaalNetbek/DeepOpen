@@ -1032,8 +1032,6 @@ public final class Status {
         highestItemPriceSystems = new byte[176];
         lowestItemPriceSystems = new byte[176];
         final boolean[] visitedStations = Galaxy.getVisitedStations();
-
-
         for(int i = 0; i < visitedStations.length; ++i) {
             visitedStations[i] = false;
         }

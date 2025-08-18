@@ -12,7 +12,7 @@ import AE.Math.AEMatrix;
 
 public final class PlayerStation extends PlayerStaticFar {
 	private final int[] partsCollisions = {
-//offset==>x,      y,      z,   |  x,     y,     z,  <==dimension   
+   //offset==>x,      y,      z,   |  x,     y,     z,  <==dimension   
 		    -10,    -791,   -1776,  2509,  3625,  22248,
 		    -18,    -786,   2466,   2499,  4681,  30734,
 		    -10,    -1851,  29,     7568,  13971, 7568,

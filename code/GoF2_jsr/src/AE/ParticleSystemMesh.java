@@ -65,8 +65,8 @@ public final class ParticleSystemMesh extends AbstractMesh {
 		this.uvArray = new VertexArray(quadCount * 4, 2, 1);
 		this.vertexArray.set(0, quadCount * 4, this.vertices);
 		this.uvArray.set(0, quadCount * 4, this.uvs);
-		this.vertexBuffer.setPositions(this.vertexArray, 1.0F, zeroBias3D);
-		this.vertexBuffer.setTexCoords(0, this.uvArray, 0.00390625F, zeroBias2D);
+		this.vertexBuffer.setPositions(this.vertexArray, 1.0f, zeroBias3D);
+		this.vertexBuffer.setTexCoords(0, this.uvArray, 1.0f/256.0, zeroBias2D);
 		
 		final int[] indicies = new int[quadCount * 6];
 		int j = 0;

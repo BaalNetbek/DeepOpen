@@ -933,7 +933,7 @@ public final class Radar {
             }
         }
 
-        int meters = (int)b * 12;
+        int meters = (int)b * 12; // BUG: causes incositancy with speed units, should be * 8, like in later versions
         String distance = meters + "m";
         if (meters >= 1000) {
             y = meters % 1000;

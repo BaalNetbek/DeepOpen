@@ -151,27 +151,27 @@ public final class Globals {
         final int[] var3 = FileRead.loadShipParts(var0);
         final int[] var6 = getRaceUVkeyframeId_(var1);
 
-        for(int i = 0; i < var3.length; i += 10) {
-            AbstractMesh mesh;
-            if ((mesh = AEResourceManager.getGeometryResource(var3[i])).getID() >= 13064 && mesh.getID() <= 13071) {
-                mesh.setAnimationMode((byte)2);
-            } else {
-                mesh.setAnimationRangeInTime(var6[0], var6[1]);
-                mesh.disableAnimation();
-            }
+		for (int i = 0; i < var3.length; i += 10) {
+			AbstractMesh mesh;
+			if ((mesh = AEResourceManager.getGeometryResource(var3[i])).getID() >= 13064 && mesh.getID() <= 13071) {
+				mesh.setAnimationMode((byte) 2);
+			} else {
+				mesh.setAnimationRangeInTime(var6[0], var6[1]);
+				mesh.disableAnimation();
+			}
 
-				if (mesh.getID() == 13067 || mesh.getID() == 13068 || mesh.getID() == 13070 || mesh.getID() == 13064
-				      || mesh.getID() == 13065 || mesh.getID() == 13071 || mesh.getID() == 13061 || mesh.getID() == 13063
-				      || mesh.getID() == 13062 || var0 == 14 || var0 == 13 || var0 == 15) {
-			       mesh.moveTo	  (var3[i + 1], var3[i + 2], var3[i + 3]);
-                mesh.setRotation(var3[i + 4], var3[i + 5], var3[i + 6]);
-                mesh.setScale	  (var3[i + 7], var3[i + 8], var3[i + 9]);
-            }
+			if (mesh.getID() == 13067 || mesh.getID() == 13068 || mesh.getID() == 13070 || mesh.getID() == 13064
+					|| mesh.getID() == 13065 || mesh.getID() == 13071 || mesh.getID() == 13061 || mesh.getID() == 13063
+					|| mesh.getID() == 13062 || var0 == 14 || var0 == 13 || var0 == 15) {
+				mesh.moveTo(var3[i + 1], var3[i + 2], var3[i + 3]);
+				mesh.setRotation(var3[i + 4], var3[i + 5], var3[i + 6]);
+				mesh.setScale(var3[i + 7], var3[i + 8], var3[i + 9]);
+			}
 
-            mesh.setRenderLayer(2);
-            mesh.setDraw(true);
-            var2.uniqueAppend_(mesh);
-        }
+			mesh.setRenderLayer(2);
+			mesh.setDraw(true);
+			var2.uniqueAppend_(mesh);
+		}
 
         return var2;
     }
