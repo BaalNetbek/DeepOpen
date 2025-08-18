@@ -294,7 +294,7 @@ public final class OptionsWindow {
 	public final boolean update() {
 		RecordHandler recHandler;
 		switch(this.subMenu) {
-		case 0:
+		case MAIN_MENU:
 			if (this.confirmPopupOpen && this.selectedRow == 5) {
 				if (this.confirmPopup.getChoice()) {
 					GlobalStatus.applicationManager.Quit();
@@ -406,7 +406,7 @@ public final class OptionsWindow {
 			default:
 				return false;
 			}
-		case 1:
+		case LOAD_GAME:
 			if (this.selectedRow == this.saves.length || this.saves[this.selectedRow] != null) {
 				if (Status.getPlayingTime() <= 0L) {
 					this.confirmPopupOpen = false;
@@ -426,7 +426,7 @@ public final class OptionsWindow {
 				}
 			}
 			break;
-		case 2:
+		case SAVE_GAME:
 			if (this.confirmPopupOpen) {
 				if (!this.confirmPopup.getChoice()) {
 					this.confirmPopupOpen = false;
@@ -452,10 +452,10 @@ public final class OptionsWindow {
 				this.confirmPopupOpen = true;
 			}
 			break;
-		case 3:
+		case OPTIONS:
 			optionsRight();
 			break;
-		case 4:
+		case HELP:
 			switch(this.selectedRow) {
 			case 0:
 				this.subMenu = HELP_INSTRUCTIONS;
@@ -471,7 +471,7 @@ public final class OptionsWindow {
 			default:
 				return false;
 			}
-		case 5:
+		case PAUSE:
 			if (this.confirmPopupOpen) {
 				if (this.confirmPopup.getChoice()) {
 					GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[0]);
@@ -498,17 +498,17 @@ public final class OptionsWindow {
 				}
 			}
 			break;
-		case 6:
+		case HELP_INSTRUCTIONS:
 			this.instructions.zeroTopPadding();
 			this.instructions.setText(GlobalStatus.gameText.getText(GameText.helpFull[this.selectedRow]));
 			this.subMenu = HELP_INSTR_FIRST + this.selectedRow;
 			System.out.println(this.selectedRow + "  " + this.subMenu);
-		case 7:
-		case 8:
-		case 10:
+		case HELP_CONTROLS:
+		case HELP_CREDITS:
+		case UNK_SUBMENU_10:
 		default:
 			break;
-		case 9:
+		case UNK_SUBMENU_9:
 			switch(this.selectedRow) {
 			case 0:
 				if (Status.getPlayingTime() > 0L) {
