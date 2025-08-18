@@ -10,6 +10,7 @@ import AE.Time;
 import AE.Math.AEMath;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
+import GOF2.Main.GOF2Canvas;
 
 public final class Hud {
 	private final String[][] actionmenuLabels = {
@@ -716,8 +717,8 @@ public final class Hud {
 		}
 	}
 
-	public final boolean handleActionMenuKeypress(int var1, final Level var2, final Radar var3) {
-		if (var1 == 8192) {
+	public final boolean handleActionMenuKeypress(int keyPressed, final Level level, final Radar var3) {
+		if (keyPressed == GOF2Canvas.RSB) {
 			if (this.actionmenuOpen && this.menuReady) {
 				this.actionmenuOpen = false;
 				this.actionmenuConverging = false;
@@ -748,79 +749,107 @@ public final class Hud {
 		final int var4 = this.actionSubMenuOpen;
 		if (this.actionmenuOpen && this.menuReady) {
 			int var5 = this.actionmenuSelectDir;
-			if (this.actionmenuSelectDir > 0 && var1 == 256) {
-				var1 = this.actionmenuSelectDir == 1 ? 2 : this.actionmenuSelectDir == 2 ? 32 : this.actionmenuSelectDir == 3 ? 64 : 4;
+			if (this.actionmenuSelectDir > 0 && keyPressed == GOF2Canvas.KEY_5) {
+				keyPressed = this.actionmenuSelectDir == 1 ? GOF2Canvas.UP:
+              				this.actionmenuSelectDir == 2 ? GOF2Canvas.RIGHT:
+              				this.actionmenuSelectDir == 3 ? GOF2Canvas.DOWN:
+              				                                GOF2Canvas.LEFT;
 			}
 
-			if (this.actionmenuSelectDir == 0 || this.actionmenuSelectDir == 1 && var1 != 2 || this.actionmenuSelectDir == 2 && var1 != 32 || this.actionmenuSelectDir == 3 && var1 != 64 || this.actionmenuSelectDir == 4 && var1 != 4) {
-				switch(var1) {
-				case GOF2Canvas.UP:
-					this.actionmenuSelectDir = 1;
-					GlobalStatus.soundManager.playSfx(4);
-					break;
-				case GOF2Canvas.LEFT:
-					this.actionmenuSelectDir = 4;
-					GlobalStatus.soundManager.playSfx(4);
-					break;
-				case GOF2Canvas.RIGHT:
-					this.actionmenuSelectDir = 2;
-					GlobalStatus.soundManager.playSfx(4);
-					break;
-				case GOF2Canvas.DOWN:
-					this.actionmenuSelectDir = 3;
-					GlobalStatus.soundManager.playSfx(4);
-					break;
-				case GOF2Canvas.KEY_5:
-					if (this.actionmenuSelectDir == 0) {
-						handleActionMenuKeypress(8192, var2, var3);
-					}
-				}
-
-				if (this.actionmenuSelectDir == 0 
-						&& this.actionmenuSelectDir == 3
-						&& !var2.getPlayer().isCloaked()
-				      && !var2.getPlayer().isCloakReady()
-				      || this.actionmenuSelectDir > 0
-				            && this.actionmenuLabels[this.actionSubMenuOpen][this.actionmenuSelectDir - 1].equals("")) {
-					this.actionmenuSelectDir = var5;
-				}
-
-				return this.actionmenuOpen;
+			if (this.actionmenuSelectDir == 0 ||
+			  this.actionmenuSelectDir == 1 && keyPressed != GOF2Canvas.UP ||
+			  this.actionmenuSelectDir == 2 && keyPressed != GOF2Canvas.RIGHT ||
+			  this.actionmenuSelectDir == 3 && keyPressed != GOF2Canvas.DOWN ||
+			  this.actionmenuSelectDir == 4 && keyPressed != GOF2Canvas.LEFT) {
+    		  switch(keyPressed) {
+    				case GOF2Canvas.UP:
+  				      this.actionmenuSelectDir = 1;
+    					GlobalStatus.soundManager.playSfx(4);
+    					break;
+    				case GOF2Canvas.LEFT:
+    					this.actionmenuSelectDir = 4;
+    					GlobalStatus.soundManager.playSfx(4);
+    					break;
+    				case GOF2Canvas.RIGHT:
+    					this.actionmenuSelectDir = 2;
+    					GlobalStatus.soundManager.playSfx(4);
+    					break;
+    				case GOF2Canvas.DOWN:
+    					this.actionmenuSelectDir = 3;
+    					GlobalStatus.soundManager.playSfx(4);
+    					break;
+    				case GOF2Canvas.KEY_5:
+    					if (this.actionmenuSelectDir == 0) {
+    						handleActionMenuKeypress(GOF2Canvas.RSB, level, var3);
+    					}
+    				}
+    
+    				if (this.actionmenuSelectDir == 0 
+    						&& this.actionmenuSelectDir == 3
+    						&& !level.getPlayer().isCloaked()
+    				      && !level.getPlayer().isCloakReady()
+    				      || this.actionmenuSelectDir > 0
+    				            && this.actionmenuLabels[this.actionSubMenuOpen][this.actionmenuSelectDir - 1].equals("")) {
+    					this.actionmenuSelectDir = var5;
+    				}
+    
+    				return this.actionmenuOpen;
 			}
 
 			switch(this.actionSubMenuOpen) {
 			case 1:
-				if (var1 != 2 && var1 != 32 && var1 != 64 && var1 != 4 && var1 != 256) {
+				if (keyPressed != GOF2Canvas.UP 
+  				&& keyPressed != GOF2Canvas.RIGHT 
+  				&& keyPressed != GOF2Canvas.DOWN 
+  				&& keyPressed != GOF2Canvas.LEFT
+  				&& keyPressed != GOF2Canvas.KEY_5) {
 					this.actionmenuOpen = true;
 					break;
 				}
-
-				var5 = var1 == 2 ? 0 : var1 == 32 ? 1 : var1 == 64 ? 2 : var1 == 4 ? 3 : this.actionmenuSelectDir;
+				var5 = keyPressed == GOF2Canvas.UP  ? 0 :
+				       keyPressed == GOF2Canvas.RIGHT ? 1 :
+				       keyPressed == GOF2Canvas.DOWN  ? 2 :
+				       keyPressed == GOF2Canvas.LEFT ? 3 :
+				       this.actionmenuSelectDir;
+				
 				if (!this.actionmenuLabels[1][var5].equals("")) {
-					var1 = Status.getShip().getEquipment(Item.SECONDARY)[var5].getIndex();
-					var2.getPlayer().setCurrentSecondaryWeaponIndex(Status.getShip().getEquipment(1)[var5].getIndex());
-					GlobalStatus.displayedSecondary = var1;
+					keyPressed = Status.getShip().getEquipment(Item.SECONDARY)[var5].getIndex();
+					level.getPlayer().setCurrentSecondaryWeaponIndex(Status.getShip().getEquipment(1)[var5].getIndex());
+					GlobalStatus.displayedSecondary = keyPressed;
 					drawSecondaryIcon = this.actionmenuSelectDir;
 				}
 
 				this.actionmenuOpen = false;
 				break;
 			case 3:
-				KIPlayer[] var6 = var2.getEnemies();
-				if (var6 == null) {
+				KIPlayer[] enemies = level.getEnemies();
+				if (enemies == null) {
 					break;
 				}
 
-				lastWingmenAction = var1 == 2 ? 2 : var1 == 32 ? 4 : var1 == 64 ? 3 : var1 == 4 ? 1 : 0;
-				hudEvent(lastWingmenAction == 2 ? 16 : lastWingmenAction == 4 ? 17 : lastWingmenAction == 1 ? 19 : 18, var2.getPlayer());
-				this.actionmenuLabels[3][3] = this.actionmenuLabels[3][3].equals(GlobalStatus.gameText.getText(151)) ? GlobalStatus.gameText.getText(150) : GlobalStatus.gameText.getText(151);
+				lastWingmenAction = keyPressed == GOF2Canvas.UP ? 2 :
+                               keyPressed == GOF2Canvas.RIGHT ? 4 :
+                               keyPressed == GOF2Canvas.DOWN ? 3 :
+                               keyPressed == GOF2Canvas.LEFT ? 1 :
+                                                 0;
+				hudEvent(
+				  lastWingmenAction == 2 ? 16 :
+				  lastWingmenAction == 4 ? 17 :
+				  lastWingmenAction == 1 ? 19 :
+				                           18,
+				  level.getPlayer()
+				);
+				this.actionmenuLabels[3][3] = 
+				  this.actionmenuLabels[3][3].equals(GlobalStatus.gameText.getText(151)) ?
+				    GlobalStatus.gameText.getText(150):
+				    GlobalStatus.gameText.getText(151);
 
-				for(var1 = 0; var1 < var6.length; ++var1) {
-					if (var6[var1].isWingman() && !var6[var1].isDead()) {
+				for(int i = 0; i < enemies.length; ++i) {
+					if (enemies[i].isWingman() && !enemies[i].isDead()) {
 						if (lastWingmenAction == 0) {
 							this.actionmenuOpen = true;
 						} else {
-							var6[var1].setWingmanCommand(lastWingmenAction, lastWingmenAction == 4 ? var3.getLockedEnemy() : null);
+							enemies[i].setWingmanCommand(lastWingmenAction, lastWingmenAction == 4 ? var3.getLockedEnemy() : null);
 						}
 					}
 				}
@@ -828,8 +857,8 @@ public final class Hud {
 				this.actionmenuOpen = false;
 				break;
 			default:
-				switch(var1) {
-				case 2:
+				switch(keyPressed) {
+				case GOF2Canvas.UP:
 					if (!this.actionmenuLabels[0][0].equals("")) {
 						initSecondariesSubMenu();
 						this.actionSubMenuOpen = 1;
@@ -837,33 +866,33 @@ public final class Hud {
 						GlobalStatus.soundManager.playSfx(4);
 					}
 					break;
-				case 4:
-					if (!Status.getMission().isEmpty() && Status.getMission().getType() != 11 && Status.getMission().getType() != 0 && Status.getMission().getType() != 23) {
-						hudEvent(21, var2.getPlayer());
-						GlobalStatus.soundManager.playSfx(4);
-					} else if (!this.actionmenuLabels[0][3].equals("")) {
-						this.jumpDriveSelected = true;
-						GlobalStatus.soundManager.playSfx(4);
-					}
-
-					this.actionmenuOpen = false;
-					break;
-				case 32:
+				case GOF2Canvas.RIGHT:
 					if (!this.actionmenuLabels[0][1].equals("")) {
-						var2.getPlayer().toggleCloaking_();
+						level.getPlayer().toggleCloaking_();
 						GlobalStatus.soundManager.playSfx(4);
 					}
 
 					this.actionmenuOpen = false;
 					break;
-				case 64:
+				case GOF2Canvas.DOWN:
 					if (!this.actionmenuLabels[0][2].equals("")) {
 						this.actionSubMenuOpen = 3;
 						this.actionmenuOpen = true;
 						GlobalStatus.soundManager.playSfx(4);
 					}
 					break;
-				case 256:
+            case GOF2Canvas.LEFT:
+               if (!Status.getMission().isEmpty() && Status.getMission().getType() != 11 && Status.getMission().getType() != 0 && Status.getMission().getType() != 23) {
+                  hudEvent(21, level.getPlayer());
+                  GlobalStatus.soundManager.playSfx(4);
+               } else if (!this.actionmenuLabels[0][3].equals("")) {
+                  this.jumpDriveSelected = true;
+                  GlobalStatus.soundManager.playSfx(4);
+               }
+  
+               this.actionmenuOpen = false;
+               break;
+				case GOF2Canvas.KEY_5:
 					this.actionmenuOpen = false;
 				}
 			}

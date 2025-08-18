@@ -38,7 +38,7 @@ public final class ModMainMenu extends IApplicationModule {
 		} else {
 			Status.setPlayingTime(0L);
 			this.optionsWindow = new OptionsWindow();
-			this.optionsWindow.reset_(0);
+			this.optionsWindow.reset_(OptionsWindow.MM_NEW_GAME);
 			System.gc();
 			this.frameStartTime = System.currentTimeMillis();
 			this.lastFrameStartTime = System.currentTimeMillis();

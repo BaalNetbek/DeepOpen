@@ -175,7 +175,13 @@ public final class GOF2Canvas extends GameCanvas {
 
 	public final void handlePausedState() {
 		Layout.drawBG();
-		Font.drawLinesAligned(Font.splitToLines(GlobalStatus.gameText.getText(81), GlobalStatus.screenWidth - 20), GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight >> 1, 1, 24);
+		Font.drawLinesAligned(
+		  Font.splitToLines(GlobalStatus.gameText.getText(81), GlobalStatus.screenWidth - 20),
+		  GlobalStatus.screenWidth >> 1,
+		  GlobalStatus.screenHeight >> 1,
+		  1,
+		  24
+		);
 		if (this.sysTime == 0L) {
 			this.sysTime = System.currentTimeMillis();
 		}

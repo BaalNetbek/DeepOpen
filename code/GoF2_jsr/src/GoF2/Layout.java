@@ -169,31 +169,31 @@ public final class Layout {
 		return var2 + "$";
 	}
 
-	public static void drawFilledTitleBarWindow(final String var0, final int var1, final int var2, final int var3, final int var4) {
-		drawTitleBarWindow(var0, var1, var2, var3, var4, true);
+	public static void drawFilledTitleBarWindow(final String title, final int x, final int y, final int width, final int height) {
+		drawTitleBarWindow(title, x, y, width, height, true);
 	}
 
-	public static void drawTitleBarWindow(final String var0, final int var1, final int var2, final int var3, final int var4, final boolean var5) {
-		if (var5) {
-			drawBGPattern(var1, var2, var3, var4, menuBackground);
+	public static void drawTitleBarWindow(final String title, final int x, final int y, final int width, final int height, final boolean filled) {
+		if (filled) {
+			drawBGPattern(x, y, width, height, menuBackground);
 		}
 
 		GlobalStatus.graphics.setColor(0);
-		GlobalStatus.graphics.drawRect(var1 + 1, var2 + 1, var3 - 2, var4 - 2);
+		GlobalStatus.graphics.drawRect(x + 1, y + 1, width - 2, height - 2);
 		GlobalStatus.graphics.setColor(uiInnerOutlineColor);
-		GlobalStatus.graphics.drawRect(var1 + 2, var2 + 2, var3 - 4, var4 - 4);
-		drawRect(var1, var2, var3, var4);
-		if (var0 != null) {
-			drawBGPattern(var1 + 2, var2 + 2, var3 - 3, 11, menuHeaderPattern);
+		GlobalStatus.graphics.drawRect(x + 2, y + 2, width - 4, height - 4);
+		drawRect(x, y, width, height);
+		if (title != null) {
+			drawBGPattern(x + 2, y + 2, width - 3, 11, menuHeaderPattern);
 			GlobalStatus.graphics.setColor(uiInnerOutlineColor);
-			GlobalStatus.graphics.drawLine(var1 + 2, var2 + 14, var1 + var3 - 3, var2 + 14);
+			GlobalStatus.graphics.drawLine(x + 2, y + 14, x + width - 3, y + 14);
 			GlobalStatus.graphics.setColor(0);
-			GlobalStatus.graphics.drawLine(var1 + 1, var2 + 13, var1 + var3 - 2, var2 + 13);
-			GlobalStatus.graphics.drawImage(mainMenuCorener, var1, var2, 20);
+			GlobalStatus.graphics.drawLine(x + 1, y + 13, x + width - 2, y + 13);
+			GlobalStatus.graphics.drawImage(mainMenuCorener, x, y, 20);
 		}
 
-		if (var0 != null && !var0.equals("")) {
-			Font.drawString(var0, var1 + 6, var2 + 1, 0);
+		if (title != null && !title.equals("")) {
+			Font.drawString(title, x + 6, y + 1, 0);
 		}
 
 	}
@@ -234,13 +234,13 @@ public final class Layout {
 		drawFooter(var0, var1, false);
 	}
 
-	private static void drawRect(final int var0, final int var1, final int var2, final int var3) {
+	private static void drawRect(final int x, final int y, final int width, final int height) {
 		GlobalStatus.graphics.setColor(uiOuterTopRightOutlineColor);
-		GlobalStatus.graphics.drawLine(var0, var1, var0 + var2, var1);
-		GlobalStatus.graphics.drawLine(var0 + var2, var1, var0 + var2, var1 + var3);
+		GlobalStatus.graphics.drawLine(x, y, x + width, y);
+		GlobalStatus.graphics.drawLine(x + width, y, x + width, y + height);
 		GlobalStatus.graphics.setColor(uiOuterDownLeftOutlineInnerLabalBgColor);
-		GlobalStatus.graphics.drawLine(var0, var1, var0, var1 + var3);
-		GlobalStatus.graphics.drawLine(var0, var1 + var3, var0 + var2, var1 + var3);
+		GlobalStatus.graphics.drawLine(x, y, x, y + height);
+		GlobalStatus.graphics.drawLine(x, y + height, x + width, y + height);
 	}
 
 	public static void drawFooter(final String var0, final String var1, final boolean var2) {

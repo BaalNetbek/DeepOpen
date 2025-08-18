@@ -1,6 +1,7 @@
 package GOF2;
 
 import AE.GlobalStatus;
+import GOF2.Main.GOF2Canvas;
 
 public final class Dialogue {
     private static short[][] CAMPAIGN_BRIEFING = {

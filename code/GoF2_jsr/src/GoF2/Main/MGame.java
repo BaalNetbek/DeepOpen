@@ -866,11 +866,11 @@ public final class MGame extends IApplicationModule {
 		GlobalStatus.renderer.getCamera().moveTo(this.egoJumpPos);
 	}
 
-	public final void handleKeystate(final int var1) {
+	public final void handleKeystate(final int keyState) {
 		if (this.loaded) {
 			if (this.paused) {
 				if (this.actionMenuOpen) {
-					this.actionMenuOpen = this.hud.handleActionMenuKeypress(var1, this.level, this.radar);
+					this.actionMenuOpen = this.hud.handleActionMenuKeypress(keyState, this.level, this.radar);
 					this.paused = this.actionMenuOpen;
 					if (!this.paused) {
 						this.playerEgo.resetGunDelay();
@@ -903,7 +903,7 @@ public final class MGame extends IApplicationModule {
 					}
 				}
 
-				if (this.interruptedByDialogue && var1 == GOF2Canvas.KEY_5) {
+				if (this.interruptedByDialogue && keyState == GOF2Canvas.KEY_5) {
 					this.interruptedByDialogue = false;
 					this.paused = false;
 					this.interuptDialogue = null;
@@ -912,7 +912,7 @@ public final class MGame extends IApplicationModule {
 				}
 
 				if (this.dialogueOpen_) {
-					if (!this.sequentialDialogue_.OnKeyPress_(var1)) {
+					if (!this.sequentialDialogue_.OnKeyPress_(keyState)) {
 						this.paused = false;
 						this.dialogueOpen_ = false;
 						if (Status.getMission().hasFailed()) {
@@ -1008,20 +1008,20 @@ public final class MGame extends IApplicationModule {
 					}
 				} else {
 					if (this.autopilotMenuOpen) {
-						if (var1 == GOF2Canvas.KEY_9) {
+						if (keyState == GOF2Canvas.KEY_9) {
 							this.autopilotMenuOpen = false;
 							this.paused = false;
 						}
 
-						if (var1 == GOF2Canvas.UP && this.autopilotMenuOpen) {
+						if (keyState == GOF2Canvas.UP && this.autopilotMenuOpen) {
 							this.autoPilotList.down();
 						}
 
-						if (var1 == GOF2Canvas.DOWN && this.autopilotMenuOpen) {
+						if (keyState == GOF2Canvas.DOWN && this.autopilotMenuOpen) {
 							this.autoPilotList.up();
 						}
 
-						if (var1 == GOF2Canvas.KEY_5) {
+						if (keyState == GOF2Canvas.KEY_5) {
 							GlobalStatus.soundManager.playSfx(13);
 							this.autopilotMenuOpen = false;
 							if (this.playerEgo != null) {
@@ -1057,7 +1057,7 @@ public final class MGame extends IApplicationModule {
 					}
 
 					if (this.jumpgateReached) {
-						if (var1 == GOF2Canvas.KEY_5) {
+						if (keyState == GOF2Canvas.KEY_5) {
 							this.jumpgateReached = false;
 							if (this.popup.getChoice()) {
 								if (this.playerEgo.isLookingBack()) {
@@ -1078,39 +1078,39 @@ public final class MGame extends IApplicationModule {
 							this.paused = false;
 						}
 
-						if (var1 == GOF2Canvas.LEFT) {
+						if (keyState == GOF2Canvas.LEFT) {
 							this.popup.left();
 						}
 
-						if (var1 == GOF2Canvas.RIGHT) {
+						if (keyState == GOF2Canvas.RIGHT) {
 							this.popup.right();
 						}
 					} else if (this.pauseMenu != null && !this.actionMenuOpen) {
-						this.pauseMenu.handleKeystate(var1);
-						if (var1 == GOF2Canvas.KEY_5 && this.pauseMenu.update()) {
+						this.pauseMenu.handleKeystate(keyState);
+						if (keyState == GOF2Canvas.KEY_5 && this.pauseMenu.update()) {
 							this.paused = false;
 							return;
 						}
 
-						if (var1 == GOF2Canvas.LSB) {
+						if (keyState == GOF2Canvas.LSB) {
 							this.pauseMenu.update1_();
 						}
 
-						if (var1 == GOF2Canvas.RSB && this.pauseMenu.goBack()) {
+						if (keyState == GOF2Canvas.RSB && this.pauseMenu.goBack()) {
 							this.paused = false;
 						}
 
-						if (var1 == GOF2Canvas.LEFT) {
+						if (keyState == GOF2Canvas.LEFT) {
 							this.pauseMenu.optionsLeft();
 						}
 
-						if (var1 == GOF2Canvas.RIGHT) {
+						if (keyState == GOF2Canvas.RIGHT) {
 							this.pauseMenu.optionsRight();
 						}
 					}
 				}
 			} else if (this.mapOpen_) {
-				this.mapOpen_ = this.starMap.handleKeystate(var1);
+				this.mapOpen_ = this.starMap.handleKeystate(keyState);
 				if (!this.mapOpen_ && this.touchesStream) {
 					this.playerEgo.dockToStream(this.targetFollowCamera, false);
 					this.playerEgo.setAutoPilot((KIPlayer)null);
@@ -1127,7 +1127,7 @@ public final class MGame extends IApplicationModule {
 					this.starMap = null;
 				}
 			} else if (!this.egoDead) {
-				if (var1 == GOF2Canvas.LSB) {
+				if (keyState == GOF2Canvas.LSB) {
 					if (this.pauseMenu == null) {
 						this.pauseMenu = new OptionsWindow();
 					}
@@ -1141,7 +1141,7 @@ public final class MGame extends IApplicationModule {
 
 				if (!this.cinematicBreak_ && Status.getCurrentCampaignMission() > 1) {
 					if (!this.playerEgo.isMining()) {
-						this.actionMenuOpen = this.hud.handleActionMenuKeypress(var1, this.level, this.radar);
+						this.actionMenuOpen = this.hud.handleActionMenuKeypress(keyState, this.level, this.radar);
 						this.paused = this.actionMenuOpen;
 						if (this.actionMenuOpen && !GlobalStatus.actionMenuHelpShown) {
 							this.interuptDialogue = new Dialogue(GlobalStatus.gameText.getText(321));
@@ -1154,7 +1154,7 @@ public final class MGame extends IApplicationModule {
 						return;
 					}
 
-					if (var1 == GOF2Canvas.KEY_0) {
+					if (keyState == GOF2Canvas.KEY_0) {
 						this.inTurretMode = !this.inTurretMode;
 						if (!this.playerEgo.setTurretMode(this.inTurretMode)) {
 							if (this.lookingBack != 1) {
@@ -1167,7 +1167,7 @@ public final class MGame extends IApplicationModule {
 						}
 					}
 
-					if (var1 == GOF2Canvas.KEY_5) {
+					if (keyState == GOF2Canvas.KEY_5) {
 						if (this.radar.targetedLandmark != null) {
 							if (!this.playerEgo.isAutoPilot()) {
 								this.playerEgo.setAutoPilot(this.radar.targetedLandmark);
@@ -1218,22 +1218,22 @@ public final class MGame extends IApplicationModule {
 						}
 					}
 
-					if (var1 == GOF2Canvas.KEY_3 && !this.playerEgo.boosting()) {
+					if (keyState == GOF2Canvas.KEY_3 && !this.playerEgo.boosting()) {
 						this.playerEgo.boost();
 						this.hud.hudEvent(3, this.playerEgo);
 					}
 
-					if (var1 == GOF2Canvas.KEY_1 && this.playerEgo.player.hasGunOfType(Item.SECONDARY)) {
+					if (keyState == GOF2Canvas.KEY_1 && this.playerEgo.player.hasGunOfType(Item.SECONDARY)) {
 						this.playerEgo.shoot((int)this.frameTime, 1);
 					}
 
-					if (var1 == GOF2Canvas.KEY_7 && Status.getCurrentCampaignMission() > 0) {
+					if (keyState == GOF2Canvas.KEY_7 && Status.getCurrentCampaignMission() > 0) {
 						GlobalStatus.soundManager.playSfx(4);
 						this.isIntro = !this.isIntro;
 						this.hud.hudEvent(this.isIntro ? 1 : 2, this.playerEgo);
 					}
 
-					if (var1 == GOF2Canvas.KEY_9) {
+					if (keyState == GOF2Canvas.KEY_9) {
 						GlobalStatus.soundManager.playSfx(4);
 						if (this.playerEgo.isAutoPilot()) {
 							this.playerEgo.setAutoPilot((KIPlayer)null);
@@ -1265,23 +1265,23 @@ public final class MGame extends IApplicationModule {
 						}
 					}
 				} else {
-					if ((var1 == GOF2Canvas.HASH || var1 == GOF2Canvas.STAR) && Status.getCurrentCampaignMission() < 2) {
+					if ((keyState == GOF2Canvas.HASH || keyState == GOF2Canvas.STAR) && Status.getCurrentCampaignMission() < 2) {
 						Status.nextCampaignMission();
 						GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[1]);
 						return;
 					}
 
-					if (var1 == GOF2Canvas.KEY_5 && this.levelScript.timePassed > 3000L) {
+					if (keyState == GOF2Canvas.KEY_5 && this.levelScript.timePassed > 3000L) {
 						this.levelScript.skipSequence();
 						this.playerEgo.resetGunDelay();
 					}
 
-					if (var1 == GOF2Canvas.KEY_3 && !this.playerEgo.boosting()) {
+					if (keyState == GOF2Canvas.KEY_3 && !this.playerEgo.boosting()) {
 						this.playerEgo.boost();
 						this.hud.hudEvent(3, this.playerEgo);
 					}
 				}
-			} else if (this.fiveSecTick > 3000L && var1 != GOF2Canvas.RIGHT && var1 != GOF2Canvas.LEFT && var1 == GOF2Canvas.KEY_5) {
+			} else if (this.fiveSecTick > 3000L && keyState != GOF2Canvas.RIGHT && keyState != GOF2Canvas.LEFT && keyState == GOF2Canvas.KEY_5) {
 				GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[0]);
 				GlobalStatus.soundManager.playMusic(0);
 			}

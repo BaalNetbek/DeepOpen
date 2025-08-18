@@ -450,25 +450,24 @@ public final class ModStation extends IApplicationModule {
 		}
 	}
 
-	public final void handleKeystate(int var1) {
+	public final void handleKeystate(int keyState) {
 		if (this.loaded) {
 			Status.checkForLevelUp();
 			if (this.loadingTick < 6000L) {
-				if (var1 == GOF2Canvas.KEY_5) {
+				if (keyState == GOF2Canvas.KEY_5) {
 					this.loadingTick = 6001L;
 				}
 
 			} else if (this.helpMsgOpen) {
-				if (var1 == GOF2Canvas.KEY_5) {
+				if (keyState == GOF2Canvas.KEY_5) {
 					this.helpMsgOpen = false;
 					this.help = null;
 				}
 
 			} else {
-				int var2;
-				Item[] var4;
+				Item[] cargo;
 				if (this.missionMsgOpen) {
-					if (!this.dialogue.OnKeyPress_(var1)) {
+					if (!this.dialogue.OnKeyPress_(keyState)) {
 						if (this.activeMission__.getType() == 8) {
 							if (!this.activeMission__.isCampaignMission()) {
 								Status.getShip().removeCargo(this.activeMission__.getCommodityIndex(), this.activeMission__.getCommodityAmount_());
@@ -479,11 +478,11 @@ public final class ModStation extends IApplicationModule {
 						} else if (!this.activeMission__.isCampaignMission() && this.activeMission__.getType() == 11) {
 							Status.setPassengers(0);
 							Status.passengersCarried += this.activeMission__.getCommodityAmount_();
-							var4 = Status.getShip().getCargo();
-							if (var4 != null) {
-								for(var2 = 0; var2 < var4.length; ++var2) {
-									if (var4[var2].setUnsaleable() && var4[var2].getIndex() == 116 || var4[var2].getIndex() == 117) {
-										Status.getShip().removeCargo(var4[var2]);
+							cargo = Status.getShip().getCargo();
+							if (cargo != null) {
+								for(int i = 0; i < cargo.length; ++i) {
+									if (cargo[i].setUnsaleable() && cargo[i].getIndex() == 116 || cargo[i].getIndex() == 117) {
+										Status.getShip().removeCargo(cargo[i]);
 										if (this.hangarWindow != null) {
 											this.hangarWindow.initialize();
 										}
@@ -492,11 +491,11 @@ public final class ModStation extends IApplicationModule {
 								}
 							}
 						} else if (this.activeMission__.getType() != 3 && this.activeMission__.getType() != 5 && this.activeMission__.getType() != 11 && this.activeMission__.getType() == 0) {
-							var4 = Status.getShip().getCargo();
-							if (var4 != null) {
-								for(var2 = 0; var2 < var4.length; ++var2) {
-									if (var4[var2].setUnsaleable() && var4[var2].getIndex() == 116) {
-										Status.getShip().removeCargo(var4[var2]);
+							cargo = Status.getShip().getCargo();
+							if (cargo != null) {
+								for(int i = 0; i < cargo.length; ++i) {
+									if (cargo[i].setUnsaleable() && cargo[i].getIndex() == 116) {
+										Status.getShip().removeCargo(cargo[i]);
 										if (this.hangarWindow != null) {
 											this.hangarWindow.initialize();
 										}
@@ -533,44 +532,62 @@ public final class ModStation extends IApplicationModule {
 						this.missionMsgOpen = false;
 					}
 				} else if (this.barOpen) {
-					if (!this.spaceLounge.handleKeystate(var1)) {
+					if (!this.spaceLounge.handleKeystate(keyState)) {
 						this.cutScene.resetCamera();
 						this.barOpen = false;
 						GlobalStatus.soundManager.playMusic(1);
 					}
 
 				} else if (this.hangarOpen) {
-					if (!GlobalStatus.shipHelpShown && var1 == 4 && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 1) {
+					if (
+					  !GlobalStatus.shipHelpShown 
+					  && keyState == GOF2Canvas.LEFT 
+					  && this.hangarWindow.inRoot() 
+					  && this.hangarWindow.getCurrentTab() == 1) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(310));
 						GlobalStatus.shipHelpShown = true;
 						this.helpMsgOpen = true;
-					} else if (!GlobalStatus.bluePrintsHelpShown && var1 == GOF2Canvas.RIGHT && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 1) {
+					} else if (
+					  !GlobalStatus.bluePrintsHelpShown 
+					  && keyState == GOF2Canvas.RIGHT 
+					  && this.hangarWindow.inRoot() 
+					  && this.hangarWindow.getCurrentTab() == 1) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(312));
 						GlobalStatus.bluePrintsHelpShown = true;
 						this.helpMsgOpen = true;
-					} else if (!GlobalStatus.bluePrintInfoHelpShown && var1 == GOF2Canvas.KEY_5 && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 2) {
+					} else if (
+					  !GlobalStatus.bluePrintInfoHelpShown 
+					  && keyState == GOF2Canvas.KEY_5 
+					  && this.hangarWindow.inRoot() 
+					  && this.hangarWindow.getCurrentTab() == 2) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(313));
 						GlobalStatus.bluePrintInfoHelpShown = true;
 						this.helpMsgOpen = true;
-					} else if (!GlobalStatus.actionsHelpShown && var1 == GOF2Canvas.KEY_5 && this.hangarWindow.getSelectedItem() != null && this.hangarWindow.getSelectedItem().isItem() && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 0) {
+					} else if (
+  					  !GlobalStatus.actionsHelpShown 
+  					  && keyState == GOF2Canvas.KEY_5 
+  					  && this.hangarWindow.getSelectedItem() != null 
+  					  && this.hangarWindow.getSelectedItem().isItem() 
+  					  && this.hangarWindow.inRoot() 
+  					  && this.hangarWindow.getCurrentTab() == 0) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(311));
 						GlobalStatus.actionsHelpShown = true;
 						this.helpMsgOpen = true;
 					}
 
-					if (!this.hangarWindow.handleKeyPressed(var1)) {
-						var1 = 0;
+					if (!this.hangarWindow.handleKeyPressed(keyState)) {
+						keyState = 0;
 						Item[] var6 = Status.getShip().getCargo();
 						if (var6 != null) {
 							for(int i = 0; i < var6.length; ++i) {
 								if (var6[i].getIndex() >= 132 && var6[i].getIndex() < 154) {
-									var1 += var6[i].getAmount();
+									keyState += var6[i].getAmount();
 								}
 							}
 						}
 
-						if (var1 > this.boozeOwnedAtArrival) {
-							Status.boughtBooze += var1 - this.boozeOwnedAtArrival;
+						if (keyState > this.boozeOwnedAtArrival) {
+							Status.boughtBooze += keyState - this.boozeOwnedAtArrival;
 						}
 
 						this.cutScene.resetCamera();
@@ -578,41 +595,41 @@ public final class ModStation extends IApplicationModule {
 					}
 
 				} else if (this.mapOpen) {
-					if (!this.starMap.handleKeystate(var1)) {
+					if (!this.starMap.handleKeystate(keyState)) {
 						this.mapOpen = false;
 					}
 
 				} else if (this.missionsOpen) {
-					if (!this.missionsWindow.handleKeystate(var1)) {
+					if (!this.missionsWindow.handleKeystate(keyState)) {
 						this.missionsOpen = false;
 					}
 
 				} else if (this.statusOpen) {
-					if (!GlobalStatus.medalsHelpShown && var1 == GOF2Canvas.RIGHT) {
+					if (!GlobalStatus.medalsHelpShown && keyState == GOF2Canvas.RIGHT) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(323));
 						GlobalStatus.medalsHelpShown = true;
 						this.helpMsgOpen = true;
 					}
 
-					if (!this.statusPanel.handleKeyPress(var1)) {
+					if (!this.statusPanel.handleKeyPress(keyState)) {
 						this.statusOpen = false;
 					}
 
 				} else if (this.medalMsgOpen) {
-					if (var1 == GOF2Canvas.KEY_5) {
+					if (keyState == GOF2Canvas.KEY_5) {
 						checkMedals_();
 					}
 
 				} else if (this.popupOpen) {
-					if (var1 == GOF2Canvas.LEFT) {
+					if (keyState == GOF2Canvas.LEFT) {
 						this.popup.left();
 					}
 
-					if (var1 == GOF2Canvas.RIGHT) {
+					if (keyState == GOF2Canvas.RIGHT) {
 						this.popup.right();
 					}
 
-					if (var1 == GOF2Canvas.KEY_5) {
+					if (keyState == GOF2Canvas.KEY_5) {
 						if (this.popup.getChoice() && this.leaveStationWarnOpen || !this.popup.getChoice() && this.leaveStationWarnOpen && this.bribeMsgOpen) {
 							this.leaveStationWarnOpen = false;
 							Status.departStation(Status.getStation());
@@ -655,7 +672,7 @@ public final class ModStation extends IApplicationModule {
 
 				} else {
 					if (this.menuOpen && !this.optionsOpen) {
-						if (var1 == 256 && !this.missionMsgOpen && !this.medalMsgOpen) {
+						if (keyState == GOF2Canvas.KEY_5 && !this.missionMsgOpen && !this.medalMsgOpen) {
 							switch(this.selectedMenuItem) {
 							case 0:
 								if (Status.getCurrentCampaignMission() < 5) {
@@ -678,11 +695,11 @@ public final class ModStation extends IApplicationModule {
 								}
 
 								this.boozeOwnedAtArrival = 0;
-								var4 = Status.getShip().getCargo();
-								if (var4 != null) {
-									for(var2 = 0; var2 < var4.length; ++var2) {
-										if (var4[var2].getIndex() >= 132 && var4[var2].getIndex() < 154) {
-											this.boozeOwnedAtArrival += var4[var2].getAmount();
+								cargo = Status.getShip().getCargo();
+								if (cargo != null) {
+									for(int i = 0; i < cargo.length; ++i) {
+										if (cargo[i].getIndex() >= 132 && cargo[i].getIndex() < 154) {
+											this.boozeOwnedAtArrival += cargo[i].getAmount();
 										}
 									}
 								}
@@ -797,12 +814,12 @@ public final class ModStation extends IApplicationModule {
 								}
 
 								this.optionsOpen = true;
-								this.optionsWindow.reset_(2);
+								this.optionsWindow.reset_(OptionsWindow.MM_SAVE_GAME);
 								return;
 							}
 						}
 
-						if (var1 == 64) {
+						if (keyState == GOF2Canvas.DOWN) {
 							this.menuItemHighlights[this.selectedMenuItem] = 0;
 							if (this.selectedMenuItem < this.menuItemHighlights.length - 1) {
 								++this.selectedMenuItem;
@@ -813,7 +830,7 @@ public final class ModStation extends IApplicationModule {
 							this.menuItemHighlights[this.selectedMenuItem] = 1;
 						}
 
-						if (var1 == 2) {
+						if (keyState == GOF2Canvas.UP) {
 							this.menuItemHighlights[this.selectedMenuItem] = 0;
 							if (this.selectedMenuItem > 0) {
 								--this.selectedMenuItem;
@@ -824,48 +841,48 @@ public final class ModStation extends IApplicationModule {
 							this.menuItemHighlights[this.selectedMenuItem] = 1;
 						}
 
-						if (var1 == GOF2Canvas.LSB) {
+						if (keyState == GOF2Canvas.LSB) {
 							this.menuOpen = !this.menuOpen;
 							return;
 						}
 					}
 
-					if (!this.optionsOpen && var1 == GOF2Canvas.RSB) {
+					if (!this.optionsOpen && keyState == GOF2Canvas.RSB) {
 						leaveStation();
 					} else if (this.optionsOpen) {
-						this.optionsWindow.handleKeystate(var1);
+						this.optionsWindow.handleKeystate(keyState);
 						if (this.optionsWindow != null) {
-							if (var1 == GOF2Canvas.LEFT) {
+							if (keyState == GOF2Canvas.LEFT) {
 								this.optionsWindow.optionsLeft();
 							}
 
-							if (var1 == GOF2Canvas.RIGHT) {
+							if (keyState == GOF2Canvas.RIGHT) {
 								this.optionsWindow.optionsRight();
 							}
 
-							if (var1 == GOF2Canvas.UP) {
+							if (keyState == GOF2Canvas.UP) {
 								this.optionsWindow.scrollUp((int)this.frameTime);
 							}
 
-							if (var1 == GOF2Canvas.DOWN) {
+							if (keyState == GOF2Canvas.DOWN) {
 								this.optionsWindow.scrollDown((int)this.frameTime);
 							}
 
-							if (var1 == GOF2Canvas.LSB) {
+							if (keyState == GOF2Canvas.LSB) {
 								this.optionsWindow.update1_();
 							}
 
-							if (var1 == GOF2Canvas.RSB && this.optionsWindow.goBack()) {
+							if (keyState == GOF2Canvas.RSB && this.optionsWindow.goBack()) {
 								this.optionsOpen = !this.optionsOpen;
 								this.optionsWindow.reset_(2);
 							}
 
-							if (var1 == GOF2Canvas.KEY_5 && !this.missionMsgOpen && !this.medalMsgOpen && this.optionsWindow.update()) {
+							if (keyState == GOF2Canvas.KEY_5 && !this.missionMsgOpen && !this.medalMsgOpen && this.optionsWindow.update()) {
 								this.optionsOpen = false;
 							}
 
 						}
-					} else if (var1 == GOF2Canvas.LSB) {
+					} else if (keyState == GOF2Canvas.LSB) {
 						this.menuOpen = !this.menuOpen;
 					}
 				}
