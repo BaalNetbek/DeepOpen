@@ -125,48 +125,49 @@ public final class StatusPanel {
 	}
 
 	public final boolean handleKeyPress(int var1) {
-		if ((var1 == 256 || var1 == 16384) && this.statusWindows.getCurrentTab() == 1 && !this.infoOpen) {
+		if ((var1 == GOF2Canvas.KEY_5 || var1 == GOF2Canvas.LSB) && this.statusWindows.getCurrentTab() == 1 && !this.infoOpen) {
 			final ListItem var3 = (ListItem)this.statusWindows.getSelectedItem();
 			if (Achievements.getMedals()[var3.itemId] != 0) {
 				String var2 = Status.replaceToken(GlobalStatus.gameText.getText(782 + var3.itemId), Achievements.VALUES[var3.itemId][var3.medalTier - 1] + "");
+				int i;
 				if (var3.itemId == 2 && var3.medalTier == 2) {
 					var2 = var2 + "\n\n" + GlobalStatus.gameText.getText(134);
 
-					for(var1 = 0; var1 < Status.minedOreTypes.length; ++var1) {
-						if (!Status.minedOreTypes[var1]) {
-							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(var1 + 723);
+					for(i = 0; i < Status.minedOreTypes.length; ++i) {
+						if (!Status.minedOreTypes[i]) {
+							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(i + 723);
 						}
 					}
 				} else if (var3.itemId == 3 && var3.medalTier == 2) {
 					var2 = var2 + "\n\n" + GlobalStatus.gameText.getText(134);
 
-					for(var1 = 0; var1 < Status.minedCoreTypes.length; ++var1) {
-						if (!Status.minedCoreTypes[var1]) {
-							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(var1 + 734);
+					for(i = 0; i < Status.minedCoreTypes.length; ++i) {
+						if (!Status.minedCoreTypes[i]) {
+							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(i + 734);
 						}
 					}
 				} else if (var3.itemId == 9 && var3.medalTier == 2) {
 					var2 = var2 + "\n\n" + GlobalStatus.gameText.getText(134);
 
-					for(var1 = 0; var1 < Status.drinkTypesPossesed.length; ++var1) {
-						if (!Status.drinkTypesPossesed[var1]) {
-							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(var1 + 701);
+					for(i = 0; i < Status.drinkTypesPossesed.length; ++i) {
+						if (!Status.drinkTypesPossesed[i]) {
+							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(i + 701);
 						}
 					}
 				} else if (var3.itemId == 13 && var3.medalTier == 2) {
 					var2 = var2 + "\n\n" + GlobalStatus.gameText.getText(134);
 
-					for(var1 = 0; var1 < Status.blueprints.length; ++var1) {
-						if (!Status.blueprints[var1].unlocked) {
-							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(569 + Status.blueprints[var1].getIndex());
+					for(i = 0; i < Status.blueprints.length; ++i) {
+						if (!Status.blueprints[i].unlocked) {
+							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(569 + Status.blueprints[i].getIndex());
 						}
 					}
 				} else if (var3.itemId == 14 && var3.medalTier == 2) {
 					var2 = var2 + "\n\n" + GlobalStatus.gameText.getText(134);
 
-					for(var1 = 0; var1 < Status.blueprints.length; ++var1) {
-						if (Status.blueprints[var1].timesProduced == 0) {
-							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(569 + Status.blueprints[var1].getIndex());
+					for(i = 0; i < Status.blueprints.length; ++i) {
+						if (Status.blueprints[i].timesProduced == 0) {
+							var2 = var2 + "\n- " + GlobalStatus.gameText.getText(569 + Status.blueprints[i].getIndex());
 						}
 					}
 				}
@@ -178,27 +179,27 @@ public final class StatusPanel {
 			return true;
 		}
 		if (!this.infoOpen) {
-			if (var1 == 4) {
+			if (var1 == GOF2Canvas.LEFT) {
 				this.statusWindows.leftAction();
 			}
 
-			if (var1 == 32) {
+			if (var1 == GOF2Canvas.RIGHT) {
 				this.statusWindows.rightAction();
 			}
 
 			if (this.statusWindows.selectedTab == 1) {
-				if (var1 == 2) {
+				if (var1 == GOF2Canvas.UP) {
 					this.statusWindows.scrollUp();
 				}
 
-				if (var1 == 64) {
+				if (var1 == GOF2Canvas.DOWN) {
 					this.statusWindows.scrollDown();
 				}
 			}
 
-			return var1 != 8192;
+			return var1 != GOF2Canvas.RSB;
 		} else {
-			if ((this.statusWindows.selectedTab == 1 || this.statusWindows.selectedTab == 2) && var1 == 256) {
+			if ((this.statusWindows.selectedTab == 1 || this.statusWindows.selectedTab == 2) && var1 == GOF2Canvas.KEY_5) {
 				this.infoOpen = false;
 			}
 

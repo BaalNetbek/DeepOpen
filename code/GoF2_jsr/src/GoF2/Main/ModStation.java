@@ -235,8 +235,8 @@ public final class ModStation extends IApplicationModule {
 			if (Status.getCurrentCampaignMission() == 1) {
 				Status.setShip(Globals.getShips()[0]);
 				Status.getShip().setRace(8);
-				Item var10;
-				(var10 = Globals.getItems()[90].makeItem()).setUnsaleable(true);
+				Item var10 = Globals.getItems()[90].makeItem();
+				var10.setUnsaleable(true);
 				Status.getShip().setEquipment(var10, 0);
 				final Item var11 = Globals.getItems()[81].makeItem();
 				Status.getShip().setEquipment(var11, 1);
@@ -454,12 +454,12 @@ public final class ModStation extends IApplicationModule {
 		if (this.loaded) {
 			Status.checkForLevelUp();
 			if (this.loadingTick < 6000L) {
-				if (var1 == 256) {
+				if (var1 == GOF2Canvas.KEY_5) {
 					this.loadingTick = 6001L;
 				}
 
 			} else if (this.helpMsgOpen) {
-				if (var1 == 256) {
+				if (var1 == GOF2Canvas.KEY_5) {
 					this.helpMsgOpen = false;
 					this.help = null;
 				}
@@ -544,15 +544,15 @@ public final class ModStation extends IApplicationModule {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(310));
 						GlobalStatus.shipHelpShown = true;
 						this.helpMsgOpen = true;
-					} else if (!GlobalStatus.bluePrintsHelpShown && var1 == 32 && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 1) {
+					} else if (!GlobalStatus.bluePrintsHelpShown && var1 == GOF2Canvas.RIGHT && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 1) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(312));
 						GlobalStatus.bluePrintsHelpShown = true;
 						this.helpMsgOpen = true;
-					} else if (!GlobalStatus.bluePrintInfoHelpShown && var1 == 256 && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 2) {
+					} else if (!GlobalStatus.bluePrintInfoHelpShown && var1 == GOF2Canvas.KEY_5 && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 2) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(313));
 						GlobalStatus.bluePrintInfoHelpShown = true;
 						this.helpMsgOpen = true;
-					} else if (!GlobalStatus.actionsHelpShown && var1 == 256 && this.hangarWindow.getSelectedItem() != null && this.hangarWindow.getSelectedItem().isItem() && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 0) {
+					} else if (!GlobalStatus.actionsHelpShown && var1 == GOF2Canvas.KEY_5 && this.hangarWindow.getSelectedItem() != null && this.hangarWindow.getSelectedItem().isItem() && this.hangarWindow.inRoot() && this.hangarWindow.getCurrentTab() == 0) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(311));
 						GlobalStatus.actionsHelpShown = true;
 						this.helpMsgOpen = true;
@@ -588,7 +588,7 @@ public final class ModStation extends IApplicationModule {
 					}
 
 				} else if (this.statusOpen) {
-					if (!GlobalStatus.medalsHelpShown && var1 == 32) {
+					if (!GlobalStatus.medalsHelpShown && var1 == GOF2Canvas.RIGHT) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(323));
 						GlobalStatus.medalsHelpShown = true;
 						this.helpMsgOpen = true;
@@ -599,20 +599,20 @@ public final class ModStation extends IApplicationModule {
 					}
 
 				} else if (this.medalMsgOpen) {
-					if (var1 == 256) {
+					if (var1 == GOF2Canvas.KEY_5) {
 						checkMedals_();
 					}
 
 				} else if (this.popupOpen) {
-					if (var1 == 4) {
+					if (var1 == GOF2Canvas.LEFT) {
 						this.popup.left();
 					}
 
-					if (var1 == 32) {
+					if (var1 == GOF2Canvas.RIGHT) {
 						this.popup.right();
 					}
 
-					if (var1 == 256) {
+					if (var1 == GOF2Canvas.KEY_5) {
 						if (this.popup.getChoice() && this.leaveStationWarnOpen || !this.popup.getChoice() && this.leaveStationWarnOpen && this.bribeMsgOpen) {
 							this.leaveStationWarnOpen = false;
 							Status.departStation(Status.getStation());
@@ -824,48 +824,48 @@ public final class ModStation extends IApplicationModule {
 							this.menuItemHighlights[this.selectedMenuItem] = 1;
 						}
 
-						if (var1 == 16384) {
+						if (var1 == GOF2Canvas.LSB) {
 							this.menuOpen = !this.menuOpen;
 							return;
 						}
 					}
 
-					if (!this.optionsOpen && var1 == 8192) {
+					if (!this.optionsOpen && var1 == GOF2Canvas.RSB) {
 						leaveStation();
 					} else if (this.optionsOpen) {
 						this.optionsWindow.handleKeystate(var1);
 						if (this.optionsWindow != null) {
-							if (var1 == 4) {
+							if (var1 == GOF2Canvas.LEFT) {
 								this.optionsWindow.optionsLeft();
 							}
 
-							if (var1 == 32) {
+							if (var1 == GOF2Canvas.RIGHT) {
 								this.optionsWindow.optionsRight();
 							}
 
-							if (var1 == 2) {
+							if (var1 == GOF2Canvas.UP) {
 								this.optionsWindow.scrollUp((int)this.frameTime);
 							}
 
-							if (var1 == 64) {
+							if (var1 == GOF2Canvas.DOWN) {
 								this.optionsWindow.scrollDown((int)this.frameTime);
 							}
 
-							if (var1 == 16384) {
+							if (var1 == GOF2Canvas.LSB) {
 								this.optionsWindow.update1_();
 							}
 
-							if (var1 == 8192 && this.optionsWindow.goBack()) {
+							if (var1 == GOF2Canvas.RSB && this.optionsWindow.goBack()) {
 								this.optionsOpen = !this.optionsOpen;
 								this.optionsWindow.reset_(2);
 							}
 
-							if (var1 == 256 && !this.missionMsgOpen && !this.medalMsgOpen && this.optionsWindow.update()) {
+							if (var1 == GOF2Canvas.KEY_5 && !this.missionMsgOpen && !this.medalMsgOpen && this.optionsWindow.update()) {
 								this.optionsOpen = false;
 							}
 
 						}
-					} else if (var1 == 16384) {
+					} else if (var1 == GOF2Canvas.LSB) {
 						this.menuOpen = !this.menuOpen;
 					}
 				}

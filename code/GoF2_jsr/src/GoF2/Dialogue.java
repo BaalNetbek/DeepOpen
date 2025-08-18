@@ -249,7 +249,7 @@ public final class Dialogue {
 
     public final boolean OnKeyPress_(final int var1) {
         if (!this.popupOpen) {
-            if (var1 == 16384) {
+            if (var1 == GOF2Canvas.LSB) {
                 if (this.page < length() - 1) {
                     ++this.page;
                     loadContent_();
@@ -258,7 +258,7 @@ public final class Dialogue {
                 }
             }
 
-            if (var1 == 8192) {
+            if (var1 == GOF2Canvas.RSB) {
                 if (this.page > 0) {
                     --this.page;
                     loadContent_();
@@ -266,18 +266,18 @@ public final class Dialogue {
             }
         }
 
-        if (var1 == 256 && (!lastPageOn() || !firstPageOn())) {
+        if (var1 == GOF2Canvas.KEY_5 && (!lastPageOn() || !firstPageOn())) {
             this.popupOpen = !this.popupOpen;
             if (!this.popupOpen && this.popup.getChoice()) {
                 return false;
             }
         }
 
-        if (var1 == 4 && this.popupOpen) {
+        if (var1 == GOF2Canvas.LEFT && this.popupOpen) {
             this.popup.left();
         }
 
-        if (var1 == 32 && this.popupOpen) {
+        if (var1 == GOF2Canvas.RIGHT && this.popupOpen) {
             this.popup.right();
         }
 
@@ -285,11 +285,11 @@ public final class Dialogue {
     }
 
     public final boolean handleScrollPress_(final int var1, final int var2) {
-        if ((var1 & 64) != 0) {
+        if ((var1 & GOF2Canvas.DOWN) != 0) {
             this.textBox.scrollUp(var2);
         }
 
-        if ((var1 & 2) != 0) {
+        if ((var1 & GOF2Canvas.UP) != 0) {
             this.textBox.scrollDown(var2);
         }
 

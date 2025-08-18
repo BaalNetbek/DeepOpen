@@ -754,23 +754,23 @@ public final class Hud {
 
 			if (this.actionmenuSelectDir == 0 || this.actionmenuSelectDir == 1 && var1 != 2 || this.actionmenuSelectDir == 2 && var1 != 32 || this.actionmenuSelectDir == 3 && var1 != 64 || this.actionmenuSelectDir == 4 && var1 != 4) {
 				switch(var1) {
-				case 2:
+				case GOF2Canvas.UP:
 					this.actionmenuSelectDir = 1;
 					GlobalStatus.soundManager.playSfx(4);
 					break;
-				case 4:
+				case GOF2Canvas.LEFT:
 					this.actionmenuSelectDir = 4;
 					GlobalStatus.soundManager.playSfx(4);
 					break;
-				case 32:
+				case GOF2Canvas.RIGHT:
 					this.actionmenuSelectDir = 2;
 					GlobalStatus.soundManager.playSfx(4);
 					break;
-				case 64:
+				case GOF2Canvas.DOWN:
 					this.actionmenuSelectDir = 3;
 					GlobalStatus.soundManager.playSfx(4);
 					break;
-				case 256:
+				case GOF2Canvas.KEY_5:
 					if (this.actionmenuSelectDir == 0) {
 						handleActionMenuKeypress(8192, var2, var3);
 					}

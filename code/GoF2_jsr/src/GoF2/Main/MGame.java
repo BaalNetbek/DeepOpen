@@ -251,11 +251,11 @@ public final class MGame extends IApplicationModule {
 							this.pauseMenu.scrollAndTick_(var1, (int)this.frameTime);
 							if (this.menuListScrollTick > 150L) {
 								this.menuListScrollTick = 0L;
-								if ((var1 & 2) != 0) {
+								if ((var1 & GOF2Canvas.UP) != 0) {
 									this.pauseMenu.scrollUp((int)this.frameTime);
 								}
 
-								if ((var1 & 64) != 0) {
+								if ((var1 & GOF2Canvas.DOWN) != 0) {
 									this.pauseMenu.scrollDown((int)this.frameTime);
 								}
 							}
@@ -431,7 +431,7 @@ public final class MGame extends IApplicationModule {
 							}
 
 							final boolean var2 = this.playerEgo.isAutoPilot() && !this.playerEgo.isLookingBack() || this.playerEgo.isDockingToAsteroid() || this.playerEgo.isDockingToStream_();
-							if ((var1 & 4) != 0) {
+							if ((var1 & GOF2Canvas.LEFT) != 0) {
 								if (var2) {
 									this.hud.hudEvent(7, this.playerEgo);
 								} else {
@@ -439,7 +439,7 @@ public final class MGame extends IApplicationModule {
 								}
 							}
 
-							if ((var1 & 32) != 0) {
+							if ((var1 & GOF2Canvas.RIGHT) != 0) {
 								if (var2) {
 									this.hud.hudEvent(7, this.playerEgo);
 								} else {
@@ -447,7 +447,7 @@ public final class MGame extends IApplicationModule {
 								}
 							}
 
-							if ((var1 & 2) != 0) {
+							if ((var1 & GOF2Canvas.UP) != 0) {
 								if (var2) {
 									this.hud.hudEvent(7, this.playerEgo);
 								} else if (GlobalStatus.invertedControlsOn) {
@@ -457,7 +457,7 @@ public final class MGame extends IApplicationModule {
 								}
 							}
 
-							if ((var1 & 64) != 0) {
+							if ((var1 & GOF2Canvas.DOWN) != 0) {
 								if (var2) {
 									this.hud.hudEvent(7, this.playerEgo);
 								} else if (GlobalStatus.invertedControlsOn) {
@@ -467,7 +467,7 @@ public final class MGame extends IApplicationModule {
 								}
 							}
 
-							if ((var1 & 256) != 0 && !this.shootingDisabled && (this.playerEgo.isLookingBack() || !this.playerEgo.isAutoPilot() && !this.playerEgo.isDockingToAsteroid())) {
+							if ((var1 & GOF2Canvas.KEY_5) != 0 && !this.shootingDisabled && (this.playerEgo.isLookingBack() || !this.playerEgo.isAutoPilot() && !this.playerEgo.isDockingToAsteroid())) {
 								this.playerEgo.shoot((int)this.frameTime, 0);
 							}
 						}
@@ -903,7 +903,7 @@ public final class MGame extends IApplicationModule {
 					}
 				}
 
-				if (this.interruptedByDialogue && var1 == 256) {
+				if (this.interruptedByDialogue && var1 == GOF2Canvas.KEY_5) {
 					this.interruptedByDialogue = false;
 					this.paused = false;
 					this.interuptDialogue = null;
@@ -1008,20 +1008,20 @@ public final class MGame extends IApplicationModule {
 					}
 				} else {
 					if (this.autopilotMenuOpen) {
-						if (var1 == 1024) {
+						if (var1 == GOF2Canvas.KEY_9) {
 							this.autopilotMenuOpen = false;
 							this.paused = false;
 						}
 
-						if (var1 == 2 && this.autopilotMenuOpen) {
+						if (var1 == GOF2Canvas.UP && this.autopilotMenuOpen) {
 							this.autoPilotList.down();
 						}
 
-						if (var1 == 64 && this.autopilotMenuOpen) {
+						if (var1 == GOF2Canvas.DOWN && this.autopilotMenuOpen) {
 							this.autoPilotList.up();
 						}
 
-						if (var1 == 256) {
+						if (var1 == GOF2Canvas.KEY_5) {
 							GlobalStatus.soundManager.playSfx(13);
 							this.autopilotMenuOpen = false;
 							if (this.playerEgo != null) {
@@ -1057,7 +1057,7 @@ public final class MGame extends IApplicationModule {
 					}
 
 					if (this.jumpgateReached) {
-						if (var1 == 256) {
+						if (var1 == GOF2Canvas.KEY_5) {
 							this.jumpgateReached = false;
 							if (this.popup.getChoice()) {
 								if (this.playerEgo.isLookingBack()) {
@@ -1078,33 +1078,33 @@ public final class MGame extends IApplicationModule {
 							this.paused = false;
 						}
 
-						if (var1 == 4) {
+						if (var1 == GOF2Canvas.LEFT) {
 							this.popup.left();
 						}
 
-						if (var1 == 32) {
+						if (var1 == GOF2Canvas.RIGHT) {
 							this.popup.right();
 						}
 					} else if (this.pauseMenu != null && !this.actionMenuOpen) {
 						this.pauseMenu.handleKeystate(var1);
-						if (var1 == 256 && this.pauseMenu.update()) {
+						if (var1 == GOF2Canvas.KEY_5 && this.pauseMenu.update()) {
 							this.paused = false;
 							return;
 						}
 
-						if (var1 == 16384) {
+						if (var1 == GOF2Canvas.LSB) {
 							this.pauseMenu.update1_();
 						}
 
-						if (var1 == 8192 && this.pauseMenu.goBack()) {
+						if (var1 == GOF2Canvas.RSB && this.pauseMenu.goBack()) {
 							this.paused = false;
 						}
 
-						if (var1 == 4) {
+						if (var1 == GOF2Canvas.LEFT) {
 							this.pauseMenu.optionsLeft();
 						}
 
-						if (var1 == 32) {
+						if (var1 == GOF2Canvas.RIGHT) {
 							this.pauseMenu.optionsRight();
 						}
 					}
@@ -1127,7 +1127,7 @@ public final class MGame extends IApplicationModule {
 					this.starMap = null;
 				}
 			} else if (!this.egoDead) {
-				if (var1 == 16384) {
+				if (var1 == GOF2Canvas.LSB) {
 					if (this.pauseMenu == null) {
 						this.pauseMenu = new OptionsWindow();
 					}
@@ -1154,7 +1154,7 @@ public final class MGame extends IApplicationModule {
 						return;
 					}
 
-					if (var1 == 131072) {
+					if (var1 == GOF2Canvas.KEY_0) {
 						this.inTurretMode = !this.inTurretMode;
 						if (!this.playerEgo.setTurretMode(this.inTurretMode)) {
 							if (this.lookingBack != 1) {
@@ -1167,7 +1167,7 @@ public final class MGame extends IApplicationModule {
 						}
 					}
 
-					if (var1 == 256) {
+					if (var1 == GOF2Canvas.KEY_5) {
 						if (this.radar.targetedLandmark != null) {
 							if (!this.playerEgo.isAutoPilot()) {
 								this.playerEgo.setAutoPilot(this.radar.targetedLandmark);
@@ -1218,22 +1218,22 @@ public final class MGame extends IApplicationModule {
 						}
 					}
 
-					if (var1 == 65536 && !this.playerEgo.boosting()) {
+					if (var1 == GOF2Canvas.KEY_3 && !this.playerEgo.boosting()) {
 						this.playerEgo.boost();
 						this.hud.hudEvent(3, this.playerEgo);
 					}
 
-					if (var1 == 32768 && this.playerEgo.player.hasGunOfType(Item.SECONDARY)) {
+					if (var1 == GOF2Canvas.KEY_1 && this.playerEgo.player.hasGunOfType(Item.SECONDARY)) {
 						this.playerEgo.shoot((int)this.frameTime, 1);
 					}
 
-					if (var1 == 512 && Status.getCurrentCampaignMission() > 0) {
+					if (var1 == GOF2Canvas.KEY_7 && Status.getCurrentCampaignMission() > 0) {
 						GlobalStatus.soundManager.playSfx(4);
 						this.isIntro = !this.isIntro;
 						this.hud.hudEvent(this.isIntro ? 1 : 2, this.playerEgo);
 					}
 
-					if (var1 == 1024) {
+					if (var1 == GOF2Canvas.KEY_9) {
 						GlobalStatus.soundManager.playSfx(4);
 						if (this.playerEgo.isAutoPilot()) {
 							this.playerEgo.setAutoPilot((KIPlayer)null);
@@ -1265,23 +1265,23 @@ public final class MGame extends IApplicationModule {
 						}
 					}
 				} else {
-					if ((var1 == 4096 || var1 == 2048) && Status.getCurrentCampaignMission() < 2) {
+					if ((var1 == GOF2Canvas.HASH || var1 == GOF2Canvas.STAR) && Status.getCurrentCampaignMission() < 2) {
 						Status.nextCampaignMission();
 						GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[1]);
 						return;
 					}
 
-					if (var1 == 256 && this.levelScript.timePassed > 3000L) {
+					if (var1 == GOF2Canvas.KEY_5 && this.levelScript.timePassed > 3000L) {
 						this.levelScript.skipSequence();
 						this.playerEgo.resetGunDelay();
 					}
 
-					if (var1 == 65536 && !this.playerEgo.boosting()) {
+					if (var1 == GOF2Canvas.KEY_3 && !this.playerEgo.boosting()) {
 						this.playerEgo.boost();
 						this.hud.hudEvent(3, this.playerEgo);
 					}
 				}
-			} else if (this.fiveSecTick > 3000L && var1 != 32 && var1 != 4 && var1 == 256) {
+			} else if (this.fiveSecTick > 3000L && var1 != GOF2Canvas.RIGHT && var1 != GOF2Canvas.LEFT && var1 == GOF2Canvas.KEY_5) {
 				GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[0]);
 				GlobalStatus.soundManager.playMusic(0);
 			}

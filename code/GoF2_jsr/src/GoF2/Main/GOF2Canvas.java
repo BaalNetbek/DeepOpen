@@ -20,6 +20,15 @@ import GOF2.RecordHandler;
 import GOF2.Status;
 
 public final class GOF2Canvas extends GameCanvas {
+
+ public static final int LSB = 16384,                  RSB = 8192;
+ public static final int KEY_END = 262144,         KEY_C = 524288;
+ public static final int KEY_1 = 32768,  UP = 2,    KEY_3 = 65536;
+ public static final int LEFT = 4,     KEY_5 = 256,    RIGHT = 32;
+ public static final int KEY_7= 512,    DOWN = 64,   KEY_9 = 1024;
+ public static final int STAR = 2048, KEY_0 = 131072, HASH = 4096;
+ 
+ 
 	private final GOF2MIDlet midlet;
 	private int keyStates;
 	private int keysState;
@@ -199,67 +208,67 @@ public final class GOF2Canvas extends GameCanvas {
 	public final void keyPressed(final int var1) {
 		this.lastKeyStates = this.keysState;
 		if (var1 == -7) {
-			this.keysState |= 8192;
+			this.keysState |= RSB;
 		}
 
 		if (var1 == -6) {
-			this.keysState |= 16384;
+			this.keysState |= LSB;
 		}
 
 		if (var1 == 49 || var1 == 101 || var1 == 114) {
-			this.keysState |= 32768;
+			this.keysState |= KEY_1;
 		}
 
 		if (var1 == 51 || var1 == 105 || var1 == 117) {
-			this.keysState |= 65536;
+			this.keysState |= KEY_3;
 		}
 
 		if (var1 == 48 || var1 == 32) {
-			this.keysState |= 131072;
+			this.keysState |= KEY_0;
 		}
 
 		if (var1 == -11) {
-			this.keysState |= 262144;
+			this.keysState |= KEY_END;
 		}
 
 		if (var1 == -8) {
-			this.keysState |= 524288;
+			this.keysState |= KEY_C;
 		}
 
 		if (var1 == -1 || var1 == 50 || var1 == 121 || var1 == 116) {
-			this.keysState |= 2;
+			this.keysState |= UP;
 		}
 
 		if (var1 == -2 || var1 == 56 || var1 == 98 || var1 == 118) {
-			this.keysState |= 64;
+			this.keysState |= DOWN;
 		}
 
 		if (var1 == -3 || var1 == 52 || var1 == 100 || var1 == 102) {
-			this.keysState |= 4;
+			this.keysState |= LEFT;
 		}
 
 		if (var1 == -4 || var1 == 54 || var1 == 106 || var1 == 107) {
-			this.keysState |= 32;
+			this.keysState |= RIGHT;
 		}
 
 		if (var1 == -5 || var1 == 53 || var1 == 103 || var1 == 104) {
-			this.keysState |= 256;
+			this.keysState |= KEY_5;
 		}
 
 		if (var1 == 55 || var1 == 99 || var1 == 120) {
-			this.keysState |= 512;
+			this.keysState |= KEY_7;
 		}
 
 		if (var1 == 57 || var1 == 109 || var1 == 110) {
-			this.keysState |= 1024;
+			this.keysState |= KEY_9;
 		}
 
 		if (var1 == 42) {
-			this.keysState |= 2048;
+			this.keysState |= STAR;
 		}
 
 		if (var1 == 35) {
-			this.keysState |= 4096;
+			this.keysState |= HASH;
 		}
 
 		this.newKeysPressed = this.keysState & ~this.lastKeyStates;
@@ -272,67 +281,67 @@ public final class GOF2Canvas extends GameCanvas {
 	public final void keyReleased(final int var1) {
 		this.lastKeyStates = this.keysState;
 		if (var1 == -7) {
-			this.keysState &= -8193;
+			this.keysState &= ~RSB;
 		}
 
 		if (var1 == -6) {
-			this.keysState &= -16385;
+			this.keysState &= ~LSB;
 		}
 
 		if (var1 == 49 || var1 == 101 || var1 == 114) {
-			this.keysState &= -32769;
+			this.keysState &= ~KEY_1;
 		}
 
 		if (var1 == 51 || var1 == 105 || var1 == 117) {
-			this.keysState &= -65537;
+			this.keysState &= ~KEY_3;
 		}
 
 		if (var1 == 48 || var1 == 32) {
-			this.keysState &= -131073;
+			this.keysState &= ~KEY_0;
 		}
 
 		if (var1 == -11) {
-			this.keysState &= -262145;
+			this.keysState &= ~KEY_END;
 		}
 
 		if (var1 == -8) {
-			this.keysState &= -524289;
+			this.keysState &= ~KEY_C;
 		}
 
 		if (var1 == -1 || var1 == 50 || var1 == 121 || var1 == 116) {
-			this.keysState &= -3;
+			this.keysState &= ~UP;
 		}
 
 		if (var1 == -2 || var1 == 56 || var1 == 98 || var1 == 118) {
-			this.keysState &= -65;
+			this.keysState &= ~DOWN;
 		}
 
 		if (var1 == -3 || var1 == 52 || var1 == 100 || var1 == 102) {
-			this.keysState &= -5;
+			this.keysState &= ~LEFT;
 		}
 
 		if (var1 == -4 || var1 == 54 || var1 == 106 || var1 == 107) {
-			this.keysState &= -33;
+			this.keysState &= ~RIGHT;
 		}
 
 		if (var1 == -5 || var1 == 53 || var1 == 103 || var1 == 104) {
-			this.keysState &= -257;
+			this.keysState &= ~KEY_5;
 		}
 
 		if (var1 == 55 || var1 == 99 || var1 == 120) {
-			this.keysState &= -513;
+			this.keysState &= ~KEY_7;
 		}
 
 		if (var1 == 57 || var1 == 109 || var1 == 110) {
-			this.keysState &= -1025;
+			this.keysState &= ~KEY_9;
 		}
 
 		if (var1 == 42) {
-			this.keysState &= -2049;
+			this.keysState &= ~STAR;
 		}
 
 		if (var1 == 35) {
-			this.keysState &= -4097;
+			this.keysState &= ~HASH;
 		}
 
 		this.lastFrameSignleKeyRelease = ~this.keysState & this.lastKeyStates;
