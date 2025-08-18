@@ -274,9 +274,14 @@ public final class Radar {
                 this.closestStatPlayerDistanceVisible = calcDistance(this.playerRoute.getDockingTarget_().x, this.playerRoute.getDockingTarget_().y, this.playerRoute.getDockingTarget_().z, var1);
                 if (this.inViewFrustum) {
                     GlobalStatus.graphics.drawImage(this.lockonWaypoint, this.screenProjectionX, this.screenProjectionY, 3);
-                    Font.drawString(this.closestStatPlayerDistanceVisible, this.screenProjectionX - 8, this.screenProjectionY + 8, 1);
+					Font.drawString(
+							this.closestStatPlayerDistanceVisible,
+							this.screenProjectionX - 8,
+							this.screenProjectionY + 8,
+							1
+					);
                 } else if (this.scanerPresent) {
-                    GlobalStatus.graphics.drawImage(this.waypoint, this.screenProjectionX, this.screenProjectionY, 3);
+                    GlobalStatus.graphics.drawImage(this.waypoint, this.screenProjectionX, this.screenProjectionY, Graphics.HCENTER|Graphics.VCENTER);
                 }
             }
 
@@ -307,16 +312,41 @@ public final class Radar {
                                 GlobalStatus.graphics.drawImage(this.lockonWaypoint2, this.screenProjectionX, this.screenProjectionY, 3);
                             }
 
-                            Font.drawString(this.stationaryPlayersNames[i], i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY, 0);
-                            if (i < 2) {
+							Font.drawString(
+									this.stationaryPlayersNames[i],
+									i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5,
+									this.screenProjectionY,
+									0
+							);
+							if (i < 2) {
                                 if (i == 0 && !inAlienOrbit) {
-                                    Font.drawString(GlobalStatus.gameText.getText(37) + ": " + Status.getStation().getTecLevel(), i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 10, 1);
+									Font.drawString(
+											GlobalStatus.gameText.getText(37) + ": " + Status.getStation().getTecLevel(),
+											i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5,
+											this.screenProjectionY + 10,
+											1
+									);
+									this.closestStatPlayerDistanceVisible = calcDistance(
+											this.landmarks[i].targetX,
+											this.landmarks[i].targetY,
+											this.landmarks[i].targetZ,
+											var1
+									);
+									Font.drawString(
+											this.closestStatPlayerDistanceVisible,
+											i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5,
+											this.screenProjectionY + 20,
+											1
+									);
+							       } else {
                                     this.closestStatPlayerDistanceVisible = calcDistance(this.landmarks[i].targetX, this.landmarks[i].targetY, this.landmarks[i].targetZ, var1);
-                                    Font.drawString(this.closestStatPlayerDistanceVisible, i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 20, 1);
-                                } else {
-                                    this.closestStatPlayerDistanceVisible = calcDistance(this.landmarks[i].targetX, this.landmarks[i].targetY, this.landmarks[i].targetZ, var1);
-                                    Font.drawString(this.closestStatPlayerDistanceVisible, i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5, this.screenProjectionY + 10, 1);
-                                }
+									Font.drawString(
+											this.closestStatPlayerDistanceVisible,
+											i == 0 ? this.screenProjectionX + 25 : this.screenProjectionX + 5,
+											this.screenProjectionY + 10,
+											1
+									);
+								 }
                             }
                         } else if (i == 3) {
                             GlobalStatus.graphics.drawImage(this.vortex, this.screenProjectionX, this.screenProjectionY, 3);
@@ -414,8 +444,12 @@ public final class Radar {
                                     var28 = true;
                                 }
 
-                                Font.drawString(Status.getPlanetNames()[i - 1], this.screenProjectionX + 10 + (var14 ? 14 : 0) + (var15 ? 14 : 0), this.screenProjectionY - 10, 0);
-                            }
+								Font.drawString(
+										Status.getPlanetNames()[i - 1],
+										this.screenProjectionX + 10 + (var14 ? 14 : 0) + (var15 ? 14 : 0),
+										this.screenProjectionY - 10, 0
+								);
+							   }
                         }
                     }
                 }
@@ -801,7 +835,13 @@ public final class Radar {
     public final void drawCurrentLock(final Hud var1) {
         if (this.draw) {
             if (this.targetedPlanet != null) {
-                Font.drawString(Status.getPlanetNames()[this.targetedPlanetLocalIndex], GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, 1, 18);
+                Font.drawString(
+                  Status.getPlanetNames()[this.targetedPlanetLocalIndex],
+                  GlobalStatus.screenWidth - 2,
+                  GlobalStatus.screenHeight - Font.getSpacingY() - 2,
+                  1,
+                  Font.TOP|Font.RIGHT
+                );
             } else {
                 KIPlayer var2 = this.targetedAsteroid != null ? this.targetedAsteroid : this.targetedPlayer != null ? this.targetedPlayer : this.targetedLandmark != null ? this.targetedLandmark : null;
                 if (var2 != null) {
@@ -809,24 +849,35 @@ public final class Radar {
                     final boolean var4 = var2.equals(this.targetedLandmark);
                     final String var5 = this.targetedLandmark == this.landmarks[0] ? this.stationaryPlayersNames[0] : this.targetedLandmark == this.landmarks[3] ? this.stationaryPlayersNames[3] : this.stationaryPlayersNames[1];
                     if (var3) {
-                        ImageFactory.drawItemFrameless(((PlayerAsteroid)var2).oreItemId, var1.items, GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, Graphics.BOTTOM | Graphics.RIGHT);
+                        ImageFactory.drawItemFrameless(((PlayerAsteroid)var2).oreItemId, var1.items, GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getSpacingY() - 2, Graphics.BOTTOM | Graphics.RIGHT);
                         this.meteorClass.setFrame(((PlayerAsteroid)var2).getQualityFrameIndex());
                         this.meteorClass.setRefPixelPosition(GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - 2);
                         this.meteorClass.paint(GlobalStatus.graphics);
-                        Font.drawString(GlobalStatus.gameText.getText(569 + ((PlayerAsteroid)var2).oreItemId), GlobalStatus.screenWidth - 4 - this.meteorClass.getHeight(), GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, 1, 18);
-                        return;
+						Font.drawString(
+								GlobalStatus.gameText.getText(569 + ((PlayerAsteroid) var2).oreItemId),
+								GlobalStatus.screenWidth - 4 - this.meteorClass.getHeight(),
+								GlobalStatus.screenHeight - Font.getSpacingY() - 2,
+								1,
+								Font.TOP|Font.RIGHT
+						);
+						return;
                     }
 
                     if (!var4) {
                         this.logosSmall.setFrame(var2.race);
-                        this.logosSmall.setRefPixelPosition(GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2);
+                        this.logosSmall.setRefPixelPosition(GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getSpacingY() - 2);
                         this.logosSmall.paint(GlobalStatus.graphics);
                     }
 
                     if (var2.name != null && var2.name.equals(GlobalStatus.gameText.getText(833))) {
                         if (Layout.quickClockHigh_()) {
-                            Font.drawString(var2.name, GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, 2, 18);
-                        }
+							Font.drawString(
+									var2.name, GlobalStatus.screenWidth - 2,
+									GlobalStatus.screenHeight - Font.getSpacingY() - 2,
+									2,
+									Font.TOP|Font.RIGHT
+							);
+						}
                     } else {
                         String var6 = var4 ? var5 : var2.name != null ? var2.name : GlobalStatus.gameText.getText(229 + var2.race);
                         if (!var4) {
@@ -838,11 +889,17 @@ public final class Radar {
                                 this.logosSmall.setFrame(Status.getSystem().getRace());
                             }
 
-                            this.logosSmall.setRefPixelPosition(GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2);
+                            this.logosSmall.setRefPixelPosition(GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getSpacingY() - 2);
                             this.logosSmall.paint(GlobalStatus.graphics);
                         }
 
-                        Font.drawString(var6, GlobalStatus.screenWidth - 2, GlobalStatus.screenHeight - Font.getFontSpacingY() - 2, 1, 18);
+						Font.drawString(
+								var6,
+								GlobalStatus.screenWidth - 2,
+								GlobalStatus.screenHeight - Font.getSpacingY() - 2,
+								1,
+								Font.TOP | Font.RIGHT
+						);
                     }
                 }
 

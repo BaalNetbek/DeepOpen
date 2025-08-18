@@ -550,7 +550,13 @@ public final class MGame extends IApplicationModule {
 				this.radio.draw(this.levelScript.timePassed, this.frameTime, this.playerEgo);
 			}
 		} else if (this.egoDead) {
-			Font.drawString(GlobalStatus.gameText.getText(156), GlobalStatus.screenWidth / 2, 20, 0, 8);
+			Font.drawString(
+			  GlobalStatus.gameText.getText(156),
+			  GlobalStatus.screenWidth / 2,
+			  20,
+			  0,
+			  Font.HCENTER
+			);
 			if (this.fiveSecTick > 3000L) {
 				this.popup.draw();
 			}

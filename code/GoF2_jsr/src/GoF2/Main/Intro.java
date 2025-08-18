@@ -79,7 +79,7 @@ public final class Intro extends IApplicationModule {
 		if (this.introState == 0) {
 			GlobalStatus.graphics.drawImage(LoadingScreen.getGameLogo(), GlobalStatus.screenWidth >> 1, 10, 17);
 			Layout.drawTextItem(GlobalStatus.gameText.getText(6) + " " + GlobalStatus.gameText.getText(15), 0, GlobalStatus.screenHeight >> 1, GlobalStatus.screenWidth, this.soundSwitchCurrent == 0);
-			Layout.drawTextItem(GlobalStatus.gameText.getText(6) + " " + GlobalStatus.gameText.getText(16), 0, (GlobalStatus.screenHeight >> 1) + Font.getFontSpacingY(), GlobalStatus.screenWidth, this.soundSwitchCurrent == 1);
+			Layout.drawTextItem(GlobalStatus.gameText.getText(6) + " " + GlobalStatus.gameText.getText(16), 0, (GlobalStatus.screenHeight >> 1) + Font.getSpacingY(), GlobalStatus.screenWidth, this.soundSwitchCurrent == 1);
 			Layout.drawFooter1(GlobalStatus.gameText.getText(253), "", false);
 		} else if (this.introState == 1) {
 			GlobalStatus.graphics.drawImage(this.logoFL, GlobalStatus.screenWidth / 2, GlobalStatus.screenHeight / 2, 3);

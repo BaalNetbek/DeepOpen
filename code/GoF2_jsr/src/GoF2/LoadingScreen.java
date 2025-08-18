@@ -33,8 +33,8 @@ public final class LoadingScreen implements Runnable {
 	public final void run() {
 		while(this.stillLoading && !GlobalStatus.paused) {
 			Layout.drawBG();
-			Font.drawString(this.stateIndicator, GlobalStatus.screenWidth / 2 - Font.getTextWidth(this.stateIndicator, 0) / 2, GlobalStatus.screenHeight / 2 - Font.getFontSpacingY() / 2 - 10, 0);
-			Font.drawString(textOverStateIndicator, GlobalStatus.screenWidth / 2 - Font.getTextWidth(this.stateIndicator, 0) / 2, GlobalStatus.screenHeight / 2 - (Font.getFontSpacingY() << 1) - 10, 0);
+			Font.drawString(this.stateIndicator, GlobalStatus.screenWidth / 2 - Font.getTextWidth(this.stateIndicator, 0) / 2, GlobalStatus.screenHeight / 2 - Font.getSpacingY() / 2 - 10, 0);
+			Font.drawString(textOverStateIndicator, GlobalStatus.screenWidth / 2 - Font.getTextWidth(this.stateIndicator, 0) / 2, GlobalStatus.screenHeight / 2 - (Font.getSpacingY() << 1) - 10, 0);
 			GlobalStatus.graphics.drawImage(gameLogo, GlobalStatus.screenWidth >> 1, 10, 17);
 			if (GlobalStatus.applicationManager != null && GlobalStatus.applicationManager.GetCurrentApplicationModule() != null && GlobalStatus.applicationManager.GetCurrentApplicationModule() != GlobalStatus.scenes[3]) {
 				draw();

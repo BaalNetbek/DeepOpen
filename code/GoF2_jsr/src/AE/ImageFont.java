@@ -17,30 +17,30 @@ public final class ImageFont {
 	/**
 	 * 
 	 * @param path
-	 * @param var2
+	 * @param gfx
 	 * @param id  - legacy
-	 * @param var4
-	 * @param var5
+	 * @param rows
+	 * @param cols
 	 */
 	
-	public ImageFont(final String path, final Graphics var2, int id, final int var4, final int var5) {
-		graphics = var2;
+	public ImageFont(final String path, final Graphics gfx, int id, final int rows, final int cols) {
+		graphics = gfx;
 
 		try {
 			this.fontTexture = Image.createImage(path);
-			this.posX = new short[var4 * var5];
+			this.posX = new short[rows * cols];
 			this.posY = new short[this.posX.length];
 			this.widths = new byte[this.posX.length];
-			this.tileHeight = this.spacingY = (byte)(this.fontTexture.getHeight() / var4);
-			this.tileWidth = (byte)(this.fontTexture.getWidth() / var5);
+			this.tileHeight = this.spacingY = (byte)(this.fontTexture.getHeight() / rows);
+			this.tileWidth = (byte)(this.fontTexture.getWidth() / cols);
 			final int[] fontRGBdata = new int[this.fontTexture.getWidth() * this.fontTexture.getHeight()];
 			this.fontTexture.getRGB(fontRGBdata, 0, this.fontTexture.getWidth(), 0, 0, this.fontTexture.getWidth(), this.fontTexture.getHeight());
 
-			for(int i = 0; i < var5; ++i) {
-				for(int j = 0; j < var4; ++j) {
-					this.posX[i + var5 * j] = (short)(i * this.tileWidth);
-					this.posY[i + var5 * j] = (short)(j * this.spacingY);
-					this.widths[i + var5 * j] = getSymbolWidth(i * this.tileWidth, j * this.spacingY, fontRGBdata);
+			for(int i = 0; i < cols; ++i) {
+				for(int j = 0; j < rows; ++j) {
+					this.posX[i + cols * j] = (short)(i * this.tileWidth);
+					this.posY[i + cols * j] = (short)(j * this.spacingY);
+					this.widths[i + cols * j] = getSymbolWidth(i * this.tileWidth, j * this.spacingY, fontRGBdata);
 				}
 			}
 			// gof font specific 

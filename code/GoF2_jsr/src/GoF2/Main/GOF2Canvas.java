@@ -97,19 +97,19 @@ public final class GOF2Canvas extends GameCanvas {
 			setFullScreenMode(true);
 			Font.setGraphics(GlobalStatus.graphics);
 			Font.addCharMap("/data/interface/font_w.png", 0, 15, 16);
-			Font.setPrimarySymMapSpacing(0);
-			Font.setMainFontSpacingY(11);
+			Font.setSpacingX(0);
+			Font.setSpacingY(11);
 			Font.setSymMapSetOffsetY(-2, 0);
 			Font.addCharMap("/data/interface/font_g.png", 1, 15, 16);
-			Font.setSymMapSpacing(0, 1);
+			Font.setSpacingX(0, 1);
 			Font.setSpacingY(11, 1);
 			Font.setSymMapSetOffsetY(-2, 1);
 			Font.addCharMap("/data/interface/font_r.png", 2, 15, 16);
-			Font.setSymMapSpacing(0, 2);
+			Font.setSpacingX(0, 2);
 			Font.setSpacingY(11, 2);
 			Font.setSymMapSetOffsetY(-2, 2);
 			Font.addCharMap("/data/interface/font_void.png", 2, 15, 16);
-			Font.setSymMapSpacing(0, 3);
+			Font.setSpacingX(0, 3);
 			Font.setSpacingY(11, 3);
 			Font.setSymMapSetOffsetY(-2, 3);
 			Layout.OnInitialize();
@@ -180,7 +180,7 @@ public final class GOF2Canvas extends GameCanvas {
 		  GlobalStatus.screenWidth >> 1,
 		  GlobalStatus.screenHeight >> 1,
 		  1,
-		  24
+		  Font.TOP|Font.HCENTER
 		);
 		if (this.sysTime == 0L) {
 			this.sysTime = System.currentTimeMillis();

@@ -493,11 +493,11 @@ p.a([Ljava/lang/String;IIIII)V drawLinesWithIndent
 p.a([Ljava/lang/String;IIII)V drawLinesAligned
 p.a(Ljava/lang/String;)I getStringWidth
 p.a(Ljava/lang/String;I)I getTextWidth
-p.a(I)V setPrimarySymMapSpacing
-p.b(II)V setSymMapSpacing
-p.a()I getFontSpacingY
+p.a(I)V setSpacingX
+p.b(II)V setSpacingX
+p.a()I getSpacingY
 p.a([Ljava/lang/String;)I getTotalSpacingY
-p.b(I)V setMainFontSpacingY
+p.b(I)V setSpacingY
 p.c(II)V setSpacingY
 p.a(Ljava/lang/String;IIII)[Ljava/lang/String; splitToLines
 p.a(Ljava/lang/String;I)[Ljava/lang/String; splitToLines

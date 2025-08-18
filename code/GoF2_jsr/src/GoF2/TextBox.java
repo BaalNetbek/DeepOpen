@@ -87,7 +87,7 @@ public final class TextBox {
     }
 
     public final int getHeight_() {
-        return this.height + Font.getFontSpacingY() + (this.verticalBar ? 6 : 0);
+        return this.height + Font.getSpacingY() + (this.verticalBar ? 6 : 0);
     }
 
     public final int getTextHeight_() {
@@ -132,7 +132,7 @@ public final class TextBox {
 
         if (this.rows != null) {
             if (this.hide) {
-                Font.drawLinesAligned(this.rows, this.posX + this.width - 3, this.posY + this.topPadding + this.topPadding2, this.font, 2);
+                Font.drawLinesAligned(this.rows, this.posX + this.width - 3, this.posY + this.topPadding + this.topPadding2, this.font, Font.RIGHT);
             } else if (this.faceIds == null) {
                 Font.drawLines(this.rows, this.posX + 2, this.posY + this.topPadding + this.topPadding2, this.font);
             } else {

@@ -970,7 +970,7 @@ public class HangarList extends TabbedWindow_ {
 			this.tabHeight = 1;
 		}
 		else {
-			this.tabHeight = Font.getFontSpacingY() + 4;
+			this.tabHeight = Font.getSpacingY() + 4;
 		}
 
 		drawTabs();
@@ -997,8 +997,13 @@ public class HangarList extends TabbedWindow_ {
 		      (ITEM_HEIGHT - 2));
 		boolean var1 = this.shipLoad > Status.getShip().getCargoPlus();
 		if (var1 && Layout.quickClockHigh_() || !var1) {
-			Font.drawString(this.shipLoad + "/" + Status.getShip().getCargoPlus() + "t", this.innerLeftMargin,
-			      this.posY + this.height - ITEM_HEIGHT, var1 ? 2 : 1, 17);
+			Font.drawString(
+			         this.shipLoad + "/" + Status.getShip().getCargoPlus() + "t",
+			         this.innerLeftMargin,
+			         this.posY + this.height - ITEM_HEIGHT,
+			         var1 ? 2 : 1,
+			         Font.TOP|Font.LEFT
+			);
 		}
 
 		Font.drawString(Layout.formatCredits(Status.getCredits()), this.posX + this.width - 3,
@@ -1128,21 +1133,21 @@ public class HangarList extends TabbedWindow_ {
 					this.posX + this.width / 6,
 					this.posY + ITEM_HEIGHT + 1,
 					this.selectedTab == 0 ? 2 : 1,
-					24
+					Font.TOP|Font.HCENTER
 			);
 			Font.drawString(
 					this.tabNames[1],
 					this.posX + this.width / 2,
 					this.posY + ITEM_HEIGHT + 1,
 					this.selectedTab == 1 ? 2 : 1,
-					24
+					Font.TOP|Font.HCENTER
 			);
 			Font.drawString(
 					this.tabNames[2],
 					this.posX + this.width - this.width / 6,
 					this.posY + ITEM_HEIGHT + 1,
 					this.selectedTab == 2 ? 2 : 1,
-					24
+					Font.TOP|Font.HCENTER
 			);
 		}
 	}
@@ -1157,8 +1162,19 @@ public class HangarList extends TabbedWindow_ {
 				this.itemListPosY = this.posY + ITEM_HEIGHT + this.tabHeight + this.rowHeight - 1;
 				GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
 				GlobalStatus.graphics.drawLine(this.posX + 3, this.itemListPosY - 2, this.posX + this.width - 3, this.itemListPosY - 2);
-				Font.drawString(var1, this.innerLeftMargin + 3, this.itemListPosY - this.rowHeight + 3, 0);
-				Font.drawString(var2, this.posX + this.width - 4 - 2, this.itemListPosY - this.rowHeight + 3, 0, 18);
+				Font.drawString(
+				  var1,
+				  this.innerLeftMargin + 3,
+				  this.itemListPosY - this.rowHeight + 3,
+				  0
+				);
+				Font.drawString(
+				  var2,
+				  this.posX + this.width - 4 - 2,
+				  this.itemListPosY - this.rowHeight + 3,
+				  0,
+				  Font.TOP|Font.RIGHT
+				);
 			}
 
 			int var4 = -1;
@@ -1230,8 +1246,11 @@ public class HangarList extends TabbedWindow_ {
 					      Graphics.LEFT | Graphics.VCENTER
 			      );
 					if (var2 == this.selectedEntry) {
-						GlobalStatus.graphics.drawImage(this.itemTypesSel, this.innerLeftMargin + 1,
-						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, 6);
+						GlobalStatus.graphics.drawImage(
+								this.itemTypesSel, this.innerLeftMargin + 1,
+								this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1,
+								Graphics.LEFT | Graphics.VCENTER
+						);
 					}
 
 					if (var9.isBluePrint()) {
@@ -1260,10 +1279,13 @@ public class HangarList extends TabbedWindow_ {
 						            - this.innerLeftMargin - ImageFactory.itemFrameWidth - 20 - 9 - this.listRightPadding + 2,
 						      this.selectedEntry == var2 ? 2 : 0);
 						if (!var10 || var10 && Layout.quickClockHigh_()) {
-							Font.drawString((int) (var9.bluePrint.getCompletionRate() * 100.0F) + "%",
+							Font.drawString(
+							      (int) (var9.bluePrint.getCompletionRate() * 100.0F) + "%",
 							      this.posX + this.width - 6 - this.listRightPadding,
 							      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
-							      this.selectedEntry == var2 ? 2 : 1, 18);
+							      this.selectedEntry == var2 ? 2 : 1,
+							      Font.TOP|Font.RIGHT
+							);
 						}
 
 						if (!var9.bluePrint.isStarted()) {
@@ -1291,25 +1313,38 @@ public class HangarList extends TabbedWindow_ {
 			} else {
 				if (!var9.isHeader()) {
 					if (var9.isNonFancyHeader()) {
-						Font.drawString(var9.label, this.innerLeftMargin + 3, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 5, this.selectedEntry == var2 ? 2 : 1);
+						Font.drawString(
+						  var9.label,
+						  this.innerLeftMargin + 3,
+						  this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 5,
+						  this.selectedEntry == var2 ? 2 : 1
+						);
 						return;
 					}
 
 					if (var9.isShip()) {
-						ImageFactory.drawShip(var9.ship.getIndex(), var9.ship.getRace(), this.ships, this.shipsColor,
+						ImageFactory.drawShip(
+						      var9.ship.getIndex(),
+						      var9.ship.getRace(),
+						      this.ships,
+						      this.shipsColor,
 						      this.innerLeftMargin + 3 + 20,
 						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1,
-						      Graphics.LEFT | Graphics.VCENTER);
-						Font.drawString(GlobalStatus.gameText.getText(532 + var9.ship.getIndex()),
+						      Graphics.LEFT | Graphics.VCENTER
+						);
+						Font.drawString(
+						      GlobalStatus.gameText.getText(532 + var9.ship.getIndex()),
 						      this.innerLeftMargin + 20 + ImageFactory.itemFrameWidth + 6,
 						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
-						      this.selectedEntry == var2 ? 2 : 0);
+						      this.selectedEntry == var2 ? 2 : 0
+						);
 						Font.drawString(
 						      Layout.formatCredits(var9.ship.getPrice()) + " ("
 						            + Layout.formatCredits(var9.ship.getPrice() - Status.getShip().getPrice()) + ")",
 						      this.innerLeftMargin + 20 + ImageFactory.itemFrameWidth + 6,
 						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8,
-						      this.selectedEntry == var2 ? 2 : 1, 0);
+						      this.selectedEntry == var2 ? 2 : 1, 0
+						);
 						return;
 					}
 
@@ -1317,35 +1352,61 @@ public class HangarList extends TabbedWindow_ {
 					final String var4 = this.selectedTab == 1 ? var9.item.getAmount() + ""
 					      : this.bluePrint.getCurrentAmount(var9.item.getIndex()) + var9.item.getBlueprintAmount() + "/"
 					            + this.bluePrint.getTotalAmount(var9.item.getIndex());
-					ImageFactory.drawItem(var9.item.getIndex(), var9.item.getType(), this.items, this.itemTypes,
+					ImageFactory.drawItem(
+					      var9.item.getIndex(), var9.item.getType(), this.items, this.itemTypes,
 					      this.innerLeftMargin + 3 + 20,
-					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, 6);
+					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, 6
+					);
 					if (var2 == this.selectedEntry) {
-						GlobalStatus.graphics.drawImage(this.itemTypesSel, this.innerLeftMargin + 3 + 20,
-						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, 6);
+						GlobalStatus.graphics.drawImage(
+						  this.itemTypesSel, this.innerLeftMargin + 3 + 20,
+						  this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1,
+						  6
+						);
 					}
 
-					Font.drawString(var3, this.innerLeftMargin + 20,
-					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
-					      this.selectedEntry == var2 ? 2 : 1, 18);
-					Layout.drawStringWidthLimited(Globals.getItemName(var9.getIndex()),
+					Font.drawString(
+    					  var3,
+    					  this.innerLeftMargin + 20,
+					     this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
+					     this.selectedEntry == var2 ? 2 : 1,
+					     Font.TOP|Font.RIGHT
+					);
+					Layout.drawStringWidthLimited(
+					      Globals.getItemName(var9.getIndex()),
 					      this.innerLeftMargin + 20 + ImageFactory.itemFrameWidth + 6,
 					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
 					      this.width - this.innerLeftMargin - ImageFactory.itemFrameWidth - 40 - 9 - this.listRightPadding
 					            + 2 - (this.selectedTab == 4 ? 10 : 0),
-					      this.selectedEntry == var2 ? 2 : 0);
-					Font.drawString(Layout.formatCredits(var9.item.getSinglePrice()),
+					      this.selectedEntry == var2 ? 2 : 0
+					);
+					Font.drawString(
+					      Layout.formatCredits(var9.item.getSinglePrice()),
 					      this.innerLeftMargin + 20 + ImageFactory.itemFrameWidth + 6,
 					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8,
-					      this.selectedEntry == var2 ? 2 : 1, 0);
-					Font.drawString(var4, this.posX + this.width - 6 - this.listRightPadding,
-					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
-					      this.selectedEntry == var2 ? 2 : 1, 18);
+					      this.selectedEntry == var2 ? 2 : 1,
+					      0
+					);
+					Font.drawString(
+    					    var4,
+    					    this.posX + this.width - 6 - this.listRightPadding,
+    					    this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
+    					    this.selectedEntry == var2 ? 2 : 1,
+					       Font.TOP|Font.RIGHT
+					);
 					if (this.trading_ && !this.popupOpen && var2 == this.selectedEntry && Layout.quickClockHigh_()) {
-						Font.drawString("<", this.innerLeftMargin + 20,
-						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8, 2, 18);
-						Font.drawString(">", this.posX + this.width - 6 - this.listRightPadding,
-						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8, 2, 18);
+						Font.drawString(
+						      "<", this.innerLeftMargin + 20,
+						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8,
+						      2,
+						      Font.TOP|Font.RIGHT
+						);
+						Font.drawString(
+						      ">", this.posX + this.width - 6 - this.listRightPadding,
+						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8,
+						      2,
+						      Font.TOP|Font.RIGHT
+						);
 					}
 
 					return;
@@ -1358,33 +1419,44 @@ public class HangarList extends TabbedWindow_ {
 			}
 		} else {
 			if (var9.isNonFancyHeader()) {
-				Font.drawString(var9.label, this.innerLeftMargin + 3, this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 5, this.selectedEntry == var2 ? 2 : 1);
+				Font.drawString(
+						var9.label, this.innerLeftMargin + 3,
+						this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 5,
+						this.selectedEntry == var2 ? 2 : 1
+				);
 				return;
 			}
 
 			if (!var9.isHeader()) {
 				if (var9.isShip()) {
-					ImageFactory.drawShip(var9.ship.getIndex(), var9.ship.getRace(), this.ships, this.shipsColor,
-					      this.innerLeftMargin + 1,
-					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, 6);
-					Font.drawString(GlobalStatus.gameText.getText(532 + var9.ship.getIndex()),
-					      this.innerLeftMargin + ImageFactory.itemFrameWidth + 5,
-					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
-					      this.selectedEntry == var2 ? 2 : 0);
-					Font.drawString(Layout.formatCredits(var9.ship.getPrice()),
-					      this.innerLeftMargin + ImageFactory.itemFrameWidth + 5,
-					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8,
-					      this.selectedEntry == var2 ? 2 : 1, 0);
+					ImageFactory.drawShip(
+							var9.ship.getIndex(), var9.ship.getRace(), this.ships, this.shipsColor,
+							this.innerLeftMargin + 1,
+							this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1,
+							Graphics.LEFT | Graphics.VCENTER
+					);
+					Font.drawString(
+							GlobalStatus.gameText.getText(532 + var9.ship.getIndex()),
+							this.innerLeftMargin + ImageFactory.itemFrameWidth + 5,
+							this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
+							this.selectedEntry == var2 ? 2 : 0
+					);
+					Font.drawString(
+							Layout.formatCredits(var9.ship.getPrice()),
+							this.innerLeftMargin + ImageFactory.itemFrameWidth + 5,
+							this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8,
+							this.selectedEntry == var2 ? 2 : 1, 0
+					);
 					return;
 				}
 
 				if (var9.isItem()) {
 					ImageFactory.drawItem(var9.item.getIndex(), var9.item.getType(), this.items, this.itemTypes,
 					      this.innerLeftMargin + 1,
-					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, 6);
+					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, Graphics.LEFT | Graphics.VCENTER);
 					if (var2 == this.selectedEntry) {
 						GlobalStatus.graphics.drawImage(this.itemTypesSel, this.innerLeftMargin + 1,
-						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, 6);
+						      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + getRowHeight() / 2 + 1, Graphics.LEFT | Graphics.VCENTER);
 					}
 
 					var3 = Globals.getItemName(var9.item.getIndex());
@@ -1392,22 +1464,29 @@ public class HangarList extends TabbedWindow_ {
 						var3 = var3 + " (" + var9.item.getAmount() + ")";
 					}
 
-					Layout.drawStringWidthLimited(var3, this.innerLeftMargin + ImageFactory.itemFrameWidth + 5,
+					Layout.drawStringWidthLimited(
+						  var3, this.innerLeftMargin + ImageFactory.itemFrameWidth + 5,
 					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1,
 					      this.width - this.innerLeftMargin - ImageFactory.itemFrameWidth - 9 - this.listRightPadding + 2,
-					      this.selectedEntry == var2 ? 2 : 0);
-					Font.drawString(Layout.formatCredits(var9.item.getSinglePrice()),
+					      this.selectedEntry == var2 ? 2 : 0
+					);
+					Font.drawString(
+						  Layout.formatCredits(var9.item.getSinglePrice()),
 					      this.innerLeftMargin + ImageFactory.itemFrameWidth + 5,
 					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 1 + 8,
-					      this.selectedEntry == var2 ? 2 : 1, 0);
+					      this.selectedEntry == var2 ? 2 : 1,
+					      0
+					);
 					return;
 				}
 
 				if (var9.isMedal__()) {
-					Font.drawString(GlobalStatus.gameText.getText(69),
+					Font.drawString(
+						  GlobalStatus.gameText.getText(69),
 					      this.innerLeftMargin + ImageFactory.itemFrameWidth + 5,
 					      this.itemListPosY + (var2 - this.scrollPos) * this.rowHeight + 3,
-					      this.selectedEntry == var2 ? 2 : 1);
+					      this.selectedEntry == var2 ? 2 : 1
+					);
 				}
 
 				return;
@@ -1431,6 +1510,6 @@ public class HangarList extends TabbedWindow_ {
 	}
 
 	public final int getTabHeight() {
-		return Font.getFontSpacingY() + 4;
+		return Font.getSpacingY() + 4;
 	}
 }

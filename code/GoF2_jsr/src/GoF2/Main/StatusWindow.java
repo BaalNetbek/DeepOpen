@@ -56,7 +56,7 @@ public final class StatusWindow extends HangarList {
 		GlobalStatus.graphics.drawRect(this.posX + 3, this.posY + this.height - 13, this.width - 6, 10);
 		GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
 		GlobalStatus.graphics.drawRect(this.posX + 2, this.posY + this.height - 14, this.width - 4, 12);
-		Font.drawString(this.unused_2_, this.posX + this.width - 3, this.posY + this.height - 13, 1, 18);
+		Font.drawString(this.unused_2_, this.posX + this.width - 3, this.posY + this.height - 13, 1, Font.TOP|Font.RIGHT);
 	}
 
 	public final void drawItem(final Object var1, final int var2) {

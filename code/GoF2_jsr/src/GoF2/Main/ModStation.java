@@ -297,7 +297,7 @@ public final class ModStation extends IApplicationModule {
 		return this.loaded;
 	}
 
-	public final void renderScene(final int var1) {
+	public final void renderScene(final int keyState) {
 		if (this.loaded) {
 			Layout.setTickHighlight(false);
 			this.currentTime = System.currentTimeMillis();
@@ -308,11 +308,16 @@ public final class ModStation extends IApplicationModule {
 			Status.incPlayingTime(this.frameTime);
 			Achievements.updateMaxCredits(Status.getCredits());
 			if (!this.missionsOpen && !this.barOpen && !this.hangarOpen && !this.mapOpen && !this.statusOpen && this.cutScene != null) {
-				this.cutScene.renderScene(!this.optionsOpen && !this.bribeMsgOpen && !this.helpMsgOpen && !this.popupOpen ? var1 : 0);
+				this.cutScene.renderScene(!this.optionsOpen && !this.bribeMsgOpen && !this.helpMsgOpen && !this.popupOpen ? keyState : 0);
 			}
 
 			if (this.loadingTick < 6000L) {
-				Font.drawString(GlobalStatus.gameText.getText(this.loadedFromSave ? 32 : 28), 5, GlobalStatus.screenHeight - 16 - Font.getFontSpacingY(), 1);
+				Font.drawString(
+				  GlobalStatus.gameText.getText(this.loadedFromSave ? 32 : 28),
+				  5,
+				  GlobalStatus.screenHeight - 16 - Font.getSpacingY(),
+				  1
+				);
 			} else {
 				this.loadedFromSave = false;
 			}
@@ -372,9 +377,9 @@ public final class ModStation extends IApplicationModule {
 					}
 				}
 
-				int var8 = var1;
+				int keyStateOverHelp = keyState;
 				if (this.helpMsgOpen) {
-					var8 = 0;
+					keyStateOverHelp = 0;
 				}
 
 				if (this.missionMsgOpen) {
@@ -382,22 +387,22 @@ public final class ModStation extends IApplicationModule {
 						Layout.drawBG();
 					}
 
-					this.dialogue.handleScrollPress_(var8, (int)this.frameTime);
+					this.dialogue.handleScrollPress_(keyStateOverHelp, (int)this.frameTime);
 					this.dialogue.draw();
 				} else if (this.optionsOpen) {
-					this.optionsWindow.scrollAndTick_(var8, (int)this.frameTime);
+					this.optionsWindow.scrollAndTick_(keyStateOverHelp, (int)this.frameTime);
 					this.optionsWindow.draw();
 				} else if (this.missionsOpen) {
 					Layout.addTicks((int)this.frameTime);
-					this.missionsWindow.draw(var8, (int)this.frameTime);
+					this.missionsWindow.draw(keyStateOverHelp, (int)this.frameTime);
 				} else if (this.barOpen) {
 					Layout.addTicks((int)this.frameTime);
-					this.spaceLounge.draw(var8, (int)this.frameTime);
+					this.spaceLounge.draw(keyStateOverHelp, (int)this.frameTime);
 				} else if (this.hangarOpen) {
 					Layout.addTicks((int)this.frameTime);
-					this.hangarWindow.draw(var8, (int)this.frameTime);
+					this.hangarWindow.draw(keyStateOverHelp, (int)this.frameTime);
 				} else if (this.mapOpen) {
-					this.starMap.update(var8, (int)this.frameTime);
+					this.starMap.update(keyStateOverHelp, (int)this.frameTime);
 					if (this.starMap != null && this.starMap.scopedOnSystem() && this.help == null && !GlobalStatus.systemMapHelpShown) {
 						this.help = new Dialogue(GlobalStatus.gameText.getText(316));
 						GlobalStatus.systemMapHelpShown = true;
@@ -405,13 +410,31 @@ public final class ModStation extends IApplicationModule {
 					}
 				} else if (this.statusOpen) {
 					Layout.addTicks((int)this.frameTime);
-					this.statusPanel.draw(var8, (int)this.frameTime);
+					this.statusPanel.draw(keyStateOverHelp, (int)this.frameTime);
 				} else {
 					Layout.addTicks((int)this.frameTime);
 					GlobalStatus.graphics.drawImage(this.factionLogo, 3, 3, 0);
-					Font.drawString(Status.getStation().getName(), this.factionLogo.getWidth() + 6, 3, 0, 17);
-					Font.drawString(GlobalStatus.gameText.getText(37) + ": " + Status.getStation().getTecLevel(), this.factionLogo.getWidth() + 6, 13, 1, 17);
-					Font.drawString(Layout.formatCredits(Status.getCredits()), GlobalStatus.screenWidth - 3, GlobalStatus.screenHeight - 16 - 2, 1, 34);
+					Font.drawString(
+					  Status.getStation().getName(),
+					  this.factionLogo.getWidth() + 6,
+					  3,
+					  0,
+					  Font.TOP|Font.LEFT
+					);
+					Font.drawString(
+   					  GlobalStatus.gameText.getText(37) + ": " + Status.getStation().getTecLevel(),
+   					  this.factionLogo.getWidth() + 6,
+   					  13,
+   					  1,
+   					  Font.TOP|Font.LEFT
+					);
+					Font.drawString(
+   					  Layout.formatCredits(Status.getCredits()),
+   					  GlobalStatus.screenWidth - 3,
+   					  GlobalStatus.screenHeight - 16 - 2,
+   					  1,
+   					  Font.BOTTOM|Font.RIGHT
+					);
 					if (this.menuOpen) {
 						Layout.drawFilledTitleBarWindow("", this.menuPosX, this.menuPosY, this.menuWidth, 15 + (this.menuItemHighlights.length + 1) * 10 - 5);
 						Layout.drawTextItem(GlobalStatus.gameText.getText(62), this.menuPosX, this.menuPosY + 14, this.menuWidth, this.menuItemHighlights[0] == 1, false, true);
@@ -442,7 +465,7 @@ public final class ModStation extends IApplicationModule {
 						return;
 					}
 
-					this.help.handleScrollPress_(var1, (int)this.frameTime);
+					this.help.handleScrollPress_(keyState, (int)this.frameTime);
 					this.help.drawInterupring_();
 				}
 

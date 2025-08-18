@@ -951,14 +951,26 @@ public final class StarMap {
 		if (this.state == 3) {
 			Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(72) + ": " + this.systems[this.selectedSystem].getName() + " " + GlobalStatus.gameText.getText(41), false);
 			Layout.drawFooter(GlobalStatus.gameText.getText(223), GlobalStatus.gameText.getText(65));
-			Font.drawString(!this.overviewOnly_ && Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getIndex()) && this.selectedSystemStations[this.selectedPlanet].getIndex() != Status.getStation().getIndex() ? GlobalStatus.gameText.getText(222) : "", GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - 4, 1, 40);
+			Font.drawString(
+			  !this.overviewOnly_ && Status.getSystem().inJumpageRange(this.systems[this.selectedSystem].getIndex()) && this.selectedSystemStations[this.selectedPlanet].getIndex() != Status.getStation().getIndex() ? GlobalStatus.gameText.getText(222) : "",
+			  GlobalStatus.screenWidth >> 1,
+			  GlobalStatus.screenHeight - 4,
+			  1,
+			  Font.BOTTOM|Font.HCENTER
+			);
 		} else {
 			Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(72), false);
 			if (this.discoverSystemCutscene) {
 				Layout.drawFooter("", GlobalStatus.gameText.getText(65));
 			} else {
 				Layout.drawFooter(GlobalStatus.gameText.getText(223), GlobalStatus.gameText.getText(65));
-				Font.drawString(this.overviewOnly_ ? "" : GlobalStatus.gameText.getText(221), GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - 4, 1, 40);
+				Font.drawString(
+				    this.overviewOnly_ ? "" : GlobalStatus.gameText.getText(221),
+				    GlobalStatus.screenWidth >> 1,
+				    GlobalStatus.screenHeight - 4,
+				    1,
+				    Font.BOTTOM|Font.HCENTER
+				);
 			}
 		}
 
@@ -966,19 +978,19 @@ public final class StarMap {
 			Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(223), 1, GlobalStatus.screenHeight - 16 - 90 - 4, this.legendWindowWidth, 94);
 			int var9 = GlobalStatus.screenHeight - 3 - 16 - 13;
 			GlobalStatus.graphics.drawImage(this.bluePrintIcon, 10, var9, 20);
-			Font.drawString(GlobalStatus.gameText.getText(132), 25, var9, 1, 17);
+			Font.drawString(GlobalStatus.gameText.getText(132), 25, var9, 1, Font.TOP|Font.LEFT);
 			var9 -= 15;
 			GlobalStatus.graphics.drawImage(this.checkMark, 10, var9, 20);
-			Font.drawString(GlobalStatus.gameText.getText(224), 25, var9, 1, 17);
+			Font.drawString(GlobalStatus.gameText.getText(224), 25, var9, 1, Font.TOP|Font.LEFT);
 			var9 -= 15;
 			GlobalStatus.graphics.drawImage(this.jumpGateIcon, 10, var9, 20);
-			Font.drawString(GlobalStatus.gameText.getText(271), 25, var9, 1, 17);
+			Font.drawString(GlobalStatus.gameText.getText(271), 25, var9, 1, Font.TOP|Font.LEFT);
 			var9 -= 15;
 			GlobalStatus.graphics.drawImage(this.sideMissionIcon, 10, var9, 20);
-			Font.drawString(GlobalStatus.gameText.getText(279), 25, var9, 1, 17);
+			Font.drawString(GlobalStatus.gameText.getText(279), 25, var9, 1, Font.TOP|Font.LEFT);
 			var9 -= 15;
 			GlobalStatus.graphics.drawImage(this.mainMissionIcon, 10, var9, 20);
-			Font.drawString(GlobalStatus.gameText.getText(278), 25, var9, 1, 17);
+			Font.drawString(GlobalStatus.gameText.getText(278), 25, var9, 1, Font.TOP|Font.LEFT);
 		}
 
 		if (this.destinationConfirmPopupOpen) {
@@ -1032,12 +1044,23 @@ public final class StarMap {
 		if (var2) {
 			var9 = this.tmpStarScreenPos2.y - 4;
 			var3 = this.tmpStarScreenPos2.x + 10 + Font.getTextWidth(this.selectedSystemStations[var1].getName(), 0) + 7;
-			Font.drawString(this.selectedSystemStations[var1].getName(), this.tmpStarScreenPos2.x + 10, var9, this.selectedPlanet == var1 ? 2 : this.selectedSystemStations[var1].isDiscovered() ? 0 : 1, 17);
+			Font.drawString(
+			  this.selectedSystemStations[var1].getName(),
+			  this.tmpStarScreenPos2.x + 10,
+			  var9,
+			  this.selectedPlanet == var1 ? 2 : this.selectedSystemStations[var1].isDiscovered() ? 0 : 1,
+			  Font.TOP|Font.LEFT
+			);
 			if (var1 == this.selectedPlanet) {
-				Font.drawString(GlobalStatus.gameText.getText(37) + ": " + this.selectedSystemStations[var1].getTecLevel(), this.tmpStarScreenPos2.x + 10, var9 + Font.getFontSpacingY(), this.selectedSystemStations[var1].isDiscovered() ? 0 : 1);
+				Font.drawString(
+				  GlobalStatus.gameText.getText(37) + ": " + this.selectedSystemStations[var1].getTecLevel(),
+				  this.tmpStarScreenPos2.x + 10,
+				  var9 + Font.getSpacingY(),
+				  this.selectedSystemStations[var1].isDiscovered() ? 0 : 1
+				);
 			}
 		} else {
-			var9 = this.tmpStarScreenPos2.y - Font.getFontSpacingY() - 4;
+			var9 = this.tmpStarScreenPos2.y - Font.getSpacingY() - 4;
 			byte var5 = 10;
 			if (this.selectedSystem == var1) {
 				this.logos.setFrame(this.systems[var1].getRace());
@@ -1057,10 +1080,30 @@ public final class StarMap {
 			}
 
 			if (var1 == this.selectedSystem) {
-				Font.drawString(GlobalStatus.gameText.getText(219) + ": ", this.tmpStarScreenPos2.x + 10, var9 + 2 * Font.getFontSpacingY(), 0);
-				Font.drawString(GlobalStatus.gameText.getText(229 + this.systems[this.selectedSystem].getRace()), this.tmpStarScreenPos2.x + 10, var9 + 3 * Font.getFontSpacingY(), 1);
-				Font.drawString(GlobalStatus.gameText.getText(220) + ": ", this.tmpStarScreenPos2.x + 10, var9 + 4 * Font.getFontSpacingY(), 0);
-				Font.drawString(GlobalStatus.gameText.getText(225 + this.systems[this.selectedSystem].getSafety()), this.tmpStarScreenPos2.x + 10, var9 + 5 * Font.getFontSpacingY(), 1);
+				Font.drawString(
+				  GlobalStatus.gameText.getText(219) + ": ",
+				  this.tmpStarScreenPos2.x + 10,
+				  var9 + 2 * Font.getSpacingY(),
+				  0
+				);
+				Font.drawString(
+				  GlobalStatus.gameText.getText(229 + this.systems[this.selectedSystem].getRace()),
+				  this.tmpStarScreenPos2.x + 10,
+				  var9 + 3 * Font.getSpacingY(),
+				  1
+				);
+				Font.drawString(
+				  GlobalStatus.gameText.getText(220) + ": ",
+				  this.tmpStarScreenPos2.x + 10,
+				  var9 + 4 * Font.getSpacingY(),
+				  0
+				);
+				Font.drawString(
+				  GlobalStatus.gameText.getText(225 + this.systems[this.selectedSystem].getSafety()),
+				  this.tmpStarScreenPos2.x + 10,
+				  var9 + 5 * Font.getSpacingY(),
+				  1
+				);
 			}
 		}
 

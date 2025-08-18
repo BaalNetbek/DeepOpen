@@ -91,7 +91,7 @@ public final class Radio {
                 Layout.drawTitleBarWindow(
                		 this.title, 0, 0,
                		 GlobalStatus.screenWidth - 1,
-               		 AEMath.max(ImageFactory.faceHeight + 21, (this.rows.length + 2) * Font.getFontSpacingY()),
+               		 AEMath.max(ImageFactory.faceHeight + 21, (this.rows.length + 2) * Font.getSpacingY()),
                		 true);
             } catch (final Exception e) {
                 e.printStackTrace();

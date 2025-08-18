@@ -38,9 +38,9 @@ public final class NewMedalPopup {
 		this.medalImg = new Sprite(var4, 31, 15);
 		this.name = Font.splitToLines(GlobalStatus.gameText.getText(var1 + 745), this.width - 14 - 31 - 4);
 		this.description = Font.splitToLines(Status.replaceToken(GlobalStatus.gameText.getText(var1 + 782), Achievements.VALUES[var1][var2 - 1] + ""), this.width - 14);
-		this.posY = (GlobalStatus.screenHeight >> 1) - (Font.getTotalSpacingY(this.description) + 15 + 4 + 2 * Font.getFontSpacingY() >> 1);
-		this.okPosY = this.posY + this.description.length * Font.getFontSpacingY() + 15 + 4 + 14 + 2;
-		this.height = this.okPosY + Font.getFontSpacingY() + 7 - this.posY;
+		this.posY = (GlobalStatus.screenHeight >> 1) - (Font.getTotalSpacingY(this.description) + 15 + 4 + 2 * Font.getSpacingY() >> 1);
+		this.okPosY = this.posY + this.description.length * Font.getSpacingY() + 15 + 4 + 14 + 2;
+		this.height = this.okPosY + Font.getSpacingY() + 7 - this.posY;
 	}
 
 	public final void draw() {

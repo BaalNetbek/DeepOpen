@@ -565,16 +565,16 @@ public final class SpaceLounge {
 			GlobalStatus.graphics.setClip(0, 0, GlobalStatus.screenWidth, GlobalStatus.screenHeight);
 			Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(218), false);
 			if (this.chatType_ == 0) {
-				this.answearsPosY_ = GlobalStatus.screenHeight - 16 - (this.agents.length + 1) * Font.getFontSpacingY() + 2;
+				this.answearsPosY_ = GlobalStatus.screenHeight - 16 - (this.agents.length + 1) * Font.getSpacingY() + 2;
 			} else if (this.chatType_ == 2) {
 				if (this.agents[this.selectedAgent].getType() != 2 && this.agents[this.selectedAgent].getType() != 3) {
 					if (this.agents[this.selectedAgent].getMission() != null && this.agents[this.selectedAgent].getMission().isOutsideMission()) {
-						this.answearsPosY_ = GlobalStatus.screenHeight - 16 - 6 * Font.getFontSpacingY() + 2;
+						this.answearsPosY_ = GlobalStatus.screenHeight - 16 - 6 * Font.getSpacingY() + 2;
 					} else {
-						this.answearsPosY_ = GlobalStatus.screenHeight - 16 - 4 * Font.getFontSpacingY() + 2;
+						this.answearsPosY_ = GlobalStatus.screenHeight - 16 - 4 * Font.getSpacingY() + 2;
 					}
 				} else {
-					this.answearsPosY_ = GlobalStatus.screenHeight - 16 - 5 * Font.getFontSpacingY() + 2;
+					this.answearsPosY_ = GlobalStatus.screenHeight - 16 - 5 * Font.getSpacingY() + 2;
 				}
 			} else {
 				this.answearsPosY_ = GlobalStatus.screenHeight;
@@ -599,29 +599,29 @@ public final class SpaceLounge {
 				GlobalStatus.renderer.getCamera().getScreenPosition(this.cameraPos);
 				Font.drawString(!this.agents[this.selectedAgent].isKnown() && !this.agents[this.selectedAgent].isSpecialAgent() ? GlobalStatus.gameText.getText(229 + this.agents[this.selectedAgent].getRace()) : this.agents[this.selectedAgent].fullName, this.cameraPos.x, this.cameraPos.y, 2);
 				if (this.agents[this.selectedAgent].isKnown()) {
-					Font.drawString(this.agents[this.selectedAgent].getMission() != null ? GlobalStatus.gameText.getText(179 + this.agents[this.selectedAgent].getMission().getType()) : this.agents[this.selectedAgent].getType() == 6 ? GlobalStatus.gameText.getText(146) : this.agents[this.selectedAgent].getType() == 2 ? GlobalStatus.gameText.getText(145) : this.agents[this.selectedAgent].getType() == 7 ? GlobalStatus.gameText.getText(514) : "", this.cameraPos.x, this.cameraPos.y + Font.getFontSpacingY(), 1);
+					Font.drawString(this.agents[this.selectedAgent].getMission() != null ? GlobalStatus.gameText.getText(179 + this.agents[this.selectedAgent].getMission().getType()) : this.agents[this.selectedAgent].getType() == 6 ? GlobalStatus.gameText.getText(146) : this.agents[this.selectedAgent].getType() == 2 ? GlobalStatus.gameText.getText(145) : this.agents[this.selectedAgent].getType() == 7 ? GlobalStatus.gameText.getText(514) : "", this.cameraPos.x, this.cameraPos.y + Font.getSpacingY(), 1);
 				}
 			} else {
 				var2 = 0;
 
 				for(var3 = this.chatScroll; var3 < this.chatScroll + 4 && var3 < this.chatRows.length; ++var3) {
 					final String var4 = var3 != this.chatRows.length - 1 && var3 == this.chatScroll + 4 - 1 ? ".." : "";
-					Font.drawString(this.chatRows[var3] + (Layout.quickClockHigh_() ? var4 : ""), this.chatTextPosX, this.chatTextPosY + var2 * Font.getFontSpacingY(), 1);
+					Font.drawString(this.chatRows[var3] + (Layout.quickClockHigh_() ? var4 : ""), this.chatTextPosX, this.chatTextPosY + var2 * Font.getSpacingY(), 1);
 					var2++;
 				}
 
 				if (this.chatType_ != 1 && this.chatType_ != 3) {
-					Font.drawString(GlobalStatus.gameText.getText(495), this.answearsPosX, this.answearsPosY_ + 3 + 0 * Font.getFontSpacingY(), this.chatAnswear == 0 ? 2 : 1);
-					Font.drawString(GlobalStatus.gameText.getText(496), this.answearsPosX, this.answearsPosY_ + 3 + 1 * Font.getFontSpacingY(), this.chatAnswear == 1 ? 2 : 1);
-					Font.drawString(GlobalStatus.gameText.getText(497), this.answearsPosX, this.answearsPosY_ + 3 + 2 * Font.getFontSpacingY(), this.chatAnswear == 2 ? 2 : 1);
+					Font.drawString(GlobalStatus.gameText.getText(495), this.answearsPosX, this.answearsPosY_ + 3 + 0 * Font.getSpacingY(), this.chatAnswear == 0 ? 2 : 1);
+					Font.drawString(GlobalStatus.gameText.getText(496), this.answearsPosX, this.answearsPosY_ + 3 + 1 * Font.getSpacingY(), this.chatAnswear == 1 ? 2 : 1);
+					Font.drawString(GlobalStatus.gameText.getText(497), this.answearsPosX, this.answearsPosY_ + 3 + 2 * Font.getSpacingY(), this.chatAnswear == 2 ? 2 : 1);
 					var3 = this.agents[this.selectedAgent].getType();
 					if (var3 != 2 && var3 != 3) {
 						if (var3 == 0 && this.agents[this.selectedAgent].getMission().isOutsideMission()) {
-							Font.drawString(GlobalStatus.gameText.getText(440), this.answearsPosX, this.answearsPosY_ + 3 + 3 * Font.getFontSpacingY(), this.chatAnswear == 3 ? 2 : 1);
-							Font.drawString(GlobalStatus.gameText.getText(442), this.answearsPosX, this.answearsPosY_ + 3 + 4 * Font.getFontSpacingY(), this.chatAnswear == 4 ? 2 : 1);
+							Font.drawString(GlobalStatus.gameText.getText(440), this.answearsPosX, this.answearsPosY_ + 3 + 3 * Font.getSpacingY(), this.chatAnswear == 3 ? 2 : 1);
+							Font.drawString(GlobalStatus.gameText.getText(442), this.answearsPosX, this.answearsPosY_ + 3 + 4 * Font.getSpacingY(), this.chatAnswear == 4 ? 2 : 1);
 						}
 					} else {
-						Font.drawString(GlobalStatus.gameText.getText(415), this.answearsPosX, this.answearsPosY_ + 3 + 3 * Font.getFontSpacingY(), this.chatAnswear == 3 ? 2 : 1);
+						Font.drawString(GlobalStatus.gameText.getText(415), this.answearsPosX, this.answearsPosY_ + 3 + 3 * Font.getSpacingY(), this.chatAnswear == 3 ? 2 : 1);
 					}
 
 					Layout.drawFooter(GlobalStatus.gameText.getText(253), "");

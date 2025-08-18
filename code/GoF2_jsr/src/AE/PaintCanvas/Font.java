@@ -5,6 +5,15 @@ import javax.microedition.lcdui.Graphics;
 import AE.ImageFont;
 
 public final class Font {
+	public static final int LEFT = 1;
+	public static final int RIGHT = 2;
+	public static final int VCENTER = 4;
+	public static final int HCENTER = 8;
+	public static final int TOP = 16;
+	public static final int BOTTOM = 32;
+   
+   
+   
 	private static ImageFont[] symbolMaps;
 	private static Graphics graphics;
 
@@ -20,8 +29,8 @@ public final class Font {
 		System.gc();
 	}
 
-	public static void setGraphics(final Graphics var0) {
-		graphics = var0;
+	public static void setGraphics(final Graphics gfx) {
+		graphics = gfx;
 		if (symbolMaps != null) {
 			for(int i = 0; i < symbolMaps.length; ++i) {
 				ImageFont.setGraphics(graphics);
@@ -30,202 +39,219 @@ public final class Font {
 
 	}
 
-	public static void addCharMap(final String var0, final int var1, final int var2, final int var3) {
+	public static void addCharMap(final String path, final int id, final int rows, final int cols) {
 		if (graphics != null) {
 			if (symbolMaps == null) {
-				(symbolMaps = new ImageFont[1])[0] = new ImageFont(var0, graphics, var1, 15, 16);
+			   symbolMaps = new ImageFont[1];
+			   symbolMaps[0] = new ImageFont(path, graphics, id, rows, cols);
 				return;
 			}
 
-			final ImageFont[] var4 = new ImageFont[symbolMaps.length + 1];
-			System.arraycopy(symbolMaps, 0, var4, 0, symbolMaps.length);
-			var4[symbolMaps.length] = new ImageFont(var0, graphics, var1, 15, 16);
-			symbolMaps = var4;
+			final ImageFont[] pngFont = new ImageFont[symbolMaps.length + 1];
+			System.arraycopy(symbolMaps, 0, pngFont, 0, symbolMaps.length);
+			pngFont[symbolMaps.length] = new ImageFont(path, graphics, id, rows, cols);
+			symbolMaps = pngFont;
 		}
 
 	}
 
-	public static void setSymMapSetOffsetY(final int var0, final int var1) {
-		if (var1 >= 0 && var1 < symbolMaps.length) {
-			symbolMaps[var1].setOffsetY(-2);
+	public static void setSymMapSetOffsetY(final int offset, final int font) {
+		if (font >= 0 && font < symbolMaps.length) {
+			symbolMaps[font].setOffsetY(offset);
 		}
 	}
 
-	public static void drawString(final String var0, final int var1, final int var2, final int var3) {
-		if (var3 >= 0 && var3 < symbolMaps.length) {
-			symbolMaps[var3].drawString(var0, var1, var2);
+	public static void drawString(final String str, final int x, final int y, final int font) {
+		if (font >= 0 && font < symbolMaps.length) {
+			symbolMaps[font].drawString(str, x, y);
 		}
 	}
 
-	public static void drawString(final String var0, int var1, int var2, final int var3, final int var4) {
-		if ((var4 & 8) != 0) {
-			var1 -= symbolMaps[var3].stringWidth(var0) >> 1;
+	public static void drawString(final String str, int x, int y, final int font, final int anchor) {
+		if ((anchor & HCENTER) != 0) {
+			x -= symbolMaps[font].stringWidth(str) >> 1;
 		}
 
-		if ((var4 & 4) != 0) {
-			var2 -= symbolMaps[var3].getSpacingY() >> 1;
-		} else if ((var4 & 32) != 0) {
-			var2 -= symbolMaps[var3].getSpacingY();
+		if ((anchor & VCENTER) != 0) {
+			y -= symbolMaps[font].getSpacingY() >> 1;
+		} else if ((anchor & BOTTOM) != 0) {
+			y -= symbolMaps[font].getSpacingY();
 		}
 
-		if ((var4 & 2) != 0) {
-			symbolMaps[var3].drawStringRightAlligned(var0, var1, var2);
+		if ((anchor & RIGHT) != 0) {
+			symbolMaps[font].drawStringRightAlligned(str, x, y);
 		} else {
-			symbolMaps[var3].drawString(var0, var1, var2);
+			symbolMaps[font].drawString(str, x, y);
 		}
 	}
 
-	public static void drawLines(final String[] var0, final int var1, final int var2, final int var3) {
-		if (var3 >= 0 && var3 < symbolMaps.length) {
-			for(int i = 0; i < var0.length; ++i) {
-				symbolMaps[var3].drawString(var0[i], var1, var2 + i * getFontSpacingY());
+	public static void drawLines(final String[] str, final int x, final int y, final int font) {
+		if (font >= 0 && font < symbolMaps.length) {
+			for(int i = 0; i < str.length; ++i) {
+				symbolMaps[font].drawString(str[i], x, y + i * getSpacingY());
 			}
 
 		}
 	}
 
-	public static void drawLinesWithIndent(final String[] var0, final int var1, final int var2, final int var3, final int var4, int var5) {
-		if (var3 >= 0 && var3 < symbolMaps.length) {
-			var5 = var5 > 0 ? var5 / getFontSpacingY() + 1 : 0;
+	public static void drawLinesWithIndent(final String[] str, final int x, final int y, final int font, final int indent_w, final int indent_h) {
+		if (font >= 0 && font < symbolMaps.length) {
+			int indent_rows = indent_h > 0 ? indent_h / getSpacingY() + 1 : 0;
 
-			for(int i = 0; i < var0.length; ++i) {
-				final int var7 = i < var5 ? var1 + var4 : var1;
-				symbolMaps[var3].drawString(var0[i], var7, var2 + i * getFontSpacingY());
+			for(int i = 0; i < str.length; ++i) {
+				symbolMaps[font].drawString(
+				  str[i],
+				  i < indent_rows ? x + indent_w : x,
+				  y + i * getSpacingY()
+				);
 			}
 
 		}
 	}
 
-	public static void drawLinesAligned(final String[] var0, final int var1, final int var2, final int var3, final int var4) {
-		final int var5 = getFontSpacingY();
-		if (var3 >= 0 && var3 < symbolMaps.length) {
-			int var6 = 0;
+	public static void drawLinesAligned(final String[] lines, final int x, final int y, final int font, final int anchor) {
+		final int var5 = getSpacingY();
+		if (font >= 0 && font < symbolMaps.length) {
+			int x_offset = 0;
 
-			for(int i = 0; i < var0.length; ++i) {
-				if ((var4 & 8) != 0) {
-					var6 = -(symbolMaps[var3].stringWidth(var0[i]) >> 1);
+			for(int i = 0; i < lines.length; ++i) {
+				if ((anchor & HCENTER) != 0) {
+					x_offset = -(symbolMaps[font].stringWidth(lines[i]) >> 1);
 				}
 
-				if ((var4 & 2) != 0) {
-					symbolMaps[var3].drawStringRightAlligned(var0[i], var1, var2 + i * var5);
+				if ((anchor & RIGHT) != 0) {
+					symbolMaps[font].drawStringRightAlligned(lines[i], x, y + i * var5);
 				} else {
-					symbolMaps[var3].drawString(var0[i], var1 + var6, var2 + i * var5);
+					symbolMaps[font].drawString(lines[i], x + x_offset, y + i * var5);
 				}
 			}
 
 		}
 	}
 
-	public static int getStringWidth(final String var0) {
-		return getTextWidth(var0, 0);
+	public static int getStringWidth(final String str) {
+		return getTextWidth(str, 0);
 	}
 
-	public static int getTextWidth(final String var0, final int var1) {
-		return var1 >= 0 && var1 < symbolMaps.length ? symbolMaps[var1].stringWidth(var0) : 0;
+	public static int getTextWidth(final String str, final int font) {
+		return font >= 0 && font < symbolMaps.length ? symbolMaps[font].stringWidth(str) : 0;
 	}
 
-	public static void setPrimarySymMapSpacing(final int var0) {
-		symbolMaps[0].setSpacingX(0);
+	public static void setSpacingX(final int spacing) {
+		symbolMaps[0].setSpacingX(spacing);
 	}
 
-	public static void setSymMapSpacing(final int var0, final int var1) {
-		if (var1 >= 0 && var1 < symbolMaps.length) {
-			symbolMaps[var1].setSpacingX(0);
+	public static void setSpacingX(final int spacing, final int font) {
+		if (font >= 0 && font < symbolMaps.length) {
+			symbolMaps[font].setSpacingX(spacing);
 		}
 	}
 
-	public static int getFontSpacingY() {
+	public static int getSpacingY() {
 		return symbolMaps[0].getSpacingY();
 	}
 
-	public static int getTotalSpacingY(final String[] var0) {
-		return var0.length * symbolMaps[0].getSpacingY();
+	public static int getTotalSpacingY(final String[] str) {
+		return str.length * symbolMaps[0].getSpacingY();
 	}
 
-	public static void setMainFontSpacingY(final int var0) {
-		symbolMaps[0].setSpacingY(var0);
+	public static void setSpacingY(final int spacing) {
+		symbolMaps[0].setSpacingY(spacing);
 	}
 
-	public static void setSpacingY(final int var0, final int var1) {
-		if (var1 >= 0 && var1 < symbolMaps.length) {
-			symbolMaps[var1].setSpacingY(var0);
+	public static void setSpacingY(final int spacing, final int font) {
+		if (font >= 0 && font < symbolMaps.length) {
+			symbolMaps[font].setSpacingY(spacing);
 		}
 	}
-
-	public static String[] splitToLines(String var0, final int var1, final int var2, final int var3, int var4) {
-		int var5 = 0;
-		int var6 = 0;
-		String var7 = null;
-		var0 = var0 + "\n";
-
-		for(var4 = var4 > 0 ? var4 / getFontSpacingY() + 1 : 0; var6 < var0.length(); var6 += var7.length()) {
-			final int var12 = var5 < var4 ? var1 - var3 : var1;
-			var7 = truncateStringLine(var0.substring(var6, var0.length()), var12, var2, false);
-			++var5;
+	/**
+	 * Splits text to lines taking accounting for indentation in top-left corner. Used for making space for face image.
+	 * @param str - text
+	 * @param width - full width
+	 * @param font
+	 * @param indent_w
+	 * @param indent_h
+	 * @return lines
+	 */
+	public static String[] splitToLines(String str, final int width, final int font, final int indent_w, final int indent_h) {
+		int lines_cnt = 0;
+		String line = null;
+		str = str + "\n";
+		int indent_rows = indent_h > 0 ? indent_h / getSpacingY() + 1 : 0;
+		
+		for(int cursor = 0; cursor < str.length(); cursor += line.length()) {
+			line = truncateStringLine(
+             str.substring(cursor, str.length()),
+             lines_cnt < indent_rows ? width - indent_w : width,
+             font,
+             false
+			);
+			++lines_cnt;
+		}
+		final String[] lines = new String[lines_cnt];
+		
+		int cursor = 0;
+		for(int i = 0; i < lines_cnt; ++i) {
+			lines[i] = truncateStringLine(
+    			str.substring(cursor, str.length()),
+    			i < indent_rows ? width - indent_w : width,
+    			font,
+    			false
+			);
+			cursor += lines[i].length();
+			lines[i].trim();
 		}
 
-		final String[] var13 = new String[var5];
-		var6 = 0;
-
-		for(int i = 0; i < var5; ++i) {
-			final int var9 = i < var4 ? var1 - var3 : var1;
-			var13[i] = truncateStringLine(var0.substring(var6, var0.length()), var9, var2, false);
-			var6 += var13[i].length();
-			var13[i].trim();
-		}
-
-		return var13;
+		return lines;
 	}
 
-	public static String[] splitToLines(String var0, int var1) {
-		final byte var2 = 0;
-		int var3 = 0;
-		int var4 = 0;
-		String var5 = null;
-
-		for(var0 = var0 + "\n"; var4 < var0.length(); var4 += var5.length()) {
-			var5 = truncateStringLine(var0.substring(var4, var0.length()), var1, var2, false);
-			++var3;
+	public static String[] splitToLines(String str, final int width) {
+		final byte font = 0;
+		int numlines = 0;
+		String line = null;
+		str = str + "\n";
+		
+		for(int cursor = 0; cursor < str.length(); cursor += line.length()) {
+			line = truncateStringLine(str.substring(cursor, str.length()), width, font, false);
+			++numlines;
 		}
 
-		final String[] var10 = new String[var3];
-		var4 = 0;
-
-		for(int i = 0; i < var3; ++i) {
-			var10[i] = truncateStringLine(var0.substring(var4, var0.length()), var1, var2, false);
-			var4 += var10[i].length();
-			var10[i].trim();
+		final String[] lines = new String[numlines];
+		int cursor = 0;
+		for(int i = 0; i < numlines; ++i) {
+			lines[i] = truncateStringLine(str.substring(cursor, str.length()), width, font, false);
+			cursor += lines[i].length();
+			lines[i].trim();
 		}
 
-		return var10;
+		return lines;
 	}
 
-	public static String truncateStringLine(final String var0, final int var1, final int var2, final boolean var3) {
-		int var4 = 0;
-		int var5 = (var2 >= 0 && var2 < symbolMaps.length ? symbolMaps[var2].getTileHeight() : 0) >> 1;
+	public static String truncateStringLine(final String str, final int width, final int font, final boolean brakeWords) {
+		int lastBrakePos = 0;
+		int cursor_x = (font >= 0 && font < symbolMaps.length ? symbolMaps[font].getTileHeight() : 0) >> 1;
 
-		for(int i = 0; i < var0.length(); ++i) {
-			if (var3 || var0.charAt(i) == ' ' || var0.charAt(i) == '\n' || var0.charAt(i) == '\r') {
-				var4 = i;
+		for(int i = 0; i < str.length(); ++i) {
+			if (brakeWords || str.charAt(i) == ' ' || str.charAt(i) == '\n' || str.charAt(i) == '\r') {
+				lastBrakePos = i;
 			}
 
-			final int var8 = i + 1;
-			var5 += symbolMaps[var2].subStringWidth(var0, i, var8);
-			if (var5 >= var1) {
-				if (0 < var4) {
-					return var0.substring(0, var4 + 1);
+			cursor_x += symbolMaps[font].subStringWidth(str, i, i + 1);
+			if (cursor_x >= width) {
+				if (0 < lastBrakePos) {
+					return str.substring(0, lastBrakePos + 1);
 				}
 
-				return var0.substring(0, i + 1);
+				return str.substring(0, i + 1);
 			}
 
-			if (var0.charAt(i) == '\n' || var0.charAt(i) == '\r') {
-				return var0.charAt(i) == '\n' ? var0.substring(0, i + 1).replace('\n', ' ') : var0.substring(0, i + 1).replace('\r', ' ');
+			if (str.charAt(i) == '\n' || str.charAt(i) == '\r') {
+				return str.charAt(i) == '\n' ? str.substring(0, i + 1).replace('\n', ' ') : str.substring(0, i + 1).replace('\r', ' ');
 			}
 		}
 
-		if (0 < var0.length() - 1) {
-			return var0.substring(0, var0.length());
+		if (0 < str.length() - 1) {
+			return str.substring(0, str.length());
 		}
 		return "";
 	}

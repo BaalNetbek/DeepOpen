@@ -494,11 +494,11 @@ q.a([Ljava/lang/String;IIIII)V drawLinesWithIndent
 q.a([Ljava/lang/String;IIII)V drawLinesAligned
 q.a(Ljava/lang/String;)I getStringWidth
 q.a(Ljava/lang/String;I)I getTextWidth
-q.a(I)V setPrimarySymMapSpacing
-q.b(II)V setSymMapSpacing
-q.a()I getFontSpacingY
+q.a(I)V setSpacingX
+q.b(II)V setSpacingX
+q.a()I getSpacingY
 q.a([Ljava/lang/String;)I getTotalSpacingY
-q.b(I)V setMainFontSpacingY
+q.b(I)V setSpacingY
 q.c(II)V setSpacingY
 q.a(Ljava/lang/String;IIII)[Ljava/lang/String; splitToLines
 q.a(Ljava/lang/String;I)[Ljava/lang/String; splitToLines

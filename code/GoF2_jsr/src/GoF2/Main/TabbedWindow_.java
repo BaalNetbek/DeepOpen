@@ -290,9 +290,9 @@ public class TabbedWindow_ {
 			Layout.drawMenuPanelCorner(this.posX + 2, this.posY + ITEM_HEIGHT, this.selectedTab == 0);
 			Layout.drawMenuPanelCorner(this.posX + (this.width >> 1) + 1, this.posY + ITEM_HEIGHT, this.selectedTab == 1);
 			Font.drawString(this.tabNames[0], this.posX + this.width / 4, this.posY + ITEM_HEIGHT + 1,
-			      this.selectedTab == 0 ? 2 : 1, 24);
+			      this.selectedTab == 0 ? 2 : 1, Font.TOP|Font.HCENTER);
 			Font.drawString(this.tabNames[1], this.posX + this.width - this.width / 4, this.posY + ITEM_HEIGHT + 1,
-			      this.selectedTab == 1 ? 2 : 1, 24);
+			      this.selectedTab == 1 ? 2 : 1, Font.TOP|Font.HCENTER);
 		}
 
 	}

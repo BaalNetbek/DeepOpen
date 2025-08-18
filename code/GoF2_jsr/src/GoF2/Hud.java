@@ -219,10 +219,20 @@ public final class Hud {
 			if (var4 != null) {
 				boolean var5;
 				if (var5 = var4.items != null) {
-					ImageFactory.drawItemFrameless(var4.itemId, var4.items, (GlobalStatus.screenWidth >> 1) + ImageFactory.faceWidth / 2 - (Font.getTextWidth(var4.label, 0) >> 1) - 5, var1 + i * var2 - 2, Graphics.TOP | Graphics.RIGHT);
+					ImageFactory.drawItemFrameless(
+					  var4.itemId,
+					  var4.items,
+					  (GlobalStatus.screenWidth >> 1) + ImageFactory.faceWidth / 2 - (Font.getTextWidth(var4.label, 0) >> 1) - 5,
+					  var1 + i * var2 - 2,
+					  Graphics.TOP | Graphics.RIGHT);
 				}
 
-				Font.drawString(var4.label, (GlobalStatus.screenWidth >> 1) + (var5 ? ImageFactory.faceWidth / 2 - 5 : 0), var1 + i * var2, i != 1 && (i != 2 || this.queueScroll != var2) ? 1 : var4.showCountItemType == 1 ? 2 : 0, 24);
+				Font.drawString(
+				  var4.label,
+				  (GlobalStatus.screenWidth >> 1) + (var5 ? ImageFactory.faceWidth / 2 - 5 : 0),
+				  var1 + i * var2, i != 1 && (i != 2 || this.queueScroll != var2) ? 1 : var4.showCountItemType == 1 ? 2 : 0,
+				  Font.TOP|Font.HCENTER
+				);
 			}
 		}
 
@@ -438,22 +448,28 @@ public final class Hud {
 			int var7 = this.hullBarFull.getWidth();
 			int var12;
 			if (this.hasArmor) {
-				GlobalStatus.graphics.drawImage(this.symbolHull, 4, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() - 3, 36);
-				GlobalStatus.graphics.drawImage(this.hullBarEmpty, this.panelLowerLeft.getWidth(), GlobalStatus.screenHeight - 13, 40);
+				GlobalStatus.graphics.drawImage(this.symbolHull, 4, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() - 3, Graphics.BOTTOM|Graphics.LEFT);
+				GlobalStatus.graphics.drawImage(this.hullBarEmpty, this.panelLowerLeft.getWidth(), GlobalStatus.screenHeight - 13, Graphics.BOTTOM|Graphics.RIGHT);
 				var12 = (int)(var5.player.getArmorDamageRate() / 100.0F * var7);
-				GlobalStatus.graphics.drawRegion(this.hullBarFull, var7 - var12, 0, var12, this.hullBarFull.getHeight(), 0, this.panelLowerLeft.getWidth(), GlobalStatus.screenHeight - 13, 40);
+				GlobalStatus.graphics.drawRegion(this.hullBarFull, var7 - var12, 0, var12, this.hullBarFull.getHeight(), 0, this.panelLowerLeft.getWidth(), GlobalStatus.screenHeight - 13, Graphics.BOTTOM|Graphics.RIGHT);
 			}
 
 			if (this.hasShield) {
-				GlobalStatus.graphics.drawImage(this.symbolShield, GlobalStatus.screenWidth - 4, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() - 3, 40);
-				GlobalStatus.graphics.drawRegion(this.hullBarEmpty, 0, 0, var7, this.hullBarFull.getHeight(), 2, GlobalStatus.screenWidth - this.panelLowerLeft.getWidth(), GlobalStatus.screenHeight - 13, 36);
+				GlobalStatus.graphics.drawImage(this.symbolShield, GlobalStatus.screenWidth - 4, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() - 3, Graphics.BOTTOM|Graphics.RIGHT);
+				GlobalStatus.graphics.drawRegion(this.hullBarEmpty, 0, 0, var7, this.hullBarFull.getHeight(), 2, GlobalStatus.screenWidth - this.panelLowerLeft.getWidth(), GlobalStatus.screenHeight - 13, Graphics.BOTTOM|Graphics.LEFT);
 				var12 = (int)(var5.player.getShieldDamageRate() / 100.0F * var7);
-				GlobalStatus.graphics.drawRegion(this.hullBarFull, var7 - var12, 0, var12, this.hullBarFull.getHeight(), 2, GlobalStatus.screenWidth - this.panelLowerLeft.getWidth(), GlobalStatus.screenHeight - 13, 36);
+				GlobalStatus.graphics.drawRegion(this.hullBarFull, var7 - var12, 0, var12, this.hullBarFull.getHeight(), 2, GlobalStatus.screenWidth - this.panelLowerLeft.getWidth(), GlobalStatus.screenHeight - 13, Graphics.BOTTOM|Graphics.LEFT);
 			}
 
 			if (!this.settingSecondaryWeapon && drawSecondaryIcon > 0 && (var7 = var5.getCurrentSecondaryWeaponIndex()) >= 0 && this.secondaries[drawSecondaryIcon - 1] != null) {
-				ImageFactory.drawItemFrameless(var7, this.items, 0, GlobalStatus.screenHeight - Font.getFontSpacingY(), Graphics.BOTTOM | Graphics.LEFT);
-				Font.drawString("x" + this.secondaries[drawSecondaryIcon - 1].getAmount(), 4, GlobalStatus.screenHeight - 2, 1, 33);
+				ImageFactory.drawItemFrameless(var7, this.items, 0, GlobalStatus.screenHeight - Font.getSpacingY(), Graphics.BOTTOM | Graphics.LEFT);
+				Font.drawString(
+						"x" + this.secondaries[drawSecondaryIcon - 1].getAmount(),
+						4,
+						GlobalStatus.screenHeight - 2,
+						1,
+						Font.BOTTOM | Font.LEFT
+				);
 			}
 
 			var7 = this.hudIcons.getHeight();
@@ -557,14 +573,14 @@ public final class Hud {
 			}
 
 			if (var3 > 0L) {
-				Font.drawString(Time.timeToHMS(var3), GlobalStatus.screenWidth >> 1, 2, var3 < 10000L ? 2 : 1, 24);
+				Font.drawString(Time.timeToHMS(var3), GlobalStatus.screenWidth >> 1, 2, var3 < 10000L ? 2 : 1, Font.TOP|Font.HCENTER);
 			} else if (this.logMessages[1] != null && this.logMessages[1].items != null && !this.logMessages[1].isSelectable) {
-				Font.drawString(Status.getShip().getCurrentLoad() + " / " + Status.getShip().getCargoPlus() + "t", GlobalStatus.screenWidth >> 1, 2, 1, 24);
+				Font.drawString(Status.getShip().getCurrentLoad() + " / " + Status.getShip().getCargoPlus() + "t", GlobalStatus.screenWidth >> 1, 2, 1, Font.TOP|Font.HCENTER);
 			} else if (var5.isMining()) {
 				var10 = Status.getShip().getCurrentLoad() + var5.getMiningProgress();
-				Font.drawString(var10 + " / " + Status.getShip().getCargoPlus() + "t", GlobalStatus.screenWidth >> 1, 2, var10 > Status.getShip().getCargoPlus() ? 2 : 1, 24);
+				Font.drawString(var10 + " / " + Status.getShip().getCargoPlus() + "t", GlobalStatus.screenWidth >> 1, 2, var10 > Status.getShip().getCargoPlus() ? 2 : 1, Font.TOP|Font.HCENTER);
 			} else if (Status.getMission().getType() == 12) {
-				Font.drawString(var5.level.egoScore + " : " + var5.level.challengerScore, GlobalStatus.screenWidth >> 1, 2, 1, 24);
+				Font.drawString(var5.level.egoScore + " : " + var5.level.challengerScore, GlobalStatus.screenWidth >> 1, 2, 1, Font.TOP|Font.HCENTER);
 			}
 
 			if (this.displayLog_) {
@@ -597,7 +613,7 @@ public final class Hud {
 				}
 
 				GlobalStatus.graphics.drawImage(this.hullAlarmShipIcon, (GlobalStatus.screenWidth >> 1) - 4, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() + 15, 40);
-				Font.drawString(var10 + "%", GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() + 15, 0, 33);
+				Font.drawString(var10 + "%", GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() + 15, 0, Font.BOTTOM|Font.LEFT);
 			}
 
 			this.lastHullDamage = var10;
@@ -625,8 +641,8 @@ public final class Hud {
 			final int var1 = this.factionLogo.getWidth() + 6;
 			GlobalStatus.graphics.drawImage(this.factionLogo, 3, 3, 20);
 			Font.drawString(Status.getStation().getName(), var1, 3, 0);
-			Font.drawString(Status.getSystem().getName() + " " + GlobalStatus.gameText.getText(41), var1, 3 + Font.getFontSpacingY(), 1);
-			Font.drawString(GlobalStatus.gameText.getText(220) + ": " + GlobalStatus.gameText.getText(225 + Status.getSystem().getSafety()), var1, 3 + 2 * Font.getFontSpacingY(), 1);
+			Font.drawString(Status.getSystem().getName() + " " + GlobalStatus.gameText.getText(41), var1, 3 + Font.getSpacingY(), 1);
+			Font.drawString(GlobalStatus.gameText.getText(220) + ": " + GlobalStatus.gameText.getText(225 + Status.getSystem().getSafety()), var1, 3 + 2 * Font.getSpacingY(), 1);
 		}
 
 	}
@@ -695,7 +711,13 @@ public final class Hud {
 				case 1:
 					if (var4 < var7.length && var7[var4] != null && var7[var4].getAmount() > 0) {
 						ImageFactory.drawItemFrameless(var7[var4].getIndex(), this.items, var5, var6, Graphics.HCENTER | Graphics.VCENTER);
-						Font.drawString("x" + var7[var4].getAmount(), var5, var6 + (ImageFactory.itemHeight >> 1), 1, 24);
+						Font.drawString(
+						  "x" + var7[var4].getAmount(),
+						  var5,
+						  var6 + (ImageFactory.itemHeight >> 1),
+						  1,
+						  Font.TOP|Font.HCENTER
+						);
 					}
 					break;
 				case 3:
@@ -708,11 +730,23 @@ public final class Hud {
 			}
 
 			if (this.actionmenuSelectDir > 0) {
-				Font.drawString(this.actionmenuLabels[this.actionSubMenuOpen][this.actionmenuSelectDir - 1], var3, 10, 0, 24);
+				Font.drawString(
+						this.actionmenuLabels[this.actionSubMenuOpen][this.actionmenuSelectDir - 1],
+						var3,
+						10,
+						0,
+						Font.TOP|Font.HCENTER
+				);
 			}
 
 			if (Status.wingmenTimeRemaining > 0) {
-				Font.drawString(GlobalStatus.gameText.getText(152) + ": " + Time.timeToHMS(Status.wingmenTimeRemaining), var3, GlobalStatus.screenHeight - 30, 0, 24);
+				Font.drawString(
+						GlobalStatus.gameText.getText(152) + ": " + Time.timeToHMS(Status.wingmenTimeRemaining),
+						var3,
+						GlobalStatus.screenHeight - 30,
+						0,
+						Font.TOP|Font.HCENTER
+				);
 			}
 		}
 	}

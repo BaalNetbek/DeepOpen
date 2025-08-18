@@ -248,29 +248,29 @@ public final class ListItemWindow {
         this.textBox.draw();
         this.highlightedText.draw();
     }
-
-    public final void updateRotation(final int var1, final int var2) {
+    
+    public final void updateRotation(final int keyState, final int dt) {
         if (this.show3DShip) {
-            if ((var1 & 4) != 0) {
-                this.speedYawCCW = var2;
+            if ((keyState & GOF2Canvas.LEFT) != 0) {
+                this.speedYawCCW = dt;
             } else {
-                this.speedYawCCW *= 0.9F;
+                this.speedYawCCW *= 0.9F; // Fix potential 0.9F / 30 * dt; to 
             }
 
-            if ((var1 & 32) != 0) {
-                this.speedYawCW = var2;
+            if ((keyState & GOF2Canvas.RIGHT) != 0) {
+                this.speedYawCW = dt;
             } else {
                 this.speedYawCW *= 0.9F;
             }
 
-            if ((var1 & 64) != 0) {
-                this.speedPitchDown = var2;
+            if ((keyState & GOF2Canvas.DOWN) != 0) {
+                this.speedPitchDown = dt;
             } else {
                 this.speedPitchDown *= 0.9F;
             }
 
-            if ((var1 & 2) != 0) {
-                this.speedPitchUp = var2;
+            if ((keyState & GOF2Canvas.UP) != 0) {
+                this.speedPitchUp = dt;
             } else {
                 this.speedPitchUp *= 0.9F;
             }
@@ -287,9 +287,9 @@ public final class ListItemWindow {
 
     }
 
-    public final void updateCamera_(final boolean var1) {
-        this.show3DShip = var1;
-        if (var1) {
+    public final void updateCamera_(final boolean show3DShip) {
+        this.show3DShip = show3DShip;
+        if (show3DShip) {
             this.lastCam = GlobalStatus.renderer.getCamera();
             this.shipPreviewCam = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1000, 10, AEGraphics3D.CAMERA_FAR);
             this.shipPreviewCam.translate(0, 400, -Ship.SHIP_PREVIEW_SCALING[this.contextItem.getIndex()]);
@@ -314,9 +314,9 @@ public final class ListItemWindow {
             GlobalStatus.renderer.renderFrame(System.currentTimeMillis());
             GlobalStatus.graphics3D.clear();
             GlobalStatus.graphics3D.releaseTarget();
-        } catch (final Exception var2) {
+        } catch (final Exception e) {
             GlobalStatus.graphics3D.releaseTarget();
-            var2.printStackTrace();
+            e.printStackTrace();
         }
 
         Layout.drawNonFullScreenWindow(GlobalStatus.gameText.getText(212), false);

@@ -94,7 +94,7 @@ public final class OptionsWindow {
 		this.optionsListPosY = headerHeight + 16;
 		windowWidth = 117;
 		posX = GlobalStatus.screenWidth - windowWidth >> 1;
-		this.fontSpacingY = Font.getFontSpacingY();
+		this.fontSpacingY = Font.getSpacingY();
 		this.selectedRow = 0;
 		this.subMenu = MAIN_MENU;
 		this.confirmPopup = new Popup(20, GlobalStatus.screenHeight / 2, GlobalStatus.screenWidth - 40);
@@ -963,7 +963,7 @@ public final class OptionsWindow {
 				Layout.drawTextItem(GlobalStatus.gameText.getText(5), posX, this.optionsListPosY + 2 * this.fontSpacingY, windowWidth, this.selectedRow == 2);
 				break;
 			case HELP_INSTRUCTIONS:
-				Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(19), posX, headerHeight, windowWidth, AEMath.min(this.manualWindow.getFirstListLen_() * Font.getFontSpacingY() + 30, GlobalStatus.screenHeight - headerHeight - 16 - 10));
+				Layout.drawFilledTitleBarWindow(GlobalStatus.gameText.getText(19), posX, headerHeight, windowWidth, AEMath.min(this.manualWindow.getFirstListLen_() * Font.getSpacingY() + 30, GlobalStatus.screenHeight - headerHeight - 16 - 10));
 				this.manualWindow.drawItems();
 				this.manualWindow.drawScroll();
 				break;

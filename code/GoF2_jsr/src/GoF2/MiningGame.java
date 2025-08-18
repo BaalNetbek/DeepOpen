@@ -187,14 +187,18 @@ public final class MiningGame {
 
         final boolean var5 = this.minedIndicatorHighlightCounter < 400;
         String var6;
-        Font.drawString(var6 = "    t " + GlobalStatus.gameText.getText(569 + this.minedItemId), GlobalStatus.screenWidth >> 1, this.boardPosY + Font.getFontSpacingY(), 2, 24);
+        Font.drawString(
+          var6 = "    t " + GlobalStatus.gameText.getText(569 + this.minedItemId), GlobalStatus.screenWidth >> 1,
+          this.boardPosY + Font.getSpacingY(),
+          2,
+          Font.TOP|Font.HCENTER);
         if (var5) {
-            this.hud.drawBigDigits((int)this.miningProgress, (GlobalStatus.screenWidth >> 1) - (Font.getTextWidth(var6, 0) >> 1) - 16, this.boardPosY + Font.getFontSpacingY() - 2, false);
+            this.hud.drawBigDigits((int)this.miningProgress, (GlobalStatus.screenWidth >> 1) - (Font.getTextWidth(var6, 0) >> 1) - 16, this.boardPosY + Font.getSpacingY() - 2, false);
             this.minedIndicatorHighlightCounter += this.frameTime;
         } else {
             final String var10000 = (int)this.miningProgress + "";
             final int var10001 = (GlobalStatus.screenWidth >> 1) - (Font.getTextWidth(var6, 0) >> 1);
-            Font.drawString(var10000, var10001 + Font.getTextWidth("   ", 0), this.boardPosY + Font.getFontSpacingY(), 2, 18);
+            Font.drawString(var10000, var10001 + Font.getTextWidth("   ", 0), this.boardPosY + Font.getSpacingY(), 2, 18);
         }
     }
 }

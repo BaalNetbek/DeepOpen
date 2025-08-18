@@ -32,9 +32,9 @@ public final class Popup {
         this.currentChoice = true;
         this.isChoice = var2;
         this.rows = Font.splitToLines(var1, this.width - 14);
-        this.posY = (GlobalStatus.screenHeight >> 1) - (Font.getTotalSpacingY(this.rows) + 2 * Font.getFontSpacingY() + 4 >> 1);
-        this.choicePosY = this.posY + this.rows.length * Font.getFontSpacingY() + 4 + 14 + 2;
-        this.height = this.choicePosY + Font.getFontSpacingY() + 7 - this.posY;
+        this.posY = (GlobalStatus.screenHeight >> 1) - (Font.getTotalSpacingY(this.rows) + 2 * Font.getSpacingY() + 4 >> 1);
+        this.choicePosY = this.posY + this.rows.length * Font.getSpacingY() + 4 + 14 + 2;
+        this.height = this.choicePosY + Font.getSpacingY() + 7 - this.posY;
     }
 
     public final boolean getChoice() {
@@ -55,17 +55,34 @@ public final class Popup {
 
     }
 
-    public final void draw() {
-        Layout.fillClip();
-        Layout.drawTitleBarWindow("", this.posX, this.posY, this.width, this.height, true);
-        Font.drawLines(this.rows, this.posX + 7, this.posY + 14 + 4, 0);
-        GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
-        if (this.isChoice) {
-            Font.drawString(GlobalStatus.gameText.getText(38), this.posX + this.width / 3, this.choicePosY, this.currentChoice ? 2 : 1, 24);
-            Font.drawString(GlobalStatus.gameText.getText(39), this.posX + this.width - this.width / 3, this.choicePosY, this.currentChoice ? 1 : 2, 24);
-        } else {
-            final int var10001 = this.posX + this.width / 2;
-            Font.drawString("OK", var10001 - Font.getTextWidth("OK", 0) / 2, this.choicePosY, 2);
-        }
-    }
+	public final void draw() {
+		Layout.fillClip();
+		Layout.drawTitleBarWindow("", this.posX, this.posY, this.width, this.height, true);
+		Font.drawLines(this.rows, this.posX + 7, this.posY + 14 + 4, 0);
+		GlobalStatus.graphics.setColor(Layout.uiInnerOutlineColor);
+		if (this.isChoice) {
+			Font.drawString(
+					GlobalStatus.gameText.getText(38),
+					this.posX + this.width / 3,
+					this.choicePosY,
+					this.currentChoice ? 2 : 1,
+					Font.TOP | Font.HCENTER
+			);
+			Font.drawString(
+					GlobalStatus.gameText.getText(39),
+					this.posX + this.width - this.width / 3,
+					this.choicePosY,
+					this.currentChoice ? 1 : 2,
+					Font.TOP | Font.HCENTER
+			);
+		} else {
+			final int var10001 = this.posX + this.width / 2;
+			Font.drawString(
+					"OK",
+					var10001 - Font.getTextWidth("OK", 0) / 2,
+					this.choicePosY,
+					2
+			);
+		}
+	}
 }

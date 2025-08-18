@@ -1,5 +1,6 @@
 package GOF2;
 
+import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 import AE.AEFile;
@@ -54,9 +55,9 @@ public final class Layout {
 
 	}
 
-	public static void addTicks(final int var0) {
-		slowTickCounter += var0;
-		quickTickCounter += var0;
+	public static void addTicks(final int dt) {
+		slowTickCounter += dt;
+		quickTickCounter += dt;
 	}
 
 	public static boolean slowClockHigh_() {
@@ -100,9 +101,15 @@ public final class Layout {
 		drawTextItem(var0, var1, var2, var3, var4, false);
 	}
 
-	public static void drawTextItem(final String var0, final int var1, final int var2, final int var3, final boolean var4, final boolean var5, final boolean var6) {
-		Font.drawString(var0, var5 ? var1 + (var3 >> 1) : var1 + 12, var2 + 1, var4 ? 2 : 1, var5 ? 24 : 17);
-		if (var6) {
+	public static void drawTextItem(final String var0, final int var1, final int var2, final int var3, final boolean highlight, final boolean var5, final boolean drawImage) {
+		Font.drawString(
+		  var0,
+		  var5 ? var1 + (var3 >> 1) : var1 + 12,
+		  var2 + 1,
+		  highlight ? 2 : 1,
+		  var5 ? Font.TOP|Font.HCENTER : Font.TOP|Font.LEFT
+		);
+		if (drawImage) {
 			if (lock == null) {
 				lock = AEFile.loadImage("/data/interface/lock.png", true);
 			}
@@ -225,9 +232,14 @@ public final class Layout {
 	}
 
 	public static void drawStringWidthLimited(String var0, final int var1, final int var2, final int var3, final int var4) {
-		final String var10000 = var0;
-		String var6;
-		Font.drawString((var6 = Font.truncateStringLine(var0 = var10000.trim(), var3 - 2, 0, true)).equals(var0) ? var0 : var6 + "...", var1, var2, var4, 17);
+		String var6 = Font.truncateStringLine(var0 = var0.trim(), var3 - 2, 0, true);
+		Font.drawString(
+				var6.equals(var0) ? var0 : var6 + "...",
+				var1,
+				var2,
+				var4,
+				Font.TOP | Font.LEFT
+		);
 	}
 
 	public static void drawFooter1(final String var0, final String var1, final boolean var2) {
@@ -250,10 +262,27 @@ public final class Layout {
 		drawRect(1, GlobalStatus.screenHeight - 17, GlobalStatus.screenWidth - 3, 14);
 		GlobalStatus.graphics.setColor(0);
 		GlobalStatus.graphics.drawRect(2, GlobalStatus.screenHeight - 16, GlobalStatus.screenWidth - 5, 12);
-		Font.drawString(var0, 10, GlobalStatus.screenHeight - 4, var3 ? 2 : 1, 33);
-		Font.drawString(var1, GlobalStatus.screenWidth - 10, GlobalStatus.screenHeight - 4, var4 ? 2 : 1, 34);
+		Font.drawString(
+		  var0,
+		  10,
+		  GlobalStatus.screenHeight - 4,
+		  var3 ? 2 : 1,
+		  Font.BOTTOM|Font.LEFT
+		);
+		Font.drawString(
+				var1,
+				GlobalStatus.screenWidth - 10,
+				GlobalStatus.screenHeight - 4,
+				var4 ? 2 : 1,
+				Font.BOTTOM | Font.RIGHT
+		);
 		if (var2) {
-			GlobalStatus.graphics.drawImage(skipArrow, GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - 5, 33);
+			GlobalStatus.graphics.drawImage(
+					skipArrow,
+					GlobalStatus.screenWidth >> 1,
+					GlobalStatus.screenHeight - 5,
+					Graphics.BOTTOM | Graphics.HCENTER
+			);
 		}
 
 	}

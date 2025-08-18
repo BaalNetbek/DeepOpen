@@ -47,7 +47,7 @@ public final class StatusPanel {
 		this.scrollPos = this.posY;
 		this.scrollRows = GlobalStatus.screenHeight - this.posY - 16 - 5;
 		this.width = GlobalStatus.screenWidth - 2 * this.posX;
-		this.height = 66 + ImageFactory.faceHeight + 4 + 6 * (Font.getFontSpacingY() + 2) + this.statsLeftColumn.length * (Font.getFontSpacingY() + 2);
+		this.height = 66 + ImageFactory.faceHeight + 4 + 6 * (Font.getSpacingY() + 2) + this.statsLeftColumn.length * (Font.getSpacingY() + 2);
 		this.scrollThumbSize = 0;
 		if (this.height > this.scrollRows) {
 			this.scrollThumbSize = (int)((float)this.scrollRows / (float)this.height * this.scrollRows);
@@ -219,19 +219,19 @@ public final class StatusPanel {
 		Font.drawString(var2, this.posX + 6, var1 + 4, 0);
 	}
 
-	public final void draw(final int var1, int var2) {
+	public final void draw(final int keyState, int var2) {
 		Layout.drawBG();
 		this.statusWindows.draw();
 		if (this.statusWindows.selectedTab == 0) {
 			if (this.scrollThumbSize > 0) {
-				if ((var1 & 2) != 0) {
+				if ((keyState & 2) != 0) {
 					this.scrollPos += var2 / 8;
 					if (this.scrollPos > this.posY) {
 						this.scrollPos = this.posY;
 					}
 				}
 
-				if ((var1 & 64) != 0) {
+				if ((keyState & 64) != 0) {
 					this.scrollPos -= var2 / 8;
 					if (this.scrollPos + this.height < this.posY + this.scrollRows) {
 						this.scrollPos = this.posY + this.scrollRows - this.height;
@@ -239,7 +239,7 @@ public final class StatusPanel {
 				}
 			}
 
-			var2 = Font.getFontSpacingY();
+			var2 = Font.getSpacingY();
 			GlobalStatus.graphics.setColor(0);
 			GlobalStatus.graphics.setClip(0, this.posY, GlobalStatus.screenWidth, this.scrollRows);
 			int var3 = this.scrollPos;
@@ -264,14 +264,50 @@ public final class StatusPanel {
 				GlobalStatus.graphics.drawImage(this.allMedalsAdornment, this.posX + 1, var3 + 1, 20);
 			}
 
-			Font.drawString(GlobalStatus.gameText.getText(80), this.posX + ImageFactory.faceWidth + 4, var3, 1, 17);
-			Font.drawString(Layout.formatCredits(Status.getCredits()), this.posX + this.width, var3, 1, 18);
+			Font.drawString(
+   			  GlobalStatus.gameText.getText(80),
+   			  this.posX + ImageFactory.faceWidth + 4,
+   			  var3,
+   			  1,
+   			  Font.TOP|Font.LEFT
+			);
+			Font.drawString(
+   			  Layout.formatCredits(Status.getCredits()),
+   			  this.posX + this.width,
+   			  var3,
+   			  1,
+   			  Font.TOP|Font.RIGHT
+			);
 			var3 += var2 + 2;
-			Font.drawString(GlobalStatus.gameText.getText(158), this.posX + ImageFactory.faceWidth + 4, var3, 1, 17);
-			Font.drawString(Status.getLevel() + "", this.posX + this.width, var3, 1, 18);
+			Font.drawString(
+   			  GlobalStatus.gameText.getText(158),
+   			  this.posX + ImageFactory.faceWidth + 4,
+   			  var3,
+   			  1,
+   			  Font.TOP|Font.LEFT
+			);
+			Font.drawString(
+   			  Status.getLevel() + "",
+   			  this.posX + this.width,
+   			  var3,
+   			  1,
+   			  Font.TOP|Font.RIGHT
+			);
 			var3 += var2 + 2;
-			Font.drawString(GlobalStatus.gameText.getText(70), this.posX + ImageFactory.faceWidth + 4, var3, 1, 17);
-			Font.drawString(Time.timeToHMS(Status.getPlayingTime()), this.posX + this.width, var3, 1, 18);
+			Font.drawString(
+    			  GlobalStatus.gameText.getText(70),
+    			  this.posX + ImageFactory.faceWidth + 4,
+    			  var3,
+    			  1,
+    			  Font.TOP|Font.LEFT
+			);
+			Font.drawString(
+   			  Time.timeToHMS(Status.getPlayingTime()),
+   			  this.posX + this.width,
+   			  var3,
+   			  1,
+   			  Font.TOP|Font.RIGHT
+			);
 			var3 = this.scrollPos + 18 + 4 + ImageFactory.faceHeight + 4;
 			drawSubHeader(var3, GlobalStatus.gameText.getText(298));
 			var3 += 26;
@@ -284,7 +320,12 @@ public final class StatusPanel {
 				this.standingLogos.setPosition(var6, var3);
 				this.standingLogos.paint(GlobalStatus.graphics);
 				var6 += this.standingLogos.getHeight() + 4;
-				Font.drawString(GlobalStatus.gameText.getText(var5 == 0 ? 229 : 231), var6, var3 + Font.getFontSpacingY() + this.standingCursor.getHeight(), 1);
+				Font.drawString(
+				  GlobalStatus.gameText.getText(var5 == 0 ? 229 : 231),
+				  var6,
+				  var3 + Font.getSpacingY() + this.standingCursor.getHeight(),
+				  1
+				);
 				this.standingBarOutter.setTransform(0);
 				this.standingBarOutter.setFrame(var8.isEnemy(var5 == 0 ? 0 : 2) ? 0 : var8.isFriend(var5 == 0 ? 0 : 2) ? 1 : 2);
 				this.standingBarOutter.setRefPixelPosition(var6, var3 + this.standingBarOutter.getHeight());
@@ -298,7 +339,13 @@ public final class StatusPanel {
 				this.standingLogos.setPosition(var6 - this.standingLogos.getHeight(), var3);
 				this.standingLogos.paint(GlobalStatus.graphics);
 				var6 -= 4 + this.standingLogos.getHeight();
-				Font.drawString(GlobalStatus.gameText.getText(var5 == 0 ? 230 : 232), var6, var3 + Font.getFontSpacingY() + this.standingCursor.getHeight(), 1, 18);
+				Font.drawString(
+				  GlobalStatus.gameText.getText(var5 == 0 ? 230 : 232),
+				  var6,
+				  var3 + Font.getSpacingY() + this.standingCursor.getHeight(),
+				  1,
+				  Font.TOP|Font.RIGHT
+				);
 				this.standingBarOutter.setTransform(2);
 				this.standingBarOutter.setFrame(var8.isEnemy(var5 == 0 ? 1 : 3) ? 0 : var8.isFriend(var5 == 0 ? 1 : 3) ? 1 : 2);
 				this.standingBarOutter.setRefPixelPosition(var6, var3 + this.standingBarOutter.getHeight());
@@ -310,15 +357,27 @@ public final class StatusPanel {
 				var6 = (GlobalStatus.screenWidth >> 1) - (int)(var8.getStanding(var5 == 0 ? 0 : 1) / 100.0F * (this.standingBarOutter.getWidth() + 1 + this.standingBarInner.getWidth()));
 				this.standingCursor.setRefPixelPosition(var6, var3 + this.standingBarOutter.getHeight());
 				this.standingCursor.paint(GlobalStatus.graphics);
-				var3 += 3 * Font.getFontSpacingY() + 4;
+				var3 += 3 * Font.getSpacingY() + 4;
 			}
 
 			this.drawSubHeader(var3, GlobalStatus.gameText.getText(299));
 			var3 += 22;
 
 			for(var5 = 0; var5 < this.statsLeftColumn.length; ++var5) {
-				Font.drawString(this.statsLeftColumn[var5], this.posX + 2, var3, 1, 17);
-				Font.drawString(this.statsRightColumn[var5], this.posX + this.width, var3, 0, 18);
+				Font.drawString(
+   				  this.statsLeftColumn[var5],
+   				  this.posX + 2,
+   				  var3,
+   				  1, 
+   				  Font.TOP|Font.LEFT
+				);
+				Font.drawString(
+   				  this.statsRightColumn[var5],
+   				  this.posX + this.width,
+   				  var3,
+   				  0,
+   				  Font.TOP|Font.RIGHT
+				);
 				var3 += var2 + 2;
 			}
 

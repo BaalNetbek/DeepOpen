@@ -280,8 +280,20 @@ public final class MissionsWindow {
 			} else {
 				var2 += 22;
 				ImageFactory.drawChar(this.clientsFace, this.innerWindowOffsetX, var2, 20);
-				Font.drawString(var3.getAgent().fullName, this.innerWindowOffsetX + this.innerWindowWidth, var2, var3.getAgent().getEvent() > 0 ? 0 : 1, 18);
-				Font.drawString(var3.getAgent().getStationName(), this.innerWindowOffsetX + this.innerWindowWidth, var2 + (Font.getFontSpacingY() << 1), 1, 18);
+				Font.drawString(
+				  var3.getAgent().fullName,
+				  this.innerWindowOffsetX + this.innerWindowWidth,
+				  var2,
+				  var3.getAgent().getEvent() > 0 ? 0 : 1,
+				  Font.TOP|Font.RIGHT
+				);
+				Font.drawString(
+				  var3.getAgent().getStationName(),
+				  this.innerWindowOffsetX + this.innerWindowWidth,
+				  var2 + (Font.getSpacingY() << 1),
+				  1,
+				  Font.TOP|Font.RIGHT
+				);
 				var2 += ImageFactory.faceHeight + 2;
 			}
 
@@ -348,7 +360,12 @@ public final class MissionsWindow {
 		GlobalStatus.graphics.drawRect(this.innerWindowOffsetX, var1, this.innerWindowWidth - 1, 18);
 		Layout.drawMenuPanelCorner(this.innerWindowOffsetX, var1, false);
 		GlobalStatus.graphics.drawImage(var3, this.innerWindowOffsetX + 6, var1 + 4, 20);
-		Font.drawString(var2, this.innerWindowOffsetX + 6 + var3.getWidth() + 4, var1 + 4, 0);
+		Font.drawString(
+		  var2,
+  		  this.innerWindowOffsetX + 6 + var3.getWidth() + 4,
+  		  var1 + 4,
+  		  0
+		);
 	}
 
 	public final boolean hangarNeedsUpdate() {
