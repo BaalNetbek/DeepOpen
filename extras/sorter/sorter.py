@@ -45,6 +45,7 @@ if __name__ == "__main__":
     from os.path import dirname
     import os
     def sort_for_do(name):
+        """sort for DeepOpen - works DO repo directory tree"""
         try:
             game, version = name.split('_', 1)
             order_file = dirname(__file__) + f'/{name}_order.txt'
