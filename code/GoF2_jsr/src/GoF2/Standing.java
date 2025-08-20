@@ -3,161 +3,172 @@ package GOF2;
 /**
  * Standing stands for 'reputation'. 
  * Manages player standing with nations that are at war.
+ * There are two conflicts:
+ * VOSSK_TERRAN (-100 means player is friend of Vossk, 100 friend of Terrans)
+ * and 
+ * MIDO_NIVELIAN (-100 friend Mido, 100 friend Nivelians)
  * 
  * @author Fishlabs 2009
  */
 public final class Standing {
-    private int[] stand = new int[2];
-
+    public static final int VOSSK_TERRAN = 0;
+    public static final int MIDO_NIVELIAN = 0;
+	
+	private int[] stand = new int[2];
+    
     public Standing() {
-        this.stand[0] = 30;
-        this.stand[1] = 0;
+        this.stand[VOSSK_TERRAN] = 30;
+        this.stand[MIDO_NIVELIAN] = 0;
     }
 
-    public final void setStanding(final int[] var1) {
-        this.stand = var1;
+    public final void setStanding(final int[] stands) {
+        this.stand = stands;
     }
 
     public final int[] getStanding() {
         return this.stand;
     }
-
-    public final int getStanding(final int var1) {
-        return this.stand[var1];
+    /**
+     * 
+     * @param conflict VOSSK_TERRAN or MIDO_NIVELIAN
+     * @return number in range < -100, 100 >
+     */
+    public final int getStanding(final int conflict) {
+        return this.stand[conflict];
     }
 
     public final void rehabilitate(final int var1) {
         switch (var1) {
-        case 1:
-            this.stand[0] = 35;
+        case Globals.VOSSK:
+            this.stand[VOSSK_TERRAN] = 35;
             break;
-        case 0:
-            this.stand[0] = -35;
+        case Globals.TERRAN:
+            this.stand[VOSSK_TERRAN] = -35;
             break;
-        case 3:
-            this.stand[1] = 35;
+        case Globals.MIDORIAN:
+            this.stand[MIDO_NIVELIAN] = 35;
             break;
+        case Globals.NIVELIAN:
+        	this.stand[MIDO_NIVELIAN] = -35;
+        	break;
         default:
-            if (var1 == 2) {
-                this.stand[1] = -35;
-            }
             break;
         }
     }
 
     public final boolean atWar() {
-        final int var1 = this.stand[0];
-        final int var2 = this.stand[1];
-        return var1 > 60 || var1 < -60 || var2 > 60 || var2 < -60;
+        final int vossk_terran = this.stand[VOSSK_TERRAN];
+        final int mido_nivelian = this.stand[MIDO_NIVELIAN];
+        return vossk_terran > 60 || vossk_terran < -60 || mido_nivelian > 60 || mido_nivelian < -60;
     }
 
-    public final boolean isEnemy(final int var1) {
-        switch (var1) {
-        case 1:
-            return this.stand[0] > 60;
-        case 0:
-            return this.stand[0] < -60;
-        case 3:
-            return this.stand[1] > 60;
-        case 2:
-            return this.stand[1] < -60;
+    public final boolean isEnemy(final int race) {
+        switch (race) {
+    	case Globals.VOSSK:
+            return this.stand[VOSSK_TERRAN] > 60;
+        case Globals.TERRAN:
+            return this.stand[VOSSK_TERRAN] < -60;
+        case Globals.MIDORIAN:
+            return this.stand[MIDO_NIVELIAN] > 60;
+        case Globals.NIVELIAN:
+            return this.stand[MIDO_NIVELIAN] < -60;
         default:
             return false;
         }
     }
 
-    public final boolean isFriend(final int var1) {
-        switch (var1) {
-        case 1:
-            return this.stand[0] < -60;
-        case 0:
-            return this.stand[0] > 60;
-        case 3:
-            return this.stand[1] < -60;
-        case 2:
-            return this.stand[1] > 60;
+    public final boolean isFriend(final int race) {
+        switch (race) {
+        case Globals.VOSSK:
+            return this.stand[VOSSK_TERRAN] < -60;
+        case Globals.TERRAN:
+            return this.stand[VOSSK_TERRAN] > 60;
+        case Globals.MIDORIAN:
+            return this.stand[MIDO_NIVELIAN] < -60;
+        case Globals.NIVELIAN:
+            return this.stand[MIDO_NIVELIAN] > 60;
         default:
             return false;
         }
     }
 
-    public static int enemyRace(final int var0) {
-        switch(var0) {
-        case 0:
-            return 1;
-        case 1:
-            return 0;
-        case 2:
-            return 3;
-        case 3:
-            return 2;
+    public static int enemyRace(final int race) {
+        switch(race) {
+        case Globals.TERRAN:
+            return Globals.VOSSK;
+        case Globals.VOSSK:
+            return Globals.TERRAN;
+        case Globals.NIVELIAN:
+            return Globals.MIDORIAN;
+        case Globals.MIDORIAN:
+            return Globals.NIVELIAN;
         default:
-            return 8;
+            return Globals.PIRATE;
         }
     }
 
-    private void subtract(final int var1, final int var2) {
-        final int[] var10000 = this.stand;
-        var10000[var1] += var2;
-        if (this.stand[var1] > 100) {
-            this.stand[var1] = 100;
-        } else if (this.stand[var1] < -100) {
-            this.stand[var1] = -100;
+    private void add(final int conflict, final int change) {
+        this.stand[conflict] += change;
+        
+        if (this.stand[conflict] > 100) {
+            this.stand[conflict] = 100;
+        } else if (this.stand[conflict] < -100) {
+            this.stand[conflict] = -100;
         }
     }
 
-    public final void applyKill(final int var1) {
-        final int var2 = Status.inAlienOrbit() ? 9 : Status.getSystem().getRace();
-        int var3 = var1;
-        byte var4 = 5;
-        if (var1 == 8) {
-            switch(var2) {
-            case 0:
-                var3 = 1;
+    public final void applyKill(final int killedRace) {
+        final int localRace = Status.inAlienOrbit() ? Globals.VOID : Status.getSystem().getRace();
+        int unhappyRace = killedRace;
+        byte change = 5;
+        if (killedRace == Globals.PIRATE) {
+            switch(localRace) {
+            case Globals.TERRAN:
+                unhappyRace = Globals.VOSSK;
                 break;
-            case 1:
-                var3 = 0;
+            case Globals.VOSSK:
+                unhappyRace = Globals.TERRAN;
                 break;
-            case 2:
-                var3 = 3;
+            case Globals.NIVELIAN:
+                unhappyRace = Globals.MIDORIAN;
                 break;
-            case 3:
-                var3 = 2;
+            case Globals.MIDORIAN:
+                unhappyRace = Globals.NIVELIAN;
             }
 
-            var4 = 1;
+            change = 1;
         }
 
-        applyDelict(var3, var4);
+        applyDelict(unhappyRace, change);
     }
 
-    public final void applyStealCargo(final int var1) {
-        applyDelict(var1, 2);
+    public final void applyStealCargo(final int sufferingRace) {
+        applyDelict(sufferingRace, 2);
     }
 
-    public final void increase(final int var1) {
-        applyDelict(var1, -7);
+    public final void increase(final int sufferingRace) {
+        applyDelict(sufferingRace, -7);
     }
 
-    public final void applyDisable(final int var1) {
-        applyDelict(var1, 2);
+    public final void applyDisable(final int sufferingRace) {
+        applyDelict(sufferingRace, 2);
     }
 
-    private void applyDelict(final int var1, final int var2) {
-        switch (var1) {
-        case 1:
-            subtract(0, var2);
+    private void applyDelict(final int race, final int dislike) {
+        switch (race) {
+        case Globals.VOSSK:
+            add(VOSSK_TERRAN, dislike);
             break;
-        case 0:
-            subtract(0, -var2);
+        case Globals.TERRAN:
+            add(VOSSK_TERRAN, -dislike);
             break;
-        case 3:
-            subtract(1, var2);
+        case Globals.MIDORIAN:
+            add(MIDO_NIVELIAN, dislike);
             break;
+        case Globals.NIVELIAN:
+        	add(MIDO_NIVELIAN, -dislike);
+        	break;
         default:
-            if (var1 == 2) {
-                subtract(1, -var2);
-            }
             break;
         }
     }

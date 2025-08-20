@@ -474,7 +474,7 @@ cs.a()Z atWar
 cs.a(I)Z isEnemy
 cs.b(I)Z isFriend
 cs.b(I)I enemyRace
-cs.a(II)V subtract
+cs.a(II)V add
 cs.b(I)V applyKill
 cs.c(I)V applyStealCargo
 cs.d(I)V increase

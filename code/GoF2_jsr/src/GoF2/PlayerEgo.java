@@ -1114,25 +1114,25 @@ public final class PlayerEgo {
 		this.shipGrandGroup_.moveForward((int)this.frameTime * this.speed);
 	}
 
-	public final void dockToAsteroid(final KIPlayer var1, final TargetFollowCamera var2, final Radar var3) {
+	public final void dockToAsteroid(final KIPlayer asteroid, final TargetFollowCamera tfCam, final Radar radar) {
 		if (this.lockedOnAsteroid) {
 			((PlayerAsteroid)this.lockedAsteroid).setRotationEnabled(true);
 			this.lockedOnAsteroid = false;
 			this.beingPushedAway = false;
 			this.lockedAsteroid = null;
 			this.minigUpVec = null;
-			var2.setLookAtCam(true);
-			GlobalStatus.renderer.setActiveCamera((AECamera)var2.getCamera());
-			LevelScript.resetCamera(var2, this.level);
+			tfCam.setLookAtCam(true);
+			GlobalStatus.renderer.setActiveCamera((AECamera)tfCam.getCamera());
+			LevelScript.resetCamera(tfCam, this.level);
 			this.player.resetGunDelay(0);
 			this.miningGame = null;
-			var3.unlockAsteroid();
-		} else if (var1 != null) {
+			radar.unlockAsteroid();
+		} else if (asteroid != null) {
 			this.dockMiningPitch = 0;
-			this.followingCamera_ = var2;
+			this.followingCamera_ = tfCam;
 			this.lockedOnAsteroid = true;
-			this.lockedAsteroid = var1;
-			this.vecUp = var1.mainMesh_.copyScaleTo(this.vecUp);
+			this.lockedAsteroid = asteroid;
+			this.vecUp = asteroid.mainMesh_.copyScaleTo(this.vecUp);
 			this.astroidDockDistance = (this.vecUp.x + this.vecUp.y + this.vecUp.z) / 2;
 			this.beingPushedAway = true;
 			this.miningState = 0;
@@ -1192,14 +1192,24 @@ public final class PlayerEgo {
 		}
 	}
 
-	public final void draw(final boolean var1, final AECamera var2) {
+	public final void draw(final boolean drawXhair, final AECamera var2) {
 		if (this.miningGame != null) {
 			this.miningGame.render2D();
-		} else if (!this.autoDriven && !isDead() && !this.freeze && var1 && !this.lockedOnAsteroid && !this.jumpingToNeighbourPlanet && !this.jumpGating && !this.autopilotActive) {
+		} else if (
+				!this.autoDriven 
+				&& !isDead() 
+				&& !this.freeze 
+				&& drawXhair 
+				&& !this.lockedOnAsteroid
+				&& !this.jumpingToNeighbourPlanet 
+				&& !this.jumpGating 
+				&& !this.autopilotActive) {
 			this.crosshair.draw();
 		}
 	}
-
+	/**
+	 * Shakes the camera
+	 */
 	public final void hit() {
 		this.followingCamera_.hit();
 	}

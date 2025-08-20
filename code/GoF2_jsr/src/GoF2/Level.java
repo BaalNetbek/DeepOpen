@@ -12,6 +12,12 @@ import AE.Math.AEVector3D;
 import AE.Math.AEMatrix;
 
 public final class Level {
+	private static final int STATION_TERRAN = 0;
+	private static final int STATION_NIVELIAN = 1;
+	private static final int STATION_VOSSK = 2;
+//	private static final int STATION_DEEP_SCIENCE = 7;
+//	private static final int STATION_VALKYRIE = 8;
+	
 	private int currentMod;
 	private BoundingVolume asteroidField;
 	private final int[] LEVEL_BAR_CHAR_POSITIONS; // make it static. why not?
@@ -1226,56 +1232,56 @@ public final class Level {
 	}
 
 	private void createScene() {
-		int var1;
-		int var3;
+		final int stationType;
+		
 		//label88:
 		switch(this.currentMod) {
 		case 4: // bar
-			int var11;
-			var1 = (var11 = Status.getSystem().getRace() == Globals.VOSSK ? 2 : Status.getSystem().getRace() == Globals.TERRAN ? 0 : 1) == 0 ? 20 : 6;
-			Agent[] var9 = Status.getStation().getBarAgents();
-			var3 = var9.length;
-			this.ships = new KIPlayer[var3 + var1];
-			final boolean[] var5 = new boolean[this.LEVEL_BAR_CHAR_POSITIONS.length / 3];
+			final int systemRace = Status.getSystem().getRace();
+			stationType = 
+				systemRace == Globals.VOSSK ? STATION_VOSSK : 
+				systemRace == Globals.TERRAN ? STATION_TERRAN : STATION_NIVELIAN;
+			final int numBarParts = (stationType == STATION_TERRAN) ? 20 : 6;
+			Agent[] agents = Status.getStation().getBarAgents();
+			this.ships = new KIPlayer[agents.length + numBarParts];
+			final boolean[] positionsOccupied = new boolean[this.LEVEL_BAR_CHAR_POSITIONS.length / 3];
 
-			int var6;
-			for(var6 = 0; var6 < var5.length; ++var6) {
-				var5[var6] = false;
+			//int var6;
+			for(int i = 0; i < positionsOccupied.length; ++i) {
+				positionsOccupied[i] = false;
 			}
 
-			for(var6 = 0; var6 < var3; ++var6) {
-				short var7 = Globals.BAR_FIGURES[var9[var6].getRace()];
-				if (var9[var6].getRace() == Globals.TERRAN && !var9[var6].isMale()) {
-					var7 = 14224;
+			for(int i = 0; i < agents.length; ++i) {
+				short figureResID = Globals.BAR_FIGURES[agents[i].getRace()];
+				if (agents[i].getRace() == Globals.TERRAN && !agents[i].isMale()) {
+					figureResID = 14224;
 				}
 
-				int var13;
+				int j;
 				do {
-					var13 = GlobalStatus.random.nextInt(var5.length);
-				} while(var5[var13]);
+					j = GlobalStatus.random.nextInt(positionsOccupied.length);
+				} while(positionsOccupied[j]);
 
-				var5[var13] = true;
-				this.ships[var6] = new PlayerStatic(
-						-1, AEResourceManager.getGeometryResource(var7),
-				      this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3],
-				      this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3 + 1],
-				      this.LEVEL_BAR_CHAR_POSITIONS[var13 * 3 + 2]);
-				this.ships[var6].mainMesh_.setRenderLayer(2);
-				this.ships[var6].mainMesh_.disableAnimation();
+				positionsOccupied[j] = true;
+				this.ships[i] = new PlayerStatic(
+						-1, AEResourceManager.getGeometryResource(figureResID),
+				      this.LEVEL_BAR_CHAR_POSITIONS[j * 3],
+				      this.LEVEL_BAR_CHAR_POSITIONS[j * 3 + 1],
+				      this.LEVEL_BAR_CHAR_POSITIONS[j * 3 + 2]);
+				this.ships[i].mainMesh_.setRenderLayer(2);
+				this.ships[i].mainMesh_.disableAnimation();
 			}
 
-			if (var1 <= 0) {
+			if (numBarParts <= 0) {
 				return;
 			}
 
 			GlobalStatus.random.setSeed(Status.getStation().getIndex() + 1000);
-			var6 = AEMath.Q_PI / var1;
-
-			for(int i = var3; i < this.ships.length; i++) {
-				final short var14 = Globals.BAR_MESHES[var11][GlobalStatus.random.nextInt(Globals.BAR_MESHES[var11].length)];
+				for(int i = agents.length; i < this.ships.length; i++) {
+				final short var14 = Globals.BAR_MESHES[systemRace][GlobalStatus.random.nextInt(Globals.BAR_MESHES[systemRace].length)];
 				this.ships[i] = new PlayerStatic(-1, AEResourceManager.getGeometryResource(var14), 0, 0, 0);
 				this.ships[i].mainMesh_.setRenderLayer(2);
-				this.ships[i].mainMesh_.setRotation(0, i * var6, 0);
+				this.ships[i].mainMesh_.setRotation(0, i * (AEMath.Q_PI / numBarParts), 0);
 			}
 			break;
 			// int var12 = var3; //original decomp
@@ -1292,7 +1298,9 @@ public final class Level {
 			// 	++var12;
 			// }
 		case 23: // hangar
-			var1 = Status.getSystem().getRace() == Globals.VOSSK ? 2 : Status.getSystem().getRace() == Globals.TERRAN ? 0 : 1;
+			stationType = 
+				Status.getSystem().getRace() == Globals.VOSSK ? STATION_VOSSK :
+				Status.getSystem().getRace() == Globals.TERRAN ? STATION_TERRAN : STATION_NIVELIAN;
 			this.ships = new KIPlayer[7];
 			this.ships[0] = createShip(Status.getShip().getRace(), 0, Status.getShip().getIndex(), (Waypoint)null);
 			this.ships[0].setPosition(0, 1200, 10240 - Ship.SHIP_HANGAR_OFFSETS[Status.getShip().getIndex()] + 100);
@@ -1305,21 +1313,21 @@ public final class Level {
 			GlobalStatus.random.setSeed(Status.getStation().getIndex());
 			int var2 = 0;
 
-			for(var3 = 1; var3 < 6; ++var3) {
-				short var4 = Globals.HANGAR_MESHES[var1][GlobalStatus.random.nextInt(Globals.HANGAR_MESHES[var1].length - 3)];
-				if (var3 == 5) {
-					var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 2];
-				} else if (var3 == 1) {
-					var4 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 1];
+			for(int i = 1; i < 6; ++i) {
+				short var4 = Globals.HANGAR_MESHES[stationType][GlobalStatus.random.nextInt(Globals.HANGAR_MESHES[stationType].length - 3)];
+				if (i == 5) {
+					var4 = Globals.HANGAR_MESHES[stationType][Globals.HANGAR_MESHES[stationType].length - 2];
+				} else if (i == 1) {
+					var4 = Globals.HANGAR_MESHES[stationType][Globals.HANGAR_MESHES[stationType].length - 1];
 				}
 
-				this.ships[var3] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var4), 0, 0, var2 << AEMath.Q);
-				this.ships[var3].mainMesh_.setRenderLayer(1);
-				this.ships[var3].mainMesh_.setRotation(0, AEMath.Q_PI_HALF, 0);
+				this.ships[i] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var4), 0, 0, var2 << AEMath.Q);
+				this.ships[i].mainMesh_.setRenderLayer(1);
+				this.ships[i].mainMesh_.setRotation(0, AEMath.Q_PI_HALF, 0);
 				++var2;
 			}
 
-			final short var10 = Globals.HANGAR_MESHES[var1][Globals.HANGAR_MESHES[var1].length - 3];
+			final short var10 = Globals.HANGAR_MESHES[stationType][Globals.HANGAR_MESHES[stationType].length - 3];
 			this.ships[this.ships.length - 1] = new PlayerStaticFar(-1, AEResourceManager.getGeometryResource(var10), 0, 0, 8192);
 			this.ships[this.ships.length - 1].mainMesh_.setRenderLayer(2);
 			this.ships[this.ships.length - 1].mainMesh_.setRotation(0, AEMath.Q_PI_HALF, 0);
@@ -1429,20 +1437,23 @@ public final class Level {
 					}
 
 					Player[] var9 = new Player[(this.ego == null ? 0 : 1) + var4];
-					int var6;
-					Mission var8;
-					if (((var8 = Status.getMission()).getType() != 12 || i % 2 != 1) && var8.getType() != 2
-					      && var8.getType() != 9 && (!var8.isCampaignMission() || Status.getCurrentCampaignMission() != 40)
-					      && (!var8.isCampaignMission() || Status.getCurrentCampaignMission() != 41)) {
+					//int var6;
+					Mission var8 = Status.getMission();
+					if ((var8.getType() != 12 || i % 2 != 1)
+						&& var8.getType() != 2
+						&& var8.getType() != 9 
+						&& (!var8.isCampaignMission() || Status.getCurrentCampaignMission() != 40)
+						&& (!var8.isCampaignMission() || Status.getCurrentCampaignMission() != 41))
+					{
 						var4 = 0;
 						if (this.ego != null) {
 							var9[0] = this.ego.player;
 							var4 = 1;
 						}
 
-						for(var6 = 0; var6 < this.ships.length; ++var6) {
-							if (this.ships[var6] != this.ships[i] && (this.ships[var6].race != var2 || var3)) {
-								var9[var4] = this.ships[var6].player;
+						for(int j = 0; j < this.ships.length; ++j) {
+							if (this.ships[j] != this.ships[i] && (this.ships[j].race != var2 || var3)) {
+								var9[var4] = this.ships[j].player;
 								var4++;
 							}
 						}
@@ -1452,9 +1463,9 @@ public final class Level {
 						} else {
 							var4 = 0;
 
-							for(var6 = 0; var6 < this.ships.length; ++var6) {
-								if (this.ships[var6] != this.ships[i] && (this.ships[var6].race != var2 || var3)) {
-									var9[var4] = this.ships[var6].player;
+							for(int j = 0; j < this.ships.length; ++j) {
+								if (this.ships[j] != this.ships[i] && (this.ships[j].race != var2 || var3)) {
+									var9[var4] = this.ships[j].player;
 									var4++;
 								}
 							}

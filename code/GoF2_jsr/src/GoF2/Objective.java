@@ -1,5 +1,11 @@
 package GOF2;
 
+/**
+ * #TODO uinling types
+ * 
+ * @author Fishlabs
+ *
+ */
 public final class Objective {
 	private final int type;
 	private final int indexA_;
