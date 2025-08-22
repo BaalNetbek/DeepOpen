@@ -148,7 +148,7 @@ public final class Level {
 								this.mgameIntroCamRotY = this.mgameIntroCamRotY % 16 << 8;
 							} else {
 								this.mgameIntroCamRotY += GlobalStatus.random.nextInt(2) == 0 ?
-																-250 - GlobalStatus.random.nextInt(500):
+																-(250 + GlobalStatus.random.nextInt(500)):
 																 250 + GlobalStatus.random.nextInt(500);
 							}
 

@@ -24,8 +24,8 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
 			GlobalStatus.midlet = this;
 			this.canvas = new GOF2Canvas(this);
 			this.thread = new Thread(this);
-			this.state = 1;
-		} catch (final Exception var1) {
+			this.state = RUNNING;
+		} catch (final Exception e) {
 		}
 	}
 
@@ -42,7 +42,7 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
 				this.started = true;
 			}
 
-		} catch (final Exception var1) {
+		} catch (final Exception e) {
 		}
 	}
 
@@ -51,11 +51,11 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
 	}
 
 	public void resume() {
-		this.state = 2;
+		this.state = RESUME;
 	}
 
 	public void pause() {
-		this.state = 4;
+		this.state = PRE_PAUSE;
 	}
 
 	public void destroyApp(final boolean var1) {
@@ -63,7 +63,7 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
 			this.selfDestructing = true;
 			this.canvas.OnRelease();
 			notifyDestroyed();
-		} catch (final Exception var2) {
+		} catch (final Exception e) {
 		}
 	}
 
@@ -71,7 +71,7 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
 		try {
 			while(true) {
 				switch(this.state) {
-				case 1:
+				case RUNNING:
 					if (GlobalStatus.soundDeviceUnavailable && !this.selfDestructing && GlobalStatus.currentMusic != -1) {
 						GlobalStatus.soundManager.playMusic(GlobalStatus.currentMusic);
 					}
@@ -79,21 +79,21 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
 					this.canvas.update_();
 					this.canvas.synchronizeKeyState();
 					break;
-				case 2:
+				case RESUME:
 					if (GlobalStatus.soundManager != null && GlobalStatus.musicOn) {
 						GlobalStatus.soundManager.resume();
 					}
 
 					GlobalStatus.paused = false;
-					this.state = 1;
+					this.state = RUNNING;
 					break;
-				case 3:
+				case PAUSE:
 					this.canvas.handlePausedState();
 					this.canvas.synchronizeKeyState();
 					break;
-				case 4:
+				case PRE_PAUSE:
 					this.canvas.pause();
-					this.state = 3;
+					this.state = PAUSE;
 				}
 
 				try {
@@ -101,8 +101,8 @@ public class GOF2MIDlet extends MIDlet implements Runnable {
 				} catch (final InterruptedException var2) {
 				}
 			}
-		} catch (final Exception var3) {
-			var3.printStackTrace();
+		} catch (final Exception e) {
+			e.printStackTrace();
 		}
 	}
 
