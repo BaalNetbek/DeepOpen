@@ -828,7 +828,10 @@ public final class OptionsWindow {
     			case OPTIONS:
     				new RecordHandler().writeOptions();
     	         this.selectedRow = MM_OPTIONS;
-    	         this.subMenu = MAIN_MENU;
+                 this.subMenu = MAIN_MENU;
+                 if (this.forcePauseMenu_) {
+                    resetPauseMenu();
+                 }
     	         return false;
     			case HELP_CONTROLS:
     	         this.selectedRow = 1;
