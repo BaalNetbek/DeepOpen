@@ -135,7 +135,7 @@ public final class ModStation extends IApplicationModule {
 			String[] var5;
 			int var6;
 			if (Status.getPlayingTime() - var1 > 30000L) {
-				new Generator();
+				//new Generator();
 				var5 = null;
 				var2 = Status.getStation().getShopItems();
 				if (var2 != null) {

@@ -143,7 +143,7 @@ public final class ParticlesMesh extends AbstractMesh {
 		if (this.draw) {
 			this.matrix = var1.localTransformation.getInverse(this.matrix);
 			this.matrix.multiply(this.localTransformation);
-			var2.drawNode(this.renderLayer, this);
+			var2.addToLayer(this.renderLayer, this);
 		}
 
 	}

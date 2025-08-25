@@ -63,9 +63,9 @@ public final class StarSystem {
 	private final boolean inAlienSpace;
 
     public StarSystem() {
-        new Transform();
-        new AEMatrix();
-        new AEMatrix();
+        // new Transform();
+        // new AEMatrix();
+        // new AEMatrix();
         this.cameraControler = new CameraControllerGroup();
         this.inAlienSpace = Status.getSystem() == null;
         Image var2;

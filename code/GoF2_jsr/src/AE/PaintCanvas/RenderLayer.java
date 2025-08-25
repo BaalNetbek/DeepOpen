@@ -4,7 +4,8 @@ import AE.AbstractMesh;
 
 /**
  * Container for render layers. Used in Renderer to manage rendering order.
- * Layers are being rendered on top of previous which helps managing depth illusion.
+ * In each layer there are two layers, becouse transparent meshes render after opaque ones.
+ * Each layers is being rendered on top of previous which helps managing depth illusion.
  * @author fishlabs
  *
  */
@@ -19,10 +20,10 @@ public final class RenderLayer {
 			this.size = 1;
 		} else {
 			if (this.size == this.meshes.length) {
-				final AbstractMesh[] var2 = new AbstractMesh[this.meshes.length + 1];
-				System.arraycopy(this.meshes, 0, var2, 0, this.meshes.length);
-				var2[this.meshes.length] = var1;
-				this.meshes = var2;
+				final AbstractMesh[] postAppendMeshes = new AbstractMesh[this.meshes.length + 1];
+				System.arraycopy(this.meshes, 0, postAppendMeshes, 0, this.meshes.length);
+				postAppendMeshes[this.meshes.length] = var1;
+				this.meshes = postAppendMeshes;
 			} else {
 				this.meshes[this.size] = var1;
 			}

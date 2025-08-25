@@ -58,8 +58,8 @@ public final class PlayerStation extends PlayerStaticFar {
 		    -10361, 25852,  -11525, 25379, 16129, 23051,
 		    0,      0,      0,      0,     0,     0
 	      };
-	  private AbstractMesh[] stationParts;
-    private int[] partPositions;
+	private AbstractMesh[] stationParts;
+	private int[] partPositions;
     private int collidingPart;
     private int maxPartDeflection;
 
@@ -67,28 +67,38 @@ public final class PlayerStation extends PlayerStaticFar {
         super(-1, (AbstractMesh)null, 0, 0, 0);
         this.player.setRadius(15000);
         //new FileRead();
-        int[] var2 = null;
+        int[] stationParts = null;
         if (!Status.inAlienOrbit()) {
-            var2 = FileRead.loadStationParts(var1.getIndex(), Status.getSystem().getRace());
+            stationParts = FileRead.loadStationParts(var1.getIndex(), Status.getSystem().getRace());
         }
 
-        int var3;
-        if (var2 == null) {
+        //int var3;
+        if (stationParts == null) {
             this.stationParts = new AbstractMesh[1];
             Status.inAlienOrbit();
             this.stationParts[0] = AEResourceManager.getGeometryResource(3337);
             this.stationParts[0].setRenderLayer(2);
         } else {
-            this.stationParts = new AbstractMesh[var2.length / 7];
-
+            this.stationParts = new AbstractMesh[stationParts.length / 7];
+            
+            int j;
             for(int i = 0; i < this.stationParts.length; ++i) {
-                var3 = i * 7;
-                this.stationParts[i] = AEResourceManager.getGeometryResource(var2[var3]);
+                j = i * 7;
+                this.stationParts[i] = AEResourceManager.getGeometryResource(stationParts[j + FileRead.RESOURCE_ID]);
                 this.stationParts[i].setRotationOrder((short)0);
-                this.stationParts[i].moveTo(var2[var3 + 1], var2[var3 + 2], var2[var3 + 3]);
-                this.stationParts[i].setRotation(var2[var3 + 4], var2[var3 + 5], var2[var3 + 6]);
+				this.stationParts[i].moveTo(
+						stationParts[j + FileRead.POSITION_X],
+						stationParts[j + FileRead.POSITION_Y],
+						stationParts[j + FileRead.POSITION_Z]
+				);
+				this.stationParts[i].setRotation(
+						stationParts[j + FileRead.ROTATION_X],
+						stationParts[j + FileRead.ROTATION_Y],
+						stationParts[j + FileRead.ROTATION_Z]
+				);
                 this.stationParts[i].setRenderLayer(2);
-                if (this.stationParts[i].getID() == 3334 || this.stationParts[i].getID() == 3335) {
+                if (this.stationParts[i].getID() == 3334 ||
+            		this.stationParts[i].getID() == 3335) {
                     this.stationParts[i].setDraw(false);
                 }
             }
@@ -97,10 +107,10 @@ public final class PlayerStation extends PlayerStaticFar {
         this.maxPartDeflection = 0;
         this.boundingBoxes = new BoundingVolume[this.stationParts.length];
         final AEMatrix var8 = new AEMatrix();
-
-        for(var3 = 0; var3 < this.stationParts.length; ++var3) {
-            final int var9 = (this.stationParts[var3].getID() - 3301) * 6;
-            this.tempVector_ = this.stationParts[var3].getPosition(this.tempVector_);
+        
+        for(int i = 0; i < this.stationParts.length; ++i) {
+            final int stationPartIdx = (this.stationParts[i].getID() - 3301) * 6;
+            this.tempVector_ = this.stationParts[i].getPosition(this.tempVector_);
             if (AEMath.abs(this.tempVector_.x) > this.maxPartDeflection) {
                 this.maxPartDeflection = AEMath.abs(this.tempVector_.x);
             }
@@ -116,26 +126,42 @@ public final class PlayerStation extends PlayerStaticFar {
             final int var4 = this.tempVector_.x;
             final int var5 = this.tempVector_.y;
             final int var6 = this.tempVector_.z;
-            var8.setRotation(this.stationParts[var3].getEulerX(), this.stationParts[var3].getEulerY(), this.stationParts[var3].getEulerZ());
-            virtDistToCam_.set(this.partsCollisions[var9], this.partsCollisions[var9 + 1], this.partsCollisions[var9 + 2]);
-            this.position = var8.transformVectorNoScale(virtDistToCam_, this.position);
-            virtDistToCam_.set(this.partsCollisions[var9 + 3] + 5000, this.partsCollisions[var9 + 4] + 5000, this.partsCollisions[var9 + 5] + 5000);
-            this.tempVector_ = var8.transformVectorNoScale(virtDistToCam_, this.tempVector_);
-            this.boundingBoxes[var3] = new BoundingAAB(var4, var5, var6, this.position.x, this.position.y, this.position.z, this.tempVector_.x, this.tempVector_.y, this.tempVector_.z);
-            if (Status.getSystem() != null) {
-                var2 = Globals.getRaceUVkeyframeId_(Status.getSystem().getRace());
-                this.stationParts[var3].setAnimationRangeInTime(var2[0], var2[1]);
-                this.stationParts[var3].disableAnimation();
-            }
+			var8.setRotation(
+					this.stationParts[i].getEulerX(),
+					this.stationParts[i].getEulerY(),
+					this.stationParts[i].getEulerZ()
+			);
+			virtDistToCam_.set(
+					this.partsCollisions[stationPartIdx + BoundingAAB.OFFSET_X],
+					this.partsCollisions[stationPartIdx + BoundingAAB.OFFSET_Y],
+					this.partsCollisions[stationPartIdx + BoundingAAB.OFFSET_Z]
+			);
+			this.position = var8.transformVectorNoScale(virtDistToCam_, this.position);
+			virtDistToCam_.set(
+					this.partsCollisions[stationPartIdx + BoundingAAB.DIMENSION_X] + 5000,
+					this.partsCollisions[stationPartIdx + BoundingAAB.DIMENSION_Y] + 5000,
+					this.partsCollisions[stationPartIdx + BoundingAAB.DIMENSION_Z] + 5000
+			);
+			this.tempVector_ = var8.transformVectorNoScale(virtDistToCam_, this.tempVector_);
+			this.boundingBoxes[i] = new BoundingAAB(
+					var4, var5, var6,
+					this.position.x, this.position.y, this.position.z,
+					this.tempVector_.x, this.tempVector_.y, this.tempVector_.z
+			);
+			if (Status.getSystem() != null) {
+				stationParts = Globals.getRaceUVkeyframeId_(Status.getSystem().getRace());
+				this.stationParts[i].setAnimationRangeInTime(stationParts[0], stationParts[1]);
+				this.stationParts[i].disableAnimation();
+			}
         }
 
         this.maxPartDeflection += 5000;
         this.partPositions = new int[this.stationParts.length * 3];
 
-        for(var3 = 0; var3 < this.stationParts.length; ++var3) {
-            this.partPositions[var3 * 3] = this.stationParts[var3].getPosX();
-            this.partPositions[var3 * 3 + 1] = this.stationParts[var3].getPosY();
-            this.partPositions[var3 * 3 + 2] = this.stationParts[var3].getPosZ();
+        for(int i = 0; i < this.stationParts.length; ++i) {
+            this.partPositions[i * 3] = this.stationParts[i].getPosX();
+            this.partPositions[i * 3 + 1] = this.stationParts[i].getPosY();
+            this.partPositions[i * 3 + 2] = this.stationParts[i].getPosZ();
         }
 
     }

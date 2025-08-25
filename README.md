@@ -25,7 +25,7 @@ Don't:
 * Don't reformat and otherwise refactor in one pull request as it makes it hard to verify changes.
 
 You can:
-* Look for #TODO in the code.
+* Look for TODO in the code.
 * Rename for names that make no sense.
 * Document the code with javadoc.
 * Deobfuscate other (than GoF2) Abyss Engine games. I suggest Deep or GoF3D.
@@ -38,10 +38,13 @@ You can:
 For analysis used mainly:\
  [Col-E/Recaf](https://github.com/Col-E/Recaf)\
  [shinovon/KEmulator](https://github.com/shinovon/KEmulator)\
- [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) (GoF binaries from other platforms)
+ [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) (GoF binaries from other platforms)\
+ [MinecraftForge/Srg2Source](https://github.com/MinecraftForge/Srg2Source)\
+ [FabricMC/Matcher](https://github.com/FabricMC/Matcher)
+
 
 More: \
  [Renaming inspiration](/extras/gof2-1.0.1-ios-symbols/simple-mapping)\
  [Lookup tables for GoF2](https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vRjJFtnrG9-7vdqHtHtPCu0Tg7C-1A89lxo434_7fgEguS9I6O1u3wcRmoWnHEhgUP2Mbd9EMIzAPJA/pubhtml#)\
  [other extras](/extras/)\
- [GoF2:Reforged](https://drive.google.com/drive/folders/198TUt7ERvaK7kdShcHvn_otm48rbBnKV)
+ [GoF2:Reforged](https://drive.google.com/drive/folders/198TUt7ERvaK7kdShcHvn_otm48rbBnKV) (interesting mod)

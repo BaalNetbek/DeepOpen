@@ -23,7 +23,7 @@ public abstract class AbstractMesh extends AEGeometry {
 		if (this.draw && camera.isInViewFrustum(this.boundingSphere) != 0) {
 			this.matrix = camera.localTransformation.getInverse(this.matrix);
 			this.matrix.multiply(this.localTransformation);
-			renderer.drawNode(this.renderLayer, this);
+			renderer.addToLayer(this.renderLayer, this);
 		}
 
 	}
@@ -32,7 +32,7 @@ public abstract class AbstractMesh extends AEGeometry {
 		if (this.draw) {
 			this.matrix = camera.localTransformation.getInverse(this.matrix);
 			this.matrix.multiply(this.localTransformation);
-			renderer.drawNode(this.renderLayer, this);
+			renderer.addToLayer(this.renderLayer, this);
 		}
 
 	}

@@ -7,6 +7,12 @@ import AE.GraphNode;
 import AE.Group;
 
 public final class Globals {
+	public static final int STATIONS_COUNT = 100;
+    public static final int VOSSK_STATION_ID = 100;
+    public static final int SYSTEMS_COUNT = 22;
+	public static final int ITEMS_COUNT = 176;
+	public static final int SHIPS_COUNT = 37;
+	public static final int SPECIAL_AGENTS_COUNT = 16;
     // races
     public static final int TERRAN = 0;
     public static final int VOSSK = 1;
@@ -19,6 +25,7 @@ public final class Globals {
     public static final int PIRATE = 8;
     public static final int VOID = 9;
     public static final int WOMAN = 10;
+    public static final int MISC = 11;
 
     private static String PATH_MESHES = "/data/3d/";
     private static String PATH_TEXTURES = "/data/textures/";
@@ -44,29 +51,41 @@ public final class Globals {
           6788, 6790, 6792, 6797, 6794, 6791, 6796, 6788,
           -1, -1, -1, -1, -1, -1, 6784, 6785, 6786
           };
-    public static final byte[] CHAR_KEITH;
-    private static byte[] CHAR_BRENT;
-    private static byte[] CHAR_GUNANT;
-    private static byte[] CHAR_NORRIS;
-    private static byte[] CHAR_MKKT_BKKT;
-    private static byte[] CHAR_TOMMY;
-    private static byte[] CHAR_CARLA;
-    private static byte[] CHAR_ERRKT;
-    private static byte[] CHAR_JEAN;
-    private static byte[] CHAR_PIRATE_CHIEF;
-    private static byte[] CHAR_PIRATE_1;
-    private static byte[] CHAR_PIRATE_2;
-    private static byte[] CHAR_SECURITY_GUY;
-    private static byte[] CHAR_SECURITY_GIRL;
-    private static byte[] CHAR_KIDNAPPER;
-    private static byte[] CHAR_STORY;
-    public static final byte[] CHAR_COMPUTER;
-    private static byte[] CHAR_INFO_PIC;
-    private static byte[] CHAR_TERRAN_OFFICER;
-    private static byte[] CHAR_VOID;
-    private static byte[] CHAR_KHADOR;
-    private static byte[] CHAR_NIVELIAN_SECURITY;
-    public static final byte[][] CHAR_IMAGES;
+    public static final byte[] CHAR_KEITH =			{TERRAN, 7, 7, 7, 7};
+    private static byte[] CHAR_BRENT =				{TERRAN, 2, 2, 2, 2};
+    private static byte[] CHAR_GUNANT =				{NIVELIAN, 1, 1, 1, 1};
+    private static byte[] CHAR_NORRIS =				{TERRAN, 3, 3, 3, 3};
+    private static byte[] CHAR_MKKT_BKKT =			{MULTIPOD, 0, 0, 0, 0};
+    private static byte[] CHAR_TOMMY =				{TERRAN, 4, 4, 4, 4};
+    private static byte[] CHAR_CARLA =				{WOMAN, 0, 0, 0, 0};
+    private static byte[] CHAR_ERRKT =				{VOSSK, 0, 0, 0, 0};
+    private static byte[] CHAR_JEAN =				{TERRAN, 3, 2, 3, 1};
+    private static byte[] CHAR_PIRATE_CHIEF =		{TERRAN, 1, 2, 3, 4};
+    private static byte[] CHAR_PIRATE_1 =			{TERRAN, 2, 3, 3, 5};
+    private static byte[] CHAR_PIRATE_2 =			{TERRAN, 3, 4, 3, 6};
+    private static byte[] CHAR_SECURITY_GUY =		{TERRAN, 6, 0, 5, 1};
+    private static byte[] CHAR_SECURITY_GIRL =		{WOMAN, 1, 2, 3, 4};
+    private static byte[] CHAR_KIDNAPPER =			{NIVELIAN,  1, 2, 1, 2};
+    private static byte[] CHAR_STORY =				{MISC, 1, 0, 0, 0};
+    public static final byte[] CHAR_COMPUTER =		{MISC, 1, 0, 0, 0};
+    private static byte[] CHAR_INFO_PIC =			{MISC, 0, 0, 0, 0};
+    private static byte[] CHAR_TERRAN_OFFICER =		{TERRAN,  2, 4, 4, 4};
+    private static byte[] CHAR_VOID =				{VOID, 0, 0, 0, 0};
+    private static byte[] CHAR_KHADOR =				{GREY, 0, 0, 0, 0};
+    private static byte[] CHAR_NIVELIAN_SECURITY =	{NIVELIAN, 0, 0, 0, 0};
+    public static final byte[][] CHAR_IMAGES = { 
+		CHAR_KEITH,          CHAR_BRENT,
+        CHAR_GUNANT,         CHAR_NORRIS,
+        CHAR_MKKT_BKKT,      CHAR_TOMMY,
+        CHAR_CARLA,          CHAR_ERRKT,
+        CHAR_JEAN,           CHAR_PIRATE_CHIEF,
+        CHAR_PIRATE_1,       CHAR_PIRATE_2,
+        CHAR_SECURITY_GUY,   CHAR_SECURITY_GIRL,
+        CHAR_KIDNAPPER,      CHAR_STORY,
+        CHAR_COMPUTER,       CHAR_INFO_PIC,
+        CHAR_TERRAN_OFFICER, CHAR_VOID,
+        CHAR_KHADOR,         CHAR_NIVELIAN_SECURITY
+    };
     private static Ship[] ships;
     private static Item[] items;
 
@@ -93,21 +112,21 @@ public final class Globals {
 
     public static int[] getRaceUVkeyframeId_(final int var0) {
         switch(var0) {
-        case 2:
+        case NIVELIAN:
             return new int[]{2, 2};
-        case 3:
+        case MIDORIAN:
             return new int[]{3, 3};
-        case 8:
+        case PIRATE:
             return new int[]{0, 0};
         default:
             return new int[]{1, 1};
         }
     }
 
-    public static String getRandomName(final int var0, final boolean isMale) {
+    public static String getRandomName(final int race, final boolean isMale) {
         //new FileRead();
-        final String[] firstNames = FileRead.loadNamesBinary(var0, isMale, true);
-        final String[] lastNames = FileRead.loadNamesBinary(var0, isMale, false);
+        final String[] firstNames = FileRead.loadNamesBinary(race, isMale, true);
+        final String[] lastNames = FileRead.loadNamesBinary(race, isMale, false);
         final String firstName = firstNames == null ? "" : firstNames[GlobalStatus.random.nextInt(firstNames.length)];
         final String lastName = lastNames == null ? "" : lastNames[GlobalStatus.random.nextInt(lastNames.length)];
         //if (lastName == ""/null) return firstName;
@@ -119,41 +138,40 @@ public final class Globals {
     }
 
     public static int getRandomEnemyFighter(final int race) {
-        int ship = 0;
-        if (race == Globals.VOID) {
-            ship = 8;
+        int ship;
+        if (race == VOID) {
+            ship = Ship.VOIDX;
         }
-        else if (race == Globals.VOSSK) {
-            ship = 9;
+        else if (race == VOSSK) {
+            ship = Ship.H_SOC;
         }
         else {
             do {
-                ship = GlobalStatus.random.nextInt(37);
-            } while (ship == 0 || 
-                    ship == 9 ||
-                    ship == 8 ||
-                    ship == 10 ||
-                    ship == 13 ||
-                    ship == 14 ||
-                    ship == 15);
+                ship = GlobalStatus.random.nextInt(SHIPS_COUNT);
+            } while (ship == Ship.BETTY || 
+                    ship == Ship.H_SOC ||
+                    ship == Ship.VOIDX ||
+                    ship == Ship.PHANTOM ||
+                    ship == Ship.K_SARR ||
+                    ship == Ship.CRUISER ||
+                    ship == Ship.CARGO);
         }
         return ship;
     }
     /**
      *
-     * @param var0 ship index
-     * @param var1 race
+     * @param ship ship index
+     * @param race race
      * @return ship's mesh group
      */
-    public static Group getShipGroup(final int var0, final int var1) {
+    public static Group getShipGroup(final int ship, final int race) {
         final Group var2 = new Group();
-        //new FileRead();
-        final int[] var3 = FileRead.loadShipParts(var0);
-        final int[] var6 = getRaceUVkeyframeId_(var1);
+        final int[] parts = FileRead.loadShipParts(ship);
+        final int[] var6 = getRaceUVkeyframeId_(race);
 
-		for (int i = 0; i < var3.length; i += 10) {
+		for (int i = 0; i < parts.length; i += 10) {
 			AbstractMesh mesh;
-			if ((mesh = AEResourceManager.getGeometryResource(var3[i])).getID() >= 13064 && mesh.getID() <= 13071) {
+			if ((mesh = AEResourceManager.getGeometryResource(parts[i])).getID() >= 13064 && mesh.getID() <= 13071) {
 				mesh.setAnimationMode((byte) 2);
 			} else {
 				mesh.setAnimationRangeInTime(var6[0], var6[1]);
@@ -162,10 +180,22 @@ public final class Globals {
 
 			if (mesh.getID() == 13067 || mesh.getID() == 13068 || mesh.getID() == 13070 || mesh.getID() == 13064
 					|| mesh.getID() == 13065 || mesh.getID() == 13071 || mesh.getID() == 13061 || mesh.getID() == 13063
-					|| mesh.getID() == 13062 || var0 == 14 || var0 == 13 || var0 == 15) {
-				mesh.moveTo(var3[i + 1], var3[i + 2], var3[i + 3]);
-				mesh.setRotation(var3[i + 4], var3[i + 5], var3[i + 6]);
-				mesh.setScale(var3[i + 7], var3[i + 8], var3[i + 9]);
+					|| mesh.getID() == 13062 || ship == Ship.CRUISER || ship == Ship.K_SARR || ship == Ship.CARGO) {
+				mesh.moveTo(
+						parts[i + FileRead.POSITION_X],
+						parts[i + FileRead.POSITION_Y],
+						parts[i + FileRead.POSITION_Z]
+				);
+				mesh.setRotation(
+						parts[i + FileRead.ROTATION_X],
+						parts[i + FileRead.ROTATION_Y],
+						parts[i + FileRead.ROTATION_Z]
+				);
+				mesh.setScale(
+						parts[i + FileRead.SCALE_X],
+						parts[i + FileRead.SCALE_Y],
+						parts[i + FileRead.SCALE_Z]
+				);
 			}
 
 			mesh.setRenderLayer(2);
@@ -182,9 +212,21 @@ public final class Globals {
         int i = parts.length - 10;
 
         for(GraphNode node = var0.getEndNode(); node != null; node = node.getParent()) {
-            node.moveTo		 (parts[i + 1], parts[i + 2], parts[i + 3]);
-            node.setRotation(parts[i + 4], parts[i + 5], parts[i + 6]);
-            node.setScale	 (parts[i + 7], parts[i + 8], parts[i + 9]);
+        	node.moveTo(
+					parts[i + FileRead.POSITION_X],
+					parts[i + FileRead.POSITION_Y],
+					parts[i + FileRead.POSITION_Z]
+			);
+        	node.setRotation(
+					parts[i + FileRead.ROTATION_X],
+					parts[i + FileRead.ROTATION_Y],
+					parts[i + FileRead.ROTATION_Z]
+			);
+        	node.setScale(
+					parts[i + FileRead.SCALE_X],
+					parts[i + FileRead.SCALE_Y],
+					parts[i + FileRead.SCALE_Z]
+			);
             i -= 10;
         }
 
@@ -392,44 +434,9 @@ public final class Globals {
         AEResourceManager.OnRelease();
     }
 
-    static {
-        // optimization artifact, legacy code?
-        //short[][] var10000 = new short[][]{{11, 22, 28, 5, 7}, {4, 30}, {3, 14}, {9, 16}};
-        //var10000 = new short[][]{{11, 22, 28, 5, 7}, {4, 30}, {3, 14}, {9, 16}};
-        CHAR_KEITH = new byte[]{0, 7, 7, 7, 7};
-        CHAR_BRENT = new byte[]{0, 2, 2, 2, 2};
-        CHAR_GUNANT = new byte[]{2, 1, 1, 1, 1};
-        CHAR_NORRIS = new byte[]{0, 3, 3, 3, 3};
-        CHAR_MKKT_BKKT = new byte[]{4, 0, 0, 0, 0};
-        CHAR_TOMMY = new byte[]{0, 4, 4, 4, 4};
-        CHAR_CARLA = new byte[]{10, 0, 0, 0, 0};
-        CHAR_ERRKT = new byte[]{1, 0, 0, 0, 0};
-        CHAR_JEAN = new byte[]{0, 3, 2, 3, 1};
-        CHAR_PIRATE_CHIEF = new byte[]{0, 1, 2, 3, 4};
-        CHAR_PIRATE_1 = new byte[]{0, 2, 3, 3, 5};
-        CHAR_PIRATE_2 = new byte[]{0, 3, 4, 3, 6};
-        CHAR_SECURITY_GUY = new byte[]{0, 6, 0, 5, 1};
-        CHAR_SECURITY_GIRL = new byte[]{10, 1, 2, 3, 4};
-        CHAR_KIDNAPPER = new byte[]{2, 1, 2, 1, 2};
-        CHAR_STORY = new byte[]{11, 1, 0, 0, 0};
-        CHAR_COMPUTER = new byte[]{11, 1, 0, 0, 0};
-        CHAR_INFO_PIC = new byte[]{11, 0, 0, 0, 0};
-        CHAR_TERRAN_OFFICER = new byte[]{0, 2, 4, 4, 4};
-        CHAR_VOID = new byte[]{9, 0, 0, 0, 0};
-        CHAR_KHADOR = new byte[]{7, 0, 0, 0, 0};
-        CHAR_NIVELIAN_SECURITY = new byte[]{2, 0, 0, 0, 0};
-        CHAR_IMAGES = new byte[][] { 
-			     CHAR_KEITH,          CHAR_BRENT,
-		        CHAR_GUNANT,         CHAR_NORRIS,
-		        CHAR_MKKT_BKKT,      CHAR_TOMMY,
-		        CHAR_CARLA,          CHAR_ERRKT,
-		        CHAR_JEAN,           CHAR_PIRATE_CHIEF,
-		        CHAR_PIRATE_1,       CHAR_PIRATE_2,
-		        CHAR_SECURITY_GUY,   CHAR_SECURITY_GIRL,
-		        CHAR_KIDNAPPER,      CHAR_STORY,
-		        CHAR_COMPUTER,       CHAR_INFO_PIC,
-		        CHAR_TERRAN_OFFICER, CHAR_VOID,
-		        CHAR_KHADOR,         CHAR_NIVELIAN_SECURITY
-	        };
-    }
+//    static {
+//        // optimization artifact, legacy code?
+//        //short[][] var10000 = new short[][]{{11, 22, 28, 5, 7}, {4, 30}, {3, 14}, {9, 16}};
+//        //var10000 = new short[][]{{11, 22, 28, 5, 7}, {4, 30}, {3, 14}, {9, 16}};
+//    }
 }

@@ -25,11 +25,11 @@ public final class AEMath {
 	/** 1/32 = 0.03125 **/
 	public static final int Q_32nd = Q_1 / 32;
 	/** 1/16 = 0.0625 **/
-	public static final int Q_SIXTEENTH = Q_1 / 16;
+	public static final int Q_16th = Q_1 / 16;
 	/** 1/8 = 0.125 **/
 	public static final int Q_EIGHTH = Q_1 / 8;
 	/** 3/16 = 0.1875 **/
-	public static final int Q_THREE_SIXTEENTH = Q_1 * 3/16;
+	public static final int Q_THREE_SIXTEENTHS = Q_1 * 3/16;
 	/** 1/4 = 0.25 **/
 	public static final int Q_QUARTER = Q_1 / 4;
 	/** 3/8 = 0.375 **/
@@ -65,7 +65,7 @@ public final class AEMath {
 	/** 22.5 degrees **/
 	public static final int Q_PI_EIGHTH = Q_EIGHTH;
 	/** 11.25 degrees **/
-	public static final int Q_PI_SIXTEENTH = Q_SIXTEENTH;
+	public static final int Q_PI_SIXTEENTH = Q_16th;
 	/** 5.625 degrees **/
 	public static final int Q_PI_THIRTYSECOND = Q_32nd;
 	

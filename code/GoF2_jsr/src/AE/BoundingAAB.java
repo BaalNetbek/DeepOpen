@@ -1,6 +1,13 @@
 package AE;
 
 public final class BoundingAAB extends BoundingVolume {
+	public static final int OFFSET_X = 0; 
+	public static final int OFFSET_Y = 1;
+	public static final int OFFSET_Z = 2;
+	public static final int DIMENSION_X = 3; 
+	public static final int DIMENSION_Y = 4; 
+	public static final int DIMENSION_Z = 5; 
+	
 	private final int halfSizeX;
 	private final int halfSizeY;
 	private final int halfSizeZ;

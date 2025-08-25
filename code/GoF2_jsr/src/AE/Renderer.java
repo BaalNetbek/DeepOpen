@@ -20,9 +20,13 @@ public final class Renderer {
 	public final void setActiveCamera(final AECamera var1) {
 		this.camera = var1;
 		this.camera.setActive();
-
-		for(this.cameraTopGroup = this.camera; this.cameraTopGroup.getGroup() != null; this.cameraTopGroup = this.cameraTopGroup.getGroup()) {
+		
+		this.cameraTopGroup = this.camera;
+		while(this.cameraTopGroup.getGroup() != null) {
+			this.cameraTopGroup = this.cameraTopGroup.getGroup();
 		}
+//		for(this.cameraTopGroup = this.camera; this.cameraTopGroup.getGroup() != null; this.cameraTopGroup = this.cameraTopGroup.getGroup()) {
+//		}
 
 	}
 
@@ -43,8 +47,8 @@ public final class Renderer {
 				var1.appendToRender(this.camera, this);
 			}
 
-		} catch (final Exception var2) {
-			var2.printStackTrace();
+		} catch (final Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -73,18 +77,18 @@ public final class Renderer {
 
 	}
 
-	public final void addLayer() {
-		final RenderLayer[] var2 = new RenderLayer[this.layers.length + 1];
-		System.arraycopy(this.layers, 0, var2, 0, this.layers.length);
-		var2[this.layers.length] = new RenderLayer();
-		this.layers = var2;
-		final boolean[] var3 = new boolean[this.needGraphicsClear.length + 1];
-		System.arraycopy(this.needGraphicsClear, 0, var3, 0, this.needGraphicsClear.length);
-		var3[this.needGraphicsClear.length] = true;
-		this.needGraphicsClear = var3;
+	public final void stackLayer() {
+		final RenderLayer[] extLayers = new RenderLayer[this.layers.length + 1];
+		System.arraycopy(this.layers, 0, extLayers, 0, this.layers.length);
+		extLayers[this.layers.length] = new RenderLayer();
+		this.layers = extLayers;
+		final boolean[] extNDC = new boolean[this.needGraphicsClear.length + 1];
+		System.arraycopy(this.needGraphicsClear, 0, extNDC, 0, this.needGraphicsClear.length);
+		extNDC[this.needGraphicsClear.length] = true;
+		this.needGraphicsClear = extNDC;
 	}
 
-	public final void drawNode(final int var1, final AbstractMesh var2) {
-		this.layers[var1].appendNode(var2);
+	public final void addToLayer(final int layerIdx, final AbstractMesh mesh) {
+		this.layers[layerIdx].appendNode(mesh);
 	}
 }

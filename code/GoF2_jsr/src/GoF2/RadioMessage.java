@@ -59,7 +59,8 @@ public final class RadioMessage {
     public final void finish() {
         this.finished = true;
     }
-
+    
+    /** TODO uinline */
     public final boolean triggered(final long var1, final PlayerEgo playerEgo) {
         if (this.triggered) {
             return false;

@@ -405,16 +405,16 @@ public final class JSRMesh extends AbstractMesh {
 	}
 
 	public final void setTexture(final ITexture var1) {
-		int var2;
+		int i;
 		if (this.opaqueNodes != null) {
-			for(var2 = 0; var2 < this.opaqueNodes.length; ++var2) {
-				setupMaterial(this.opaqueNodes[var2], ((JSRTexture)var1).getTexturesArray(), false);
+			for(i = 0; i < this.opaqueNodes.length; ++i) {
+				setupMaterial(this.opaqueNodes[i], ((JSRTexture)var1).getTexturesArray(), false);
 			}
 		}
 
 		if (this.transparentNodes != null) {
-			for(var2 = 0; var2 < this.transparentNodes.length; ++var2) {
-				setupMaterial(this.transparentNodes[var2], ((JSRTexture)var1).getTexturesArray(), true);
+			for(i = 0; i < this.transparentNodes.length; ++i) {
+				setupMaterial(this.transparentNodes[i], ((JSRTexture)var1).getTexturesArray(), true);
 			}
 		}
 

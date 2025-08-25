@@ -1223,8 +1223,8 @@ af.a()Lap; getCamera
 af.a(Lah;)V drawNodeInVF
 af.a()V renderStillFrame
 af.a(J)V renderFrame
-af.b()V addLayer
-af.a(ILag;)V drawNode
+af.b()V stackLayer
+af.a(ILag;)V addToLayer
 ai AE/AEFile
 ai.a Ljava/lang/Class; clazs
 ai.a(Ljavax/microedition/lcdui/Image;II)Ljavax/microedition/lcdui/Image; resizeImage

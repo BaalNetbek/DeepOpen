@@ -121,9 +121,9 @@ public final class GOF2Canvas extends GameCanvas {
 			new RecordHandler().readOptions();
 			GlobalStatus.musicOn = false;
 			GlobalStatus.graphics3D = new AEGraphics3D();
-			(GlobalStatus.renderer = new Renderer(GlobalStatus.graphics3D)).addLayer();
-			GlobalStatus.renderer.addLayer();
-			GlobalStatus.renderer.addLayer();
+			(GlobalStatus.renderer = new Renderer(GlobalStatus.graphics3D)).stackLayer();
+			GlobalStatus.renderer.stackLayer();
+			GlobalStatus.renderer.stackLayer();
 			GlobalStatus.soundManager = new SoundManager();
 			Globals.buildResourceList();
 			Globals.OnInitialize();

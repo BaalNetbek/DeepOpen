@@ -33,7 +33,7 @@ public final class Agent {
 	public boolean wasAskedForDifficulty;
 	public boolean wasAskedForLocation;
 
-	public Agent(final int message, final String name, final int stationIdx, final int systemIdx, final int race, final boolean isMale, final int var7, final int var8, final int var9) {
+	public Agent(final int message, final String name, final int stationIdx, final int systemIdx, final int race, final boolean isMale, final int secretSystemIdx, final int bluePrintItemIdx, final int sellingPrice) {
 		this.messageId = message;
 		this.fullName = name;
 		this.stationId = stationIdx;
@@ -41,17 +41,17 @@ public final class Agent {
 		this.race = race;
 		this.male = isMale;
 		this.event = 0;
-		this.secretSystemId = var7;
-		if (var7 >= 0) {
+		this.secretSystemId = secretSystemIdx;
+		if (secretSystemIdx >= 0) {
 			this.type = 4;
 		}
 
-		this.blueprintItemId = var8;
-		if (var8 >= 0) {
+		this.blueprintItemId = bluePrintItemIdx;
+		if (bluePrintItemIdx >= 0) {
 			this.type = 3;
 		}
 
-		this.sellingPrice = var9;
+		this.sellingPrice = sellingPrice;
 		this.origin_ = message >= 0 ? 0 : 1;
 		this.wingmanFriendsCount = 0;
 		this.accepted = false;

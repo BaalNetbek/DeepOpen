@@ -64,7 +64,7 @@ public final class BackGroundMesh extends AbstractMesh {
 	public final void appendToRender(final AECamera var1, final Renderer var2) {
 		if (this.draw) {
 			this.matrix = var1.localTransformation.getInverse(this.matrix);
-			var2.drawNode(this.renderLayer, this);
+			var2.addToLayer(this.renderLayer, this);
 		}
 
 	}

@@ -121,7 +121,7 @@ public final class CutScene extends IApplicationModule {
 			case 23:
 				this.hangarCam = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 900, 10, AEGraphics3D.CAMERA_FAR);
 				this.hangarCam.moveTo(0, 1700, 1500);
-				this.hangarCam.setRotation(-AEMath.Q_SIXTEENTH, 0, 0);
+				this.hangarCam.setRotation(-AEMath.Q_16th, 0, 0);
 				GlobalStatus.renderer.setActiveCamera(this.hangarCam);
 				this.cameraGroupOfOne_ = new Group();
 				this.cameraGroupOfOne_.uniqueAppend_(this.hangarCam);

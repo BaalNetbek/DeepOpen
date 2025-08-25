@@ -380,14 +380,14 @@ public final class LevelScript {
 					camera.moveTo(playerEgo.shipGrandGroup_.getPosition(this.tempVec));
 					this.tempVec = playerEgo.shipGrandGroup_.getDirection();
 					this.tempVec.scale(AEMath.Q_4);
-					new AEVector3D();
+					//new AEVector3D();
 					AEVector3D var9 = playerEgo.shipGrandGroup_.getRight();
 					var9.scale(AEMath.Q_HALF);
 					this.tempVec.add(var9);
 					camera.translate(this.tempVec);
 					this.probe = AEResourceManager.getGeometryResource(18);
 					this.probe.setTransform(playerEgo.shipGrandGroup_.getToParentTransform());
-					this.probe.setScale(AEMath.Q_THREE_SIXTEENTH, AEMath.Q_THREE_SIXTEENTH, AEMath.Q_THREE_SIXTEENTH);
+					this.probe.setScale(AEMath.Q_THREE_SIXTEENTHS, AEMath.Q_THREE_SIXTEENTHS, AEMath.Q_THREE_SIXTEENTHS);
 				} else if (rMessages[2].isOver() && this.step == 1) {
 					this.step = 2;
 					this.hud.drawUI = true;

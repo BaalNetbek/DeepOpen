@@ -206,7 +206,7 @@ public final class PlayerAsteroid extends KIPlayer {
 		final int var2 = (int)(this.baseScaleX * var1);
 		final int var3 = (int)(this.baseScaleY * var1);
 		final int var4 = (int)(this.baseScaleZ * var1);
-		if (var2 + var3 + var4 < AEMath.Q_SIXTEENTH) {
+		if (var2 + var3 + var4 < AEMath.Q_16th) {
 			this.sizeCoef_ = 0;
 			this.tier = 0;
 			setActive(false);

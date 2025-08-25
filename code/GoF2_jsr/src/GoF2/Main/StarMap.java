@@ -29,6 +29,10 @@ import GOF2.Status;
 import GOF2.SystemPathFinder;
 
 public final class StarMap {
+	private static final int PATH = 0xFF3A6286;
+	private static final int PATH_LIGHT = 0xFFC0D8E9;
+	private static final int MARKED_PATH = 0xFFB7A934;
+	private static final int MARKED_PATH_LIGHT = 0xFFFFFFFF;
 	private final int[] planetSizes = {
 	      320, 192, 256, 256, 192,
 	      256, 192, 192, 320, 256, 
@@ -163,7 +167,7 @@ public final class StarMap {
 		this.galaxyMapGroup.updateTransform(true);
 		this.tmpStarScreenPos2 = new AEVector3D();
 		this.tmpStarScreenPos1 = new AEVector3D();
-		new AEVector3D();
+		//new AEVector3D();
 		this.matrix = new AEMatrix();
 		GlobalStatus.random.setSeed(System.currentTimeMillis());
 		init(var1, var2, var3, var4);
@@ -643,7 +647,6 @@ public final class StarMap {
 	private void initStarSysMap() {
 		final int var1 = this.systems[this.selectedSystem].getStations().length;
 		this.selectedSystemStations = new Station[var1];
-		//new FileRead();
 		this.selectedSystemStations = FileRead.loadStationsBinary(this.systems[this.selectedSystem]);
 		this.planetRevolutAngs = new int[var1];
 		this.distsToStar = new int[var1];
@@ -651,26 +654,26 @@ public final class StarMap {
 		this.localStarAndPlanetsMeshes = new AbstractMesh[var1 + 2];
 		this.localSystem = new Group();
 
-		int var2;
-		for(var2 = 0; var2 < this.occupiedOrbits_.length; ++var2) {
-			this.occupiedOrbits_[var2] = false;
+		//int var2;
+		for(int i = 0; i < this.occupiedOrbits_.length; ++i) {
+			this.occupiedOrbits_[i] = false;
 		}
 
-		int var3;
-		for(var2 = 0; var2 < this.localStarAndPlanetsMeshes.length; ++var2) {
-			if (var2 > 1) {
-				this.localStarAndPlanetsMeshes[var2] = AEResourceManager.getGeometryResource(6778);
+		//int var3;
+		for(int i = 0; i < this.localStarAndPlanetsMeshes.length; ++i) {
+			if (i > 1) {
+				this.localStarAndPlanetsMeshes[i] = AEResourceManager.getGeometryResource(6778);
 			} else {
-				var3 = this.systems[this.selectedSystem].getStarTextureIndex();
-				this.localStarAndPlanetsMeshes[var2] = AEResourceManager.getGeometryResource(6781);
-				this.localStarAndPlanetsMeshes[var2].setAnimationRangeInTime(var3, var3);
+				int starTexture = this.systems[this.selectedSystem].getStarTextureIndex();
+				this.localStarAndPlanetsMeshes[i] = AEResourceManager.getGeometryResource(6781);
+				this.localStarAndPlanetsMeshes[i].setAnimationRangeInTime(starTexture, starTexture);
 			}
 
-			this.localStarAndPlanetsMeshes[var2].setAnimationMode((byte)1);
-			this.localStarAndPlanetsMeshes[var2].setRadius(5000);
-			if (var2 > 1) {
+			this.localStarAndPlanetsMeshes[i].setAnimationMode((byte)1);
+			this.localStarAndPlanetsMeshes[i].setRadius(5000);
+			if (i > 1) {
 				final AEMatrix var7 = new AEMatrix();
-				int var4 = 0;
+				int planetRevolution = 0;
 				boolean var5 = false;
 
 				int var6;
@@ -678,62 +681,62 @@ public final class StarMap {
 					var6 = GlobalStatus.random.nextInt(this.occupiedOrbits_.length);
 					if (!this.occupiedOrbits_[var6]) {
 						this.occupiedOrbits_[var6] = true;
-						var4 = AEMath.Q_1 / this.occupiedOrbits_.length * var6;
+						planetRevolution = AEMath.Q_1 / this.occupiedOrbits_.length * var6;
 						var5 = true;
 					}
 				}
-
-				this.planetRevolutAngs[var2 - 2] = var4;
-				var7.addEulerAngles(0, var4, 0);
-				var6 = var2 == 2 ? AEMath.Q_EIGHTH : this.distsToStar[var2 - 3];
-				this.distsToStar[var2 - 2] = var6 + AEMath.Q_32nd + GlobalStatus.random.nextInt(376);
-				final AEVector3D var9 = new AEVector3D(0, 0, this.distsToStar[var2 - 2]);
-				AEVector3D var10 = new AEVector3D();
-				var10 = var7.transformVector(var9, var10);
-				this.localStarAndPlanetsMeshes[var2].translate(var10);
-				var3 = this.selectedSystemStations[var2 - 2].getPlanetTextureId();
-				var4 = this.planetSizes[var3];
-				this.localStarAndPlanetsMeshes[var2].setScale(var4, var4, var4);
-				new AEVector3D(this.localStarAndPlanetsMeshes[var2].getPostition()).normalize();
-				this.localStarAndPlanetsMeshes[var2].setAnimationRangeInTime(var3, var3);
+				int smallerOrbitRadius;
+				this.planetRevolutAngs[i - 2] = planetRevolution;
+				var7.addEulerAngles(0, planetRevolution, 0);
+				smallerOrbitRadius = i == 2 ? AEMath.Q_EIGHTH : this.distsToStar[i - 3];
+				this.distsToStar[i - 2] = smallerOrbitRadius + AEMath.Q_32nd + GlobalStatus.random.nextInt(376);
+				final AEVector3D distance = new AEVector3D(0, 0, this.distsToStar[i - 2]);
+				AEVector3D translation = new AEVector3D();
+				translation = var7.transformVector(distance, translation);
+				this.localStarAndPlanetsMeshes[i].translate(translation);
+				int planetTexture = this.selectedSystemStations[i - 2].getPlanetTextureId();
+				int planetSize = this.planetSizes[planetTexture];
+				this.localStarAndPlanetsMeshes[i].setScale(planetSize, planetSize, planetSize);
+				// new AEVector3D(this.localStarAndPlanetsMeshes[i].getPostition()).normalize();
+				this.localStarAndPlanetsMeshes[i].setAnimationRangeInTime(planetTexture, planetTexture);
 			} else {
-				this.localStarAndPlanetsMeshes[var2].translate(0, 0, var2 * 32);
-				this.localStarAndPlanetsMeshes[var2].rotateEuler(0, AEMath.Q_PI_HALF, AEMath.Q_PI_SIXTEENTH);
-				this.localStarAndPlanetsMeshes[var2].setScale(256, 256, 256);
+				this.localStarAndPlanetsMeshes[i].translate(0, 0, i * 32);
+				this.localStarAndPlanetsMeshes[i].rotateEuler(0, AEMath.Q_PI_HALF, AEMath.Q_PI_SIXTEENTH);
+				this.localStarAndPlanetsMeshes[i].setScale(AEMath.Q_16th, AEMath.Q_16th, AEMath.Q_16th);
 			}
 
-			this.localStarAndPlanetsMeshes[var2].setRenderLayer(2);
-			this.localSystem.uniqueAppend_(this.localStarAndPlanetsMeshes[var2]);
+			this.localStarAndPlanetsMeshes[i].setRenderLayer(2);
+			this.localSystem.uniqueAppend_(this.localStarAndPlanetsMeshes[i]);
 		}
 
 		this.localStarAndPlanetsMeshes[1].setDraw(false);
 		this.localStarAndPlanetsMeshes[0].setDraw(false);
 		this.localOrbits = new AbstractMesh[var1];
-
-		for(var2 = 0; var2 < this.localOrbits.length; ++var2) {
-			this.localOrbits[var2] = AEResourceManager.getGeometryResource(6779);
-			this.localOrbits[var2].setRenderLayer(2);
-			this.localOrbits[var2].rotateEuler(-AEMath.Q_PI_QUARTER, 0, 0);
-			this.localSystem.uniqueAppend_(this.localOrbits[var2]);
-			var3 = this.distsToStar[var2];
-			this.localOrbits[var2].setScale(var3 << 1, var3 << 1, var3 << 1);
+		int var3;
+		for(int i = 0; i < this.localOrbits.length; ++i) {
+			this.localOrbits[i] = AEResourceManager.getGeometryResource(6779);
+			this.localOrbits[i].setRenderLayer(2);
+			this.localOrbits[i].rotateEuler(-AEMath.Q_PI_QUARTER, 0, 0);
+			this.localSystem.uniqueAppend_(this.localOrbits[i]);
+			var3 = this.distsToStar[i];
+			this.localOrbits[i].setScale(var3 << 1, var3 << 1, var3 << 1);
 		}
 
 		this.localSystem.moveTo(this.starNetCamera_.getPosition(this.tmpStarScreenPos2));
-		this.localSystem.setRotation(-256, 0, 256);
+		this.localSystem.setRotation(-AEMath.Q_PI_SIXTEENTH, 0, AEMath.Q_PI_SIXTEENTH);
 		this.smoothCamTransitionX = new EaseInOut(0, 0);
 		this.smoothCamTransitionY = new EaseInOut(0, 0);
 		this.smoothCamTransitionZ = new EaseInOut(0, 0);
 		this.localSystem.updateTransform(true);
-		final Image var8 = AEFile.loadImage("/data/interface/sun_" + this.systems[this.selectedSystem].getStarTextureIndex() + ".png", true);
-		this.systemStar = new Sprite(var8);
+		final Image sun = AEFile.loadImage("/data/interface/sun_" + this.systems[this.selectedSystem].getStarTextureIndex() + ".png", true);
+		this.systemStar = new Sprite(sun);
 		this.systemStar.defineReferencePixel(this.systemStar.getWidth(), this.systemStar.getHeight());
 		if (this.wormhole != null && this.selectedSystem == Status.wormholeSystem) {
 			if (this.galaxyMapGroup != null) {
 				this.galaxyMapGroup.removeNode(this.wormhole);
 			}
 
-			this.wormhole.setScale(256, 256, 256);
+			this.wormhole.setScale(AEMath.Q_16th, AEMath.Q_16th, AEMath.Q_16th);
 			this.wormhole.moveTo(this.localStarAndPlanetsMeshes[this.systems[this.selectedSystem].getStationEnumIndex(Status.wormholeStation) + 2].getPostition());
 			this.localSystem.uniqueAppend_(this.wormhole);
 		}
@@ -861,7 +864,7 @@ public final class StarMap {
 								float var8 = var6 * 2.0F;
 
 								for(int j = 0; j < 8; ++j) {
-									GlobalStatus.graphics.setColor(j == this.highlightedPathDot ? 0xFFC0D8E9 : 0xFF3A6286);
+									GlobalStatus.graphics.setColor(j == this.highlightedPathDot ? PATH_LIGHT : PATH);
 									GlobalStatus.graphics.fillArc((int)(this.tmpStarScreenPos1.x + var7) - 2, (int)(this.tmpStarScreenPos1.y + var8) - 2, 4, 4, 0, 360);
 									var7 += var12;
 									var8 += var6;
@@ -886,7 +889,7 @@ public final class StarMap {
 					var7 = var12 * 2.0F;
 
 					for(int i = 0; i < 8; ++i) {
-						GlobalStatus.graphics.setColor((var3 << 3) + i == this.highlightedPathDot ? -1 : -4740812);
+						GlobalStatus.graphics.setColor((var3 << 3) + i == this.highlightedPathDot ? MARKED_PATH_LIGHT : MARKED_PATH);
 						GlobalStatus.graphics.fillArc((int)(this.tmpStarScreenPos1.x + var6) - 2, (int)(this.tmpStarScreenPos1.y + var7) - 2, 4, 4, 0, 360);
 						var6 += var11;
 						var7 += var12;
@@ -1024,11 +1027,14 @@ public final class StarMap {
 		}
 
 		PendingProduct[] var8;
-		int var9;
+		
 		var8 = Status.getPendingProducts();
 		if (var8 != null) {
-			for(var9 = 0; var9 < var8.length; ++var9) {
-				if (var8[var9] != null && (var2 && var8[var9].stationId == this.selectedSystemStations[var1].getIndex() || !var2 && this.systems[var1].getStationEnumIndex(var8[var9].stationId) >= 0)) {
+			for(int i = 0; i < var8.length; ++i) {
+				if (var8[i] != null &&
+						(var2 && var8[i].stationId == this.selectedSystemStations[var1].getIndex() ||
+						!var2 && this.systems[var1].getStationEnumIndex(var8[i].stationId) >= 0)) 
+				{
 					this.legendItemIcons[4] = this.bluePrintIcon;
 					break;
 				}
@@ -1040,7 +1046,7 @@ public final class StarMap {
 		} else {
 			this.starNetCamera_.getScreenPosition(this.stars[var1].getLocalPos(this.tmpStarScreenPos2));
 		}
-
+		int var9;
 		if (var2) {
 			var9 = this.tmpStarScreenPos2.y - 4;
 			var3 = this.tmpStarScreenPos2.x + 10 + Font.getTextWidth(this.selectedSystemStations[var1].getName(), 0) + 7;

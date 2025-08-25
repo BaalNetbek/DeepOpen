@@ -359,8 +359,8 @@ public final class Dialogue {
             } else if (this.type == 1) {
                 this.message = GlobalStatus.gameText.getText(CAMPAIGN_SUCCESS[Status.getCurrentCampaignMission()][2 * this.page + 1]);
             } else {
-                int var2;
-                final String var4 = (var2 = Status.getCurrentCampaignMission()) != 38 && var2 != 40 && var2 != 41 ? "" : GlobalStatus.gameText.getText(256);
+                int var2 = Status.getCurrentCampaignMission();
+                final String var4 = (var2 != 38 && var2 != 40 && var2 != 41 ? "" : GlobalStatus.gameText.getText(256));
                 this.message = GlobalStatus.gameText.getText(213) + "\n" + var4 + "\n\n" + GlobalStatus.gameText.getText(156);
             }
         }

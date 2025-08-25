@@ -5,6 +5,68 @@ package GOF2;
  * @author fishlabs
  */
 public final class Ship {
+	public static final int BETTY = 0;
+	public static final int TENETA = 1;
+	public static final int HIRO = 2;
+	public static final int BADGER = 3;
+	public static final int DACE = 4;
+	public static final int INFLICT = 5;
+	public static final int HECTOR = 6;
+	public static final int ANAAN = 7;
+	public static final int VOIDX = 8;
+	public static final int H_SOC = 9;          
+	public static final int PHANTOM = 10;
+	public static final int HERNSTEIN = 11;
+	public static final int TYPE_43 = 12;
+	public static final int K_SARR = 13;         
+	public static final int CRUISER  = 14;
+	public static final int CARGO = 15;    
+	public static final int KINZER = 16;
+	public static final int WARD = 17;
+	public static final int HATSUYUKI = 18;
+	public static final int NUYANG_II = 19;
+	public static final int CICERO = 20;
+	public static final int AEGIR = 21;
+	public static final int GROZA = 22;
+	public static final int AZOV = 23;
+	public static final int VELASCO = 24;
+	public static final int TYRION = 25;
+	public static final int HERA = 26;
+	public static final int TAIPAN = 27;
+	public static final int VETERAN = 28;
+	public static final int MANTIS = 29;
+	public static final int BERGER_CROSSXT = 30;
+	public static final int SALVEHN = 31;        
+	public static final int WASP = 32;
+	public static final int FURIOUS_FLOUNDER = 33;
+	public static final int RAZOR_6 = 34;
+	public static final int NIGHT_OWL = 35;
+	public static final int CORMORANT = 36;
+//	public static final int CRONUS = 37;
+//	public static final int TYPHON = 38;
+//	public static final int S_KANARR = 39;        
+//	public static final int NEMESIS = 40;
+//	public static final int K_SUUKK = 41;        
+//	public static final int VOL_NOOR = 42;
+//	public static final int WRAITH = 43;
+//	public static final int SPECTER = 44;
+//	public static final int BLOODSTAR = 45;
+//	public static final int BLUE_FYRE = 46;
+//	public static final int GATOR_CUSTOM = 47;
+//	public static final int AMBOSS = 48;
+//	public static final int SCIMITAR = 49;
+//	public static final int UNUSED_50 = 50;      
+//	public static final int RHINO = 51;
+//	public static final int GRYPHON = 52;
+//	public static final int UNUSED_53 = 53;      
+//	public static final int NA_SRRK = 54;   
+//	public static final int GROZA_MK_II = 55;
+//	public static final int BERGER_CROSS_SPECIAL = 56;
+//	public static final int KINZER_RS = 57;
+//	public static final int PHANTOM_XT = 58;
+//	public static final int TENETA_RED = 59;
+//	public static final int DARKZOV = 60;
+	
     public static final short[] SHIP_PREVIEW_SCALING = {
           622, 1338, 1066, 783, 1181, 912, 939, 1471, 1199,
           1192, 763, 1633, 1103, 2000, 2000, 2000, 1802, 1930,
