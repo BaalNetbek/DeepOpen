@@ -820,54 +820,54 @@ public final class OptionsWindow {
          this.subMenu = HELP_INSTRUCTIONS;
          return false;
       } else
-			switch (this.subMenu) {
-    			case MAIN_MENU:
-    			   return true;
-    			case PAUSE:
-    			   return true;
-    			case OPTIONS:
-    				new RecordHandler().writeOptions();
-    	         this.selectedRow = MM_OPTIONS;
-                 this.subMenu = MAIN_MENU;
-                 if (this.forcePauseMenu_) {
-                    resetPauseMenu();
-                 }
-    	         return false;
-    			case HELP_CONTROLS:
-    	         this.selectedRow = 1;
-    	         this.subMenu = HELP;
-    	         return false;
-    			case HELP_INSTRUCTIONS:
-    	         this.selectedRow = 0;
-    	         this.subMenu = HELP;
-    	         return false;
-    			case UNK_SUBMENU_10:
-    				this.selectedRow = 1;
-    				this.subMenu = UNK_SUBMENU_9;
-    				return false;
-    			case HELP_CREDITS:
-    				this.selectedRow = 2;
-    				this.subMenu = HELP;
-    				return false;
-    			case UNK_SUBMENU_12:
-    				this.subMenu = NAME_INPUT;
-    				return false;
-    			case NAME_INPUT:
-    				return false;
-    			default:
-               // if (this.subMenu > MAIN_MENU || this.subMenu == UNK_SUBMENU_9) {
-                   if (this.subMenu == UNK_SUBMENU_9) {
-                      this.selectedRow = 0;
-                   } else {
-                      this.selectedRow = this.subMenu;
-                   }
-        
-                   this.subMenu = MAIN_MENU;
-                   if (this.forcePauseMenu_) {
-                      resetPauseMenu();
-                   }
-               //}
-               return false;
+		  switch (this.subMenu) {
+			  case MAIN_MENU:
+				  return true;
+			  case PAUSE:
+				  return true;
+			  case OPTIONS:
+				  new RecordHandler().writeOptions();
+				  this.selectedRow = MM_OPTIONS;
+				  this.subMenu = MAIN_MENU;
+				  if (this.forcePauseMenu_) {
+					  openPauseMenu();
+				  }
+				  return false;
+			  case HELP_CONTROLS:
+				  this.selectedRow = 1;
+				  this.subMenu = HELP;
+				  return false;
+			  case HELP_INSTRUCTIONS:
+				  this.selectedRow = 0;
+				  this.subMenu = HELP;
+				  return false;
+			  case UNK_SUBMENU_10:
+				  this.selectedRow = 1;
+				  this.subMenu = UNK_SUBMENU_9;
+				  return false;
+			  case HELP_CREDITS:
+				  this.selectedRow = 2;
+				  this.subMenu = HELP;
+				  return false;
+			  case UNK_SUBMENU_12:
+				  this.subMenu = NAME_INPUT;
+				  return false;
+			  case NAME_INPUT:
+				  return false;
+			  default:
+				  // if (this.subMenu > MAIN_MENU || this.subMenu == UNK_SUBMENU_9) {
+				  if (this.subMenu == UNK_SUBMENU_9) {
+					  this.selectedRow = 0;
+				  } else {
+					  this.selectedRow = this.subMenu;
+				  }
+
+				  this.subMenu = MAIN_MENU;
+				  if (this.forcePauseMenu_) {
+					  openPauseMenu();
+				  }
+				  // }
+				  return false;
         }
 	}
 
@@ -881,7 +881,7 @@ public final class OptionsWindow {
 		this.subMenu = MAIN_MENU;
 	}
 
-	public final void resetPauseMenu() {
+	public final void openPauseMenu() {
 		this.subMenu = PAUSE;
 		this.selectedRow = 0;
 		this.confirmPopupOpen = false;

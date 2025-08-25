@@ -2828,7 +2828,7 @@ Main/o.a Ldb; level
 Main/o.a Lbn; levelScript
 Main/o.a Lbw; radar
 Main/o.a Lan; radio
-Main/o.a LMain/l; pauseMenu
+Main/o.a LMain/l; optionsWindow
 Main/o.a Lj; sequentialDialogue_
 Main/o.b Lj; interuptDialogue
 Main/o.a LMain/r; starMap
@@ -3286,7 +3286,7 @@ Main/l.c()V optionsRight
 Main/l.b()Z goBack
 Main/l.c()Z update1_
 Main/l.c(I)V reset_
-Main/l.d()V resetPauseMenu
+Main/l.d()V openPauseMenu
 Main/l.e()V draw
 Main/l.a(I)Z handleKeystate
 Main/g Main/StatusPanel

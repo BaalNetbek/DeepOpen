@@ -59,7 +59,7 @@ public final class MGame extends IApplicationModule {
 	private LevelScript levelScript;
 	private Radar radar;
 	private Radio radio;
-	private OptionsWindow pauseMenu;
+	private OptionsWindow optionsWindow;
 	private Dialogue sequentialDialogue_;
 	private Dialogue interuptDialogue;
 	private StarMap starMap;
@@ -116,8 +116,8 @@ public final class MGame extends IApplicationModule {
 
 		this.radio = null;
 		this.hud.OnRelease();
-		if (this.pauseMenu != null) {
-			this.pauseMenu.OnRelease();
+		if (this.optionsWindow != null) {
+			this.optionsWindow.OnRelease();
 		}
 
 		if (this.jumpFlash != null) {
@@ -129,7 +129,7 @@ public final class MGame extends IApplicationModule {
 		this.targetFollowCamera.OnRelease((GraphNode)null);
 		this.cameras_ = null;
 		this.camera = null;
-		this.pauseMenu = null;
+		this.optionsWindow = null;
 		this.levelScript = null;
 		this.loaded = false;
 		this.autoPilotList = null;
@@ -247,16 +247,16 @@ public final class MGame extends IApplicationModule {
 
 				if (!this.egoDead) {
 					if (this.paused) {
-						if (this.pauseMenu != null && !this.actionMenuOpen && !this.dialogueOpen_ && !this.autopilotMenuOpen && !this.jumpgateReached && !this.interruptedByDialogue) {
-							this.pauseMenu.scrollAndTick_(var1, (int)this.frameTime);
+						if (this.optionsWindow != null && !this.actionMenuOpen && !this.dialogueOpen_ && !this.autopilotMenuOpen && !this.jumpgateReached && !this.interruptedByDialogue) {
+							this.optionsWindow.scrollAndTick_(var1, (int)this.frameTime);
 							if (this.menuListScrollTick > 150L) {
 								this.menuListScrollTick = 0L;
 								if ((var1 & GOF2Canvas.UP) != 0) {
-									this.pauseMenu.scrollUp((int)this.frameTime);
+									this.optionsWindow.scrollUp((int)this.frameTime);
 								}
 
 								if ((var1 & GOF2Canvas.DOWN) != 0) {
-									this.pauseMenu.scrollDown((int)this.frameTime);
+									this.optionsWindow.scrollDown((int)this.frameTime);
 								}
 							}
 						}
@@ -288,7 +288,7 @@ public final class MGame extends IApplicationModule {
 							this.sequentialDialogue_.handleScrollPress_(var1, (int)this.frameTime);
 							this.sequentialDialogue_.draw();
 						} else {
-							this.pauseMenu.draw();
+							this.optionsWindow.draw();
 						}
 						return;
 					}
@@ -763,11 +763,11 @@ public final class MGame extends IApplicationModule {
 
 	public final void pause() {
 		if (!this.paused) {
-			if (this.pauseMenu == null) {
-				this.pauseMenu = new OptionsWindow();
+			if (this.optionsWindow == null) {
+				this.optionsWindow = new OptionsWindow();
 			}
 
-			this.pauseMenu.resetPauseMenu();
+			this.optionsWindow.openPauseMenu();
 			this.paused = true;
 		}
 
@@ -1091,27 +1091,27 @@ public final class MGame extends IApplicationModule {
 						if (keyState == GOF2Canvas.RIGHT) {
 							this.popup.right();
 						}
-					} else if (this.pauseMenu != null && !this.actionMenuOpen) {
-						this.pauseMenu.handleKeystate(keyState);
-						if (keyState == GOF2Canvas.KEY_5 && this.pauseMenu.update()) {
+					} else if (this.optionsWindow != null && !this.actionMenuOpen) {
+						this.optionsWindow.handleKeystate(keyState);
+						if (keyState == GOF2Canvas.KEY_5 && this.optionsWindow.update()) {
 							this.paused = false;
 							return;
 						}
 
 						if (keyState == GOF2Canvas.LSB) {
-							this.pauseMenu.update1_();
+							this.optionsWindow.update1_();
 						}
 
-						if (keyState == GOF2Canvas.RSB && this.pauseMenu.goBack()) {
+						if (keyState == GOF2Canvas.RSB && this.optionsWindow.goBack()) {
 							this.paused = false;
 						}
 
 						if (keyState == GOF2Canvas.LEFT) {
-							this.pauseMenu.optionsLeft();
+							this.optionsWindow.optionsLeft();
 						}
 
 						if (keyState == GOF2Canvas.RIGHT) {
-							this.pauseMenu.optionsRight();
+							this.optionsWindow.optionsRight();
 						}
 					}
 				}
@@ -1134,11 +1134,11 @@ public final class MGame extends IApplicationModule {
 				}
 			} else if (!this.egoDead) {
 				if (keyState == GOF2Canvas.LSB) {
-					if (this.pauseMenu == null) {
-						this.pauseMenu = new OptionsWindow();
+					if (this.optionsWindow == null) {
+						this.optionsWindow = new OptionsWindow();
 					}
 
-					this.pauseMenu.resetPauseMenu();
+					this.optionsWindow.openPauseMenu();
 					this.paused = !this.paused;
 					if (this.paused) {
 						return;
