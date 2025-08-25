@@ -17,22 +17,22 @@ public final class SolarSystem {
     public int starG;
     public int starB;
 
-    public SolarSystem(final int var1, final String var2, final int var3, final boolean var4, final int var5, final int var6, final int var7, final int var8, final int var9, final int var10, final int[] var11, final int[] var12, final int[] var13, final int[] var14) {
-        this.id = var1;
-        this.name = var2;
-        this.safety = var3;
-        this.visibleByDeafult = var4;
-        this.race = var5;
-        this.posX = var6;
-        this.posY = var7;
-        this.posZ = var8;
-        this.jumpgateStationId = var9;
-        this.starTextureId = var10;
-        this.starR = var11[0];
-        this.starG = var11[1];
-        this.starB = var11[2];
-        this.stationIDs = var12;
-        this.neighbourSystems = var13;
+    public SolarSystem(final int id, final String name, final int safety, final boolean startsVisible, final int race, final int x, final int y, final int z, final int jumpgateStation, final int starTexture, final int[] starRGB, final int[] stations, final int[] neigbours, final int[] var14) {
+        this.id = id;
+        this.name = name;
+        this.safety = safety;
+        this.visibleByDeafult = startsVisible;
+        this.race = race;
+        this.posX = x;
+        this.posY = y;
+        this.posZ = z;
+        this.jumpgateStationId = jumpgateStation;
+        this.starTextureId = starTexture;
+        this.starR = starRGB[0];
+        this.starG = starRGB[1];
+        this.starB = starRGB[2];
+        this.stationIDs = stations;
+        this.neighbourSystems = neigbours;
     }
 
     public final int getIndex() {

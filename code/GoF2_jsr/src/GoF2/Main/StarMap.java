@@ -636,9 +636,9 @@ public final class StarMap {
 			GlobalStatus.renderer.renderFrame(System.currentTimeMillis());
 			GlobalStatus.graphics3D.clear();
 			GlobalStatus.graphics3D.releaseTarget();
-		} catch (final Exception var7) {
+		} catch (final Exception e) {
 			GlobalStatus.graphics3D.releaseTarget();
-			var7.printStackTrace();
+			e.printStackTrace();
 		}
 
 		drawKey();
@@ -672,7 +672,7 @@ public final class StarMap {
 			this.localStarAndPlanetsMeshes[i].setAnimationMode((byte)1);
 			this.localStarAndPlanetsMeshes[i].setRadius(5000);
 			if (i > 1) {
-				final AEMatrix var7 = new AEMatrix();
+				final AEMatrix matrix = new AEMatrix();
 				int planetRevolution = 0;
 				boolean var5 = false;
 
@@ -687,12 +687,12 @@ public final class StarMap {
 				}
 				int smallerOrbitRadius;
 				this.planetRevolutAngs[i - 2] = planetRevolution;
-				var7.addEulerAngles(0, planetRevolution, 0);
+				matrix.addEulerAngles(0, planetRevolution, 0);
 				smallerOrbitRadius = i == 2 ? AEMath.Q_EIGHTH : this.distsToStar[i - 3];
 				this.distsToStar[i - 2] = smallerOrbitRadius + AEMath.Q_32nd + GlobalStatus.random.nextInt(376);
 				final AEVector3D distance = new AEVector3D(0, 0, this.distsToStar[i - 2]);
 				AEVector3D translation = new AEVector3D();
-				translation = var7.transformVector(distance, translation);
+				translation = matrix.transformVector(distance, translation);
 				this.localStarAndPlanetsMeshes[i].translate(translation);
 				int planetTexture = this.selectedSystemStations[i - 2].getPlanetTextureId();
 				int planetSize = this.planetSizes[planetTexture];
