@@ -1,95 +1,124 @@
 import re
 
-class_pat = re.compile(r"^([^(\s]*\/)?(\w*)\s(?:(.*\/)*)(\w*?)$")
-field_pat = re.compile(r"^(.*?\/*?)(\w*)\.(\w*)\s(\[?L?(?:\w+\/?\w+)*;?);?\s(\w*)$")
-method_pat = re.compile(r"^(.*?\/*?)(\w*)\.(.*?)\((.*?)\)(.*?)\s(.*?)$")
+class_pat = re.compile(r"^(([^(\s]*\/)?(\w*))\s(?:(.*\/)*)(\w*?)$")
+field_pat = re.compile(r"^((.*?\/*?)(\w*)\.(\w*)\s(\[*?L?(?:\w+(?:\/?\w+)*)*;?);?)\s(\w*)$")
+method_pat = re.compile(r"^((.*?\/*?)(\w*)\.(.*?)\((.*?)\)(.*?))\s(.*?)$")
+type_pat = re.compile(r"(\[?L\w+(?:\/\w+)*;)") 
+# Łapie pojedynczo LTYP;
 
-CLASS_PATH_OLD = 1
-CLASS_NAME_OLD = 2
+KEY = 1
+CLASS_PATH_OLD = 2
+CLASS_NAME_OLD = 3
+CLASS_PATH_NEW = 4
+CLASS_NAME_NEW = 5
 
-CLASS_PATH_NEW = 3
-CLASS_NAME_NEW = 4
+FIELD_NAME_OLD = 4
+FIELD_TYPE_OLD = 5
+FIELD_NEW_NAME = 6
 
-FIELD_NAME_OLD = 3
-FIELD_TYPE_OLD = 4
-FIELD_NEW_NAME = 5
+METH_NAME_OLD = 4
+METH_ARG_OLD = 5
+METH_RET_OLD = 6
+METH_NAME_NEW = 7
 
-METH_NAME_OLD = 3
-METH_ARG_OLD = 4
-METH_RET_OLD = 5
-METH_NAME_NEW = 6
-
-# example call
-# renamer -c a com.class.Runner
-# renamer -f int a.b.a varNamed
-
-class MapClass():
+class MapObj():
     def __init__(self, match):
-        self.class_path_old = match.group(CLASS_PATH_OLD)
+        self.key = match.group(KEY)
+        self.remap_name: str = None
+
+class MapClass(MapObj):
+    def __init__(self, match):
+        super().__init__(match)
+        self.class_path_old = match.group(CLASS_PATH_OLD) or ""
         self.class_name_old = match.group(CLASS_NAME_OLD)
-        self.class_path_new = match.group(CLASS_PATH_NEW)
+        self.class_path_new = match.group(CLASS_PATH_NEW) or ""
         self.class_name_new = match.group(CLASS_NAME_NEW)
-        
+
     def __str__(self):
-        return (
-            self.class_path_old + ', ' 
-            + self.class_name_old + ', ' 
-            + self.class_path_new + ', '
-            + self.class_name_new
-        )
-class MapField():
+        return f"CLASS: {self.class_path_old}{self.class_name_old} -> {self.class_path_new}{self.class_name_new}"
+
+
+class MapField(MapObj):
     def __init__(self, match):
-        self.class_path_old = match.group(CLASS_PATH_OLD)
+        super().__init__(match)
+        self.class_path_old = match.group(CLASS_PATH_OLD) or ""
         self.class_name_old = match.group(CLASS_NAME_OLD)
         self.field_name_old = match.group(FIELD_NAME_OLD)
-        ##continue
+        self.field_type_old = match.group(FIELD_TYPE_OLD)
+        self.field_name_new = match.group(FIELD_NEW_NAME)
 
-class MapMeth():
+    def __str__(self):
+        return f"FIELD: {self.class_path_old}{self.class_name_old}.{self.field_name_old}:{self.field_type_old} -> {self.field_name_new}"
+
+
+class MapMeth(MapObj):
     def __init__(self, match):
-        pass
-        #continue
-class Renamer():
-    def parse_mapping_file(self, file_path):
-        #families = {}
+        super().__init__(match)
+        self.class_path_old = match.group(CLASS_PATH_OLD) or ""
+        self.class_name_old = match.group(CLASS_NAME_OLD)
+        self.meth_name_old = match.group(METH_NAME_OLD)
+        self.meth_arg_old = match.group(METH_ARG_OLD)
+        self.meth_ret_old = match.group(METH_RET_OLD)
+        self.meth_name_new = match.group(METH_NAME_NEW)
+
+    def __str__(self):
+        return f"METHOD: {self.class_path_old}{self.class_name_old}.{self.meth_name_old}({self.meth_arg_old}){self.meth_ret_old} -> {self.meth_name_new}"
+
+    
+class SimpleParser():
+    def parse_mapping(self, file_path):
         self.file_path = file_path
         with open(file_path, 'r') as f:
             lines = f.readlines()
-        
-        if type == 'c':
-            pattern = class_pat
-            map_object = MapClass()
-        if type == 'f':
-            pattern = field_pat
 
-        if type == 'm':
-            pattern = method_pat
 
-        parsed_lines = []
+        parsed_lines = {}
         for line_num, line in enumerate(lines, 1):
             line = line.strip()
+            if not line or line.startswith("#"):
+                continue  # skip empty/comments
+
             match = field_pat.match(line)
             if match:
-                parsed_lines.append(MapField(match))
-            else:
-                match = method_pat.match(line)
-                if match:
-                    parsed_lines.append(MapMeth(match))
-                else:
-                    match = class_pat.match(line)
-                    if match:
-                        parsed_lines.append(MapClass(match))
-                    else:
-                        print("Parsing stopped at line: %d"%line_num)
-                        break
+                map_obj = MapField(match)
+                parsed_lines[map_obj.key] = map_obj
+                continue
 
-        return parsed_lines, lines
-        print
+            match = method_pat.match(line)
+            if match:
+                map_obj = MapMeth(match)
+                parsed_lines[map_obj.key] = map_obj
+                continue
 
-if __name__ == "__main__": 
+            match = class_pat.match(line)
+            if match:
+                map_obj = MapClass(match)
+                parsed_lines[map_obj.key] = map_obj
+                continue
+
+            raise(Exception(f"Parsing stopped at line {line_num}: {line}"))
+            # print(f"Parsing stopped at line {line_num}: {line}")
+            # break
+
+        return lines, parsed_lines
+    #def m (self, type: str, old:str , new:str):
+
+class ABAC2BC():
+    def combine_mappings(self, AB: dict, AC: dict):
+        A = AB.keys()
+        for C in AC.values():
+            for B in AB.values():
+
+        # w AC trzeba znaleźć wszystko co da się z mapować
+
+
+        
+if __name__ == "__main__":
     from os.path import dirname
+
     new_mapping = dirname(dirname(dirname(__file__))) + r'/Recaf/GoF2/JSR_1.0.4/GoF2_JSR_1.0.4.mapping'
-    renamer = Renamer()
-    parsed, lines = renamer.parse_mapping_file(new_mapping) 
-    for p in parsed:
-        print (p)
-        print('\n')
+    renamer = SimpleParser()
+    lines, parsed = renamer.parse_mapping(new_mapping)
+    # for p in parsed.values():
+    #     print(p)
+    ABAC2BC().combine_mappings(parsed, parsed)
