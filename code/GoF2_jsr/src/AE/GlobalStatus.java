@@ -58,7 +58,7 @@ public final class GlobalStatus {
 	public static MIDlet midlet;
 	public static int screenWidth;
 	public static int screenHeight;
-	public static SoundManager soundManager;
+	public static AESoundRessource soundManager;
 	public static Random random;
 	public static String gameVersion = "";
 	public static boolean paused = false;

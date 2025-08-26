@@ -1,6 +1,6 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.Math.AEVector3D;
 
 public final class Waypoint extends KIPlayer {
@@ -10,7 +10,7 @@ public final class Waypoint extends KIPlayer {
     public boolean reached_;
 
     public Waypoint(final int var1, final int var2, final int var3, final Route var4) {
-        super(0, -1, new Player(2000.0F, 0, 0, 0, 0), (AbstractMesh)null, var1, var2, var3);
+        super(0, -1, new Player(2000.0F, 0, 0, 0, 0), (AEGeometry)null, var1, var2, var3);
         this.activeRoute_ = var4;
         this.player.setActive(false);
         this.x = var1;

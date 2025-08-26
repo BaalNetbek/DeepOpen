@@ -3,7 +3,7 @@ bm.a(J)V update
 cu AE/CameraController_
 cu.c()V update
 cu.a()Z isInLookAtMode
-ag AE/AbstractMesh
+ag AE/AEGeometry
 ag.a I renderLayer
 ag.a Lcl; matrix
 ag.a(I)V setRenderLayer
@@ -1728,7 +1728,7 @@ av.a()I getSelection
 av.a()V down
 av.b()V up
 av.c()V draw
-ar AE/Group
+ar AE/AEGroup
 ar.b Lah; head
 ar.a(Lah;)V uniqueAppend_
 ar.b(Lah;)V removeNode
@@ -1938,7 +1938,7 @@ bj AE/Vec3f
 bj.a F x
 bj.b F y
 bj.c F z
-cy AE/AEGeometry
+cy AE/SceneObject
 cy.a Lcd; tempCenter
 cy.e I radius
 cy.b(Z)V updateTransform
@@ -2161,7 +2161,7 @@ br.c I indexB_
 br.a Ldb; level
 br.a(I)Z achieved
 br.a()Z isSurvivalObjective
-bs AE/SoundManager
+bs AE/AESoundRessource
 bs.a [Ljava/lang/String; MUSIC_FILES_PATHS
 bs.b [Ljava/lang/String; SFX_FILES_PATHS
 bs.a I lastSfxIndex

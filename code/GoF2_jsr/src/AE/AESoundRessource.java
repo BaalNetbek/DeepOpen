@@ -8,7 +8,7 @@ import javax.microedition.media.Player;
 import javax.microedition.media.PlayerListener;
 import javax.microedition.media.control.VolumeControl;
 
-public final class SoundManager implements PlayerListener {
+public final class AESoundRessource implements PlayerListener {
 	private static final String[] MUSIC_FILES_PATHS = {
 	      "/data/sound/gof2_theme.mid",
 	      "/data/sound/gof2_hangar.mid",
@@ -48,7 +48,7 @@ public final class SoundManager implements PlayerListener {
 	private boolean deviceAvailabe_ = false;
 	private int tmpMusicVolume;
 
-	public SoundManager() {
+	public AESoundRessource() {
 		this.sfxPlayers = new Player[SFX_FILES_PATHS.length];
 	}
 
@@ -95,7 +95,7 @@ public final class SoundManager implements PlayerListener {
 		if (!GlobalStatus.musicOn) {
 			return false;
 		}
-		return musicPlayer != null && musicPlayer.getState() == 400;
+		return musicPlayer != null && musicPlayer.getState() == Player.STARTED;
 	}
 
 	public final void playMusic(final int var1) {
@@ -210,7 +210,7 @@ public final class SoundManager implements PlayerListener {
 
 	public static void stopMusic__() {
 		try {
-			if (musicPlayer.getState() == 400) {
+			if (musicPlayer.getState() == Player.STARTED) {
 				musicPlayer.stop();
 				musicPlayer.deallocate();
 				musicPlayer.close();

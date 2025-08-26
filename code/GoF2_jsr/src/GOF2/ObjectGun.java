@@ -1,29 +1,29 @@
 package GOF2;
 
 import AE.AbstractGun;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.ITexture;
 import AE.Math.AEVector3D;
 
-public class ObjectGun extends AbstractMesh implements AbstractGun {
+public class ObjectGun extends AEGeometry implements AbstractGun {
 	protected Gun gun;
-	private AbstractMesh[] projectiles;
-	protected AbstractMesh rocketMesh_;
+	private AEGeometry[] projectiles;
+	protected AEGeometry rocketMesh_;
 	protected static AEVector3D temp;
 
-	public ObjectGun(final Gun gun, final AbstractMesh mesh) {
+	public ObjectGun(final Gun gun, final AEGeometry mesh) {
 		this.gun = gun;
 		temp = new AEVector3D();
 		if (mesh == null) {
 			this.projectiles = null;
 		} else {
-			this.projectiles = new AbstractMesh[gun.projectilesPos.length];
+			this.projectiles = new AEGeometry[gun.projectilesPos.length];
 
 			for(int i = 0; i < this.projectiles.length; ++i) {
 				temp.set(mesh.getScale());
-				this.projectiles[i] = (AbstractMesh)mesh.clone();
+				this.projectiles[i] = (AEGeometry)mesh.clone();
 				this.projectiles[i].setScale(temp.x, temp.y, temp.z);
 				this.projectiles[i].setRenderLayer(2);
 			}

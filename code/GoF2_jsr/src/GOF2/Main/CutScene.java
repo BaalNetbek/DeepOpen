@@ -4,7 +4,7 @@ import AE.AECamera;
 import AE.CameraControllerGroup;
 import AE.CameraTrack;
 import AE.GlobalStatus;
-import AE.Group;
+import AE.AEGroup;
 import AE.IApplicationModule;
 import AE.LookAtCamera;
 import AE.TargetFollowCamera;
@@ -33,7 +33,7 @@ public final class CutScene extends IApplicationModule {
 	private PlayerEgo egoPlayer;
 	public Level level;
 	private final int sceneId;
-	private Group cameraGroupOfOne_;
+	private AEGroup cameraGroupOfOne_;
 	private float forcedSpeedCCW;
 	private float forcedSpeedCW;
 	private float rotation;
@@ -123,7 +123,7 @@ public final class CutScene extends IApplicationModule {
 				this.hangarCam.moveTo(0, 1700, 1500);
 				this.hangarCam.setRotation(-AEMath.Q_16th, 0, 0);
 				GlobalStatus.renderer.setActiveCamera(this.hangarCam);
-				this.cameraGroupOfOne_ = new Group();
+				this.cameraGroupOfOne_ = new AEGroup();
 				this.cameraGroupOfOne_.uniqueAppend_(this.hangarCam);
 				this.cameraGroupOfOne_.translate(0, 0, 10240);
 				this.rotation = AEMath.Q_THREE_EIGHTHS;

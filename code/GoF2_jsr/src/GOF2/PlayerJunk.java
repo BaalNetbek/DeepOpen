@@ -1,13 +1,13 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 
 public final class PlayerJunk extends KIPlayer {
     private long frameTime;
 
-    public PlayerJunk(int meshId, final Player player, final AbstractMesh mesh, final int x, final int y, final int z) {
+    public PlayerJunk(int meshId, final Player player, final AEGeometry mesh, final int x, final int y, final int z) {
         super(9996, -1, player, mesh, x, y, z);
         this.player.transform = mesh.getToParentTransform();
         int scale = AEMath.Q_1 + GlobalStatus.random.nextInt(AEMath.Q_2);

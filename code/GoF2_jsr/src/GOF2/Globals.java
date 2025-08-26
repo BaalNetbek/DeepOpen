@@ -1,10 +1,10 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.GraphNode;
-import AE.Group;
+import AE.AEGroup;
 
 public final class Globals {
 	public static final int STATIONS_COUNT = 100;
@@ -164,13 +164,13 @@ public final class Globals {
      * @param race race
      * @return ship's mesh group
      */
-    public static Group getShipGroup(final int ship, final int race) {
-        final Group var2 = new Group();
+    public static AEGroup getShipGroup(final int ship, final int race) {
+        final AEGroup var2 = new AEGroup();
         final int[] parts = FileRead.loadShipParts(ship);
         final int[] var6 = getRaceUVkeyframeId_(race);
 
 		for (int i = 0; i < parts.length; i += 10) {
-			AbstractMesh mesh;
+			AEGeometry mesh;
 			if ((mesh = AEResourceManager.getGeometryResource(parts[i])).getID() >= 13064 && mesh.getID() <= 13071) {
 				mesh.setAnimationMode((byte) 2);
 			} else {
@@ -206,7 +206,7 @@ public final class Globals {
         return var2;
     }
 
-    public static void buildShip(final Group var0, final int var1) {
+    public static void buildShip(final AEGroup var0, final int var1) {
         //new FileRead();
         int[] parts = FileRead.loadShipParts(var1);
         int i = parts.length - 10;

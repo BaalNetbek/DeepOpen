@@ -2,7 +2,7 @@ package GOF2;
 
 import AE.AEResourceManager;
 import AE.AbstractGun;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.ITexture;
@@ -10,11 +10,11 @@ import AE.ParticleSystemMesh;
 import AE.Math.AEVector3D;
 import AE.Math.AEMatrix;
 
-public final class LaserGun extends AbstractMesh implements AbstractGun {
+public final class LaserGun extends AEGeometry implements AbstractGun {
 	private Gun gun;
 	private int beamRadius = 80;
-	private AbstractMesh beam;
-	private final AbstractMesh flash;
+	private AEGeometry beam;
+	private final AEGeometry flash;
 	private final int[] vertexPositions;
 	private final int[] vertexWorldPositions;
 	private final int[] uvs;
@@ -40,7 +40,7 @@ public final class LaserGun extends AbstractMesh implements AbstractGun {
 		this.flash.setAnimationRangeInTime(FLASH_KEYFRAMES[var2], FLASH_KEYFRAMES[var2]);
 		this.flash.setAnimationMode((byte)1);
 		this.flash.setScale(600, 600, 600); // 11.38%
-		this.beam = AbstractMesh.newPlaneStrip(0, 10, (byte)2);
+		this.beam = AEGeometry.newPlaneStrip(0, 10, (byte)2);
 		this.beam.setTexture(AEResourceManager.getTextureResource(1));
 		this.beam.setRenderLayer(2);
 		this.vertexWorldPositions = new int[120];

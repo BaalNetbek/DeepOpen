@@ -12,7 +12,7 @@ import javax.microedition.m3g.Transform;
 
 import AE.PaintCanvas.AEGraphics3D;
 
-public final class BackGroundMesh extends AbstractMesh {
+public final class BackGroundMesh extends AEGeometry {
 	private static Transform transform = new Transform();
 	private static float[] tranformFloatArr = new float[16];
 	private Node mesh;

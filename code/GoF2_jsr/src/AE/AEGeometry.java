@@ -1,46 +1,57 @@
 package AE;
 
-import AE.Math.AEMath;
-import AE.Math.AEVector3D;
+import AE.Math.AEMatrix;
 
-public abstract class AEGeometry extends GraphNode {
-	private static AEVector3D tempCenter = new AEVector3D();
-	protected int radius = 0;
+public abstract class AEGeometry extends SceneObject {
+	protected int renderLayer;
+	protected AEMatrix matrix = new AEMatrix();
+
+	public AEGeometry(final AEGeometry mesh) {
+		super(mesh);
+		this.renderLayer = mesh.renderLayer;
+	}
 
 	public AEGeometry() {
+		this.renderLayer = 0;
 	}
 
-	public AEGeometry(final AEGeometry var1) {
-		super(var1);
-		this.radius = var1.radius;
+	public final void setRenderLayer(final int idx) {
+		this.renderLayer = idx;
 	}
 
-	public void updateTransform(final boolean var1) {
-		if (this.transformDirty_ || var1) {
-			if (this.group != null) {
-				this.localTransformation = this.group.localTransformation.multiplyTo(this.compositeTransformation, this.localTransformation);
-			} else {
-				this.localTransformation.set(this.compositeTransformation);
-			}
-
-			final int var2 = AEMath.max(AEMath.max(AEMath.abs((tempCenter = this.localTransformation.copyScaleTo(tempCenter)).x), AEMath.abs(tempCenter.y)), AEMath.abs(tempCenter.z)) * this.radius >> AEMath.Q;
-			tempCenter = this.localTransformation.getPosition(tempCenter);
-			this.boundingSphere.setXYZR(tempCenter.x, tempCenter.y, tempCenter.z, var2);
-			this.transformDirty_ = false;
-			this.boundsDirty_ = false;
+	public void appendToRender(final AECamera camera, final Renderer renderer) {
+		if (this.draw && camera.isInViewFrustum(this.boundingSphere) != 0) {
+			this.matrix = camera.localTransformation.getInverse(this.matrix);
+			this.matrix.multiply(this.localTransformation);
+			renderer.addToLayer(this.renderLayer, this);
 		}
 
 	}
 
-	public final void setRadius(final int var1) {
-		this.radius = 5000;
-	}
-
-	protected final String getString(String var1, final int len) {
-		for(int i = 0; i < len; ++i) {
-			var1 = var1 + "  ";
+	public void forceAppendToRender(final AECamera camera, final Renderer renderer) {
+		if (this.draw) {
+			this.matrix = camera.localTransformation.getInverse(this.matrix);
+			this.matrix.multiply(this.localTransformation);
+			renderer.addToLayer(this.renderLayer, this);
 		}
 
-		return var1 + "\n";
+	}
+
+	public abstract void render();
+
+	public void renderTransparent() {
+	}
+
+	public abstract GraphNode clone();
+
+	public static AEGeometry newPlaneStrip(final int resourceId, final int quadCount, final byte blending) {
+		return new ParticleSystemMesh(resourceId, quadCount, blending);
+	}
+
+	public abstract void setTexture(ITexture texture);
+
+	public abstract void OnRelease();
+
+	public void update(final long currentTime) {
 	}
 }

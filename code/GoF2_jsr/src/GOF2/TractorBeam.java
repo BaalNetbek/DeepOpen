@@ -1,9 +1,9 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
-import AE.Group;
+import AE.AEGroup;
 import AE.ParticleSystemMesh;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
@@ -20,9 +20,9 @@ public final class TractorBeam {
     private final int[] vertexWorldPositions;
     private final int[] uvs;
     private boolean active = false;
-    private final AbstractMesh beamMesh = AbstractMesh.newPlaneStrip(0, 10, (byte)2);
+    private final AEGeometry beamMesh = AEGeometry.newPlaneStrip(0, 10, (byte)2);
 
-    public TractorBeam(final Group var1, final int var2) {
+    public TractorBeam(final AEGroup var1, final int var2) {
         this.beamMesh.setTexture(AEResourceManager.getTextureResource(1));
         this.beamMesh.setRenderLayer(2);
         this.vertexWorldPositions = new int[120];

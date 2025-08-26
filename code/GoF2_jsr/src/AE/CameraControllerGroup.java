@@ -1,6 +1,6 @@
 package AE;
 
-public final class CameraControllerGroup extends Group {
+public final class CameraControllerGroup extends AEGroup {
 	private CameraController_[] controllers = null;
 
 	public final void addController(final CameraController_ var1) {

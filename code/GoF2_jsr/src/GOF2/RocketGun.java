@@ -1,6 +1,6 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
 import AE.Math.AEMath;
@@ -16,8 +16,8 @@ public final class RocketGun extends ObjectGun {
     private final boolean guided;
     private Radar radar;
 
-    public RocketGun(final Gun var1, final AbstractMesh var2, final boolean var3) {
-        super(var1, (AbstractMesh)null);
+    public RocketGun(final Gun var1, final AEGeometry var2, final boolean var3) {
+        super(var1, (AEGeometry)null);
         this.trail.setWidth(100);
         this.rocketMesh_ = var2;
         this.guided = var3;

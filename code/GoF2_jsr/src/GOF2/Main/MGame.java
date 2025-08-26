@@ -1,7 +1,7 @@
 package GOF2.Main;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.AECamera;
 import AE.CameraControllerGroup;
 import AE.GlobalStatus;
@@ -79,7 +79,7 @@ public final class MGame extends IApplicationModule {
 	private boolean shootingDisabled;
 	private boolean usingJumpDrive;
 	private boolean jumpDriveAnimStarted;
-	private AbstractMesh jumpFlash;
+	private AEGeometry jumpFlash;
 	private boolean wingmenLeftNoticeShown;
 	private AEVector3D egoJumpPos = new AEVector3D();
 

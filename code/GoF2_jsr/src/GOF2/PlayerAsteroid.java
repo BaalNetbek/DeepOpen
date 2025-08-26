@@ -1,7 +1,7 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
@@ -25,11 +25,11 @@ public final class PlayerAsteroid extends KIPlayer {
 	private AEMatrix playerTransform_ = new AEMatrix();
 	private int sizeCoef_;
 	private int tier;
-	private AbstractMesh explosionMesh;
+	private AEGeometry explosionMesh;
 	public boolean clampedByDistance;
 	public int oreItemId;
 
-	public PlayerAsteroid(final int meshId, final AbstractMesh mesh, final int ore, final boolean var4, final int var5, final int var6, final int var7) {
+	public PlayerAsteroid(final int meshId, final AEGeometry mesh, final int ore, final boolean var4, final int var5, final int var6, final int var7) {
 		super(meshId, -1, new Player(1500.0F, 30, 0, 0, 0), mesh, var5, var6, var7);
 		this.player.setKIPlayer(this);
 		this.oreItemId = ore;

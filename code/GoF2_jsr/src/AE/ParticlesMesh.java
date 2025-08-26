@@ -18,7 +18,7 @@ import AE.PaintCanvas.AEGraphics3D;
  * @author fishlabs
  *
  */
-public final class ParticlesMesh extends AbstractMesh {
+public final class ParticlesMesh extends AEGeometry {
 	private static Transform calcTransform = new Transform();
 	private static AEVector3D tempPos = new AEVector3D();
 	private Appearance appearance;

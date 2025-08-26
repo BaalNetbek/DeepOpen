@@ -2,7 +2,7 @@ package GOF2;
 
 import java.util.Random;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.ITexture;
 import AE.ParticlesMesh;
 
@@ -13,7 +13,7 @@ import AE.ParticlesMesh;
  *   
  */
 public final class Impact {
-	public AbstractMesh mesh;
+	public AEGeometry mesh;
 	private final int[] particlesLifeTime;
 	private final int baseLifeTime;
 	private final int spread;

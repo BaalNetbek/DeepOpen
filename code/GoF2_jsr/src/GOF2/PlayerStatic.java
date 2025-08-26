@@ -1,6 +1,6 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
 
@@ -10,7 +10,7 @@ public class PlayerStatic extends KIPlayer {
     public int posY;
     public int posZ;
 
-    public PlayerStatic(final int var1, final AbstractMesh var2, final int var3, final int var4, final int var5) {
+    public PlayerStatic(final int var1, final AEGeometry var2, final int var3, final int var4, final int var5) {
         super(var1, -1, new Player(2000.0F, 0, 0, 0, 0), var2, var3, var4, var5);
         this.posX = var3;
         this.posY = var4;

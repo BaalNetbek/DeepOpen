@@ -15,7 +15,7 @@ import javax.microedition.m3g.VertexBuffer;
 
 import AE.PaintCanvas.AEGraphics3D;
 
-public final class AEMesh extends AbstractMesh {
+public final class AEMesh extends AEGeometry {
 	private static final int FACES = 1<<4;
 	private static final int UVS = 1<<1;
 	private static final int NORMALS = 1<<2;

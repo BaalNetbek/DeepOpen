@@ -8,7 +8,7 @@ import AE.AEResourceManager;
 import AE.GlobalStatus;
 import AE.IApplicationModule;
 import AE.Renderer;
-import AE.SoundManager;
+import AE.AESoundRessource;
 import AE.PaintCanvas.AEGraphics3D;
 import AE.PaintCanvas.Font;
 import GOF2.ApplicationManager;
@@ -124,7 +124,7 @@ public final class GOF2Canvas extends GameCanvas {
 			(GlobalStatus.renderer = new Renderer(GlobalStatus.graphics3D)).stackLayer();
 			GlobalStatus.renderer.stackLayer();
 			GlobalStatus.renderer.stackLayer();
-			GlobalStatus.soundManager = new SoundManager();
+			GlobalStatus.soundManager = new AESoundRessource();
 			Globals.buildResourceList();
 			Globals.OnInitialize();
 			Status.setCredits(0);

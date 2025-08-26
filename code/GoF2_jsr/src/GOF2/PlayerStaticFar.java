@@ -1,6 +1,6 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.BoundingVolume;
 import AE.GlobalStatus;
 import AE.Math.AEVector3D;
@@ -10,7 +10,7 @@ import AE.PaintCanvas.AEGraphics3D;
 public class PlayerStaticFar extends PlayerStatic {
     protected BoundingVolume[] boundingBoxes;
 
-    public PlayerStaticFar(final int id, final AbstractMesh mesh, final int x, final int y, final int z) {
+    public PlayerStaticFar(final int id, final AEGeometry mesh, final int x, final int y, final int z) {
         super(id, mesh, x, y, z);
         this.targetX = x;
         this.targetY = y;

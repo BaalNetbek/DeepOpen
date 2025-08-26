@@ -88,7 +88,7 @@ public final class Renderer {
 		this.needGraphicsClear = extNDC;
 	}
 
-	public final void addToLayer(final int layerIdx, final AbstractMesh mesh) {
+	public final void addToLayer(final int layerIdx, final AEGeometry mesh) {
 		this.layers[layerIdx].appendNode(mesh);
 	}
 }

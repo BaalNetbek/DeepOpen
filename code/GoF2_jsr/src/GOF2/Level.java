@@ -2,7 +2,7 @@ package GOF2;
 
 import AE.AEResourceManager;
 import AE.AbstractGun;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.BoundingAAB;
 import AE.BoundingSphere;
 import AE.BoundingVolume;
@@ -23,11 +23,11 @@ public final class Level {
 	private final int[] LEVEL_BAR_CHAR_POSITIONS; // make it static. why not?
 	private AEVector3D asteroidFieldCenter;
 	private Waypoint asteroidsWaypoint;
-	private AbstractMesh skybox;
+	private AEGeometry skybox;
 	private Sparks gunSparks;
 	private Sparks missilesSparks;
-	private AbstractMesh[] egoGuns;
-	private AbstractMesh[] enemyGuns;
+	private AEGeometry[] egoGuns;
+	private AEGeometry[] enemyGuns;
 	private StarSystem starSystem;
 	private PlayerEgo ego;
 	private KIPlayer[] ships;
@@ -432,7 +432,7 @@ public final class Level {
 		Gun gun = null;
 		Object gunObject = null;
 		Sparks sparks = this.gunSparks;
-		AbstractMesh gunGeometry;
+		AEGeometry gunGeometry;
 		switch(type) {
 		case Item.LASER:
 		case Item.BLASTER:
@@ -471,7 +471,7 @@ public final class Level {
 		case Item.EMP_BOMB:
 		case Item.NUKE:
 			gun = new Gun(equipmentIdx, dmg, 1, ammo, range, reload, velocity, new AEVector3D(0, -200, 400), new AEVector3D());
-			AbstractMesh var12 = null;
+			AEGeometry var12 = null;
 			int var13;
 			if (type == Item.NUKE) {
 				var12 = AEResourceManager.getGeometryResource(18); 
@@ -494,11 +494,11 @@ public final class Level {
 		gun.setLevel(this);
 		gun.setSparks(sparks);
 		if (this.egoGuns == null) {
-			this.egoGuns = new AbstractMesh[]{(AbstractMesh)gunObject};
+			this.egoGuns = new AEGeometry[]{(AEGeometry)gunObject};
 		} else {
-			final AbstractMesh[] newGuns = new AbstractMesh[this.egoGuns.length + 1];
+			final AEGeometry[] newGuns = new AEGeometry[this.egoGuns.length + 1];
 			System.arraycopy(this.egoGuns, 0, newGuns, 0, this.egoGuns.length);
-			newGuns[newGuns.length - 1] = (AbstractMesh)gunObject;
+			newGuns[newGuns.length - 1] = (AEGeometry)gunObject;
 			this.egoGuns = newGuns;
 		}
 
@@ -615,7 +615,7 @@ public final class Level {
 						this.ships[i] = createShip(localRace, 0, Globals.getRandomEnemyFighter(localRace), route.getDockingTarget_());
 					}
 
-					AbstractMesh var14 = null;
+					AEGeometry var14 = null;
 					if (this.jumperCnt > 0) {
 						(var14 = AEResourceManager.getGeometryResource(6783)).setRenderLayer(2);
 					}
@@ -1353,7 +1353,7 @@ public final class Level {
 				}
 			}
 
-			this.enemyGuns = new AbstractMesh[gunCnt];
+			this.enemyGuns = new AEGeometry[gunCnt];
 			gunCnt = 0;
 
 			for(int i = 0; i < this.ships.length; ++i) {
@@ -1488,7 +1488,7 @@ public final class Level {
 		var2 += GlobalStatus.random.nextInt(20000) - 10000;
 		var3 += GlobalStatus.random.nextInt(20000) - 10000;
 		var6 += GlobalStatus.random.nextInt(20000) - 10000;
-		AbstractMesh mesh = AEResourceManager.getGeometryResource(9996);
+		AEGeometry mesh = AEResourceManager.getGeometryResource(9996);
 		mesh.setRenderLayer(2);
 		Player player = new Player(1000.0F, 1, 0, 0, 0);
 		PlayerJunk junk = new PlayerJunk(9996, player, mesh, var2, var3, var6);
@@ -1531,12 +1531,12 @@ public final class Level {
 		player.setEmpData(empp, var11);
 		switch(type) {
 		case 0:
-			ship = new PlayerFighter(shipId, race, player, (AbstractMesh)null, spawnX, spawnY, spawnZ);
+			ship = new PlayerFighter(shipId, race, player, (AEGeometry)null, spawnX, spawnY, spawnZ);
 			explosion = new Explosion(1);
 			ship.setGroup(Globals.getShipGroup(shipId, race), shipId);
 			break;
 		case 1:
-			ship = new PlayerFixedObject(shipId, race, player, (AbstractMesh)null, spawnX, spawnY, spawnZ);
+			ship = new PlayerFixedObject(shipId, race, player, (AEGeometry)null, spawnX, spawnY, spawnZ);
 			final BoundingVolume[] bounds = new BoundingVolume[1];
 			bounds[0] = new BoundingAAB(spawnX, spawnY, spawnZ, 0, 300, 0, 4000, 4000, 15000);
 			((PlayerFixedObject)ship).setBounds(bounds);
@@ -2079,7 +2079,7 @@ public final class Level {
 		this.failObjective_ = null;
 	}
 
-	public final AbstractMesh[] getPlayerGuns_() {
+	public final AEGeometry[] getPlayerGuns_() {
 		return this.egoGuns;
 	}
 

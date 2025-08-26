@@ -1,7 +1,7 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.AECamera;
 import AE.GlobalStatus;
 import AE.LookAtCamera;
@@ -24,7 +24,7 @@ public final class LevelScript {
 	public boolean unused_428;
 	private final Hud hud;
 	private final Radar radar;
-	private AbstractMesh probe;
+	private AEGeometry probe;
 	public int timeLimit;
 	public long timePassed;
 

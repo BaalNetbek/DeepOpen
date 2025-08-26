@@ -13,7 +13,7 @@ import javax.microedition.m3g.VertexBuffer;
 import AE.Math.AEMath;
 import AE.PaintCanvas.AEGraphics3D;
 
-public final class ParticleSystemMesh extends AbstractMesh {
+public final class ParticleSystemMesh extends AEGeometry {
 	private static Transform calcTransform = new Transform();
 	private static float[] transformValues = new float[16];
 	private Appearance appearance;

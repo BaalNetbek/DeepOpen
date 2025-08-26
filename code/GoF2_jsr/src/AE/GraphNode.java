@@ -5,7 +5,7 @@ import AE.Math.AEMatrix;
 
 public abstract class GraphNode {
 	protected int animationFrameTime = 32;
-	protected Group group = null;
+	protected AEGroup group = null;
 	protected GraphNode parent;
 	protected boolean draw;
 	protected boolean transformDirty_;
@@ -53,7 +53,7 @@ public abstract class GraphNode {
 		return this.draw;
 	}
 
-	public final Group getGroup() {
+	public final AEGroup getGroup() {
 		return this.group;
 	}
 

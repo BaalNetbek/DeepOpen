@@ -1,11 +1,11 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.AECamera;
 import AE.GlobalStatus;
 import AE.GraphNode;
-import AE.Group;
+import AE.AEGroup;
 import AE.LookAtCamera;
 import AE.TargetFollowCamera;
 import AE.Math.AEMath;
@@ -38,10 +38,10 @@ public final class PlayerEgo {
 	      {36, 0, 255, 1015}
 	      };
 	public Player player;
-	public Group shipGrandGroup_;
-	private Group shipGroup;
-	private AbstractMesh turretStand;
-	private AbstractMesh turretGun;
+	public AEGroup shipGrandGroup_;
+	private AEGroup shipGroup;
+	private AEGeometry turretStand;
+	private AEGeometry turretGun;
 	private AEVector3D vecUp;
 	private AEVector3D vecRight;
 	private DummyClass_ unused_7a2;
@@ -77,9 +77,9 @@ public final class PlayerEgo {
 	private boolean hasTurret;
 	private TargetFollowCamera followingCamera_;
 	private AECamera camera;
-	private Group turretViewCamera__;
-	private Group turretGrandGroup_;
-	private Group turretGroup;
+	private AEGroup turretViewCamera__;
+	private AEGroup turretGrandGroup_;
+	private AEGroup turretGroup;
 	private boolean turretMode = false;
 	private float turretHalfLift_;
 	private float turretLift_;
@@ -156,7 +156,7 @@ public final class PlayerEgo {
 	}
 
 	public final void setShip(int var1, int var2) {
-		this.shipGrandGroup_ = new Group();
+		this.shipGrandGroup_ = new AEGroup();
 		this.shipGroup = Globals.getShipGroup(var1, var2);
 		var1 = 0;
 
@@ -252,12 +252,12 @@ public final class PlayerEgo {
 				this.camera = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 700, 100, AEGraphics3D.CAMERA_FAR);
 				this.camera.translate(0, 500, -1400);
 				this.camera.rotateEuler(0, AEMath.Q_PI_HALF, 0);
-				this.turretViewCamera__ = new Group();
+				this.turretViewCamera__ = new AEGroup();
 				this.turretViewCamera__.uniqueAppend_(this.camera);
 				this.turretViewCamera__.setRotationOrder((short)2);
 				this.turretViewCamera__.translate(turretPartsPositions[this.turretShipId_][1], turretPartsPositions[this.turretShipId_][2], turretPartsPositions[this.turretShipId_][3]);
 				this.turretViewCamera__.rotateEuler(0, AEMath.Q_PI_HALF, 0);
-				this.turretGrandGroup_ = new Group();
+				this.turretGrandGroup_ = new AEGroup();
 				this.turretGrandGroup_.uniqueAppend_(this.turretViewCamera__);
 			}
 
@@ -407,7 +407,7 @@ public final class PlayerEgo {
 				this.turretStand.setRenderLayer(2);
 				this.turretGun.setRenderLayer(2);
 				this.turretGun.setRotationOrder((short)2);
-				this.turretGroup = new Group();
+				this.turretGroup = new AEGroup();
 
 				for(i = 0; i < turretPartsPositions.length; ++i) {
 					if (turretPartsPositions[i][0] == Status.getShip().getIndex()) {

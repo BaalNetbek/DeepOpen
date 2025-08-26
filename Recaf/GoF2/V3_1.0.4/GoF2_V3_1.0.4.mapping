@@ -3,7 +3,7 @@ bm.a(J)V update
 cu AE/CameraController_
 cu.c()V update
 cu.a()Z isInLookAtMode
-ag AE/AbstractMesh
+ag AE/AEGeometry
 ag.a I renderLayer
 ag.a Lcm; matrix
 ag.a(I)V setRenderLayer
@@ -1728,7 +1728,7 @@ aw.a()I getSelection
 aw.a()V down
 aw.b()V up
 aw.c()V draw
-ar AE/Group
+ar AE/AEGroup
 ar.b Lah; head
 ar.a(Lah;)V uniqueAppend_
 ar.b(Lah;)V removeNode
@@ -2069,7 +2069,7 @@ bl.a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceToken
 bl.a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; replaceTokens
 bl.h()V calcCargoPrices
 bl.i()V startNewGame
-cy AE/AEGeometry
+cy AE/SceneObject
 cy.a Lcc; tempCenter
 cy.e I radius
 cy.b(Z)V updateTransform
@@ -2149,7 +2149,7 @@ br.c I indexB_
 br.a Ldb; level
 br.a(I)Z achieved
 br.a()Z isSurvivalObjective
-bs AE/SoundManager
+bs AE/AESoundRessource
 bs.a [Ljava/lang/String; MUSIC_FILES_PATHS
 bs.b [Ljava/lang/String; SFX_FILES_PATHS
 bs.a I lastSfxIndex
@@ -2347,7 +2347,7 @@ by.b Z captured
 by.a Lag; beamMesh
 by.a()V render
 by.a(JLbw;Ldb;Lx;)V update
-bz GOF2/MeteoroidParticles
+bz GOF2/MovingStars
 bz.a [I vertexCoords
 bz.b [I lifeTimes
 bz.c [I offsets

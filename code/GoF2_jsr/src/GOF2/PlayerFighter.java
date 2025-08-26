@@ -1,6 +1,6 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.BoundingVolume;
 import AE.GlobalStatus;
 import AE.GraphNode;
@@ -57,8 +57,8 @@ public final class PlayerFighter extends KIPlayer {
     private boolean unused821_;
     private int crateTime_;
 
-    public PlayerFighter(final int var1, final int race, final Player var3, final AbstractMesh var4, final int var5, final int var6, final int var7) {
-        super(var1, race, var3, (AbstractMesh)null, var5, var6, var7);
+    public PlayerFighter(final int var1, final int race, final Player var3, final AEGeometry var4, final int var5, final int var6, final int var7) {
+        super(var1, race, var3, (AEGeometry)null, var5, var6, var7);
         this.race = race;
         this.initPos.set(var5, var6, var7);
         this.hasCargo = true;

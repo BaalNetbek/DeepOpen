@@ -3,7 +3,7 @@ package AE;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 
-public abstract class AECamera extends AEGeometry {
+public abstract class AECamera extends SceneObject {
 	private int nearPlane;
 	private int farPlane;
 	private final AEVector3D[] vfPlaneNormals = new AEVector3D[6];

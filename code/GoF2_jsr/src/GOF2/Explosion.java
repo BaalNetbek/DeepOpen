@@ -1,7 +1,7 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.Math.AEMath;
 
@@ -15,12 +15,12 @@ public final class Explosion {
 	private int[] delays;
 	//private int[] unused_1af;
 	private int animationPlayTime;
-	private AbstractMesh[] explosions;
-	private final AbstractMesh coreExplosion;
+	private AEGeometry[] explosions;
+	private final AEGeometry coreExplosion;
 
 	public Explosion(int var1) {
 		if (var1 > 1) {
-			this.explosions = new AbstractMesh[var1];
+			this.explosions = new AEGeometry[var1];
 			this.delays = new int[var1];
 
 			for(int i = 0; i < this.explosions.length; ++i) {

@@ -1,6 +1,6 @@
 package AE.PaintCanvas;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 
 /**
  * Container for render layers. Used in Renderer to manage rendering order.
@@ -10,17 +10,17 @@ import AE.AbstractMesh;
  *
  */
 public final class RenderLayer {
-	private AbstractMesh[] meshes = null;
+	private AEGeometry[] meshes = null;
 	private int size = 0;
 
-	public final void appendNode(final AbstractMesh var1) {
+	public final void appendNode(final AEGeometry var1) {
 		if (this.meshes == null) {
-			this.meshes = new AbstractMesh[1];
+			this.meshes = new AEGeometry[1];
 			this.meshes[0] = var1;
 			this.size = 1;
 		} else {
 			if (this.size == this.meshes.length) {
-				final AbstractMesh[] postAppendMeshes = new AbstractMesh[this.meshes.length + 1];
+				final AEGeometry[] postAppendMeshes = new AEGeometry[this.meshes.length + 1];
 				System.arraycopy(this.meshes, 0, postAppendMeshes, 0, this.meshes.length);
 				postAppendMeshes[this.meshes.length] = var1;
 				this.meshes = postAppendMeshes;

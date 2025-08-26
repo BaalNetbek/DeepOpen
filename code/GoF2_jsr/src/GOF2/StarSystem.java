@@ -6,7 +6,7 @@ import javax.microedition.m3g.Transform;
 
 import AE.AEFile;
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.CameraControllerGroup;
 import AE.GlobalStatus;
 import AE.LensFlareFX;
@@ -47,7 +47,7 @@ public final class StarSystem {
 	      4, 1, 5, 2, 3, 2, 3, 2, 2,
 	      2, 5
 	};
-	private AbstractMesh[] starAndPlanets;
+	private AEGeometry[] starAndPlanets;
 	private final CameraControllerGroup cameraControler;
 	private AEVector3D tempVec;
 	private final LensFlareFX lensFlare;
@@ -55,7 +55,7 @@ public final class StarSystem {
 	private Sprite planet;
 	private Image[] localPlanetsImgs;
 	private KIPlayer[] localPlanets;
-	private AbstractMesh[] nebulaPivots;
+	private AEGeometry[] nebulaPivots;
 	private Image[] nebulaImgs;
 	private boolean[] occupiedNebulaPos;
 	private boolean[] occupiedAstroObjPos;
@@ -73,7 +73,7 @@ public final class StarSystem {
         
         if (!this.inAlienSpace) {
             final int[] var8 = Status.getSystem().getStations();
-            this.starAndPlanets = new AbstractMesh[var8.length + 1];
+            this.starAndPlanets = new AEGeometry[var8.length + 1];
             this.localPlanets = new KIPlayer[var8.length];
             var2 = AEFile.loadImage("/data/interface/planet_" + Status.getStation().getPlanetTextureId() + ".png", true);
             this.planet = new Sprite(var2);
@@ -140,7 +140,7 @@ public final class StarSystem {
 
             int numNebulas = GlobalStatus.random.nextInt(8);
             if (numNebulas > 0) {
-                this.nebulaPivots = new AbstractMesh[numNebulas];
+                this.nebulaPivots = new AEGeometry[numNebulas];
                 this.occupiedNebulaPos = new boolean[8];
                 this.occupiedAstroObjPos = new boolean[this.astronomicalObjPlacings.length / 3];
                 this.nebulaImgs = new Image[this.nebulaPivots.length];
@@ -199,7 +199,7 @@ public final class StarSystem {
 
     }
 
-    public final AbstractMesh[] getPlanets() {
+    public final AEGeometry[] getPlanets() {
         return this.starAndPlanets;
     }
 

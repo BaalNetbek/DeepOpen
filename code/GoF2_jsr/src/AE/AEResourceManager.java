@@ -8,7 +8,7 @@ public final class AEResourceManager {
 	private static String[] texturePaths;
 	private static boolean[] loadedTextures;
 	private static int[] meshIds;
-	private static AbstractMesh[] meshes;
+	private static AEGeometry[] meshes;
 	private static int[] radii_;
 	private static String[] meshPaths;
 	private static boolean[] loadedMeshes;
@@ -48,7 +48,7 @@ public final class AEResourceManager {
 			meshPaths[0] = path;
 			radii_ = new int[1];
 			radii_[0] = radius;
-			meshes = new AbstractMesh[1];
+			meshes = new AEGeometry[1];
 			meshIds = new int[1];
 			meshIds[0] = resId;
 			loadedMeshes = new boolean[1];
@@ -64,7 +64,7 @@ public final class AEResourceManager {
 			System.arraycopy(radii_, 0, extRadii, 0, radii_.length);
 			extRadii[radii_.length] = radius;
 			radii_ = extRadii;
-			final AbstractMesh[] extMeshes = new AbstractMesh[meshes.length + 1];
+			final AEGeometry[] extMeshes = new AEGeometry[meshes.length + 1];
 			System.arraycopy(meshes, 0, extMeshes, 0, meshes.length);
 			meshes = extMeshes;
 			extRadii = new int[meshIds.length + 1];
@@ -104,8 +104,8 @@ public final class AEResourceManager {
 		return null;
 	}
 
-	public static AbstractMesh getGeometryResource(int resourceId) {
-		AbstractMesh geometry;
+	public static AEGeometry getGeometryResource(int resourceId) {
+		AEGeometry geometry;
 		for(int i = 0; i < meshIds.length; ++i) {
 			if (resourceId == meshIds[i]) {
 				loadedMeshes[i] = true;
@@ -130,7 +130,7 @@ public final class AEResourceManager {
 					return meshes[i];
 				}
 
-				return (AbstractMesh)meshes[i].clone();
+				return (AEGeometry)meshes[i].clone();
 			}
 		}
 

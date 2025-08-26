@@ -5,7 +5,7 @@ import javax.microedition.lcdui.Image;
 
 import AE.AECamera;
 import AE.GlobalStatus;
-import AE.Group;
+import AE.AEGroup;
 import AE.PaintCanvas.AEGraphics3D;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
@@ -46,7 +46,7 @@ public final class ListItemWindow {
     private boolean show3DShip;
     private AECamera shipPreviewCam;
     private AECamera lastCam;
-    private Group ship;
+    private AEGroup ship;
     private float yaw;
     private float pitch;
     private float speedPitchDown;
@@ -294,9 +294,9 @@ public final class ListItemWindow {
             this.shipPreviewCam = AECamera.create(GlobalStatus.screenWidth, GlobalStatus.screenHeight, 1000, 10, AEGraphics3D.CAMERA_FAR);
             this.shipPreviewCam.translate(0, 400, -Ship.SHIP_PREVIEW_SCALING[this.contextItem.getIndex()]);
             this.shipPreviewCam.rotateEuler(AEMath.Q_PI_SIXTEENTH, AEMath.Q_PI_HALF, 0);
-            Group var2 = Globals.getShipGroup(this.contextItem.getIndex(), this.contextItem.ship.getRace());
+            AEGroup var2 = Globals.getShipGroup(this.contextItem.getIndex(), this.contextItem.ship.getRace());
             var2.translate(0, 0, Ship.SHIP_HANGAR_OFFSETS[this.contextItem.getIndex()]);
-            this.ship = new Group();
+            this.ship = new AEGroup();
             this.ship.uniqueAppend_(var2);
         } else if (this.lastCam != null) {
             GlobalStatus.renderer.setActiveCamera(this.lastCam);

@@ -1,9 +1,9 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
-import AE.Group;
+import AE.AEGroup;
 import AE.Math.AEVector3D;
 import AE.Math.AEMath;
 import AE.PaintCanvas.AEGraphics3D;
@@ -12,11 +12,11 @@ public final class PlayerWormHole extends PlayerStaticFar {
     private int lifeTime;
     private int scale;
 
-    public PlayerWormHole(int id, AbstractMesh mesh, final int x, final int y, final int z, final boolean active) {
+    public PlayerWormHole(int id, AEGeometry mesh, final int x, final int y, final int z, final boolean active) {
         super(id, mesh, x, y, z);
         this.name = GlobalStatus.gameText.getText(269);
         setVisible(active);
-        this.geometry = new Group();
+        this.geometry = new AEGroup();
         if (active) {
             this.mainMesh_.setAnimationSpeed(30);
             this.mainMesh_.setRotation(-AEMath.Q_32nd, -AEMath.Q_32nd, 0);

@@ -1,12 +1,12 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.ITexture;
 import AE.Math.AEVector3D;
 
-public final class Sparks extends AbstractMesh {
+public final class Sparks extends AEGeometry {
     private final Impact impact;
     private boolean inactive;
     private final boolean unused4a_;

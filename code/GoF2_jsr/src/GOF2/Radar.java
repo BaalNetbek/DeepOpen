@@ -5,7 +5,7 @@ import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
 
 import AE.AEFile;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.AECamera;
 import AE.GlobalStatus;
 import AE.TargetFollowCamera;
@@ -56,7 +56,7 @@ public final class Radar {
     private KIPlayer[] enemies;
     private KIPlayer[] landmarks;
     private KIPlayer[] asteroids;
-    private AbstractMesh[] planets;
+    private AEGeometry[] planets;
     private Route playerRoute;
     private Level level;
     private final AEMatrix camInvMatrix = new AEMatrix();
@@ -76,8 +76,8 @@ public final class Radar {
     private KIPlayer targetedPlayer;
     private KIPlayer contextAsteroid;
     private KIPlayer targetedAsteroid;
-    private AbstractMesh contextPlanet;
-    public AbstractMesh targetedPlanet;
+    private AEGeometry contextPlanet;
+    public AEGeometry targetedPlanet;
     public KIPlayer tractorBeamTarget;
     public KIPlayer contextLandmark;
     public KIPlayer targetedLandmark;
@@ -105,7 +105,7 @@ public final class Radar {
         this.stationaryPlayersNames[1] = GlobalStatus.gameText.getText(271);
         this.stationaryPlayersNames[2] = "";
         this.stationaryPlayersNames[3] = GlobalStatus.gameText.getText(269);
-        AbstractMesh[] guns = var1.getPlayerGuns_();
+        AEGeometry[] guns = var1.getPlayerGuns_();
         if (guns != null) {
             for(int i = 0; i < guns.length; ++i) {
                 if (guns[i] instanceof RocketGun) {

@@ -5,12 +5,12 @@ import javax.microedition.lcdui.game.Sprite;
 
 import AE.AEFile;
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.AECamera;
 import AE.CameraControllerGroup;
 import AE.EaseInOut;
 import AE.GlobalStatus;
-import AE.Group;
+import AE.AEGroup;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 import AE.Math.AEMatrix;
@@ -74,19 +74,19 @@ public final class StarMap {
 	private Popup popup;
 	private int selectedSystem;
 	private int selectedPlanet;
-	private final AbstractMesh[] stars;
+	private final AEGeometry[] stars;
 	private final CameraControllerGroup galaxyMapGroup;
 	private AECamera starNetCamera_;
 	private AECamera lastCamera;
 	private AEVector3D tmpStarScreenPos2;
 	private AEVector3D tmpStarScreenPos1;
 	private final AEMatrix matrix;
-	private AbstractMesh[] localStarAndPlanetsMeshes;
-	private AbstractMesh[] localOrbits;
+	private AEGeometry[] localStarAndPlanetsMeshes;
+	private AEGeometry[] localOrbits;
 	private int[] planetRevolutAngs;
 	private int[] distsToStar;
 	private int[] pathToDestination_;
-	private Group localSystem;
+	private AEGroup localSystem;
 	private boolean galaxyMapView;
 	private boolean overviewOnly_;
 	private boolean destinationConfirmPopupOpen;
@@ -103,8 +103,8 @@ public final class StarMap {
 	private float curSqrSize;
 	private boolean galaxyMapUnlocked;
 	public boolean destSelected;
-	private AbstractMesh wormhole;
-	private AbstractMesh arrow;
+	private AEGeometry wormhole;
+	private AEGeometry arrow;
 	private final Image[] legendItemIcons = new Image[5];
 	private final boolean[] occupiedOrbits_ = new boolean[10];
 	private int destinationOrMissionSystem_;
@@ -139,7 +139,7 @@ public final class StarMap {
 		this.systems = FileRead.loadSystemsBinary();
 		this.sunGlow = AEFile.loadImage("/data/interface/map_sun_glow.png", true);
 		this.galaxyMapGroup = new CameraControllerGroup();
-		this.stars = new AbstractMesh[this.systems.length];
+		this.stars = new AEGeometry[this.systems.length];
 
 		for(int i = 0; i < this.stars.length; ++i) {
 			final int var6 = this.systems[i].getStarTextureIndex();
@@ -651,8 +651,8 @@ public final class StarMap {
 		this.planetRevolutAngs = new int[var1];
 		this.distsToStar = new int[var1];
 		GlobalStatus.random.setSeed(this.systems[this.selectedSystem].getIndex() * 1000);
-		this.localStarAndPlanetsMeshes = new AbstractMesh[var1 + 2];
-		this.localSystem = new Group();
+		this.localStarAndPlanetsMeshes = new AEGeometry[var1 + 2];
+		this.localSystem = new AEGroup();
 
 		//int var2;
 		for(int i = 0; i < this.occupiedOrbits_.length; ++i) {
@@ -711,7 +711,7 @@ public final class StarMap {
 
 		this.localStarAndPlanetsMeshes[1].setDraw(false);
 		this.localStarAndPlanetsMeshes[0].setDraw(false);
-		this.localOrbits = new AbstractMesh[var1];
+		this.localOrbits = new AEGeometry[var1];
 		int var3;
 		for(int i = 0; i < this.localOrbits.length; ++i) {
 			this.localOrbits[i] = AEResourceManager.getGeometryResource(6779);

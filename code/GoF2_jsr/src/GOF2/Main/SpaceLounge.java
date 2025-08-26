@@ -3,7 +3,7 @@ package GOF2.Main;
 import javax.microedition.lcdui.Image;
 
 import AE.AEFile;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.AECamera;
 import AE.EaseInOut;
 import AE.GlobalStatus;
@@ -173,7 +173,7 @@ public final class SpaceLounge {
 				}
 
 				if (var7) {
-					final AbstractMesh var11 = this.scene.level.getEnemies()[this.selectedAgent].mainMesh_;
+					final AEGeometry var11 = this.scene.level.getEnemies()[this.selectedAgent].mainMesh_;
 					this.cameraIntegratorX_.SetRange(GlobalStatus.renderer.getCamera().getPosX(), var11.getPosX());
 					this.cameraIntegratorZ_.SetRange(GlobalStatus.renderer.getCamera().getPosZ(), var11.getPosZ() - 1000);
 				}

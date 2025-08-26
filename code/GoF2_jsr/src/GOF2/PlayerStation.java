@@ -1,7 +1,7 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.BoundingAAB;
 import AE.BoundingVolume;
 import AE.GlobalStatus;
@@ -58,13 +58,13 @@ public final class PlayerStation extends PlayerStaticFar {
 		    -10361, 25852,  -11525, 25379, 16129, 23051,
 		    0,      0,      0,      0,     0,     0
 	      };
-	private AbstractMesh[] stationParts;
+	private AEGeometry[] stationParts;
 	private int[] partPositions;
     private int collidingPart;
     private int maxPartDeflection;
 
     public PlayerStation(final Station var1) {
-        super(-1, (AbstractMesh)null, 0, 0, 0);
+        super(-1, (AEGeometry)null, 0, 0, 0);
         this.player.setRadius(15000);
         //new FileRead();
         int[] stationParts = null;
@@ -74,12 +74,12 @@ public final class PlayerStation extends PlayerStaticFar {
 
         //int var3;
         if (stationParts == null) {
-            this.stationParts = new AbstractMesh[1];
+            this.stationParts = new AEGeometry[1];
             Status.inAlienOrbit();
             this.stationParts[0] = AEResourceManager.getGeometryResource(3337);
             this.stationParts[0].setRenderLayer(2);
         } else {
-            this.stationParts = new AbstractMesh[stationParts.length / 7];
+            this.stationParts = new AEGeometry[stationParts.length / 7];
             
             int j;
             for(int i = 0; i < this.stationParts.length; ++i) {

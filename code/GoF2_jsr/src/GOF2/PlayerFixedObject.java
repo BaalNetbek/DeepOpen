@@ -1,6 +1,6 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.BoundingVolume;
 import AE.GlobalStatus;
 import AE.GraphNode;
@@ -32,7 +32,7 @@ public final class PlayerFixedObject extends KIPlayer {
     private int posY;
     private int posZ;
 
-    public PlayerFixedObject(final int shipIdx, int race, final Player player, final AbstractMesh mesh, final int x, final int y, final int z) {
+    public PlayerFixedObject(final int shipIdx, int race, final Player player, final AEGeometry mesh, final int x, final int y, final int z) {
         super(shipIdx, race, player, mesh, x, y, z);
         this.pos.set(x, y, z);
         this.posX = x;

@@ -1,7 +1,7 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.ParticleSystemMesh;
 import AE.Math.AEVector3D;
@@ -17,13 +17,13 @@ public final class Trail {
     private final int[] vertices;
     private final int[] tempVerts;
     private final int[] uvs;
-    private AbstractMesh mesh;
+    private AEGeometry mesh;
     private final AEVector3D sourcePos = new AEVector3D();
     private boolean stop = false;
 
     public Trail(final int var1) {
         int var2 = var1 == 0 ? 16 : 13;
-        this.mesh = AbstractMesh.newPlaneStrip(0, var2, (byte)2);
+        this.mesh = AEGeometry.newPlaneStrip(0, var2, (byte)2);
         this.mesh.setTexture(AEResourceManager.getTextureResource(1));
         this.mesh.setRenderLayer(2);
         this.tempVerts = new int[var2 * 12];

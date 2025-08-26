@@ -20,7 +20,7 @@ import AE.PaintCanvas.AEGraphics3D;
  * @author fishlabs
  *
  */
-public final class JSRMesh extends AbstractMesh {
+public final class JSRMesh extends AEGeometry {
 	private static int[] uvOffsets = {1, 2, 2, 2, 1, 2, 1, 0, 0, 2};
 	private static int[] uvRotations = {0, 0, 0, 0, 1, 0, 0, 1, 0, 1};
 	private int animLength;

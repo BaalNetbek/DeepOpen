@@ -1,9 +1,9 @@
 package GOF2;
 
 import AE.AEResourceManager;
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.GlobalStatus;
-import AE.Group;
+import AE.AEGroup;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 
@@ -21,8 +21,8 @@ public abstract class KIPlayer {
 	protected short state = 0;
 	protected int speed = 2;
 	public Player player;
-	public AbstractMesh mainMesh_;
-	public Group geometry;
+	public AEGeometry mainMesh_;
+	public AEGroup geometry;
 	protected int meshId;
 	protected int shipId_;
 	protected int race;
@@ -39,8 +39,8 @@ public abstract class KIPlayer {
 	public boolean junk;
 	public boolean hasCargo;
 	protected int[] cargo;
-	public AbstractMesh waste;
-	protected AbstractMesh jumpMesh;
+	public AEGeometry waste;
+	protected AEGeometry jumpMesh;
 	protected boolean diedWithMissionCrate;
 	protected boolean lostMissionCrateToEgo;
 	protected boolean unusedc3a_;
@@ -57,7 +57,7 @@ public abstract class KIPlayer {
 	protected boolean visible;
 	public boolean withinRenderDistance = true;
 
-	public KIPlayer(final int meshId, final int race, final Player player, final AbstractMesh mesh, final int x, final int y, final int z) {
+	public KIPlayer(final int meshId, final int race, final Player player, final AEGeometry mesh, final int x, final int y, final int z) {
 		this.race = race;
 		this.player = player;
 		this.mainMesh_ = mesh;
@@ -106,7 +106,7 @@ public abstract class KIPlayer {
 
 	}
 
-	public final void setGroup(final Group var1, final int var2) {
+	public final void setGroup(final AEGroup var1, final int var2) {
 		this.shipId_ = var2;
 		this.geometry = var1;
 		this.geometry.moveTo(this.targetX, this.targetY, this.targetZ);
@@ -281,7 +281,7 @@ public abstract class KIPlayer {
 		this.player.setActive(true);
 	}
 
-	public final void setJumpMesh(final AbstractMesh var1) {
+	public final void setJumpMesh(final AEGeometry var1) {
 		this.jumpMesh = var1;
 	}
 	/**

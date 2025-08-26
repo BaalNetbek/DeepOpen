@@ -1,6 +1,6 @@
 package AE;
 
-public class Group extends GraphNode {
+public class AEGroup extends GraphNode {
 	protected GraphNode head = null;
 
 	public final void uniqueAppend_(final GraphNode newNode) {

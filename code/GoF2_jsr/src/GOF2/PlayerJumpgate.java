@@ -1,6 +1,6 @@
 package GOF2;
 
-import AE.AbstractMesh;
+import AE.AEGeometry;
 import AE.BoundingSphere;
 import AE.BoundingVolume;
 import AE.Math.AEMath;
@@ -8,7 +8,7 @@ import AE.Math.AEMath;
 public final class PlayerJumpgate extends PlayerStaticFar {
     private boolean animationInit;
 
-    public PlayerJumpgate(final int var1, final AbstractMesh var2, final int var3, final int var4, final int var5, final boolean var6) {
+    public PlayerJumpgate(final int var1, final AEGeometry var2, final int var3, final int var4, final int var5, final boolean var6) {
         super(15, var2, var3, var4, var5);
         setVisible(var6);
         if (var6) {

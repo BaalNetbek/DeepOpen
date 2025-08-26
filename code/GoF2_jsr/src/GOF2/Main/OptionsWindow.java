@@ -3,7 +3,7 @@ package GOF2.Main;
 import javax.microedition.lcdui.Image;
 
 import AE.GlobalStatus;
-import AE.SoundManager;
+import AE.AESoundRessource;
 import AE.TextInput;
 import AE.Time;
 import AE.Math.AEMath;
@@ -310,7 +310,7 @@ public final class OptionsWindow {
 				if (Status.getPlayingTime() <= 0L) {
 					Status.startNewGame();
 					GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[2]);
-					SoundManager.stopMusic__();
+					AESoundRessource.stopMusic__();
 					return true;
 				}
 
@@ -323,7 +323,7 @@ public final class OptionsWindow {
 				if (this.confirmPopup.getChoice()) {
 					Status.startNewGame();
 					GlobalStatus.applicationManager.SetCurrentApplicationModule(GlobalStatus.scenes[2]);
-					SoundManager.stopMusic__();
+					AESoundRessource.stopMusic__();
 					return true;
 				}
 
@@ -763,7 +763,7 @@ public final class OptionsWindow {
 		case 0:
 			GlobalStatus.musicOn = true;
 			GlobalStatus.soundManager.setMusicVolume(60);
-			if (GlobalStatus.applicationManager.GetCurrentApplicationModule() != GlobalStatus.scenes[2] && !SoundManager.isMusicPlaying()) {
+			if (GlobalStatus.applicationManager.GetCurrentApplicationModule() != GlobalStatus.scenes[2] && !AESoundRessource.isMusicPlaying()) {
 				GlobalStatus.soundManager.playMusic(0);
 			}
 			break;
@@ -774,12 +774,12 @@ public final class OptionsWindow {
 		case 2:
 			GlobalStatus.musicOn = true;
 			GlobalStatus.soundManager.setMusicVolume(100);
-			if (GlobalStatus.applicationManager.GetCurrentApplicationModule() != GlobalStatus.scenes[2] && !SoundManager.isMusicPlaying()) {
+			if (GlobalStatus.applicationManager.GetCurrentApplicationModule() != GlobalStatus.scenes[2] && !AESoundRessource.isMusicPlaying()) {
 				GlobalStatus.soundManager.playMusic(0);
 			}
 			break;
 		case 3:
-			SoundManager.stopMusic__();
+			AESoundRessource.stopMusic__();
 			GlobalStatus.musicOn = false;
 		}
 
