@@ -12,7 +12,10 @@ public final class Font {
 	public static final int TOP = 16;
 	public static final int BOTTOM = 32;
    
-   
+   	public static final int WHITE = 0;
+	public static final int GRAY = 1;
+	public static final int ORANGE = 2;
+	public static final int VOID = 3;
    
 	private static ImageFont[] symbolMaps;
 	private static Graphics graphics;

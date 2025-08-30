@@ -111,7 +111,7 @@ public final class LevelScript {
 
 		level.getPlayer().setCollide(false);
 	}
-
+	/** #TODO uninline */
 	public final boolean process(final int dt, final TargetFollowCamera followCamera) {
 		final RadioMessage[] rMessages = this.level.getMessages();
 		final PlayerEgo playerEgo = this.level.getPlayer();
@@ -428,7 +428,13 @@ public final class LevelScript {
 					enemies[0].player.setMaxHP(9999999);
 					this.level.getLandmarks()[3].setPosition(5000, -40000, 10000);
 				}
+			/*
+			case 42:
+				Stop the freighter.
+				Disable it's engine.
+			 */
 			}
+			
 		}
 
 		return this.cinematicBreak_;

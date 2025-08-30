@@ -22,7 +22,7 @@ public final class Objective {
 		this(var1, var2, var4);
 		this.indexB_ = var3;
 	}
-
+	/** #TODO uninline */
 	public final boolean achieved(final int time) {
 		KIPlayer[] targets;
 		int i = 0, dead = 0;

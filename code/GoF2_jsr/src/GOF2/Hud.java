@@ -271,7 +271,7 @@ public final class Hud {
 			this.queueScroll = 0;
 		}
 	}
-
+	/** #TODO uninline */
 	public final void hudEvent(final int event, final PlayerEgo ego) {
 		switch(event) {
 		case 1: //Auto fire on

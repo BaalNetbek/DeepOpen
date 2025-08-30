@@ -1,6 +1,7 @@
 package GOF2;
 
 import AE.GlobalStatus;
+import AE.PaintCanvas.Font;
 import GOF2.Main.GOF2Canvas;
 
 public final class Dialogue {
@@ -365,14 +366,14 @@ public final class Dialogue {
             }
         }
 
-        this.textBox.set(this.face, this.name, var1 == 16 ? true : this.page % 2 == 1);
+        this.textBox.set(this.face, this.name, var1 == Globals.FACE_COMPUTER ? true : this.page % 2 == 1);
         this.textBox.setText(this.message);
         this.textBox.topPadding = 0;
         byte var3;
-        if (var1 == 19) {
-            var3 = 3;
+        if (var1 == Globals.FACE_VOID) {
+            var3 = Font.VOID;
         } else {
-            var3 = 1;
+            var3 = Font.GRAY;
         }
         this.textBox.font = var3;
     }

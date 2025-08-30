@@ -59,18 +59,18 @@ public final class Radio {
                   for (int i = 0; i < this.messages.length; ++i) {
                       if (this.messages[i].triggered(nowTime, playerEgo)) {
                           final int imageID = this.messages[i].getImageID();
-                          if (imageID >= 21) {
+                          if (imageID >= Globals.FACE_GENERICS_START) {
 										this.face = ImageFactory.createChar(true,
-										      (imageID == 24) ? Globals.NIVELIAN :
-										      (imageID == 23) ? Globals.TERRAN :
-										      (imageID == 21) ? Globals.MIDORIAN 
+										      (imageID == Globals.FACE_NIVELIAN) ? Globals.NIVELIAN :
+										      (imageID == Globals.FACE_TERRAN) ? Globals.TERRAN :
+										      (imageID == Globals.FACE_MIDORIAN) ? Globals.MIDORIAN 
 				                  							 : Globals.VOSSK);
 								  }
                           else {
                               this.face = Globals.CHAR_IMAGES[imageID];
                           }
                           this.faceImages = ImageFactory.faceFromByteArray(this.face);
-                          this.font = ((imageID == 19) ? 3 : 1);
+                          this.font = ((imageID == Globals.FACE_VOID) ? 3 : 1);
                           this.rows = Font.splitToLines(
                         		  GlobalStatus.gameText.getText(this.messages[i].getTextID()),
                         		  GlobalStatus.screenWidth - 10,

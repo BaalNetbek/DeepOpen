@@ -1193,7 +1193,7 @@ ad.r [B CHAR_INFO_PIC
 ad.s [B CHAR_TERRAN_OFFICER
 ad.t [B CHAR_VOID
 ad.u [B CHAR_KHADOR
-ad.v [B CHAR_NIVELIAN_SECURITY
+ad.v [B CHAR_MIDORIAN
 ad.a [[B CHAR_IMAGES
 ad.a [Lch; ships
 ad.a [Lu; items

@@ -72,7 +72,8 @@ public final class Globals {
     private static byte[] CHAR_TERRAN_OFFICER =		{TERRAN,  2, 4, 4, 4};
     private static byte[] CHAR_VOID =				{VOID, 0, 0, 0, 0};
     private static byte[] CHAR_KHADOR =				{GREY, 0, 0, 0, 0};
-    private static byte[] CHAR_NIVELIAN_SECURITY =	{NIVELIAN, 0, 0, 0, 0};
+    /** unused? */
+    private static byte[] CHAR_MIDORIAN =	        {NIVELIAN, 0, 0, 0, 0}; 
     public static final byte[][] CHAR_IMAGES = { 
 		CHAR_KEITH,          CHAR_BRENT,
         CHAR_GUNANT,         CHAR_NORRIS,
@@ -84,8 +85,36 @@ public final class Globals {
         CHAR_KIDNAPPER,      CHAR_STORY,
         CHAR_COMPUTER,       CHAR_INFO_PIC,
         CHAR_TERRAN_OFFICER, CHAR_VOID,
-        CHAR_KHADOR,         CHAR_NIVELIAN_SECURITY
+        CHAR_KHADOR,         CHAR_MIDORIAN
     };
+    public static final int FACE_KEITH =            0;
+    public static final int FACE_BRENT =            1;
+    public static final int FACE_GUNANT =           2;
+    public static final int FACE_NORRIS =           3;
+    public static final int FACE_MKKT_BKKT =        4;
+    public static final int FACE_TOMMY =            5;
+    public static final int FACE_CARLA =            6;
+    public static final int FACE_ERRKT =            7;
+    public static final int FACE_JEAN =             8;
+    public static final int FACE_PIRATE_CHIEF =	    9;
+    public static final int FACE_PIRATE_1 =	        10;
+    public static final int FACE_PIRATE_2 =	        11;
+    public static final int FACE_SECURITY_GUY =	    12;
+    public static final int FACE_SECURITY_GIRL =    13;
+    public static final int FACE_KIDNAPPER =        14;
+    public static final int FACE_STORY =            15;
+    public static final int FACE_COMPUTER =         16;
+    public static final int FACE_INFO_PIC =	        17;
+    public static final int FACE_TERRAN_OFFICER =   18;
+    public static final int FACE_VOID =	            19;
+    public static final int FACE_KHADOR =           20;
+    
+    public static final int FACE_MIDORIAN =	        21;
+    public static final int FACE_VOSSK =            22;
+    public static final int FACE_TERRAN =	        23;
+    public static final int FACE_NIVELIAN =         24;
+    public static final int FACE_GENERICS_START = FACE_MIDORIAN;
+
     private static Ship[] ships;
     private static Item[] items;
 
