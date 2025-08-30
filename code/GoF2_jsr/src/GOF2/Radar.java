@@ -463,7 +463,7 @@ public final class Radar {
                         this.planetScanPassedTime += var5;
                         if (this.planetScanPassedTime > this.scanTime) {
                             if (var7) {
-                                var4.hudEvent(21, this.level.getPlayer());
+                                var4.hudEvent(Hud.EVENT_CANT_ON_MISSION, this.level.getPlayer());
                             } else {
                                 this.targetedPlanet = this.contextPlanet;
                                 if (this.onPlanetCourse_) {

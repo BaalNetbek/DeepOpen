@@ -433,7 +433,7 @@ public final class MGame extends IApplicationModule {
 							final boolean var2 = this.playerEgo.isAutoPilot() && !this.playerEgo.isLookingBack() || this.playerEgo.isDockingToAsteroid() || this.playerEgo.isDockingToStream_();
 							if ((var1 & GOF2Canvas.LEFT) != 0) {
 								if (var2) {
-									this.hud.hudEvent(7, this.playerEgo);
+									this.hud.hudEvent(Hud.EVENT_AUTO_ACTIVE, this.playerEgo);
 								} else {
 									this.playerEgo.turretRotateLeft((int)this.frameTime);
 								}
@@ -693,7 +693,7 @@ public final class MGame extends IApplicationModule {
 		this.touchesStation = this.level.collideStation(this.playerEgo.getPosition());
 		if (!Status.getMission().isEmpty() && Status.getMission().getType() != 11 && Status.getMission().getType() != 0 && Status.getMission().getType() != 23) {
 			if ((this.touchesStation || this.touchesStream) && this.playerEgo.isAutoPilot()) {
-				this.hud.hudEvent(21, this.playerEgo);
+				this.hud.hudEvent(Hud.EVENT_CANT_ON_MISSION, this.playerEgo);
 			}
 
 			return false;
@@ -1041,20 +1041,20 @@ public final class MGame extends IApplicationModule {
 								return;
 							case 1:
 								this.playerEgo.setAutoPilot(this.level.getLandmarks()[1]);
-								this.hud.hudEvent(12, this.playerEgo);
+								this.hud.hudEvent(Hud.EVENT_TARGET_JUMP_GATE, this.playerEgo);
 								return;
 							case 2:
 								this.playerEgo.setAutoPilot(this.level.getLandmarks()[0]);
-								this.hud.hudEvent(10, this.playerEgo);
+								this.hud.hudEvent(Hud.EVENT_TARGET_STATION, this.playerEgo);
 								return;
 							case 3:
 								this.playerEgo.setAutoPilot(this.level.getAsteroidWaypoint());
-								this.hud.hudEvent(14, this.playerEgo);
+								this.hud.hudEvent(Hud.EVENT_TARGET_ASTEROID_FIELD, this.playerEgo);
 								return;
 							case 4:
 								if (this.level.getPlayerRoute() != null) {
 									this.playerEgo.setAutoPilot(this.level.getPlayerRoute().getDockingTarget_());
-									this.hud.hudEvent(13, this.playerEgo);
+									this.hud.hudEvent(Hud.EVENT_TARGET_WAYPOINT, this.playerEgo);
 								}
 							}
 						}

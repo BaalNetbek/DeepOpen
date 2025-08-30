@@ -97,7 +97,7 @@ public final class PlayerWormHole extends PlayerStaticFar {
 
                         setPosition(var2, var3, var4);
                         if (this.level.getPlayer().goingToWormhole()) {
-                            this.level.getPlayer().getHud().hudEvent(6, this.level.getPlayer());
+                            this.level.getPlayer().getHud().hudEvent(Hud.EVENT_AUTO_OFF, this.level.getPlayer());
                             this.level.getPlayer().setAutoPilot((KIPlayer)null);
                         }
                     }

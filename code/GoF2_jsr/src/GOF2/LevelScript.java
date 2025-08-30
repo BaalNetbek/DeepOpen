@@ -271,7 +271,7 @@ public final class LevelScript {
 				this.cinematicBreak_ = false;
 				this.level.getPlayer().setCollide(true);
 				if (Level.programmedStation != null && !Level.programmedStation.equals(Status.getStation())) {
-					this.hud.hudEvent(5, this.level.getPlayer());
+					this.hud.hudEvent(Hud.EVENT_AUTO_ON, this.level.getPlayer());
 				}
 
 				Level.initStreamOutPosition = false;

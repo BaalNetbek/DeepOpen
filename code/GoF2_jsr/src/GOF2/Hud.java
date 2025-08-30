@@ -13,6 +13,54 @@ import AE.PaintCanvas.ImageFactory;
 import GOF2.Main.GOF2Canvas;
 
 public final class Hud {
+	/** Auto fire on */
+	public static final int EVENT_AUTOFIRE_ON = 1;
+	/** Auto fire off */
+	public static final int EVENT_AUTOFIRE_OFF = 2;
+	/** Boost */
+	public static final int EVENT_BOOST = 3;
+	/** Booster ready */
+	public static final int EVENT_BOOST_READY = 4;
+	/** Autopilot on */
+	public static final int EVENT_AUTO_ON = 5;
+	/** Autopilot off */
+	public static final int EVENT_AUTO_OFF = 6;
+	/** Autopilot activated */
+	public static final int EVENT_AUTO_ACTIVE = 7;
+	/** Mining failed */
+	public static final int EVENT_MINING_FAILED = 8;
+	/** No tractor beam installed */
+	public static final int EVENT_NO_TRACTOR = 9;
+	/** Target: Station */
+	public static final int EVENT_TARGET_STATION = 10;
+	/** Target: Asteroid */
+	public static final int EVENT_TARGET_ASTEROID = 11;
+	/** Target: Jump gate */
+	public static final int EVENT_TARGET_JUMP_GATE = 12;
+	/** Target: Waypoint */
+	public static final int EVENT_TARGET_WAYPOINT = 13;
+	/** Target: Asteroid field */
+	public static final int EVENT_TARGET_ASTEROID_FIELD = 14;
+	/** Target: Wormhole (unused) */
+	public static final int EVENT_TARGET_WORMHOLE = 15;
+	/** Fire at will */
+	public static final int EVENT_FIRE_AT_WILL = 16;
+	/** Attack my target */
+	public static final int EVENT_ATTACK_TARGET = 17;
+	/** Secure next waypoint */
+	public static final int EVENT_SECURE_WAYPOINT = 18;
+	/** Use laser / Use EMP blaster */
+	public static final int EVENT_SWAP_GUN = 19;
+	/** No drill installed */
+	public static final int EVENT_NO_DRILL = 20;
+	/** Not possible while on a mission */
+	public static final int EVENT_CANT_ON_MISSION = 21;
+	/** Nothing to salvage */
+	public static final int EVENT_NO_LOOT = 22;
+	/** Waypoint reached */
+	public static final int EVENT_WAYPOINT_REACHED = 23;
+	/** Last waypoint reached */
+	public static final int EVENT_LAST_WAYPOINT_REACHED = 24;
 	private final String[][] actionmenuLabels = {
 			{"", "", "", ""},
 			{"", "", "", ""},
@@ -114,8 +162,7 @@ public final class Hud {
 				for(int i = 0; i < secondaries.length; ++i) {
 					if (secondaries[i] != null) {
 						noSecondaries = false;
-						break;
-					}
+						break;					}
 				}
 			}
 
@@ -274,95 +321,90 @@ public final class Hud {
 	/** #TODO uninline */
 	public final void hudEvent(final int event, final PlayerEgo ego) {
 		switch (event) {
-			case 1: // Auto fire on
+			case EVENT_AUTOFIRE_ON: // Auto fire on
 				if (!this.hasWeapon) {
 					return;
 				}
-
 				this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(15);
-				break;
-			case 2: // Auto fire off
+				break;			case EVENT_AUTOFIRE_OFF: // Auto fire off
 				if (!this.hasWeapon) {
 					return;
 				}
-
 				this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(16);
 				break;
-			case 3: // Boost
+			case EVENT_BOOST: // Boost
 				if (!this.drawBoostIcon || !ego.readyToBoost()) {
 					return;
 				}
-
 				this.tempLogMsg = GlobalStatus.gameText.getText(154);
 				break;
-			case 4: // Booster ready
+			case EVENT_BOOST_READY: // Booster ready
 				if (!this.drawBoostIcon) {
 					return;
 				}
-
 				this.tempLogMsg = GlobalStatus.gameText.getText(155);
 				break;
-			case 5: // Autopilot on
+			case EVENT_AUTO_ON: // Autopilot on
 				this.tempLogMsg = GlobalStatus.gameText.getText(292) + " " + GlobalStatus.gameText.getText(15);
 				break;
-			case 6: // Autopilot off
+			case EVENT_AUTO_OFF: // Autopilot off
 				this.tempLogMsg = GlobalStatus.gameText.getText(292) + " " + GlobalStatus.gameText.getText(16);
 				break;
-			case 7: // Autopilot is activated!
+			case EVENT_AUTO_ACTIVE: // Autopilot is activated!
 				this.tempLogMsg = GlobalStatus.gameText.getText(276);
 				break;
-			case 8: // Mining failed
+			case EVENT_MINING_FAILED: // Mining failed
 				this.tempLogMsg = GlobalStatus.gameText.getText(263);
 				break;
-			case 9: // No tractor beam installed
+			case EVENT_NO_TRACTOR: // No tractor beam installed
 				this.tempLogMsg = GlobalStatus.gameText.getText(264);
 				break;
-			case 10: // Target: [name] Station
+			case EVENT_TARGET_STATION: // Target: [name] Station
 				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + Status.getStation().getName() + " "
 						+ GlobalStatus.gameText.getText(40);
 				break;
-			case 11: // Target: Asteroid
+			case EVENT_TARGET_ASTEROID: // Target: Asteroid
 				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(274);
 				break;
-			case 12: // Target: Jump gate
+			case EVENT_TARGET_JUMP_GATE: // Target: Jump gate
 				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(271);
 				break;
-			case 13: // Target: Waypoint
+			case EVENT_TARGET_WAYPOINT: // Target: Waypoint
 				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(272);
 				break;
-			case 14: // Target: Asteroid field
+			case EVENT_TARGET_ASTEROID_FIELD: // Target: Asteroid field
 				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(273);
 				break;
-			case 15: // Target: Wormhole (unused)
+			case EVENT_TARGET_WORMHOLE: // Target: Wormhole (unused)
 				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(269);
 				break;
-			case 16: // Fire at will
+			case EVENT_FIRE_AT_WILL: // Fire at will
 				this.tempLogMsg = GlobalStatus.gameText.getText(147);
 				break;
-			case 17: // Attack my target
+			case EVENT_ATTACK_TARGET: // Attack my target
 				this.tempLogMsg = GlobalStatus.gameText.getText(148);
 				break;
-			case 18: // Secure next wapoint
+			case EVENT_SECURE_WAYPOINT: // Secure next waypoint
 				this.tempLogMsg = GlobalStatus.gameText.getText(149);
 				break;
-			case 19: // unknown?, unused
-				this.tempLogMsg = this.actionmenuLabels[4][3];
+			case EVENT_SWAP_GUN: // Use laser / EMP blaster
+				this.tempLogMsg = this.actionmenuLabels[4][3]; // BUG should be this.actionmenuLabels[3][3]
 				break;
-			case 20: // No drill installed.
+			case EVENT_NO_DRILL: // No drill installed
 				this.tempLogMsg = GlobalStatus.gameText.getText(265);
 				break;
-			case 21: // Not possible while on a mission.
+			case EVENT_CANT_ON_MISSION: // Not possible while on a mission
 				this.tempLogMsg = GlobalStatus.gameText.getText(254);
 				break;
-			case 22: // Nothing to salvage.
+			case EVENT_NO_LOOT: // Nothing to salvage
 				this.tempLogMsg = GlobalStatus.gameText.getText(266);
 				break;
-			case 23: // Waypoint reached
+			case EVENT_WAYPOINT_REACHED: // Waypoint reached
 				this.tempLogMsg = GlobalStatus.gameText.getText(267);
 				break;
-			case 24: // Last waypoint reached
+			case EVENT_LAST_WAYPOINT_REACHED: // Last waypoint reached
 				this.tempLogMsg = GlobalStatus.gameText.getText(268);
-		}
+				break;		}
 
 		if (!sameHudEventAsBeforeAggregate(this.tempLogMsg)) {
 			appendHudEvent(new ListItem(this.tempLogMsg));
@@ -708,8 +750,7 @@ public final class Hud {
 						this.quickMenu.setFrame(var4 + 3);
 						this.quickMenu.paint(GlobalStatus.graphics);
 					}
-					break;
-				case 1:
+					break;				case 1:
 					if (var4 < var7.length && var7[var4] != null && var7[var4].getAmount() > 0) {
 						ImageFactory.drawItemFrameless(var7[var4].getIndex(), this.items, var5, var6, Graphics.HCENTER | Graphics.VCENTER);
 						Font.drawString(
@@ -720,14 +761,11 @@ public final class Hud {
 						  Font.TOP|Font.HCENTER
 						);
 					}
-					break;
-				case 3:
+					break;				case 3:
 					this.quickMenu.setFrame(var4 + 7);
 					this.quickMenu.paint(GlobalStatus.graphics);
-					break;
-				default:
-					break;
-				}
+					break;				default:
+					break;				}
 			}
 
 			if (this.actionmenuSelectDir > 0) {
@@ -800,20 +838,16 @@ public final class Hud {
     				case GOF2Canvas.UP:
   				      this.actionmenuSelectDir = 1;
     					GlobalStatus.soundManager.playSfx(4);
-    					break;
-    				case GOF2Canvas.LEFT:
+    					break;    				case GOF2Canvas.LEFT:
     					this.actionmenuSelectDir = 4;
     					GlobalStatus.soundManager.playSfx(4);
-    					break;
-    				case GOF2Canvas.RIGHT:
+    					break;    				case GOF2Canvas.RIGHT:
     					this.actionmenuSelectDir = 2;
     					GlobalStatus.soundManager.playSfx(4);
-    					break;
-    				case GOF2Canvas.DOWN:
+    					break;    				case GOF2Canvas.DOWN:
     					this.actionmenuSelectDir = 3;
     					GlobalStatus.soundManager.playSfx(4);
-    					break;
-    				case GOF2Canvas.KEY_5:
+    					break;    				case GOF2Canvas.KEY_5:
     					if (this.actionmenuSelectDir == 0) {
     						handleActionMenuKeypress(GOF2Canvas.RSB, level, var3);
     					}
@@ -839,8 +873,7 @@ public final class Hud {
   				&& keyPressed != GOF2Canvas.LEFT
   				&& keyPressed != GOF2Canvas.KEY_5) {
 					this.actionmenuOpen = true;
-					break;
-				}
+					break;				}
 				var5 = keyPressed == GOF2Canvas.UP  ? 0 :
 				       keyPressed == GOF2Canvas.RIGHT ? 1 :
 				       keyPressed == GOF2Canvas.DOWN  ? 2 :
@@ -855,12 +888,10 @@ public final class Hud {
 				}
 
 				this.actionmenuOpen = false;
-				break;
-			case 3:
+				break;			case 3:
 				KIPlayer[] enemies = level.getEnemies();
 				if (enemies == null) {
-					break;
-				}
+					break;				}
 
 				lastWingmenAction = keyPressed == GOF2Canvas.UP ? 2 :
                                keyPressed == GOF2Canvas.RIGHT ? 4 :
@@ -868,10 +899,10 @@ public final class Hud {
                                keyPressed == GOF2Canvas.LEFT ? 1 :
                                                  0;
 				hudEvent(
-				  lastWingmenAction == 2 ? 16 :
-				  lastWingmenAction == 4 ? 17 :
-				  lastWingmenAction == 1 ? 19 :
-				                           18,
+				  lastWingmenAction == 2 ? EVENT_FIRE_AT_WILL :
+				  lastWingmenAction == 4 ? EVENT_ATTACK_TARGET :
+				  lastWingmenAction == 1 ? EVENT_SWAP_GUN :
+					  					   EVENT_SECURE_WAYPOINT,
 				  level.getPlayer()
 				);
 				this.actionmenuLabels[3][3] = 
@@ -890,8 +921,7 @@ public final class Hud {
 				}
 
 				this.actionmenuOpen = false;
-				break;
-			default:
+				break;			default:
 				switch(keyPressed) {
 				case GOF2Canvas.UP:
 					if (!this.actionmenuLabels[0][0].equals("")) {
@@ -900,23 +930,20 @@ public final class Hud {
 						this.actionmenuOpen = true;
 						GlobalStatus.soundManager.playSfx(4);
 					}
-					break;
-				case GOF2Canvas.RIGHT:
+					break;				case GOF2Canvas.RIGHT:
 					if (!this.actionmenuLabels[0][1].equals("")) {
 						level.getPlayer().toggleCloaking_();
 						GlobalStatus.soundManager.playSfx(4);
 					}
 
 					this.actionmenuOpen = false;
-					break;
-				case GOF2Canvas.DOWN:
+					break;				case GOF2Canvas.DOWN:
 					if (!this.actionmenuLabels[0][2].equals("")) {
 						this.actionSubMenuOpen = 3;
 						this.actionmenuOpen = true;
 						GlobalStatus.soundManager.playSfx(4);
 					}
-					break;
-            case GOF2Canvas.LEFT:
+					break;            case GOF2Canvas.LEFT:
                if (!Status.getMission().isEmpty() && Status.getMission().getType() != 11 && Status.getMission().getType() != 0 && Status.getMission().getType() != 23) {
                   hudEvent(21, level.getPlayer());
                   GlobalStatus.soundManager.playSfx(4);
@@ -926,8 +953,7 @@ public final class Hud {
                }
   
                this.actionmenuOpen = false;
-               break;
-				case GOF2Canvas.KEY_5:
+               break;				case GOF2Canvas.KEY_5:
 					this.actionmenuOpen = false;
 				}
 			}

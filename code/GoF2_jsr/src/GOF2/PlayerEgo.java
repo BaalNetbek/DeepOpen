@@ -527,7 +527,7 @@ public final class PlayerEgo {
 			this.laggingPos = this.shipGrandGroup_.getLocalPos(this.laggingPos);
 			this.frameTime = dt;
 			if (this.boostTime < 0 && this.boostTime + dt * 3 > 0) {
-				var3.hudEvent(4, this);
+				var3.hudEvent(Hud.EVENT_BOOST_READY, this);
 				this.boostTime = 0;
 			}
 
@@ -1042,7 +1042,7 @@ public final class PlayerEgo {
 					endMining();
 				} else if (this.miningGame.gameLost()) {
 					endMining();
-					var1.hudEvent(8, this);
+					var1.hudEvent(Hud.EVENT_MINING_FAILED, this);
 				}
 
 				return true;
