@@ -7,7 +7,7 @@ public final class Time {
 
 	private Time() {
 	}
-
+	/** Globals::longToTimeString */
 	public static String timeToHMS(final long time) {
 		final int s = (int)(time / 1000L % 60L);
 		final int m = (int)(time / 60000L % 60L);
@@ -22,7 +22,7 @@ public final class Time {
 		hours = (h < 10 ? "0" : "") + h;
 		return (hours + ":" + minutes + ":" + seconds);
 	}
-
+	/** Globals::longToTimeStringNoSeconds */
 	public static String timeToHM(final long time) {
 		final int m = (int)(time / 60000L % 60L);
 		int h = (int)(time / 3600000L % 24L);

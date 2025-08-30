@@ -14,8 +14,8 @@ public final class JSRTexture extends ITexture {
 			try {
 				final Image2D var3 = var1.textures[0].getImage();
 				this.textures[0] = new Texture2D(var3);
-				this.textures[0].setBlending(228);
-				this.textures[0].setWrapping(241, 241);
+				this.textures[0].setBlending(Texture2D.FUNC_REPLACE);
+				this.textures[0].setWrapping(Texture2D.WRAP_REPEAT, Texture2D.WRAP_REPEAT);
 			} catch (final Exception var2) {
 				this.textures = null;
 			}
@@ -30,10 +30,10 @@ public final class JSRTexture extends ITexture {
 			for(int i = 0; i < var1.length; ++i) {
 				try {
 					final Image var3 = AEFile.loadImage(var1[i] + ".png", false);
-					final Image2D var5 = new Image2D(100, var3);
+					final Image2D var5 = new Image2D(Image2D.RGBA, var3);
 					this.textures[i] = new Texture2D(var5);
-					this.textures[i].setBlending(227);
-					this.textures[i].setWrapping(241, 241);
+					this.textures[i].setBlending(Texture2D.FUNC_MODULATE);
+					this.textures[i].setWrapping(Texture2D.WRAP_REPEAT, Texture2D.WRAP_REPEAT);
 				} catch (final Exception var4) {
 					this.textures = null;
 				}

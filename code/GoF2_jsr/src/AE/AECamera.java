@@ -86,7 +86,7 @@ public abstract class AECamera extends SceneObject {
 		final int var2 = this.horizontalProjectionFactor * worldPos.z >> AEMath.Q;
 		final int var3 = this.verticalProjectionFactor * worldPos.z >> AEMath.Q;
 		if (var2 != 0 && var3 != 0) {
-			// here stays 11 isntead of AEMath.Q-1 for now atleast as idk whats happening here
+			// here stays 11 isntead of AEMath.Q_1 for now atleast as idk whats happening here
 			// and in fixes projectn for higher Qs
 			worldPos.x = -((worldPos.x << 11) / var2 * this.screenWidth >> AEMath.Q) + (this.screenWidth >> 1);
 			worldPos.y = ((worldPos.y << 11) / var3 * this.screenHeight >> AEMath.Q) + (this.screenHeight >> 1);
