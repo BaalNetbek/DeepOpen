@@ -273,94 +273,95 @@ public final class Hud {
 	}
 	/** #TODO uninline */
 	public final void hudEvent(final int event, final PlayerEgo ego) {
-		switch(event) {
-		case 1: //Auto fire on
-			if (!this.hasWeapon) {
-				return;
-			}
+		switch (event) {
+			case 1: // Auto fire on
+				if (!this.hasWeapon) {
+					return;
+				}
 
-			this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(15);
-			break;
-		case 2: //Auto fire off
-			if (!this.hasWeapon) {
-				return;
-			}
+				this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(15);
+				break;
+			case 2: // Auto fire off
+				if (!this.hasWeapon) {
+					return;
+				}
 
-			this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(16);
-			break;
-		case 3: //Boost
-			if (!this.drawBoostIcon || !ego.readyToBoost()) {
-				return;
-			}
+				this.tempLogMsg = GlobalStatus.gameText.getText(13) + " " + GlobalStatus.gameText.getText(16);
+				break;
+			case 3: // Boost
+				if (!this.drawBoostIcon || !ego.readyToBoost()) {
+					return;
+				}
 
-			this.tempLogMsg = GlobalStatus.gameText.getText(154);
-			break;
-		case 4: //Booster ready
-			if (!this.drawBoostIcon) {
-				return;
-			}
+				this.tempLogMsg = GlobalStatus.gameText.getText(154);
+				break;
+			case 4: // Booster ready
+				if (!this.drawBoostIcon) {
+					return;
+				}
 
-			this.tempLogMsg = GlobalStatus.gameText.getText(155);
-			break;
-		case 5: //Autopilot on
-			this.tempLogMsg = GlobalStatus.gameText.getText(292) + " " + GlobalStatus.gameText.getText(15);
-			break;
-		case 6: //Autopilot off
-			this.tempLogMsg = GlobalStatus.gameText.getText(292) + " " + GlobalStatus.gameText.getText(16);
-			break;
-		case 7: //Autopilot is activated!
-			this.tempLogMsg = GlobalStatus.gameText.getText(276);
-			break;
-		case 8: //Mining failed
-			this.tempLogMsg = GlobalStatus.gameText.getText(263);
-			break;
-		case 9: //No tractor beam installed
-			this.tempLogMsg = GlobalStatus.gameText.getText(264);
-			break;
-		case 10: //Target: [name] Station
-			this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + Status.getStation().getName() + " " + GlobalStatus.gameText.getText(40);
-			break;
-		case 11: //Target: Asteroid
-			this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(274);
-			break;
-		case 12: //Target: Jump gate
-			this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(271);
-			break;
-		case 13: //Target: Waypoint
-			this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(272);
-			break;
-		case 14: //Target: Asteroid field
-			this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(273);
-			break;
-		case 15: //Target: Wormhole (unused)
-			this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(269);
-			break;
-		case 16: //Fire at will
-			this.tempLogMsg = GlobalStatus.gameText.getText(147);
-			break;
-		case 17: //Attack my target
-			this.tempLogMsg = GlobalStatus.gameText.getText(148);
-			break;
-		case 18: //Secure next wapoint
-			this.tempLogMsg = GlobalStatus.gameText.getText(149);
-			break;
-		case 19: //unknown?, unused
-			this.tempLogMsg = this.actionmenuLabels[4][3];
-			break;
-		case 20: //No drill installed.
-			this.tempLogMsg = GlobalStatus.gameText.getText(265);
-			break;
-		case 21: //Not possible while on a mission.
-			this.tempLogMsg = GlobalStatus.gameText.getText(254);
-			break;
-		case 22: //Nothing to salvage.
-			this.tempLogMsg = GlobalStatus.gameText.getText(266);
-			break;
-		case 23: //Waypoint reached
-			this.tempLogMsg = GlobalStatus.gameText.getText(267);
-			break;
-		case 24: //Last waypoint reached
-			this.tempLogMsg = GlobalStatus.gameText.getText(268);
+				this.tempLogMsg = GlobalStatus.gameText.getText(155);
+				break;
+			case 5: // Autopilot on
+				this.tempLogMsg = GlobalStatus.gameText.getText(292) + " " + GlobalStatus.gameText.getText(15);
+				break;
+			case 6: // Autopilot off
+				this.tempLogMsg = GlobalStatus.gameText.getText(292) + " " + GlobalStatus.gameText.getText(16);
+				break;
+			case 7: // Autopilot is activated!
+				this.tempLogMsg = GlobalStatus.gameText.getText(276);
+				break;
+			case 8: // Mining failed
+				this.tempLogMsg = GlobalStatus.gameText.getText(263);
+				break;
+			case 9: // No tractor beam installed
+				this.tempLogMsg = GlobalStatus.gameText.getText(264);
+				break;
+			case 10: // Target: [name] Station
+				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + Status.getStation().getName() + " "
+						+ GlobalStatus.gameText.getText(40);
+				break;
+			case 11: // Target: Asteroid
+				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(274);
+				break;
+			case 12: // Target: Jump gate
+				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(271);
+				break;
+			case 13: // Target: Waypoint
+				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(272);
+				break;
+			case 14: // Target: Asteroid field
+				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(273);
+				break;
+			case 15: // Target: Wormhole (unused)
+				this.tempLogMsg = GlobalStatus.gameText.getText(270) + ": " + GlobalStatus.gameText.getText(269);
+				break;
+			case 16: // Fire at will
+				this.tempLogMsg = GlobalStatus.gameText.getText(147);
+				break;
+			case 17: // Attack my target
+				this.tempLogMsg = GlobalStatus.gameText.getText(148);
+				break;
+			case 18: // Secure next wapoint
+				this.tempLogMsg = GlobalStatus.gameText.getText(149);
+				break;
+			case 19: // unknown?, unused
+				this.tempLogMsg = this.actionmenuLabels[4][3];
+				break;
+			case 20: // No drill installed.
+				this.tempLogMsg = GlobalStatus.gameText.getText(265);
+				break;
+			case 21: // Not possible while on a mission.
+				this.tempLogMsg = GlobalStatus.gameText.getText(254);
+				break;
+			case 22: // Nothing to salvage.
+				this.tempLogMsg = GlobalStatus.gameText.getText(266);
+				break;
+			case 23: // Waypoint reached
+				this.tempLogMsg = GlobalStatus.gameText.getText(267);
+				break;
+			case 24: // Last waypoint reached
+				this.tempLogMsg = GlobalStatus.gameText.getText(268);
 		}
 
 		if (!sameHudEventAsBeforeAggregate(this.tempLogMsg)) {
