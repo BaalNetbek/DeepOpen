@@ -619,8 +619,8 @@ public final class MGame extends IApplicationModule {
 		if (this.fiveSecTick > 5000L) {
 			final Mission var1 = Status.missionCompleted_(false, this.levelScript.timePassed);
 			if (this.level.checkObjective((int)this.levelScript.timePassed) || var1 != null) {
-				if ((Status.getMission().getType() == 5) || (Status.getMission().getType() == 3)) {
-					Status.getMission().setType(11);
+				if ((Status.getMission().getType() == Mission.TYPE_5) || (Status.getMission().getType() == Mission.TYPE_3)) {
+					Status.getMission().setType(Mission.TYPE_11);
 					Status.getMission().setTargetStation(Status.getMission().getAgent().getStationId());
 					if (this.sequentialDialogue_ == null) {
 						this.sequentialDialogue_ = new Dialogue();
@@ -673,8 +673,14 @@ public final class MGame extends IApplicationModule {
 	}
 
 	private void dialogueEvent() {
-		if (this.levelScript.startSequenceOver() && (Dialogue.hasBriefingDialogue(Status.getCurrentCampaignMission()) || !Status.getMission().isCampaignMission()) && !Status.getMission().isEmpty() && Status.getMission().getType() != 8 && Status.getMission().getType() != 0 && Status.getMission().isVisible()) {
-			if (!Status.getMission().isCampaignMission() && Status.getMission().getType() == 11) {
+		if (this.levelScript.startSequenceOver()
+				&& (Dialogue.hasBriefingDialogue(Status.getCurrentCampaignMission())
+						|| !Status.getMission().isCampaignMission())
+				&& !Status.getMission().isEmpty() 
+				&& Status.getMission().getType() != Mission.TYPE_8
+				&& Status.getMission().getType() != Mission.TYPE_0
+				&& Status.getMission().isVisible()) {
+			if (!Status.getMission().isCampaignMission() && Status.getMission().getType() == Mission.TYPE_11) {
 				return;
 			}
 
@@ -691,7 +697,10 @@ public final class MGame extends IApplicationModule {
 	private boolean dockEvent() {
 		this.touchesStream = this.level.collideStream(this.playerEgo.getPosition());
 		this.touchesStation = this.level.collideStation(this.playerEgo.getPosition());
-		if (!Status.getMission().isEmpty() && Status.getMission().getType() != 11 && Status.getMission().getType() != 0 && Status.getMission().getType() != 23) {
+		if (!Status.getMission().isEmpty() 
+				&& Status.getMission().getType() != Mission.TYPE_11
+				&& Status.getMission().getType() != Mission.TYPE_0 
+				&& Status.getMission().getType() != Mission.TYPE_23) {
 			if ((this.touchesStation || this.touchesStream) && this.playerEgo.isAutoPilot()) {
 				this.hud.hudEvent(Hud.EVENT_CANT_ON_MISSION, this.playerEgo);
 			}
@@ -929,11 +938,14 @@ public final class MGame extends IApplicationModule {
 								return;
 							}
 
-							if (Status.getMission().getType() == 12) {
+							if (Status.getMission().getType() == Mission.TYPE_12) {
 								Status.changeCredits(-Status.getMission().getReward());
 							} else {
 								Item[] var4;
-								if ((Status.getMission().getType() == 3 || Status.getMission().getType() == 5 || Status.getMission().getType() == 11) && (var4 = Status.getShip().getCargo()) != null) {
+								if ((Status.getMission().getType() == Mission.TYPE_3
+										|| Status.getMission().getType() == Mission.TYPE_5
+										|| Status.getMission().getType() == Mission.TYPE_11)
+										&& (var4 = Status.getShip().getCargo()) != null) {
 									for(int i = 0; i < var4.length; ++i) {
 										if (var4[i].setUnsaleable() && var4[i].getIndex() == 116 || var4[i].getIndex() == 117) {
 											Status.getShip().removeCargo(var4[i]);
@@ -990,8 +1002,8 @@ public final class MGame extends IApplicationModule {
 							if (var2.isCampaignMission() && Status.getCurrentCampaignMission() == 42) {
 								this.levelScript.timeLimit = 60000;
 								this.levelScript.timePassed = 0L;
-								this.level.failObjective_ = new Objective(3, this.levelScript.timeLimit, this.level);
-								this.level.successObjective = new Objective(3, this.levelScript.timeLimit, this.level);
+								this.level.failObjective_ = new Objective(Objective.TYPE_3, this.levelScript.timeLimit, this.level);
+								this.level.successObjective = new Objective(Objective.TYPE_3, this.levelScript.timeLimit, this.level);
 							}
 
 							if (!var3) {

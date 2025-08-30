@@ -535,7 +535,7 @@ public final class Level {
 				wingmen[id].player.setHitPoints(600);
 				wingmen[id].name = Status.getWingmenNames()[id];
 				wingmen[id].race = Status.wingmanRace;
-				if (Status.getMission().getType() == 12) {
+				if (Status.getMission().getType() == Mission.TYPE_12) {
 					wingmen[id].armed = false;
 				}
 			}
@@ -581,8 +581,8 @@ public final class Level {
 					pirateCnt = 0;
 					Mission freelance;
 					if ((freelance = Status.getFreelanceMission()) != null &&
-							(freelance.getType() == 0 || // Courier
-					      freelance.getType() == 11)) { // Passenger/Reach destination
+							(freelance.getType() == Mission.TYPE_0 || // Courier
+					      freelance.getType() == Mission.TYPE_11)) { // Passenger/Reach destination
 						pirateCnt = (int) (5.0F * freelance.getDifficulty() / 10.0F); // just >>2
 					}
 
@@ -698,7 +698,7 @@ public final class Level {
 							this.ships[i].player.setAlwaysFriend(true);
 						}
 
-						this.successObjective = new Objective(7, attackersCnt, this);
+						this.successObjective = new Objective(Objective.TYPE_7, attackersCnt, this);
 						return;
 					case 2: //Protection
 						final AEVector3D stationPos = new AEVector3D();
@@ -738,8 +738,8 @@ public final class Level {
 							this.ships[i].player.setHitPoints(this.ships[i].player.getMaxHitpoints() * 3);
 						}
 
-						this.successObjective = new Objective(18, 0, attackersCnt, this);
-						this.failObjective_ = new Objective(18, attackersCnt, attackersCnt + supportCnt, this);
+						this.successObjective = new Objective(Objective.TYPE_18, 0, attackersCnt, this);
+						this.failObjective_ = new Objective(Objective.TYPE_18, attackersCnt, attackersCnt + supportCnt, this);
 						return;
 					case 4: // Pirate hunting
 						if (GlobalStatus.random.nextInt(2) == 0) {
@@ -757,7 +757,7 @@ public final class Level {
 							this.ships[i].setToSleep();
 						}
 
-						this.successObjective = new Objective(18, 0, pirateCnt, this);
+						this.successObjective = new Objective(Objective.TYPE_18, 0, pirateCnt, this);
 						return;
 					case 3: // Recovery
 					case 5: // Salvage
@@ -774,8 +774,8 @@ public final class Level {
 
 						((PlayerFighter)this.ships[this.ships.length - 1]).setMissionCrate(true);
 						((PlayerFighter)this.ships[this.ships.length - 1]).name = GlobalStatus.gameText.getText(833); //Kidnpapper
-						this.successObjective = new Objective(11, this.ships.length - 1, this);
-						this.failObjective_ = new Objective(12, this.ships.length - 1, this);
+						this.successObjective = new Objective(Objective.TYPE_11, this.ships.length - 1, this);
+						this.failObjective_ = new Objective(Objective.TYPE_12, this.ships.length - 1, this);
 						return;
 					case 6: // Wanted
 						this.missionRoute = new Route(new int[] {
@@ -787,7 +787,7 @@ public final class Level {
 						this.ships[0].setToSleep();
 						final int scalingHP = Status.getMission().getDifficulty() * AEMath.min(Status.getLevel(), 20);
 						this.ships[0].player.setMaxHP(scalingHP + 300);
-						this.successObjective = new Objective(1, 0, this);
+						this.successObjective = new Objective(Objective.TYPE_1, 0, this);
 						return;
 					case 7: // Junk removal
 						route = new Route(new int[]{-20000 + GlobalStatus.random.nextInt(40000), 0, 20000 + GlobalStatus.random.nextInt(40000)});
@@ -804,7 +804,7 @@ public final class Level {
 							this.ships[i] = createShip(8, 0, Globals.getRandomEnemyFighter(8), (Waypoint)null);
 						}
 
-						this.successObjective = new Objective(7, this.ships.length - pirateCnt, this);
+						this.successObjective = new Objective(Objective.TYPE_7, this.ships.length - pirateCnt, this);
 						this.timeLimit = 121000;
 						return;
 					case 9: // Escort
@@ -835,8 +835,8 @@ public final class Level {
 						((PlayerFixedObject)this.ships[attackersCnt + 2]).setPosition(-4000, -2000, 19000);
 						((PlayerFixedObject)this.ships[attackersCnt + 3]).setPosition(9000, -6000, 17000);
 						((PlayerFixedObject)this.ships[attackersCnt + 4]).setPosition(3000, 7000, 15000);
-						this.successObjective = new Objective(18, 0, attackersCnt, this);
-						this.failObjective_ = new Objective(18, attackersCnt, attackersCnt + 5, this);
+						this.successObjective = new Objective(Objective.TYPE_18, 0, attackersCnt, this);
+						this.failObjective_ = new Objective(Objective.TYPE_18, attackersCnt, attackersCnt + 5, this);
 						return;
 					case 10: //Intercept
 						this.missionRoute = new Route(new int[] {
@@ -869,7 +869,7 @@ public final class Level {
 							this.ships[i].player.setAlwaysEnemy(true);
 						}
 
-						this.successObjective = new Objective(7, cargoShipsCnt, this);
+						this.successObjective = new Objective(Objective.TYPE_7, cargoShipsCnt, this);
 					case 8: // Purchase
 					case 11: // Passenger/Reach destination
 					default:	
@@ -910,8 +910,8 @@ public final class Level {
 							this.ships[i].setToSleep();
 						}
 
-						this.successObjective = new Objective(20, 1, pirateCnt + 1, this);
-						this.failObjective_ = new Objective(21, 1, pirateCnt + 1, this);
+						this.successObjective = new Objective(Objective.TYPE_20, 1, pirateCnt + 1, this);
+						this.failObjective_ = new Objective(Objective.TYPE_21, 1, pirateCnt + 1, this);
 					}
 				}
 			}
@@ -1010,36 +1010,36 @@ public final class Level {
 			this.ships[3].player.setHitPoints(9999999);
 			this.ships[3].name = GlobalStatus.gameText.getText(821);
 			((PlayerFighter)this.ships[3]).setBoostProb(0);
-			this.successObjective = new Objective(18, 0, 3, this);
+			this.successObjective = new Objective(Objective.TYPE_18, 0, 3, this);
 			break;
 		case 14: // meeting convoi
 			this.enemyRoute_ = new Route(new int[]{0, 0, 50000});
 			this.ships = new KIPlayer[7];
 			// three pirate Betties
 			for(var5 = 0; var5 < 3; ++var5) {
-				this.ships[var5] = createShip(8, 0, 0, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.PIRATE, 0, Ship.BETTY, this.enemyRoute_.getDockingTarget_());
 			}
 			// two terran Tenetas
 			for(var5 = 3; var5 < 5; ++var5) {
-				this.ships[var5] = createShip(0, 0, 1, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.TERRAN, 0, Ship.TENETA, this.enemyRoute_.getDockingTarget_());
 			}
 			// two Battle Crusiers
 			for(var5 = 5; var5 < 7; ++var5) {
-				this.ships[var5] = createShip(0, 1, 14, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.TERRAN, 1, Ship.CRUISER, this.enemyRoute_.getDockingTarget_());
 			}
 
-			this.successObjective = new Objective(22, 0, this);
+			this.successObjective = new Objective(Objective.TYPE_22, 0, this);
 			break;
 		case 16: // Void attack on Alioth
 			this.enemyRoute_ = new Route(new int[]{0, 0, 130000});
 			this.ships = new KIPlayer[7];
 
 			for(var5 = 0; var5 < 4; ++var5) {
-				this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, this.enemyRoute_.getDockingTarget_());
 			}
 
 			for(var5 = 4; var5 < 7; ++var5) {
-				this.ships[var5] = createShip(0, 0, 1, (Waypoint)null);
+				this.ships[var5] = createShip(Globals.TERRAN, 0, 1, (Waypoint)null);
 				this.ships[var5].player.setAlwaysFriend(true);
 				this.ships[var5].player.setHitPoints(600);
 				((PlayerFighter) this.ships[var5]).setPosition(
@@ -1048,16 +1048,16 @@ public final class Level {
 				      this.ego.shipGrandGroup_.getPosZ() + 2000 + -2000 + GlobalStatus.random.nextInt(4000));
 			}
 
-			this.successObjective = new Objective(18, 0, 4, this);
+			this.successObjective = new Objective(Objective.TYPE_18, 0, 4, this);
 			break;
 		case 21: // rescue Thomas Boyle
 			this.enemyRoute_ = new Route(new int[]{40000, -40000, 120000});
 			this.missionRoute = this.enemyRoute_.clone();
 			this.enemyRoute_.setLoop(true);
 			this.ships = new KIPlayer[3];
-			this.ships[1] = createShip(0, 0, 0, this.enemyRoute_.getDockingTarget_());
-			this.ships[2] = createShip(0, 0, 0, this.enemyRoute_.getDockingTarget_());
-			this.ships[0] = createShip(0, 0, 1, this.enemyRoute_.getDockingTarget_());
+			this.ships[1] = createShip(Globals.TERRAN, 0, Ship.BETTY, this.enemyRoute_.getDockingTarget_());
+			this.ships[2] = createShip(Globals.TERRAN, 0, Ship.BETTY, this.enemyRoute_.getDockingTarget_());
+			this.ships[0] = createShip(Globals.TERRAN, 0, Ship.TENETA, this.enemyRoute_.getDockingTarget_());
 			this.ships[0].name = GlobalStatus.gameText.getText(833); // "Kidnpapper"
 
 			for(var5 = 0; var5 < this.ships.length; ++var5) {
@@ -1066,8 +1066,8 @@ public final class Level {
 				this.ships[var5].geometry.setRotation(0, AEMath.Q_PI_HALF, 0);
 			}
 
-			this.successObjective = new Objective(22, 0, this);
-			this.failObjective_ = new Objective(7, 1, this);
+			this.successObjective = new Objective(Objective.TYPE_22, 0, this);
+			this.failObjective_ = new Objective(Objective.TYPE_7, 1, this);
 			break;
 		case 24:
 			this.enemyRoute_ = new Route(new int[]{
@@ -1076,12 +1076,12 @@ public final class Level {
 			this.ships = new KIPlayer[3];
 
 			for(var5 = 0; var5 < 3; ++var5) {
-				this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, this.enemyRoute_.getDockingTarget_());
 				this.ships[var5].setRoute(this.enemyRoute_.clone());
 			}
 
 			this.stationaries[3].setVisible(false);
-			this.successObjective = new Objective(22, 0, this);
+			this.successObjective = new Objective(Objective.TYPE_22, 0, this);
 			break;
 		case 25:
 		case 29:
@@ -1111,7 +1111,7 @@ public final class Level {
 			this.ships = new KIPlayer[2];
 
 			for(var5 = 0; var5 < 2; ++var5) {
-				this.ships[var5] = createShip(9, 0, 8, (Waypoint)null);
+				this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, (Waypoint)null);
 				((PlayerFighter)this.ships[var5]).geometry.setTransform(this.ego.shipGrandGroup_.getToParentTransform());
 				((PlayerFighter) this.ships[var5]).setPosition(
 				      this.ego.shipGrandGroup_.getPosX() + -700 + GlobalStatus.random.nextInt(1400),
@@ -1119,7 +1119,7 @@ public final class Level {
 				      this.ego.shipGrandGroup_.getPosZ() + 2000);
 			}
 
-			this.successObjective = new Objective(7, 2, this);
+			this.successObjective = new Objective(Objective.TYPE_7, 2, this);
 			break;
 		case 28:
 			this.tempVec = this.stationaries[3].getPosition(this.tempVec);
@@ -1127,7 +1127,7 @@ public final class Level {
 			this.ships = new KIPlayer[5];
 			var5 = 0;
 			for(var5 = 0; var5 < 5; var5++){
-				this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, this.enemyRoute_.getDockingTarget_());
 			}
 			break;
 			// while(true) {
@@ -1135,7 +1135,7 @@ public final class Level {
 			// 		break label214;
 			// 	}
 
-			// 	this.ships[var5] = createShip(9, 0, 8, this.enemyRoute_.getDockingTarget_());
+			// 	this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, this.enemyRoute_.getDockingTarget_());
 			// 	++var5;
 			// }
 		case 36:
@@ -1162,8 +1162,8 @@ public final class Level {
 				this.ships[var3].player.setAlwaysEnemy(true);
 			}
 
-			this.successObjective = new Objective(18, 2, 7, this);
-			this.failObjective_ = new Objective(7, 2, this);
+			this.successObjective = new Objective(Objective.TYPE_18, 2, 7, this);
+			this.failObjective_ = new Objective(Objective.TYPE_7, 2, this);
 			break;
 		case 40:
 			this.enemyRoute_ = new Route(new int[]{
@@ -1202,7 +1202,7 @@ public final class Level {
 				this.ego.shipGrandGroup_.setRotation(0, 1024, 0);
 			}
 
-			this.failObjective_ = new Objective(7, 1, this);
+			this.failObjective_ = new Objective(Objective.TYPE_7, 1, this);
 			break;
 		case 41:
 			this.ships = new KIPlayer[5];
@@ -1224,8 +1224,8 @@ public final class Level {
 
 			this.ego.setPosition_(3000, 2000, -220000);
 			this.ego.shipGrandGroup_.setRotation(0, 0, 0);
-			this.successObjective = new Objective(25, 0, this);
-			this.failObjective_ = new Objective(7, 1, this);
+			this.successObjective = new Objective(Objective.TYPE_25, 0, this);
+			this.failObjective_ = new Objective(Objective.TYPE_7, 1, this);
 		}
 
 		this.radioMessages = createRadioMessages(Status.getCurrentCampaignMission());
@@ -1361,7 +1361,7 @@ public final class Level {
 				final KIPlayer ship = this.ships[i];
 				if (ship != null && ship.armed) {
 					int dmg = dmgBonus + 2;
-					if (Status.getMission().getType() == 12 && ship.player.isAlwaysFriend()) {
+					if (Status.getMission().getType() == Mission.TYPE_12 && ship.player.isAlwaysFriend()) {
 						dmg = Status.getShip().getFirePower() + 2;
 					} else if (Status.getCurrentCampaignMission() == 4) {
 						dmg = 1;
@@ -1439,9 +1439,9 @@ public final class Level {
 					Player[] var9 = new Player[(this.ego == null ? 0 : 1) + var4];
 					//int var6;
 					Mission var8 = Status.getMission();
-					if ((var8.getType() != 12 || i % 2 != 1)
-						&& var8.getType() != 2
-						&& var8.getType() != 9 
+					if ((var8.getType() != Mission.TYPE_12 || i % 2 != 1)
+						&& var8.getType() != Mission.TYPE_2
+						&& var8.getType() != Mission.TYPE_9 
 						&& (!var8.isCampaignMission() || Status.getCurrentCampaignMission() != 40)
 						&& (!var8.isCampaignMission() || Status.getCurrentCampaignMission() != 41))
 					{

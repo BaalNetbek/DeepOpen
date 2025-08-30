@@ -491,14 +491,14 @@ public final class ModStation extends IApplicationModule {
 				Item[] cargo;
 				if (this.missionMsgOpen) {
 					if (!this.dialogue.OnKeyPress_(keyState)) {
-						if (this.activeMission__.getType() == 8) {
+						if (this.activeMission__.getType() == Mission.TYPE_8) {
 							if (!this.activeMission__.isCampaignMission()) {
 								Status.getShip().removeCargo(this.activeMission__.getCommodityIndex(), this.activeMission__.getCommodityAmount_());
 								if (this.hangarWindow != null) {
 									this.hangarWindow.initialize();
 								}
 							}
-						} else if (!this.activeMission__.isCampaignMission() && this.activeMission__.getType() == 11) {
+						} else if (!this.activeMission__.isCampaignMission() && this.activeMission__.getType() == Mission.TYPE_11) {
 							Status.setPassengers(0);
 							Status.passengersCarried += this.activeMission__.getCommodityAmount_();
 							cargo = Status.getShip().getCargo();
@@ -513,7 +513,10 @@ public final class ModStation extends IApplicationModule {
 									}
 								}
 							}
-						} else if (this.activeMission__.getType() != 3 && this.activeMission__.getType() != 5 && this.activeMission__.getType() != 11 && this.activeMission__.getType() == 0) {
+						} else if (this.activeMission__.getType() != Mission.TYPE_3 
+								&& this.activeMission__.getType() != Mission.TYPE_5 
+								&& this.activeMission__.getType() != Mission.TYPE_11 
+								&& this.activeMission__.getType() == Mission.TYPE_0) {
 							cargo = Status.getShip().getCargo();
 							if (cargo != null) {
 								for(int i = 0; i < cargo.length; ++i) {

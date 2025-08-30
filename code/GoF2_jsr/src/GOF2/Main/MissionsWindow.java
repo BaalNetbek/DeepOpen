@@ -211,8 +211,10 @@ public final class MissionsWindow {
 
 			if (var1 == 256) {
 				if (this.popup.getChoice()) {
-					if (Status.getFreelanceMission().getType() != 0 && Status.getFreelanceMission().getType() != 3 && Status.getFreelanceMission().getType() != 5) {
-						if (Status.getFreelanceMission().getType() == 11) {
+					if (Status.getFreelanceMission().getType() != Mission.TYPE_0 
+							&& Status.getFreelanceMission().getType() != Mission.TYPE_3 
+							&& Status.getFreelanceMission().getType() != Mission.TYPE_5) {
+						if (Status.getFreelanceMission().getType() == Mission.TYPE_11) {
 							Status.setPassengers(0);
 						}
 					} else if ((var2 = Status.getShip().getCargo()) != null) {

@@ -399,7 +399,7 @@ public final class LevelScript {
 					this.probe = null;
 					this.timeLimit = 180000;
 					this.timePassed = 0L;
-					this.level.successObjective = new Objective(3, this.timeLimit, this.level);
+					this.level.successObjective = new Objective(Objective.TYPE_3, this.timeLimit, this.level);
 				}
 
 				if (this.probe != null) {

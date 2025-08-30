@@ -4,6 +4,19 @@ package GOF2;
  * @author fishlabs 2009
  */
 public final class Agent {
+	/** cargo trafficer */
+	public static final int TYPE_0 = 0;
+	public static final int TYPE_1 = 1;
+	public static final int TYPE_2 = 2;
+	public static final int TYPE_3 = 3;
+	public static final int TYPE_4 = 4;
+	/** human trafficer */
+	public static final int TYPE_5 = 5;
+	/** wingman */
+	public static final int TYPE_6 = 6;
+	/** diplomat */
+	public static final int TYPE_7 = 7;
+	
 	public String fullName;
 	public String wingman1Name;
 	public String wingman2Name;

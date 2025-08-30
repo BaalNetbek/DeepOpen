@@ -252,7 +252,7 @@ public final class Radar {
 
         } else {
             Mission var6;
-            final boolean var7 = !(var6 = Status.getMission()).isEmpty() && var6.getType() != 11 && var6.getType() != 0;
+            final boolean var7 = !(var6 = Status.getMission()).isEmpty() && var6.getType() != Mission.TYPE_11 && var6.getType() != Mission.TYPE_0;
             final boolean var22 = this.level.getPlayer().isLookingBack();
             final boolean inAlienOrbit = Status.inAlienOrbit();
             this.enemies = this.level.getEnemies();

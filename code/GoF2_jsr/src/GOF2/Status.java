@@ -254,7 +254,7 @@ public final class Status {
 
         for(int i = 0; i < currentMissions.length; ++i) {
             if (currentMissions[i] != null) {
-                if (currentMissions[i].isCampaignMission() && currentMissions[i].getType() == 25 && destination.getIndex() == wormholeStation) {
+                if (currentMissions[i].isCampaignMission() && currentMissions[i].getType() == Mission.TYPE_25 && destination.getIndex() == wormholeStation) {
                     mission = currentMissions[i];
                     break;
                 }
@@ -343,32 +343,32 @@ public final class Status {
     public static void nextCampaignMission() {
         Item[] eq, cargo;
         switch(++currentCampaignMissionIndex) {
-        case 1:
-            setCampaignMission(new Mission(11, 0, 78));
+        case Mission.STORY_1:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 78));
             return;
-        case 2:
-            setCampaignMission(new Mission(18, 0, 78));
+        case Mission.STORY_2:
+            setCampaignMission(new Mission(Mission.TYPE_18, 0, 78));
             currentMissions[0].setStatusValue(10);
             return;
-        case 3:
-            setCampaignMission(new Mission(11, 0, 78));
+        case Mission.STORY_3:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 78));
             return;
-        case 4:
+        case Mission.STORY_4:
             playersShip.setCargo((Item[])null);
-            setCampaignMission(new Mission(18, 0, 78));
+            setCampaignMission(new Mission(Mission.TYPE_18, 0, 78));
             currentMissions[0].setStatusValue(25);
             return;
-        case 5:
-            setCampaignMission(new Mission(11, 0, 78));
+        case Mission.STORY_5:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 78));
             return;
-        case 6:
+        case Mission.STORY_6:
             playersShip.removeAllCargo();
-            setCampaignMission(new Mission(22, 0, 78));
+            setCampaignMission(new Mission(Mission.TYPE_22, 0, 78));
             return;
-        case 7:
-            setCampaignMission(new Mission(4, 0, 78));
+        case Mission.STORY_7:
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, 78));
             return;
-        case 8:
+        case Mission.STORY_8:
             eq = playersShip.getEquipment();
             if (eq != null) {
                 for(int i = 0; i < eq.length; ++i) {
@@ -389,67 +389,67 @@ public final class Status {
                 }
             }
 
-            setCampaignMission(new Mission(11, 0, 78));
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 78));
             return;
-        case 9:
-            setCampaignMission(new Mission(11, 0, 78));
+        case Mission.STORY_9:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 78));
             return;
-        case 10:
+        case Mission.STORY_10:
             final Item var4 = playersShip.getFirstEquipmentOfSort(Item.MINING_LASER);
             playersShip.removeEquipment(var4);
-            setCampaignMission(new Mission(11, 0, 79));
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 79));
             return;
-        case 11:
-            setCampaignMission(new Mission(11, 0, 76));
+        case Mission.STORY_11:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 76));
             return;
-        case 12:
-            setCampaignMission(new Mission(11, 0, 79));
+        case Mission.STORY_12:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 79));
             return;
-        case 13:
-            setCampaignMission(new Mission(13, 0, 0));
+        case Mission.STORY_13:
+            setCampaignMission(new Mission(Mission.TYPE_13, 0, 0));
             currentMissions[0].setStatusValue(missionsCount + 2);
             currentMissions[0].setVisible(false);
             return;
-        case 14:
-            setCampaignMission(new Mission(4, 0, 79));
+        case Mission.STORY_14:
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, 79));
             return;
-        case 15:
-            setCampaignMission(new Mission(11, 0, 98));
+        case Mission.STORY_15:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 98));
             return;
-        case 16:
-            setCampaignMission(new Mission(4, 0, 98));
+        case Mission.STORY_16:
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, 98));
             return;
-        case 17:
-            setCampaignMission(new Mission(11, 0, 98));
+        case Mission.STORY_17:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 98));
             return;
-        case 18:
+        case Mission.STORY_18:
             playersShip.setRace(0);
-            setCampaignMission(new Mission(20, 0, 56));
+            setCampaignMission(new Mission(Mission.TYPE_20, 0, 56));
             return;
-        case 19:
-            setCampaignMission(new Mission(20, 0, 55));
+        case Mission.STORY_19:
+            setCampaignMission(new Mission(Mission.TYPE_20, 0, 55));
             return;
-        case 20:
-            setCampaignMission(new Mission(23, 0, 55));
+        case Mission.STORY_20:
+            setCampaignMission(new Mission(Mission.TYPE_23, 0, 55));
             currentMissions[0].setStatusValue(6);
             return;
-        case 21:
-            setCampaignMission(new Mission(4, 0, 55));
+        case Mission.STORY_21:
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, 55));
             return;
-        case 22:
-            setCampaignMission(new Mission(11, 0, 55));
+        case Mission.STORY_22:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 55));
             return;
-        case 23:
+        case Mission.STORY_23:
             final byte var3 = 6;
             visibleSystems[var3] = true;
-            setCampaignMission(new Mission(11, 20000, 10));
+            setCampaignMission(new Mission(Mission.TYPE_11, 20000, 10));
             return;
-        case 24:
+        case Mission.STORY_24:
             wormholeStation = 48;
             wormholeSystem = 9;
-            setCampaignMission(new Mission(4, 0, 48));
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, 48));
             return;
-        case 25:
+        case Mission.STORY_25:
       	  	cargo = playersShip.getCargo();
             if ((cargo = playersShip.getCargo()) != null) {
                 for(int i = 0; i < cargo.length; ++i) {
@@ -460,38 +460,38 @@ public final class Status {
                 }
             }
 
-            setCampaignMission(new Mission(20, 0, -1));
+            setCampaignMission(new Mission(Mission.TYPE_20, 0, -1));
             return;
-        case 26:
+        case Mission.STORY_26:
             wormholeStation = -1;
             wormholeSystem = -1;
-            setCampaignMission(new Mission(4, 0, 48));
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, 48));
             return;
-        case 27:
-            setCampaignMission(new Mission(11, 0, 10));
+        case Mission.STORY_27:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 10));
             return;
-        case 28:
+        case Mission.STORY_28:
             wormholeStation = 91;
             wormholeSystem = 18;
-            setCampaignMission(new Mission(4, 0, 91));
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, 91));
             return;
-        case 29:
-            setCampaignMission(new Mission(4, 0, -1));
+        case Mission.STORY_29:
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, -1));
             return;
-        case 30:
-            setCampaignMission(new Mission(20, 0, 91));
+        case Mission.STORY_30:
+            setCampaignMission(new Mission(Mission.TYPE_20, 0, 91));
             return;
-        case 31:
-            setCampaignMission(new Mission(11, 30000, 98));
+        case Mission.STORY_31:
+            setCampaignMission(new Mission(Mission.TYPE_11, 30000, 98));
             return;
-        case 32:
-            setCampaignMission(new Mission(11, 0, 10));
+        case Mission.STORY_32:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 10));
             return;
-        case 33:
-            setCampaignMission(new Mission(8, 0, 10));
+        case Mission.STORY_33:
+            setCampaignMission(new Mission(Mission.TYPE_8, 0, 10));
             currentMissions[0].setCommodity(164, 50);
             return;
-        case 34:
+        case Mission.STORY_34:
             playersShip.removeCargo(164, 50);
 
             for(int i = 0; i < blueprints.length; ++i) {
@@ -502,42 +502,42 @@ public final class Status {
                 }
             }
 
-            setCampaignMission(new Mission(11, 0, 30));
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 30));
             return;
-        case 35:
-            setCampaignMission(new Mission(11, 0, 29));
+        case Mission.STORY_35:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 29));
             return;
-        case 36:
-            setCampaignMission(new Mission(12, 0, 27));
+        case Mission.STORY_36:
+            setCampaignMission(new Mission(Mission.TYPE_12, 0, 27));
             return;
-        case 37:
-            setCampaignMission(new Mission(24, 0, 27));
+        case Mission.STORY_37:
+            setCampaignMission(new Mission(Mission.TYPE_24, 0, 27));
             currentMissions[0].setVisible(false);
             return;
-        case 38:
-            setCampaignMission(new Mission(4, 0, 22));
+        case Mission.STORY_38:
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, 22));
             return;
-        case 39:
-            setCampaignMission(new Mission(11, 0, 30));
+        case Mission.STORY_39:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 30));
             return;
-        case 40:
-            setCampaignMission(new Mission(25, 0, -1));
+        case Mission.STORY_40:
+            setCampaignMission(new Mission(Mission.TYPE_25, 0, -1));
             return;
-        case 41:
-            setCampaignMission(new Mission(4, 0, -1));
+        case Mission.STORY_41:
+            setCampaignMission(new Mission(Mission.TYPE_4, 0, -1));
             return;
-        case 42:
+        case Mission.STORY_42:
             wormholeStation = -10;
             wormholeSystem = -10;
-            setCampaignMission(new Mission(24, 0, -1));
+            setCampaignMission(new Mission(Mission.TYPE_24, 0, -1));
             return;
-        case 43:
-            setCampaignMission(new Mission(11, 0, 98));
+        case Mission.STORY_43:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 98));
             return;
-        case 44:
-            setCampaignMission(new Mission(11, 0, 98));
+        case Mission.STORY_44:
+            setCampaignMission(new Mission(Mission.TYPE_11, 0, 98));
             return;
-        case 45:
+        case Mission.STORY_45:
             wormholeStation = -10;
             wormholeSystem = -10;
             setCampaignMission(Mission.emptyMission_);
@@ -571,42 +571,42 @@ public final class Status {
                     Item[] eq;
 
                     switch(mission.getType()) {
-                    case 0:
-                    case 11:
+                    case Mission.STORY_0:
+                    case Mission.STORY_11:
                         if (var0 && currentStation.getIndex() == mission.getTargetStation()) {
                             return mission;
                         }
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 9:
-                    case 10:
-                    case 12:
-                    case 17:
+                    case Mission.STORY_1:
+                    case Mission.STORY_2:
+                    case Mission.STORY_3:
+                    case Mission.STORY_4:
+                    case Mission.STORY_5:
+                    case Mission.STORY_6:
+                    case Mission.STORY_7:
+                    case Mission.STORY_9:
+                    case Mission.STORY_10:
+                    case Mission.STORY_12:
+                    case Mission.STORY_17:
                     default:
                         break;
-                    case 8:
+                    case Mission.STORY_8:
                         if (var0 && currentStation.getIndex() == mission.getTargetStation() && Item.isInList(mission.getCommodityIndex(), mission.getCommodityAmount_(), playersShip.getCargo())) {
                             return mission;
                         }
                         break;
-                    case 13:
+                    case Mission.STORY_13:
                         if (missionsCount >= mission.getStatusValue_()) {
                             mission.setWon(true);
                             return mission;
                         }
                         break;
-                    case 14:
+                    case Mission.STORY_14:
                         if (kills >= mission.getStatusValue_()) {
                             mission.setWon(true);
                             return mission;
                         }
                         break;
-                    case 15:
+                    case Mission.STORY_15:
                         eq = playersShip.getEquipment();
                         //j = 0;
                         for (int j = 0; j < eq.length; j++) {
@@ -626,30 +626,30 @@ public final class Status {
 //
 //                            ++var6;
 //                        }
-                    case 16:
+                    case Mission.STORY_16:
                         if (stationsVisited >= mission.getStatusValue_()) {
                             mission.setWon(true);
                             return mission;
                         }
                         break;
-                    case 18:
+                    case Mission.STORY_18:
                         if (playersShip.getCurrentLoad() >= mission.getStatusValue_()) {
                             mission.setWon(true);
                             return mission;
                         }
                         break;
-                    case 19:
+                    case Mission.STORY_19:
                         if (bluePrintsProduced >= mission.getStatusValue_()) {
                             mission.setWon(true);
                             return mission;
                         }
                         break;
-                    case 20:
+                    case Mission.STORY_20:
                         if (!var0 && currentStation.getIndex() == mission.getTargetStation() && var1 > 10000L) {
                             return mission;
                         }
                         break;
-                    case 21:
+                    case Mission.STORY_21:
                         eq = playersShip.getEquipment();
                         //j = 0;
                         
@@ -670,7 +670,7 @@ public final class Status {
 //
 //                            ++var6;
 //                        }
-                    case 22:
+                    case Mission.STORY_22:
                         eq = playersShip.getEquipment();
                         boolean var9 = false;
                         boolean var7 = false;
@@ -687,7 +687,7 @@ public final class Status {
                             return mission;
                         }
                         break;
-                    case 23:
+                    case Mission.STORY_23:
                         if (var0) {
                             eq = playersShip.getEquipment();
 
@@ -698,7 +698,7 @@ public final class Status {
                             }
                         }
                         break;
-                    case 24:
+                    case Mission.STORY_24:
                         if (var0 || !var0 && currentStation.getIndex() != mission.getTargetStation() && var1 > 10000L) {
                             return mission;
                         }
@@ -1067,7 +1067,7 @@ public final class Status {
         GlobalStatus.resetHints();
         currentMissions[1] = Mission.emptyMission_;
         currentCampaignMissionIndex = 0;
-        setCampaignMission(new Mission(4, 0, 78));
+        setCampaignMission(new Mission(Mission.TYPE_4, 0, 78));
         mission = currentMissions[0];
         playersShip = Globals.getShips()[10].cloneBase();
         playersShip.setRace(0);

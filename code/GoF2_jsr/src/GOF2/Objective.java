@@ -7,6 +7,33 @@ package GOF2;
  *
  */
 public final class Objective {
+	public static final int TYPE_0 = 0;
+	public static final int TYPE_1 = 1;
+	public static final int TYPE_2 = 2;
+	public static final int TYPE_3 = 3;
+	public static final int TYPE_4 = 4;
+	public static final int TYPE_5 = 5;
+	public static final int TYPE_6 = 6;
+	public static final int TYPE_7 = 7;
+	public static final int TYPE_8 = 8;
+	public static final int TYPE_9 = 9;
+	public static final int TYPE_10 = 10;
+	public static final int TYPE_11 = 11;
+	public static final int TYPE_12 = 12;
+	public static final int TYPE_13 = 13;
+	public static final int TYPE_14 = 14;
+	public static final int TYPE_15 = 15;
+	public static final int TYPE_16 = 16;
+	public static final int TYPE_17 = 17;
+	public static final int TYPE_18 = 18;
+	public static final int TYPE_19 = 19;
+	public static final int TYPE_20 = 20;
+	public static final int TYPE_21 = 21;
+	public static final int TYPE_22 = 22;
+	public static final int TYPE_23 = 23;
+	public static final int TYPE_24 = 24;
+	public static final int TYPE_25 = 25;
+	
 	private final int type;
 	private final int indexA_;
 	private int indexB_;
@@ -27,49 +54,49 @@ public final class Objective {
 		KIPlayer[] targets;
 		int i = 0, dead = 0;
 		switch(this.type) {
-		case 0: //kill everyone
+		case TYPE_0: //kill everyone
 			if (this.level.getEnemiesLeft() == 0) {
 				return true;
 			}
 
 			return false;
-		case 1:
+		case TYPE_1:
 			if (this.level.getEnemies()[this.indexA_].isDead()) {
 				return true;
 			}
 
 			return false;
-		case 2:
+		case TYPE_2:
 			if (this.level.getPlayerRoute().getLastWaypoint().reached_) {
 				return true;
 			}
 
 			return false;
-		case 3:
+		case TYPE_3:
 			if (time > this.indexA_) {
 				return true;
 			}
 
 			return false;
-		case 4:
+		case TYPE_4:
 			if (this.level.getMessages()[this.indexA_].isOver()) {
 				return true;
 			}
 
 			return false;
-		case 5:
+		case TYPE_5:
 			if (this.level.getFriendsLeft() == 0) {
 				return true;
 			}
 
 			return false;
-		case 6:
+		case TYPE_6:
 			if (this.level.getEnemies()[this.indexA_].isDead()) {
 				return true;
 			}
 
 			return false;
-		case 7:
+		case TYPE_7:
 			targets = this.level.getEnemies();
 			for(i = 0; i < this.indexA_; ++i) {
 				if (targets[i].isDead()) {
@@ -82,7 +109,7 @@ public final class Objective {
 			}
 
 			return false;
-		case 8:
+		case TYPE_8:
 			targets = this.level.getAsteroids();
 			dead = 0;
 			for(i = 0; i < targets.length; ++i) {
@@ -96,7 +123,7 @@ public final class Objective {
 			}
 
 			return false;
-		case 9:
+		case TYPE_9:
 			targets = this.level.getAsteroids();
 			for(i = 0; i < targets.length; ++i) {
 				if (i >= this.indexA_) {
@@ -109,7 +136,7 @@ public final class Objective {
 			}
 
 			return false;
-		case 10:
+		case TYPE_10:
 			targets = this.level.getAsteroids();
 			for(i = 0; i < targets.length; ++i) {
 				if (i >= this.indexA_) {
@@ -118,21 +145,21 @@ public final class Objective {
 			}
 
 			return false;
-		case 11:
+		case TYPE_11:
 			return ((PlayerFighter)this.level.getEnemies()[this.indexA_]).lostMissionCrateToEgo();
-		case 12:
+		case TYPE_12:
 			return ((PlayerFighter)this.level.getEnemies()[this.indexA_]).diedWithMissionCrate();
-		case 13:
+		case TYPE_13:
 			return false;
-		case 14:
+		case TYPE_14:
 			if (this.level.unknown7f9_() >= this.indexA_) {
 				return true;
 			}
 
 			return false;
-		case 15:
+		case TYPE_15:
 			return this.level.getEnemies()[this.indexA_].player.isActive();
-		case 16:
+		case TYPE_16:
 			targets = this.level.getEnemies();
 			for(i = 0; i < targets.length; ++i) {
 				if (!((PlayerFighter)targets[i]).lostMissionCrateToEgo()) {
@@ -141,7 +168,7 @@ public final class Objective {
 			}
 
 			return true;
-		case 17:
+		case TYPE_17:
 			targets = this.level.getEnemies();
 			for(i = 0; i < targets.length; ++i) {
 				if (((PlayerFighter)targets[i]).diedWithMissionCrate()) {
@@ -150,7 +177,7 @@ public final class Objective {
 			}
 
 			return false;
-		case 18:
+		case TYPE_18:
 			targets = this.level.getEnemies();
 			dead = 0;
 			for(i = this.indexA_; i < this.indexB_; ++i) {
@@ -164,10 +191,10 @@ public final class Objective {
 			}
 
 			return false;
-		case 19:
+		case TYPE_19:
 			return this.level.friendCargoWasStolen();
-		case 20:
-		case 21:
+		case TYPE_20:
+		case TYPE_21:
 			targets = this.level.getEnemies();
 			//pirates
 			dead = 0;
@@ -187,18 +214,18 @@ public final class Objective {
 				}
 			}
 			return false;
-		case 22:
+		case TYPE_22:
 			if (this.level.getMessages()[this.level.getMessages().length - 1].isOver()) {
 				return true;
 			}
 
 			return false;
-		case 23:
+		case TYPE_23:
 			return this.level.getEnemies()[this.indexA_].stunned;
-		case 24:
+		case TYPE_24:
 		default:
 			return false;
-		case 25:
+		case TYPE_25:
 			if (this.level.getEnemies()[this.indexA_].speed == 0) {
 				return true;
 			}
@@ -207,6 +234,6 @@ public final class Objective {
 	}
 
 	public final boolean isSurvivalObjective() {
-		return this.type == 3;
+		return this.type == TYPE_3;
 	}
 }

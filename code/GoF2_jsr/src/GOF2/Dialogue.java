@@ -329,16 +329,16 @@ public final class Dialogue {
             }
 
             if (this.type == 0) {
-                if (this.mission.getType() == 12) {
+                if (this.mission.getType() == Mission.TYPE_12) {
                     this.message = GlobalStatus.gameText.getText(194);
-                } else if (this.mission.getType() == 7) {
+                } else if (this.mission.getType() == Mission.TYPE_7) {
                     this.message = GlobalStatus.gameText.getText(200);
                 } else {
                     this.message = GlobalStatus.gameText.getText(GameText.MISSION_START_MSG[GlobalStatus.random.nextInt(GameText.MISSION_START_MSG.length)]);
                 }
             } else if (this.type == 1) {
                 final boolean var5 = this.mission.getAgent() != null ? this.mission.getAgent().isSpecialAgent() : false;
-                if (this.mission.getType() == 12) {
+                if (this.mission.getType() == Mission.TYPE_12) {
                     this.message = GlobalStatus.gameText.getText(192) + (var5 ? "\n\n" + Status.replaceTokens(GlobalStatus.gameText.getText(211), this.mission.getAgent().getStationName(), "#S") : "");
                     this.message = Status.replaceTokens(Status.replaceTokens(this.message, this.level.egoScore + "", "#Q1"), this.level.challengerScore + "", "#Q2");
                 } else {
@@ -346,7 +346,7 @@ public final class Dialogue {
                 }
 
                 Status.getStanding().increase(this.mission.getClientRace());
-            } else if (this.mission.getType() == 12) {
+            } else if (this.mission.getType() == Mission.TYPE_12) {
                 this.message = Status.replaceTokens(Status.replaceTokens(GlobalStatus.gameText.getText(193), this.level.egoScore + "", "#Q1"), this.level.challengerScore + "", "#Q2");
             } else {
                 this.message = GlobalStatus.gameText.getText(GameText.MISSION_LOST_MSG[GlobalStatus.random.nextInt(GameText.MISSION_LOST_MSG.length)]) + "\n\n" + GlobalStatus.gameText.getText(213);

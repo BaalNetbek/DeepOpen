@@ -104,7 +104,7 @@ public final class PlayerFighter extends KIPlayer {
         if (var1) {
             this.cargo = null;
             this.cargo = new int[2];
-            this.cargo[0] = Status.getMission().getType() == 5 ? 116 : 117;
+            this.cargo[0] = Status.getMission().getType() == Mission.TYPE_5 ? 116 : 117;
             this.cargo[1] = 1;
         }
 

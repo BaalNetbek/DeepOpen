@@ -318,7 +318,7 @@ public final class Hud {
 			this.queueScroll = 0;
 		}
 	}
-	/** #TODO uninline */
+
 	public final void hudEvent(final int event, final PlayerEgo ego) {
 		switch (event) {
 			case EVENT_AUTOFIRE_ON: // Auto fire on
@@ -431,7 +431,7 @@ public final class Hud {
 		ListItem var7;
 		if (missionItem) {
 			this.logMsg = GlobalStatus.gameText.getText(261);
-			this.logMsg = Status.replaceTokens(this.logMsg, GlobalStatus.gameText.getText(569 + (Status.getMission().getType() == 3 ? 116 : 117)), "#N");
+			this.logMsg = Status.replaceTokens(this.logMsg, GlobalStatus.gameText.getText(569 + (Status.getMission().getType() == Mission.TYPE_3 ? 116 : 117)), "#N");
 			this.logMsg = Status.replaceTokens(this.logMsg, "1", "#Q");
 			var7 = new ListItem(this.logMsg);
 			var7.items = this.items;
@@ -622,7 +622,7 @@ public final class Hud {
 			} else if (var5.isMining()) {
 				var10 = Status.getShip().getCurrentLoad() + var5.getMiningProgress();
 				Font.drawString(var10 + " / " + Status.getShip().getCargoPlus() + "t", GlobalStatus.screenWidth >> 1, 2, var10 > Status.getShip().getCargoPlus() ? 2 : 1, Font.TOP|Font.HCENTER);
-			} else if (Status.getMission().getType() == 12) {
+			} else if (Status.getMission().getType() == Mission.TYPE_12) {
 				Font.drawString(var5.level.egoScore + " : " + var5.level.challengerScore, GlobalStatus.screenWidth >> 1, 2, 1, Font.TOP|Font.HCENTER);
 			}
 
@@ -959,9 +959,9 @@ public final class Hud {
 							break;
 						case GOF2Canvas.LEFT:
 							if (	!Status.getMission().isEmpty() 
-									&& Status.getMission().getType() != 11
-									&& Status.getMission().getType() != 0 
-									&& Status.getMission().getType() != 23) 
+									&& Status.getMission().getType() != Mission.TYPE_11
+									&& Status.getMission().getType() != Mission.TYPE_0 
+									&& Status.getMission().getType() != Mission.TYPE_23) 
 							{
 								hudEvent(21, level.getPlayer());
 								GlobalStatus.soundManager.playSfx(4);

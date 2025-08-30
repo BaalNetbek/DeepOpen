@@ -60,7 +60,11 @@ public final class SpaceLounge {
 
 		for(int i = 0; i < this.agents.length; ++i) {
 			Agent var3;
-			if (((var3 = this.agents[i]).getType() == 6 || var3.getType() == 0 && var3.getMission() != null && var3.getMission().getType() == 12) && var3.hasAcceptedOffer()) {
+			if (((var3 = this.agents[i]).getType() == Mission.TYPE_6 
+					|| var3.getType() == Mission.TYPE_0
+					&& var3.getMission() != null 
+					&& var3.getMission().getType() == Mission.TYPE_12) 
+					&& var3.hasAcceptedOffer()) {
 				var1 = i;
 				break;
 			}
@@ -204,7 +208,7 @@ public final class SpaceLounge {
 						var7 = true;
 					} else {
 						this.chatScroll += 4;
-						if (this.agents[this.selectedAgent].getType() != 1 && this.chatType_ == 1 && this.chatScroll >= this.chatRows.length - 4 || this.chatType_ == 3 && this.chatScroll >= this.chatRows.length) {
+						if (this.agents[this.selectedAgent].getType() != Agent.TYPE_1 && this.chatType_ == 1 && this.chatScroll >= this.chatRows.length - 4 || this.chatType_ == 3 && this.chatScroll >= this.chatRows.length) {
 							var7 = true;
 						}
 					}
@@ -212,7 +216,7 @@ public final class SpaceLounge {
 					if (var7) {
 						this.chatAnswear = 0;
 						Agent var9;
-						if ((var9 = this.agents[this.selectedAgent]).getType() == 1) {
+						if ((var9 = this.agents[this.selectedAgent]).getType() == Agent.TYPE_1) {
 							this.chatType_ = 0;
 						} else {
 							this.chatType_ = this.chatType_ == 1 ? 2 : 0;
@@ -233,7 +237,7 @@ public final class SpaceLounge {
 				}
 				break;
 			case 2:
-				final int var2 = this.agents[this.selectedAgent].getMission() != null && this.agents[this.selectedAgent].getMission().isOutsideMission() ? 5 : this.agents[this.selectedAgent].getType() != 2 && this.agents[this.selectedAgent].getType() != 3 ? 3 : 4;
+				final int var2 = this.agents[this.selectedAgent].getMission() != null && this.agents[this.selectedAgent].getMission().isOutsideMission() ? 5 : this.agents[this.selectedAgent].getType() != Agent.TYPE_2 && this.agents[this.selectedAgent].getType() != Agent.TYPE_3 ? 3 : 4;
 				if (this.itemDescriptionOpen) {
 					if (var1 == 8192) {
 						this.itemDescriptionOpen = false;
@@ -263,8 +267,10 @@ public final class SpaceLounge {
 						case 0:
 						case 5:
 							if (Status.getFreelanceMission() != null && !Status.getFreelanceMission().isEmpty()) {
-								if (Status.getFreelanceMission().getType() != 0 && Status.getFreelanceMission().getType() != 3 && Status.getFreelanceMission().getType() != 5) {
-									if (Status.getFreelanceMission().getType() == 11) {
+								if (Status.getFreelanceMission().getType() != Mission.TYPE_0 
+										&& Status.getFreelanceMission().getType() != Mission.TYPE_3 
+										&& Status.getFreelanceMission().getType() != Mission.TYPE_5) {
+									if (Status.getFreelanceMission().getType() == Mission.TYPE_11) {
 										Status.setPassengers(0);
 									}
 								} else {
@@ -287,15 +293,15 @@ public final class SpaceLounge {
 								Status.setFreelanceMission(Mission.emptyMission_);
 							}
 
-							if (var6.getMission().getType() == 0) {
+							if (var6.getMission().getType() == Mission.TYPE_0) {
 								Item var13;
 								(var13 = Globals.getItems()[116].makeItem(var6.getMission().getCommodityAmount_())).setUnsaleable(true);
 								Status.getShip().addCargo(var13);
-							} else if (var6.getMission().getType() == 11) {
+							} else if (var6.getMission().getType() == Mission.TYPE_11) {
 								Status.setPassengers(var6.getMission().getCommodityAmount_());
 							}
 
-							if (var6.getMission().getType() == 12) {
+							if (var6.getMission().getType() == Mission.TYPE_12) {
 								var8 = GlobalStatus.gameText.getText(490);
 							} else {
 								var8 = var8 + " " + GlobalStatus.gameText.getText(487 + GlobalStatus.random.nextInt(3));
@@ -393,15 +399,15 @@ public final class SpaceLounge {
 						var3 = (var6 = this.agents[this.selectedAgent]).getType();
 						String var4 = "";
 						switch(var3) {
-						case 0:
-						case 5:
-							if (var6.getMission().getType() == 0) {
+						case Agent.TYPE_0:
+						case Agent.TYPE_5:
+							if (var6.getMission().getType() == Mission.TYPE_0) {
 								var3 = var6.getMission().getCommodityAmount_();
 								if (!Status.getShip().spaceAvailable(var3)) {
 									var4 = Status.replaceTokens(GlobalStatus.gameText.getText(162), "" + var3, "#Q");
 									var5 = true;
 								}
-							} else if (var6.getMission().getType() == 11 && (var3 = var6.getMission().getCommodityAmount_()) > Status.getShip().getMaxPassengers()) {
+							} else if (var6.getMission().getType() == Mission.TYPE_11 && (var3 = var6.getMission().getCommodityAmount_()) > Status.getShip().getMaxPassengers()) {
 								var4 = Status.replaceTokens(GlobalStatus.gameText.getText(163), "" + var3, "#Q");
 								var5 = true;
 							}
@@ -413,12 +419,12 @@ public final class SpaceLounge {
 									var4 = GlobalStatus.gameText.getText(498);
 								}
 							}
-						case 1:
+						case Agent.TYPE_1:
 						default:
 							break;
-						case 2:
-						case 3:
-						case 4:
+						case Agent.TYPE_2:
+						case Agent.TYPE_3:
+						case Agent.TYPE_4:
 							if (Status.getCredits() < var6.getSellItemPrice()) {
 								this.popup.set(Status.replaceTokens(GlobalStatus.gameText.getText(83), Layout.formatCredits(var6.getSellItemPrice() - Status.getCredits()), "#C"), false);
 								this.transactionConfirmPopup_ = true;
@@ -426,24 +432,24 @@ public final class SpaceLounge {
 							}
 
 							switch (var3) {
-							case 3:
+							case Agent.TYPE_3:
 								var4 = Status.replaceTokens(Status.replaceTokens(GlobalStatus.gameText.getText(503), GlobalStatus.gameText.getText(569 + Globals.getItems()[var6.getSellBlueprintIndex()].getIndex()), "#P"), Layout.formatCredits(var6.getSellItemPrice()), "#C");
 								break;
-							case 4: {
+							case Agent.TYPE_4: {
 								var4 = GlobalStatus.gameText.getText(504);
 								//new FileRead();
 								SolarSystem[] var10 = FileRead.loadSystemsBinary();
 								var4 = Status.replaceTokens(Status.replaceTokens(var4, var10[var6.getSellSystemIndex()].getName(), "#S"), Layout.formatCredits(var6.getSellItemPrice()), "#C");
 								break;
 							}
-							case 2:
+							case Agent.TYPE_2:
 								var4 = Status.replaceTokens(Status.replaceTokens(Status.replaceTokens(GlobalStatus.gameText.getText(502), "" + var6.getSellItemQuantity(), "#Q"), GlobalStatus.gameText.getText(569 + var6.getSellItemIndex()), "#P"), Layout.formatCredits(var6.getSellItemPrice()), "#C");
 								break;
 							default:
 								break;
 							}
 							break;
-						case 6:
+						case Agent.TYPE_6:
 							if (Status.getCredits() < var6.getCosts()) {
 								this.popup.set(Status.replaceTokens(GlobalStatus.gameText.getText(83), Layout.formatCredits(var6.getCosts() - Status.getCredits()), "#C"), false);
 								this.transactionConfirmPopup_ = true;
@@ -458,7 +464,7 @@ public final class SpaceLounge {
 
 							var4 = Status.replaceTokens(Status.replaceTokens(GlobalStatus.gameText.getText(Achievements.gotAllMedals() ? 501 : 500), "" + (1 + var6.getWingmanFriendsCount_()), "#Q"), Layout.formatCredits(var6.getCosts()), "#C");
 							break;
-						case 7:
+						case Agent.TYPE_7:
 							if (Status.getCredits() < var6.getCosts()) {
 								this.popup.set(Status.replaceTokens(GlobalStatus.gameText.getText(83), Layout.formatCredits(var6.getCosts() - Status.getCredits()), "#C"), false);
 								this.transactionConfirmPopup_ = true;
@@ -489,7 +495,7 @@ public final class SpaceLounge {
 						++Status.askedToRepeate;
 						break;
 					case 3:
-						if (this.agents[this.selectedAgent].getType() != 2 && this.agents[this.selectedAgent].getType() != 3) {
+						if (this.agents[this.selectedAgent].getType() != Agent.TYPE_2 && this.agents[this.selectedAgent].getType() != Agent.TYPE_3) {
 							this.agents[this.selectedAgent].wasAskedForLocation = true;
 							if (this.agents[this.selectedAgent].getMission().getTargetStation() == Status.getStation().getIndex()) {
 								this.chatRows = Font.splitToLines(GlobalStatus.gameText.getText(441), GlobalStatus.screenWidth - this.chatTextPosX - this.answearsPosX);
@@ -513,7 +519,7 @@ public final class SpaceLounge {
 								this.itemTypes = AEFile.loadCryptedImage("/data/interface/item_types.png");
 							}
 
-							if (this.agents[this.selectedAgent].getType() == 2) {
+							if (this.agents[this.selectedAgent].getType() == Agent.TYPE_2) {
 								this.intemInfoWindow.setup(new ListItem(Globals.getItems()[this.agents[this.selectedAgent].getSellItemIndex()]), this.items, this.itemTypes, (Image)null, (Image)null, false);
 							} else {
 								for(var3 = 0; var3 < Status.getBluePrints().length; ++var3) {
@@ -567,7 +573,7 @@ public final class SpaceLounge {
 			if (this.chatType_ == 0) {
 				this.answearsPosY_ = GlobalStatus.screenHeight - 16 - (this.agents.length + 1) * Font.getSpacingY() + 2;
 			} else if (this.chatType_ == 2) {
-				if (this.agents[this.selectedAgent].getType() != 2 && this.agents[this.selectedAgent].getType() != 3) {
+				if (this.agents[this.selectedAgent].getType() != Agent.TYPE_2 && this.agents[this.selectedAgent].getType() != Agent.TYPE_3) {
 					if (this.agents[this.selectedAgent].getMission() != null && this.agents[this.selectedAgent].getMission().isOutsideMission()) {
 						this.answearsPosY_ = GlobalStatus.screenHeight - 16 - 6 * Font.getSpacingY() + 2;
 					} else {
@@ -599,7 +605,19 @@ public final class SpaceLounge {
 				GlobalStatus.renderer.getCamera().getScreenPosition(this.cameraPos);
 				Font.drawString(!this.agents[this.selectedAgent].isKnown() && !this.agents[this.selectedAgent].isSpecialAgent() ? GlobalStatus.gameText.getText(229 + this.agents[this.selectedAgent].getRace()) : this.agents[this.selectedAgent].fullName, this.cameraPos.x, this.cameraPos.y, 2);
 				if (this.agents[this.selectedAgent].isKnown()) {
-					Font.drawString(this.agents[this.selectedAgent].getMission() != null ? GlobalStatus.gameText.getText(179 + this.agents[this.selectedAgent].getMission().getType()) : this.agents[this.selectedAgent].getType() == 6 ? GlobalStatus.gameText.getText(146) : this.agents[this.selectedAgent].getType() == 2 ? GlobalStatus.gameText.getText(145) : this.agents[this.selectedAgent].getType() == 7 ? GlobalStatus.gameText.getText(514) : "", this.cameraPos.x, this.cameraPos.y + Font.getSpacingY(), 1);
+					Font.drawString(
+							this.agents[this.selectedAgent].getMission() != null
+									? GlobalStatus.gameText
+											.getText(179 + this.agents[this.selectedAgent].getMission().getType())
+									: this.agents[this.selectedAgent].getType() == Agent.TYPE_6
+											? GlobalStatus.gameText.getText(146)
+											: this.agents[this.selectedAgent].getType() == Agent.TYPE_2
+													? GlobalStatus.gameText.getText(145)
+													: this.agents[this.selectedAgent].getType() == Agent.TYPE_7
+															? GlobalStatus.gameText.getText(514)
+															: "",
+							this.cameraPos.x, this.cameraPos.y + Font.getSpacingY(), 1
+					);
 				}
 			} else {
 				var2 = 0;
@@ -615,8 +633,8 @@ public final class SpaceLounge {
 					Font.drawString(GlobalStatus.gameText.getText(496), this.answearsPosX, this.answearsPosY_ + 3 + 1 * Font.getSpacingY(), this.chatAnswear == 1 ? 2 : 1);
 					Font.drawString(GlobalStatus.gameText.getText(497), this.answearsPosX, this.answearsPosY_ + 3 + 2 * Font.getSpacingY(), this.chatAnswear == 2 ? 2 : 1);
 					var3 = this.agents[this.selectedAgent].getType();
-					if (var3 != 2 && var3 != 3) {
-						if (var3 == 0 && this.agents[this.selectedAgent].getMission().isOutsideMission()) {
+					if (var3 != Agent.TYPE_2 && var3 != Agent.TYPE_3) {
+						if (var3 == Agent.TYPE_0 && this.agents[this.selectedAgent].getMission().isOutsideMission()) {
 							Font.drawString(GlobalStatus.gameText.getText(440), this.answearsPosX, this.answearsPosY_ + 3 + 3 * Font.getSpacingY(), this.chatAnswear == 3 ? 2 : 1);
 							Font.drawString(GlobalStatus.gameText.getText(442), this.answearsPosX, this.answearsPosY_ + 3 + 4 * Font.getSpacingY(), this.chatAnswear == 4 ? 2 : 1);
 						}
@@ -646,7 +664,7 @@ public final class SpaceLounge {
 			} else {
 				if (!var1.hasAcceptedOffer()) {
 					++Status.barInteractions;
-					if (var1.getType() == 4) {
+					if (var1.getType() == Agent.TYPE_4) {
 						var8 = GlobalStatus.gameText.getText(505 + GlobalStatus.random.nextInt(2));
 						var8 = var8 + " " + GlobalStatus.gameText.getText(516 + var1.getMessageId());
 						var8 = var8 + " " + GlobalStatus.gameText.getText(508);
@@ -673,9 +691,9 @@ public final class SpaceLounge {
 			this.chatScroll = 0;
 			this.chatType_ = 3;
 		} else {
-			if (var1.isKnown() && var1.getType() != 7) {
+			if (var1.isKnown() && var1.getType() != Agent.TYPE_7) {
 				if (var1.hasAcceptedOffer()) {
-					var8 = GlobalStatus.gameText.getText(var1.getType() == 5 ? 491 : var1.getType() != 6 && (var1.getMission() == null || var1.getMission().getType() != 12) ? 492 : 493);
+					var8 = GlobalStatus.gameText.getText(var1.getType() == Agent.TYPE_5 ? 491 : var1.getType() != Agent.TYPE_6 && (var1.getMission() == null || var1.getMission().getType() != Mission.TYPE_12) ? 492 : 493);
 					this.chatRows = Font.splitToLines(var8, GlobalStatus.screenWidth - this.chatTextPosX - this.answearsPosX);
 					this.chatScroll = 0;
 					this.chatType_ = 3;
@@ -686,26 +704,26 @@ public final class SpaceLounge {
 			} else {
 				++Status.barInteractions;
 				int var2;
-				final boolean var3 = (var2 = var1.getType()) != 1 && var2 != 7;
-				final boolean var4 = var2 == 0 || var2 == 5;
+				final boolean var3 = (var2 = var1.getType()) != Agent.TYPE_1 && var2 != Agent.TYPE_7;
+				final boolean var4 = var2 == Agent.TYPE_0 || var2 == Agent.TYPE_5;
 				var8 = var3 ? GlobalStatus.gameText.getText(390 + GlobalStatus.random.nextInt(6)) : "";
 				String var9 = var3 ? GlobalStatus.gameText.getText(396 + GlobalStatus.random.nextInt(2)) : "";
 				final String var10 = var4 ? GlobalStatus.gameText.getText(398 + GlobalStatus.random.nextInt(6)) : "";
 				String var5 = "";
 				var9 = Status.replaceTokens(var9, var1.getFullName(), "#N");
-				final Generator var6 = new Generator();
+				final Generator generator = new Generator();
 				int var7;
 				switch(var1.getType()) {
-				case 0:
+				case Agent.TYPE_0:
 					var5 = var5 + GlobalStatus.gameText.getText(425 + var1.getMission().getType());
-					if (var1.getMission().getType() == 5 || var1.getMission().getType() == 3) {
+					if (var1.getMission().getType() == Mission.TYPE_5 || var1.getMission().getType() == Mission.TYPE_3) {
 						var5 = var5 + " " + GlobalStatus.gameText.getText(438);
 					}
 
 					var5 = Status.replaceTokens(Status.replaceTokens(Status.replaceTokens(Status.replaceTokens(var5, GlobalStatus.gameText.getText(448 + var1.getMission().getCommodityIndex()), "#P"), "" + var1.getMission().getCommodityAmount_(), "#Q"), var1.getMission().getTargetStationName(), "#S"), var1.getMission().getTargetName(), "#N");
 					var5 = Status.replaceTokens(var5 + "\n" + GlobalStatus.gameText.getText(404 + GlobalStatus.random.nextInt(3)), Layout.formatCredits(var1.getMission().getReward()), "#C");
 					break;
-				case 1:
+				case Agent.TYPE_1:
 					boolean var16 = false;
 
 					do {
@@ -722,27 +740,27 @@ public final class SpaceLounge {
 
 					var5 = Status.replaceTokens(Status.replaceTokens(Status.replaceTokens(GlobalStatus.gameText.getText(var7 + 455), Globals.getRandomPlanetName(), "#S"), var1.getFullName(), "#N"), GlobalStatus.gameText.getText(723 + GlobalStatus.random.nextInt(10)), "#ORE");
 					break;
-				case 2:
+				case Agent.TYPE_2:
 					var5 = var5 + GlobalStatus.gameText.getText(407 + GlobalStatus.random.nextInt(4));
 					var5 = Status.replaceTokens(Status.replaceTokens(Status.replaceTokens(var5 + "\n" + GlobalStatus.gameText.getText(412 + GlobalStatus.random.nextInt(2)), "" + var1.getSellItemQuantity(), "#Q"), GlobalStatus.gameText.getText(569 + var1.getSellItemIndex()), "#P"), Layout.formatCredits(var1.getSellItemPrice()), "#C");
 					if (var1.getSellItemQuantity() > 1) {
 						var5 = Status.replaceTokens(var5 + " " + GlobalStatus.gameText.getText(414), Layout.formatCredits(var1.getSellItemPrice() / var1.getSellItemQuantity()), "#C");
 					}
-				case 3:
-				case 4:
+				case Agent.TYPE_3:
+				case Agent.TYPE_4:
 				default:
 					break;
-				case 5:
-					var1.setMission(var6.createFreelanceMission(var1));
+				case Agent.TYPE_5:
+					var1.setMission(generator.createFreelanceMission(var1));
 					var5 = Status.replaceTokens(Status.replaceTokens(Status.replaceTokens(var5 + GlobalStatus.gameText.getText(416 + GlobalStatus.random.nextInt(2)), "" + var1.getMission().getCommodityAmount_(), "#Q"), GlobalStatus.gameText.getText(569 + var1.getMission().getCommodityIndex()), "#P"), Layout.formatCredits(var1.getMission().getReward()), "#C");
 					break;
-				case 6:
+				case Agent.TYPE_6:
 					var5 = Status.replaceTokens(var5 + GlobalStatus.gameText.getText((Achievements.gotAllMedals() ? 421 : 418) + var1.getWingmanFriendsCount_()), Layout.formatCredits(var1.getCosts()), "#C");
 					if (var1.getWingmanFriendsCount_() > 0) {
 						var5 = Status.replaceTokens(var5, "" + var1.getWingmanName(1), "#W");
 					}
 					break;
-				case 7:
+				case Agent.TYPE_7:
 					final int var13 = var1.getRace();
 					int var12 = Status.getStanding().getStanding(var13 != 2 && var13 != 3 ? 0 : 1);
 					if (!Status.getStanding().isEnemy(var13)) {
@@ -760,14 +778,14 @@ public final class SpaceLounge {
 				}
 
 				var1.setMessage(var5);
-				if (var1.getType() == 1) {
+				if (var1.getType() == Agent.TYPE_1) {
 					this.chatRows = Font.splitToLines(var5, GlobalStatus.screenWidth - this.chatTextPosX - this.answearsPosX);
 					var1.setEvent(1);
-				} else if (var1.getType() == 7) {
+				} else if (var1.getType() == Agent.TYPE_7) {
 					this.chatRows = Font.splitToLines(var5, GlobalStatus.screenWidth - this.chatTextPosX - this.answearsPosX);
 				} else {
 					String var14;
-					if (var1.getMission() != null && var1.getMission().getType() == 12) {
+					if (var1.getMission() != null && var1.getMission().getType() == Mission.TYPE_12) {
 						var5 = Status.replaceTokens(GlobalStatus.gameText.getText(437), Layout.formatCredits(var1.getMission().getReward()), "#C");
 						var1.setMessage(var5);
 						var14 = "\n" + GlobalStatus.gameText.getText(475 + GlobalStatus.random.nextInt(3));
