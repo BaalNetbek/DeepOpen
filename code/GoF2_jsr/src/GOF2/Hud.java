@@ -802,7 +802,8 @@ public final class Hud {
 				this.settingSecondaryWeapon = false;
 				this.menuItemSelectTick = 0;
 				this.actionmenuSelectDir = 0;
-				this.menuItemsSpread = AEMath.max(GlobalStatus.screenWidth, GlobalStatus.screenHeight) + this.quickMenu.getHeight();
+				this.menuItemsSpread = AEMath.max(GlobalStatus.screenWidth, GlobalStatus.screenHeight)
+						+ this.quickMenu.getHeight();
 				this.quickmenuCrosshairAnim.setFrame(0);
 				this.menuReady = false;
 				this.actionmenuConverging = true;
@@ -813,7 +814,8 @@ public final class Hud {
 			}
 		}
 
-		if (this.actionmenuConverging && this.quickmenuCrosshairAnim.getFrame() >= this.quickmenuCrosshairAnim.getRawFrameCount() - 1) {
+		if (this.actionmenuConverging
+				&& this.quickmenuCrosshairAnim.getFrame() >= this.quickmenuCrosshairAnim.getRawFrameCount() - 1) {
 			this.actionmenuConverging = false;
 			this.menuReady = true;
 			this.actionSubMenuOpen = 0;
@@ -823,151 +825,172 @@ public final class Hud {
 		if (this.actionmenuOpen && this.menuReady) {
 			int var5 = this.actionmenuSelectDir;
 			if (this.actionmenuSelectDir > 0 && keyPressed == GOF2Canvas.KEY_5) {
-				keyPressed = this.actionmenuSelectDir == 1 ? GOF2Canvas.UP:
-              				this.actionmenuSelectDir == 2 ? GOF2Canvas.RIGHT:
-              				this.actionmenuSelectDir == 3 ? GOF2Canvas.DOWN:
-              				                                GOF2Canvas.LEFT;
+				keyPressed = this.actionmenuSelectDir == 1 ? GOF2Canvas.UP
+						: this.actionmenuSelectDir == 2 ? GOF2Canvas.RIGHT
+								: this.actionmenuSelectDir == 3 ? GOF2Canvas.DOWN : GOF2Canvas.LEFT;
 			}
 
-			if (this.actionmenuSelectDir == 0 ||
-			  this.actionmenuSelectDir == 1 && keyPressed != GOF2Canvas.UP ||
-			  this.actionmenuSelectDir == 2 && keyPressed != GOF2Canvas.RIGHT ||
-			  this.actionmenuSelectDir == 3 && keyPressed != GOF2Canvas.DOWN ||
-			  this.actionmenuSelectDir == 4 && keyPressed != GOF2Canvas.LEFT) {
-    		  switch(keyPressed) {
-    				case GOF2Canvas.UP:
-  				      this.actionmenuSelectDir = 1;
-    					GlobalStatus.soundManager.playSfx(4);
-    					break;    				case GOF2Canvas.LEFT:
-    					this.actionmenuSelectDir = 4;
-    					GlobalStatus.soundManager.playSfx(4);
-    					break;    				case GOF2Canvas.RIGHT:
-    					this.actionmenuSelectDir = 2;
-    					GlobalStatus.soundManager.playSfx(4);
-    					break;    				case GOF2Canvas.DOWN:
-    					this.actionmenuSelectDir = 3;
-    					GlobalStatus.soundManager.playSfx(4);
-    					break;    				case GOF2Canvas.KEY_5:
-    					if (this.actionmenuSelectDir == 0) {
-    						handleActionMenuKeypress(GOF2Canvas.RSB, level, var3);
-    					}
-    				}
-    
-    				if (this.actionmenuSelectDir == 0 
-    						&& this.actionmenuSelectDir == 3
-    						&& !level.getPlayer().isCloaked()
-    				      && !level.getPlayer().isCloakReady()
-    				      || this.actionmenuSelectDir > 0
-    				            && this.actionmenuLabels[this.actionSubMenuOpen][this.actionmenuSelectDir - 1].equals("")) {
-    					this.actionmenuSelectDir = var5;
-    				}
-    
-    				return this.actionmenuOpen;
-			}
-
-			switch(this.actionSubMenuOpen) {
-			case 1:
-				if (keyPressed != GOF2Canvas.UP 
-  				&& keyPressed != GOF2Canvas.RIGHT 
-  				&& keyPressed != GOF2Canvas.DOWN 
-  				&& keyPressed != GOF2Canvas.LEFT
-  				&& keyPressed != GOF2Canvas.KEY_5) {
-					this.actionmenuOpen = true;
-					break;				}
-				var5 = keyPressed == GOF2Canvas.UP  ? 0 :
-				       keyPressed == GOF2Canvas.RIGHT ? 1 :
-				       keyPressed == GOF2Canvas.DOWN  ? 2 :
-				       keyPressed == GOF2Canvas.LEFT ? 3 :
-				       this.actionmenuSelectDir;
-				
-				if (!this.actionmenuLabels[1][var5].equals("")) {
-					keyPressed = Status.getShip().getEquipment(Item.SECONDARY)[var5].getIndex();
-					level.getPlayer().setCurrentSecondaryWeaponIndex(Status.getShip().getEquipment(1)[var5].getIndex());
-					GlobalStatus.displayedSecondary = keyPressed;
-					drawSecondaryIcon = this.actionmenuSelectDir;
+			if (	this.actionmenuSelectDir == 0 
+					|| this.actionmenuSelectDir == 1 && keyPressed != GOF2Canvas.UP
+					|| this.actionmenuSelectDir == 2 && keyPressed != GOF2Canvas.RIGHT
+					|| this.actionmenuSelectDir == 3 && keyPressed != GOF2Canvas.DOWN
+					|| this.actionmenuSelectDir == 4 && keyPressed != GOF2Canvas.LEFT) {
+				switch (keyPressed) {
+					case GOF2Canvas.UP:
+						this.actionmenuSelectDir = 1;
+						GlobalStatus.soundManager.playSfx(4);
+						break;
+					case GOF2Canvas.LEFT:
+						this.actionmenuSelectDir = 4;
+						GlobalStatus.soundManager.playSfx(4);
+						break;
+					case GOF2Canvas.RIGHT:
+						this.actionmenuSelectDir = 2;
+						GlobalStatus.soundManager.playSfx(4);
+						break;
+					case GOF2Canvas.DOWN:
+						this.actionmenuSelectDir = 3;
+						GlobalStatus.soundManager.playSfx(4);
+						break;
+					case GOF2Canvas.KEY_5:
+						if (this.actionmenuSelectDir == 0) {
+							handleActionMenuKeypress(GOF2Canvas.RSB, level, var3);
+						}
 				}
 
-				this.actionmenuOpen = false;
-				break;			case 3:
-				KIPlayer[] enemies = level.getEnemies();
-				if (enemies == null) {
-					break;				}
+				if (this.actionmenuSelectDir == 0 && this.actionmenuSelectDir == 3 && !level.getPlayer().isCloaked()
+						&& !level.getPlayer().isCloakReady()
+						|| this.actionmenuSelectDir > 0
+								&& this.actionmenuLabels[this.actionSubMenuOpen][this.actionmenuSelectDir - 1]
+										.equals("")) {
+					this.actionmenuSelectDir = var5;
+				}
 
-				lastWingmenAction = keyPressed == GOF2Canvas.UP ? 2 :
-                               keyPressed == GOF2Canvas.RIGHT ? 4 :
-                               keyPressed == GOF2Canvas.DOWN ? 3 :
-                               keyPressed == GOF2Canvas.LEFT ? 1 :
-                                                 0;
-				hudEvent(
-				  lastWingmenAction == 2 ? EVENT_FIRE_AT_WILL :
-				  lastWingmenAction == 4 ? EVENT_ATTACK_TARGET :
-				  lastWingmenAction == 1 ? EVENT_SWAP_GUN :
-					  					   EVENT_SECURE_WAYPOINT,
-				  level.getPlayer()
-				);
-				this.actionmenuLabels[3][3] = 
-				  this.actionmenuLabels[3][3].equals(GlobalStatus.gameText.getText(151)) ?
-				    GlobalStatus.gameText.getText(150):
-				    GlobalStatus.gameText.getText(151);
+				return this.actionmenuOpen;
+			}
 
-				for(int i = 0; i < enemies.length; ++i) {
-					if (enemies[i].isWingman() && !enemies[i].isDead()) {
-						if (lastWingmenAction == 0) {
-							this.actionmenuOpen = true;
-						} else {
-							enemies[i].setWingmanCommand(lastWingmenAction, lastWingmenAction == 4 ? var3.getLockedEnemy() : null);
+			switch (this.actionSubMenuOpen) {
+				case 1:
+					if (keyPressed != GOF2Canvas.UP &&
+    					keyPressed != GOF2Canvas.RIGHT &&
+    					keyPressed != GOF2Canvas.DOWN &&
+    					keyPressed != GOF2Canvas.LEFT &&
+    					keyPressed != GOF2Canvas.KEY_5) 
+					{
+						this.actionmenuOpen = true;
+						break;
+					}
+					var5 = keyPressed == GOF2Canvas.UP ? 0:
+						keyPressed == GOF2Canvas.RIGHT ? 1:
+						keyPressed == GOF2Canvas.DOWN ? 2:
+						keyPressed == GOF2Canvas.LEFT ? 3:
+									this.actionmenuSelectDir;
+
+					if (!this.actionmenuLabels[1][var5].equals("")) {
+						keyPressed = Status.getShip().getEquipment(Item.SECONDARY)[var5].getIndex();
+						level.getPlayer()
+								.setCurrentSecondaryWeaponIndex(Status.getShip().getEquipment(1)[var5].getIndex());
+						GlobalStatus.displayedSecondary = keyPressed;
+						drawSecondaryIcon = this.actionmenuSelectDir;
+					}
+
+					this.actionmenuOpen = false;
+					break;
+				case 3:
+					KIPlayer[] enemies = level.getEnemies();
+					if (enemies == null) {
+						break;
+					}
+
+					lastWingmenAction = keyPressed == GOF2Canvas.UP ? 2:
+										keyPressed == GOF2Canvas.RIGHT ? 4:
+										keyPressed == GOF2Canvas.DOWN ? 3:
+										keyPressed == GOF2Canvas.LEFT ? 1 : 0;
+					hudEvent(
+							lastWingmenAction == 2 ? EVENT_FIRE_AT_WILL:
+							lastWingmenAction == 4 ? EVENT_ATTACK_TARGET:
+							lastWingmenAction == 1 ? EVENT_SWAP_GUN:
+													EVENT_SECURE_WAYPOINT,
+							level.getPlayer()
+					);
+					this.actionmenuLabels[3][3] = this.actionmenuLabels[3][3].equals(GlobalStatus.gameText.getText(151))
+							? GlobalStatus.gameText.getText(150)
+							: GlobalStatus.gameText.getText(151);
+
+					for (int i = 0; i < enemies.length; ++i) {
+						if (enemies[i].isWingman() && !enemies[i].isDead()) {
+							if (lastWingmenAction == 0) {
+								this.actionmenuOpen = true;
+							} else {
+								enemies[i].setWingmanCommand(
+										lastWingmenAction,
+										lastWingmenAction == 4 ? var3.getLockedEnemy() : null
+								);
+							}
 						}
 					}
-				}
-
-				this.actionmenuOpen = false;
-				break;			default:
-				switch(keyPressed) {
-				case GOF2Canvas.UP:
-					if (!this.actionmenuLabels[0][0].equals("")) {
-						initSecondariesSubMenu();
-						this.actionSubMenuOpen = 1;
-						this.actionmenuOpen = true;
-						GlobalStatus.soundManager.playSfx(4);
-					}
-					break;				case GOF2Canvas.RIGHT:
-					if (!this.actionmenuLabels[0][1].equals("")) {
-						level.getPlayer().toggleCloaking_();
-						GlobalStatus.soundManager.playSfx(4);
-					}
 
 					this.actionmenuOpen = false;
-					break;				case GOF2Canvas.DOWN:
-					if (!this.actionmenuLabels[0][2].equals("")) {
-						this.actionSubMenuOpen = 3;
-						this.actionmenuOpen = true;
-						GlobalStatus.soundManager.playSfx(4);
+					break;
+				default:
+					switch (keyPressed) {
+						case GOF2Canvas.UP:
+							if (!this.actionmenuLabels[0][0].equals("")) {
+								initSecondariesSubMenu();
+								this.actionSubMenuOpen = 1;
+								this.actionmenuOpen = true;
+								GlobalStatus.soundManager.playSfx(4);
+							}
+							break;
+						case GOF2Canvas.RIGHT:
+							if (!this.actionmenuLabels[0][1].equals("")) {
+								level.getPlayer().toggleCloaking_();
+								GlobalStatus.soundManager.playSfx(4);
+							}
+
+							this.actionmenuOpen = false;
+							break;
+						case GOF2Canvas.DOWN:
+							if (!this.actionmenuLabels[0][2].equals("")) {
+								this.actionSubMenuOpen = 3;
+								this.actionmenuOpen = true;
+								GlobalStatus.soundManager.playSfx(4);
+							}
+							break;
+						case GOF2Canvas.LEFT:
+							if (	!Status.getMission().isEmpty() 
+									&& Status.getMission().getType() != 11
+									&& Status.getMission().getType() != 0 
+									&& Status.getMission().getType() != 23) 
+							{
+								hudEvent(21, level.getPlayer());
+								GlobalStatus.soundManager.playSfx(4);
+							} else if (!this.actionmenuLabels[0][3].equals("")) {
+								this.jumpDriveSelected = true;
+								GlobalStatus.soundManager.playSfx(4);
+							}
+
+							this.actionmenuOpen = false;
+							break;
+						case GOF2Canvas.KEY_5:
+							this.actionmenuOpen = false;
 					}
-					break;            case GOF2Canvas.LEFT:
-               if (!Status.getMission().isEmpty() && Status.getMission().getType() != 11 && Status.getMission().getType() != 0 && Status.getMission().getType() != 23) {
-                  hudEvent(21, level.getPlayer());
-                  GlobalStatus.soundManager.playSfx(4);
-               } else if (!this.actionmenuLabels[0][3].equals("")) {
-                  this.jumpDriveSelected = true;
-                  GlobalStatus.soundManager.playSfx(4);
-               }
-  
-               this.actionmenuOpen = false;
-               break;				case GOF2Canvas.KEY_5:
-					this.actionmenuOpen = false;
-				}
 			}
 
 			if (!this.actionmenuOpen) {
-				this.settingSecondaryWeapon = this.actionSubMenuOpen != 0 || this.actionmenuSelectDir != 2 && this.actionmenuSelectDir != 4;
-				this.menuAnimStep = (this.quickmenuCrosshairAnim.getHeight() >> 1) + 5 + (this.quickMenu.getHeight() >> 1);
+				this.settingSecondaryWeapon = this.actionSubMenuOpen != 0
+						|| this.actionmenuSelectDir != 2 && this.actionmenuSelectDir != 4;
+				this.menuAnimStep = (this.quickmenuCrosshairAnim.getHeight() >> 1) + 5
+						+ (this.quickMenu.getHeight() >> 1);
 				this.menuItemSelectTick = 0;
 			}
 		}
 
 		if (this.actionSubMenuOpen != var4) {
 			this.actionmenuSelectDir = 0;
-			this.menuItemsSpread = AEMath.max(GlobalStatus.screenWidth, GlobalStatus.screenHeight) + this.quickMenu.getHeight();
+			this.menuItemsSpread = 
+					AEMath.max(GlobalStatus.screenWidth, GlobalStatus.screenHeight)
+					+ this.quickMenu.getHeight();
 			this.menuAnimStep = (this.quickmenuCrosshairAnim.getHeight() >> 1) + 5 + (this.quickMenu.getHeight() >> 1);
 		}
 
