@@ -291,7 +291,7 @@ public final class PlayerEgo {
 	}
 
 	public final int getMiningProgress() {
-		return this.miningGame != null ? this.miningGame.getMiningProgressRounded() : 0;
+		return this.miningGame != null ? this.miningGame.getOreAmount() : 0;
 	}
 
 	public final boolean boosting() {
@@ -936,7 +936,7 @@ public final class PlayerEgo {
 	}
 
 	public final void resetGunDelay() {
-		this.player.resetGunDelay(0);
+		this.player.resetGunDelay(Item.PRIMARY);
 	}
 
 	public final boolean isDockingToAsteroid() {
@@ -1044,7 +1044,7 @@ public final class PlayerEgo {
 				setExhaustVisible(false);
 				GlobalStatus.soundManager.playSfx(6);
 			} else if (!this.miningGame.update((int)this.frameTime, keysPressed)) {
-				if (!this.miningGame.gameLost() && this.miningGame.getMiningProgressRounded() > 0) {
+				if (!this.miningGame.gameLost() && this.miningGame.getOreAmount() > 0) {
 					endMining();
 				} else if (this.miningGame.gameLost()) {
 					endMining();
@@ -1059,38 +1059,38 @@ public final class PlayerEgo {
 	}
 
 	public final void endMining() {
-		int var1;
-		final int var2 = (var1 = ((PlayerAsteroid)this.lockedAsteroid).oreItemId) - 154 + 165;
-		int var3;
-		int var4 = AEMath.min(var3 = Status.getShip().getFreeCargo(), this.miningGame.getMiningProgressRounded());
-		if (var3 > 0) {
-			Item var5 = null;
-			final boolean var6 = var3 >= 1;
+		final int oreItemId = ((PlayerAsteroid)this.lockedAsteroid).oreItemId;
+		final int coreItemId = oreItemId - Item.IDX_ORE_START + Item.IDX_CORE_START;
+		int freeCargo = Status.getShip().getFreeCargo();
+		int minedOreClamped = AEMath.min(freeCargo, this.miningGame.getOreAmount());
+		if (freeCargo > 0) {
+			Item mined = null;
+			final boolean var6 = freeCargo >= 1;
 			if (this.miningGame.gotCore() && var6) {
-				var5 = Globals.getItems()[var2].makeItem(1);
-				Status.getShip().addCargo(var5);
-				this.hud.catchCargo(var2, 1, false, false, false, false);
+				mined = Globals.getItems()[coreItemId].makeItem(1);
+				Status.getShip().addCargo(mined);
+				this.hud.catchCargo(coreItemId, 1, false, false, false, false);
 				++Status.minedCores;
-				Status.minedCoreTypes[var2 - 165] = true;
-				var3 = Status.getShip().getFreeCargo();
-				if (var3 < var4) {
-					var4 = var3;
+				Status.minedCoreTypes[coreItemId - Item.IDX_CORE_START] = true;
+				freeCargo = Status.getShip().getFreeCargo();
+				if (freeCargo < minedOreClamped) {
+					minedOreClamped = freeCargo;
 				}
 			}
 
-			if (var4 > 0) {
-				var5 = Globals.getItems()[var1].makeItem(var4);
-				Status.getShip().addCargo(var5);
-				this.hud.catchCargo(var1, var4, false, false, true, false);
-				Status.minedOre += var4;
-				Status.minedOreTypes[var1 - 154] = true;
+			if (minedOreClamped > 0) {
+				mined = Globals.getItems()[oreItemId].makeItem(minedOreClamped);
+				Status.getShip().addCargo(mined);
+				this.hud.catchCargo(oreItemId, minedOreClamped, false, false, true, false);
+				Status.minedOre += minedOreClamped;
+				Status.minedOreTypes[oreItemId - Item.IDX_ORE_START] = true;
 			}
 
 			if (Status.getShip().getFreeCargo() <= 0) {
-				this.hud.catchCargo(var1, var4, true, false, true, false);
+				this.hud.catchCargo(oreItemId, minedOreClamped, true, false, true, false);
 			}
 		} else {
-			this.hud.catchCargo(var1, 0, true, false, true, false);
+			this.hud.catchCargo(oreItemId, 0, true, false, true, false);
 		}
 
 		setExhaustVisible(true);
@@ -1130,7 +1130,7 @@ public final class PlayerEgo {
 			tfCam.setLookAtCam(true);
 			GlobalStatus.renderer.setActiveCamera((AECamera)tfCam.getCamera());
 			LevelScript.resetCamera(tfCam, this.level);
-			this.player.resetGunDelay(0);
+			this.player.resetGunDelay(Item.PRIMARY);
 			this.miningGame = null;
 			radar.unlockAsteroid();
 		} else if (asteroid != null) {

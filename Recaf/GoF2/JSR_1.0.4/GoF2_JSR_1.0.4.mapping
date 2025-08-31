@@ -1532,7 +1532,7 @@ al.m I barsPadding
 al.a Z succeed
 al.a [I _LAYER_WITDTHS
 al.a()Z gameLost
-al.a()I getMiningProgressRounded
+al.a()I getOreAmount
 al.b()Z gotCore
 al.a(II)Z update
 al.a()V render2D

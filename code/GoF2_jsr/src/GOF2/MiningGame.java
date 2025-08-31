@@ -80,7 +80,7 @@ public final class MiningGame {
         return this.failProgress >= 2500.0F;
     }
 
-    public final int getMiningProgressRounded() {
+    public final int getOreAmount() {
         return (int)this.miningProgress;
     }
 
