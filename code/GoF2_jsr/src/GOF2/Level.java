@@ -678,7 +678,7 @@ public final class Level {
 					attackerRace = GlobalStatus.random.nextInt(100) < 75 ? 8 : Standing.enemyRace(localRace);
 					final boolean attackFromBehind = GlobalStatus.random.nextInt(2) == 0;
 					switch(mission.getType()) {
-					case 1: //Defense
+					case Mission.TYPE_1: //Defense
 						this.enemyRoute_ = new Route(new int[]{
 								-50000 + GlobalStatus.random.nextInt(100000), 0, attackFromBehind ? -50000 : 50000,
 								-50000 + GlobalStatus.random.nextInt(100000), 0, attackFromBehind ? -75000 : 75000,
@@ -700,7 +700,7 @@ public final class Level {
 
 						this.successObjective = new Objective(Objective.TYPE_7, attackersCnt, this);
 						return;
-					case 2: //Protection
+					case Mission.TYPE_2: //Protection
 						final AEVector3D stationPos = new AEVector3D();
 						this.enemyRoute_ = new Route(new int[]{
 							stationPos.x + (attackFromBehind ? -1 : 1) * (20000 + GlobalStatus.random.nextInt(20000)),
@@ -741,7 +741,7 @@ public final class Level {
 						this.successObjective = new Objective(Objective.TYPE_18, 0, attackersCnt, this);
 						this.failObjective_ = new Objective(Objective.TYPE_18, attackersCnt, attackersCnt + supportCnt, this);
 						return;
-					case 4: // Pirate hunting
+					case Mission.TYPE_4: // Pirate hunting
 						if (GlobalStatus.random.nextInt(2) == 0) {
 							this.missionRoute = new Route(new int[]{this.asteroidFieldCenter.x, this.asteroidFieldCenter.y, this.asteroidFieldCenter.z});
 						} else {
@@ -759,8 +759,8 @@ public final class Level {
 
 						this.successObjective = new Objective(Objective.TYPE_18, 0, pirateCnt, this);
 						return;
-					case 3: // Recovery
-					case 5: // Salvage
+					case Mission.TYPE_3: // Recovery
+					case Mission.TYPE_5: // Salvage
 						this.missionRoute = new Route(new int[] {
 						      (40000 + GlobalStatus.random.nextInt(80000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1),
 						      0,
@@ -777,7 +777,7 @@ public final class Level {
 						this.successObjective = new Objective(Objective.TYPE_11, this.ships.length - 1, this);
 						this.failObjective_ = new Objective(Objective.TYPE_12, this.ships.length - 1, this);
 						return;
-					case 6: // Wanted
+					case Mission.TYPE_6: // Wanted
 						this.missionRoute = new Route(new int[] {
 						      (60000 + GlobalStatus.random.nextInt(80000)) * (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1),
 						      0,
@@ -789,7 +789,7 @@ public final class Level {
 						this.ships[0].player.setMaxHP(scalingHP + 300);
 						this.successObjective = new Objective(Objective.TYPE_1, 0, this);
 						return;
-					case 7: // Junk removal
+					case Mission.TYPE_7: // Junk removal
 						route = new Route(new int[]{-20000 + GlobalStatus.random.nextInt(40000), 0, 20000 + GlobalStatus.random.nextInt(40000)});
 						pirateCnt = (int)(2.0F * (Status.getMission().getDifficulty() / 10.0F));
 						final int junkCnt = 15 + (int)(35.0F * (Status.getMission().getDifficulty() / 10.0F));
@@ -807,7 +807,7 @@ public final class Level {
 						this.successObjective = new Objective(Objective.TYPE_7, this.ships.length - pirateCnt, this);
 						this.timeLimit = 121000;
 						return;
-					case 9: // Escort
+					case Mission.TYPE_9: // Escort
 						this.enemyRoute_ = new Route(new int[]{10000, 0, 100000, 10000, 0, 150000, 10000, 0, 200000});
 						attackersCnt = 2 + (int)(6.0F * (Status.getMission().getDifficulty() / 10.0F));
 						this.ships = new KIPlayer[attackersCnt + 5];
@@ -838,7 +838,7 @@ public final class Level {
 						this.successObjective = new Objective(Objective.TYPE_18, 0, attackersCnt, this);
 						this.failObjective_ = new Objective(Objective.TYPE_18, attackersCnt, attackersCnt + 5, this);
 						return;
-					case 10: //Intercept
+					case Mission.TYPE_10: //Intercept
 						this.missionRoute = new Route(new int[] {
 						      -2500 + GlobalStatus.random.nextInt(5000),
 						      -2500 + GlobalStatus.random.nextInt(5000),
@@ -870,11 +870,11 @@ public final class Level {
 						}
 
 						this.successObjective = new Objective(Objective.TYPE_7, cargoShipsCnt, this);
-					case 8: // Purchase
-					case 11: // Passenger/Reach destination
+					case Mission.TYPE_8: // Purchase
+					case Mission.TYPE_11: // Passenger/Reach destination
 					default:	
 						return;
-					case 12: //Challenge
+					case Mission.TYPE_12: //Challenge
 						this.missionRoute = createRoute(3 + GlobalStatus.random.nextInt(2));
 						pirateCnt = 3 + (int)(4.0F * (mission.getDifficulty() / 10.0F));
 						if (pirateCnt % 2 == 0) {
