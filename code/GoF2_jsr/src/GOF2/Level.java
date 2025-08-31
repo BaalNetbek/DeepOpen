@@ -955,34 +955,8 @@ public final class Level {
 			this.enemyRoute_ = new Route(new int[]{0, 0, -5000, 0, 0, 0});
 			this.ships[0].setRoute(this.enemyRoute_);
 			this.ships[0].setSpeed(0);
-		case Mission.STORY_2:
-		case Mission.STORY_3:
-		case Mission.STORY_5:
-		case Mission.STORY_6:
-		case Mission.STORY_8:
-		case Mission.STORY_9:
-		case Mission.STORY_10:
-		case Mission.STORY_11:
-		case Mission.STORY_12:
-		case Mission.STORY_13:
-		case Mission.STORY_15:
-		case Mission.STORY_17:
-		case Mission.STORY_18:
-		case Mission.STORY_19:
-		case Mission.STORY_20:
-		case Mission.STORY_22:
-		case Mission.STORY_23:
-		case Mission.STORY_27:
-		case Mission.STORY_30:
-		case Mission.STORY_31:
-		case Mission.STORY_32:
-		case Mission.STORY_33:
-		case Mission.STORY_34:
-		case Mission.STORY_35:
-		case Mission.STORY_37:
-		case Mission.STORY_39:
-		default:
-			break;
+
+
 		case Mission.STORY_4: // last mining
 		this.ships = new KIPlayer[1];
 		this.ships[0] = createShip(8, 0, 1, (Waypoint)null);
@@ -996,7 +970,7 @@ public final class Level {
 			this.ships = new KIPlayer[4];
 
 			for(var5 = 0; var5 < 3; ++var5) {
-				this.ships[var5] = createShip(8, 0, 2, this.missionRoute.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.PIRATE, 0, Ship.SHIP_2, this.missionRoute.getDockingTarget_());
 				this.ships[var5].setToSleep();
 			}
 
@@ -1017,15 +991,15 @@ public final class Level {
 			this.ships = new KIPlayer[7];
 			// three pirate Betties
 			for(var5 = 0; var5 < 3; ++var5) {
-				this.ships[var5] = createShip(Globals.PIRATE, 0, Ship.BETTY, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.PIRATE, 0, Ship.SHIP_0, this.enemyRoute_.getDockingTarget_());
 			}
 			// two terran Tenetas
 			for(var5 = 3; var5 < 5; ++var5) {
-				this.ships[var5] = createShip(Globals.TERRAN, 0, Ship.TENETA, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.TERRAN, 0, Ship.SHIP_1, this.enemyRoute_.getDockingTarget_());
 			}
 			// two Battle Crusiers
 			for(var5 = 5; var5 < 7; ++var5) {
-				this.ships[var5] = createShip(Globals.TERRAN, 1, Ship.CRUISER, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.TERRAN, 1, Ship.SHIP_14, this.enemyRoute_.getDockingTarget_());
 			}
 
 			this.successObjective = new Objective(Objective.TYPE_22, 0, this);
@@ -1035,7 +1009,7 @@ public final class Level {
 			this.ships = new KIPlayer[7];
 
 			for(var5 = 0; var5 < 4; ++var5) {
-				this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.VOID, 0, Ship.SHIP_8, this.enemyRoute_.getDockingTarget_());
 			}
 
 			for(var5 = 4; var5 < 7; ++var5) {
@@ -1055,9 +1029,9 @@ public final class Level {
 			this.missionRoute = this.enemyRoute_.clone();
 			this.enemyRoute_.setLoop(true);
 			this.ships = new KIPlayer[3];
-			this.ships[1] = createShip(Globals.TERRAN, 0, Ship.BETTY, this.enemyRoute_.getDockingTarget_());
-			this.ships[2] = createShip(Globals.TERRAN, 0, Ship.BETTY, this.enemyRoute_.getDockingTarget_());
-			this.ships[0] = createShip(Globals.TERRAN, 0, Ship.TENETA, this.enemyRoute_.getDockingTarget_());
+			this.ships[1] = createShip(Globals.TERRAN, 0, Ship.SHIP_0, this.enemyRoute_.getDockingTarget_());
+			this.ships[2] = createShip(Globals.TERRAN, 0, Ship.SHIP_0, this.enemyRoute_.getDockingTarget_());
+			this.ships[0] = createShip(Globals.TERRAN, 0, Ship.SHIP_1, this.enemyRoute_.getDockingTarget_());
 			this.ships[0].name = GlobalStatus.gameText.getText(833); // "Kidnpapper"
 
 			for(var5 = 0; var5 < this.ships.length; ++var5) {
@@ -1076,7 +1050,7 @@ public final class Level {
 			this.ships = new KIPlayer[3];
 
 			for(var5 = 0; var5 < 3; ++var5) {
-				this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.VOID, 0, Ship.SHIP_8, this.enemyRoute_.getDockingTarget_());
 				this.ships[var5].setRoute(this.enemyRoute_.clone());
 			}
 
@@ -1086,7 +1060,7 @@ public final class Level {
 		case Mission.STORY_25:
 		case Mission.STORY_29:
 			this.ships = new KIPlayer[3];
-			var5 = 0;
+
 			for(var5 = 0; var5 < 3; var5++){
 				this.ships[var5] = createShip(9, 0, 8, (Waypoint)null);
 				var2 = (GlobalStatus.random.nextInt(2) == 0 ? 1 : -1) * (20000 + GlobalStatus.random.nextInt(80000));
@@ -1111,7 +1085,7 @@ public final class Level {
 			this.ships = new KIPlayer[2];
 
 			for(var5 = 0; var5 < 2; ++var5) {
-				this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, (Waypoint)null);
+				this.ships[var5] = createShip(Globals.VOID, 0, Ship.SHIP_8, (Waypoint)null);
 				((PlayerFighter)this.ships[var5]).geometry.setTransform(this.ego.shipGrandGroup_.getToParentTransform());
 				((PlayerFighter) this.ships[var5]).setPosition(
 				      this.ego.shipGrandGroup_.getPosX() + -700 + GlobalStatus.random.nextInt(1400),
@@ -1127,7 +1101,7 @@ public final class Level {
 			this.ships = new KIPlayer[5];
 			var5 = 0;
 			for(var5 = 0; var5 < 5; var5++){
-				this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, this.enemyRoute_.getDockingTarget_());
+				this.ships[var5] = createShip(Globals.VOID, 0, Ship.SHIP_8, this.enemyRoute_.getDockingTarget_());
 			}
 			break;
 			// while(true) {
@@ -1226,8 +1200,10 @@ public final class Level {
 			this.ego.shipGrandGroup_.setRotation(0, 0, 0);
 			this.successObjective = new Objective(Objective.TYPE_25, 0, this);
 			this.failObjective_ = new Objective(Objective.TYPE_7, 1, this);
+		default:
+			break;
 		}
-
+		
 		this.radioMessages = createRadioMessages(Status.getCurrentCampaignMission());
 	}
 
@@ -1570,126 +1546,87 @@ public final class Level {
 
 	private RadioMessage[] createRadioMessages(final int missionIdx) {
 		this.radioMessages = null;
-		switch(missionIdx) {
-		case Mission.STORY_0:
-			this.radioMessages = new RadioMessage[22];
-			this.radioMessages[0] = new RadioMessage(844, 17, 5, 15000);
-			this.radioMessages[1] = new RadioMessage(845, 0, 6, 0);
-			this.radioMessages[2] = new RadioMessage(846, 0, 6, 1);
-			this.radioMessages[3] = new RadioMessage(847, 10, 6, 2);
-			this.radioMessages[4] = new RadioMessage(848, 9, 6, 3);
-			this.radioMessages[5] = new RadioMessage(849, 9, 6, 4);
-			this.radioMessages[6] = new RadioMessage(850, 11, 6, 5);
-			this.radioMessages[7] = new RadioMessage(851, 9, 6, 6);
-			this.radioMessages[8] = new RadioMessage(852, 0, 6, 7);
-			this.radioMessages[9] = new RadioMessage(854, 0, 9, new int[]{0, 1, 2});
-			this.radioMessages[10] = new RadioMessage(855, 0, 6, 9);
-			this.radioMessages[11] = new RadioMessage(856, 0, 6, 10);
-			this.radioMessages[12] = new RadioMessage(857, 15, 6, 11);
-			this.radioMessages[13] = new RadioMessage(858, 0, 6, 12);
-			this.radioMessages[14] = new RadioMessage(859, 0, 6, 13);
-			this.radioMessages[15] = new RadioMessage(860, 15, 6, 14);
-			this.radioMessages[16] = new RadioMessage(861, 0, 6, 15);
-			this.radioMessages[17] = new RadioMessage(862, 15, 6, 16);
-			this.radioMessages[18] = new RadioMessage(863, 0, 6, 17);
-			this.radioMessages[19] = new RadioMessage(864, 0, 6, 18);
-			this.radioMessages[20] = new RadioMessage(865, 15, 6, 19);
-			this.radioMessages[21] = new RadioMessage(866, 0, 6, 20);
-			break;
-		case Mission.STORY_1:
-			this.radioMessages = new RadioMessage[3];
-			this.radioMessages[0] = new RadioMessage(867, 2, 5, 10000);
-			this.radioMessages[1] = new RadioMessage(868, 2, 6, 0);
-			this.radioMessages[2] = new RadioMessage(869, 2, 6, 1);
-		case Mission.STORY_2:
-		case Mission.STORY_3:
-		case Mission.STORY_4:
-		case Mission.STORY_5:
-		case Mission.STORY_6:
-			break;
-		case Mission.STORY_7:
-			this.radioMessages = new RadioMessage[2];
-			this.radioMessages[0] = new RadioMessage(909, 2, 16, 0);
-			this.radioMessages[1] = new RadioMessage(910, 0, 6, 0);
-			break;
-		case Mission.STORY_8:
-		case Mission.STORY_9:
-		case Mission.STORY_10:
-		case Mission.STORY_11:
-		case Mission.STORY_12:
-		case Mission.STORY_13:
-			break;
-		case Mission.STORY_14:
-			this.radioMessages = new RadioMessage[4];
-			this.radioMessages[0] = new RadioMessage(968, 18, 5, 6000);
-			this.radioMessages[1] = new RadioMessage(969, 0, 20, 2);
-			this.radioMessages[2] = new RadioMessage(970, 0, 6, 1);
-			this.radioMessages[3] = new RadioMessage(971, 18, 6, 2);
-			break;
-		case Mission.STORY_15:
-			break;
-		case Mission.STORY_16:
-			this.radioMessages = new RadioMessage[2];
-			this.radioMessages[0] = new RadioMessage(983, 19, 5, 6000);
-			this.radioMessages[1] = new RadioMessage(984, 0, 6, 0);
-			break;
-		case Mission.STORY_17:
-		case Mission.STORY_18:
-		case Mission.STORY_19:
-		case Mission.STORY_20:
-			break;
-		case Mission.STORY_21:
-			this.radioMessages = new RadioMessage[3];
-			this.radioMessages[0] = new RadioMessage(1018, 14, 8, 0);
-			this.radioMessages[1] = new RadioMessage(1019, 0, 6, 0);
-			this.radioMessages[2] = new RadioMessage(1020, 14, 21, 0);
-			break;
-		case Mission.STORY_22:
-		case Mission.STORY_23:
-			break;
-		case Mission.STORY_24:
-			this.radioMessages = new RadioMessage[2];
-			this.radioMessages[0] = new RadioMessage(1047, 6, 22, 3);
-			this.radioMessages[1] = new RadioMessage(1048, 6, 6, 0);
-			break;
-		case Mission.STORY_25:
-		case Mission.STORY_26:
-		case Mission.STORY_27:
-		case Mission.STORY_28:
-			break;
-		case Mission.STORY_29:
-			this.radioMessages = new RadioMessage[5];
-			this.radioMessages[0] = new RadioMessage(1073, 0, 23, 0);
-			this.radioMessages[1] = new RadioMessage(1074, 0, 6, 0);
-			this.radioMessages[2] = new RadioMessage(1075, 0, 6, 1);
-			this.radioMessages[3] = new RadioMessage(1076, 19, 5, 120000);
-			this.radioMessages[4] = new RadioMessage(1077, 0, 6, 3);
-			break;
-		case Mission.STORY_30:
-		case Mission.STORY_31:
-		case Mission.STORY_32:
-		case Mission.STORY_33:
-		case Mission.STORY_34:
-		case Mission.STORY_35:
-		case Mission.STORY_36:
-		case Mission.STORY_37:
-			break;
-		case Mission.STORY_38:
-			this.radioMessages = new RadioMessage[1];
-			this.radioMessages[0] = new RadioMessage(1146, 21, 5, 5000);
-			break;
-		case Mission.STORY_39:
-			break;
-		case Mission.STORY_40:
-			this.radioMessages = new RadioMessage[2];
-			this.radioMessages[0] = new RadioMessage(1163, 7, 12, 0);
-			this.radioMessages[1] = new RadioMessage(1164, 0, 24, 0);
-			break;
-		case Mission.STORY_41:
-			this.radioMessages = new RadioMessage[1];
-			this.radioMessages[0] = new RadioMessage(1163, 7, 12, 0);
-		default:
-			break;
+		switch (missionIdx) {
+			case Mission.STORY_0:
+				this.radioMessages = new RadioMessage[22];
+				this.radioMessages[0] = new RadioMessage(844, Globals.FACE_INFO_PIC, RadioMessage.TRIG_5, 15000);
+				this.radioMessages[1] = new RadioMessage(845, Globals.FACE_KEITH, RadioMessage.TRIG_6, 0);
+				this.radioMessages[2] = new RadioMessage(846, Globals.FACE_KEITH, RadioMessage.TRIG_6, 1);
+				this.radioMessages[3] = new RadioMessage(847, Globals.FACE_PIRATE_1, RadioMessage.TRIG_6, 2);
+				this.radioMessages[4] = new RadioMessage(848, Globals.FACE_PIRATE_CHIEF, RadioMessage.TRIG_6, 3);
+				this.radioMessages[5] = new RadioMessage(849, Globals.FACE_PIRATE_CHIEF, RadioMessage.TRIG_6, 4);
+				this.radioMessages[6] = new RadioMessage(850, Globals.FACE_PIRATE_2, RadioMessage.TRIG_6, 5);
+				this.radioMessages[7] = new RadioMessage(851, Globals.FACE_PIRATE_CHIEF, RadioMessage.TRIG_6, 6);
+				this.radioMessages[8] = new RadioMessage(852, Globals.FACE_KEITH, RadioMessage.TRIG_6, 7);
+				this.radioMessages[9] = new RadioMessage(854, Globals.FACE_KEITH, RadioMessage.TRIG_9, new int[]{ 0, 1, 2 });
+				this.radioMessages[10] = new RadioMessage(855, Globals.FACE_KEITH, RadioMessage.TRIG_6, 9);
+				this.radioMessages[11] = new RadioMessage(856, Globals.FACE_KEITH, RadioMessage.TRIG_6, 10);
+				this.radioMessages[12] = new RadioMessage(857, Globals.FACE_STORY, RadioMessage.TRIG_6, 11);
+				this.radioMessages[13] = new RadioMessage(858, Globals.FACE_KEITH, RadioMessage.TRIG_6, 12);
+				this.radioMessages[14] = new RadioMessage(859, Globals.FACE_KEITH, RadioMessage.TRIG_6, 13);
+				this.radioMessages[15] = new RadioMessage(860, Globals.FACE_STORY, RadioMessage.TRIG_6, 14);
+				this.radioMessages[16] = new RadioMessage(861, Globals.FACE_KEITH, RadioMessage.TRIG_6, 15);
+				this.radioMessages[17] = new RadioMessage(862, Globals.FACE_STORY, RadioMessage.TRIG_6, 16);
+				this.radioMessages[18] = new RadioMessage(863, Globals.FACE_KEITH, RadioMessage.TRIG_6, 17);
+				this.radioMessages[19] = new RadioMessage(864, Globals.FACE_KEITH, RadioMessage.TRIG_6, 18);
+				this.radioMessages[20] = new RadioMessage(865, Globals.FACE_STORY, RadioMessage.TRIG_6, 19);
+				this.radioMessages[21] = new RadioMessage(866, Globals.FACE_KEITH, RadioMessage.TRIG_6, 20);
+				break;
+			case Mission.STORY_1:
+				this.radioMessages = new RadioMessage[3];
+				this.radioMessages[0] = new RadioMessage(867, Globals.FACE_GUNANT, RadioMessage.TRIG_5, 10000);
+				this.radioMessages[1] = new RadioMessage(868, Globals.FACE_GUNANT, RadioMessage.TRIG_6, 0);
+				this.radioMessages[2] = new RadioMessage(869, Globals.FACE_GUNANT, RadioMessage.TRIG_6, 1);
+			case Mission.STORY_7:
+				this.radioMessages = new RadioMessage[2];
+				this.radioMessages[0] = new RadioMessage(909, Globals.FACE_GUNANT, RadioMessage.TRIG_16, 0);
+				this.radioMessages[1] = new RadioMessage(910, Globals.FACE_KEITH, RadioMessage.TRIG_6, 0);
+				break;
+			case Mission.STORY_14:
+				this.radioMessages = new RadioMessage[4];
+				this.radioMessages[0] = new RadioMessage(968, Globals.FACE_TERRAN_OFFICER, RadioMessage.TRIG_5, 6000);
+				this.radioMessages[1] = new RadioMessage(969, Globals.FACE_KEITH, RadioMessage.TRIG_20, 2);
+				this.radioMessages[2] = new RadioMessage(970, Globals.FACE_KEITH, RadioMessage.TRIG_6, 1);
+				this.radioMessages[3] = new RadioMessage(971, Globals.FACE_TERRAN_OFFICER, RadioMessage.TRIG_6, 2);
+				break;
+			case Mission.STORY_16:
+				this.radioMessages = new RadioMessage[2];
+				this.radioMessages[0] = new RadioMessage(983, Globals.FACE_VOID, RadioMessage.TRIG_5, 6000);
+				this.radioMessages[1] = new RadioMessage(984, Globals.FACE_KEITH, RadioMessage.TRIG_6, 0);
+				break;
+			case Mission.STORY_21:
+				this.radioMessages = new RadioMessage[3];
+				this.radioMessages[0] = new RadioMessage(1018, Globals.FACE_KIDNAPPER, RadioMessage.TRIG_8, 0);
+				this.radioMessages[1] = new RadioMessage(1019, Globals.FACE_KEITH, RadioMessage.TRIG_6, 0);
+				this.radioMessages[2] = new RadioMessage(1020, Globals.FACE_KIDNAPPER, RadioMessage.TRIG_21, 0);
+				break;
+			case Mission.STORY_24:
+				this.radioMessages = new RadioMessage[2];
+				this.radioMessages[0] = new RadioMessage(1047, Globals.FACE_CARLA, RadioMessage.TRIG_22, 3);
+				this.radioMessages[1] = new RadioMessage(1048, Globals.FACE_CARLA, RadioMessage.TRIG_6, 0);
+				break;
+			case Mission.STORY_29:
+				this.radioMessages = new RadioMessage[5];
+				this.radioMessages[0] = new RadioMessage(1073, Globals.FACE_KEITH, RadioMessage.TRIG_23, 0);
+				this.radioMessages[1] = new RadioMessage(1074, Globals.FACE_KEITH, RadioMessage.TRIG_6, 0);
+				this.radioMessages[2] = new RadioMessage(1075, Globals.FACE_KEITH, RadioMessage.TRIG_6, 1);
+				this.radioMessages[3] = new RadioMessage(1076, Globals.FACE_VOID, RadioMessage.TRIG_5, 120000);
+				this.radioMessages[4] = new RadioMessage(1077, Globals.FACE_KEITH, RadioMessage.TRIG_6, 3);
+				break;
+			case Mission.STORY_38:
+				this.radioMessages = new RadioMessage[1];
+				this.radioMessages[0] = new RadioMessage(1146, Globals.FACE_MIDORIAN, RadioMessage.TRIG_5, 5000);
+				break;
+			case Mission.STORY_40:
+				this.radioMessages = new RadioMessage[2];
+				this.radioMessages[0] = new RadioMessage(1163, Globals.FACE_ERRKT, RadioMessage.TRIG_12, 0);
+				this.radioMessages[1] = new RadioMessage(1164, Globals.FACE_KEITH, RadioMessage.TRIG_24, 0);
+				break;
+			case Mission.STORY_41:
+				this.radioMessages = new RadioMessage[1];
+				this.radioMessages[0] = new RadioMessage(1163, Globals.FACE_ERRKT, RadioMessage.TRIG_12, 0);
+			default:
+				break;
 		}
 
 		return this.radioMessages;
@@ -2105,7 +2042,7 @@ public final class Level {
 			this.radioMessages = new RadioMessage[1];
 			var2 = var2 == Globals.VOSSK ? 24 : var2 == Globals.TERRAN ? 23 : var2 == Globals.MIDORIAN ? 21 : 22;
 			final short var4 = (short)((alarmFriends ? 250 : 247) + GlobalStatus.random.nextInt(3));
-			this.radioMessages[0] = new RadioMessage(var4, var2, 5, 0);
+			this.radioMessages[0] = new RadioMessage(var4, var2, RadioMessage.TRIG_5, 0);
 			this.ego.radio.setMessages(this.radioMessages);
 			this.ego.radio.showMessage();
 		}

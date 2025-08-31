@@ -169,21 +169,21 @@ public final class Globals {
     public static int getRandomEnemyFighter(final int race) {
         int ship;
         if (race == VOID) {
-            ship = Ship.VOIDX;
+            ship = Ship.SHIP_8;
         }
         else if (race == VOSSK) {
-            ship = Ship.H_SOC;
+            ship = Ship.SHIP_9;
         }
         else {
             do {
                 ship = GlobalStatus.random.nextInt(SHIPS_COUNT);
-            } while (ship == Ship.BETTY || 
-                    ship == Ship.H_SOC ||
-                    ship == Ship.VOIDX ||
-                    ship == Ship.PHANTOM ||
-                    ship == Ship.K_SARR ||
-                    ship == Ship.CRUISER ||
-                    ship == Ship.CARGO);
+            } while (ship == Ship.SHIP_0 || 
+                    ship == Ship.SHIP_9 ||
+                    ship == Ship.SHIP_8 ||
+                    ship == Ship.SHIP_10 ||
+                    ship == Ship.SHIP_13 ||
+                    ship == Ship.SHIP_14 ||
+                    ship == Ship.SHIP_15);
         }
         return ship;
     }
@@ -209,7 +209,7 @@ public final class Globals {
 
 			if (mesh.getID() == 13067 || mesh.getID() == 13068 || mesh.getID() == 13070 || mesh.getID() == 13064
 					|| mesh.getID() == 13065 || mesh.getID() == 13071 || mesh.getID() == 13061 || mesh.getID() == 13063
-					|| mesh.getID() == 13062 || ship == Ship.CRUISER || ship == Ship.K_SARR || ship == Ship.CARGO) {
+					|| mesh.getID() == 13062 || ship == Ship.SHIP_14 || ship == Ship.SHIP_13 || ship == Ship.SHIP_15) {
 				mesh.moveTo(
 						parts[i + FileRead.POSITION_X],
 						parts[i + FileRead.POSITION_Y],

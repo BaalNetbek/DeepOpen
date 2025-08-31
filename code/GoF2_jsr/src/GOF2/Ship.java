@@ -5,67 +5,125 @@ package GOF2;
  * @author fishlabs
  */
 public final class Ship {
-	public static final int BETTY = 0;
-	public static final int TENETA = 1;
-	public static final int HIRO = 2;
-	public static final int BADGER = 3;
-	public static final int DACE = 4;
-	public static final int INFLICT = 5;
-	public static final int HECTOR = 6;
-	public static final int ANAAN = 7;
-	public static final int VOIDX = 8;
-	public static final int H_SOC = 9;          
-	public static final int PHANTOM = 10;
-	public static final int HERNSTEIN = 11;
-	public static final int TYPE_43 = 12;
-	public static final int K_SARR = 13;         
-	public static final int CRUISER  = 14;
-	public static final int CARGO = 15;    
-	public static final int KINZER = 16;
-	public static final int WARD = 17;
-	public static final int HATSUYUKI = 18;
-	public static final int NUYANG_II = 19;
-	public static final int CICERO = 20;
-	public static final int AEGIR = 21;
-	public static final int GROZA = 22;
-	public static final int AZOV = 23;
-	public static final int VELASCO = 24;
-	public static final int TYRION = 25;
-	public static final int HERA = 26;
-	public static final int TAIPAN = 27;
-	public static final int VETERAN = 28;
-	public static final int MANTIS = 29;
-	public static final int BERGER_CROSSXT = 30;
-	public static final int SALVEHN = 31;        
-	public static final int WASP = 32;
-	public static final int FURIOUS_FLOUNDER = 33;
-	public static final int RAZOR_6 = 34;
-	public static final int NIGHT_OWL = 35;
-	public static final int CORMORANT = 36;
-//	public static final int CRONUS = 37;
-//	public static final int TYPHON = 38;
-//	public static final int S_KANARR = 39;        
-//	public static final int NEMESIS = 40;
-//	public static final int K_SUUKK = 41;        
-//	public static final int VOL_NOOR = 42;
-//	public static final int WRAITH = 43;
-//	public static final int SPECTER = 44;
-//	public static final int BLOODSTAR = 45;
-//	public static final int BLUE_FYRE = 46;
-//	public static final int GATOR_CUSTOM = 47;
-//	public static final int AMBOSS = 48;
-//	public static final int SCIMITAR = 49;
-//	public static final int UNUSED_50 = 50;      
-//	public static final int RHINO = 51;
-//	public static final int GRYPHON = 52;
-//	public static final int UNUSED_53 = 53;      
-//	public static final int NA_SRRK = 54;   
-//	public static final int GROZA_MK_II = 55;
-//	public static final int BERGER_CROSS_SPECIAL = 56;
-//	public static final int KINZER_RS = 57;
-//	public static final int PHANTOM_XT = 58;
-//	public static final int TENETA_RED = 59;
-//	public static final int DARKZOV = 60;
+    /** Betty */
+	public static final int SHIP_0 = 0; // referenced
+    /** Teneta */
+	public static final int SHIP_1 = 1; // referenced
+    /** Hiro */
+    public static final int SHIP_2 = 2;
+    /** Badger */
+    public static final int SHIP_3 = 3;
+    /** Dace */
+    public static final int SHIP_4 = 4;
+    /** Inflict */
+    public static final int SHIP_5 = 5;
+    /** Hector */
+    public static final int SHIP_6 = 6;
+    /** Anaan */
+    public static final int SHIP_7 = 7;
+    /** VoidX */
+	public static final int SHIP_8 = 8; 	// referenced
+    /** H'Soc */
+	public static final int SHIP_9 = 9;  	// referenced    
+    /** Phantom */
+	public static final int SHIP_10 = 10; 	// referenced
+    /** Hernstein */
+    public static final int SHIP_11 = 11;
+    /** Type 43 */
+    public static final int SHIP_12 = 12;
+    /** K'sarr */
+    public static final int SHIP_13 = 13; 	// referenced
+    /** Battleship / Battle Cruiser */       
+	public static final int SHIP_14  = 14; 	// referenced
+	/** Freighter / Cargo */
+	public static final int SHIP_15 = 15;   // referenced  
+    /** Kinzer */
+    public static final int SHIP_16 = 16;
+    /** Ward */
+    public static final int SHIP_17 = 17;
+    /** Hatsuyuki */
+    public static final int SHIP_18 = 18;
+    /** Nuyang II */
+    public static final int SHIP_19 = 19;
+    /** Cicero */
+    public static final int SHIP_20 = 20;
+    /** Aegir */
+    public static final int SHIP_21 = 21;
+    /** Groza */
+    public static final int SHIP_22 = 22;
+    /** Azov */
+    public static final int SHIP_23 = 23;
+    /** Velasco */
+    public static final int SHIP_24 = 24;
+    /** Tyrion */
+    public static final int SHIP_25 = 25;
+    /** Hera */
+    public static final int SHIP_26 = 26;
+    /** Taipan */
+    public static final int SHIP_27 = 27;
+    /** Veteran */
+    public static final int SHIP_28 = 28;
+    /** Mantis */
+    public static final int SHIP_29 = 29;
+    /** Berger CrossXT */
+    public static final int SHIP_30 = 30;
+    /** Salvéhn */
+    public static final int SHIP_31 = 31;
+    /** Wasp */
+    public static final int SHIP_32 = 32;
+    /** Furious Flounder */
+    public static final int SHIP_33 = 33;
+    /** Razor 6 */
+    public static final int SHIP_34 = 34;
+    /** Night Owl */
+    public static final int SHIP_35 = 35;
+    /** Cormorant */
+    public static final int SHIP_36 = 36;
+//    /** Cronus */
+//    public static final int SHIP_37 = 37;
+//    /** Typhon */
+//    public static final int SHIP_38 = 38;
+//    /** S'Kanarr */
+//    public static final int SHIP_39 = 39;
+//    /** Nemesis */
+//    public static final int SHIP_40 = 40;
+//    /** K'Suukk */
+//    public static final int SHIP_41 = 41;
+//    /** Vol Noor */
+//    public static final int SHIP_42 = 42;
+//    /** Wraith */
+//    public static final int SHIP_43 = 43;
+//    /** Specter */
+//    public static final int SHIP_44 = 44;
+//    /** Bloodstar */
+//    public static final int SHIP_45 = 45;
+//    /** Blue Fyre */
+//    public static final int SHIP_46 = 46;
+//    /** Gator Custom */
+//    public static final int SHIP_47 = 47;
+//    /** Amboss */
+//    public static final int SHIP_48 = 48;
+//    /** Scimitar */
+//    public static final int SHIP_49 = 49;
+//    /** Rhino */
+//    public static final int SHIP_50 = 50;
+//    /** Gryphon */
+//    public static final int SHIP_51 = 51;
+//    /** Na'srrk */
+//    public static final int SHIP_52 = 52;
+//    /** Groza Mk II */
+//    public static final int SHIP_53 = 53;
+//    /** Berger Cross Special */
+//    public static final int SHIP_54 = 54;
+//    /** Kinzer RS */
+//    public static final int SHIP_55 = 55;
+//    /** Phantom XT */
+//    public static final int SHIP_56 = 56;
+//    /** Teneta R.E.D. */
+//    public static final int SHIP_57 = 57;
+//    /** Darkzov */
+//    public static final int SHIP_58 = 58;
+
 	
     public static final short[] SHIP_PREVIEW_SCALING = {
           622, 1338, 1066, 783, 1181, 912, 939, 1471, 1199,

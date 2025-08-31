@@ -80,6 +80,41 @@ public final class Item {
 	public static final int RACE = 35;
 	public static final int GUARANTEED_TO_HAVE_SYSTEM = 36;
 	
+	// item indices
+	public static final int IDX_PRIMARY_START = 0;
+	public static final int IDX_LASER_START = 0;
+	public static final int IDX_BLASTER_START = 12;
+	public static final int IDX_AUTOC_START = 22;
+	public static final int IDX_THERMO_START = 28;
+
+	public static final int IDX_SECONDARY_START = 31;
+	public static final int IDX_ROCKET_START = 31;
+	public static final int IDX_MISSILE_START = 36;
+	public static final int IDX_EMP_BOMB_START = 41;
+	public static final int IDX_NUKE_START = 44;
+
+	public static final int IDX_TURRET_START = 47;
+
+	public static final int IDX_EQ_START = 50;
+	public static final int IDX_SHIELD_START = 50;
+	public static final int IDX_ARMOR_START = 55;
+	public static final int IDX_EMP_SHIELD_START = 60;
+	public static final int IDX_COMPR_START = 63;
+	public static final int IDX_TRACTOR_START = 68;
+	public static final int IDX_BOOSTER_START = 71;
+	public static final int IDX_REPAIR_START = 75;
+	public static final int IDX_STEER_START = 76;
+	public static final int IDX_SCAN_START = 81;
+	public static final int IDX_DRIVE_START = 85;
+	public static final int IDX_DRILL_START = 86;
+	public static final int IDX_CABIN_START = 91;
+	public static final int IDX_CLOAK_START = 94;
+
+	public static final int IDX_COMM_START = 97;
+	public static final int IDX_ORE_START = 154;
+	public static final int IDX_CORE_START = 165;
+	
+	
 	private static final boolean[] installableMultipleTimes = {
 	      true, true, true, true, true, true, true, true, false,
 	      false, false, true, true, false, false, false, false,
