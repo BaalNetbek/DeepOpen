@@ -110,9 +110,9 @@ public final class Globals {
     public static final int FACE_KHADOR =           20;
     
     public static final int FACE_MIDORIAN =	        21;
-    public static final int FACE_VOSSK =            22;
+    public static final int FACE_NIVELIAN =         22;
     public static final int FACE_TERRAN =	        23;
-    public static final int FACE_NIVELIAN =         24;
+    public static final int FACE_VOSSK =         	24;
     public static final int FACE_GENERICS_START = FACE_MIDORIAN;
 
     private static Ship[] ships;

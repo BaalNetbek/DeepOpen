@@ -8,6 +8,7 @@ import AE.GlobalStatus;
 import AE.Math.AEMath;
 import AE.PaintCanvas.Font;
 import AE.PaintCanvas.ImageFactory;
+import GOF2.Main.GOF2Canvas;
 
 public final class MiningGame {
     private int nextLevelTreshold;
@@ -87,26 +88,26 @@ public final class MiningGame {
         return this.succeed && this.levels == 7;
     }
 
-    public final boolean update(final int var1, final int var2) {
+    public final boolean update(final int dt, final int keysPressed) {
         if (this.curLevel >= this.levels) {
             return false;
         }
-        this.frameTime = var1;
+        this.frameTime = dt;
         int var3;
         final int var4 = -(var3 = (2 * this.barsPadding + 3 * this._LAYER_WITDTHS[this.curLevel]) / 2);
-        this.nextMinedProgress += var1;
+        this.nextMinedProgress += dt;
         if (AEMath.abs((int)this.cursorPos) > this._LAYER_WITDTHS[this.curLevel] / 2) {
-            this.failProgress += var1;
+            this.failProgress += dt;
             if (this.failProgress > 2500.0F) {
                 this.failProgress = 2500.0F;
                 this.miningProgress = 0.0F;
                 return false;
             }
         } else {
-            this.levelProgress += var1;
+            this.levelProgress += dt;
             float var5 = 0.15F + (this.curLevel + 1) / 7.0F * 2.35F;
             var5 *= this.minigSpeed;
-            this.miningProgress += var5 / 1000.0F * var1;
+            this.miningProgress += var5 / 1000.0F * dt;
         }
 
         if (this.levelProgress > this.nextLevelTreshold) {
@@ -130,11 +131,11 @@ public final class MiningGame {
             this.pressCumulativeAcceleration /= 2.0F;
         }
 
-        this.driftSpeed = var1 / this.driftSuppress * this.cursorAcceleration;
-        if ((var2 & 32) != 0) {
-            this.pressCumulativeAcceleration -= var1 / this.controlability;
-        } else if ((var2 & 4) != 0) {
-            this.pressCumulativeAcceleration += var1 / this.controlability;
+        this.driftSpeed = dt / this.driftSuppress * this.cursorAcceleration;
+        if ((keysPressed & GOF2Canvas.RIGHT) != 0) {
+            this.pressCumulativeAcceleration -= dt / this.controlability;
+        } else if ((keysPressed & GOF2Canvas.LEFT) != 0) {
+            this.pressCumulativeAcceleration += dt / this.controlability;
         } else {
             this.pressCumulativeAcceleration = 0.0F;
         }
@@ -150,31 +151,31 @@ public final class MiningGame {
     }
 
     public final void render2D() {
-        GlobalStatus.graphics.drawImage(this.background, this.boardPosX, this.boardPosY, 36);
+        GlobalStatus.graphics.drawImage(this.background, this.boardPosX, this.boardPosY, Graphics.BOTTOM | Graphics.LEFT);
         int var1 = this.levels * 7;
         int var2 = (this.curLevel + 1) * 7;
         GlobalStatus.graphics.setClip(0, this.boardPosY - var1, GlobalStatus.screenWidth, var1);
-        GlobalStatus.graphics.drawImage(this.greenEmpty, this.boardPosX + 50, this.boardPosY, 36);
+        GlobalStatus.graphics.drawImage(this.greenEmpty, this.boardPosX + 50, this.boardPosY, Graphics.BOTTOM | Graphics.LEFT);
         if (this.curLevel > 0) {
             var1 = this.curLevel * 7;
             GlobalStatus.graphics.setClip(0, this.boardPosY - var1, GlobalStatus.screenWidth, var1);
-            GlobalStatus.graphics.drawImage(this.greenComplete, this.boardPosX + 50, this.boardPosY, 36);
+            GlobalStatus.graphics.drawImage(this.greenComplete, this.boardPosX + 50, this.boardPosY, Graphics.BOTTOM | Graphics.LEFT);
         }
 
         var1 = this._LAYER_WITDTHS[this.curLevel];
         int var3 = (int)((float)this.levelProgress / (float)this.nextLevelTreshold * var1);
         GlobalStatus.graphics.setClip((GlobalStatus.screenWidth >> 1) - (var3 >> 1), this.boardPosY - var2, var3, 7);
-        GlobalStatus.graphics.drawImage(this.greenComplete, this.boardPosX + 50, this.boardPosY, 36);
+        GlobalStatus.graphics.drawImage(this.greenComplete, this.boardPosX + 50, this.boardPosY, Graphics.BOTTOM | Graphics.LEFT);
         var2 = this.boardPosY - this.curLevel * 7;
         var3 = this.boardPosX + (this.failedBarPosX - 2 * this.barsPadding - var1 * 3) / 2;
         final int var4 = (int)(this.failProgress / 2500.0F * (var1 + 5));
         GlobalStatus.graphics.setClip(var3 + var1 - var4, var2 - 5, var4, 5);
-        GlobalStatus.graphics.drawImage(this.redArea, this.boardPosX, this.boardPosY, 36);
+        GlobalStatus.graphics.drawImage(this.redArea, this.boardPosX, this.boardPosY, Graphics.BOTTOM | Graphics.LEFT);
         GlobalStatus.graphics.setClip(var3 + var1 * 2 + 2 * this.barsPadding, var2 - 5, var4, 5);
-        GlobalStatus.graphics.drawImage(this.redArea, this.boardPosX, this.boardPosY, 36);
+        GlobalStatus.graphics.drawImage(this.redArea, this.boardPosX, this.boardPosY, Graphics.BOTTOM | Graphics.LEFT);
         GlobalStatus.graphics.setClip(0, 0, GlobalStatus.screenWidth, GlobalStatus.screenHeight);
         var1 = (GlobalStatus.screenWidth >> 1) + (int)this.cursorPos;
-        GlobalStatus.graphics.drawImage(this.cursor, var1, var2 + 2, 33);
+        GlobalStatus.graphics.drawImage(this.cursor, var1, var2 + 2, Graphics.BOTTOM | Graphics.HCENTER);
         var1 = this.boardPosY - this.background.getHeight();
         if (this.levels == 7) {
             ImageFactory.drawItemFrameless(this.minedItemId - 154 + 165, this.items, (GlobalStatus.screenWidth >> 1) - 1, var1 + 10, Graphics.HCENTER | Graphics.VCENTER);
@@ -198,7 +199,7 @@ public final class MiningGame {
         } else {
             final String var10000 = (int)this.miningProgress + "";
             final int var10001 = (GlobalStatus.screenWidth >> 1) - (Font.getTextWidth(var6, 0) >> 1);
-            Font.drawString(var10000, var10001 + Font.getTextWidth("   ", 0), this.boardPosY + Font.getSpacingY(), 2, 18);
+            Font.drawString(var10000, var10001 + Font.getTextWidth("   ", 0), this.boardPosY + Font.getSpacingY(), 2, Font.TOP | Font.RIGHT);
         }
     }
 }

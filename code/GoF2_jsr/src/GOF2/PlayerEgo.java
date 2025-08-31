@@ -380,12 +380,12 @@ public final class PlayerEgo {
 		if (!this.hasTurret) {
 			this.hasTurret = this.player.hasGunOfType(Item.TURRET);
 			if (this.hasTurret) {
-				final Item[] var8 = Status.getShip().getEquipment(Item.TURRET);
+				final Item[] turrents = Status.getShip().getEquipment(Item.TURRET);
 				short base = -1;
 				short gun = -1;
 				byte gunOffset = -1;
-				this.turretRotationSpeed = var8[0].getAttribute(Item.TURRET_HANDLING);
-				switch(var8[0].getIndex()) {
+				this.turretRotationSpeed = turrents[0].getAttribute(Item.TURRET_HANDLING);
+				switch(turrents[0].getIndex()) {
 				case Item.IDX_TURRET_START:
 					base = 6770;
 					gun = 6771;
@@ -501,10 +501,10 @@ public final class PlayerEgo {
 		return this.asteroidFieldTarget_;
 	}
 
-	public final void setPosition_(final int var1, final int var2, final int var3) {
-		this.shipGrandGroup_.moveTo(var1, var2, var3);
-		this.player.transform.translateTo(var1, var2, var3);
-		this.vecUp.set(var1, var2, var3);
+	public final void setPosition_(final int x, final int y, final int z) {
+		this.shipGrandGroup_.moveTo(x, y, z);
+		this.player.transform.translateTo(x, y, z);
+		this.vecUp.set(x, y, z);
 	}
 
 	public final void setPosition_(final AEVector3D var1) {
@@ -516,18 +516,18 @@ public final class PlayerEgo {
 		return this.inWormhole;
 	}
 
-	public final void update(final int dt, final Radar var2, final Hud var3, final Radio var4, final int var5) {
+	public final void update(final int dt, final Radar radar, final Hud hud, final Radio radio, final int keysPressed) {
 		if (this.hud == null) {
-			this.hud = var3;
-			this.radar = var2;
-			this.radio = var4;
+			this.hud = hud;
+			this.radar = radar;
+			this.radio = radio;
 		}
 
 		if (!this.freeze) {
 			this.laggingPos = this.shipGrandGroup_.getLocalPos(this.laggingPos);
 			this.frameTime = dt;
 			if (this.boostTime < 0 && this.boostTime + dt * 3 > 0) {
-				var3.hudEvent(Hud.EVENT_BOOST_READY, this);
+				hud.hudEvent(Hud.EVENT_BOOST_READY, this);
 				this.boostTime = 0;
 			}
 
@@ -613,7 +613,7 @@ public final class PlayerEgo {
 			}
 
 			if (this.tractorBeam != null) {
-				this.tractorBeam.update(this.frameTime, var2, this.level, var3);
+				this.tractorBeam.update(this.frameTime, radar, this.level, hud);
 			}
 
 			this.followingCamera_.tickUpdate((int)this.frameTime);
@@ -637,11 +637,11 @@ public final class PlayerEgo {
 			if (this.lockedOnAsteroid) {
 				this.beingPushedAway = true;
 				if (this.lockedAsteroid.isDead()) {
-					dockToAsteroid((KIPlayer)null, this.followingCamera_, var2);
+					dockToAsteroid((KIPlayer)null, this.followingCamera_, radar);
 					return;
 				}
 
-				approachAsteroid(var3, var5);
+				approachAsteroid(hud, keysPressed);
 			}
 
 			if (this.autopilotActive && this.autopilotTarget != null && !this.beingPushedAway) {
@@ -737,16 +737,16 @@ public final class PlayerEgo {
 				this.route.update(this.shipGrandGroup_.getPosX(), this.shipGrandGroup_.getPosY(), this.shipGrandGroup_.getPosZ());
 				if (this.route.getCurrent() != var9) {
 					if (!this.route.isLooped() && this.route.getCurrent() == 0) {
-						var3.hudEvent(24, this);
+						hud.hudEvent(24, this);
 					} else {
-						var3.hudEvent(23, this);
+						hud.hudEvent(23, this);
 					}
 				}
 			}
 
 			if (this.totalHP > this.player.getCombinedHP()) {
 				GlobalStatus.vibrate(110);
-				var3.playerHit();
+				hud.playerHit();
 				this.totalHP = this.player.getCombinedHP();
 			}
 
@@ -776,12 +776,12 @@ public final class PlayerEgo {
 	private void calcCollision(final KIPlayer[] var1) {
 		if (var1 != null) {
 			for(int i = 0; i < var1.length; ++i) {
-				KIPlayer var3 = var1[i];
-				if (var3 != null && var3.outerCollide(this.shipGrandGroup_.getPosition(this.vecRight))) {
+				KIPlayer collider = var1[i];
+				if (collider != null && collider.outerCollide(this.shipGrandGroup_.getPosition(this.vecRight))) {
 					int var8;
-					if (var3.getMeshId() == 6805 && var3.isVisible()) {
-						if (!((PlayerWormHole)var3).isShrinking() && !isMining()) {
-							this.vecRight = var3.getPosition(this.vecRight);
+					if (collider.getMeshId() == 6805 && collider.isVisible()) { //active wormhole
+						if (!((PlayerWormHole)collider).isShrinking() && !isMining()) {
+							this.vecRight = collider.getPosition(this.vecRight);
 							this.vecRight.subtract(this.shipGrandGroup_.getPosition(this.vecUp));
 							final int var9 = this.vecRight.getLength();
 							var8 = 40000 - var9;
@@ -798,29 +798,35 @@ public final class PlayerEgo {
 							}
 						}
 					} else {
-						AEVector3D var4;
-						if (var3.isAsteroid) {
-							if (!var3.isDying() && !var3.isDead() && (!this.lockedOnAsteroid || var3 != this.lockedAsteroid) && (var4 = var3.getProjectionVector_(this.shipGrandGroup_.getPosition(this.vecRight))) != null) {
-								var3.player.setHitVector_(var4.x, var4.y, var4.z);
-								var3.player.setBombForce(this.boostActive ? 0.7F : 0.4F);
+						AEVector3D vec;
+						if (collider.isAsteroid) {
+							vec = collider.getProjectionVector_(this.shipGrandGroup_.getPosition(this.vecRight));
+							if (!collider.isDying() && !collider.isDead() && (!this.lockedOnAsteroid || collider != this.lockedAsteroid) && vec != null) {
+								collider.player.setHitVector_(vec.x, vec.y, vec.z);
+								collider.player.setBombForce(this.boostActive ? 0.7F : 0.4F);
 								final short var5 = 9999;
-								var3.player.damageHP(var5, false);
-								if (((PlayerAsteroid)var3).getMass_SizeCoef__() > 30) {
+								collider.player.damageHP(var5, false);
+								if (((PlayerAsteroid)collider).getMass_SizeCoef__() > 30) {
 									final byte var10 = 40;
 									this.player.damageHP(var10, false);
 									this.followingCamera_.hit();
 								}
 							}
-						} else if ((var4 = var3.getProjectionVector_(this.shipGrandGroup_.getPosition(this.vecRight))) != null) {
+						} else if ((vec = collider.getProjectionVector_(this.shipGrandGroup_.getPosition(this.vecRight))) != null) {
 							this.vecUp.set(this.shipGrandGroup_.getDirection(this.vecUp));
-							var4.subtract(this.vecUp);
-							var8 = var4.getLength();
-							var4.scale((int)((float)(this.frameTime >> 2) * (float)(var8 >> 7)));
-							this.vecRight = this.vecUp.add(var4, this.vecRight);
+							vec.subtract(this.vecUp);
+							var8 = vec.getLength();
+							vec.scale((int)((float)(this.frameTime >> 2) * (float)(var8 >> 7)));
+							this.vecRight = this.vecUp.add(vec, this.vecRight);
 							this.vecRight.normalize();
 							this.shipGrandGroup_.getToParentTransform().setOrientation(this.vecRight);
 							this.shipGrandGroup_.moveForward((int)this.frameTime * this.speed);
 							alignToHorizon((int)this.frameTime);
+							// alternative push back #MOD
+							// int push = (int) this.frameTime;
+							// this.shipGrandGroup_.translate((vec.x*push)>>8, (vec.y*push)>>8, (vec.z*push)>>8);
+							// this.shipGrandGroup_.moveForward((int)this.frameTime * this.speed * -1);
+							// damage()
 							this.beingPushedAway = true;
 							if (i == 0) {
 								this.touchesStation = true;
@@ -984,7 +990,7 @@ public final class PlayerEgo {
 		return this.lockedOnAsteroid;
 	}
 
-	private boolean approachAsteroid(final Hud var1, final int var2) {
+	private boolean approachAsteroid(final Hud var1, final int keysPressed) {
 		if (this.lockedAsteroid == null) {
 			return false;
 		}
@@ -1037,7 +1043,7 @@ public final class PlayerEgo {
 				this.miningGame = new MiningGame(((PlayerAsteroid)this.lockedAsteroid).getQuality(), ((PlayerAsteroid)this.lockedAsteroid).oreItemId, var1);
 				setExhaustVisible(false);
 				GlobalStatus.soundManager.playSfx(6);
-			} else if (!this.miningGame.update((int)this.frameTime, var2)) {
+			} else if (!this.miningGame.update((int)this.frameTime, keysPressed)) {
 				if (!this.miningGame.gameLost() && this.miningGame.getMiningProgressRounded() > 0) {
 					endMining();
 				} else if (this.miningGame.gameLost()) {

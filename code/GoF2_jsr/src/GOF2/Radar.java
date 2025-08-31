@@ -233,7 +233,8 @@ public final class Radar {
     private void elipsoidIntersect(final AECamera var1, final KIPlayer var2) {
         this.elipsoidIntersect(var1, var2.getPosition(this.tempPos));
     }
-    /** Thats a big function
+    /** Thats a big function.
+     * This methods is scary.
      * 
      * @param var1
      * @param var2

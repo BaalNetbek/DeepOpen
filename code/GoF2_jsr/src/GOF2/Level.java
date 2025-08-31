@@ -516,7 +516,8 @@ public final class Level {
 			for(int id = 0; id < wingmen.length; ++id) {
 				GlobalStatus.random.setSeed(Status.getWingmenNames()[id].length() * 5);
 				GlobalStatus.random.setSeed(System.currentTimeMillis());
-				wingmen[id] = createShip(5, 0, Globals.getRandomEnemyFighter(Status.wingmanRace), (Waypoint)null);
+				// BUG or feature? why constant cyborg, mabey bad inlining?
+				wingmen[id] = createShip(Globals.CYBORG, 0, Globals.getRandomEnemyFighter(Status.wingmanRace), (Waypoint)null);
 				if (initStreamOutPosition && this.ego.shipGrandGroup_ != null) {
 					((PlayerFighter) wingmen[id]).setPosition(
 							this.stationaries[2].mainMesh_.getPosX() - 3000,
@@ -555,12 +556,12 @@ public final class Level {
 	private void createMission() {
 		Mission mission = Status.getMission();
 		if (mission != null) {
-			if (Status.inAlienOrbit()) {
+			if (Status.inAlienOrbit()) { // mission in alien orbit (void space)? legacy?
 				final int alienCnt = 1 + GlobalStatus.random.nextInt(3);
 				this.ships = new KIPlayer[alienCnt];
 
-				for (int i = 0; i < alienCnt; ++i) {
-					this.ships[i] = createShip(9, 0, Globals.getRandomEnemyFighter(9), (Waypoint) null);
+				for (int i = 0; i < alienCnt; ++i) {// void hsoc, legacy of removed ship, typo or testing 
+					this.ships[i] = createShip(Globals.VOID, 0, Globals.getRandomEnemyFighter(Ship.SHIP_9), (Waypoint) null);
 					this.ships[i].setPosition(
 							-40000 + GlobalStatus.random.nextInt(80000),
 							-40000 + GlobalStatus.random.nextInt(80000),
@@ -1012,7 +1013,7 @@ public final class Level {
 		this.ships = new KIPlayer[3];
 
 		for(int i = 0; i < this.ships.length; ++i) {
-			this.ships[i] = createShip(8, 0, 10, (Waypoint)null);
+			this.ships[i] = createShip(Globals.PIRATE, 0, Ship.SHIP_10, (Waypoint)null);
 			this.ships[i].setToSleep();
 			this.ships[i].player.setAlwaysEnemy(true);
 			var1 = this.asteroids[this.asteroids.length - 1 - i].getPosition(var1);
@@ -1223,17 +1224,19 @@ public final class Level {
 			break;
 		case Mission.STORY_40:
 			this.enemyRoute_ = new Route(new int[]{
-					-20000, -3000, 200000});
+					-20000, -3000, 200000}
+			);
 			this.kamikazePath = new Route(new int[]{
 					-20000, -3000, 65000,
-					-20000, -3000, 200000});
+					-20000, -3000, 200000}
+			);
 			this.ships = new KIPlayer[9];
 			this.ships[0] = createShip(0, 1, 13, (Waypoint)null);
 			this.ships[0].player.setAlwaysFriend(true);
 			this.ships[0].name = GlobalStatus.gameText.getText(826);
 			this.ships[0].player.setMaxHP(1200 + 5 * Status.getLevel());
 			((PlayerFixedObject)this.ships[0]).setMoving(true);
-			((PlayerFixedObject) this.ships[0]).setPosition(
+			((PlayerFixedObject)this.ships[0]).setPosition(
 					this.kamikazePath.getWaypoint(0).x,
 			      this.kamikazePath.getWaypoint(0).y,
 			      this.kamikazePath.getWaypoint(0).z);
@@ -2117,14 +2120,17 @@ public final class Level {
 	/**
 	 *
 	 * @param alarmFriends false - warning; true - alarm friends
-	 * @param var2 race 0-3
+	 * @param race race 0-3
 	 */
-	private void createRadioMessage(final boolean alarmFriends, int var2) {
+	private void createRadioMessage(final boolean alarmFriends, int race) {
 		if (this.ego != null && this.ego.radio != null && Status.getMission().isEmpty()) {
 			this.radioMessages = new RadioMessage[1];
-			var2 = var2 == Globals.VOSSK ? 24 : var2 == Globals.TERRAN ? 23 : var2 == Globals.MIDORIAN ? 21 : 22;
-			final short var4 = (short)((alarmFriends ? 250 : 247) + GlobalStatus.random.nextInt(3));
-			this.radioMessages[0] = new RadioMessage(var4, var2, RadioMessage.TRIG_5, 0);
+			int imageId = race == Globals.VOSSK ? Globals.FACE_VOSSK :
+    					race == Globals.TERRAN 	? Globals.FACE_TERRAN :
+    					race == Globals.MIDORIAN ? Globals.FACE_MIDORIAN :
+													Globals.FACE_NIVELIAN;
+			final short text = (short)((alarmFriends ? 250 : 247) + GlobalStatus.random.nextInt(3));
+			this.radioMessages[0] = new RadioMessage(text, imageId, RadioMessage.TRIG_5, 0);
 			this.ego.radio.setMessages(this.radioMessages);
 			this.ego.radio.showMessage();
 		}
