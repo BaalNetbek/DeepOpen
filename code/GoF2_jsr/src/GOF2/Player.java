@@ -458,13 +458,14 @@ public final class Player {
 
 	}
 
-	public final void playShootSound__(final int gunType, final long dt, final boolean var4, final AEMatrix var5) {
+	public final void shoot(final int gunType, final long dt, final boolean var4, final AEMatrix matrix) {
 		if (this.guns != null && gunType < this.guns.length && gunType >= 0 && this.guns[gunType] != null) {
 			for(int i = 0; i < this.guns[gunType].length; ++i) {
-			boolean shot = this.guns[gunType][i].shootAt(var5, dt, var4);
-			// Player::playShootSound
+			boolean shot = this.guns[gunType][i].shootAt(matrix, dt, var4);
+			
 			if (this.guns[gunType][i].timeSinceLastShot > this.guns[gunType][i].reloadTimeMilis && shot) {
 					this.guns[gunType][i].timeSinceLastShot = 0;
+					// Player::playShootSound
 					if (this.playShootSound) {
 						switch(this.guns[gunType][i].subType) {
 						case Item.ROCKET:
@@ -487,7 +488,7 @@ public final class Player {
 	}
 
 	public final void shoot(final int gunType, final long dt, final boolean var4) {
-		playShootSound__(gunType, dt, false, this.transform);
+		shoot(gunType, dt, false, this.transform);
 	}
 
 	public final boolean shoot(final int gunType, int var22, final long dt, final boolean var5) {

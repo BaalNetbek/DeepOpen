@@ -360,7 +360,7 @@ public final class PlayerEgo {
 	public final void shoot(final int dt, final int gunType) {
 		if (this.turretMode) {
 			this.calcMatrix_.set(this.turretGun.getLocalTransform());
-			this.player.playShootSound__(Item.TURRET, dt, false, this.calcMatrix_);
+			this.player.shoot(Item.TURRET, dt, false, this.calcMatrix_);
 		} else if (gunType == Item.SECONDARY) {
 			if (!this.player.shoot(gunType, this.currentSecondaryId, dt, false)) {
 				this.currentSecondaryId = -1;

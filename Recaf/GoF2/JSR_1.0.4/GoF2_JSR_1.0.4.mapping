@@ -1161,7 +1161,7 @@ aa.d()Z isActive
 aa.e()Z isDead
 aa.e()V removeAllGuns
 aa.h(I)V resetGunDelay
-aa.a(IJZLcl;)V playShootSound__
+aa.a(IJZLcl;)V shoot
 aa.a(IJZ)V shoot
 aa.a(IIJZ)Z shoot
 aa.a(J)V update
