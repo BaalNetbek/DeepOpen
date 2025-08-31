@@ -926,7 +926,7 @@ public final class Level {
 		int var5;
 		//label214:
 		switch(Status.getCurrentCampaignMission()) {
-		case 0: // intro
+		case Mission.STORY_0: // intro
 		this.ships = new KIPlayer[3];
 
 		for(int i = 0; i < this.ships.length; ++i) {
@@ -948,42 +948,42 @@ public final class Level {
 		this.ships[2].setRoute(this.enemyRoute_);
 		this.ego.player.setHitPoints(9999999);
 		break;
-		case 1: // floating around Var Hastra
+		case Mission.STORY_1: // floating around Var Hastra
 			this.ships = new KIPlayer[1];
 			this.ships[0] = createShip(3, 0, 1, (Waypoint)null);
 			this.ships[0].setPosition(300, 50, -8000);
 			this.enemyRoute_ = new Route(new int[]{0, 0, -5000, 0, 0, 0});
 			this.ships[0].setRoute(this.enemyRoute_);
 			this.ships[0].setSpeed(0);
-		case 2:
-		case 3:
-		case 5:
-		case 6:
-		case 8:
-		case 9:
-		case 10:
-		case 11:
-		case 12:
-		case 13:
-		case 15:
-		case 17:
-		case 18:
-		case 19:
-		case 20:
-		case 22:
-		case 23:
-		case 27:
-		case 30:
-		case 31:
-		case 32:
-		case 33:
-		case 34:
-		case 35:
-		case 37:
-		case 39:
+		case Mission.STORY_2:
+		case Mission.STORY_3:
+		case Mission.STORY_5:
+		case Mission.STORY_6:
+		case Mission.STORY_8:
+		case Mission.STORY_9:
+		case Mission.STORY_10:
+		case Mission.STORY_11:
+		case Mission.STORY_12:
+		case Mission.STORY_13:
+		case Mission.STORY_15:
+		case Mission.STORY_17:
+		case Mission.STORY_18:
+		case Mission.STORY_19:
+		case Mission.STORY_20:
+		case Mission.STORY_22:
+		case Mission.STORY_23:
+		case Mission.STORY_27:
+		case Mission.STORY_30:
+		case Mission.STORY_31:
+		case Mission.STORY_32:
+		case Mission.STORY_33:
+		case Mission.STORY_34:
+		case Mission.STORY_35:
+		case Mission.STORY_37:
+		case Mission.STORY_39:
 		default:
 			break;
-		case 4: // last mining
+		case Mission.STORY_4: // last mining
 		this.ships = new KIPlayer[1];
 		this.ships[0] = createShip(8, 0, 1, (Waypoint)null);
 		this.ships[0].setInitActive(false);
@@ -991,7 +991,7 @@ public final class Level {
 		this.ships[0].setPosition(0, 0, -200000);
 		this.ships[0].setToSleep();
 		break;
-		case 7: // hunting Var Hastra pirates
+		case Mission.STORY_7: // hunting Var Hastra pirates
 			this.missionRoute = new Route(new int[]{20000, 7000, 120000});
 			this.ships = new KIPlayer[4];
 
@@ -1012,7 +1012,7 @@ public final class Level {
 			((PlayerFighter)this.ships[3]).setBoostProb(0);
 			this.successObjective = new Objective(Objective.TYPE_18, 0, 3, this);
 			break;
-		case 14: // meeting convoi
+		case Mission.STORY_14: // meeting convoi
 			this.enemyRoute_ = new Route(new int[]{0, 0, 50000});
 			this.ships = new KIPlayer[7];
 			// three pirate Betties
@@ -1030,7 +1030,7 @@ public final class Level {
 
 			this.successObjective = new Objective(Objective.TYPE_22, 0, this);
 			break;
-		case 16: // Void attack on Alioth
+		case Mission.STORY_16: // Void attack on Alioth
 			this.enemyRoute_ = new Route(new int[]{0, 0, 130000});
 			this.ships = new KIPlayer[7];
 
@@ -1050,7 +1050,7 @@ public final class Level {
 
 			this.successObjective = new Objective(Objective.TYPE_18, 0, 4, this);
 			break;
-		case 21: // rescue Thomas Boyle
+		case Mission.STORY_21: // rescue Thomas Boyle
 			this.enemyRoute_ = new Route(new int[]{40000, -40000, 120000});
 			this.missionRoute = this.enemyRoute_.clone();
 			this.enemyRoute_.setLoop(true);
@@ -1069,7 +1069,7 @@ public final class Level {
 			this.successObjective = new Objective(Objective.TYPE_22, 0, this);
 			this.failObjective_ = new Objective(Objective.TYPE_7, 1, this);
 			break;
-		case 24:
+		case Mission.STORY_24:
 			this.enemyRoute_ = new Route(new int[]{
 					100000, 0, 0,
 					100000, 0, -30000});
@@ -1083,8 +1083,8 @@ public final class Level {
 			this.stationaries[3].setVisible(false);
 			this.successObjective = new Objective(Objective.TYPE_22, 0, this);
 			break;
-		case 25:
-		case 29:
+		case Mission.STORY_25:
+		case Mission.STORY_29:
 			this.ships = new KIPlayer[3];
 			var5 = 0;
 			for(var5 = 0; var5 < 3; var5++){
@@ -1107,7 +1107,7 @@ public final class Level {
 			// 	this.ships[var5].setPosition(var2, var3, var4);
 			// 	++var5;
 			// }
-		case 26:
+		case Mission.STORY_26:
 			this.ships = new KIPlayer[2];
 
 			for(var5 = 0; var5 < 2; ++var5) {
@@ -1121,7 +1121,7 @@ public final class Level {
 
 			this.successObjective = new Objective(Objective.TYPE_7, 2, this);
 			break;
-		case 28:
+		case Mission.STORY_28:
 			this.tempVec = this.stationaries[3].getPosition(this.tempVec);
 			this.enemyRoute_ = new Route(new int[]{this.tempVec.x, this.tempVec.y, this.tempVec.z});
 			this.ships = new KIPlayer[5];
@@ -1138,11 +1138,11 @@ public final class Level {
 			// 	this.ships[var5] = createShip(Globals.VOID, 0, Ship.VOIDX, this.enemyRoute_.getDockingTarget_());
 			// 	++var5;
 			// }
-		case 36:
+		case Mission.STORY_36:
 			Status.getMission().setAgent(new Agent(-1, GlobalStatus.gameText.getText(826), 29, 5, 1, true, -1, -1, -1));
 			createMission();
 			break;
-		case 38:
+		case Mission.STORY_38:
 			this.enemyRoute_ = new Route(new int[]{0, 10000, 50000});
 			this.ships = new KIPlayer[7];
 
@@ -1165,7 +1165,7 @@ public final class Level {
 			this.successObjective = new Objective(Objective.TYPE_18, 2, 7, this);
 			this.failObjective_ = new Objective(Objective.TYPE_7, 2, this);
 			break;
-		case 40:
+		case Mission.STORY_40:
 			this.enemyRoute_ = new Route(new int[]{
 					-20000, -3000, 200000});
 			this.kamikazePath = new Route(new int[]{
@@ -1204,7 +1204,7 @@ public final class Level {
 
 			this.failObjective_ = new Objective(Objective.TYPE_7, 1, this);
 			break;
-		case 41:
+		case Mission.STORY_41:
 			this.ships = new KIPlayer[5];
 			this.ships[0] = createShip(1, 1, 13, (Waypoint)null);
 			this.ships[0].player.setAlwaysFriend(true);
@@ -1571,7 +1571,7 @@ public final class Level {
 	private RadioMessage[] createRadioMessages(final int missionIdx) {
 		this.radioMessages = null;
 		switch(missionIdx) {
-		case 0:
+		case Mission.STORY_0:
 			this.radioMessages = new RadioMessage[22];
 			this.radioMessages[0] = new RadioMessage(844, 17, 5, 15000);
 			this.radioMessages[1] = new RadioMessage(845, 0, 6, 0);
@@ -1596,73 +1596,68 @@ public final class Level {
 			this.radioMessages[20] = new RadioMessage(865, 15, 6, 19);
 			this.radioMessages[21] = new RadioMessage(866, 0, 6, 20);
 			break;
-		case 1:
+		case Mission.STORY_1:
 			this.radioMessages = new RadioMessage[3];
 			this.radioMessages[0] = new RadioMessage(867, 2, 5, 10000);
 			this.radioMessages[1] = new RadioMessage(868, 2, 6, 0);
 			this.radioMessages[2] = new RadioMessage(869, 2, 6, 1);
-		case 2:
-		case 3:
-		case 4:
-		case 5:
-		case 6:
-		case 8:
-		case 9:
-		case 10:
-		case 11:
-		case 12:
-		case 13:
-		case 15:
-		case 17:
-		case 18:
-		case 19:
-		case 20:
-		case 22:
-		case 23:
-		case 25:
-		case 26:
-		case 27:
-		case 28:
-		case 30:
-		case 31:
-		case 32:
-		case 33:
-		case 34:
-		case 35:
-		case 36:
-		case 37:
-		case 39:
-		default:
+		case Mission.STORY_2:
+		case Mission.STORY_3:
+		case Mission.STORY_4:
+		case Mission.STORY_5:
+		case Mission.STORY_6:
 			break;
-		case 7:
+		case Mission.STORY_7:
 			this.radioMessages = new RadioMessage[2];
 			this.radioMessages[0] = new RadioMessage(909, 2, 16, 0);
 			this.radioMessages[1] = new RadioMessage(910, 0, 6, 0);
 			break;
-		case 14:
+		case Mission.STORY_8:
+		case Mission.STORY_9:
+		case Mission.STORY_10:
+		case Mission.STORY_11:
+		case Mission.STORY_12:
+		case Mission.STORY_13:
+			break;
+		case Mission.STORY_14:
 			this.radioMessages = new RadioMessage[4];
 			this.radioMessages[0] = new RadioMessage(968, 18, 5, 6000);
 			this.radioMessages[1] = new RadioMessage(969, 0, 20, 2);
 			this.radioMessages[2] = new RadioMessage(970, 0, 6, 1);
 			this.radioMessages[3] = new RadioMessage(971, 18, 6, 2);
 			break;
-		case 16:
+		case Mission.STORY_15:
+			break;
+		case Mission.STORY_16:
 			this.radioMessages = new RadioMessage[2];
 			this.radioMessages[0] = new RadioMessage(983, 19, 5, 6000);
 			this.radioMessages[1] = new RadioMessage(984, 0, 6, 0);
 			break;
-		case 21:
+		case Mission.STORY_17:
+		case Mission.STORY_18:
+		case Mission.STORY_19:
+		case Mission.STORY_20:
+			break;
+		case Mission.STORY_21:
 			this.radioMessages = new RadioMessage[3];
 			this.radioMessages[0] = new RadioMessage(1018, 14, 8, 0);
 			this.radioMessages[1] = new RadioMessage(1019, 0, 6, 0);
 			this.radioMessages[2] = new RadioMessage(1020, 14, 21, 0);
 			break;
-		case 24:
+		case Mission.STORY_22:
+		case Mission.STORY_23:
+			break;
+		case Mission.STORY_24:
 			this.radioMessages = new RadioMessage[2];
 			this.radioMessages[0] = new RadioMessage(1047, 6, 22, 3);
 			this.radioMessages[1] = new RadioMessage(1048, 6, 6, 0);
 			break;
-		case 29:
+		case Mission.STORY_25:
+		case Mission.STORY_26:
+		case Mission.STORY_27:
+		case Mission.STORY_28:
+			break;
+		case Mission.STORY_29:
 			this.radioMessages = new RadioMessage[5];
 			this.radioMessages[0] = new RadioMessage(1073, 0, 23, 0);
 			this.radioMessages[1] = new RadioMessage(1074, 0, 6, 0);
@@ -1670,18 +1665,31 @@ public final class Level {
 			this.radioMessages[3] = new RadioMessage(1076, 19, 5, 120000);
 			this.radioMessages[4] = new RadioMessage(1077, 0, 6, 3);
 			break;
-		case 38:
+		case Mission.STORY_30:
+		case Mission.STORY_31:
+		case Mission.STORY_32:
+		case Mission.STORY_33:
+		case Mission.STORY_34:
+		case Mission.STORY_35:
+		case Mission.STORY_36:
+		case Mission.STORY_37:
+			break;
+		case Mission.STORY_38:
 			this.radioMessages = new RadioMessage[1];
 			this.radioMessages[0] = new RadioMessage(1146, 21, 5, 5000);
 			break;
-		case 40:
+		case Mission.STORY_39:
+			break;
+		case Mission.STORY_40:
 			this.radioMessages = new RadioMessage[2];
 			this.radioMessages[0] = new RadioMessage(1163, 7, 12, 0);
 			this.radioMessages[1] = new RadioMessage(1164, 0, 24, 0);
 			break;
-		case 41:
+		case Mission.STORY_41:
 			this.radioMessages = new RadioMessage[1];
 			this.radioMessages[0] = new RadioMessage(1163, 7, 12, 0);
+		default:
+			break;
 		}
 
 		return this.radioMessages;

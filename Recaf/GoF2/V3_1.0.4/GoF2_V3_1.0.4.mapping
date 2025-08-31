@@ -2129,8 +2129,8 @@ bq GOF2/RadioMessage
 bq.a Lan; radio
 bq.a I textId
 bq.b I imageId
-bq.c I triggerCondition
-bq.d I triggerType
+bq.c I trigType
+bq.d I trigCondition
 bq.a [I conditionsGroup
 bq.a Z triggered
 bq.b Z finished

@@ -1,11 +1,38 @@
 package GOF2;
 
 public final class RadioMessage {
+    public static final int TRIG_0 = 0;
+	public static final int TRIG_1 = 1;
+	public static final int TRIG_2 = 2;
+	public static final int TRIG_3 = 3;
+	public static final int TRIG_4 = 4;
+	public static final int TRIG_5 = 5;
+	public static final int TRIG_6 = 6;
+	public static final int TRIG_7 = 7;
+	public static final int TRIG_8 = 8;
+	public static final int TRIG_9 = 9;
+	public static final int TRIG_10 = 10;
+	public static final int TRIG_11 = 11;
+	public static final int TRIG_12 = 12;
+	public static final int TRIG_13 = 13;
+	public static final int TRIG_14 = 14;
+	public static final int TRIG_15 = 15;
+	public static final int TRIG_16 = 16;
+	public static final int TRIG_17 = 17;
+	public static final int TRIG_18 = 18;
+	public static final int TRIG_19 = 19;
+	public static final int TRIG_20 = 20;
+	public static final int TRIG_21 = 21;
+	public static final int TRIG_22 = 22;
+	public static final int TRIG_23 = 23;
+	public static final int TRIG_24 = 24;
+	public static final int TRIG_25 = 25;
+
     private Radio radio;
     private final int textId;
     private final int imageId;
-    private final int triggerCondition;
-    private final int triggerType;
+    private final int trigType;
+    private final int trigCondition;
     private final int[] conditionsGroup;
     private boolean triggered;
     private boolean finished;
@@ -20,18 +47,18 @@ public final class RadioMessage {
     public RadioMessage(final int var1, final int var2, final int var3, final int var4) {
         this.textId = var1;
         this.imageId = var2;
-        this.triggerCondition = var3;
-        this.triggerType = var4;
+        this.trigType = var3;
+        this.trigCondition = var4;
         this.conditionsGroup = new int[]{var4};
         this.triggered = false;
         this.finished = false;
     }
 
     public RadioMessage(final int var1, final int var2, final int var3, final int[] var4) {
-        this.textId = 854;
-        this.imageId = 0;
-        this.triggerCondition = 9;
-        this.triggerType = var4[0];
+        this.textId = var1;
+        this.imageId = var2;
+        this.trigType = var3;
+        this.trigCondition = var4[0];
         this.conditionsGroup = var4;
         this.triggered = false;
     }
@@ -68,14 +95,14 @@ public final class RadioMessage {
         boolean triggered = false;
         final Player[] coPlayers = playerEgo.player.getEnemies();
         int i;
-        switch(this.triggerCondition) {
-        case 0:
+        switch(this.trigType) {
+        case TRIG_0:
             if (playerEgo.getRoute() != null) {
-                triggered = playerEgo.getRoute().getCurrent() > this.lastWaypoint_ && this.lastWaypoint_ == this.triggerType;
+                triggered = playerEgo.getRoute().getCurrent() > this.lastWaypoint_ && this.lastWaypoint_ == this.trigCondition;
                 this.lastWaypoint_ = playerEgo.getRoute().getCurrent();
             }
             break;
-        case 1:
+        case TRIG_1:
             for (i = 0; i < this.conditionsGroup.length; i++) {
                 if (coPlayers[this.conditionsGroup[i]].isDead()) {
                     triggered = true;
@@ -83,7 +110,7 @@ public final class RadioMessage {
                 }
             }
             break;
-        case 2:
+        case TRIG_2:
             for (i = 0; i < this.conditionsGroup.length; i++) {
                 if (coPlayers[this.conditionsGroup[i]].friend && coPlayers[this.conditionsGroup[i]].isDead()) {
                     triggered = true;
@@ -91,23 +118,23 @@ public final class RadioMessage {
                 }
             }
             break;
-        case 3:
+        case TRIG_3:
             triggered = playerEgo.level.getEnemiesLeft() <= 0;
             break;
-        case 4:
+        case TRIG_4:
             triggered = playerEgo.level.getFriendsLeft() <= 0;
             break;
-        case 5:
-            triggered = var1 >= this.triggerType;
+        case TRIG_5:
+            triggered = var1 >= this.trigCondition;
             break;
-        case 6:
-            triggered = this.radio.getMessageFromQueue(this.triggerType).triggered;
+        case TRIG_6:
+            triggered = this.radio.getMessageFromQueue(this.trigCondition).triggered;
             break;
-        case 7:
-        case 13:
+        case TRIG_7:
+        case TRIG_13:
         default:
             break;
-        case 8:
+        case TRIG_8:
             for (i = 0; i < this.conditionsGroup.length; i++) {
                 if (!coPlayers[i].isAsteroid() && coPlayers[this.conditionsGroup[i]].isActive()) {
                     triggered = true;
@@ -115,7 +142,7 @@ public final class RadioMessage {
                 }
             }
             break;
-        case 9:
+        case TRIG_9:
             triggered = true;
             for (i = 0; i<this.conditionsGroup.length; i++) {
 
@@ -126,7 +153,7 @@ public final class RadioMessage {
                 }
             }
             break;
-        case 10:
+        case TRIG_10:
             for (i = 0; i < this.conditionsGroup.length; i++) {
                 if (coPlayers[this.conditionsGroup[i]].friend && coPlayers[this.conditionsGroup[i]].isActive()) {
                     triggered = true;
@@ -134,10 +161,10 @@ public final class RadioMessage {
                 }
             }
             break;
-        case 11:
+        case TRIG_11:
             triggered = ((Objective)null).achieved((int)var1);
             break;
-        case 12:
+        case TRIG_12:
             for (i = 0; i<this.conditionsGroup.length; i++) {
                 if (coPlayers[this.conditionsGroup[i]].getHitpoints() < coPlayers[this.conditionsGroup[i]].getMaxHitpoints() / 2) {
                     triggered = true;
@@ -145,10 +172,10 @@ public final class RadioMessage {
                 }
             }
             break;
-        case 14:
-            triggered = ((PlayerFighter)playerEgo.player.getEnemies()[this.triggerType].getKIPlayer()).lostMissionCrateToEgo();
+        case TRIG_14:
+            triggered = ((PlayerFighter)playerEgo.player.getEnemies()[this.trigCondition].getKIPlayer()).lostMissionCrateToEgo();
             break;
-        case 15:
+        case TRIG_15:
             triggered = false;
             for (i = 0; i < coPlayers.length; i++) {
                 if (coPlayers[i].isDead() && !coPlayers[i].isAsteroid()) {
@@ -158,7 +185,7 @@ public final class RadioMessage {
 
             }
             break;
-        case 16:
+        case TRIG_16:
             for(i = 0; i < coPlayers.length; i++) {
                 if (!coPlayers[i].isAsteroid() && coPlayers[i].isActive() && !coPlayers[i].isAlwaysFriend()) {
                     triggered = true;
@@ -166,21 +193,21 @@ public final class RadioMessage {
                 }
             }
             break;
-        case 17:
+        case TRIG_17:
             triggered = true;
 
             for (i = 0; i < coPlayers.length; i++) {
-                if (i != this.triggerType && !coPlayers[i].isAsteroid() && !coPlayers[i].isDead()) {
+                if (i != this.trigCondition && !coPlayers[i].isAsteroid() && !coPlayers[i].isDead()) {
                     triggered = false;
                    break;
                 }
             }
             break;
-        case 18:
-            triggered = ((PlayerFighter)playerEgo.player.getEnemies()[this.triggerType].getKIPlayer()).lostCargo() 
-                        || ((PlayerFighter)playerEgo.player.getEnemies()[this.triggerType].getKIPlayer()).unk151_();
+        case TRIG_18:
+            triggered = ((PlayerFighter)playerEgo.player.getEnemies()[this.trigCondition].getKIPlayer()).lostCargo() 
+                        || ((PlayerFighter)playerEgo.player.getEnemies()[this.trigCondition].getKIPlayer()).unk151_();
             break;
-        case 19:
+        case TRIG_19:
             for (i = 0; i <this.conditionsGroup.length; i++) {
                 if (coPlayers[this.conditionsGroup[i]].getHitpoints() < (coPlayers[this.conditionsGroup[i]].getMaxHitpoints() * 0.75)) {
                     triggered = true;
@@ -188,36 +215,36 @@ public final class RadioMessage {
                 }
             }
             break;
-        case 20:
+        case TRIG_20:
             triggered = false;            
             for (i = 0; i<coPlayers.length; i++) {
                 if (coPlayers[i].isDead()) {
                     ++i;
                 }
 
-                if (i >= this.triggerType) {
+                if (i >= this.trigCondition) {
                     triggered = true;
                     break;
                 }
             }
             break;
-        case 21:
-            if (!playerEgo.player.getEnemies()[this.triggerType].getKIPlayer().stunned) {
+        case TRIG_21:
+            if (!playerEgo.player.getEnemies()[this.trigCondition].getKIPlayer().stunned) {
                 break;
             }
 
             triggered = true;
             break;
-        case 22:
-            triggered = playerEgo.level.capturedCargoCount >= this.triggerType;
+        case TRIG_22:
+            triggered = playerEgo.level.capturedCargoCount >= this.trigCondition;
             break;
-        case 23:
+        case TRIG_23:
             triggered = playerEgo.radar.targetedLandmark != null 
                         && playerEgo.radar.targetedLandmark instanceof PlayerStation;
             break;
-        case 24:
-            triggered = !playerEgo.player.getEnemies()[this.triggerType].isActive() 
-                        && !playerEgo.player.getEnemies()[this.triggerType].isDead();
+        case TRIG_24:
+            triggered = !playerEgo.player.getEnemies()[this.trigCondition].isActive() 
+                        && !playerEgo.player.getEnemies()[this.trigCondition].isDead();
             break;
         }
 
