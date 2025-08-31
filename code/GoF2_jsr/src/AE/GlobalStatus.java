@@ -18,7 +18,7 @@ public final class GlobalStatus {
 	public static boolean invertedControlsOn = true;
 	public static int musicVolume = 2;
 	public static int sfxVolume = 2;
-	public static int language = 6;
+	public static int language = GameText.ENGLISH;
 	public static boolean shopHelpShown;
 	public static boolean shipHelpShown;
 	public static boolean actionsHelpShown;

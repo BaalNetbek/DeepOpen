@@ -6,6 +6,16 @@ import java.io.InputStream;
 import AE.GlobalStatus;
 
 public final class GameText {
+	public static final int GERMAN = 0;
+	public static final int ENGLISH = 1;
+	public static final int SPANISH = 2;
+	public static final int FRENCH = 3;
+	public static final int ITALIAN = 4;
+	public static final int CZECH = 5;
+	public static final int RUSSIAN = 6;
+	public static final int POLISH = 7;
+	public static final int PORTUGUESE = 8;
+	
 	public static final short[] LISTITEMWINDOW_KEY_TEXT_IDS = {157, 157, 157, 37, 36, 36, 36, 36, 36, 50, 42, 53, 54, 57, 43, 59, 52, 53, 60, 44, 58, 56, 45, 58, 53, 55, 58, 45, 46, 47, 59, 48, 49, 58, 53, 69};
 	public static final short[] helpTitles = {112, 296, 275, 79, 130, 218, 72, 146, 297, 63, 298};
 	public static final short[] helpFull = {306, 307, 308, 309, 312, 314, 315, 320, 321, 323, 324};
@@ -22,7 +32,7 @@ public final class GameText {
 	private static String[] items = new String[162];
 	private static String[] medals = new String[48];
 	private static String[][] categories_ = new String[47][];
-	private static int language;
+	private static int language = GlobalStatus.language;
 	private static String langPath;
 	private static int tempId;
 	private static int categoryId_;
@@ -32,37 +42,37 @@ public final class GameText {
 		langPath = "/data/lang/";
 		language = var1;
 		switch(var1) {
-		case 0:
+		case GERMAN:
 			langPath = langPath + "de/";
 			break;
-		case 1:
+		case ENGLISH:
 			langPath = langPath + "en/";
 			break;
-		case 2:
+		case SPANISH:
 			langPath = langPath + "es/";
 			break;
-		case 3:
+		case FRENCH:
 			langPath = langPath + "fr/";
 			break;
-		case 4:
+		case ITALIAN:
 			langPath = langPath + "it/";
 			break;
-		case 5:
+		case CZECH:
 			langPath = langPath + "cz/";
 			break;
-		case 6:
+		case RUSSIAN:
 			langPath = langPath + "ru/";
 			break;
-		case 7:
+		case POLISH:
 			langPath = langPath + "pl/";
 			break;
-		case 8:
+		case PORTUGUESE:
 			langPath = langPath + "pt/";
 		}
 
-		if (language == 0) {
+		if (language == GERMAN) {
 			readLangFile(langEntries, "de");
-		} else if (language == 6) {
+		} else if (language == RUSSIAN) {
 			readLangFile(langEntries, "ru");
 		} else {
 			readLangFile(langEntries, "en");
@@ -150,7 +160,7 @@ public final class GameText {
 		medals = new String[48];
 	}
 
-	static {
-		language = GlobalStatus.language;
-	}
+//	static {
+//		language = GlobalStatus.language;
+//	}
 }

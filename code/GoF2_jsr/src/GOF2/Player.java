@@ -422,9 +422,9 @@ public final class Player {
 		this.permanentEnemy = true;
 	}
 
-	public final boolean hasGunOfType(final int var1) {
-		if (var1 < 3 && var1 >= 0) {
-			return this.guns[var1] != null;
+	public final boolean hasGunOfType(final int type) {
+		if (type < 3 && type >= 0) {
+			return this.guns[type] != null;
 		}
 		return false;
 	}
@@ -449,10 +449,10 @@ public final class Player {
 		this.guns = null;
 	}
 
-	public final void resetGunDelay(int var1) {
-		if (this.guns != null && 0 < this.guns.length && this.guns[0] != null) {
-			for(var1 = 0; var1 < this.guns[0].length; ++var1) {
-				this.guns[0][var1].timeSinceLastShot = 0;
+	public final void resetGunDelay(int type) {
+		if (this.guns != null && 0 < this.guns.length && this.guns[type] != null) {
+			for(int i = 0; i < this.guns[type].length; ++i) {
+				this.guns[type][i].timeSinceLastShot = 0;
 			}
 		}
 
