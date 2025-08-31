@@ -189,7 +189,7 @@ public final class Gun {
 		return this.targets;
 	}
 
-	public final boolean shoot(AEMatrix var1, final long var2, final boolean var4) {
+	public final boolean shootAt(AEMatrix var1, final long dt, final boolean var4) {
 		this.timeSinceLastShot = 0;
 		this.fired = true;
 		this.inAir = true;
@@ -215,7 +215,7 @@ public final class Gun {
 				}
 
 				this.projectilesDir[i].normalize();
-				this.projectilesDir[i].scale((int)(this.projectileSpeed * var2) << AEMath.Q);
+				this.projectilesDir[i].scale((int)(this.projectileSpeed * dt) << AEMath.Q);
 				this.projectilesDir[i].x >>= AEMath.Q;
 				this.projectilesDir[i].y >>= AEMath.Q;
 				this.projectilesDir[i].z >>= AEMath.Q;

@@ -357,53 +357,53 @@ public final class PlayerEgo {
 		return this.player.getHitpoints() <= 0;
 	}
 
-	public final void shoot(final int dt, final int var2) {
+	public final void shoot(final int dt, final int gunType) {
 		if (this.turretMode) {
 			this.calcMatrix_.set(this.turretGun.getLocalTransform());
-			this.player.playShootSound__(2, dt, false, this.calcMatrix_);
-		} else if (var2 == 1) {
-			if (!this.player.shoot(var2, this.currentSecondaryId, dt, false)) {
+			this.player.playShootSound__(Item.TURRET, dt, false, this.calcMatrix_);
+		} else if (gunType == Item.SECONDARY) {
+			if (!this.player.shoot(gunType, this.currentSecondaryId, dt, false)) {
 				this.currentSecondaryId = -1;
 			}
 		} else {
-			this.player.shoot_(var2, dt, false);
+			this.player.shoot(gunType, dt, false);
 		}
 	}
 
 	public final void setGuns(final Gun[] var1, int i) {
-		Player var6;
-		if ((var6 = this.player).guns != null && i <= 3 && i >= 0) {
+		Player var6 = this.player;
+		if (var6.guns != null && 0 <= i && i <= 3) {
 			var6.guns[i] = new Gun[var1.length];
 			var6.guns[i] = var1;
 		}
 
 		if (!this.hasTurret) {
-			this.hasTurret = this.player.hasGunOfType(2);
+			this.hasTurret = this.player.hasGunOfType(Item.TURRET);
 			if (this.hasTurret) {
-				final Item[] var8 = Status.getShip().getEquipment(2);
-				short var9 = -1;
-				short var4 = -1;
-				byte var5 = -1;
+				final Item[] var8 = Status.getShip().getEquipment(Item.TURRET);
+				short base = -1;
+				short gun = -1;
+				byte gunOffset = -1;
 				this.turretRotationSpeed = var8[0].getAttribute(Item.TURRET_HANDLING);
 				switch(var8[0].getIndex()) {
-				case 47:
-					var9 = 6770;
-					var4 = 6771;
-					var5 = 91;
+				case Item.IDX_TURRET_START:
+					base = 6770;
+					gun = 6771;
+					gunOffset = 91;
 					break;
-				case 48:
-					var9 = 6772;
-					var4 = 6773;
-					var5 = 75;
+				case Item.IDX_TURRET_START + 1:
+					base = 6772;
+					gun = 6773;
+					gunOffset = 75;
 					break;
-				case 49:
-					var9 = 6774;
-					var4 = 6775;
-					var5 = 121;
+				case Item.IDX_TURRET_START + 2:
+					base = 6774;
+					gun = 6775;
+					gunOffset = 121;
 				}
 
-				this.turretStand = AEResourceManager.getGeometryResource(var9);
-				this.turretGun = AEResourceManager.getGeometryResource(var4);
+				this.turretStand = AEResourceManager.getGeometryResource(base);
+				this.turretGun = AEResourceManager.getGeometryResource(gun);
 				this.turretStand.setRenderLayer(2);
 				this.turretGun.setRenderLayer(2);
 				this.turretGun.setRotationOrder((short)2);
@@ -418,7 +418,7 @@ public final class PlayerEgo {
 					}
 				}
 
-				this.turretGun.translate(0, var5, 0);
+				this.turretGun.translate(0, gunOffset, 0);
 				this.turretStand.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 				this.turretGun.rotateEuler(0, AEMath.Q_PI_HALF, 0);
 				this.turretGroup.uniqueAppend_(this.turretStand);

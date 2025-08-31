@@ -85,7 +85,7 @@ public final class Item {
 	public static final int IDX_LASER_START = 0;
 	public static final int IDX_BLASTER_START = 12;
 	public static final int IDX_AUTOC_START = 22;
-	public static final int IDX_THERMO_START = 28;
+	public static final int IDX_THERMO_START = 28; // ref
 
 	public static final int IDX_SECONDARY_START = 31;
 	public static final int IDX_ROCKET_START = 31;

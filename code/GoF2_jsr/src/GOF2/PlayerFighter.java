@@ -560,7 +560,7 @@ public final class PlayerFighter extends KIPlayer {
                     if (!this.target__.hidden) {
                         if (this.distanceToTarget.x < this.soundRange && this.distanceToTarget.x > -this.soundRange && this.distanceToTarget.y < this.soundRange && this.distanceToTarget.y > -this.soundRange && this.targetPos_.x - this.pos.x < 35000 && this.targetPos_.x - this.pos.x > -35000 && this.targetPos_.y - this.pos.y < 35000 && this.targetPos_.y - this.pos.y > -35000 && this.targetPos_.z - this.pos.z < 35000 && this.targetPos_.z - this.pos.z > -35000) {
                             if (this.target__.isActive() && !this.target__.isDead() && var9 < 0.05F && var10 < 0.05F) {
-                                this.player.shoot_(this.weaponActive, var1, false);
+                                this.player.shoot(this.weaponActive, var1, false);
                             } else {
                                 this.targetIsActive = false;
                             }

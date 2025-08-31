@@ -510,7 +510,7 @@ public final class Radar {
                         if (!var25.isDead() && !var25.isDying() || var25.hasCargo) {
                             var15 = var25.equals(this.targetedPlayer);
                             Gun[] var33;
-                            if (!var25.isDead() && this.level.getPlayer().player.hasGunOfType(1) && (var33 = this.level.getPlayer().player.guns[1]) != null) {
+                            if (!var25.isDead() && this.level.getPlayer().player.hasGunOfType(Item.SECONDARY) && (var33 = this.level.getPlayer().player.guns[1]) != null) {
                                 
                            	  GlobalStatus.graphics.setStrokeStyle(Graphics.DOTTED);
                                 for(int j = 0; j < var33.length; ++j) {

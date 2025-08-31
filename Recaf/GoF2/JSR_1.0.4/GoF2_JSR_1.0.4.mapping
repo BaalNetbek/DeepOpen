@@ -1162,7 +1162,7 @@ aa.e()Z isDead
 aa.e()V removeAllGuns
 aa.h(I)V resetGunDelay
 aa.a(IJZLcl;)V playShootSound__
-aa.a(IJZ)V shoot_
+aa.a(IJZ)V shoot
 aa.a(IIJZ)Z shoot
 aa.a(J)V update
 ad GOF2/Globals
@@ -1816,7 +1816,7 @@ ba.a(Lbk;)V setSparks
 ba.a(Ldb;)V setLevel
 ba.a([Laa;)V setTargets
 ba.a()[Laa; getTargets
-ba.a(Lcl;JZ)Z shoot
+ba.a(Lcl;JZ)Z shootAt
 ba.b()V ignite
 ba.a(J)V calcCharacterCollision
 ba.c()V renderSparks

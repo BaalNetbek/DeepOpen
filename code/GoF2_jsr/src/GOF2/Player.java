@@ -458,13 +458,15 @@ public final class Player {
 
 	}
 
-	public final void playShootSound__(final int var1, final long var2, final boolean var4, final AEMatrix var5) {
-		if (this.guns != null && var1 < this.guns.length && var1 >= 0 && this.guns[var1] != null) {
-			for(int i = 0; i < this.guns[var1].length; ++i) {
-				if (this.guns[var1][i].timeSinceLastShot > this.guns[var1][i].reloadTimeMilis && this.guns[var1][i].shoot(var5, var2, var4)) {
-					this.guns[var1][i].timeSinceLastShot = 0;
+	public final void playShootSound__(final int gunType, final long dt, final boolean var4, final AEMatrix var5) {
+		if (this.guns != null && gunType < this.guns.length && gunType >= 0 && this.guns[gunType] != null) {
+			for(int i = 0; i < this.guns[gunType].length; ++i) {
+			boolean shot = this.guns[gunType][i].shootAt(var5, dt, var4);
+			// Player::playShootSound
+			if (this.guns[gunType][i].timeSinceLastShot > this.guns[gunType][i].reloadTimeMilis && shot) {
+					this.guns[gunType][i].timeSinceLastShot = 0;
 					if (this.playShootSound) {
-						switch(this.guns[var1][i].subType) {
+						switch(this.guns[gunType][i].subType) {
 						case Item.ROCKET:
 							GlobalStatus.soundManager.playSfx(8);
 							break;
@@ -484,21 +486,22 @@ public final class Player {
 
 	}
 
-	public final void shoot_(final int var1, final long var2, final boolean var4) {
-		playShootSound__(var1, var2, false, this.transform);
+	public final void shoot(final int gunType, final long dt, final boolean var4) {
+		playShootSound__(gunType, dt, false, this.transform);
 	}
 
-	public final boolean shoot(final int var1, int var22, final long var3, final boolean var5) {
+	public final boolean shoot(final int gunType, int var22, final long dt, final boolean var5) {
 		boolean var6 = true;
-		if (this.guns != null && var1 < this.guns.length && var1 >= 0 && this.guns[var1] != null) {
-			for(int i = 0; i < this.guns[var1].length; ++i) {
-				Gun gun = this.guns[var1][i];
+		if (this.guns != null && gunType < this.guns.length && gunType >= 0 && this.guns[gunType] != null) {
+			for(int i = 0; i < this.guns[gunType].length; ++i) {
+				Gun gun = this.guns[gunType][i];
 				if ((gun.subType == Item.NUKE || gun.subType == Item.EMP_BOMB) && gun.projectilesTimeLeft[0] >= 0) {
 					gun.ignite();
 				} else if (gun.index == var22 && gun.timeSinceLastShot > gun.reloadTimeMilis) {
-					if (gun.shoot(this.transform, var3, var5)) {
+					if (gun.shootAt(this.transform, dt, var5)) {
+						// Player::playShootSound
 						if (this.playShootSound) {
-							switch(this.guns[var1][i].subType) {
+							switch(this.guns[gunType][i].subType) {
 							case Item.ROCKET:
 								GlobalStatus.soundManager.playSfx(8);
 								break;

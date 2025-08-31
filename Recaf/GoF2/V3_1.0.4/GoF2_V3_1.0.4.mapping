@@ -1194,7 +1194,7 @@ aa.e()Z isDead
 aa.e()V removeAllGuns
 aa.h(I)V resetGunDelay
 aa.a(IJZLcm;)V playShootSound__
-aa.a(IJZ)V shoot_
+aa.a(IJZ)V shoot
 aa.a(IIJZ)Z shoot
 aa.a(J)V update
 ae GOF2/SystemPathFinder
@@ -1803,7 +1803,7 @@ az.a(Lbk;)V setSparks
 az.a(Ldb;)V setLevel
 az.a([Laa;)V setTargets
 az.a()[Laa; getTargets
-az.a(Lcm;JZ)Z shoot
+az.a(Lcm;JZ)Z shootAt
 az.b()V ignite
 az.a(J)V calcCharacterCollision
 az.c()V renderSparks

@@ -50,6 +50,7 @@ public final class Mission {
 	public static final int STORY_45 = 45;
 	
 	public static final int TYPE_NONE = -1;
+	/**	Courier */
 	public static final int TYPE_0 = 0;
 	public static final int TYPE_1 = 1;
 	public static final int TYPE_2 = 2;
