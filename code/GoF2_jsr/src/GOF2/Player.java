@@ -461,9 +461,9 @@ public final class Player {
 	public final void shoot(final int gunType, final long dt, final boolean var4, final AEMatrix matrix) {
 		if (this.guns != null && gunType < this.guns.length && gunType >= 0 && this.guns[gunType] != null) {
 			for(int i = 0; i < this.guns[gunType].length; ++i) {
-			boolean shot = this.guns[gunType][i].shootAt(matrix, dt, var4);
-			
-			if (this.guns[gunType][i].timeSinceLastShot > this.guns[gunType][i].reloadTimeMilis && shot) {
+
+			if (this.guns[gunType][i].timeSinceLastShot > this.guns[gunType][i].reloadTimeMilis &&
+				this.guns[gunType][i].shootAt(matrix, dt, var4)) { // order matters, can't call shootAt before if
 					this.guns[gunType][i].timeSinceLastShot = 0;
 					// Player::playShootSound
 					if (this.playShootSound) {
