@@ -2359,7 +2359,7 @@ bz.a Z active
 bz.a Lag; beamMesh
 bz.a()V render
 bz.a(JLbw;Ldb;Lv;)V update
-ca GOF2/DummyClass_
+ca GOF2/MovingStars
 cb GOF2/Agent
 cb.a Ljava/lang/String; fullName
 cb.b Ljava/lang/String; wingman1Name

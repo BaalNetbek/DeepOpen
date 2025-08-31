@@ -36,7 +36,7 @@ public final class PlayerEgo {
 	      {28, 0, 269, -69},
 	      {33, 0, 255, -176},
 	      {36, 0, 255, 1015}
-	      };
+	};
 	public Player player;
 	public AEGroup shipGrandGroup_;
 	private AEGroup shipGroup;
@@ -44,7 +44,7 @@ public final class PlayerEgo {
 	private AEGeometry turretGun;
 	private AEVector3D vecUp;
 	private AEVector3D vecRight;
-	private DummyClass_ unused_7a2;
+	private MovingStars unused_7a2;
 	private Crosshair crosshair;
 	private Explosion explosion;
 	public Level level;
@@ -122,7 +122,7 @@ public final class PlayerEgo {
 		this.autoPilotDir = new AEVector3D();
 		this.laggingPos = new AEVector3D();
 		this.roll = 1;
-		this.unused_7a2 = new DummyClass_();
+		this.unused_7a2 = new MovingStars();
 		this.crosshair = new Crosshair();
 		this.totalHP = this.player.getCombinedHP();
 		this.speed = 2;

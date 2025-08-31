@@ -108,7 +108,7 @@ public final class GOF2Canvas extends GameCanvas {
 			Font.setSpacingX(0, 2);
 			Font.setSpacingY(11, 2);
 			Font.setSymMapSetOffsetY(-2, 2);
-			Font.addCharMap("/data/interface/font_void.png", 2, 15, 16);
+			Font.addCharMap("/data/interface/font_void.png", 2, 15, 16); // should be id = 3, but it's unused anyway
 			Font.setSpacingX(0, 3);
 			Font.setSpacingY(11, 3);
 			Font.setSymMapSetOffsetY(-2, 3);
@@ -139,10 +139,10 @@ public final class GOF2Canvas extends GameCanvas {
 		} else {
 			Layout.navigationDelayDownTick();
 			this.applicationManager.renderScene(this.keyStates);
-			if (this.newKeysPressed == 16384) {
+			if (this.newKeysPressed == LSB) {
 				Layout.selectNavigationButton(true);
 				this.tempKeysPressed = this.newKeysPressed;
-			} else if (this.newKeysPressed == 8192) {
+			} else if (this.newKeysPressed == RSB) {
 				Layout.selectNavigationButton(false);
 				this.tempKeysPressed = this.newKeysPressed;
 			}
@@ -189,7 +189,7 @@ public final class GOF2Canvas extends GameCanvas {
 		final long var1 = System.currentTimeMillis();
 		this.pausedTime += var1 - this.sysTime;
 		this.sysTime = var1;
-		if (this.newKeysPressed == 256) {
+		if (this.newKeysPressed == KEY_5) {
 			if (Status.getPlayingTime() > this.pausedTime) {
 				Status.incPlayingTime(-this.pausedTime);
 			}
