@@ -1434,10 +1434,10 @@ public final class Level {
 					gun.setFriendGun(true);
 					gun.setLevel(this);
 					gun.setSparks(this.gunSparks);
-					final int gunType = ship.race == Globals.VOID ? 7:
-											  ship.race == Globals.TERRAN ? 1:
-											  ship.race == Globals.VOSSK ? 3:
-													             4;
+					final int gunType = ship.race == Globals.VOID ? Item.IDX_LASER_START + 7:
+									  ship.race == Globals.TERRAN ? Item.IDX_LASER_START + 1:
+									  ship.race == Globals.VOSSK ? Item.IDX_LASER_START + 3:
+										  						   Item.IDX_LASER_START + 4;
 					this.enemyGuns[gunCnt] = new ObjectGun(gun, AEResourceManager.getGeometryResource(Globals.TYPE_WEAPONS[gunType]));
 					this.enemyGuns[gunCnt].setRenderLayer(2);
 					++gunCnt;

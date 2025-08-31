@@ -82,7 +82,7 @@ public final class Item {
 	
 	// item indices
 	public static final int IDX_PRIMARY_START = 0;
-	public static final int IDX_LASER_START = 0;
+	public static final int IDX_LASER_START = 0; // ref
 	public static final int IDX_BLASTER_START = 12;
 	public static final int IDX_AUTOC_START = 22;
 	public static final int IDX_THERMO_START = 28; // ref

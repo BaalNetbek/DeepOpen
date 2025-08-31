@@ -12,6 +12,7 @@ public final class RadioMessage {
 	public static final int TRIG_8 = 8;
 	public static final int TRIG_9 = 9;
 	public static final int TRIG_10 = 10;
+	/** Objective achieved */
 	public static final int TRIG_11 = 11;
 	public static final int TRIG_12 = 12;
 	public static final int TRIG_13 = 13;

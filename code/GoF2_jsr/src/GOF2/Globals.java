@@ -7,6 +7,10 @@ import AE.GraphNode;
 import AE.AEGroup;
 
 public final class Globals {
+	public static final boolean AETrue = true;
+	public static final boolean AEFalse = false;
+	public static final int AENone = -1;
+	
 	public static final int STATIONS_COUNT = 100;
     public static final int VOSSK_STATION_ID = 100;
     public static final int SYSTEMS_COUNT = 22;
@@ -45,11 +49,11 @@ public final class Globals {
           };
     public static final short[] TYPE_WEAPONS = {
           6754, 6755, 6756, 6760, 6761, 6762, 6763, 6764,
-          6765, -1, -1, -1, 6788, 6789, 6790, 6791, 6792,
+          6765, AENone, AENone, AENone, 6788, 6789, 6790, 6791, 6792,
           6793, 6794, 6795, 6796, 6797, 6798, 6799, 6800,
           6801, 6802, 6803, 6781, 6781, 6781, 6791, 6789,
           6788, 6790, 6792, 6797, 6794, 6791, 6796, 6788,
-          -1, -1, -1, -1, -1, -1, 6784, 6785, 6786
+          AENone, AENone, AENone, AENone, AENone, AENone, 6784, 6785, 6786
           };
     public static final byte[] CHAR_KEITH =			{TERRAN, 7, 7, 7, 7};
     private static byte[] CHAR_BRENT =				{TERRAN, 2, 2, 2, 2};

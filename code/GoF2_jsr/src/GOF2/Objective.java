@@ -1,12 +1,13 @@
 package GOF2;
 
 /**
- * #TODO uinling types
+ * #TODO comment on types
  * 
  * @author Fishlabs
  *
  */
 public final class Objective {
+	/** kill everyone */
 	public static final int TYPE_0 = 0;
 	public static final int TYPE_1 = 1;
 	public static final int TYPE_2 = 2;

@@ -1,5 +1,6 @@
 package GOF2;
 
+import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 import AE.AEFile;
@@ -20,8 +21,8 @@ public final class Crosshair {
 
 		try {
 			this.image = AEFile.loadImage("/data/interface/hud_crosshair_png24.png", true);
-		} catch (final Exception var2) {
-			var2.printStackTrace();
+		} catch (final Exception e) {
+			e.printStackTrace();
 		}
 
 		this.localPosition = new int[3];
@@ -43,6 +44,6 @@ public final class Crosshair {
 	}
 
 	public final void draw() {
-		GlobalStatus.graphics.drawImage(this.image, screenPos.x, screenPos.y, 3);
+		GlobalStatus.graphics.drawImage(this.image, screenPos.x, screenPos.y, Graphics.VCENTER | Graphics.HCENTER);
 	}
 }
