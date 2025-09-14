@@ -36,8 +36,8 @@ public abstract class SceneObject extends GraphNode {
 
 	}
 
-	public final void setRadius(final int var1) {
-		this.radius = var1;
+	public final void setRadius(final int r) {
+		this.radius = r;
 	}
 
 	protected final String getString(String var1, final int len) {

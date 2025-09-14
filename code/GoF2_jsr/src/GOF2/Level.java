@@ -148,13 +148,12 @@ public final class Level {
 								this.mgameIntroCamRotY = this.mgameIntroCamRotY % 16 << 8;
 							} else {
 								this.mgameIntroCamRotY += GlobalStatus.random.nextInt(2) == 0 ?
-																-(250 + GlobalStatus.random.nextInt(500)):
-																 250 + GlobalStatus.random.nextInt(500);
+                                                    -(250 + GlobalStatus.random.nextInt(500)):
+                                                      250 + GlobalStatus.random.nextInt(500);
 							}
 
 							this.tempVec.z = i == 1 ? 90000 : 120000;
-							final AEVector3D var10000 = this.tempVec;
-							var10000.z += this.mgameIntroCamRotY * 3;
+							this.tempVec.z += this.mgameIntroCamRotY * 3;
 							AEMatrix var5 = new AEMatrix();
 							var5.setEulerY(this.mgameIntroCamRotY);
 							var3 = var5.transformVectorNoScale(this.tempVec, var3);

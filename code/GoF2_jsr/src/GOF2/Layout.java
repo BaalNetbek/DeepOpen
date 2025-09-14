@@ -209,9 +209,8 @@ public final class Layout {
 		GlobalStatus.graphics.drawImage(var2 ? menuPanelCorActive : menuPanelCorInactive, var0, var1, 20);
 	}
 
-	public static void drawFooter(final String var0, final String var1) {
-		final String var10000 = var0;
-		drawFooter(var10000, var1, false);
+	public static void drawFooter(final String leftText, final String rightText) {
+		drawFooter(leftText, rightText, false);
 	}
 
 	public static void selectNavigationButton(final boolean var0) {

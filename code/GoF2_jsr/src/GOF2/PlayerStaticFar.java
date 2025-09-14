@@ -25,7 +25,7 @@ public class PlayerStaticFar extends PlayerStatic {
         super.appendToRender();
     }
 
-    public void update(final long var1) {
+    public void update(final long dt) {
         if (this.mainMesh_ != null) {
             this.tempVector_ = GlobalStatus.renderer.getCamera().getLocalPos(this.tempVector_);
             this.position.set(this.posX, this.posY, this.posZ);
@@ -45,19 +45,24 @@ public class PlayerStaticFar extends PlayerStatic {
         }
     }
 
-    public boolean outerCollide(final int var1, final int var2, final int var3) {
-        return var1 - this.posX < this.player.radius && var1 - this.posX > -this.player.radius && var2 - this.posY < this.player.radius && var2 - this.posY > -this.player.radius && var3 - this.posZ < this.player.radius && var3 - this.posZ > -this.player.radius;
+    public boolean outerCollide(final int x, final int y, final int z) {
+        return x - this.posX < this.player.radius &&
+            x - this.posX > -this.player.radius && 
+            y - this.posY <  this.player.radius && 
+            y - this.posY > -this.player.radius &&
+            z - this.posZ <  this.player.radius && 
+            z - this.posZ > -this.player.radius;
     }
 
-    public final AEVector3D getTargetPos_(final AEVector3D var1) {
-        var1.x = this.targetX;
-        var1.y = this.targetY;
-        var1.z = this.targetZ;
-        return var1;
+    public final AEVector3D getTargetPos_(final AEVector3D buffer) {
+        buffer.x = this.targetX;
+        buffer.y = this.targetY;
+        buffer.z = this.targetZ;
+        return buffer;
     }
 
-    public boolean outerCollide(final AEVector3D var1) {
-        return this.outerCollide(var1.x, var1.y, var1.z);
+    public boolean outerCollide(final AEVector3D point) {
+        return this.outerCollide(point.x, point.y, point.z);
     }
 
     public AEVector3D getProjectionVector_(final AEVector3D var1) {

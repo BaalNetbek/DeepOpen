@@ -656,22 +656,28 @@ public final class Hud {
 				}
 
 				GlobalStatus.graphics.drawImage(this.hullAlarmShipIcon, (GlobalStatus.screenWidth >> 1) - 4, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() + 15, 40);
-				Font.drawString(var10 + "%", GlobalStatus.screenWidth >> 1, GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() + 15, 0, Font.BOTTOM|Font.LEFT);
+				Font.drawString(
+                    var10 + "%",
+                    GlobalStatus.screenWidth >> 1,
+                    GlobalStatus.screenHeight - this.panelLowerLeft.getHeight() + 15,
+                    Font.WHITE,
+                    Font.BOTTOM|Font.LEFT
+                );
 			}
 
 			this.lastHullDamage = var10;
 		}
 	}
 
-	public final void drawBigDigits(final int var1, final int var2, final int var3, final boolean var4) {
-		if (var1 > 9) {
-			this.hullAlarmNumbers.setFrame(var1 / 10);
-			this.hullAlarmNumbers.setPosition(var2, var3);
+	public final void drawBigDigits(final int number, final int x, final int y, final boolean unk) {
+		if (number > 9) {
+			this.hullAlarmNumbers.setFrame(number / 10);
+			this.hullAlarmNumbers.setPosition(x, y);
 			this.hullAlarmNumbers.paint(GlobalStatus.graphics);
 		}
 
-		this.hullAlarmNumbers.setFrame(var1 % 10);
-		this.hullAlarmNumbers.setPosition(var2 + 14, var3);
+		this.hullAlarmNumbers.setFrame(number % 10);
+		this.hullAlarmNumbers.setPosition(x + 14, y);
 		this.hullAlarmNumbers.paint(GlobalStatus.graphics);
 	}
 

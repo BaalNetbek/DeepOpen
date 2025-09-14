@@ -13,7 +13,7 @@ import AE.Math.AEMatrix;
 public final class PlayerStation extends PlayerStaticFar {
 	private final int[] partsCollisions = {
    //offset==>x,      y,      z,   |  x,     y,     z,  <==dimension   
-		    -10,    -791,   -1776,  2509,  3625,  22248,
+		    -10,    -791,   -1776,  2509,  3625,  22248, // #BUG, #TODO offset.z -> 1776 (flip sign)
 		    -18,    -786,   2466,   2499,  4681,  30734,
 		    -10,    -1851,  29,     7568,  13971, 7568,
 		    21,     -2629,  -6,     8627,  15527, 8627,
@@ -49,13 +49,13 @@ public final class PlayerStation extends PlayerStaticFar {
 		    0,      0,      0,      1940,  1940,  1940,
 		    0,      0,      0,      1940,  1940,  1940,
 		    0,      -5143,  0,      55879, 69796, 55879,
-		    0,      -4444,  0,      22222, 55555, 22222,
-		    -9617,  8646,   -9617,  11781, 10784, 11781,
-		    0,      -15497, 0,      4866,  13737, 5263,
+		    0,      -4444,  0,      22222, 55555, 22222, //void station (needs fix)
+		    -9617,  8646,   -9617,  11781, 10784, 11781, // #BUG
+		    0,      -15497, 0,      4866,  13737, 5263,				
 		    0,      -4021,  0,      11493, 9778,  11493,
 		    0,      12391,  0,      16896, 10793, 16896,
 		    0,      3931,   0,      11240, 6126,  11240,
-		    -10361, 25852,  -11525, 25379, 16129, 23051,
+		    -10361, 25852,  -11525, 25379, 16129, 23051, // offset for vossk station parts is very off. #TODO set it to 0.
 		    0,      0,      0,      0,     0,     0
 	      };
 	private AEGeometry[] stationParts;
@@ -203,17 +203,29 @@ public final class PlayerStation extends PlayerStaticFar {
         return var1;
     }
 
-    public final boolean outerCollide(final int var1, final int var2, final int var3) {
-        return var1 < this.player.radius && var1 > -this.player.radius && var2 < this.player.radius && var2 > -this.player.radius && var3 < this.player.radius && var3 > -this.player.radius;
+    public final boolean outerCollide(final int x, final int y, final int z) {
+        return x < this.player.radius &&
+            x > -this.player.radius &&
+            y <  this.player.radius &&
+            y > -this.player.radius &&
+            z <  this.player.radius &&
+            z > -this.player.radius;
     }
 
-    public final boolean outerCollide(final AEVector3D var1) {
-        final int var4 = var1.z;
-        final int var3 = var1.y;
-        final int var2 = var1.x;
-        if (var2 < this.maxPartDeflection && var2 > -this.maxPartDeflection && var3 < this.maxPartDeflection && var3 > -this.maxPartDeflection && var4 < this.maxPartDeflection && var4 > -this.maxPartDeflection && this.boundingBoxes != null) {
+    public final boolean outerCollide(final AEVector3D collidee) {
+        final int z = collidee.z;
+        final int y = collidee.y;
+        final int x = collidee.x;
+        if (x < this.maxPartDeflection &&
+            x > -this.maxPartDeflection &&
+            y < this.maxPartDeflection &&
+            y > -this.maxPartDeflection && 
+            z < this.maxPartDeflection &&
+            z > -this.maxPartDeflection && 
+            this.boundingBoxes != null) 
+        {
             for(int i = 0; i < this.boundingBoxes.length; ++i) {
-                if (this.boundingBoxes[i].isPointInBounding(var2, var3, var4)) {
+                if (this.boundingBoxes[i].isPointInBounding(x, y, z)) {
                     this.collidingPart = i;
                     return true;
                 }

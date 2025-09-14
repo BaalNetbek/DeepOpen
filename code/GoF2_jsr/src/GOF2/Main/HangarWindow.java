@@ -193,9 +193,8 @@ public final class HangarWindow {
 
 				if (this.selectedItem != null) {
 					if (this.selectedItem.isMedal__()) {
-						final Popup var10000 = this.freeSlotInfoPopup;
 						final String var2 = GlobalStatus.gameText.getText(82);
-						var10000.set(var2, false);
+						this.freeSlotInfoPopup.set(var2, false);
 						this.freeSlotInfoPopupOpen = true;
 					} else {
 						this.itemInfo.updateCamera_(this.selectedItem.isShip());

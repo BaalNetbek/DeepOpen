@@ -13,115 +13,121 @@ import javax.microedition.lcdui.Image;
 public final class AEFile {
 	private static Class clazs;
 
-	public static Image resizeImage(Image var0, final int var1, final int var2) {
+    /**
+     * Resizes image using nearest neighbour algorithm 
+     * @param src source image
+     * @param new_x target width
+     * @param new_y target heigh
+     * @return resized image
+     */
+	public static Image resizeImage(Image src, final int new_x, final int new_y) {
 		try {
-			final float var17 = (float)var1 / (float)var0.getWidth();
-			final float var18 = (float)var2 / (float)var0.getHeight();
-			final int var3 = var0.getWidth();
-			final int var4 = var0.getHeight();
-			final int[] var5 = new int[var3 * var4];
-			final int[] var6 = new int[(int)(var3 * var17) * (int)(var4 * var18)];
-			var0.getRGB(var5, 0, var3, 0, 0, var3, var4);
-			final int var8 = (int)(var3 * var17);
-			final int var7 = var3;
-			final int var9 = var5.length / var3;
-			final int var10 = var6.length / var8;
+			final float ratio_x = (float)new_x / (float)src.getWidth();
+			final float ratio_y = (float)new_y / (float)src.getHeight();
+			final int src_x = src.getWidth();
+			final int src_y = src.getHeight();
+			final int[] srcPix = new int[src_x * src_y];
+			final int[] scaledPix = new int[(int)(src_x * ratio_x) * (int)(src_y * ratio_y)];
+			src.getRGB(srcPix, 0, src_x, 0, 0, src_x, src_y);
+			final int newCols = (int)(src_x * ratio_x);
+			final int srcRows = srcPix.length / src_x;
+			final int newRows = scaledPix.length / newCols;
 
-			for(int i = 0; i < var8; ++i) {
-				for(int j = 0; j < var10; ++j) {
-					float var13 = (float)i * (float)(var7 - 1) / (var8 - 1);
-					int var19;
-					if (var13 - Math.floor(var13) > 0.5D) {
-						var19 = (int)Math.ceil(var13);
+			for(int x = 0; x < newCols; ++x) {
+				for(int y = 0; y < newRows; ++y) {
+					float near_x = (float)x * (float)(src_x - 1) / (newCols - 1);
+					int nearest_x;
+					if (near_x - Math.floor(near_x) > 0.5D) {
+						nearest_x = (int)Math.ceil(near_x);
 					} else {
-						var19 = (int)Math.floor(var13);
+						nearest_x = (int)Math.floor(near_x);
 					}
 
-					var13 = (float)j * (float)(var9 - 1) / (var10 - 1);
-					int var20;
-					if (var13 - Math.floor(var13) > 0.5D) {
-						var20 = (int)Math.ceil(var13);
+					float near_y = (float)y * (float)(srcRows - 1) / (newRows - 1);
+					int nearest_y;
+					if (near_y - Math.floor(near_y) > 0.5D) {
+						nearest_y = (int)Math.ceil(near_y);
 					} else {
-						var20 = (int)Math.floor(var13);
+						nearest_y = (int)Math.floor(near_y);
 					}
 
-					var6[i + j * var8] = var5[var19 + var20 * var7];
+					scaledPix[x + y * newCols] = srcPix[nearest_x + nearest_y * src_x];
 				}
 			}
 
-			var0 = Image.createRGBImage(var6, (int)(var3 * var17), (int)(var4 * var18), true);
+			src = Image.createRGBImage(scaledPix, (int)(src_x * ratio_x), (int)(src_y * ratio_y), true);
 			System.gc();
 		} catch (final Exception var16) {
 			var16.printStackTrace();
 		}
 
-		return var0;
+		return src;
 	}
 
-	public static Image loadImage(final String var0, final boolean var1) {
-		Image var2 = null;
-		if (var1) {
+	public static Image loadImage(final String path, final boolean encrypted) {
+		Image loaded = null;
+		if (encrypted) {
 			try {
-				final InputStream var8 = (clazs == null ? (clazs = getClass("java.lang.Class")) : clazs).getResourceAsStream(var0);
-				DataInputStream var9;
-				int var11;
-				final byte[] var3 = new byte[var11 = (var9 = new DataInputStream(var8)).available()];
-				var9.read(var3, 0, var11);
-				var9.close();
-				int var10;
-				if (var11 < 100) {
-					var10 = 10 + var11 % 10;
-				} else if (var11 < 200) {
-					var10 = 50 + var11 % 20;
-				} else if (var11 < 300) {
-					var10 = 80 + var11 % 20;
+				final InputStream var8 = (clazs == null ? (clazs = getClass("java.lang.Class")) : clazs).getResourceAsStream(path);
+				DataInputStream dis = new DataInputStream(var8);
+				int size = dis.available();
+				final byte[] decrypted = new byte[size];
+				dis.read(decrypted, 0, size);
+				dis.close();
+				int lenRotated;
+				if (size < 100) {
+					lenRotated = 10 + size % 10;
+				} else if (size < 200) {
+					lenRotated = 50 + size % 20;
+				} else if (size < 300) {
+					lenRotated = 80 + size % 20;
 				} else {
-					var10 = 100 + var11 % 50;
+					lenRotated = 100 + size % 50;
 				}
 
-				for(int i = 0; i < var10; ++i) {
-					final byte var5 = var3[i];
-					var3[i] = var3[var11 - i - 1];
-					var3[var11 - i - 1] = var5;
+				for(int i = 0; i < lenRotated; ++i) {
+					final byte var5 = decrypted[i];
+					decrypted[i] = decrypted[size - i - 1];
+					decrypted[size - i - 1] = var5;
 				}
 
-				var2 = Image.createImage(var3, 0, var11);
+				loaded = Image.createImage(decrypted, 0, size);
 				System.gc();
 			} catch (final Exception var7) {
 			}
 		} else {
 			try {
-				var2 = Image.createImage(var0);
+				loaded = Image.createImage(path);
 			} catch (final Exception var6) {
 			}
 		}
 
-		return var2;
+		return loaded;
 	}
 
-	public static Image loadCryptedImage(final String var0) {
-		return loadImage(var0, true);
+	public static Image loadCryptedImage(final String path) {
+		return loadImage(path, true);
 	}
 
-	public static byte[] readFileBytes(final String var0) {
-		byte[] var1 = null;
+	public static byte[] readFileBytes(final String path) {
+		byte[] read = null;
 
 		try {
-			final InputStream var4 = (clazs == null ? (clazs = getClass("java.lang.Class")) : clazs).getResourceAsStream(var0);
-			int var2;
-			DataInputStream var5;
-			var1 = new byte[var2 = (var5 = new DataInputStream(var4)).available()];
-			var5.read(var1, 0, var2);
-			var5.close();
-		} catch (final Exception var3) {
+			final InputStream is = (clazs == null ? (clazs = getClass("java.lang.Class")) : clazs).getResourceAsStream(path);
+			DataInputStream dis = new DataInputStream(is);
+            int size = dis.available();
+			read = new byte[size];
+			dis.read(read, 0, size);
+			dis.close();
+		} catch (final Exception e) {
 		}
 
-		return var1;
+		return read;
 	}
 
-	private static Class getClass(final String var0) {
+	private static Class getClass(final String className) {
 		try {
-			return Class.forName(var0);
+			return Class.forName(className);
 		} catch (final ClassNotFoundException var1) {
 			throw new NoClassDefFoundError(var1.getMessage());
 		}

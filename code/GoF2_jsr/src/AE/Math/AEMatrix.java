@@ -243,15 +243,15 @@ public final class AEMatrix {
         }
     }
 
-    public final void addEulerAngles(final int var1, final int var2, final int var3) {
+    public final void addEulerAngles(final int x, final int y, final int z) {
         if (this.isDirty) {
             updateEulerAngles();
             this.isDirty = false;
         }
 
-        this.eulerX += var1;
-        this.eulerY += var2;
-        this.eulerZ += var3;
+        this.eulerX += x;
+        this.eulerY += y;
+        this.eulerZ += z;
         setRotation(this.eulerX, this.eulerY, this.eulerZ);
     }
 

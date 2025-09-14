@@ -27,8 +27,8 @@ public final class SystemPathFinder {
         final Node var10 = var4[var3];
         Node var9 = var10001;
         final Vector var8 = new Vector();
-        Vector var11;
-        (var11 = new Vector()).addElement(var9);
+        Vector var11 = new Vector();
+        var11.addElement(var9);
         var9.parentNode = null;
 
         Vector var10000;

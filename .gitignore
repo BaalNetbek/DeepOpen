@@ -6,3 +6,4 @@ __pycache__
 *test/
 /code/build/target/*
 2se/
+/.vscode

@@ -2689,7 +2689,7 @@ e.f I itemWidth
 e.b I itemHeight
 e.c I faceWidth
 e.d I faceHeight
-e.a [[B faces
+e.a [[B IMAGE_PARTS
 e.a(ZI)[B createChar
 e.a([B)[Ljavax/microedition/lcdui/Image; faceFromByteArray
 e.a([Ljavax/microedition/lcdui/Image;III)V drawChar

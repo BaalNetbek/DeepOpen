@@ -7,11 +7,11 @@ public final class Route {
     private boolean loop = false;
     private int current = 0;
 
-    public Route(final int[] var1) {
-        this.waypoints = new Waypoint[var1.length / 3];
+    public Route(final int[] points) {
+        this.waypoints = new Waypoint[points.length / 3];
 
-        for(int i = 0; i < var1.length; i += 3) {
-            this.waypoints[i / 3] = new Waypoint(var1[i], var1[i + 1], var1[i + 2], this);
+        for(int i = 0; i < points.length; i += 3) {
+            this.waypoints[i / 3] = new Waypoint(points[i], points[i + 1], points[i + 2], this);
         }
 
     }
@@ -20,10 +20,10 @@ public final class Route {
         this.waypoints = null;
     }
 
-    public final void setNewCoords(final AEVector3D var1) {
-        this.waypoints[0].x = var1.x;
-        this.waypoints[0].y = var1.y;
-        this.waypoints[0].z = var1.z;
+    public final void setNewCoords(final AEVector3D firstPoint) {
+        this.waypoints[0].x = firstPoint.x;
+        this.waypoints[0].y = firstPoint.y;
+        this.waypoints[0].z = firstPoint.z;
     }
 
     public final void reset() {
@@ -105,18 +105,16 @@ public final class Route {
     }
 
     public final Route clone() {
-        final int[] var1 = new int[this.waypoints.length * 3];
+        final int[] points = new int[this.waypoints.length * 3];
 
         for(int i = 0; i < this.waypoints.length; ++i) {
-            var1[i * 3] = this.waypoints[i].x;
-            var1[i * 3 + 1] = this.waypoints[i].y;
-            var1[i * 3 + 2] = this.waypoints[i].z;
+            points[i * 3] = this.waypoints[i].x;
+            points[i * 3 + 1] = this.waypoints[i].y;
+            points[i * 3 + 2] = this.waypoints[i].z;
         }
 
-        Route var4;
-        final Route var10000 = var4 = new Route(var1);
-        final boolean var3 = this.loop;
-        var10000.loop = var3;
+        Route var4 = new Route(points);
+        var4.loop = this.loop;
         return var4;
     }
 }

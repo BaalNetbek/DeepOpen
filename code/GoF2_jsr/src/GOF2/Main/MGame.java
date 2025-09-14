@@ -234,8 +234,7 @@ public final class MGame extends IApplicationModule {
 				this.unusedTick_ += this.frameTime;
 				this.menuListScrollTick += this.frameTime;
 				if (!this.paused) {
-					final LevelScript var10000 = this.levelScript;
-					var10000.timePassed += this.frameTime;
+					this.levelScript.timePassed += this.frameTime;
 					if (!this.cinematicBreak_) {
 						this.fiveSecTick += this.frameTime;
 					}
@@ -816,8 +815,7 @@ public final class MGame extends IApplicationModule {
 			}
 
 			if (this.playerEgo.speed < 100) {
-				final PlayerEgo var10000 = this.playerEgo;
-				var10000.speed += 5;
+				this.playerEgo.speed += 5;
 			}
 
 			this.lookAtCamera.setLookAt(false);

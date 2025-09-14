@@ -15,9 +15,8 @@ public final class LensFlareFX {
 		}
 
 		final Image var5 = AEFile.loadImage("/data/interface/lens1.png", true);
-		final int var10002 = var5.getWidth() / 4;
 		final int var3 = var5.getHeight() / 4;
-		final int var2 = var10002;
+		final int var2 = var5.getWidth() / 4;
 		this.mainFlare = AEFile.resizeImage(AEFile.loadImage("/data/interface/lens1.png", true), var2, var3);
 	}
 

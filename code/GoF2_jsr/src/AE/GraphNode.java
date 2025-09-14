@@ -93,8 +93,8 @@ public abstract class GraphNode {
 		markDirty();
 	}
 
-	public void moveTo(final int var1, final int var2, final int var3) {
-		this.compositeTransformation.translateTo(var1, var2, var3);
+	public void moveTo(final int x, final int y, final int z) {
+		this.compositeTransformation.translateTo(x, y, z);
 		this.transformDirty_ = true;
 		markDirty();
 	}
@@ -180,8 +180,8 @@ public abstract class GraphNode {
 		this.localTransformation.setRotationOrder(var1);
 	}
 
-	public final void rotateEuler(final int var1, final int var2, final int var3) {
-		this.compositeTransformation.addEulerAngles(var1, var2, var3);
+	public final void rotateEuler(final int x, final int y, final int z) {
+		this.compositeTransformation.addEulerAngles(x, y, z);
 		this.transformDirty_ = true;
 		markDirty();
 	}

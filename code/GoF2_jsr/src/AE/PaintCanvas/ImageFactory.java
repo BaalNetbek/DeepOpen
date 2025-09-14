@@ -14,7 +14,7 @@ public final class ImageFactory {
 	public static int itemHeight = 15;
 	public static int faceWidth = 42;
 	public static int faceHeight = 52;
-	private static byte[][] faces = {
+	private static byte[][] IMAGE_PARTS = {
 	      {11, 11, 9, 11, 4},
 	      {5, 4, 6, 10},
 	      {5, 5, 5, 5},
@@ -42,19 +42,19 @@ public final class ImageFactory {
 
 		byte[] var4;
 		if (var1 == Globals.TERRAN) {
-			var4 = new byte[faces[var1].length];
+			var4 = new byte[IMAGE_PARTS[var1].length];
 		} else {
-			var4 = new byte[faces[var1].length + 1];
+			var4 = new byte[IMAGE_PARTS[var1].length + 1];
 		}
 
 		if (var1 == Globals.CYBORG) {
-			var1 = 0;
+			var1 = Globals.TERRAN;
 		}
 
 		var4[0] = (byte)var1;
 
 		for(int i = 1; i < var4.length; ++i) {
-			var4[i] = (byte)GlobalStatus.random.nextInt(faces[var1][i - 1]);
+			var4[i] = (byte)GlobalStatus.random.nextInt(IMAGE_PARTS[var1][i - 1]);
 		}
 
 		return var4;
@@ -98,9 +98,12 @@ public final class ImageFactory {
 		GlobalStatus.graphics.drawRegion(items, idx * itemWidth, 0, itemWidth, itemHeight, 0, x, y, anchor);
 	}
 
-	public static void drawShip(final int var0, int var1, final Image var2, final Image var3, final int var4, final int var5, final int anchor) {
-		var1 = var1 == 0 ? 0 : var1 == 2 ? 1 : var1 == 8 ? 3 : 2;
-		GlobalStatus.graphics.drawRegion(var3, var1 * itemFrameWidth, 0, itemFrameWidth, itemFrameHeight, 0, var4, var5, anchor);
-		GlobalStatus.graphics.drawRegion(var2, var0 * itemWidth, 0, itemWidth, itemHeight, 0, var4, var5, anchor);
+	public static void drawShip(final int id, int race, final Image shipsImg, final Image colorsImg, final int var4, final int var5, final int anchor) {
+		race = race == Globals.TERRAN ? 0 :
+            race == Globals.NIVELIAN ?  1 :
+            race == Globals.PIRATE ?    3 :
+                                        2;
+		GlobalStatus.graphics.drawRegion(colorsImg, race * itemFrameWidth, 0, itemFrameWidth, itemFrameHeight, 0, var4, var5, anchor);
+		GlobalStatus.graphics.drawRegion(shipsImg, id * itemWidth, 0, itemWidth, itemHeight, 0, var4, var5, anchor);
 	}
 }
