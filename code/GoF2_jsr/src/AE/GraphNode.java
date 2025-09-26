@@ -45,8 +45,8 @@ public abstract class GraphNode {
 		return this.resourceId;
 	}
 
-	public final void setDraw(final boolean var1) {
-		this.draw = var1;
+	public final void setDraw(final boolean draw) {
+		this.draw = draw;
 	}
 
 	public final boolean isVisible() {

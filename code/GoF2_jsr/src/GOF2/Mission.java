@@ -59,10 +59,13 @@ public final class Mission {
 	public static final int TYPE_5 = 5;
 	public static final int TYPE_6 = 6;
 	public static final int TYPE_7 = 7;
+    /** Purchase */
 	public static final int TYPE_8 = 8;
 	public static final int TYPE_9 = 9;
 	public static final int TYPE_10 = 10;
+    /** Passenger/Reach destination */
 	public static final int TYPE_11 = 11;
+    /** Challenge */
 	public static final int TYPE_12 = 12;
 	public static final int TYPE_13 = 13;
 	public static final int TYPE_14 = 14;

@@ -128,12 +128,12 @@ public final class PlayerFighter extends KIPlayer {
         return false;
     }
 
-    public final void setPosition(final int var1, final int var2, final int var3) {
-        this.targetX = var1;
-        this.targetY = var2;
-        this.targetZ = var3;
-        this.geometry.moveTo(var1, var2, var3);
-        this.initPos.set(var1, var2, var3);
+    public final void setPosition(final int x, final int y, final int z) {
+        this.targetX = x;
+        this.targetY = y;
+        this.targetZ = z;
+        this.geometry.moveTo(x, y, z);
+        this.initPos.set(x, y, z);
         if (this.trail != null) {
             this.trail.reset(this.initPos);
         }

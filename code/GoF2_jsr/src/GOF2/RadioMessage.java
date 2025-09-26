@@ -1,33 +1,54 @@
 package GOF2;
 
 public final class RadioMessage {
+
+    
+
+    /** waypoint x reached */
     public static final int TRIG_0 = 0;
+    /** enemies x,y,z,... are active */
 	public static final int TRIG_1 = 1;
+     /** enemies x,y,z,... are dead and friendly */
 	public static final int TRIG_2 = 2;
+    /** No enemies left */
 	public static final int TRIG_3 = 3;
+    /** No friends left */
 	public static final int TRIG_4 = 4;
+    /** x ms passed */
 	public static final int TRIG_5 = 5;
+    /** RadioMessage x triggered*/
 	public static final int TRIG_6 = 6;
 	public static final int TRIG_7 = 7;
+    /** enemy x is active */
 	public static final int TRIG_8 = 8;
 	public static final int TRIG_9 = 9;
+    /** enemies x,y,z,... are active and friendly */
 	public static final int TRIG_10 = 10;
-	/** Objective achieved */
+	/** Objective x achieved */
 	public static final int TRIG_11 = 11;
+    /** enemy x lost half hp */
 	public static final int TRIG_12 = 12;
 	public static final int TRIG_13 = 13;
+    /** enemy x's mission crate captured */
 	public static final int TRIG_14 = 14;
 	public static final int TRIG_15 = 15;
+    /** not friend is active */
 	public static final int TRIG_16 = 16;
+    /** every ship except x is dead */
 	public static final int TRIG_17 = 17;
 	public static final int TRIG_18 = 18;
+    /** any of x,y,z lost 1/4 of hp */
 	public static final int TRIG_19 = 19;
+    /** x enemies is dead */
 	public static final int TRIG_20 = 20;
+    /** enemy x stunned */
 	public static final int TRIG_21 = 21;
+    /** captured x cargo */
 	public static final int TRIG_22 = 22;
+    /** scoped on a station */
 	public static final int TRIG_23 = 23;
+    /** enemy x not active, not dead */
 	public static final int TRIG_24 = 24;
-	public static final int TRIG_25 = 25;
 
     private Radio radio;
     private final int textId;
@@ -40,17 +61,17 @@ public final class RadioMessage {
     private int lastWaypoint_;
     /**
      *
-     * @param var1 text index
-     * @param var2 face index
-     * @param var3 trigger condition
-     * @param var4 trigger type
+     * @param text text index
+     * @param face face index
+     * @param trigger trigger type
+     * @param trig_param trigger parameter
      */
-    public RadioMessage(final int var1, final int var2, final int var3, final int var4) {
-        this.textId = var1;
-        this.imageId = var2;
-        this.trigType = var3;
-        this.trigCondition = var4;
-        this.conditionsGroup = new int[]{var4};
+    public RadioMessage(final int text, final int face, final int trigger, final int trigParam) {
+        this.textId = text;
+        this.imageId = face;
+        this.trigType = trigger;
+        this.trigCondition = trigParam;
+        this.conditionsGroup = new int[]{trigParam};
         this.triggered = false;
         this.finished = false;
     }
@@ -137,7 +158,8 @@ public final class RadioMessage {
             break;
         case TRIG_8:
             for (i = 0; i < this.conditionsGroup.length; i++) {
-                if (!coPlayers[i].isAsteroid() && coPlayers[this.conditionsGroup[i]].isActive()) {
+                // #BUG? does it make any sense
+                if (!coPlayers[i].isAsteroid() && coPlayers[this.conditionsGroup[i]].isActive()) { 
                     triggered = true;
                     break;
                 }
@@ -174,7 +196,8 @@ public final class RadioMessage {
             }
             break;
         case TRIG_14:
-            triggered = ((PlayerFighter)playerEgo.player.getEnemies()[this.trigCondition].getKIPlayer()).lostMissionCrateToEgo();
+            PlayerFighter kiPlayer = (PlayerFighter)playerEgo.player.getEnemies()[this.trigCondition].getKIPlayer();
+            triggered = kiPlayer.lostMissionCrateToEgo();
             break;
         case TRIG_15:
             triggered = false;

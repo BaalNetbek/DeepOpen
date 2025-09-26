@@ -143,8 +143,8 @@ public final class Globals {
         return GlobalStatus.gameText.getText(var0 + 569);
     }
 
-    public static int[] getRaceUVkeyframeId_(final int var0) {
-        switch(var0) {
+    public static int[] getRaceUVkeyframeId_(final int race) {
+        switch(race) {
         case NIVELIAN:
             return new int[]{2, 2};
         case MIDORIAN:

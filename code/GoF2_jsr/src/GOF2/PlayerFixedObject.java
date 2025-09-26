@@ -116,8 +116,8 @@ public final class PlayerFixedObject extends KIPlayer {
     public final void update(final long var1) {
         this.frametime = var1;
         this.player.update(var1);
-        this.player.enemy = this.race != 8 && this.race != 9 ? Status.getStanding().isEnemy(this.race) : true;
-        this.player.friend = this.race != 8 && this.race != 9 ? Status.getStanding().isFriend(this.race) : false;
+        this.player.enemy = this.race != Globals.PIRATE && this.race != Globals.VOID ? Status.getStanding().isEnemy(this.race) : true;
+        this.player.friend = this.race != Globals.PIRATE && this.race != Globals.VOID ? Status.getStanding().isFriend(this.race) : false;
         if (this.player.isAlwaysEnemy()) {
             this.player.enemy = true;
             this.player.friend = false;

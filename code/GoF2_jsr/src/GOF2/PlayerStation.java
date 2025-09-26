@@ -20,7 +20,7 @@ public final class PlayerStation extends PlayerStaticFar {
 		    21,     -9152,  -7,     20335, 28573, 20340,
 		    -192,   -1795,  0,      11008, 13859, 13952,
 		    0,      -2268,  -7,     19164, 14804, 19177,
-		    -1250,  -4456,  1261,   15033, 19181, 15027,
+		    -1250,  -4456,  1261,   15033, 19181, 15027, // #BUG, #TODO offset.z -> -1261, x -> 1250 (flip sign)
 		    -11,    3719,   -29,    2512,  12400, 25744,
 		    18,     -729,   0,      2499,  3502,  16384,
 		    18,     -729,   0,      2499,  3502,  8192,
@@ -85,7 +85,7 @@ public final class PlayerStation extends PlayerStaticFar {
             for(int i = 0; i < this.stationParts.length; ++i) {
                 j = i * 7;
                 this.stationParts[i] = AEResourceManager.getGeometryResource(stationParts[j + FileRead.RESOURCE_ID]);
-                this.stationParts[i].setRotationOrder((short)0);
+                this.stationParts[i].setRotationOrder((short)0); //ZYX
 				this.stationParts[i].moveTo(
 						stationParts[j + FileRead.POSITION_X],
 						stationParts[j + FileRead.POSITION_Y],

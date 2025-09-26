@@ -10,6 +10,7 @@ public final class Objective {
 	/** kill everyone */
 	public static final int TYPE_0 = 0;
 	public static final int TYPE_1 = 1;
+    /** reach last ego route waypoint  */
 	public static final int TYPE_2 = 2;
 	public static final int TYPE_3 = 3;
 	public static final int TYPE_4 = 4;

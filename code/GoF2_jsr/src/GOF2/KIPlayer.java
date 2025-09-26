@@ -18,7 +18,8 @@ import AE.Math.AEVector3D;
  * @author Fishlabs 2009
  */
 public abstract class KIPlayer {
-	protected short state = 0;
+
+    protected short state = 0;
 	protected int speed = 2;
 	public Player player;
 	public AEGeometry mainMesh_;
