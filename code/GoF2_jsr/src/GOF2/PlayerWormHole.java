@@ -26,8 +26,8 @@ public final class PlayerWormHole extends PlayerStaticFar {
         this.geometry.uniqueAppend_(this.mainMesh_);
         this.mainMesh_.moveTo(0, 0, 0);
         this.geometry.moveTo(x, y, z);
-        final char var7 = 40000;
-        this.player.radius = var7;
+        //final char var7 = 40000;
+        this.player.radius = 40000f;
 
         for(int i = 0; i < 10; ++i) {
             (mesh = AEResourceManager.getGeometryResource(6806)).setTransform(this.mainMesh_.getToParentTransform());

@@ -1428,7 +1428,7 @@ bh.f Lcd; distanceToTarget
 bh.a Lcl; tempTransform
 bh.p I targedId_
 bh.n Z canBoost
-bh.q I behavioutChangeTick
+bh.q I behaviourChangeTick
 bh.r I boostTick
 bh.s I boostTimeLimit
 bh.t I trailTick

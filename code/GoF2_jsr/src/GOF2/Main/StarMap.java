@@ -162,6 +162,7 @@ public final class StarMap {
 			this.wormhole = AEResourceManager.getGeometryResource(6805);
 			this.wormhole.setDraw(true);
 			this.wormhole.setAnimationSpeed(30);
+			//this.wormhole.rotateEuler(0, AEMath.Q_PI_HALF, 0); # BUG wormhole is flipped without this line
 			this.wormhole.setScale(AEMath.Q_EIGHTH, AEMath.Q_EIGHTH, AEMath.Q_EIGHTH);
 			this.wormhole.setAnimationMode((byte)2);
 			this.wormhole.moveTo(this.stars[Status.wormholeSystem].getPostition());
@@ -558,7 +559,8 @@ public final class StarMap {
 					if (this.wormhole != null && this.galaxyMapGroup != null) {
 						this.galaxyMapGroup.uniqueAppend_(this.wormhole);
 						this.wormhole.getToParentTransform().identity();
-						this.wormhole.setScale(AEMath.Q_EIGHTH, AEMath.Q_EIGHTH, AEMath.Q_EIGHTH);
+						//this.wormhole.rotateEuler(0, AEMath.Q_PI_HALF, 0); # BUG wormhole is flipped without this line
+						this.wormhole.setScale(AEMath.Q_EIGHTH, -AEMath.Q_EIGHTH, AEMath.Q_EIGHTH);
 						this.wormhole.moveTo(this.stars[Status.wormholeSystem].getPostition());
 					}
 				}

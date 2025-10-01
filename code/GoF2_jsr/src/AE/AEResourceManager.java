@@ -28,13 +28,16 @@ public final class AEResourceManager {
 			System.arraycopy(texturePaths, 0, extPaths, 0, texturePaths.length);
 			extPaths[texturePaths.length] = path;
 			texturePaths = extPaths;
+			
 			final ITexture[] extTexs = new ITexture[textures.length + 1];
 			System.arraycopy(textures, 0, extTexs, 0, textures.length);
 			textures = extTexs;
+			
 			final int[] extTexIDs = new int[textureIds.length + 1];
 			System.arraycopy(textureIds, 0, extTexIDs, 0, textureIds.length);
 			extTexIDs[textureIds.length] = resId;
 			textureIds = extTexIDs;
+			
 			final boolean[] extLoaded = new boolean[loadedTextures.length + 1];
 			System.arraycopy(loadedTextures, 0, extLoaded, 0, loadedTextures.length);
 			extLoaded[loadedTextures.length] = false;
@@ -60,21 +63,26 @@ public final class AEResourceManager {
 			System.arraycopy(meshPaths, 0, extPaths, 0, meshPaths.length);
 			extPaths[meshPaths.length] = path;
 			meshPaths = extPaths;
+			
 			int[] extRadii = new int[radii_.length + 1];
 			System.arraycopy(radii_, 0, extRadii, 0, radii_.length);
 			extRadii[radii_.length] = radius;
 			radii_ = extRadii;
+			
 			final AEGeometry[] extMeshes = new AEGeometry[meshes.length + 1];
 			System.arraycopy(meshes, 0, extMeshes, 0, meshes.length);
 			meshes = extMeshes;
+			
 			extRadii = new int[meshIds.length + 1];
 			System.arraycopy(meshIds, 0, extRadii, 0, meshIds.length);
 			extRadii[meshIds.length] = resId;
 			meshIds = extRadii;
+			
 			final boolean[] extLoaded = new boolean[loadedMeshes.length + 1];
 			System.arraycopy(loadedMeshes, 0, extLoaded, 0, loadedMeshes.length);
 			extLoaded[loadedMeshes.length] = false;
 			loadedMeshes = extLoaded;
+			
 			final int[] extMeshTexIds = new int[meshsTextureIds.length + 1];
 			System.arraycopy(meshsTextureIds, 0, extMeshTexIds, 0, meshsTextureIds.length);
 			extMeshTexIds[meshsTextureIds.length] = textureResId;
@@ -82,8 +90,8 @@ public final class AEResourceManager {
 		}
 	}
 
-	public static void addSkyboxResource(final int var0, final String var1, final int var2) {
-		addGeometryResource(9991, var1, -1, 1);
+	public static void addSkyboxResource(final int id, final String path, final int texture) {
+		addGeometryResource(id, path, -1, texture);
 	}
 
 	public static ITexture getTextureResource(final int resourceId) {

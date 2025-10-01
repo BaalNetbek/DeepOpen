@@ -22,7 +22,7 @@ public final class PlayerFighter extends KIPlayer {
     private static AEMatrix tempTransform = new AEMatrix();
     private int targedId_;
     private boolean canBoost;
-    private int behavioutChangeTick;
+    private int behaviourChangeTick;
     private int boostTick;
     private int boostTimeLimit;
     private int trailTick;
@@ -156,7 +156,7 @@ public final class PlayerFighter extends KIPlayer {
             break;
         case 3:
         case 4:
-            this.behavioutChangeTick = 5001;
+            this.behaviourChangeTick = 5001;
             if (this.speed != 3.0F) {
                 this.boostTick = 5001;
             }
@@ -205,7 +205,7 @@ public final class PlayerFighter extends KIPlayer {
             setActive(false);
         } else {
             this.boostTick = (int)(this.boostTick + var1);
-            this.behavioutChangeTick = (int)(this.behavioutChangeTick + var1);
+            this.behaviourChangeTick = (int)(this.behaviourChangeTick + var1);
             if (this.race == 1) {
                 this.race = 1;
             }
@@ -293,7 +293,7 @@ public final class PlayerFighter extends KIPlayer {
                     }
 
                     this.target__ = null;
-                    if (this.behavioutChangeTick > 5000) {
+                    if (this.behaviourChangeTick > 5000) {
                         boolean var10001;
                         label655: {
                             if (this.strayFromTarget_) {
@@ -309,7 +309,7 @@ public final class PlayerFighter extends KIPlayer {
 
                         label650: {
                             this.strayFromTarget_ = var10001;
-                            this.behavioutChangeTick = 0;
+                            this.behaviourChangeTick = 0;
                             if (GlobalStatus.random.nextInt(100) < 30 && var3.length > 1) {
                                 this.targetIsActive = false;
 

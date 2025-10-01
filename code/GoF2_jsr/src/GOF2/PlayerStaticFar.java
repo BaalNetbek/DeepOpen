@@ -16,7 +16,7 @@ public class PlayerStaticFar extends PlayerStatic {
         this.targetY = y;
         this.targetZ = z;
         if (mesh != null) {
-            this.player.radius = 7500;
+            this.player.radius = 7500f;
             this.mainMesh_.setRenderLayer(2);
         }
     }

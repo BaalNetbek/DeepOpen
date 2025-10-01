@@ -19,6 +19,14 @@ import AE.Math.AEVector3D;
  */
 public abstract class KIPlayer {
 
+    // States
+    public final static int ACTIVE = 1;
+    
+    public final static int DYING = 3;
+    public final static int DEAD = 4;
+    public final static int SLEEPING = 5;
+    public final static int JUMPING = 6;
+
     protected short state = 0;
 	protected int speed = 2;
 	public Player player;

@@ -1414,7 +1414,7 @@ bh.f Lcc; distanceToTarget
 bh.a Lcm; tempTransform
 bh.p I targedId_
 bh.m Z canBoost
-bh.q I behavioutChangeTick
+bh.q I behaviourChangeTick
 bh.r I tearingSpeed
 bh.s I boostTick
 bh.t I boostTimeLimit
@@ -1432,7 +1432,7 @@ bh.x I initialWaypoint
 bh.y I weaponActive
 bh.a Lt; trail
 bh.p Z strayFromTarget_
-bh.c F tearingSpeed
+bh.c F speed
 bh.d F handling
 bh.a [Ly; boundings
 bh.q Z targetIsActive

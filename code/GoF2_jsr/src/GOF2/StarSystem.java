@@ -2,7 +2,7 @@ package GOF2;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
-import javax.microedition.m3g.Transform;
+//import javax.microedition.m3g.Transform;
 
 import AE.AEFile;
 import AE.AEResourceManager;
@@ -12,7 +12,7 @@ import AE.GlobalStatus;
 import AE.LensFlareFX;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
-import AE.Math.AEMatrix;
+//import AE.Math.AEMatrix;
 
 /**
  * Manages skybox elements (star, planets, nebulas).
