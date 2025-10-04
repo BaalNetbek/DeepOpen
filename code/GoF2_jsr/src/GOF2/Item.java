@@ -7,9 +7,9 @@ package GOF2;
 public final class Item {
 	
 	// types
-	public static final int PRIMARY = 0;
+	public static final int PRIMARY   = 0;
 	public static final int SECONDARY = 1;
-	public static final int TURRET = 2;
+	public static final int TURRET    = 2;
 	public static final int EQUIPMENT = 3;
 	public static final int COMMODITY = 4;
 	// sorts (sub types)
@@ -39,7 +39,7 @@ public final class Item {
 	public static final int ORE = 23;
 	public static final int ORE_CORE = 24;
 	
-	// Not defined attribute values
+	// Not defined attribute value
 	public static final int NULL_ATTRIBUTE = -979797979;
 	// attributes
 	public static final int ID = 0;
@@ -55,7 +55,7 @@ public final class Item {
 	public static final int EMP_DAMAGE = 10;
 	public static final int RELOAD = 11;			// ms
 	public static final int RANGE = 12;				// m
-	public static final int VELOCITY = 13;  // 250 km/h
+	public static final int VELOCITY = 13;          // 250 km/h
 	public static final int EXPLOSION_RANGE = 14;
 	public static final int TURRET_HANDLING = 15;
 	public static final int SHIELD_VALUE = 16;
@@ -337,136 +337,135 @@ public final class Item {
 		}
 	}
 
-	public static Item[] combineItems(Item[] var0, final Item[] var1) {
-		int var2 = var0 == null ? 0 : var0.length;
-		int var3 = var1 == null ? 0 : var1.length;
-		final Item[] var4 = new Item[var2 + var3];
-		if (var2 > 0 && var3 == 0) {
-			for(var3 = 0; var3 < var0.length; ++var3) {
-				var4[var3] = var0[var3].makeItem(var0[var3].amount);
+	public static Item[] combineItems(Item[] a, final Item[] b) {
+		int aLen = a == null ? 0 : a.length;
+		int bLen = b == null ? 0 : b.length;
+		final Item[] comb = new Item[aLen + bLen];
+		if (aLen > 0 && bLen == 0) {
+			for(int i = 0; i < a.length; ++i) {
+				comb[i] = a[i].makeItem(a[i].amount);
 			}
 
-			return var4;
+			return comb;
 		}
-		Item var10000;
-		if (var3 > 0 && var2 == 0) {
-			for(var3 = 0; var3 < var1.length; ++var3) {
-				var4[var3] = var1[var3].makeItem(0);
-				var10000 = var4[var3];
-				var2 = var1[var3].amount;
-				var10000.stationAmount = var2;
+		//Item var10000;
+		if (bLen > 0 && aLen == 0) {
+			for(int i = 0; i < b.length; ++i) {
+				comb[i] = b[i].makeItem(0);
+				//var10000 = var4[var3];
+				//var2 = var1[i].amount;
+				comb[i].stationAmount = b[i].amount;
 			}
 
-			return var4;
-		} else if (var3 == 0 && var2 == 0) {
+			return comb;
+		} else if (bLen == 0 && aLen == 0) {
 			return null;
 		} else {
-			for(var3 = 0; var3 < var0.length; ++var3) {
-				var4[var3] = var0[var3].makeItem(var0[var3].amount);
+			for(int i = 0; i < a.length; ++i) {
+				comb[i] = a[i].makeItem(a[i].amount);
 			}
 
-			var3 = var2;
+			bLen = aLen;
 
-			for(int i = 0; i < var1.length; ++i) {
-				for(var2 = 0; var2 < var4.length; ++var2) {
-					if (var4[var2] == null) {
-						var4[var2] = var1[i].makeItem(0);
-						var10000 = var4[var2];
-						var2 = var1[i].amount;
-						var10000.stationAmount = var2;
-						++var3;
+			for(int i = 0; i < b.length; ++i) {
+				for(int j = 0; j < comb.length; ++j) {
+					if (comb[j] == null) {
+						comb[j] = b[i].makeItem(0);
+						//var10000 = var4[j];
+						//j = var1[i].amount;
+						comb[j].stationAmount = b[i].amount;
+						++bLen;
 						break;
 					}
 
-					if (var1[i].equals(var4[var2])) {
-						var4[var2] = var1[i].makeItem(var4[var2].amount);
-						var10000 = var4[var2];
-						var2 = var1[i].amount;
-						var10000.stationAmount = var2;
+					if (b[i].equals(comb[j])) {
+						comb[j] = b[i].makeItem(comb[j].amount);
+						//var10000 = var4[j];
+						//j = var1[i].amount;
+						comb[j].stationAmount = b[i].amount;
 						break;
 					}
 				}
 			}
 
-			var0 = new Item[var3];
-			System.arraycopy(var4, 0, var0, 0, var3);
+			a = new Item[bLen];
+			System.arraycopy(comb, 0, a, 0, bLen);
 
-			boolean var8;
+			boolean sorted;
 			do {
-				var8 = true;
+				sorted = true;
 
-				for(int i = 1; i < var0.length; ++i) {
-					if (var0[i - 1].id > var0[i].id) {
-						final Item var9 = var0[i - 1];
-						var0[i - 1] = var0[i];
-						var0[i] = var9;
-						var8 = false;
+				for(int i = 1; i < a.length; ++i) {
+					if (a[i - 1].id > a[i].id) {
+						Item temp = a[i - 1];
+						a[i - 1] = a[i];
+						a[i] = temp;
+						sorted = false;
 					}
 				}
-			} while(!var8);
+			} while(!sorted);
 
-			return var0;
+			return a;
 		}
 	}
 
-	public static Item[] mixItems(final Item[] var0, final Item[] var1) {
-		if (var0 == null) {
-			return var1;
+    /** Adds together to item arrays 'a', 'b'. May modify 'a'. 'a' is assumed to have all elements initiated. */
+	public static Item[] mixItems(final Item[] a, final Item[] b) {
+		if (a == null) {
+			return b;
 		}
-		if (var1 == null) {
-			return var0;
+		if (b == null) {
+			return a;
 		} else {
-			final Item[] var2 = new Item[var1.length];
+			final Item[] bCopy = new Item[b.length];
 
-			for(int i = 0; i < var1.length; ++i) {
-				var2[i] = var1[i];
+			for(int i = 0; i < b.length; ++i) {
+				bCopy[i] = b[i];
 			}
 
-			Item[] var7 = null;
-			int var6 = var2.length;
+			Item[] diffItems = null;
+			int diff = bCopy.length;
 
-			int var4;
-			int var5;
-			for(var4 = 0; var4 < var0.length; ++var4) {
-				for(var5 = 0; var5 < var2.length; ++var5) {
-					if (var2[var5] != null && var0[var4].id == var2[var5].id) {
-						var0[var4].changeAmount(var2[var5].amount);
-						--var6;
-						var2[var5] = null;
+            // stack common items
+			for(int i = 0; i < a.length; ++i) {
+				for(int j = 0; j < bCopy.length; ++j) {
+					if (bCopy[j] != null && a[i].id == bCopy[j].id) { // #BUG potential accesing fields of A[i] = null
+						a[i].changeAmount(bCopy[j].amount);
+						--diff;
+						bCopy[j] = null;
 					}
 				}
 			}
 
-			if (var6 <= 0) {
-				return var0;
+			if (diff <= 0) {
+				return a;
 			} else {
-				var7 = new Item[var6];
-				var4 = 0;
-
-				for(var5 = 0; var5 < var2.length; ++var5) {
-					if (var2[var5] != null) {
-						var7[var4] = var2[var5];
-						var4++;
+				diffItems = new Item[diff];
+				int j = 0;
+				for(int i = 0; i < bCopy.length; ++i) {
+					if (bCopy[i] != null) {
+						diffItems[j] = bCopy[i];
+						j++;
 					}
 				}
 
-				final Item[] var8 = new Item[var0.length + var7.length];
+				final Item[] mixed = new Item[a.length + diffItems.length];
 
-				for(var6 = 0; var6 < var0.length; ++var6) {
-					var8[var6] = var0[var6];
+				for(int i = 0; i < a.length; ++i) {
+					mixed[i] = a[i];
 				}
 
-				for(var6 = 0; var6 < var7.length; ++var6) {
-					var8[var6 + var0.length] = var7[var6];
+				for(int i = 0; i < diffItems.length; ++i) {
+					mixed[i + a.length] = diffItems[i];
 				}
 
-				return var8;
+				return mixed;
 			}
 		}
 	}
 
 	public final boolean isWeapon() {
-		return this.type == 0 || this.type == 1 || this.type == 2;
+		return this.type == Item.PRIMARY || this.type == Item.SECONDARY || this.type == Item.TURRET;
 	}
 
 	public final Item makeItem(final int amount) {
