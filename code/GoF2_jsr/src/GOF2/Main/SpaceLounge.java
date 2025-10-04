@@ -22,6 +22,7 @@ import GOF2.ListItem;
 import GOF2.Mission;
 import GOF2.Popup;
 import GOF2.SolarSystem;
+import GOF2.Standing;
 import GOF2.Status;
 
 public final class SpaceLounge {
@@ -134,9 +135,9 @@ public final class SpaceLounge {
 		this.scene = null;
 	}
 
-	public final boolean handleKeystate(final int var1) {
+	public final boolean handleKeystate(final int keyPressed) {
 		if (this.starMapOpen) {
-			if (!this.starMap.handleKeystate(var1)) {
+			if (!this.starMap.handleKeystate(keyPressed)) {
 				this.starMapOpen = false;
 				this.scene.resetCamera();
 			}
@@ -144,13 +145,13 @@ public final class SpaceLounge {
 			return true;
 		}
 		if (this.transactionConfirmPopup_) {
-			if (var1 == 256) {
+			if (keyPressed == GOF2Canvas.KEY_5) {
 				this.transactionConfirmPopup_ = false;
 			}
 
-			if (var1 == 4) {
+			if (keyPressed == GOF2Canvas.LEFT) {
 				this.popup.left();
-			} else if (var1 == 32) {
+			} else if (keyPressed == GOF2Canvas.RIGHT) {
 				this.popup.right();
 			}
 		} else {
@@ -158,7 +159,7 @@ public final class SpaceLounge {
 			switch(this.chatType_) {
 			case 0:
 				var7 = false;
-				if (var1 == 2 || var1 == 32) {
+				if (keyPressed == GOF2Canvas.UP || keyPressed == GOF2Canvas.RIGHT) {
 					--this.selectedAgent;
 					if (this.selectedAgent < 0) {
 						this.selectedAgent = this.agents.length - 1;
@@ -167,7 +168,7 @@ public final class SpaceLounge {
 					var7 = true;
 				}
 
-				if (var1 == 64 || var1 == 4) {
+				if (keyPressed == GOF2Canvas.DOWN || keyPressed == GOF2Canvas.LEFT) {
 					++this.selectedAgent;
 					if (this.selectedAgent >= this.agents.length) {
 						this.selectedAgent = 0;
@@ -182,18 +183,18 @@ public final class SpaceLounge {
 					this.cameraIntegratorZ_.SetRange(GlobalStatus.renderer.getCamera().getPosZ(), var11.getPosZ() - 1000);
 				}
 
-				if (var1 == 8192) {
+				if (keyPressed == GOF2Canvas.RSB) {
 					GlobalStatus.renderer.setActiveCamera(this.camera);
 					return false;
 				}
 
-				if (var1 == 16384 || var1 == 256) {
+				if (keyPressed == GOF2Canvas.LSB || keyPressed == GOF2Canvas.KEY_5) {
 					startChat();
 				}
 				break;
 			case 1:
 			case 3:
-				if (var1 == 8192) {
+				if (keyPressed == GOF2Canvas.RSB) {
 					if (this.chatScroll >= 3) {
 						this.chatScroll -= 4;
 					} else if (this.chatType_ == 1) {
@@ -202,7 +203,7 @@ public final class SpaceLounge {
 					}
 				}
 
-				if (var1 == 16384 || var1 == 256) {
+				if (keyPressed == GOF2Canvas.LSB || keyPressed == GOF2Canvas.KEY_5) {
 					var7 = false;
 					if (this.chatScroll >= this.chatRows.length - 4) {
 						var7 = true;
@@ -239,7 +240,7 @@ public final class SpaceLounge {
 			case 2:
 				final int var2 = this.agents[this.selectedAgent].getMission() != null && this.agents[this.selectedAgent].getMission().isOutsideMission() ? 5 : this.agents[this.selectedAgent].getType() != Agent.TYPE_2 && this.agents[this.selectedAgent].getType() != Agent.TYPE_3 ? 3 : 4;
 				if (this.itemDescriptionOpen) {
-					if (var1 == 8192) {
+					if (keyPressed == GOF2Canvas.RSB) {
 						this.itemDescriptionOpen = false;
 					}
 
@@ -249,15 +250,15 @@ public final class SpaceLounge {
 				int var3;
 				Agent var6;
 				if (this.missionConfirmPopup) {
-					if (var1 == 4) {
+					if (keyPressed == GOF2Canvas.LEFT) {
 						this.popup.left();
 					}
 
-					if (var1 == 32) {
+					if (keyPressed == GOF2Canvas.RIGHT) {
 						this.popup.right();
 					}
 
-					if (var1 != 256) {
+					if (keyPressed != GOF2Canvas.KEY_5) {
 						return true;
 					}
 
@@ -378,21 +379,21 @@ public final class SpaceLounge {
 					return true;
 				}
 
-				if (var1 == 2) {
+				if (keyPressed == GOF2Canvas.UP) {
 					--this.chatAnswear;
 					if (this.chatAnswear < 0) {
 						this.chatAnswear = var2 - 1;
 					}
 				}
 
-				if (var1 == 64) {
+				if (keyPressed == GOF2Canvas.DOWN) {
 					++this.chatAnswear;
 					if (this.chatAnswear >= var2) {
 						this.chatAnswear = 0;
 					}
 				}
 
-				if (var1 == 16384 || var1 == 256) {
+				if (keyPressed == GOF2Canvas.LSB || keyPressed == GOF2Canvas.KEY_5) {
 					boolean var5 = false;
 					switch(this.chatAnswear) {
 					case 0:
@@ -762,7 +763,7 @@ public final class SpaceLounge {
 					break;
 				case Agent.TYPE_7:
 					final int var13 = var1.getRace();
-					int var12 = Status.getStanding().getStanding(var13 != 2 && var13 != 3 ? 0 : 1);
+					int var12 = Status.getStanding().getStanding(var13 != 2 && var13 != 3 ? Standing.VOSSK_TERRAN : Standing.MIDO_NIVELIAN);
 					if (!Status.getStanding().isEnemy(var13)) {
 						var5 = GlobalStatus.gameText.getText(513);
 						this.chatRows = Font.splitToLines(var5, GlobalStatus.screenWidth - this.chatTextPosX - this.answearsPosX);

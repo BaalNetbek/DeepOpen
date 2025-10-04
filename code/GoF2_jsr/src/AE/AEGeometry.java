@@ -45,7 +45,7 @@ public abstract class AEGeometry extends SceneObject {
 	public abstract GraphNode clone();
 
 	public static AEGeometry newPlaneStrip(final int resourceId, final int quadCount, final byte blending) {
-		return new ParticleSystemMesh(resourceId, quadCount, blending);
+		return new QuadArray(resourceId, quadCount, blending);
 	}
 
 	public abstract void setTexture(ITexture texture);

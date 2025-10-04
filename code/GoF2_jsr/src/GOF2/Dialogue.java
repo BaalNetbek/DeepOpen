@@ -6,160 +6,160 @@ import GOF2.Main.GOF2Canvas;
 
 public final class Dialogue {
     private static short[][] CAMPAIGN_BRIEFING = {
-/*  0 */  {16, 853},
-/*  1 */  {0, 0},
-/*  2 */  {0, 883, 2, 884, 0, 885, 2, 886, 16, 887},
-/*  3 */  {0, 0},
-/*  4 */  {2, 896},
-/*  5 */  {0, 0},
-/*  6 */  {0, 0},
-/*  7 */  {2, 906, 16, 907, 16, 908},
-/*  9 */  {0, 0},
-/* 10 */  {0, 0},
-/* 11 */  {0, 0},
-/* 12 */  {0, 947},
-/* 13 */  {0, 0},
-/* 14 */  {0, 0},
-/* 15 */  {0, 967},
-/* 16 */  {0, 0},
-/* 17 */  {1, 981, 0, 982},
-/* 18 */  {0, 0},
-/* 19 */  {0, 0},
-/* 20 */  {0, 0},
-/* 21 */  {0, 0},
-/* 22 */  {1, 1016, 16, 1017},
-/* 23 */  {0, 0},
-/* 24 */  {5, 1026},
-/* 25 */  {6, 1041, 0, 1042, 19, 1043, 6, 1044, 0, 1045,
-           6, 1046
+/*  0 */  {Globals.FACE_COMPUTER, 853},
+/*  1 */  {Globals.FACE_KEITH, 0},
+/*  2 */  {Globals.FACE_KEITH, 883, Globals.FACE_GUNANT, 884, Globals.FACE_KEITH, 885, Globals.FACE_GUNANT, 886, Globals.FACE_COMPUTER, 887},
+/*  3 */  {Globals.FACE_KEITH, 0},
+/*  4 */  {Globals.FACE_GUNANT, 896},
+/*  5 */  {Globals.FACE_KEITH, 0},
+/*  6 */  {Globals.FACE_KEITH, 0},
+/*  7 */  {Globals.FACE_GUNANT, 906, Globals.FACE_COMPUTER, 907, Globals.FACE_COMPUTER, 908},
+/*  9 */  {Globals.FACE_KEITH, 0},
+/* 10 */  {Globals.FACE_KEITH, 0},
+/* 11 */  {Globals.FACE_KEITH, 0},
+/* 12 */  {Globals.FACE_KEITH, 947},
+/* 13 */  {Globals.FACE_KEITH, 0},
+/* 14 */  {Globals.FACE_KEITH, 0},
+/* 15 */  {Globals.FACE_KEITH, 967},
+/* 16 */  {Globals.FACE_KEITH, 0},
+/* 17 */  {Globals.FACE_BRENT, 981, Globals.FACE_KEITH, 982},
+/* 18 */  {Globals.FACE_KEITH, 0},
+/* 19 */  {Globals.FACE_KEITH, 0},
+/* 20 */  {Globals.FACE_KEITH, 0},
+/* 21 */  {Globals.FACE_KEITH, 0},
+/* 22 */  {Globals.FACE_BRENT, 1016, Globals.FACE_COMPUTER, 1017},
+/* 23 */  {Globals.FACE_KEITH, 0},
+/* 24 */  {Globals.FACE_TOMMY, 1026},
+/* 25 */  {Globals.FACE_CARLA, 1041, Globals.FACE_KEITH, 1042, Globals.FACE_VOID, 1043, Globals.FACE_CARLA, 1044, Globals.FACE_KEITH, 1045,
+           Globals.FACE_CARLA, 1046
            },
-/* 26 */  {0, 0},
-/* 27 */  {6, 1055, 0, 1056, 6, 1057},
-/* 28 */  {0, 0},
-/* 29 */  {0, 1068, 19, 1069, 0, 1070},
-/* 30 */  {0, 1071, 0, 1072},
-/* 31 */  {0, 0},
-/* 32 */  {0, 0},
-/* 33 */  {0, 1095},
-/* 34 */  {0, 0},
-/* 35 */  {0, 0},
-/* 36 */  {0, 0},
-/* 37 */  {7, 1133, 0, 1134},
-/* 38 */  {0, 0},
-/* 39 */  {0, 1145},
-/* 40 */  {0, 0},
-/* 41 */  {0, 1158, 7, 1159, 0, 1160, 8, 1161, 0, 1162},
-/* 42 */  {0, 1165, 7, 1166},
-/* 43 */  {0, 0},
-/* 44 */  {0, 0},
-/* 45 */  {0, 0},
-/* 46 */  {0, 0}};
+/* 26 */  {Globals.FACE_KEITH, 0},
+/* 27 */  {Globals.FACE_CARLA, 1055, Globals.FACE_KEITH, 1056, Globals.FACE_CARLA, 1057},
+/* 28 */  {Globals.FACE_KEITH, 0},
+/* 29 */  {Globals.FACE_KEITH, 1068, Globals.FACE_VOID, 1069, Globals.FACE_KEITH, 1070},
+/* 30 */  {Globals.FACE_KEITH, 1071, Globals.FACE_KEITH, 1072},
+/* 31 */  {Globals.FACE_KEITH, 0},
+/* 32 */  {Globals.FACE_KEITH, 0},
+/* 33 */  {Globals.FACE_KEITH, 1095},
+/* 34 */  {Globals.FACE_KEITH, 0},
+/* 35 */  {Globals.FACE_KEITH, 0},
+/* 36 */  {Globals.FACE_KEITH, 0},
+/* 37 */  {Globals.FACE_ERRKT, 1133, Globals.FACE_KEITH, 1134},
+/* 38 */  {Globals.FACE_KEITH, 0},
+/* 39 */  {Globals.FACE_KEITH, 1145},
+/* 40 */  {Globals.FACE_KEITH, 0},
+/* 41 */  {Globals.FACE_KEITH, 1158, Globals.FACE_ERRKT, 1159, Globals.FACE_KEITH, 1160, Globals.FACE_JEAN, 1161, Globals.FACE_KEITH, 1162},
+/* 42 */  {Globals.FACE_KEITH, 1165, Globals.FACE_ERRKT, 1166},
+/* 43 */  {Globals.FACE_KEITH, 0},
+/* 44 */  {Globals.FACE_KEITH, 0},
+/* 45 */  {Globals.FACE_KEITH, 0},
+/* 46 */  {Globals.FACE_KEITH, 0}};
     private static short[][] CAMPAIGN_SUCCESS = {
-/*  0 */  {0, 0},
-/*  1 */  {0, 870, 2, 871, 0, 872, 2, 873, 0, 874,
-           2, 875, 0, 876, 2, 877, 0, 878, 2, 879,
-           0, 880, 2, 881, 0, 882
+/*  0 */  {Globals.FACE_KEITH, 0},
+/*  1 */  {Globals.FACE_KEITH, 870, Globals.FACE_GUNANT, 871, Globals.FACE_KEITH, 872, Globals.FACE_GUNANT, 873, Globals.FACE_KEITH, 874,
+           Globals.FACE_GUNANT, 875, Globals.FACE_KEITH, 876, Globals.FACE_GUNANT, 877, Globals.FACE_KEITH, 878, Globals.FACE_GUNANT, 879,
+           Globals.FACE_KEITH, 880, Globals.FACE_GUNANT, 881, Globals.FACE_KEITH, 882
            },
-/*  2 */  {2, 888, 0, 889, 16, 890},
-/*  3 */  {2, 891, 0, 892, 2, 893, 0, 894, 2, 895},
-/*  4 */  {0, 897, 2, 898},
-/*  5 */  {2, 899, 0, 900, 2, 901, 0, 902, 2, 903,
-           16, 904},
-/*  6 */  {2, 905},
-/*  7 */  {2, 911, 0, 912, 2, 913, 0, 914, 2, 915},
-/*  8 */  {2, 916, 0, 917, 2, 918, 0, 919, 2, 920,
-           0, 921, 2, 922, 0, 923, 2, 924
+/*  2 */  {Globals.FACE_GUNANT, 888, Globals.FACE_KEITH, 889, Globals.FACE_COMPUTER, 890},
+/*  3 */  {Globals.FACE_GUNANT, 891, Globals.FACE_KEITH, 892, Globals.FACE_GUNANT, 893, Globals.FACE_KEITH, 894, Globals.FACE_GUNANT, 895},
+/*  4 */  {Globals.FACE_KEITH, 897, Globals.FACE_GUNANT, 898},
+/*  5 */  {Globals.FACE_GUNANT, 899, Globals.FACE_KEITH, 900, Globals.FACE_GUNANT, 901, Globals.FACE_KEITH, 902, Globals.FACE_GUNANT, 903,
+           Globals.FACE_COMPUTER, 904},
+/*  6 */  {Globals.FACE_GUNANT, 905},
+/*  7 */  {Globals.FACE_GUNANT, 911, Globals.FACE_KEITH, 912, Globals.FACE_GUNANT, 913, Globals.FACE_KEITH, 914, Globals.FACE_GUNANT, 915},
+/*  8 */  {Globals.FACE_GUNANT, 916, Globals.FACE_KEITH, 917, Globals.FACE_GUNANT, 918, Globals.FACE_KEITH, 919, Globals.FACE_GUNANT, 920,
+           Globals.FACE_KEITH, 921, Globals.FACE_GUNANT, 922, Globals.FACE_KEITH, 923, Globals.FACE_GUNANT, 924
            },          
-/*  9 */  {17, 925, 17, 926, 2, 927, 0, 928, 2, 929,
-            0, 930, 2, 931, 0, 932, 2, 933, 16, 934
+/*  9 */  {Globals.FACE_INFO_PIC, 925, Globals.FACE_INFO_PIC, 926, Globals.FACE_GUNANT, 927, Globals.FACE_KEITH, 928, Globals.FACE_GUNANT, 929,
+            Globals.FACE_KEITH, 930, Globals.FACE_GUNANT, 931, Globals.FACE_KEITH, 932, Globals.FACE_GUNANT, 933, Globals.FACE_COMPUTER, 934
             },
-/* 10 */  {3, 935, 0, 936, 3, 937, 0, 938, 3, 939,
-           0, 940, 3, 941, 0, 942, 3, 943, 0, 944,
-           3, 945, 0, 946
+/* 10 */  {Globals.FACE_NORRIS, 935, Globals.FACE_KEITH, 936, Globals.FACE_NORRIS, 937, Globals.FACE_KEITH, 938, Globals.FACE_NORRIS, 939,
+           Globals.FACE_KEITH, 940, Globals.FACE_NORRIS, 941, Globals.FACE_KEITH, 942, Globals.FACE_NORRIS, 943, Globals.FACE_KEITH, 944,
+           Globals.FACE_NORRIS, 945, Globals.FACE_KEITH, 946
            },          
-/* 11 */  {0, 948, 4, 949, 0, 950, 4, 951, 0, 952,
-           4, 953, 0, 954, 4, 955, 0, 956
+/* 11 */  {Globals.FACE_KEITH, 948, Globals.FACE_MKKT_BKKT, 949, Globals.FACE_KEITH, 950, Globals.FACE_MKKT_BKKT, 951, Globals.FACE_KEITH, 952,
+           Globals.FACE_MKKT_BKKT, 953, Globals.FACE_KEITH, 954, Globals.FACE_MKKT_BKKT, 955, Globals.FACE_KEITH, 956
            },          
-/* 12 */  {3, 957, 0, 958, 3, 959, 0, 960, 3, 961,
-           0, 962, 3, 963, 16, 964
+/* 12 */  {Globals.FACE_NORRIS, 957, Globals.FACE_KEITH, 958, Globals.FACE_NORRIS, 959, Globals.FACE_KEITH, 960, Globals.FACE_NORRIS, 961,
+           Globals.FACE_KEITH, 962, Globals.FACE_NORRIS, 963, Globals.FACE_COMPUTER, 964
            },          
-/* 13 */  {3, 965, 0, 966},
-/* 14 */  {17, 972},
-/* 15 */  {1, 973, 0, 974, 1, 975, 0, 976, 1, 977,
-           12, 978, 0, 979, 1, 980
+/* 13 */  {Globals.FACE_NORRIS, 965, Globals.FACE_KEITH, 966},
+/* 14 */  {Globals.FACE_INFO_PIC, 972},
+/* 15 */  {Globals.FACE_BRENT, 973, Globals.FACE_KEITH, 974, Globals.FACE_BRENT, 975, Globals.FACE_KEITH, 976, Globals.FACE_BRENT, 977,
+           Globals.FACE_SECURITY_GUY, 978, Globals.FACE_KEITH, 979, Globals.FACE_BRENT, 980
            },          
-/* 16 */  {1, 985, 0, 986, 1, 987},
-/* 17 */  {1, 988, 0, 989, 1, 990, 0, 991, 1, 992,
-           0, 993, 1, 994, 0, 995, 1, 996, 0, 997,
-           1, 998, 0, 999, 1, 1000,0, 1001,1, 1002
+/* 16 */  {Globals.FACE_BRENT, 985, Globals.FACE_KEITH, 986, Globals.FACE_BRENT, 987},
+/* 17 */  {Globals.FACE_BRENT, 988, Globals.FACE_KEITH, 989, Globals.FACE_BRENT, 990, Globals.FACE_KEITH, 991, Globals.FACE_BRENT, 992,
+           Globals.FACE_KEITH, 993, Globals.FACE_BRENT, 994, Globals.FACE_KEITH, 995, Globals.FACE_BRENT, 996, Globals.FACE_KEITH, 997,
+           Globals.FACE_BRENT, 998, Globals.FACE_KEITH, 999, Globals.FACE_BRENT, 1000,Globals.FACE_KEITH, 1001,Globals.FACE_BRENT, 1002
            },          
-/* 18 */  {0, 1003, 13, 1004, 0, 1005, 13, 1006,
-           0, 1007, 1, 1008, 0, 1009
+/* 18 */  {Globals.FACE_KEITH, 1003, Globals.FACE_SECURITY_GIRL, 1004, Globals.FACE_KEITH, 1005, Globals.FACE_SECURITY_GIRL, 1006,
+           Globals.FACE_KEITH, 1007, Globals.FACE_BRENT, 1008, Globals.FACE_KEITH, 1009
            },
-/* 19 */  {1, 1010, 0, 1011, 1, 1012, 0, 1013,
-           1, 1014
+/* 19 */  {Globals.FACE_BRENT, 1010, Globals.FACE_KEITH, 1011, Globals.FACE_BRENT, 1012, Globals.FACE_KEITH, 1013,
+           Globals.FACE_BRENT, 1014
            },
-/* 20 */  {0, 1015},
-/* 21 */  {1, 1021},
-/* 22 */  {5, 1022, 0, 1023, 5, 1024, 16, 1025},
-/* 23 */  {6, 1027, 0, 1028, 6, 1029, 0, 1030,
-           6, 1031, 0, 1032, 6, 1033, 0, 1034,
-           6, 1035, 0, 1036, 6, 1037, 0, 1038,
-           6, 1039, 0, 1040
+/* 20 */  {Globals.FACE_KEITH, 1015},
+/* 21 */  {Globals.FACE_BRENT, 1021},
+/* 22 */  {Globals.FACE_TOMMY, 1022, Globals.FACE_KEITH, 1023, Globals.FACE_TOMMY, 1024, Globals.FACE_COMPUTER, 1025},
+/* 23 */  {Globals.FACE_CARLA, 1027, Globals.FACE_KEITH, 1028, Globals.FACE_CARLA, 1029, Globals.FACE_KEITH, 1030,
+           Globals.FACE_CARLA, 1031, Globals.FACE_KEITH, 1032, Globals.FACE_CARLA, 1033, Globals.FACE_KEITH, 1034,
+           Globals.FACE_CARLA, 1035, Globals.FACE_KEITH, 1036, Globals.FACE_CARLA, 1037, Globals.FACE_KEITH, 1038,
+           Globals.FACE_CARLA, 1039, Globals.FACE_KEITH, 1040
            },
-/* 24 */  {0, 0},
-/* 25 */  {6, 1049, 0, 1050, 6, 1051, 0, 1052,
-           6, 1053, 0, 1054
+/* 24 */  {Globals.FACE_KEITH, 0},
+/* 25 */  {Globals.FACE_CARLA, 1049, Globals.FACE_KEITH, 1050, Globals.FACE_CARLA, 1051, Globals.FACE_KEITH, 1052,
+           Globals.FACE_CARLA, 1053, Globals.FACE_KEITH, 1054
            },
-/* 26 */  {6, 1058, 0, 1059},
-/* 27 */  {16, 1060, 0, 1061, 6, 1062, 0, 1063,
-            6, 1064, 0, 1065, 6, 1066, 0, 1067
+/* 26 */  {Globals.FACE_CARLA, 1058, Globals.FACE_KEITH, 1059},
+/* 27 */  {Globals.FACE_COMPUTER, 1060, Globals.FACE_KEITH, 1061, Globals.FACE_CARLA, 1062, Globals.FACE_KEITH, 1063,
+            Globals.FACE_CARLA, 1064, Globals.FACE_KEITH, 1065, Globals.FACE_CARLA, 1066, Globals.FACE_KEITH, 1067
            },
-/* 28 */  {0, 0},
-/* 29 */  {0, 1078},
-/* 31 */  {1, 1079, 0, 1080, 1, 1081},
-/* 32 */  {1, 1083, 0, 1084, 1, 1085, 0, 1086,
-           1, 1087, 0, 1088, 1, 1089, 0, 1090,
-           1, 1091, 0, 1092, 1, 1093, 0, 1094
+/* 28 */  {Globals.FACE_KEITH, 0},
+/* 29 */  {Globals.FACE_KEITH, 1078},
+/* 31 */  {Globals.FACE_BRENT, 1079, Globals.FACE_KEITH, 1080, Globals.FACE_BRENT, 1081},
+/* 32 */  {Globals.FACE_BRENT, 1083, Globals.FACE_KEITH, 1084, Globals.FACE_BRENT, 1085, Globals.FACE_KEITH, 1086,
+           Globals.FACE_BRENT, 1087, Globals.FACE_KEITH, 1088, Globals.FACE_BRENT, 1089, Globals.FACE_KEITH, 1090,
+           Globals.FACE_BRENT, 1091, Globals.FACE_KEITH, 1092, Globals.FACE_BRENT, 1093, Globals.FACE_KEITH, 1094
            },
-/* 33 */  {20, 1096, 0, 1097, 20, 1098, 0, 1099,
-           20, 1100, 0, 1101, 20, 1102, 0, 1103
+/* 33 */  {Globals.FACE_KHADOR, 1096, Globals.FACE_KEITH, 1097, Globals.FACE_KHADOR, 1098, Globals.FACE_KEITH, 1099,
+           Globals.FACE_KHADOR, 1100, Globals.FACE_KEITH, 1101, Globals.FACE_KHADOR, 1102, Globals.FACE_KEITH, 1103
            },
-/* 34 */  {20, 1104, 0, 1105, 6, 1106, 0, 1107, 
-            6, 1108, 0, 1109, 6, 1110, 0, 1111
+/* 34 */  {Globals.FACE_KHADOR, 1104, Globals.FACE_KEITH, 1105, Globals.FACE_CARLA, 1106, Globals.FACE_KEITH, 1107, 
+           Globals.FACE_CARLA, 1108, Globals.FACE_KEITH, 1109, Globals.FACE_CARLA, 1110, Globals.FACE_KEITH, 1111
             },
-/* 35 */  {1, 1112, 0, 1113, 1, 1114, 0, 1115,
-           1, 1116, 0, 1117, 1, 1118, 0, 1119,
-           1, 1120
+/* 35 */  {Globals.FACE_BRENT, 1112, Globals.FACE_KEITH, 1113, Globals.FACE_BRENT, 1114, Globals.FACE_KEITH, 1115,
+           Globals.FACE_BRENT, 1116, Globals.FACE_KEITH, 1117, Globals.FACE_BRENT, 1118, Globals.FACE_KEITH, 1119,
+           Globals.FACE_BRENT, 1120
            },          
-/* 36 */  {7, 1121, 0, 1122, 7, 1123, 0, 1124,
-           7, 1125, 0, 1126, 7, 1127, 0, 1128,
-           7, 1129, 0, 1130, 7, 1131, 0, 1132
+/* 36 */  {Globals.FACE_ERRKT, 1121, Globals.FACE_KEITH, 1122, Globals.FACE_ERRKT, 1123, Globals.FACE_KEITH, 1124,
+           Globals.FACE_ERRKT, 1125, Globals.FACE_KEITH, 1126, Globals.FACE_ERRKT, 1127, Globals.FACE_KEITH, 1128,
+           Globals.FACE_ERRKT, 1129, Globals.FACE_KEITH, 1130, Globals.FACE_ERRKT, 1131, Globals.FACE_KEITH, 1132
            },
-/* 37 */  {7, 1135, 0, 1136},
-/* 38 */  {1, 1137, 0, 1138, 1, 1139, 0, 1140,
-           1, 1141, 0, 1142, 1, 1143, 0, 1144
+/* 37 */  {Globals.FACE_ERRKT, 1135, Globals.FACE_KEITH, 1136},
+/* 38 */  {Globals.FACE_BRENT, 1137, Globals.FACE_KEITH, 1138, Globals.FACE_BRENT, 1139, Globals.FACE_KEITH, 1140,
+           Globals.FACE_BRENT, 1141, Globals.FACE_KEITH, 1142, Globals.FACE_BRENT, 1143, Globals.FACE_KEITH, 1144
            },
-/* 39 */  {0, 1147, 1, 1148},
-/* 40 */  {1, 1149, 0, 1150, 1, 1151, 0, 1152,
-           1, 1153, 0, 1154, 1, 1155, 0, 1156,
-           1, 1157
+/* 39 */  {Globals.FACE_KEITH, 1147, Globals.FACE_BRENT, 1148},
+/* 40 */  {Globals.FACE_BRENT, 1149, Globals.FACE_KEITH, 1150, Globals.FACE_BRENT, 1151, Globals.FACE_KEITH, 1152,
+           Globals.FACE_BRENT, 1153, Globals.FACE_KEITH, 1154, Globals.FACE_BRENT, 1155, Globals.FACE_KEITH, 1156,
+           Globals.FACE_BRENT, 1157
            },
-/* 41 */  {0, 0},
-/* 42 */  {0, 1167, 7, 1168, 0, 1169, 7, 1170,
-           0, 1171
+/* 41 */  {Globals.FACE_KEITH, 0},
+/* 42 */  {Globals.FACE_KEITH, 1167, Globals.FACE_ERRKT, 1168, Globals.FACE_KEITH, 1169, Globals.FACE_ERRKT, 1170,
+           Globals.FACE_KEITH, 1171
            },
-/* 43 */  {1, 1172, 0, 1173, 1, 1174, 0, 1175,
-           1, 1176, 0, 1177, 1, 1178, 0, 1179,
-           1, 1180
+/* 43 */  {Globals.FACE_BRENT, 1172, Globals.FACE_KEITH, 1173, Globals.FACE_BRENT, 1174, Globals.FACE_KEITH, 1175,
+           Globals.FACE_BRENT, 1176, Globals.FACE_KEITH, 1177, Globals.FACE_BRENT, 1178, Globals.FACE_KEITH, 1179,
+           Globals.FACE_BRENT, 1180
            },
-/* 44 */  {0, 1181, 1, 1182, 0, 1183, 1, 1184,
-           0, 1185, 6, 1186, 0, 1187, 6, 1188, 
-           1, 1189, 6, 1190, 1, 1191, 0, 1192,
-           6, 1193
+/* 44 */  {Globals.FACE_KEITH, 1181, Globals.FACE_BRENT, 1182, Globals.FACE_KEITH, 1183, Globals.FACE_BRENT, 1184,
+           Globals.FACE_KEITH, 1185, Globals.FACE_CARLA, 1186, Globals.FACE_KEITH, 1187, Globals.FACE_CARLA, 1188, 
+           Globals.FACE_BRENT, 1189, Globals.FACE_CARLA, 1190, Globals.FACE_BRENT, 1191, Globals.FACE_KEITH, 1192,
+           Globals.FACE_CARLA, 1193
            },
-/* 45 */  {0, 1194, 0, 1195, 0, 1196, 0, 1197},
-/* 46 */  {0, 0}
+/* 45 */  {Globals.FACE_KEITH, 1194, Globals.FACE_KEITH, 1195, Globals.FACE_KEITH, 1196, Globals.FACE_KEITH, 1197},
+/* 46 */  {Globals.FACE_KEITH, 0}
         };
     private byte[] face;
     private String message;

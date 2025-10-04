@@ -9,7 +9,7 @@ public final class Generator {
 	private final int[] GENERATOR_TYPE_PROBS = {5, 20, 2, 5, 100};
 
 	public static Ship[] getShipBuyList(final Station station) {
-		if (station.getSystemIndex() == 15 && Status.getCurrentCampaignMission() < 16) {
+		if (station.getSystemIndex() == 15 && Status.getCurrentCampaignMission() < Mission.STORY_16) {
 			return null;
 		}
 		Ship[] listShips = null;
@@ -27,7 +27,7 @@ public final class Generator {
 
 				while(true) {
 					while(!noDublicates) {
-						shipId = sellSecretShip ? 8 : Globals.getRandomEnemyFighter(race);
+						shipId = sellSecretShip ? Ship.SHIP_8 : Globals.getRandomEnemyFighter(race);
 						noDublicates = true;
 
 						for(int j = 0; j < listShips.length; ++j) {
@@ -245,7 +245,7 @@ public final class Generator {
 			targetStation = Status.getSystem().getStations()[0] + GlobalStatus.random.nextInt(4);
 		}
 		int j = 0;
-		int missionType = 0;
+		int missionType = Mission.TYPE_0;
 		while (j == 0) {
 			missionType = GlobalStatus.random.nextInt(13);
 			if (missionType != 8) {
@@ -255,35 +255,35 @@ public final class Generator {
 		if (Status.getCurrentCampaignMission() < 16) {
 			switch (GlobalStatus.random.nextInt(5)) {
 			case 0: {
-				missionType = 11;
+				missionType = Mission.TYPE_11;
 				break;
 			}
 			case 1: {
-				missionType = 0;
+				missionType = Mission.TYPE_0;
 				break;
 			}
 			case 2: {
-				missionType = 7;
+				missionType = Mission.TYPE_7;
 				break;
 			}
 			case 3: {
-				missionType = 4;
+				missionType = Mission.TYPE_4;
 				break;
 			}
 			case 4: {
-				missionType = 12;
+				missionType = Mission.TYPE_12;
 				break;
 			}
 			}
 		}
-		if (missionType == 12) {
+		if (missionType == Mission.TYPE_12) {
 			targetStation = agent.getStationId();
 		}
-		if (agent.getType() == 5) {
-			missionType = 8;
+		if (agent.getType() == Agent.TYPE_5) {
+			missionType = Mission.TYPE_8;
 			targetStation = agent.getStationId();
 		}
-		if (missionType == 11 || missionType == 0) {
+		if (missionType == Mission.TYPE_11 || missionType == Mission.TYPE_0) {
 			while (targetStation == Status.getStation().getIndex()) {
 				targetStation = generateStationIndex(loadSystemsBinary, agent.getStationId());
 			}
@@ -300,30 +300,30 @@ public final class Generator {
 			tecLevel = 1 + GlobalStatus.random.nextInt(9);
 		}
 		switch (missionType) {
-		case 8: { //Purchase
+		case Mission.TYPE_8: { //Purchase
 			final Item[] items = Globals.getItems();
-			int n2;
+			int i;
 			do {
-				n2 = 97 + GlobalStatus.random.nextInt(items.length - 97);
-			} while (items[n2].getSinglePrice() == 0 || n2 == 175 || n2 == 164 || n2 == 131);
-			commodity = n2;
+				i = 97 + GlobalStatus.random.nextInt(items.length - 97);
+			} while (items[i].getSinglePrice() == 0 || i == 175 || i == 164 || i == 131);
+			commodity = i;
 			commodityAmount = 5 + GlobalStatus.random.nextInt(15);
 			tecLevel = items[commodity].getTecLevel();
 			break;
 		}
-		case 3: // Recovery
-		case 5: //	Salvage
+		case Mission.TYPE_3: // Recovery
+		case Mission.TYPE_5: //	Salvage
 			commodityAmount = 2 + (int)(8.0f * (tecLevel / 10.0f));
-			commodity = missionType == 3 ? 116 : 117;
+			commodity = missionType == Mission.TYPE_3 ? 116 : 117;
 			break;
-		case 0: //Courier
+		case Mission.TYPE_0: //Courier
 			commodityAmount = 5 + (int)(95.0f * (tecLevel / 10.0f));
 			commodity = GlobalStatus.random.nextInt(7);
 			break;
-		case 11: //Passenger/Reach destination
+		case Mission.TYPE_11: //Passenger/Reach destination
 			commodityAmount = 2 + (int)(18.0f * (tecLevel / 10.0f));
 			break;
-		case 2: //Protection
+		case Mission.TYPE_2: //Protection
 			commodityAmount = 2 + (int)(float)GlobalStatus.random.nextInt(4);
 			break;
 		default:
@@ -336,31 +336,31 @@ public final class Generator {
 						loadSystemsBinary[Galaxy.getStation(targetStation).getSystemIndex()]
 						) / 1200.0f + 1.0f)
 				+ Status.getLevel() * 200;
-		if (missionType == 7) {
+		if (missionType == Mission.TYPE_7) {
 			reward *= 0.7f;
 		}
-		else if (missionType == 9) {
+		else if (missionType == Mission.TYPE_9) {
 			reward *= 1.2f;
 		}
-		else if (missionType == 8) {
+		else if (missionType == Mission.TYPE_8) {
 			reward = reward / 2.0f + commodityAmount * Globals.getItems()[commodity].getMaxPrice() * 3;
 		}
-		else if (missionType == 11) {
+		else if (missionType == Mission.TYPE_11) {
 			final float n4 = reward * 0.6f;
 			reward = n4 + commodityAmount * (n4 / 5.0f);
 		}
-		else if (missionType == 5 || missionType == 3) {
+		else if (missionType == Mission.TYPE_5 || missionType == Mission.TYPE_3) {
 			reward *= 2.0f;
 		}
 		int rest = (int)reward % 50;
 		reward = (reward + rest) % 50.0f == 0.0f ? reward + rest : reward - rest;
 		final Mission mission = new Mission(missionType, fullName, agent.getImageParts(), race, (int)reward, targetStation, min);
 		int bonus = (int)(reward / 10.0f + GlobalStatus.random.nextInt((int)reward / 10));
-		if (missionType == 8) {
+		if (missionType == Mission.TYPE_8) {
 			bonus *= 0.5f;
 		}
-		else if (missionType == 6) {
-			mission.setTargetName(Globals.getRandomName(0, true));
+		else if (missionType == Mission.TYPE_6) {
+			mission.setTargetName(Globals.getRandomName(Globals.TERRAN, true));
 		}
 		rest = bonus % 50;
 		mission.setBonus((bonus + rest) % 50 == 0 ? bonus + rest : bonus - rest);

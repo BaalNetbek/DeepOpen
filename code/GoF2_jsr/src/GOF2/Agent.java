@@ -10,7 +10,7 @@ public final class Agent {
 	public static final int TYPE_2 = 2;
 	public static final int TYPE_3 = 3;
 	public static final int TYPE_4 = 4;
-	/** human trafficer */
+	/** human/cargo trafficer */
 	public static final int TYPE_5 = 5;
 	/** wingman */
 	public static final int TYPE_6 = 6;

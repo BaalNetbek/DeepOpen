@@ -25,15 +25,15 @@ public final class TextBox {
     private Image[] faceImgs;
     private final int heightLimit;
 
-    public TextBox(final int var1, final int var2, final int var3, final int var4, final String var5) {
-        this.posX = var1;
-        this.posY = var2;
-        this.width = var3;
-        this.height = var4;
-        this.heightLimit = var4;
+    public TextBox(final int x, final int y, final int w, final int h, final String message) {
+        this.posX = x;
+        this.posY = y;
+        this.width = w;
+        this.height = h;
+        this.heightLimit = h;
         this.topPadding = 0;
-        if (var5 != null) {
-            setText(var5);
+        if (message != null) {
+            setText(message);
         }
 
         this.hide = false;

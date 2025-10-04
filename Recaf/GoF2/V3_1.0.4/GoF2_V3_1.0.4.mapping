@@ -976,7 +976,7 @@ l.b()V render
 l.c()V renderRocket_
 l.a(Lbw;)V setRadar
 l.a(J)V update
-k AE/ParticleSystemMesh
+k AE/QuadArray
 k.a Lcom/mascotcapsule/micro3d/v3/FigureLayout; v3layout
 k.a Lcom/mascotcapsule/micro3d/v3/Effect3D; effect3D
 k.a Lcom/mascotcapsule/micro3d/v3/AffineTrans; affineTrans

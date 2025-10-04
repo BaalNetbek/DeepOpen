@@ -1046,7 +1046,7 @@ ax.a()Lah; clone
 ax.a(Laq;)V setTexture
 ax.a(Ljavax/microedition/m3g/Node;[Ljavax/microedition/m3g/Texture2D;Z)V setupMaterial
 ax.a()V OnRelease
-ac AE/ParticleSystemMesh
+ac AE/QuadArray
 ac.a Ljavax/microedition/m3g/Transform; calcTransform
 ac.a [F transformValues
 ac.a Ljavax/microedition/m3g/Appearance; appearance

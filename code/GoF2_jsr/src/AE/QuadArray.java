@@ -13,7 +13,7 @@ import javax.microedition.m3g.VertexBuffer;
 import AE.Math.AEMath;
 import AE.PaintCanvas.AEGraphics3D;
 
-public final class ParticleSystemMesh extends AEGeometry {
+public final class QuadArray extends AEGeometry {
 	private static Transform calcTransform = new Transform();
 	private static float[] transformValues = new float[16];
 	private Appearance appearance;
@@ -30,7 +30,7 @@ public final class ParticleSystemMesh extends AEGeometry {
 	private int textureWidth;
 	private final int color = 0xffffffff;
 
-	public ParticleSystemMesh(final int resourceId, int quadCount, final byte blending) {
+	public QuadArray(final int resourceId, int quadCount, final byte blending) {
 		this.resourceId = resourceId;
 		if (this.appearance == null) {
 			this.appearance = new Appearance();
@@ -89,7 +89,7 @@ public final class ParticleSystemMesh extends AEGeometry {
 		this.mesh = new Mesh(this.vertexBuffer, this.tStrips, this.appearance);
 	}
 
-	private ParticleSystemMesh(final ParticleSystemMesh var1) {
+	private QuadArray(final QuadArray var1) {
 		this.quadCount = var1.quadCount;
 		this.mesh = var1.mesh;
 		this.vertexBuffer = var1.vertexBuffer;
@@ -105,7 +105,7 @@ public final class ParticleSystemMesh extends AEGeometry {
 	}
 
 	public final GraphNode clone() {
-		return new ParticleSystemMesh(this);
+		return new QuadArray(this);
 	}
 
 	public final void OnRelease() {

@@ -53,9 +53,12 @@ public final class Mission {
 	/**	Courier */
 	public static final int TYPE_0 = 0;
 	public static final int TYPE_1 = 1;
+    /** Protection */
 	public static final int TYPE_2 = 2;
+    /** Recovery */
 	public static final int TYPE_3 = 3;
 	public static final int TYPE_4 = 4;
+    /** Salvage */
 	public static final int TYPE_5 = 5;
 	public static final int TYPE_6 = 6;
 	public static final int TYPE_7 = 7;
@@ -115,11 +118,11 @@ public final class Mission {
 		this.visibleOnMap = true;
 	}
 
-	public Mission(final int var1, final int var2, final int var3) {
-		this.missionType = var1;
-		this.reward = var2;
-		this.targetStationId = var3;
-		this.targetStationName = Galaxy.getStation(var3).getName();
+	public Mission(final int type, final int reward, final int target_station) {
+		this.missionType = type;
+		this.reward = reward;
+		this.targetStationId = target_station;
+		this.targetStationName = Galaxy.getStation(target_station).getName();
 		this.startedStoryMission = true;
 		this.visibleOnMap = true;
 	}

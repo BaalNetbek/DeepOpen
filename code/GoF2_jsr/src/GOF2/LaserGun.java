@@ -6,7 +6,7 @@ import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.GraphNode;
 import AE.ITexture;
-import AE.ParticleSystemMesh;
+import AE.QuadArray;
 import AE.Math.AEVector3D;
 import AE.Math.AEMatrix;
 
@@ -139,7 +139,7 @@ public final class LaserGun extends AEGeometry implements AbstractGun {
 			}
 
 			this.beam.moveTo(muzzlePos.x, muzzlePos.y, muzzlePos.z);
-			((ParticleSystemMesh)this.beam).setMeshData_(this.vertexPositions, this.uvs);
+			((QuadArray)this.beam).setMeshData_(this.vertexPositions, this.uvs);
 			GlobalStatus.renderer.drawNodeInVF(this.flash);
 			GlobalStatus.renderer.drawNodeInVF(this.beam);
 			if (this.gun.projectilesTimeLeft[0] <= 0) {

@@ -335,7 +335,7 @@ public final class ImageFont {
 			return 92;
 		case '~':
 			return 93;
-		case '\u0099':
+		case '\u0099': //^tm, ™
 			return 96;
 		case '¡':
 			return 97;

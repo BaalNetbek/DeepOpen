@@ -114,7 +114,10 @@ public final class Layout {
 				lock = AEFile.loadImage("/data/interface/lock.png", true);
 			}
 
-			if (Status.getCurrentCampaignMission() < 13 && (var0.equals(GlobalStatus.gameText.getText(218)) || var0.equals(GlobalStatus.gameText.getText(33))) || Status.getCurrentCampaignMission() < 9 && var0.equals(GlobalStatus.gameText.getText(72)) || Status.getCurrentCampaignMission() < 5 && var0.equals(GlobalStatus.gameText.getText(62))) {
+			if (Status.getCurrentCampaignMission() < 13 && (var0.equals(GlobalStatus.gameText.getText(218))
+             || var0.equals(GlobalStatus.gameText.getText(33))) 
+             || Status.getCurrentCampaignMission() < 9 && var0.equals(GlobalStatus.gameText.getText(72)) 
+             || Status.getCurrentCampaignMission() < 5 && var0.equals(GlobalStatus.gameText.getText(62))) {
 				GlobalStatus.graphics.drawImage(lock, var1 + 3, var2 + 2, 0);
 			}
 		}

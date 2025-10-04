@@ -3,7 +3,7 @@ package GOF2;
 import AE.AEResourceManager;
 import AE.AEGeometry;
 import AE.GlobalStatus;
-import AE.ParticleSystemMesh;
+import AE.QuadArray;
 import AE.Math.AEVector3D;
 
 public final class Trail {
@@ -103,7 +103,7 @@ public final class Trail {
         }
 
         this.mesh.moveTo(pos.x, pos.y, pos.z);
-        ((ParticleSystemMesh)this.mesh).setMeshData_(this.vertices, this.uvs);
+        ((QuadArray)this.mesh).setMeshData_(this.vertices, this.uvs);
         this.sourcePos.set(pos);
     }
 

@@ -4,7 +4,7 @@ import AE.AEResourceManager;
 import AE.AEGeometry;
 import AE.GlobalStatus;
 import AE.AEGroup;
-import AE.ParticleSystemMesh;
+import AE.QuadArray;
 import AE.Math.AEMath;
 import AE.Math.AEVector3D;
 
@@ -133,7 +133,7 @@ public final class TractorBeam {
             }
 
             this.beamMesh.moveTo(this.beamSrcPos_.x, this.beamSrcPos_.y, this.beamSrcPos_.z);
-            ((ParticleSystemMesh)this.beamMesh).setMeshData_(this.vertexPositions, this.uvs);
+            ((QuadArray)this.beamMesh).setMeshData_(this.vertexPositions, this.uvs);
             if (this.shipToTarget.getLength() <= 400) {
                 this.target.captureCrate(var5);
                 this.active = false;

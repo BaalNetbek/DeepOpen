@@ -942,14 +942,15 @@ public final class Status {
         wingmenNames = var0;
     }
 
-    public static String replaceToken(final String var0, final String var1) {
-        int var2;
-        return (var2 = var0.indexOf(35)) >= 0 ? var0.substring(0, var2) + var1 + var0.substring(var2 + 1) : var0;
+    /** Relpaces token '#' in template with value */
+    public static String replaceToken(final String template, final String value) {
+        int var2 = template.indexOf('#');
+        return var2 >= 0 ? template.substring(0, var2) + value + template.substring(var2 + 1) : template;
     }
-
-    public static String replaceTokens(final String var0, final String var1, final String var2) {
-        int var3 = var0.indexOf(var2);
-        return var3 >= 0 ? var0.substring(0, var3) + var1 + var0.substring(var3 + var2.length()) : var0;
+    /** Replaces tokens (String) in template with value */
+    public static String replaceTokens(final String template, final String value, final String tokens) {
+        int var3 = template.indexOf(tokens);
+        return var3 >= 0 ? template.substring(0, var3) + value + template.substring(var3 + tokens.length()) : template;
     }
 
     public static void calcCargoPrices() {
